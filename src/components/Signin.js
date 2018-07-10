@@ -1,22 +1,42 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-
-
-const Container = styled.div`
-  grid-row: row-start / row-end;
-  grid-column: column-start / column-end;
-  width: 30%;
-  height: 55%;
-  background-color: white;
-  justify-self: center;
-  align-self: center;
-`
+import { FlexItem, Field } from './elements';
+import { OutlineButton } from './elements';
+import theme from './elements/theme';
 
 class Signin extends Component {
 
   render() {
     return (
-      <Container>Hello World</Container>
+      <FlexItem
+        border="1px solid black"
+        p="5rem"
+        bg="black"
+        height="65%"
+        width="40%"
+      >
+         <Field 
+          name="email"
+          type="email"
+          label="Email"
+          placeholder="zach@hackclub.com"
+          error="can’t be blank"
+         >
+        </Field>
+        <Field 
+          name="password"
+          type="password"
+          label="Password"
+          error="can’t be blank"
+         >
+        </Field>
+        <OutlineButton
+          color="white"
+          borderColor='primary'
+          mt="1rem"
+        >
+          Sign In
+        </OutlineButton>
+      </FlexItem>
     );
   }
 }
