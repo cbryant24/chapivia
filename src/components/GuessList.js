@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { includes, keyBy, map } from 'lodash';
-import { update } from 'immutability-helper';
-import { GridItem, Table, Button, Field } from './elements';
+import update from 'immutability-helper';
+import { GridItem, Table, OutlineButton, Field, Image } from './elements';
 
 class GuessList extends Component {
   constructor(props) {
@@ -15,7 +15,8 @@ class GuessList extends Component {
     this.state = {
       players: {
         ...players
-      }
+      },
+      car: true
     };
   }
 
@@ -37,15 +38,12 @@ class GuessList extends Component {
   }
 
   handleGuessChange(player) {
-    debugger
-    const players = {
-      ...this.state.players,
-      ...player.editAnswer = true
-    }
-    // const newState = update(this.state, {players: { [player.id]: { editAnswer: {$set: true} } } } )
+    const newState = update(this.state, {
+      players: {[player.id]: {editAnswer: {$set: !this.state.players[player.id].editAnswer}}}
+    });
     this.setState({
-      players
-    })
+      ...newState
+    });
   }
 
   componentDidUpdate() {
@@ -60,20 +58,20 @@ class GuessList extends Component {
           height="4rem"
           key={player.id}
         >
-          <Table.td>{player.name}</Table.td>
-          <Table.td>
+          <Table.td width="20%"> <Image src="/img/kgrad.png"/>{player.name}</Table.td>
+          <Table.td width="40%">
             {player.editAnswer ? <Field 
-                            name="password"
-                            type="password"
-                            minHeight="1.1rem"
-                            fontSize="1.1rem"
-                            width="25%"
-                            display="inline-block"
-                          >
+                                  name="password"
+                                  type="password"
+                                  minHeight="1.1rem"
+                                  fontSize="1.1rem"
+                                  width="25%"
+                                  display="inline-block"
+                                >
             </Field> : player.answer}
           </Table.td>
-          <Table.td>
-            <Button.button
+          <Table.td width="40%">
+            <OutlineButton
               bg="primary"
               fontSize="1.1rem"
               borderWidth="1px"
@@ -85,8 +83,8 @@ class GuessList extends Component {
               onClick={ () => this.handleGuessChange(player)}
             >
               {player.editAnswer ? "submit" : "change"}
-            </Button.button>
-            {player.editAnswer ? <Button.button
+            </OutlineButton>
+            {player.editAnswer ? <OutlineButton
               bg="primary"
               fontSize="1.1rem"
               borderWidth="1px"
@@ -95,10 +93,10 @@ class GuessList extends Component {
               py="2px"
               ml="2px"
               borderRadius="2px"
-              onClick={ () => this.handleGuessChange()}
+              onClick={ () => this.handleGuessChange(player)}
             >
               cancel
-            </Button.button> : ""}
+            </OutlineButton> : ""}
           </Table.td>
         </Table.tr>
       ))
@@ -117,7 +115,7 @@ class GuessList extends Component {
         >
           <Table.body>
             <Table.tr border="1px solid black">
-              {this.displayTableHeaders(['Name', 'Guessed', 'Edit'])}
+              {this.displayTableHeaders(['Name', 'Guessed', ""])}
             </Table.tr>
             {this.dispalayGuesses(this.state.players)}
           </Table.body>

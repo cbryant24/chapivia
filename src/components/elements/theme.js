@@ -175,7 +175,8 @@ export const filterProps = props =>
     "gridRow",
     "alignContent",
     "gridGap",
-    "textTransform"
+    "textTransform",
+    "minHeight"
   ])
 
 const theme = {

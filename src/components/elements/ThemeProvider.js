@@ -42,6 +42,10 @@ injectGlobal`
     font-size: 62.5%;
   }
 
+  ul {
+    list-style: none;
+  }
+
   body {
     box-sizing: border-box;
     padding: 0;
