@@ -62,9 +62,9 @@ class GuessList extends Component {
           <Table.td display="flex" width="100%"> 
             <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/>
             <Text.span
-              text-transform="uppercase"
-              font-size="2.4rem"
-              font-weight="500"
+              textTransform="uppercase"
+              fontSize="2.4rem"
+              fontWeight="500"
               padding-left="2rem"
             >
               {player.name}
