@@ -10,6 +10,7 @@ export { default as Text } from './Text';
 
 //Components
 export { default as Field } from './Field';
+export { default as Input } from './Input';
 export { default as OutlineButton } from './OutlineButton';
 export { default as Table } from './Table';
 export { default as Button } from './Button';

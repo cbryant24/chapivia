@@ -1,16 +1,21 @@
 import Box from './Box'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import theme from './theme';
 
 const Image = Box.withComponent('img').extend`
-  display: block;
   max-width: 100%;
-  height: auto;
+  border-radius: ${props => props.theme.radius && props.borderRadius};
 `
 
 Image.displayName = 'Image'
 
 Image.propTypes = {
   alt: PropTypes.string.isRequired
+}
+
+Image.defaultProps = {
+  theme,
+  height: "auto"
 }
 
 export default Image

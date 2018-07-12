@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { includes, keyBy, map } from 'lodash';
 import update from 'immutability-helper';
-import { GridItem, Table, OutlineButton, Field, Image } from './elements';
+import { GridItem, Table, OutlineButton, Input, Image, Text } from './elements';
+import kgrad from '../img/kgrad.png';
 
 class GuessList extends Component {
   constructor(props) {
@@ -58,9 +59,19 @@ class GuessList extends Component {
           height="4rem"
           key={player.id}
         >
-          <Table.td width="20%"> <Image src="/img/kgrad.png"/>{player.name}</Table.td>
-          <Table.td width="40%">
-            {player.editAnswer ? <Field 
+          <Table.td display="flex" width="100%"> 
+            <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/>
+            <Text.span
+              text-transform="uppercase"
+              font-size="2.4rem"
+              font-weight="500"
+              padding-left="2rem"
+            >
+              {player.name}
+            </Text.span>
+          </Table.td>
+          <Table.td width="20%">
+            {player.editAnswer ? <Input 
                                   name="password"
                                   type="password"
                                   minHeight="1.1rem"
@@ -68,9 +79,9 @@ class GuessList extends Component {
                                   width="25%"
                                   display="inline-block"
                                 >
-            </Field> : player.answer}
+            </Input> : player.answer}
           </Table.td>
-          <Table.td width="40%">
+          <Table.td width="30%">
             <OutlineButton
               bg="primary"
               fontSize="1.1rem"

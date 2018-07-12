@@ -53,7 +53,7 @@ Field.propTypes = {
   ]),
   name: PropTypes.string.isRequired,
   /** label text */
-  // label: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   /** validation message */
   error: PropTypes.string,
   /** placeholder text */

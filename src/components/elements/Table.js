@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import {
   space,
+  display,
   width,
   color,
   border,
@@ -28,7 +29,9 @@ const Table = styled(cleanElement(Base))([], space, width, color, fontSize,
 Table.displayName = 'Table'
 Table.tr = Table.withComponent('tr')
 Table.th = Table.withComponent('th')
-Table.td = Table.withComponent('td')
+Table.td = Table.withComponent('td').extend`
+  ${display};
+`
 Table.body = Table.withComponent('tbody')
 
 Table.defaultProps = {

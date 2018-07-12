@@ -10,6 +10,7 @@ import {
   textAlign,
   responsiveStyle,
   height,
+  display,
   propTypes
 } from 'styled-system'
 import theme, { filterProps } from './theme'
@@ -21,7 +22,7 @@ const Base = props => {
   return <div {...next} />
 }
 
-const Box = styled(cleanElement(Base))([], space, width, color, fontSize, textAlign, height, border);
+const Box = styled(cleanElement(Base))([], space, width, color, fontSize, textAlign, height, border, display);
 
 Box.displayName = 'Box'
 Box.header = Box.withComponent('header')

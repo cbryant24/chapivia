@@ -11,7 +11,7 @@ class Game extends Component {
   render() {
     return (
       <Grid
-        templateColumns="repeat(3, [col-start] 1fr [col-end])"
+        templateColumns="repeat(2, [col-start] 1fr [col-end]) [last-col-start] .5fr [last-col-end]"
         templateRows="[first-row-start] 1fr [first-row-end 
                       second-row-start] .5fr [second-row-end]"
         gridGap="1.5rem"
@@ -30,7 +30,7 @@ class Game extends Component {
         />
         <Scoreboard 
           gridRow="first-row-start / first-row-end" 
-          gridColumn="col-start 3 / col-end 3"
+          gridColumn="last-col-start / last-col-end"
         />
         <GuessForm 
           gridRow="second-row-start / second-row-end" 
@@ -38,7 +38,7 @@ class Game extends Component {
         />
         <Winner 
           gridRow="second-row-start / second-row-end"
-          gridColumn="col-start 3 / col-end 3"
+          gridColumn="last-col-start / last-col-end"
           border="1px solid brown"
         />
       </Grid>
