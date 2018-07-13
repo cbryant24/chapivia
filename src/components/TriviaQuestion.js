@@ -22,8 +22,8 @@ class TriviaQuestion extends Component {
     };
   }
 
-  displayGuesses() {
-    const guesses = shuffle(concat(this.state.dailyTrivia.incorrect_answers, this.state.dailyTrivia.correct_answer));
+  displayGuesses({incorrect_answers, correct_answer}) {
+    const guesses = shuffle(concat(incorrect_answers, correct_answer));
     return (
       guesses.map( choice => {
         return(
@@ -32,6 +32,7 @@ class TriviaQuestion extends Component {
       })
     )
   }
+  
   render() {
     return (
       <GridItem 
@@ -47,7 +48,7 @@ class TriviaQuestion extends Component {
           {this.state.dailyTrivia.question}
         </Text.p>
         <List>
-          {this.displayGuesses()}
+          {this.displayGuesses(this.state.dailyTrivia)}
         </List>
       </GridItem>
     );

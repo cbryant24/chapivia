@@ -14,20 +14,20 @@ class Signin extends Component {
         height="65%"
         width="40%"
       >
-         <Field 
-          name="email"
-          type="email"
-          label="Email"
-          placeholder="zach@hackclub.com"
-          error="can’t be blank"
-         >
+        <Field 
+        name="email"
+        type="email"
+        label="Email"
+        placeholder="zach@hackclub.com"
+        error="can’t be blank"
+        >
         </Field>
         <Field 
           name="password"
           type="password"
           label="Password"
           error="can’t be blank"
-         >
+        >
         </Field>
         <OutlineButton
           color="white"

@@ -14,10 +14,7 @@ class GuessList extends Component {
       return val}), "id");
 
     this.state = {
-      players: {
-        ...players
-      },
-      car: true
+      players
     };
   }
 
