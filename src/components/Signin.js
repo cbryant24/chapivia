@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { FlexItem, Field } from './elements';
+import axios from 'axios';
 import { OutlineButton } from './elements';
 import theme from './elements/theme';
 
 class Signin extends Component {
+
+  signin(vals) {
+    debugger
+  }
 
   render() {
     return (
@@ -33,6 +38,7 @@ class Signin extends Component {
           color="white"
           borderColor='primary'
           mt="1rem"
+          onClick={(vals) => this.signin(vals)}
         >
           Sign In
         </OutlineButton>
