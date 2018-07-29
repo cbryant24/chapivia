@@ -32,6 +32,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.prototype.comparePassword = function(candidatePassword, callback) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatched) {
+      console.log('am i getting to the bcrypt')
+      // err = 'bcrypt acting crazy over here'
       if (err) { return callback(err); }
   
       callback(null, isMatched);
@@ -39,4 +41,3 @@ module.exports = (sequelize, DataTypes) => {
   }
   return User;
 };
-

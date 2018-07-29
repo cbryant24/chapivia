@@ -5,6 +5,6 @@ const post = require('./post');
 
 module.exports = {
   // eslint-disable-next-line
-  get: get,
-  post: post
+  get,
+  post
 }
