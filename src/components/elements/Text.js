@@ -61,5 +61,8 @@ Text.defaultProps = {
 Text.span = Text.withComponent('span');
 Text.p = Text.withComponent('p');
 Text.s = Text.withComponent('s');
+Text.hOne = Text.withComponent('h1').extend`
+  font-size: "2.2rem"
+`;
 
-export default Text
+export default Text;

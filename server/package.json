@@ -1,0 +1,36 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "joi": "^13.4.0",
+    "jwt-simple": "^0.5.1",
+    "module-alias": "^2.1.0",
+    "mongoose": "^5.1.4",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.4.3",
+    "sequelize": "^4.38.0",
+    "winston": "^3.0.0"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@config": "./config",
+    "@models": "./models",
+    "@user": "./models/user",
+    "@middleware": "./web/middleware"
+  }
+}

@@ -1,11 +1,13 @@
 import React from 'react';
-import FlexItem from './Flex';
+import Box from './Box';
+import { alignSelf, justifySelf } from 'styled-system';
 import theme from './theme';
 
 
-const GridItem = FlexItem.extend`
+const GridItem = Box.extend`
   grid-row: ${ props => props.gridRow};
   grid-column: ${ props => props.gridColumn};
+  ${alignSelf} ${justifySelf};
 `
 
 GridItem.defaultProps = {
