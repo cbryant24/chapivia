@@ -1,0 +1,124 @@
+{
+  "response_code": 0,
+  "results": [{
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Carcassonne is based on which French town?",
+      "correct_answer": "Carcassonne",
+      "incorrect_answers": [
+        "Paris",
+        "Marseille",
+        "Clermont-Ferrand"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In a standard game of Monopoly, what colour are the two cheapest properties?",
+      "correct_answer": "Brown",
+      "incorrect_answers": [
+        "Green",
+        "Yellow",
+        "Blue"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "How many spaces are there on a standard Monopoly board?",
+      "correct_answer": "40",
+      "incorrect_answers": [
+        "28",
+        "55",
+        "36"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "How many dice are used in the game of Yahtzee?",
+      "correct_answer": "Five",
+      "incorrect_answers": [
+        "Four",
+        "Six",
+        "Eight"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "How many pieces are there on the board at the start of a game of chess?",
+      "correct_answer": "32",
+      "incorrect_answers": [
+        "16",
+        "20",
+        "36"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "On a standard Monopoly board, which square is diagonally opposite &#039;Go&#039;? ",
+      "correct_answer": "Free Parking",
+      "incorrect_answers": [
+        "Go to Jail",
+        "Jail",
+        "The Electric Company"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of these games includes the phrase &quot;Do not pass Go, do not collect $200&quot;?",
+      "correct_answer": "Monopoly",
+      "incorrect_answers": [
+        "Pay Day",
+        "Cluedo",
+        "Coppit"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which one of these is not a real game in the Dungeons &amp; Dragons series?",
+      "correct_answer": "Extreme Dungeons &amp; Dragons",
+      "incorrect_answers": [
+        "Advanced Dungeons &amp; Dragons",
+        "Dungeons &amp; Dragons 3.5th edition",
+        "Advanced Dungeons &amp; Dragons 2nd edition"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "The board game Monopoly takes its street names from which real American city?",
+      "correct_answer": "Atlantic City, New Jersey",
+      "incorrect_answers": [
+        "Las Vegas, Nevada",
+        "Duluth, Minnesota",
+        "Charleston, South Carolina"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In which year was the pen and paper RPG &quot;Deadlands&quot; released?",
+      "correct_answer": "1996",
+      "incorrect_answers": [
+        "2003",
+        "1999",
+        "1993"
+      ]
+    }
+  ]
+}

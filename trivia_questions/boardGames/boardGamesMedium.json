@@ -1,0 +1,123 @@
+{
+  "results": [{
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "At the start of a standard game of the Monopoly, if you throw a double six, which square would you land on?",
+      "correct_answer": "Electric Company",
+      "incorrect_answers": [
+        "Water Works",
+        "Chance",
+        "Community Chest"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "The board game, Nightmare was released in what year?",
+      "correct_answer": "1991",
+      "incorrect_answers": [
+        "1992",
+        "1989",
+        "1995"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who is the main character in the VHS tape included in the board game Nightmare?",
+      "correct_answer": "The Gatekeeper",
+      "incorrect_answers": [
+        "The Kryptkeeper",
+        "The Monster",
+        "The Nightmare"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "How many points is the Z tile worth in Scrabble?",
+      "correct_answer": "10",
+      "incorrect_answers": [
+        "8",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What special item did the creators of Cards Against Humanity ship for their Black Friday pack?",
+      "correct_answer": "Bull Feces",
+      "incorrect_answers": [
+        "A Card Expansion",
+        "A Racist Toy",
+        "Cat Urine"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In Chess, the Queen has the combined movement of which two pieces?",
+      "correct_answer": "Bishop and Rook",
+      "incorrect_answers": [
+        "Rook and King",
+        "Knight and Bishop",
+        "King and Knight"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which of the following tabletop games is the oldest?",
+      "correct_answer": "Go",
+      "incorrect_answers": [
+        "Chess",
+        "Mahjong",
+        "Shogi"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In &quot;Magic: The Gathering&quot;, what instant card has the highest converted mana cost?",
+      "correct_answer": "Blinkmoth Infusion",
+      "incorrect_answers": [
+        "Vitalizing Wind",
+        " Chant of Vitu-Ghazi",
+        "Assert Authority"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In &quot;Magic: The Gathering&quot;, during the design for Planar Chaos, what color did the developers think of adding in as the sixth color?",
+      "correct_answer": "Purple",
+      "incorrect_answers": [
+        "Brown",
+        "Pink",
+        "Orange"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Europa Universalis is a strategy video game based on which French board game?",
+      "correct_answer": "Europa Universalis",
+      "incorrect_answers": [
+        "Europe and the Universe",
+        "Europa!",
+        "Power in Europe"
+      ]
+    }
+  ]
+}
