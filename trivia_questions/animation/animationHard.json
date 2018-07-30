@@ -1,0 +1,123 @@
+{
+  "results": [{
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Who played Stan&#039;s dog in the South Park episode &quot;Big Gay Al&#039;s Big Gay Boat Ride&quot;?",
+      "correct_answer": "George Clooney",
+      "incorrect_answers": [
+        "Jay Leno",
+        "Matt Stone",
+        "Robert Smith"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "What town was &quot;Springfield&quot; from &quot;The Simpsons&quot; originally named after?",
+      "correct_answer": "Springfield, Oregon",
+      "incorrect_answers": [
+        "Springfield, Missouri",
+        "Springfield, Illinois",
+        "Springfield, Massachusetts"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Which of the following films was Don Bluth both the writer, director, and producer for?",
+      "correct_answer": "All Dogs Go To Heaven",
+      "incorrect_answers": [
+        "Titan A.E.",
+        "Anastasia",
+        "The Land Before Time"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Who voice acted the character Hiccup in the movie &quot;How to Train Your Dragon&quot;?",
+      "correct_answer": "Jay Baruchel",
+      "incorrect_answers": [
+        "Jack Brauchel",
+        "John Powell",
+        "Gerard Butler"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In the web-comic Homestuck, what is the name of the game the 4 kids play?",
+      "correct_answer": "Sburb",
+      "incorrect_answers": [
+        "Homesick",
+        "Husslie",
+        "Hiveswap"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In &quot;Gravity Falls&quot;, the character Bill Cipher remarks that &quot;the universe is what?&quot;",
+      "correct_answer": "A hologram ",
+      "incorrect_answers": [
+        "An illusion ",
+        "A simulation",
+        "Corrupting"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In &quot;Rick and Morty&quot;, from which dimension do Rick and Morty originate from?",
+      "correct_answer": "C-137",
+      "incorrect_answers": [
+        "J1977",
+        "C-136",
+        "C500-a"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In &quot;Gravity Falls&quot;, what does Quentin Trembley do when he is driven out from the White House?",
+      "correct_answer": "Eat a salamander and jump out the window.",
+      "incorrect_answers": [
+        "Leave in peace.",
+        "Jump out the window.",
+        "Release 1,000 captive salamanders into the white house."
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In &quot;Gravity Falls&quot;, how much does Waddles weigh when Mable wins him in &quot;The Time Traveler&#039;s Pig&quot;?",
+      "correct_answer": "15 pounds",
+      "incorrect_answers": [
+        "20 pounds",
+        "10 pounds",
+        "30 pounds"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In the &quot;Star Wars&quot; universe, what species is Grand Admiral Thrawn?",
+      "correct_answer": "Chiss",
+      "incorrect_answers": [
+        "Gungans",
+        "Pantorans",
+        "Twi&#039;lek"
+      ]
+    }
+  ]
+}

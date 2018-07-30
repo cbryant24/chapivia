@@ -1,0 +1,603 @@
+{
+  "results": [{
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the &quot;Halo&quot; franchise, in what country is New Mombasa?",
+      "correct_answer": "Kenya",
+      "incorrect_answers": [
+        "India",
+        "Turkey",
+        "Slovakia"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is Solid Snake&#039;s real name?",
+      "correct_answer": "David",
+      "incorrect_answers": [
+        "Solid Snake",
+        "John",
+        "Huey"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the name of the virus that infected New York in Tom Clancy&#039;s The Division?",
+      "correct_answer": "Dollar Flu",
+      "incorrect_answers": [
+        "Ebola",
+        "Red Poison",
+        "Smallpox"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "The city of Rockport is featured in which of the following video games?",
+      "correct_answer": "Need for Speed: Most Wanted (2005)",
+      "incorrect_answers": [
+        "Infamous 2",
+        "Saints Row: The Third",
+        "Burnout Revenge"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the final game of the &quot;Zero Escape&quot; series called?",
+      "correct_answer": "Zero Escape Zero Time Dilemma ",
+      "incorrect_answers": [
+        "Nine Hours, Nine Persons, Nine Doors ",
+        "Zero Escape Virtue&#039;s Last Reward",
+        "The Nonary Game: Sigma&#039;s Last Life"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who voices Max Payne in the 2001 game &quot;Max Payne&quot;?",
+      "correct_answer": "James McCaffrey",
+      "incorrect_answers": [
+        "Sam Lake",
+        "Troy Baker",
+        "Hideo Kojima"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who was the first female protagonist in a video game?",
+      "correct_answer": "Samus Aran",
+      "incorrect_answers": [
+        "Lara Croft",
+        "Alis Landale",
+        "Chell"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "When was &quot;Garry&#039;s Mod&quot; released?",
+      "correct_answer": "December 24, 2004",
+      "incorrect_answers": [
+        "November 13, 2004",
+        "December 13, 2004",
+        "November 12, 2004"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What two characters from the game Undertale are never in a relationship or not related?",
+      "correct_answer": "Frisk &amp; Chara",
+      "incorrect_answers": [
+        "Sans &amp; Papyrus",
+        "Toriel &amp; Asgore",
+        "Alphys &amp; Undyne"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In Terraria, which of the following items does the Martian Saucer mini-boss NOT drop?",
+      "correct_answer": "Drill Containment Unit",
+      "incorrect_answers": [
+        "Anti-Gravity Hook",
+        "Influx Waver",
+        "Cosmic Car Key"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the game &quot;Cave Story,&quot; what is the character Balrog&#039;s catchphrase?",
+      "correct_answer": "Huzzah!",
+      "incorrect_answers": [
+        "Oh yeeaaah!",
+        "Whoa there!",
+        "Nyeh heh heh!"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "How many zombies need to be killed to get the &quot;Zombie Genocider&quot; achievement in Dead Rising (2006)?",
+      "correct_answer": "53,594",
+      "incorrect_answers": [
+        "53,593",
+        "53,595",
+        "53,596"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In Cook, Serve, Delicious!, which food is NOT included in the game?",
+      "correct_answer": "Pie",
+      "incorrect_answers": [
+        "Shish Kabob",
+        "Hamburger",
+        "Lasagna"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Mirror&#039;s Edge Catalyst takes place in the City of...?",
+      "correct_answer": "Glass",
+      "incorrect_answers": [
+        "Mirrors",
+        "Purity",
+        "Diamonds"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which company did Bethesda purchase the Fallout Series from?",
+      "correct_answer": "Interplay Entertainment ",
+      "incorrect_answers": [
+        "Capcom",
+        "Blizzard Entertainment",
+        "Nintendo"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the video game &quot;League of Legends&quot; which character is known as &quot;The Sinister Blade&quot;?",
+      "correct_answer": "Katarina",
+      "incorrect_answers": [
+        "Shaco",
+        "Akali",
+        "Zed"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which one of these games wasn&#039;t released in 2016?",
+      "correct_answer": "Metal Gear Solid V",
+      "incorrect_answers": [
+        "Tom Clancy&#039;s The Division",
+        "Killing Floor 2",
+        "Hitman"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the Portal series of games, who was the founder of Aperture Science?",
+      "correct_answer": "Cave Johnson",
+      "incorrect_answers": [
+        "GLaDOs",
+        "Wallace Breen",
+        "Gordon Freeman"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In Hitman: Blood Money, what is the name of the target in the mission &quot;Death of a Showman&quot;?",
+      "correct_answer": "Joseph Clarence",
+      "incorrect_answers": [
+        "The Swing King",
+        "Maynard John",
+        "Manuel Delgado"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the first primary weapon the player gets in &quot;PAYDAY: The Heist&quot;?",
+      "correct_answer": "AMCAR-4",
+      "incorrect_answers": [
+        "Brenner 21",
+        "Reinbeck",
+        "M308"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What was the first .hack game?",
+      "correct_answer": ".hack//Infection",
+      "incorrect_answers": [
+        ".hack//Zero",
+        ".hack//Sign",
+        ".hack//Liminality"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the game &quot;Persona 4&quot;, what is the canonical name of the protagonist?",
+      "correct_answer": "Yu Narukami",
+      "incorrect_answers": [
+        "Chino Mashido",
+        "Tunki Sunada",
+        "Masaki Narinaka"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which of these characters was almost added into Super Smash Bros. Melee, but not included as the game was too far in development?",
+      "correct_answer": "Solid Snake",
+      "incorrect_answers": [
+        "Pit",
+        "Meta Knight",
+        "R.O.B."
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is not a default game mode in Counter-Strike (2000)?",
+      "correct_answer": "Arms Race",
+      "incorrect_answers": [
+        "Hostage Rescue",
+        "Bomb Defusal",
+        "Assassination"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the Mass Effect trilogy, who is the main protagonist?",
+      "correct_answer": "Shepard",
+      "incorrect_answers": [
+        "Mordin",
+        "Garrus",
+        "Thane"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What element does the Zinogre use in Monster Hunter?",
+      "correct_answer": "Thunder",
+      "incorrect_answers": [
+        "Ice",
+        "Fire",
+        "Water"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "On the 6th of June 2006, what was the name of the infamous glitch that occurred in the MMO RuneScape?",
+      "correct_answer": "The Falador Massacre",
+      "incorrect_answers": [
+        "Noclip glitch",
+        "Party-hat Duplication Glitch",
+        "TzHaar Massacre"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In what year was &quot;Super Mario Sunshine&quot; released?",
+      "correct_answer": "2002",
+      "incorrect_answers": [
+        "2003",
+        "2000",
+        "2004"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "One of the Nintendo Entertainment System voice channels supports playback of sound samples. Which one?",
+      "correct_answer": "DMC",
+      "incorrect_answers": [
+        "Noise",
+        "Triangle",
+        "Square"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "How many regular Sunken Sea Scrolls are there in &quot;Splatoon&quot;?",
+      "correct_answer": "27",
+      "incorrect_answers": [
+        "32",
+        "30",
+        "5"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which country was Eliza &quot;Ash&quot; Cohen from &quot;Tom Clancy&#039;s Rainbow Six Siege&quot; born in?",
+      "correct_answer": "Israel",
+      "incorrect_answers": [
+        "United States of America",
+        "Mexico",
+        "Canada"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What was the first weapon pack for &quot;PAYDAY 2&quot;?",
+      "correct_answer": "The Gage Weapon Pack #1",
+      "incorrect_answers": [
+        "The Overkill Pack",
+        "The Gage Chivalry Pack",
+        "The Gage Historical Pack"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who is the English voice actor for Sora from the Kingdom Hearts series?",
+      "correct_answer": "Haley Joel Osment",
+      "incorrect_answers": [
+        "Kōki Uchiyama",
+        "Jesse McCartney",
+        "Miyu Irino"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the browser game Kantai Collection heavily inspired by?",
+      "correct_answer": "Second World War",
+      "incorrect_answers": [
+        "Manga",
+        "World of Warcraft",
+        "An Anime"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the game Pok&eacute;mon Conquest, which warlord is able to bond with Zekrom and a shiny Rayquazza?",
+      "correct_answer": "Nobunaga",
+      "incorrect_answers": [
+        "The Player",
+        "Oichi",
+        "Hideyoshi"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In which location does Dark Sun Gwyndolin reside in &quot;Dark Souls&quot;?",
+      "correct_answer": "Anor Londo",
+      "incorrect_answers": [
+        "Firelink Shrine",
+        "Blighttown",
+        "Kiln of the first flame"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In &quot;Call of Duty: Black Ops III&quot; Zombies, what does completing all the main easter eggs reward you with?",
+      "correct_answer": "1,000,000 XP",
+      "incorrect_answers": [
+        "Juggernog at the start of each game",
+        "50 Liquid Diviniums",
+        "All three options."
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What animal is featured in &quot;Bloons TD Battles&quot;?",
+      "correct_answer": "Monkeys",
+      "incorrect_answers": [
+        "Alligators",
+        "Pigeons",
+        "Lizards"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In &quot;Call of Duty: Zombies&quot;, what group does Doctor Maxis work for?",
+      "correct_answer": "Group 935",
+      "incorrect_answers": [
+        "Group Reanimate",
+        "Group Rezurrection",
+        "Division 9"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the name of the first boss the player encounters in the 2017 game, &quot;Little Nightmares&quot;?",
+      "correct_answer": "The Janitor",
+      "incorrect_answers": [
+        "The Warden",
+        "The Caretaker",
+        "The Overseer"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which character does the player play as in the video game &quot;Bastion&quot;?",
+      "correct_answer": "The Kid",
+      "incorrect_answers": [
+        "Rucks",
+        "Zulf",
+        "Zia"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "How many games are there in the &quot;Colony Wars&quot; series for the PlayStation?",
+      "correct_answer": "3",
+      "incorrect_answers": [
+        "2",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In Grand Theft Auto: V, what wanted level does the player receive if they enter Zancudo Army Base north of Los Santos?",
+      "correct_answer": "4",
+      "incorrect_answers": [
+        "3",
+        "5",
+        "1"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "On which planet does the game Freedom Planet (2014) take place?",
+      "correct_answer": "Avalice",
+      "incorrect_answers": [
+        "Freedom",
+        "Galaxytrail",
+        "Shang Mu"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In Portal, what color is the Morality Core?",
+      "correct_answer": "Purple",
+      "incorrect_answers": [
+        "Red",
+        "Yellow",
+        "Blue"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In Portal, what color is the Intelligence Core?",
+      "correct_answer": "Blue",
+      "incorrect_answers": [
+        "Purple",
+        "Red",
+        "Orange"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Where does &quot;The Legend of Zelda: Majora&#039;s Mask&quot; take place?",
+      "correct_answer": "Termina",
+      "incorrect_answers": [
+        "Hyrule",
+        "Gysahl",
+        "Besaid"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In Guild Wars 2, what is the name of the golem thatTaimi requires assistance of to move around?",
+      "correct_answer": "Scruffy",
+      "incorrect_answers": [
+        "2-MULT",
+        "Tiny",
+        "Old Tom"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In Guild Wars 2, what is Tybalt&#039;s last name?",
+      "correct_answer": "Leftpaw",
+      "incorrect_answers": [
+        "Wildeye",
+        "Blightaxe",
+        "Blackblood"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which Sonic the Hedgehog game introudced Knuckles the Echidna?",
+      "correct_answer": "Sonic the Hedgehog 3",
+      "incorrect_answers": [
+        "Sonic the Hedgehog 2",
+        "Sonic &amp; Knuckles",
+        "Sonic Adventure"
+      ]
+    }
+  ]
+}

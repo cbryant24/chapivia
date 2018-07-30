@@ -1,0 +1,603 @@
+{
+  "results": [{
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In the  Rossini opera, what was the name of &#039;The Barber of Seville&#039;?",
+      "correct_answer": "Figaro",
+      "incorrect_answers": [
+        "Angelo",
+        "Fernando",
+        "Dave"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which Canadian reggae musician had a 1993 hit with the song &#039;Informer&#039;?",
+      "correct_answer": "Snow",
+      "incorrect_answers": [
+        "Rain",
+        "Hail",
+        "Sleet"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who wrote the Sinead O`Connor hit &#039;Nothing Compares 2 U&#039;?",
+      "correct_answer": "Prince",
+      "incorrect_answers": [
+        "Michael Jackson",
+        "Cameo",
+        "Rick James"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who had a 1983 hit with the song &#039;Africa&#039;?",
+      "correct_answer": "Toto",
+      "incorrect_answers": [
+        "Foreigner",
+        "Steely Dan",
+        "Journey"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "&quot;Some people call me the space cowboy&quot; is the first line from what song?",
+      "correct_answer": "The Joker",
+      "incorrect_answers": [
+        "Fandango",
+        "Take The Money and Run",
+        "Fly Like an Eagle"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who is the lead singer of Pearl Jam?",
+      "correct_answer": "Eddie Vedder",
+      "incorrect_answers": [
+        "Ozzy Osbourne",
+        "Stone Gossard",
+        "Kurt Cobain"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which rap group released the album &quot;Straight Outta Compton&quot;?",
+      "correct_answer": "N.W.A",
+      "incorrect_answers": [
+        "Wu-Tang Clan",
+        "Run-D.M.C.",
+        "Beastie Boys"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Ringo Starr of The Beatles mainly played what instrument?",
+      "correct_answer": "Drums",
+      "incorrect_answers": [
+        "Bass",
+        "Guitar",
+        "Piano"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which singer was featured in Jack &Uuml; (Skrillex &amp; Diplo)&#039;s 2015 song &#039;Where Are &Uuml; Now&#039;?",
+      "correct_answer": "Justin Bieber",
+      "incorrect_answers": [
+        "Selena Gomez",
+        "Ellie Goulding",
+        "The Weeknd"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who is the frontman of the band 30 Seconds to Mars?",
+      "correct_answer": "Jared Leto",
+      "incorrect_answers": [
+        "Gerard Way",
+        "Matthew Bellamy",
+        "Mike Shinoda"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "The Red Hot Chili Pepper song &quot;Give It Away&quot; is from what album?",
+      "correct_answer": "Blood Sugar Sex Magik",
+      "incorrect_answers": [
+        "One Hot Minute",
+        "By the Way",
+        "Stadium Arcadium"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "How many studio albums have the duo Daft Punk released?",
+      "correct_answer": "4",
+      "incorrect_answers": [
+        "1",
+        "5",
+        "2"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What is the best selling album of all time?",
+      "correct_answer": "Thriller",
+      "incorrect_answers": [
+        "Back in Black",
+        "Abbey Road",
+        "The Dark Side of the Moon"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Whose signature guitar technique is called the &quot;windmill&quot;?",
+      "correct_answer": "Pete Townshend",
+      "incorrect_answers": [
+        "Jimmy Page",
+        "Eddie Van Halen",
+        "Jimi Hendrix"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who is the lead singer of the band Coldplay?",
+      "correct_answer": "Chris Martin",
+      "incorrect_answers": [
+        "Chris Isaak",
+        "Chris Wallace",
+        "Chris Connelly"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "How many members are there in the band Nirvana?",
+      "correct_answer": "Three",
+      "incorrect_answers": [
+        "Two",
+        "Four",
+        "Five"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which member of the Foo Fighters was previously the drummer for Nirvana?",
+      "correct_answer": "Dave Grohl",
+      "incorrect_answers": [
+        "Taylor Hawkins",
+        "Nate Mendel",
+        "Chris Shiflett"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What is the name of the album released in 2014 by American band Maroon 5?",
+      "correct_answer": "V",
+      "incorrect_answers": [
+        "X",
+        "III",
+        "IV"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Finish these lyrics from the 2016 song &quot;Panda&quot; by Desiigner: &quot;I got broads in _______&quot;.",
+      "correct_answer": "Atlanta",
+      "incorrect_answers": [
+        "Savannah",
+        "Augusta",
+        "Marietta"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What was the name of singer Frank Ocean&#039;s second studio album, which was released on August 20, 2016?",
+      "correct_answer": "Blonde",
+      "incorrect_answers": [
+        "Brunette",
+        "Black",
+        "Burgundy"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which artist released the 2012 single &quot;Harlem Shake&quot;, which was used in numerous YouTube videos in 2013?",
+      "correct_answer": "Baauer",
+      "incorrect_answers": [
+        "RL Grime",
+        "NGHTMRE",
+        "Flosstradamus"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who is the lead singer of the British pop rock band Coldplay?",
+      "correct_answer": "Chris Martin",
+      "incorrect_answers": [
+        "Jonny Buckland",
+        "Guy Berryman",
+        "Will Champion"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which brass instrument has the lowest pitch in an orchestra?",
+      "correct_answer": "Tuba",
+      "incorrect_answers": [
+        "Trumpet",
+        "Saxophone",
+        "Trombone"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Brian May was the guitarist for which band?",
+      "correct_answer": "Queen",
+      "incorrect_answers": [
+        "Pink Floyd",
+        "Rolling Stones",
+        "The Doors"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of these is NOT the name of an album released by English singer-songwriter Adele?",
+      "correct_answer": "12",
+      "incorrect_answers": [
+        "19",
+        "21",
+        "25"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "The &quot;K&quot; in &quot;K-Pop&quot; stands for which word?",
+      "correct_answer": "Korean",
+      "incorrect_answers": [
+        "Kenyan",
+        "Kazakhstan",
+        "Kuwaiti"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What was Rage Against the Machine&#039;s debut album?",
+      "correct_answer": "Rage Against the Machine",
+      "incorrect_answers": [
+        "Evil Empire",
+        "Bombtrack",
+        "The Battle Of Los Angeles"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In Mean Girls, who has breasts that tell when it&#039;s raining?",
+      "correct_answer": "Karen Smith",
+      "incorrect_answers": [
+        "Gretchen Weiners",
+        "Janice Ian",
+        "Cady Heron"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which band released songs suchs as &quot;Rio&quot;, &quot;Girls on Film&quot;, and &quot;The Reflex&quot;?",
+      "correct_answer": "Duran Duran",
+      "incorrect_answers": [
+        "The Cure",
+        "New Order",
+        "Depeche Mode"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Sting, the lead vocalist of The Police, primarily plays what instrument?",
+      "correct_answer": "Bass Guitar",
+      "incorrect_answers": [
+        "Drums",
+        "Guitar",
+        "Keyboards"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In an orchestra, what is the lowest member of the brass family?",
+      "correct_answer": "Tuba",
+      "incorrect_answers": [
+        "Trombone",
+        "Contrabass",
+        "Bassoon"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Kanye West at 2009 VMA&#039;s interrupted which celebrity?",
+      "correct_answer": "Taylor Swift",
+      "incorrect_answers": [
+        "MF DOOM",
+        "Beyonce",
+        "Beck"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "According to the American rapper Nelly, what should you do when its hot in here?",
+      "correct_answer": "Take off all your clothes",
+      "incorrect_answers": [
+        "Take a cool shower",
+        "Drink some water",
+        "Go skinny dipping"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "From which country did the song &quot;Gangnam Style&quot; originate from?",
+      "correct_answer": "South Korea",
+      "incorrect_answers": [
+        "Japan",
+        "North Korea",
+        "China"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which 80s band is fronted by singer/guitarist Robert Smith?",
+      "correct_answer": "The Cure",
+      "incorrect_answers": [
+        "The Smiths",
+        "Echo &amp; the Bunnymen",
+        "New Order"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which Nirvana album had a naked baby on the cover?",
+      "correct_answer": "Nevermind",
+      "incorrect_answers": [
+        "Bleach",
+        "In Utero",
+        "Incesticide"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which Disney character sings the song &quot;A Dream is a Wish Your Heart Makes&quot;?",
+      "correct_answer": "Cinderella",
+      "incorrect_answers": [
+        "Belle",
+        "Snow White",
+        "Pocahontas"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What collaborative album was released by Kanye West and Jay-Z in 2011?",
+      "correct_answer": "Watch the Throne",
+      "incorrect_answers": [
+        "Distant Relatives",
+        "What a Time to be Alive",
+        "Unfinished Business"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Kanye West&#039;s &quot;Gold Digger&quot; featured which Oscar-winning actor?",
+      "correct_answer": "Jamie Foxx",
+      "incorrect_answers": [
+        "Alec Baldwin",
+        "Dwayne Johnson",
+        " Bruce Willis"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What album did Bon Iver release in 2016?",
+      "correct_answer": "22, A Million",
+      "incorrect_answers": [
+        "Bon Iver, Bon Iver",
+        "Blood Bank EP",
+        "For Emma, Forever Ago"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who was featured in the song &quot;Words&quot; by Feint? ",
+      "correct_answer": "Laura Brehm",
+      "incorrect_answers": [
+        "Anna Yvette ",
+        "Danyka Nadeau",
+        "Veela"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What was Daft Punk&#039;s first studio album?",
+      "correct_answer": "Homework",
+      "incorrect_answers": [
+        "Discovery",
+        "Random Access Memories",
+        "Human After All"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who is the lead singer of Green Day?",
+      "correct_answer": "Billie Joe Armstrong",
+      "incorrect_answers": [
+        "Mike Dirnt",
+        "Sean Hughes",
+        "Tr&eacute; Cool"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which song on Daft Punk&#039;s &quot;Random Access Memories&quot; features Pharrell Williams?",
+      "correct_answer": "Get Lucky",
+      "incorrect_answers": [
+        "Doin&#039; It Right",
+        "Instant Crush",
+        "The Game of Love"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who performed &quot;I Took A Pill In Ibiza&quot;?",
+      "correct_answer": "Mike Posner",
+      "incorrect_answers": [
+        "Avicii",
+        "Robbie Williams",
+        "Harry Styles"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "When was Gangnam Style uploaded to YouTube?",
+      "correct_answer": "2012",
+      "incorrect_answers": [
+        "2013",
+        "2014",
+        "2011"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which classical composer wrote the &quot;Moonlight Sonata&quot;?",
+      "correct_answer": "Ludvig Van Beethoven",
+      "incorrect_answers": [
+        "Chief Keef",
+        "Wolfgang Amadeus Mozart",
+        "Johannes Brahms"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which former boy-band star released hit solo single &quot;Angels&quot; in 1997?",
+      "correct_answer": "Robbie Williams",
+      "incorrect_answers": [
+        "Justin Timberlake",
+        "Harry Styles",
+        "Gary Barlow"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which band recorded the album &quot;Parallel Lines&quot;?",
+      "correct_answer": "Blondie",
+      "incorrect_answers": [
+        "Paramore",
+        "Coldplay",
+        "The Police"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "The band Muse released their first album, Showbiz, in what year?",
+      "correct_answer": "1999",
+      "incorrect_answers": [
+        "1998",
+        "2000",
+        "2001"
+      ]
+    }
+  ]
+}

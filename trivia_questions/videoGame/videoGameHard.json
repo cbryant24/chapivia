@@ -1,0 +1,603 @@
+{
+  "results": [{
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "How many people can you recruit in the game Suikoden in a single playthrough?",
+      "correct_answer": "107",
+      "incorrect_answers": [
+        "108",
+        "93",
+        "96"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "What is the name of your team in Star Wars: Republic Commando?",
+      "correct_answer": "Delta Squad",
+      "incorrect_answers": [
+        "The Commandos",
+        "Bravo Six",
+        "Vader&#039;s Fist"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Which of these characters in &quot;Undertale&quot; can the player NOT go on a date with?",
+      "correct_answer": "Toriel",
+      "incorrect_answers": [
+        "Papyrus",
+        "Undyne",
+        "Alphys"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "How many copies of the notorious E.T. game for the Atari 2600 did Atari end up selling?",
+      "correct_answer": "1.5 Million",
+      "incorrect_answers": [
+        "1 Million",
+        "250 Thousand",
+        "Less than 250 Thousand"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Which video game was recalled for containing a hidden, playable South Park episode?",
+      "correct_answer": "Tiger Woods 99 PGA Tour",
+      "incorrect_answers": [
+        "Tony Hawk&#039;s Pro Skater 3",
+        "Sonic Adventure",
+        "Madden 99"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In the Gamecube Version of &quot;Resident Evil&quot; what text document is open on the monitor of the computer in the Visual Data Room?",
+      "correct_answer": "A GDC Document",
+      "incorrect_answers": [
+        "Text Document on Herbs",
+        "Nothing",
+        "Document on B.O.Ws"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In the Animal Crossing series, which flower is erroneously called the &quot;Jacob&#039;s Ladder&quot;?",
+      "correct_answer": "Lily of the Valley",
+      "incorrect_answers": [
+        "Hydrangea",
+        "Harebell",
+        "Yarrow"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In &quot;Sonic the Hedgehog 3&quot; for the Sega Genesis, what is the color of the second Chaos Emerald you can get from Special Stages?",
+      "correct_answer": "Orange",
+      "incorrect_answers": [
+        "Blue",
+        "Green",
+        "Magenta"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "When was Steam first released?",
+      "correct_answer": "2003",
+      "incorrect_answers": [
+        "2004",
+        "2011",
+        "2007"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "What is the fastest speed possible in Trackmania&sup2;: Stadium?",
+      "correct_answer": "1000  km/h",
+      "incorrect_answers": [
+        "500 km/h",
+        "320 km/h",
+        "100 km/h"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In the game Nuclear Throne, what organization chases the player character throughout the game?",
+      "correct_answer": "The I.D.P.D",
+      "incorrect_answers": [
+        "The Fishmen",
+        "The Bandits",
+        "The Y.V.G.G"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Before Super Smash Bros. contained Nintendo characters, what was it known as internally?",
+      "correct_answer": "Dragon King: The Fighting Game",
+      "incorrect_answers": [
+        "Contest of Champions",
+        "Smash and Pummel",
+        "Fighter of the Ages: Conquest"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "How long was the World Record Speed Run of Valve Software&#039;s &quot;Half-Life&quot; that was done in 2014.",
+      "correct_answer": "20 Minutes, 41 Seconds",
+      "incorrect_answers": [
+        "45 Minutes, 32 Seconds",
+        "5 Minutes, 50 Seconds",
+        "12 Minutes, 59 Seconds"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Which of these is NOT a possible drink to be made in the game &quot;VA-11 HALL-A: Cyberpunk Bartender Action&quot;?",
+      "correct_answer": "Sour Appletini",
+      "incorrect_answers": [
+        "Fringe Weaver",
+        "Piano Man",
+        "Bad Touch"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "What animal is on Link&#039;s pajamas in The Legend of Zelda: The Wind Waker?",
+      "correct_answer": "Crawfish",
+      "incorrect_answers": [
+        "Lobster",
+        "Salmon",
+        "Swordfish"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In the video game &quot;Metal Gear Solid&quot;, what did Revolver Ocelot consider the greatest handgun ever made?",
+      "correct_answer": "Colt Single Action Army",
+      "incorrect_answers": [
+        "Colt Python",
+        "Colt M1892",
+        "Colt 1851 Navy Revolver"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Counter Strike: Global Offensive, what is the code implanted onto the C4 as the Terrorists plant the bomb?",
+      "correct_answer": "7355608",
+      "incorrect_answers": [
+        "7890728",
+        "7256380",
+        "7726354"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Which car did not appear in the 2002 Lego Game: Drome Racers?",
+      "correct_answer": "Wasp",
+      "incorrect_answers": [
+        "Raptor",
+        "Hornet",
+        "Behemoth"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Halo 2, how many rounds does the M6C hold in a single magazine?",
+      "correct_answer": "12",
+      "incorrect_answers": [
+        "6",
+        "36",
+        "18"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "What do the video games No Man&rsquo;s Sky and Mighty No. 9 have in common?",
+      "correct_answer": "Both were announced in 2013.",
+      "incorrect_answers": [
+        "Both were crowdfunded.",
+        "Both were developed by indie studios.",
+        "Both were released for the PlayStation 3."
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Which day in &quot;Papers, Please&quot; does the man in red appear?",
+      "correct_answer": "Day 23",
+      "incorrect_answers": [
+        "Day 20",
+        "Day 17",
+        "Day 15"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Super Smash Bros. for Nintendo 3DS and Nintendo Wii U, who was the sixth fighter to be added to the game post-launch?",
+      "correct_answer": "Corrin",
+      "incorrect_answers": [
+        "Cloud",
+        "Bayonnetta",
+        "Ryu"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "How many trophies are there in &quot;Super Smash Bros. for Nintendo 3DS&quot;?",
+      "correct_answer": "685",
+      "incorrect_answers": [
+        "1360",
+        "716",
+        "1155"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In the Lego Island trilogy, who taught Pepper Roni how to read?",
+      "correct_answer": "Officer Laura Brick",
+      "incorrect_answers": [
+        "Papa Brickolini",
+        "Officer Nick Brick",
+        "Mama Brickolini"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "How many voice channels does the Nintendo Entertainment System support natively?",
+      "correct_answer": "5",
+      "incorrect_answers": [
+        "4",
+        "6",
+        "3"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Which of the following games in the The Legend of Zelda franchise was released in North America before Japan?",
+      "correct_answer": "The Legend of Zelda: Twilight Princess",
+      "incorrect_answers": [
+        "Zelda II: The Adventure of Link",
+        "The Legend of Zelda: Four Swords Adventures",
+        "The Legend of Zelda: Majora&#039;s Mask"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Which of the following games in the The Legend of Zelda franchise was released in Japan before North America?",
+      "correct_answer": "The Legend of Zelda: The Minish Cap",
+      "incorrect_answers": [
+        "The Legend of Zelda: Twilight Princess",
+        "The Legend of Zelda: Spirit Tracks",
+        "The Legend of Zelda: Four Swords"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In &quot;Final Fantasy VI&quot;, what is the name of (summoned) Gilgamesh&#039;s weakest attack?",
+      "correct_answer": "Excalipoor",
+      "incorrect_answers": [
+        "Excalibore",
+        "Excalisnore",
+        "Excalisore"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In &quot;The Binding of Isaac&quot;, which item instantly kills Mom and Mom&#039;s Heart?",
+      "correct_answer": "The Bible",
+      "incorrect_answers": [
+        "The Halo",
+        "Brimstone",
+        "Book of Shadows"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Which game in the &quot;Monster Hunter&quot; series introduced the &quot;Insect Glaive&quot; weapon?",
+      "correct_answer": "Monster Hunter 4",
+      "incorrect_answers": [
+        "Monster Hunter Freedom",
+        "Monster Hunter Stories",
+        "Monster Hunter 2"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In the &quot;Devil May Cry&quot; franchise, which game is chronologically first?",
+      "correct_answer": "Devil May Cry 3: Dante&#039;s Awakening ",
+      "incorrect_answers": [
+        "Devil May Cry 4",
+        "Devil May Cry",
+        "Devil May Cry 2"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In &quot;Starbound&quot;, according to the asset files, the description of the &quot;Erchius Ghost&quot; is the same as which other assets?",
+      "correct_answer": "Spookit",
+      "incorrect_answers": [
+        "Petricub",
+        "Trictus",
+        "Pyromantle"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In the &quot;PAYDAY&quot; series, what is the real name of the character known as &quot;Dallas&quot;?",
+      "correct_answer": "Nathan Steele",
+      "incorrect_answers": [
+        "Nate Siemens",
+        "Nick Stamos",
+        "Nolan Stuhlinger"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In &quot;Pok&eacute;mon Sun and Moon&quot;, Team Skull took over which town?",
+      "correct_answer": "Po Town",
+      "incorrect_answers": [
+        "Heahea City",
+        "Tapu Village",
+        "Iki Town"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "What is the 4th boss in the 1997 video game &quot;Crash Bandicoot 2: Cortex Strikes Back&quot;?",
+      "correct_answer": "Dr. N. Gin",
+      "incorrect_answers": [
+        "Dr. Neo Cortex",
+        "Komodo Brothers",
+        "Tiny Tiger"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Diablo lore, this lesser evil spawned from one of the seven heads of Tathamet, and was known as the Maiden of Anguish.",
+      "correct_answer": "Andariel",
+      "incorrect_answers": [
+        "Valla",
+        "Malthael",
+        "Kashya"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Which gaming series includes &quot;The Diabolical Box&quot; and &quot;The Curious Village&quot;?",
+      "correct_answer": "Professor Layton",
+      "incorrect_answers": [
+        "Persona",
+        "Etrian Odyssey",
+        "Sam &amp; Max"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Guild Wars 2, which Chinese Zodiac sign is not represented in the Zodiac Weapon Set?",
+      "correct_answer": "Ox",
+      "incorrect_answers": [
+        "Rabbit",
+        "Tiger",
+        "Goat"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In World of Warcraft, which raid instance features a chess event?",
+      "correct_answer": "Karazhan",
+      "incorrect_answers": [
+        "Zul&#039;Aman",
+        "Blackwing Lair",
+        "Temple of Ahn&#039;Qiraj"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Guild Wars 2, what is the name of the Stavemaster in the north lane of the Dragon&#039;s Stand zone?",
+      "correct_answer": "Adryn",
+      "incorrect_answers": [
+        "Diarmid",
+        "Hareth",
+        "Gerent"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Guild Wars 2, what is the name of the Blademaster in the middle lane of the Dragon&#039;s Stand zone?",
+      "correct_answer": "Diarmid",
+      "incorrect_answers": [
+        "Adryn",
+        "Hareth",
+        "Gerent"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Guild Wars 2, what is the name of the elder dragon which is fought once all lanes have been cleared in the Dragon&#039;s Stand zone?",
+      "correct_answer": "Mouth of Mordremoth",
+      "incorrect_answers": [
+        "Wing of Mordremoth",
+        "Fang of Mordremoth",
+        "Claw of Mordremoth"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Guild Wars 2, which jumping puzzle rewards players with a Rich Silver Vein instead of a chest at the end?",
+      "correct_answer": "Grendich Gamble",
+      "incorrect_answers": [
+        "Branded Mine",
+        "Pig Iron Quarry",
+        "Coddler&#039;s Cove"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Guild Wars 2, what is the name of the legendary weapon that is an alicorn-styled bow?",
+      "correct_answer": "The Dreamer",
+      "incorrect_answers": [
+        "Kudzu",
+        "The Moot",
+        "Astralaria"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Guild Wars 2, what is the name of the legendary rainbow fish harpoon gun?",
+      "correct_answer": "Frenzy",
+      "incorrect_answers": [
+        "Kamohoali&#039;i Kotaki",
+        "Kraitkin",
+        "The Predator"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Guild Wars 2, what is the name of the legendary icy dragon-headed axe covered in scales?",
+      "correct_answer": "Frostfang",
+      "incorrect_answers": [
+        "The Juggernaut",
+        "Howler",
+        "Rodgort"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Guild Wars 2, what is the name of the legendary glowing orrery whose planets and clouds move?",
+      "correct_answer": "Meteorlogicus",
+      "incorrect_answers": [
+        "The Juggernaut",
+        "The Flameseeker Prophecies",
+        "Kamohoali&#039;i Kotaki"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Guild Wars 2, what is the name of the legendary pistol that resembles a toy party favor?",
+      "correct_answer": "Quip",
+      "incorrect_answers": [
+        "Eureka",
+        "The Minstrel",
+        "The Moot"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Guild Wars 2, what is the name of the legendary fiery dragon-headed torch?",
+      "correct_answer": "Rodgort",
+      "incorrect_answers": [
+        "The Predator",
+        "Incinerator",
+        "Flames of War"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Which of the following games was NOT included in Valve&#039;s Orange Box?",
+      "correct_answer": "Counter-Strike",
+      "incorrect_answers": [
+        "Portal",
+        "Half-Life 2: Episode Two",
+        "Team Fortress 2"
+      ]
+    }
+  ]
+}

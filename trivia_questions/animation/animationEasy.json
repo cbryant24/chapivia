@@ -1,0 +1,303 @@
+{
+  "results": [{
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who was the villain of &#039;&#039;The Lion King&#039;&#039;?",
+      "correct_answer": "Scar",
+      "incorrect_answers": [
+        "Fred",
+        "Jafar",
+        "Vada"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of the following did not feature in the cartoon &#039;Wacky Races&#039;?",
+      "correct_answer": "The Dragon Wagon",
+      "incorrect_answers": [
+        "The Bouldermobile",
+        "The Crimson Haybailer",
+        "The Compact Pussycat"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In South Park, what is Stan&#039;s surname?",
+      "correct_answer": "Marsh",
+      "incorrect_answers": [
+        "Stotch",
+        "Broflovski",
+        "Tweak"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In the TV show &quot;Rick and Morty&quot;, Rick uses the catchphrase &quot;Wubba Lubba Dub Dub&quot;, which means ___ in Birdperson",
+      "correct_answer": "I am in great pain, please help me.",
+      "incorrect_answers": [
+        "I pray that my life ends soon.",
+        "Lets get this party started!",
+        "I am suffering, please help me."
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which &#039;Family Guy&#039; character got his own spin-off show in 2009?",
+      "correct_answer": "Cleveland Brown",
+      "incorrect_answers": [
+        "Glenn Quagmire",
+        "Joe Swanson",
+        "The Greased-up Deaf Guy"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "The song &#039;Little April Shower&#039; features in which Disney cartoon film?",
+      "correct_answer": "Bambi",
+      "incorrect_answers": [
+        "Cinderella",
+        "Pinocchio",
+        "The Jungle Book"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of these is NOT a catchphrase used by Rick Sanchez in the TV show &quot;Rick and Morty&quot;?",
+      "correct_answer": "Slam dunk, nothing but net!",
+      "incorrect_answers": [
+        "Hit the sack, Jack!",
+        "Rikki-Tikki-Tavi, biatch!",
+        "Wubba-lubba-dub-dub!"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Butters Stotch, Pip Pirrup, and Wendy Testaburger are all characters in which long running animated TV series?",
+      "correct_answer": "South Park",
+      "incorrect_answers": [
+        "The Simpsons",
+        "Family Guy",
+        "Bob&#039;s Burgers"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What is the relationship between Rick and Morty in the show &quot;Rick and Morty&quot;?",
+      "correct_answer": "Grandfather and Grandson",
+      "incorrect_answers": [
+        "Father and Son",
+        "Best Friends",
+        "Crimefighting Partners"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "When did the last episode of &quot;Futurama&quot; air?",
+      "correct_answer": "September 4, 2013",
+      "incorrect_answers": [
+        "December 25, 2010",
+        "March 28, 1999",
+        "On Going"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who voices for Ruby in the animated series RWBY?",
+      "correct_answer": "Lindsay Jones",
+      "incorrect_answers": [
+        "Tara Strong",
+        "Jessica Nigri",
+        "Hayden Panettiere"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What was the first Disney movie to use CGI?",
+      "correct_answer": "The Black Cauldron",
+      "incorrect_answers": [
+        "Tron",
+        "Toy Story",
+        "Fantasia"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In the Pixar film, &quot;Toy Story&quot; what was the name of the child who owned the toys?",
+      "correct_answer": "Andy",
+      "incorrect_answers": [
+        "Edward",
+        "Danny",
+        "Matt"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In &quot;Avatar: The Last Airbender&quot;, which element does Aang begin to learn after being defrosted?",
+      "correct_answer": "Water",
+      "incorrect_answers": [
+        "Air",
+        "Earth",
+        "Fire"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In the 1993 Disney animated series &quot;Bonkers&quot;, what is the name of Bonker&#039;s second partner?",
+      "correct_answer": "Miranda Wright",
+      "incorrect_answers": [
+        "Dick Tracy",
+        "Eddie Valiant",
+        "Dr. Ludwig von Drake"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who created the Cartoon Network series &quot;Adventure Time&quot;?",
+      "correct_answer": "Pendleton Ward",
+      "incorrect_answers": [
+        "J. G. Quintel",
+        "Ben Bocquelet",
+        "Rebecca Sugar"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of the following is not a Flintstones character?",
+      "correct_answer": "Lord Rockingham IX",
+      "incorrect_answers": [
+        "Rockhead Slate",
+        "The Great Gazoo",
+        "Barney Rubble"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What is lost in Hawaiian and is also the name of a little girl in a 2002 film which features a alien named &quot;Stitch&quot;?",
+      "correct_answer": "Lilo",
+      "incorrect_answers": [
+        "Lolo",
+        "Lucy",
+        "Lulu"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In the show &quot;Steven Universe&quot;, who are the main two employees of The Big Donut?",
+      "correct_answer": "Sadie and Lars",
+      "incorrect_answers": [
+        "Steven and James",
+        "Erik and Julie",
+        "Bob and May"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which Teenage Mutant Ninja Turtle traditionally wears an orange bandana?",
+      "correct_answer": "Michelangelo",
+      "incorrect_answers": [
+        "Leonardo",
+        "Donatello",
+        "Raphael"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who created the Cartoon Network series &quot;Regular Show&quot;?",
+      "correct_answer": "J. G. Quintel",
+      "incorrect_answers": [
+        "Ben Bocquelet",
+        "Pendleton Ward",
+        "Rebecca Sugar"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What is Everest&#039;s favorite food in the Nickelodeon/Nick Jr. series &quot;PAW Patrol&quot;?",
+      "correct_answer": "Liver",
+      "incorrect_answers": [
+        "Chicken",
+        "Steak",
+        "Caribou"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In the show &quot;Foster&#039;s Home For Imaginary Friends&quot;, which character had an obsession with basketball?",
+      "correct_answer": "Wilt",
+      "incorrect_answers": [
+        "Coco",
+        "Mac",
+        "Cheese"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of these characters from &quot;SpongeBob SquarePants&quot; is not a squid?",
+      "correct_answer": "Gary",
+      "incorrect_answers": [
+        "Orvillie",
+        "Squidward",
+        "Squidette"
+      ]
+    },
+    {
+      "category": "Entertainment: Cartoon & Animations",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of these characters live in a pineapple under the sea in the cartoon &quot;SpongeBob SquarePants&quot;.",
+      "correct_answer": "SpongeBob SquarePants ",
+      "incorrect_answers": [
+        "Patrick Star",
+        "Squidward Tentacles",
+        "Mr. Krabs"
+      ]
+    }
+  ]
+}

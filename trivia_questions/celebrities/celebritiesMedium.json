@@ -1,0 +1,243 @@
+{
+  "results": [{
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which actress&#039;s real name was Frances Ethel Gumm?",
+      "correct_answer": "Judy Garland",
+      "incorrect_answers": [
+        "Doris Day",
+        "Julie Andrews",
+        "Marilyn Monroe"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the name of Jontron&#039;s parrot?",
+      "correct_answer": "Jacques",
+      "incorrect_answers": [
+        "Jak",
+        "John",
+        "Jaques"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the real name of &quot;moot&quot;, founder of the imageboard 4chan?",
+      "correct_answer": "Christopher Poole",
+      "incorrect_answers": [
+        "Mark Zuckerberg",
+        "Allison Harvard",
+        "Catie Wayne"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is Doug Walker&#039;s YouTube name?",
+      "correct_answer": "The Nostalgia Critic",
+      "incorrect_answers": [
+        "The Angry Video Game Nerd",
+        "AngryJoeShow",
+        "The Cinema Snob"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Paul McCartney has always used his middle name. What is his real first name? ",
+      "correct_answer": "James",
+      "incorrect_answers": [
+        "John",
+        "Jack",
+        "Justin"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Donald J. Trump&#039;s Middle Name is...",
+      "correct_answer": "John",
+      "incorrect_answers": [
+        "Jeff",
+        "Jerald",
+        "Jason"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What year did radio icon Howard Stern start a job at radio station WNBC?",
+      "correct_answer": "1982",
+      "incorrect_answers": [
+        "1985",
+        "1984",
+        "1995"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which of these people is NOT a part of the Internet comedy group Mega64?",
+      "correct_answer": "Jon Jafari",
+      "incorrect_answers": [
+        "Rocco Botte",
+        "Derrick Acosta",
+        "Shawn Chatfield"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What was the cause of death for Freddie Mercury?",
+      "correct_answer": "Pneumonia",
+      "incorrect_answers": [
+        "Stomach Cancer",
+        "HIV",
+        "Brain Hemorrhage"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "If he was still alive, in what year would Elvis Presley celebrate his 100th birthday?",
+      "correct_answer": "2035",
+      "incorrect_answers": [
+        "2030",
+        "2040",
+        "2045"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Before voicing Pearl in Steven Universe, Deedee Magno Hall was part of which American band?",
+      "correct_answer": "The Party",
+      "incorrect_answers": [
+        "The Weather Girls",
+        "The Pussycat Dolls",
+        "The Cheetah Girls"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What was the name of Marilyn Monroe&#039;s first husband?",
+      "correct_answer": "James Dougherty",
+      "incorrect_answers": [
+        "Joe Dimaggio",
+        "Kirk Douglas",
+        "Arthur Miller"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which radio personality calls himself &quot;The King of All Media&quot;?",
+      "correct_answer": "Howard Stern",
+      "incorrect_answers": [
+        "Rush Limbaugh",
+        "Pete Tong",
+        "Ryan Seacrest"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "How much weight did Chris Pratt lose for his role as Star-Lord in &quot;Guardians of the Galaxy&quot;?",
+      "correct_answer": "60 lbs",
+      "incorrect_answers": [
+        "30 lbs",
+        "50 lbs",
+        "70 lbs"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Nikki Diamond portrayed which Gladiator in the 1992 TV show &quot;Gladiators&quot;?",
+      "correct_answer": "Scorpio",
+      "incorrect_answers": [
+        "Jet",
+        "Nightshade",
+        "Falcon"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who out of these actresses is the youngest?",
+      "correct_answer": "Kiernan Shipka",
+      "incorrect_answers": [
+        "Ariel Winter",
+        "Emma Watson",
+        "Bonnie Wright"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In what year did &quot;Bob Ross&quot; die?",
+      "correct_answer": "1995",
+      "incorrect_answers": [
+        "1986",
+        "1989",
+        "1997"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In which of these TV shows did the chef Gordon Ramsay not appear?",
+      "correct_answer": "Auction Hunters",
+      "incorrect_answers": [
+        "Ramsay&#039;s Kitchen Nightmares",
+        "Hotel Hell",
+        "Hell&#039;s Kitchen"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who is &quot;James Rolfe&quot; better known as?",
+      "correct_answer": "The Angry Video Game Nerd",
+      "incorrect_answers": [
+        "TotalBiscuit",
+        "PeanutButterGamer",
+        "PewDiePie"
+      ]
+    },
+    {
+      "category": "Celebrities",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which American celebrity died in 1977 playing golf in La Moraleja, Madrid?",
+      "correct_answer": "Bing Crosby",
+      "incorrect_answers": [
+        "Elvis Presley",
+        "Charlie Chaplin",
+        "Groucho Marx"
+      ]
+    }
+  ]
+}

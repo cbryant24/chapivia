@@ -1,0 +1,604 @@
+{
+  "response_code": 0,
+  "results": [{
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which of the following is NOT a quote from the 1942 film Casablanca? ",
+      "correct_answer": "&quot;Frankly, my dear, I don&#039;t give a damn.&quot;",
+      "incorrect_answers": [
+        "&quot;Here&#039;s lookin&#039; at you, kid.&quot;",
+        "&ldquo;Of all the gin joints, in all the towns, in all the world, she walks into mine&hellip;&rdquo;",
+        "&quot;Round up the usual suspects.&quot;"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the movie &ldquo;The Iron Giant,&rdquo; this character is the protagonist.",
+      "correct_answer": "Hogarth Hughes",
+      "incorrect_answers": [
+        "Kent Mansley",
+        "Dean McCoppin",
+        "Annie Hughes"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the film &quot;Interstellar&quot;, how long did they spend on Miller&#039;s planet?",
+      "correct_answer": "23 years, 4 months, and 8 days",
+      "incorrect_answers": [
+        "15 years, 2 months, and 15 days",
+        "10 months and 6 days",
+        "26 years, 4 months, and 10 days"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which 1958 movie starred Kirk Douglas and Tony Curtis as half-brothers Einar and Eric?",
+      "correct_answer": "The Vikings ",
+      "incorrect_answers": [
+        "The Long Ships",
+        "Prince Valiant",
+        "Spartacus"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What was Marilyn Monroe`s character&#039;s first name in the film &quot;Some Like It Hot&quot;?",
+      "correct_answer": "Sugar",
+      "incorrect_answers": [
+        "Honey",
+        "Caramel",
+        "Candy"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Velma Kelly and Roxie Hart are the protagonists of which Oscar winning movie?",
+      "correct_answer": "Chicago",
+      "incorrect_answers": [
+        "Dreamgirls",
+        "Cabaret",
+        "All That Jazz"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the 1984 movie &quot;The Terminator&quot;, what model number is the Terminator portrayed by Arnold Schwarzenegger?",
+      "correct_answer": "T-800",
+      "incorrect_answers": [
+        "I-950",
+        "T-888",
+        "T-1000"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which actor played the main character in the 1990 film &quot;Edward Scissorhands&quot;?",
+      "correct_answer": "Johnny Depp",
+      "incorrect_answers": [
+        " Clint Eastwood",
+        "Leonardo DiCaprio",
+        "Ben Stiller"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the name of James Dean&#039;s character in the 1955 movie &quot;Rebel Without a Cause&quot;?",
+      "correct_answer": "Jim Stark",
+      "incorrect_answers": [
+        "Ned Stark",
+        "Jim Kane",
+        "Frank Stark"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the name of the robot in the 1951 science fiction film classic &#039;The Day the Earth Stood Still&#039;?",
+      "correct_answer": "Gort",
+      "incorrect_answers": [
+        "Robby",
+        "Colossus",
+        "Box"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which of the following James Bond villains is not affiliated with the SPECTRE organization?",
+      "correct_answer": "Auric Goldfinger",
+      "incorrect_answers": [
+        "Dr. Julius No",
+        "Rosa Klebb",
+        "Emilio Largo"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who played Batman in the 1997 film &quot;Batman and Robin&quot;?",
+      "correct_answer": "George Clooney",
+      "incorrect_answers": [
+        "Michael Keaton",
+        "Val Kilmer",
+        "Christian Bale"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "This movie contains the quote, &quot;I love the smell of napalm in the morning!&quot;",
+      "correct_answer": "Apocalypse Now",
+      "incorrect_answers": [
+        "Platoon",
+        "The Deer Hunter",
+        "Full Metal Jacket"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "This movie contains the quote, &quot;What we&#039;ve got here is a failure to communicate.&quot;",
+      "correct_answer": "Cool Hand Luke",
+      "incorrect_answers": [
+        "Bonnie and Clyde",
+        "The Graduate",
+        "In the Heat of the Night"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What does TIE stand for in reference to the TIE Fighter in &quot;Star Wars&quot;?",
+      "correct_answer": "Twin Ion Engine",
+      "incorrect_answers": [
+        "Twin Iron Engine",
+        "Twin Intercepter Engine",
+        "Twin Inception Engine"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the name of the Artificial Intelligence system in the 1983 film, &quot;WarGames&quot;?",
+      "correct_answer": "War Operation Plan Response",
+      "incorrect_answers": [
+        "Self Evolving Thought Helix",
+        "Master Control Program",
+        "West Campus Analog Computer"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the 1994 movie &quot;Speed&quot;, what is the minimum speed the bus must go to prevent to bomb from exploding?",
+      "correct_answer": "50 mph",
+      "incorrect_answers": [
+        "60 mph",
+        "40 mph",
+        "70 mph"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the name of the villian in the 2015 Russian-American Sci-Fi Movie &quot;Hardcore Henry&quot;?",
+      "correct_answer": "Akan",
+      "incorrect_answers": [
+        "Estelle",
+        "Jimmy",
+        "Henry"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the 1979 British film &quot;Quadrophenia&quot; what is the name of the main protagonist?",
+      "correct_answer": "Jimmy Cooper",
+      "incorrect_answers": [
+        "Pete Townshend",
+        "Franc Roddam",
+        "Archie Bunker"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the 2010 Nightmare on Elm Street reboot, who played Freddy Kruger?",
+      "correct_answer": "Jackie Earle Haley",
+      "incorrect_answers": [
+        "Tyler Mane",
+        "Derek Mears",
+        "Gunnar Hansen"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "The 1939 movie &quot;The Wizard of Oz&quot; contained a horse that changed color, what material did they use to achieve this effect?",
+      "correct_answer": "Gelatin",
+      "incorrect_answers": [
+        "Dye",
+        "Paint",
+        "CGI Effect"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which one of these action movies are shot entirely in one take?",
+      "correct_answer": "Victoria",
+      "incorrect_answers": [
+        "Ip Man 2",
+        "The Bourne Legacy",
+        "L&eacute;on: The Professional"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which one of these actors is said to be cut from the film &#039;E.T. the Extra-Terrestrial&#039;?",
+      "correct_answer": "Harrison Ford",
+      "incorrect_answers": [
+        "Michael J. Fox",
+        "Andy Kaufman",
+        "Arnold Schwarzenegger"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which movie of film director Stanley Kubrick is known to be an adaptation of a Stephen King novel?",
+      "correct_answer": "The Shining",
+      "incorrect_answers": [
+        "2001: A Space Odyssey",
+        " Dr. Strangelove ",
+        "Eyes Wide Shut"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the correct phrase for the Latin saying &quot;Romanes Eunt Domus&quot; in Monty Python&#039;s Life of Brian?",
+      "correct_answer": "Romani Ite Domum",
+      "incorrect_answers": [
+        "Romans Go Home",
+        "Roxani Ite Domum",
+        "Tomate Ite Domum"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who played Sgt. Gordon Elias in &#039;Platoon&#039; (1986)?",
+      "correct_answer": "Willem Dafoe",
+      "incorrect_answers": [
+        "Charlie Sheen",
+        "Matt Damon",
+        "Johnny Depp"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In The Lord of the Rings: The Fellowship of the Ring, which one of the following characters from the book was left out of the film?",
+      "correct_answer": "Tom Bombadil",
+      "incorrect_answers": [
+        "Strider",
+        "Barliman Butterbur",
+        "Celeborn"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In Back to the Future Part II, Marty and Dr. Emmett Brown go to which future date?",
+      "correct_answer": "October 21, 2015",
+      "incorrect_answers": [
+        "August 28, 2015",
+        "July 20, 2015",
+        "January 25, 2015"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the 1999 movie Fight Club, which of these is not a rule of the &quot;fight club&quot;?",
+      "correct_answer": "Always wear a shirt",
+      "incorrect_answers": [
+        "You do not talk about FIGHT CLUB",
+        "Only two guys to a fight",
+        "Fights will go on as long as they have to"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Darth Vader&#039;s famous reveal to Luke is iconic. But which of these is the right one?",
+      "correct_answer": "&quot;No. I am your father.&quot;",
+      "incorrect_answers": [
+        "&quot;Luke, I am your father.&quot;",
+        "&quot;You&#039;re wrong. I am your father.&quot;",
+        "&quot;The truth is that I am your father.&quot;"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "This trope refers to minor characters that are killed off to show how a monster works.",
+      "correct_answer": "Red Shirt",
+      "incorrect_answers": [
+        "Minions",
+        "Expendables",
+        "Cannon Fodder"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which animated film did Steven Lisberger direct in 1980 before going on to direct Tron?",
+      "correct_answer": "Animalympics",
+      "incorrect_answers": [
+        "The Fox and the Hound",
+        "The Black Cauldron",
+        "The Great Mouse Detecive"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What city did the monster attack in the film, &quot;Cloverfield&quot;?",
+      "correct_answer": "New York, New York",
+      "incorrect_answers": [
+        "Las Vegas, Nevada",
+        "Chicago, Illinois",
+        "Orlando, Florida"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who voiced Metalbeard in &quot;The Lego Movie&quot;?",
+      "correct_answer": "Nick Offerman",
+      "incorrect_answers": [
+        "Liam Neeson",
+        "Morgan Freeman",
+        "Will Arnet"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the correct spelling of the protagonist of the book in The NeverEnding Story (1984)?",
+      "correct_answer": "Atreyu",
+      "incorrect_answers": [
+        "Atrayu",
+        "Atraiyu",
+        "Atraeyu"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What type of cheese, loved by Wallace and Gromit, had it&#039;s sale prices rise after their successful short films?",
+      "correct_answer": "Wensleydale",
+      "incorrect_answers": [
+        "Cheddar",
+        "Moon Cheese",
+        "Edam"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who was the director of &quot;Scott Pilgrim vs. the World (2010)&quot;?",
+      "correct_answer": "Edgar Wright",
+      "incorrect_answers": [
+        "Phil Lord",
+        "Chris Miller",
+        "Seth Rogan"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Mark Wahlberg played the titular character of which 2008 video-game adaptation?",
+      "correct_answer": "Max Payne",
+      "incorrect_answers": [
+        "Alan Wake",
+        "Hitman",
+        "God Of War"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Leonardo Di Caprio won his first Best Actor Oscar for his performance in which film?",
+      "correct_answer": "The Revenant",
+      "incorrect_answers": [
+        "The Wolf Of Wall Street",
+        "Shutter Island",
+        "Inception"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the make and model of the tour vehicles in &quot;Jurassic Park&quot;?",
+      "correct_answer": "1992 Ford Explorer XLT",
+      "incorrect_answers": [
+        "1992 Toyota Land Cruiser",
+        "1992 Jeep Wrangler YJ Sahar",
+        "Mercedes M-Class"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who directed the movie &quot;Alien&quot;?",
+      "correct_answer": "Ridley Scott",
+      "incorrect_answers": [
+        "Christopher Nolan",
+        "Michael Bay",
+        "James Cameron"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What Queen song plays during the final fight scene of the film &quot;Hardcore Henry&quot;?",
+      "correct_answer": "Don&#039;t Stop Me Now",
+      "incorrect_answers": [
+        "Brighton Rock",
+        "Another Bites the Dust",
+        "We Will Rock You"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which actor plays the character &quot;Tommy Jarvis&quot; in &quot;Friday the 13th: The Final Chapter&quot; (1984)?",
+      "correct_answer": "Corey Feldman",
+      "incorrect_answers": [
+        "Macaulay Culkin",
+        "Mel Gibson",
+        "Mark Hamill"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which former Star Trek actor directed Three Men and a Baby (1987)?",
+      "correct_answer": "Leonard Nimoy",
+      "incorrect_answers": [
+        "William Shatner",
+        "George Takei",
+        "James Doohan"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In Mulan (1998), who is the leader of the Huns?",
+      "correct_answer": "Shan Yu",
+      "incorrect_answers": [
+        "Chien-Po",
+        "Li Shang",
+        "Fa Zhou"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What character in the Winnie the Pooh films was added by Disney and does not appear in the original books?",
+      "correct_answer": "Gopher",
+      "incorrect_answers": [
+        "Tigger",
+        "Heffalumps",
+        "Rabbit"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is Lilo&#039;s last name from Lilo and Stitch?",
+      "correct_answer": "Pelekai",
+      "incorrect_answers": [
+        "Anoaʻi",
+        "Kealoha",
+        "Kuʻulei"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the name of the queen&#039;s pet in A Bug&#039;s Life?",
+      "correct_answer": "Aphie",
+      "incorrect_answers": [
+        "Flik",
+        "Hopper",
+        "Dot"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In Finding Nemo, what was the name of Nemo&#039;s mom?",
+      "correct_answer": "Coral",
+      "incorrect_answers": [
+        "Sandy",
+        "Pearl",
+        "Shelly"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In the Friday The 13th series, what is Jason&#039;s mother&#039;s first name?",
+      "correct_answer": "Pamela",
+      "incorrect_answers": [
+        "Mary",
+        "Christine",
+        "Angeline"
+      ]
+    }
+  ]
+}

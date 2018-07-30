@@ -1,0 +1,423 @@
+{
+  "results": [{
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What event marked the start of World War II?",
+      "correct_answer": "Invasion of Poland (1939)",
+      "incorrect_answers": [
+        "Invasion of Russia (1942)",
+        "Battle of Britain (1940)",
+        "Invasion of Normandy (1944)"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "During what war did the &quot;Cuban Missile Crisis&quot; occur?",
+      "correct_answer": "Cold War",
+      "incorrect_answers": [
+        "World War I",
+        "World War II",
+        "Revolutionary War"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": " What Russian automatic gas-operated assault rifle was developed in the Soviet Union in 1947, and is still popularly used today?",
+      "correct_answer": "AK-47",
+      "incorrect_answers": [
+        "RPK",
+        "M16",
+        "MG 42"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What historical event was Tchaikovsky&#039;s 1812 Overture referencing?",
+      "correct_answer": "The Napoleonic Wars",
+      "incorrect_answers": [
+        "The American War of 1812",
+        "The Russian Revolution",
+        "The Charge of the Light Brigade (Crimean War)"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "The Spitfire L.F. Mk IX had what engine?",
+      "correct_answer": "Merlin 66",
+      "incorrect_answers": [
+        "Griffon 65",
+        "Merlin 50",
+        "Merlin X"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "The Tsar Bomba, the most powerful nuclear bomb ever tested, had a yield of 50 megatons but theoretically had a maximum yield of how much?",
+      "correct_answer": "100 Megatons",
+      "incorrect_answers": [
+        "200 Megatons",
+        "75 Megatons",
+        "150 Megatons"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What number does the Roman numeral &quot;D&quot; stand for?",
+      "correct_answer": "500",
+      "incorrect_answers": [
+        "100",
+        "1000",
+        "50"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who was the Prime Minister of the United Kingdom for most of World War II?",
+      "correct_answer": "Winston Churchill",
+      "incorrect_answers": [
+        "Neville Chamberlain",
+        "Harold Macmillan",
+        "Edward Heath"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "All of the following are names of the Seven Warring States EXCEPT:",
+      "correct_answer": "Zhai (翟)",
+      "incorrect_answers": [
+        "Zhao (趙)",
+        "Qin (秦)",
+        "Qi (齊)"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "According to scholarly estimates, what percentage of the world population at the time died due to Tamerlane&#039;s conquests?",
+      "correct_answer": "5%",
+      "incorrect_answers": [
+        "1%",
+        "3%",
+        "&lt;1%"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which of the following Assyrian kings did NOT rule during the Neo-Assyrian Empire?",
+      "correct_answer": "Shamshi-Adad III",
+      "incorrect_answers": [
+        "Shalmaneser V",
+        "Esharhaddon",
+        "Ashur-nasir-pal II"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "The creator of the Enigma Cypher and Machine was of what nationality?",
+      "correct_answer": "German",
+      "incorrect_answers": [
+        "American",
+        "British",
+        "Polish"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "On which day did the attempted coup d&#039;etat of 1991 in the Soviet Union begin?",
+      "correct_answer": "August 19",
+      "incorrect_answers": [
+        "August 21",
+        "December 26",
+        "December 24"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "On which day did construction start on &quot;The Pentagon&quot;, the headquarters for the United States Department of Defense?",
+      "correct_answer": "September 11, 1941",
+      "incorrect_answers": [
+        "June 15, 1947",
+        "January 15, 1943",
+        "September 2, 1962"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "How old was Lyndon B. Johnson when he assumed the role of President of the United States?",
+      "correct_answer": "55",
+      "incorrect_answers": [
+        "50",
+        "60",
+        "54"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the name of the US Navy spy ship which was attacked and captured by North Korean forces in 1968?",
+      "correct_answer": "USS Pueblo",
+      "incorrect_answers": [
+        "USS North Carolina",
+        "USS Constitution",
+        "USS Indianapolis"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "When did the Battle of the Bulge end?",
+      "correct_answer": "January 25, 1945",
+      "incorrect_answers": [
+        "August 6, 1945",
+        "December 7, 1941",
+        "December 16, 1944"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In what year did the North American Video Game Crash occur?",
+      "correct_answer": "1983",
+      "incorrect_answers": [
+        "1982",
+        "1993",
+        "1970"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "In what year was the video game company Electronic Arts founded?",
+      "correct_answer": "1982",
+      "incorrect_answers": [
+        "1999",
+        "1981",
+        "2005"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "How many times was Albert Einstein married in his lifetime?",
+      "correct_answer": "Twice",
+      "incorrect_answers": [
+        "Five",
+        "Thrice",
+        "Once"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Adolf Hitler was born on which date?",
+      "correct_answer": "April 20, 1889",
+      "incorrect_answers": [
+        "June 12, 1889",
+        "February 6, 1889",
+        "April 16, 1889"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Joseph Stalin had a criminal past doing what?",
+      "correct_answer": "Robbing trains",
+      "incorrect_answers": [
+        "Pedophilia",
+        "Tax evation",
+        "Identity Fraud"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Against which country did the Dutch Republic fight the Eighty Years&#039; War?",
+      "correct_answer": "Spain",
+      "incorrect_answers": [
+        "France",
+        "England",
+        "Portugal"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What nationality was sultan Saladin?",
+      "correct_answer": "Kurdish",
+      "incorrect_answers": [
+        "Arab",
+        "Egyptian",
+        "Syrian"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the oldest US state?",
+      "correct_answer": "Delaware",
+      "incorrect_answers": [
+        "Rhode Island",
+        "Maine",
+        "Virginia"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What were the first states to break away from Yugoslavia?",
+      "correct_answer": "Slovenia, Croatia",
+      "incorrect_answers": [
+        "Macedonia, Montenegro",
+        "Slovenia, Macedonia",
+        "Montenegro, Slovenia"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What was the transfer of disease, crops, and people across the Atlantic shortly after the discovery of the Americas called?",
+      "correct_answer": "The Columbian Exchange",
+      "incorrect_answers": [
+        "Triangle Trade",
+        "Transatlantic Slave Trade",
+        "The Silk Road"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which building was set aflame on August 24th, 1812?",
+      "correct_answer": "The White House",
+      "incorrect_answers": [
+        "Parliament Building",
+        "Grand National Assembly Building",
+        "Palace of the Nation"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the mnemonic device for remembering the fates of the wives of Henry VIII?",
+      "correct_answer": "Divorced, Beheaded, Died, Divorced, Beheaded, Survived",
+      "incorrect_answers": [
+        "Beheaded, Died, Divorced, Divorced, Beheaded, Survived",
+        "Died, Beheaded, Divorced, Beheaded, Survived, Divorced",
+        "Survived, Beheaded, Died, Divorced, Divorced, Beheaded"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What was Genghis Khan&#039;s real name?",
+      "correct_answer": "Tem&uuml;jin",
+      "incorrect_answers": [
+        "M&ouml;ngke",
+        "&Ouml;gedei",
+        "Tem&uuml;r"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What year is considered to be the year that the British Empire ended?",
+      "correct_answer": "1997",
+      "incorrect_answers": [
+        "1986",
+        "1981",
+        "1971"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who is attributed credit for recording the epic poem The Odyssey?",
+      "correct_answer": "Homer",
+      "incorrect_answers": [
+        "Aristotle",
+        "Odysseus",
+        "Socrates"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which country was an allied power in World War II?",
+      "correct_answer": "Soviet Union",
+      "incorrect_answers": [
+        "Italy",
+        "Germany",
+        "Japan"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "On which aircraft carrier did the Doolitte Raid launch from on April 18, 1942 during World War II?",
+      "correct_answer": "USS Hornet",
+      "incorrect_answers": [
+        "USS Enterprise",
+        "USS Lexington",
+        "USS Saratoga"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the name of the ship which was only a few miles away from the RMS Titanic when it struck an iceberg on April 14, 1912?",
+      "correct_answer": "Californian",
+      "incorrect_answers": [
+        "Carpathia",
+        "Cristol",
+        "Commerce"
+      ]
+    }
+  ]
+}

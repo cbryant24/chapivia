@@ -1,0 +1,603 @@
+{
+  "results": [{
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which game did &quot;Sonic The Hedgehog&quot; make his first appearance in?",
+      "correct_answer": "Rad Mobile",
+      "incorrect_answers": [
+        "Sonic The Hedgehog",
+        "Super Mario 64",
+        "Mega Man"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In the Nintendo DS game &#039;Ghost Trick: Phantom Detective&#039;, what is the name of the hitman seen at the start of the game?",
+      "correct_answer": "Nearsighted Jeego",
+      "incorrect_answers": [
+        "One Step Ahead Tengo",
+        "Missile",
+        "Cabanela"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which Greek letter represents the &quot;Half-Life&quot; logo?",
+      "correct_answer": "Lambda",
+      "incorrect_answers": [
+        "Omega",
+        "Alpha",
+        "Sigma"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What is Pikachu&#039;s National Pok&eacute;Dex Number?",
+      "correct_answer": "#025",
+      "incorrect_answers": [
+        "#001",
+        "#031",
+        "#109"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which franchise does the creature &quot;Slowpoke&quot; originate from?",
+      "correct_answer": "Pokemon",
+      "incorrect_answers": [
+        "Dragon Ball",
+        "Sonic The Hedgehog",
+        "Yugioh"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which game did NOT get financed via Crowdfunding?",
+      "correct_answer": "Enter the Gungeon",
+      "incorrect_answers": [
+        "Town of Salem",
+        "Undertale",
+        "Tower Unite"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who is the main character of the game Half-Life: Opposing Force?",
+      "correct_answer": "Adrian Shephard",
+      "incorrect_answers": [
+        "Gordon Freeman",
+        "Alyx Vance",
+        "Barney Calhoun"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In the game Half-Life, which enemy is showcased as the final boss?",
+      "correct_answer": "The Nihilanth",
+      "incorrect_answers": [
+        "Dr. Wallace Breen",
+        "G-Man",
+        "The Gonarch"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In Kingdom Hearts, how many members does Organization XIII have in total?",
+      "correct_answer": "14",
+      "incorrect_answers": [
+        "10",
+        "13",
+        "12"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who is the protagonist in the game &quot;The Walking Dead: Season One&quot;?",
+      "correct_answer": "Lee Everett",
+      "incorrect_answers": [
+        "Clementine",
+        "Kenny",
+        "Rick Grimes"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of these video game engines was made by the company Epic Games?",
+      "correct_answer": "Unreal",
+      "incorrect_answers": [
+        "Unity",
+        "Game Maker: Studio",
+        "Cry Engine"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of these is NOT a main playable character in &quot;Grand Theft Auto V&quot;?",
+      "correct_answer": "Lamar",
+      "incorrect_answers": [
+        "Trevor",
+        "Michael",
+        "Franklin"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which student in Yandere Simulator is known for asking irritating and stupid questions?",
+      "correct_answer": "Midori Gurin",
+      "incorrect_answers": [
+        "Kokona Hruka",
+        "Oka Ruto",
+        "Pipi Osu"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Pok&eacute;mon Go is a location-based augmented reality game developed and published by which company?",
+      "correct_answer": "Niantic",
+      "incorrect_answers": [
+        "Rovio",
+        "Zynga",
+        "Supercell"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of these is NOT a team available in the game Pok&eacute;mon Go?",
+      "correct_answer": "Team Rocket",
+      "incorrect_answers": [
+        "Team Instinct",
+        "Team Valor",
+        "Team Mystic"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In the fighting game &quot;Skullgirls,&quot; which character utilizes a folding chair called the &quot;Hurting&quot; as a weapon?",
+      "correct_answer": "Beowulf",
+      "incorrect_answers": [
+        "Big Band",
+        "Squigly",
+        "Cerebella"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What ingredient is NOT used to craft a cake in Minecraft?",
+      "correct_answer": "Bread",
+      "incorrect_answers": [
+        "Wheat",
+        "Milk",
+        "Egg"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of these is NOT a playable character in the 2016 video game Overwatch?",
+      "correct_answer": "Invoker",
+      "incorrect_answers": [
+        "Mercy",
+        "Winston",
+        "Zenyatta"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In what year was the game &quot;Fallout&quot; released?",
+      "correct_answer": "1997",
+      "incorrect_answers": [
+        "1998",
+        "1999",
+        "1996"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In the &quot;Worms&quot; series of video games, which of these weapons is affected by wind?",
+      "correct_answer": "Bazooka",
+      "incorrect_answers": [
+        "Grenade",
+        "Air Strike",
+        "Mortar"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "When was the game &#039;Portal 2&#039; released?",
+      "correct_answer": "2011",
+      "incorrect_answers": [
+        "2014",
+        "2009",
+        "2007"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What is the protagonist&#039;s title given by the demons in DOOM (2016)?",
+      "correct_answer": "Doom Slayer",
+      "incorrect_answers": [
+        "Doom Guy",
+        "Doom Marine",
+        "Doom Reaper"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What company created and developed the game &quot;Overwatch&quot;?",
+      "correct_answer": "Blizzard Entertainment",
+      "incorrect_answers": [
+        "Valve",
+        "Hi-Rez Studios",
+        "Gearbox Software"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What year did the game &quot;Overwatch&quot; enter closed beta?",
+      "correct_answer": "2015",
+      "incorrect_answers": [
+        "2013",
+        "2011",
+        "2016"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Gordon Freeman is said to have burnt and destroyed what food in the break room microwave?",
+      "correct_answer": "Casserole",
+      "incorrect_answers": [
+        "Sub Sandwich",
+        "Chicken Soup",
+        "Pepperoni Pizza"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who is the protagonist in Dead Rising (2006)?",
+      "correct_answer": "Frank West",
+      "incorrect_answers": [
+        "Chuck Greene",
+        "John North",
+        "Jason Grey"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Rocket League is a game which features..",
+      "correct_answer": "Cars",
+      "incorrect_answers": [
+        "Helicopters",
+        "Planes",
+        "Submarines"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In vanilla Minecraft, which of the following cannot be made into a block?",
+      "correct_answer": "Charcoal",
+      "incorrect_answers": [
+        "Coal",
+        "Wheat",
+        "String"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who is the leader of Team Valor in Pok&eacute;mon Go?",
+      "correct_answer": "Candela",
+      "incorrect_answers": [
+        "Willow",
+        "Blanche",
+        "Spark"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who is the leader of Team Mystic in Pok&eacute;mon Go?",
+      "correct_answer": "Blanche",
+      "incorrect_answers": [
+        "Candela",
+        "Spark",
+        "Willow"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "The starting pistol of the Terrorist team in a competitive match of Counter Strike: Global Offensive is what?",
+      "correct_answer": "Glock-18",
+      "incorrect_answers": [
+        "Tec-9",
+        "Desert Eagle",
+        "Dual Berretas"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In Need for Speed: Most Wanted (2005), what was the name of the main antagonist?",
+      "correct_answer": "Clarence &quot;Razor&quot; Callahan",
+      "incorrect_answers": [
+        "Hector &quot;Ming&quot; Domingo",
+        "Toru &quot;Bull&quot; Sato",
+        "Karl &quot;Baron&quot; Smit"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What is the name of the main character in &quot;Life is Strange&quot;?",
+      "correct_answer": "Maxine Caulfield",
+      "incorrect_answers": [
+        "Victoria Chase",
+        "Stella Hill",
+        "Chloe Price"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In the video game Overwatch, which playable character is infamous for saying &quot;It&#039;s high noon.&quot;?",
+      "correct_answer": "McCree",
+      "incorrect_answers": [
+        "Hanzo",
+        "Pharah",
+        "Soldier: 76"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What is the homeworld of the Elites from Halo?",
+      "correct_answer": "Sanghelios",
+      "incorrect_answers": [
+        "Te",
+        "Doisac",
+        "Eayn"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who are the original creators of Rachet &amp; Clank?",
+      "correct_answer": "Insomniac Games",
+      "incorrect_answers": [
+        "PixelTail Games",
+        "Rare",
+        "Bethesda"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "The name of the Metroid series comes from what?",
+      "correct_answer": "An enemy in the game",
+      "incorrect_answers": [
+        "The final boss&#039;s name",
+        "The main character&#039;s name",
+        "A spaceship&#039;s name"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of the following characters is NOT a female marriage candidate in the game Stardew Valley?",
+      "correct_answer": "Caroline",
+      "incorrect_answers": [
+        "Abigail",
+        "Haley",
+        "Leah"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which water-type Pok&eacute;mon starter was introduced in the 4th generation of the series?",
+      "correct_answer": "Piplup",
+      "incorrect_answers": [
+        "Totodile",
+        "Oshawott",
+        "Mudkip"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In Rust, how many Timed Explosive Charges does it take to destroy a Ladder Hatch?",
+      "correct_answer": "1",
+      "incorrect_answers": [
+        "3",
+        "2",
+        "5"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who turns out to be the true victor in the Battle of Armageddon in Mortal Kombat?",
+      "correct_answer": "Shao Kahn",
+      "incorrect_answers": [
+        "Liu Kang",
+        "Shang Tsung",
+        "Raiden"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In &quot;Mario &amp; Sonic at the Olympic Games&quot;, characters are split into how many types?",
+      "correct_answer": "4",
+      "incorrect_answers": [
+        "6",
+        "5",
+        "3"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What minimum level in the Defence skill is needed to equip Dragon Armour in the MMO RuneScape?",
+      "correct_answer": "60",
+      "incorrect_answers": [
+        "65",
+        "55",
+        "70"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In Minecraft, which two items must be combined to craft a torch?",
+      "correct_answer": "Stick and Coal",
+      "incorrect_answers": [
+        "Stick and Fire",
+        "Wood and Coal",
+        "Wood and Fire"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which &quot;Fallout: New Vegas&quot; quest is NOT named after a real-life song?",
+      "correct_answer": "They Went That-a-Way",
+      "incorrect_answers": [
+        "Come Fly With Me",
+        "Ain&#039;t That a Kick in the Head",
+        "Ring-a-Ding Ding"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What game was used to advertise Steam?",
+      "correct_answer": "Counter-Strike 1.6",
+      "incorrect_answers": [
+        "Half-Life",
+        "Half-Life 2",
+        "Team Fortress"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who created the indie adventure game &quot;Night in the Woods&quot;?",
+      "correct_answer": "Alec Holowka",
+      "incorrect_answers": [
+        "Ron Gilbert",
+        "Tim Schafer",
+        " Tommy Refenes"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of these is not a wonder weapon in &quot;Call Of Duty: Zombies&quot;?",
+      "correct_answer": "R115 Resonator",
+      "incorrect_answers": [
+        "GKZ-45 Mk3",
+        "Ray Gun",
+        "Scavenger"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In &quot;Call Of Duty: Zombies&quot;, what is the name of the Pack-A-Punched Crossbow?",
+      "correct_answer": "Awful Lawton",
+      "incorrect_answers": [
+        "Longinus",
+        "V-R11",
+        "Predator"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What is the last name of the primary female protagonist of Final Fantasy VIII?",
+      "correct_answer": "Heartilly",
+      "incorrect_answers": [
+        "Loire",
+        "Almasy",
+        "Trepe"
+      ]
+    }
+  ]
+}
