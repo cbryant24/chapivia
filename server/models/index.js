@@ -1,3 +1,9 @@
-const val = 'hello world';
+const Users = require('./user');
+const QuestionChoices = require('./questionChoice');
+const Questions = require('./question');
 
-module.exports = val;
+module.exports = {
+  Users,
+  QuestionChoices,
+  Questions
+}

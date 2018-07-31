@@ -10,6 +10,6 @@ if (config.use_env_variable) {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-var user = sequelize.import(__dirname + '/questionchoice.js');
+var QuestionChoices = sequelize.import(__dirname + '/questionchoice.js');
 
-module.exports = user;
+module.exports = QuestionChoices;
