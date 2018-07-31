@@ -30,6 +30,7 @@
     "@root": ".",
     "@config": "./config",
     "@models": "./models",
+    "@triviaData": "./data",
     "@user": "./models/user",
     "@middleware": "./web/middleware"
   }
