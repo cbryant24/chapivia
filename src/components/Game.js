@@ -7,6 +7,16 @@ import GuessForm from './GuessForm';
 import Winner from './Winner';
 
 class Game extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      auth: localStorage.getItem('token')
+    }
+  }
+  componentWillMount() {
+    if (!this.state.auth) return this.props.history.push('/');
+  }
 
   render() {
     return (

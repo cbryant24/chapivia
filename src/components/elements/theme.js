@@ -176,7 +176,8 @@ export const filterProps = props =>
     "alignContent",
     "gridGap",
     "textTransform",
-    "minHeight"
+    "minHeight",
+    "flexDirection"
   ])
 
 const theme = {

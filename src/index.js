@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import theme from './components/elements/theme';
 
 import Signin from './components/Signin';
+import Signup from './components/Signup';
 import Game from './components/Game';
 import App from './components/App';
 
@@ -15,6 +16,7 @@ ReactDOM.render(
         <Route path='/game' exact component={Game}/>
         {/* <Route path='/signup' exact component={Signup}/> */}
         <Route path='/' exact component={Signin}/>
+        <Route path='/signup' component={Signup}/>
       </App>
     </ThemeProvider>
   </Router>,

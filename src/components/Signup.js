@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
 import { FlexItem, Field } from './elements';
 import { OutlineButton } from './elements';
-import theme from './elements/theme';
 import helpers from './helpers';
+import theme from './elements/theme';
 
 //TODO: Errors message applicable to correct field only
 
-class Signin extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       email: '',
       password: '',
+      confirm_password: '',
       error: {
         statusType: null,
         message: ''
@@ -31,24 +31,25 @@ class Signin extends Component {
     if (localStorage.getItem('token')) return this.props.history.push('/game');
   }
 
-
   async signin(event) {
     event.preventDefault()
-    let { email, password } = this.state;
+    let { email, password, confirm_password } = this.state;
 
-    if (!email || !password ) 
-      return this.setState(() => {return {error: helpers.handleError('blank')} });
+    if(!email || !password || !confirm_password ) 
+      return this.setState(() => {return {error: helpers.handleError('empty')} });
+
+    if(password !== confirm_password)
+      return this.setState(() => {return {error: helpers.handleError('mismatch')} });
 
     try {
-      const {data: {token} } = await axios.post('/api/signin', {email, password});
-
+      const {data: {token} } = await axios.post('/api/signup', {email, password});
       if(this.state.error.statusType)
-        this.setState( () => {return { error: helpers.clearError() }});
-      
-        localStorage.setItem('token', token);
+        this.setState( () => {return { error: helpers.clearError() } });
+
+      localStorage.setItem('token', token);
       return this.props.history.push('/game');
     } catch(err) {
-      this.setState( () => {return {error: helpers.handleError(err) }});
+      this.setState( () => {return  { error: helpers.handleError(err) } });
     }
   }
 
@@ -81,6 +82,15 @@ class Signin extends Component {
             onChange={(event) => this.handleChange(event)}
           >
           </Field>
+          <Field 
+            name="confirm_password"
+            type="password"
+            label="Confirm Password"
+            error={this.state.error.message}
+            value={this.state.confirm_password}
+            onChange={(event) => this.handleChange(event)}
+          >
+          </Field>
           <OutlineButton
             color="white"
             borderColor='primary'
@@ -88,7 +98,7 @@ class Signin extends Component {
             type="submit"
             onClick={(e) => this.signin(e)}
           >
-            Sign In
+            Sign Up
           </OutlineButton>
         </form>
       </FlexItem>
@@ -96,4 +106,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+export default Signup;
