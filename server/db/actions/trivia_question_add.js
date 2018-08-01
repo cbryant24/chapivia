@@ -9,12 +9,19 @@ const { Questions } = require('@models');
 const readFileAsync = promisify(fs.readFile);
 const readDirAsync = promisify(fs.readdir);
 
-let questionDir;
-let qestionFile;
+let triviaCategories;
+let triviaFiles = {};
+let triviaRoot = './server/db/data/trivia_questions/';
 
 ( async function () {
   try {
-    questionDir = await readDirAsync('./server/db/data/trivia_questions');
+    triviaCategories = await readDirAsync(triviaRoot);
+    triviaCategories.forEach( await function (category) {
+      debugger
+      triviaFiles[category] = readDirAsync(`${triviaRoot}/${category}`)
+      //https://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop
+    })
+    Promise.all(triviaFiles)
     debugger
   } catch(err) {
     console.log(err);
@@ -23,10 +30,14 @@ let qestionFile;
 
 ( async function () {
   try {
-    questionFile = await readFileAsync('./server/db/data/trivia_questions/test');
+    // questionFile = questionDir.forEach()
+    
+    // JSON.parse( await readFileAsync(`./server/db/data/trivia_questions/test/testQuestions.json`));
     debugger
   } catch(err) {
     console.log(err);
     debugger
   }
 })();
+
+debugger
