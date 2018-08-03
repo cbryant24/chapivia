@@ -1,9 +1,6 @@
-require('module-alias/register');
-
-
 const { promisify } = require('util');
 const fs = require('fs');
-const { Questions, QuestionChoices } = require('@models');
+const { Question, QuestionChoice } = require('@models');
 
 
 const readFileAsync = promisify(fs.readFile);
@@ -28,17 +25,24 @@ let triviaQuestions = [];
         triviaQuestions.push(...trivia);
       }
     }
-    debugger
 
     for (const trivia of triviaQuestions) {
-      Questions.create()
+      let isCreated = await QuestionChoice.create({
+        correctChoice: trivia.correct_answer,
+        incorrectChoiceOne: trivia.incorrect_answers[0],
+        incorrectChoiceTwo: trivia.incorrect_answers[1],
+        incorrectChoiceThree: trivia.incorrect_answers[2],
+        question: {
+          question: trivia.question,
+          is_used: false,
+          difficulty: trivia.difficulty,
+          category: trivia.category
+        }
+      }, {
+        include: Question,
+      })
     }
-
-    
   } catch(err) {
     console.log(err);
-    debugger
   }
-})();
-
-debugger
+})

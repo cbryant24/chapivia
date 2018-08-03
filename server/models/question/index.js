@@ -11,6 +11,6 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-const Questions = sequelize.import(__dirname + '/question.js');
+const Question = sequelize.import(__dirname + '/question.js');
 
-module.exports = Questions;
+module.exports = Question;

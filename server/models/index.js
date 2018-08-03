@@ -1,9 +1,11 @@
-const Users = require('./user');
-const QuestionChoices = require('./questionChoice');
-const Questions = require('./question');
+const User = require('./user');
+const QuestionChoice = require('./questionChoice');
+const Question = require('./question');
+
+QuestionChoice.Question = QuestionChoice.belongsTo(Question);
 
 module.exports = {
-  Users,
-  QuestionChoices,
-  Questions
+  User,
+  QuestionChoice,
+  Question
 }

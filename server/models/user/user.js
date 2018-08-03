@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 
 module.exports = (sequelize, DataTypes) => {
-  var User = sequelize.define('User', {
+  var User = sequelize.define('user', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING
@@ -32,8 +32,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.prototype.comparePassword = function(candidatePassword, callback) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatched) {
-      console.log('am i getting to the bcrypt')
-      // err = 'bcrypt acting crazy over here'
       if (err) { return callback(err); }
   
       callback(null, isMatched);

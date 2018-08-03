@@ -11,6 +11,6 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-const user = sequelize.import(__dirname + '/user.js');
+const User = sequelize.import(__dirname + '/user.js');
 
-module.exports = user;
+module.exports = User;
