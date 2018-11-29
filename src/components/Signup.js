@@ -13,6 +13,7 @@ class Signup extends Component {
 
     this.state = {
       email: '',
+      name: '',
       password: '',
       confirm_password: '',
       error: {
@@ -33,16 +34,16 @@ class Signup extends Component {
 
   async signin(event) {
     event.preventDefault()
-    let { email, password, confirm_password } = this.state;
+    let { email, name, password, confirm_password } = this.state;
 
-    if(!email || !password || !confirm_password ) 
+    if(!email || !name || !password || !confirm_password ) 
       return this.setState(() => {return {error: helpers.handleError('empty')} });
 
     if(password !== confirm_password)
       return this.setState(() => {return {error: helpers.handleError('mismatch')} });
 
     try {
-      const {data: {token} } = await axios.post('/api/signup', {email, password});
+      const {data: {token} } = await axios.post('/api/signup', {email, name, password});
       if(this.state.error.statusType)
         this.setState( () => {return { error: helpers.clearError() } });
 
@@ -64,13 +65,23 @@ class Signup extends Component {
       >
         <form onSubmit={(event) => this.signin(event)}>
           <Field 
-          name="email"
-          type="email"
-          label="Email"
-          placeholder="zach@hackclub.com"
-          error={this.state.error.message}
-          value={this.state.email}
-          onChange={(event) => this.handleChange(event)}
+            name="email"
+            type="email"
+            label="Email"
+            placeholder="zach@hackclub.com"
+            error={this.state.error.message}
+            value={this.state.email}
+            onChange={(event) => this.handleChange(event)}
+          >
+          </Field>
+          <Field 
+            name="name"
+            type="text"
+            label="Name"
+            placeholder="zach@hackclub.com"
+            error={this.state.error.message}
+            value={this.state.name}
+            onChange={(event) => this.handleChange(event)}
           >
           </Field>
           <Field 

@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
   });
   Question.associate = function(models) {
     // associations can be defined here
+    Question.belongsToMany(models.QuestionChoice, {through: 'userQuestionChoice'});
+
   };
   return Question;
 };

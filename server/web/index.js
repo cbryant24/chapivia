@@ -14,6 +14,6 @@ const logger = winston.createLogger({
 app.use(cors());
 app.use(bodyParser.json({ type: '*/*'}));
 
-const port = process.env.PORT || 3090;
-
+const port = 4000;
+console.log('am i running on this port', port)
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

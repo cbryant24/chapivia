@@ -177,7 +177,11 @@ export const filterProps = props =>
     "gridGap",
     "textTransform",
     "minHeight",
-    "flexDirection"
+    "flexDirection",
+    "borderColor",
+    "justifyContent",
+    "borderRadius",
+    "borderWidth"
   ])
 
 const theme = {

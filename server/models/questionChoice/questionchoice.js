@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   });
   QuestionChoice.associate = function(models) {
     // associations can be defined here
-    QuestionChoice.belongsTo(models.Question)
+    QuestionChoice.belongsTo(models.Question);
+    QuestionChoice.belongsToMany(models.Question, {through: 'userQuestionChoice'});
   };
   return QuestionChoice;
 };

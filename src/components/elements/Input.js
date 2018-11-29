@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { fontSize, space, width, color, propTypes, minHeight } from 'styled-system'
+import { fontSize, space, width, color, propTypes, minHeight, fontWeight } from 'styled-system'
 import cleanElement from 'clean-element';
 import theme, { filterProps } from './theme'
 import PropTypes from 'prop-types'
@@ -26,8 +26,8 @@ const Input = styled(cleanElement(Base))`
   line-height: inherit;
   font-family: inherit;
   background-color: transparent;
-  border-radius: ${props => props.theme.radius};
-  border-width: 1px;
+  border-radius: ${props => props.borderRadius || props.theme.radius };
+  border-width: ${props => props.borderWidth || "1px"};
   border-style: solid;
   border-color: ${props => props.theme.colors.smoke};
   transition: ${props => props.theme.transition} box-shadow;
@@ -46,7 +46,7 @@ const Input = styled(cleanElement(Base))`
     background: #fff url("data:image/svg+xml;charset=utf8,${chevron()}") no-repeat right .75rem center;
     background-size: .5rem;
   }
-  ${fontSize} ${space} ${width} ${color} ${minHeight};
+  ${fontSize} ${space} ${width} ${color} ${minHeight} ${fontWeight};
 `
 
 Input.displayName = 'Input'

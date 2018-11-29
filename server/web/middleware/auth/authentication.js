@@ -1,6 +1,6 @@
 // require('module-alias/register');
 const jwt = require('jwt-simple');
-const User = require('@user');
+const { User } = require('@models');
 const config = require('@config/config');
 
 const tokenForUser = (user) => {
@@ -18,8 +18,8 @@ exports.signup = async (req, res, next) => {
   const { email, password, name, } = req.body;
   let user = null;
 
-  if(!email || !password ) {
-    return res.status(422).send({ error: 'You must provide email and password'});
+  if(!email || !password || !name ) {
+    return res.status(422).send({ error: 'Please provide email, name, and password'});
   }
 
   // See if a given user exists

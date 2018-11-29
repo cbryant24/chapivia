@@ -18,6 +18,12 @@ export default {
         message: 'Passwords must match'
       }
     }
+    if(err === 'invalid') {
+      return {
+        statusType: 'user',
+        message: 'Incorrect email and or password'
+      }
+    }
   },
 
   clearError: () => {

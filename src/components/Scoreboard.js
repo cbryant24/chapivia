@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import { keyBy, map } from 'lodash';
+import axios from 'axios';
+import { connect } from 'react-redux';
+
+import * as actions from '../actions';
 import { GridItem, Table, Image, Text } from './elements';
 import kgrad from '../img/kgrad.png';
 
 class Scoreboard extends Component {
-  constructor(props) {
-    super(props);
-    let vals = [{id: "0", name: "ross", score: 20}, {id: "1", name: "roe", score: 27}, {id: "2", name: "chris", score: 90}];
-    
-    let playerScores = keyBy(vals, "id");
 
-    this.state = {
-      playerScores
-    };
+  componentWillMount() {
+    this.props.getPlayerScores();
+    debugger
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.announceAnswer && this.props.announceAnswer !== prevProps.announceAnswer) {
+      this.props.getPlayerScores();
+      debugger
+    }
   }
 
   displayTableHeaders(headers) {
@@ -32,24 +38,25 @@ class Scoreboard extends Component {
     )
   }
 
-  dispalayGuesses(playerScores) {
-    return (
-      map(playerScores, player => (
+  dispalayPlayerScores(playerScores) {
+    const renderedScores = [];
+    for(let player in playerScores) {
+      renderedScores.push(
         <Table.tr
           fontSize="1.6rem"
           textAlign="center"
           height="4rem"
-          key={player.id}
+          key={player}
         >
           <Table.td display="flex" width="100%"> 
-            <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/>
+            {/* <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/> */}
             <Text.span
               textTransform="uppercase"
               fontSize="1.7rem"
               fontWeight="500"
               padding-left="2rem"
             >
-              {player.name}
+              {player}
             </Text.span>
           </Table.td>
           <Table.td width="30%">
@@ -57,12 +64,13 @@ class Scoreboard extends Component {
               fontSize="1.7rem"
               fontWeight="500"
             >
-              {player.score}
+              {playerScores[player]}
             </Text.span>
           </Table.td>
         </Table.tr>
-      ))
-    )
+      )
+    }
+    return renderedScores;
   }
 
   render() {
@@ -79,7 +87,7 @@ class Scoreboard extends Component {
             <Table.tr border="1px solid black">
               {this.displayTableHeaders(['Name', 'Score'])}
             </Table.tr>
-            {this.dispalayGuesses(this.state.playerScores)}
+            {this.dispalayPlayerScores(this.props.playerScores)}
           </Table.body>
         </Table>
       </GridItem>
@@ -87,4 +95,11 @@ class Scoreboard extends Component {
   }
 }
 
-export default Scoreboard;
+const mapStateToProps = state => {
+  return {
+    announceAnswer: state.game.announceAnswer,
+    playerScores: state.players.playerScores
+  }
+}
+
+export default connect(mapStateToProps, actions)(Scoreboard);

@@ -18,3 +18,4 @@ export { default as Image } from './Image';
 export { default as List } from './List';
 export { default as Item } from './Item';
 export { default as Heading } from './Heading';
+export { default as ModalBackground } from './ModalBackground';

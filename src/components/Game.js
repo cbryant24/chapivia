@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { shuffle } from 'lodash';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import requireAuth from './HOC/requireAuth';
 import { Grid } from './elements';
 import GuessList from './GuessList';
 import TriviaQuestion from './TriviaQuestion';
@@ -9,19 +15,25 @@ import Winner from './Winner';
 class Game extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      auth: localStorage.getItem('token')
-    }
   }
+  
   componentWillMount() {
-    if (!this.state.auth) return this.props.history.push('/');
+    // const choices = shuffle([incorrectChoiceOne, incorrectChoiceTwo, 
+    //   incorrectChoiceThree, correctChoice])
+
+    try {
+
+    } catch(e) {
+      console.log(e)
+      //TODO add react error response for data pull for question and choice database pull
+    }
+    
   }
 
   render() {
     return (
       <Grid
-        templateColumns="repeat(4, [col-start] 1fr [col-end])"
+        templateColumns="repeat(5, [col-start] 1fr [col-end])"
         templateRows="[first-row-start] 1fr [first-row-end 
                       second-row-start] .5fr [second-row-end]"
         gridGap="1.5rem"
@@ -32,15 +44,15 @@ class Game extends Component {
       >
         <GuessList 
           gridRow="first-row-start / first-row-end" 
-          gridColumn="col-start 1 / col-end 1"
+          gridColumn="col-start 1 / col-end 2"
         />
         <TriviaQuestion 
           gridRow="first-row-start / first-row-end" 
-          gridColumn="col-start 2 / col-end 3"
+          gridColumn="col-start 3 / col-end 4"
         />
         <Scoreboard 
           gridRow="first-row-start / first-row-end" 
-          gridColumn="col-start 4 / col-end 4"
+          gridColumn="col-start 5 / col-end 5"
         />
         <GuessForm 
           gridRow="second-row-start / second-row-end" 
@@ -48,7 +60,7 @@ class Game extends Component {
         />
         <Winner 
           gridRow="second-row-start / second-row-end"
-          gridColumn="col-start 3 / col-end 3"
+          gridColumn="col-start 3 / col-end 5"
           border="1px solid brown"
         />
       </Grid>
@@ -56,4 +68,13 @@ class Game extends Component {
   }
 }
 
-export default Game
+const mapStateToProps = state => {
+  return {
+    gameStatus: state.game.gameStatus
+  }
+}
+
+export default compose(
+  connect(mapStateToProps),
+  requireAuth
+)(Game)

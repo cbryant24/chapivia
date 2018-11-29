@@ -13,17 +13,22 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
+    "cron": "^1.5.0",
+    "dateformat": "^3.0.3",
     "express": "^4.16.3",
     "joi": "^13.4.0",
     "jwt-simple": "^0.5.1",
+    "lodash": "^4.17.10",
     "module-alias": "^2.1.0",
     "mongoose": "^5.1.4",
     "morgan": "^1.9.0",
+    "nedb": "^1.8.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "pg": "^7.4.3",
     "sequelize": "^4.38.0",
+    "socket.io": "^2.1.1",
     "winston": "^3.0.0"
   },
   "_moduleAliases": {
@@ -31,7 +36,7 @@
     "@config": "./config",
     "@models": "./models",
     "@triviaData": "./data",
-    "@user": "./models/user",
-    "@middleware": "./web/middleware"
+    "@middleware": "./web/middleware",
+    "@error": "./error"
   }
 }
