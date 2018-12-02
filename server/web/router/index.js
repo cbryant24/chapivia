@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const path = require('path')
+
 
 const { auth, users, trivia } = require('./api');
 
@@ -81,6 +83,13 @@ router.get('/api/correct_guesses', async (req, res, done) => {
     //TODO add descriptive error handling and winston logging for /api/correct_guesses route
   }
 })
+
+router.use( express.static( `${__dirname}/../../../build` ) );
+
+router.get('*', (req, res)=>{
+  debugger
+  res.sendFile(path.join(__dirname, '../../../build/index.html'));
+});
 
 
 module.exports = router;
