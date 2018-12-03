@@ -1,7 +1,9 @@
 // require('module-alias/register');
 const jwt = require('jwt-simple');
-const { User } = require('@models');
-const config = require('@config/config');
+const { User } = require('../../../models');
+// const config = require('@config/config');
+const config = require('../../../config/config');
+
 
 const tokenForUser = (user) => {
   const timestamp = new Date().getTime();

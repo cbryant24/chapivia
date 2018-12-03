@@ -1,6 +1,7 @@
 const dateFormat = require('dateformat');
 
-const { User, UserQuestionChoice } = require('@models');
+const { User, UserQuestionChoice } = require('../../../../models');
+
 const { formatModel } = require('../helpers');
 
 const user = new User();

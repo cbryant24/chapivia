@@ -1,4 +1,4 @@
-const { Question, QuestionChoice, Nedb } = require('@models');
+const { Question, QuestionChoice, Nedb } = require('../../../../models');
 const triviaConfig = require('./config');
 const dateFormat = require('dateformat');
 

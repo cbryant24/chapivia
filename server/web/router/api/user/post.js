@@ -1,5 +1,6 @@
 'use strict'
-const { QuestionChoice, UserQuestionChoice } = require('@models');
+const { QuestionChoice, UserQuestionChoice } = require('../../../../models');
+
 
 const userGuess = async function(playerGuess) {
   try {

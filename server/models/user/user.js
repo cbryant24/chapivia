@@ -1,7 +1,7 @@
 'use strict';
 const bcrypt = require('bcrypt-nodejs');
 const { keyBy } = require('lodash');
-const AppError = require('@error');
+const AppError = require('../../error');
 
 
 module.exports = (sequelize, DataTypes) => {

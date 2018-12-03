@@ -30,13 +30,5 @@
     "sequelize": "^4.38.0",
     "socket.io": "^2.1.1",
     "winston": "^3.0.0"
-  },
-  "_moduleAliases": {
-    "@root": ".",
-    "@config": "./config",
-    "@models": "./models",
-    "@triviaData": "./data",
-    "@middleware": "./web/middleware",
-    "@error": "./error"
   }
 }
