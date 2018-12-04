@@ -1,5 +1,5 @@
 const { Question, QuestionChoice, Nedb } = require('../../../../models');
-const triviaConfig = require('./config');
+const triviaConfig = require('./triviaConfig');
 const dateFormat = require('dateformat');
 
 const { formatModel } = require('../helpers');
