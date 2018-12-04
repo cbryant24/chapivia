@@ -7,7 +7,7 @@ class GameController extends Component {
   constructor(props) {
     super(props);
 
-    this.socket = openSocket('http://localhost:3500');
+    this.socket = openSocket('http://localhost:3500/gameSocket');
 
     // this.sendMessage = this.sendMessage.bind(this);
   }
