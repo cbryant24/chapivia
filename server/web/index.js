@@ -11,7 +11,7 @@ const logger = winston.createLogger({
   silent: false,
   level: 'verbose'
 });
-debugger
+
 app.use(cors());
 app.use(bodyParser.json({ type: '*/*'}));
 
