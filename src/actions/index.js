@@ -65,6 +65,11 @@ export const getPlayers = () => async dispatch => {
 export const getTrivia = () => async dispatch => {
   try {
     const res = await axios.get('/api/daily_trivia');
+    
+    if (!res.data) return dispatch({
+      type: GAME_STATUS,
+      payload: res.data
+    });
     const triviaChoices = shuffle(res.data.questionChoices);
     const triviaQuestion = res.data.question;
     const triviaIds = {
@@ -76,6 +81,10 @@ export const getTrivia = () => async dispatch => {
       type: DISPLAY_TRIVIA,
       payload: {triviaChoices, triviaQuestion, triviaIds, triviaAnswer}
     });
+    dispatch({
+      type: GAME_STATUS,
+      payload: true
+    })
   } catch(e) {
     //TODO display error when trivia api fails
   }
@@ -135,8 +144,19 @@ export const openCloseModal = status => dispatch => {
 
 export const getCorrectGuessers = () => async dispatch => {
   const res = await axios.get('/api/correct_guesses');
+  debugger
+  if ( !res.data ) return dispatch({
+    type: ANNOUNCE_ANSWER,
+    payload: res.data
+  });
+
   dispatch({
     type: GET_CORRECT_GUESSERS,
     payload: res.data
   });
+
+  dispatch({
+    type: ANNOUNCE_ANSWER,
+    payload: true
+  })
 }

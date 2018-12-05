@@ -96,7 +96,9 @@ const correctUserGuesses = async () => {
   const gameDate = dateFormat('yyyy-mm-dd');
   let todaysCorrectGuesses = [];
   let correctGuessedPlayers = [];
+  const currentHour = new Date().getHours();
 
+  if (currentHour < 15) return false
   try {
     todaysCorrectGuesses = await UserQuestionChoice.findAll({
       where: {

@@ -13,7 +13,6 @@ class Winner extends Component {
   componentDidUpdate(prevProps) {
     if(this.props.announceAnswer && this.props.announceAnswer !== prevProps.announceAnswer) {
       this.props.getCorrectGuessers();
-      debugger
     }
   }
 
@@ -35,7 +34,6 @@ class Winner extends Component {
   }
 
   render() {
-    debugger
     if(!this.props.announceAnswer) return (
       <GridItem
         gridRow={this.props.gridRow}

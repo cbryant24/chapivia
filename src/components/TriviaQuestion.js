@@ -37,7 +37,6 @@ class TriviaQuestion extends Component {
   }
   
   render() {
-    debugger
     if(!this.props.gameStatus) return (
       <Heading.h1>Checkback after 11:00am</Heading.h1>
     )
