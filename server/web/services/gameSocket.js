@@ -1,6 +1,6 @@
-const app = require('../../web');
-const io = require('socket.io')(app);
-const CronJob = require('cron').CronJob;
+// const app = require('../../web');
+// const io = require('socket.io')(app);
+// const CronJob = require('cron').CronJob;
 
 // new CronJob('*/1 11-21 * * 1-5', () => {
 //   io.emit('gameStatus', true);
@@ -20,13 +20,13 @@ const CronJob = require('cron').CronJob;
 
 
 
-const startGameSocket = () => {
-  //TESTING SOCKET
-  new CronJob('*/1 01-21 * * 1-5', () => {
-    io.emit('gameStatus', true);
-    console.log('Chat Server Running Port: 3500');
+// const startGameSocket = () => {
+//   //TESTING SOCKET
+//   new CronJob('*/1 01-21 * * 1-5', () => {
+//     io.emit('gameStatus', true);
+//     console.log('Chat Server Running Port: 3500');
 
-  }, null, true, 'America/Los_Angeles');
-};
+//   }, null, true, 'America/Los_Angeles');
+// };
 
-module.exports = startGameSocket;
+// module.exports = startGameSocket;

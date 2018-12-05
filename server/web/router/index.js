@@ -27,6 +27,7 @@ router.get('/api/users', async (req, res, done) => {
     const players = await users.get.allUsers();
     res.status(200).send(players);
   } catch(e) {
+    console.log('what is the error in the signup route', e);
     //TODO add descriptive error handling and winston logging or error for router data retrieval error
     // throw new AppError();
     debugger
@@ -87,7 +88,6 @@ router.get('/api/correct_guesses', async (req, res, done) => {
 router.use( express.static( `${__dirname}/../../../build` ) );
 
 router.get('*', (req, res)=>{
-  debugger
   res.sendFile(path.join(__dirname, '../../../build/index.html'));
 });
 

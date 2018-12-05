@@ -25,6 +25,7 @@ export const signup = (formProps, callback) => async dispatch => {
     localStorage.setItem('token', response.data.token);
     callback();
   } catch(e) {
+    console.log('apparently there was an error in signing up', e)
     dispatch({ type: AUTH_ERROR, payload: 'Email in use' })
   }
 };
@@ -41,6 +42,8 @@ export const signin = ({email, password}, callback) => async dispatch => {
     localStorage.setItem('token', data.data.token);
     callback();
   } catch(e) {
+    console.log('apparently there was an error in signing in', e)
+
     dispatch({ type: AUTH_ERROR, payload: 'Invalid login provided' })
   }
 };
@@ -144,7 +147,6 @@ export const openCloseModal = status => dispatch => {
 
 export const getCorrectGuessers = () => async dispatch => {
   const res = await axios.get('/api/correct_guesses');
-  debugger
   if ( !res.data ) return dispatch({
     type: ANNOUNCE_ANSWER,
     payload: res.data
