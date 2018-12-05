@@ -14,6 +14,12 @@ module.exports = {
       is_used: {
         type: Sequelize.BOOLEAN
       },
+      difficulty: {
+        type: Sequelize.STRING
+      },
+      category: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

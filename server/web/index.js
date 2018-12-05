@@ -2,6 +2,7 @@ const app = require('./server');
 const winston = require('winston');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const gameSocket = require('./services');
 
 const logger = winston.createLogger({
   transports: [
@@ -11,9 +12,13 @@ const logger = winston.createLogger({
   silent: false,
   level: 'verbose'
 });
+debugger
 app.use(cors());
 app.use(bodyParser.json({ type: '*/*'}));
 
 const port = 4000;
-console.log('am i running on this port', port)
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+gameSocket.initialize();
+
+module.exports = app;

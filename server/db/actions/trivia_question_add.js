@@ -1,6 +1,6 @@
 const { promisify } = require('util');
 const fs = require('fs');
-const { Question, QuestionChoice } = require('@models');
+const { Question, QuestionChoice } = require('../../models');
 
 
 const readFileAsync = promisify(fs.readFile);

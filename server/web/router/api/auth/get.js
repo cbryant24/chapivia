@@ -1,4 +1,4 @@
-const auth = require('@middleware');
+const auth = require('../../../middleware');
 
 const requireAuth = auth.passport.authenticate('jwt', { session: false });
 

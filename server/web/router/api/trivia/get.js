@@ -1,4 +1,4 @@
-const { Question, QuestionChoice, Nedb } = require('@models');
+const { Question, QuestionChoice, Nedb } = require('../../../../models');
 const triviaConfig = require('./triviaConfig');
 const dateFormat = require('dateformat');
 
@@ -8,6 +8,9 @@ const dailyTrivia = async () => {
   const date = new Date();
   const dayOfWeek = date.getDay();
   const gameDate = dateFormat('yyyy-mm-dd');
+  let currentHour = new Date().getHours();
+
+  if (currentHour < 11) return false
 
   try {
     const [ stored ] = await Nedb.db.find({ gameDate: gameDate });

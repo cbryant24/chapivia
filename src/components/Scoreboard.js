@@ -11,13 +11,11 @@ class Scoreboard extends Component {
 
   componentWillMount() {
     this.props.getPlayerScores();
-    debugger
   }
 
   componentDidUpdate(prevProps) {
     if(this.props.announceAnswer && this.props.announceAnswer !== prevProps.announceAnswer) {
       this.props.getPlayerScores();
-      debugger
     }
   }
 
