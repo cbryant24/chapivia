@@ -10,7 +10,7 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   console.log('hello from user 1')
-  // sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = 'hello'
 }
 
 const User = sequelize.import(__dirname + '/user.js');
