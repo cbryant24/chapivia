@@ -12,8 +12,7 @@ const allUsers = () => user.getPlayers();
 const userScores = async function() {
   const scores = {};
   let currentHour = new Date().getHours();
-
-  if( currentHour >= 23) {
+  if( currentHour >= 15) {
     try { 
       players = await allUsers();
   
@@ -98,7 +97,7 @@ const correctUserGuesses = async () => {
   let correctGuessedPlayers = [];
   const currentHour = new Date().getHours();
 
-  if (currentHour < 23) return false
+  if (currentHour < 15) return false
   try {
     todaysCorrectGuesses = await UserQuestionChoice.findAll({
       where: {
