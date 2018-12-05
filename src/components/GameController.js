@@ -7,7 +7,7 @@ class GameController extends Component {
   constructor(props) {
     super(props);
 
-    this.socket = openSocket('http://chapivia.online/gameSocket');
+    this.socket = openSocket('http://localhost:4000');
 
     // this.sendMessage = this.sendMessage.bind(this);
   }
@@ -17,7 +17,7 @@ class GameController extends Component {
     const self = this;
     this.socket.on('gameStatus', status => {
       self.props.updateGameStatus(status);
-      // debugger
+      console.log('the status is being emitted', status);
     });
 
     this.socket.on('displayTriviaAnswer', status => {

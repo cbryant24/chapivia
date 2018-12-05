@@ -1,5 +1,5 @@
 const gameSocket = require('./gameSocket');
 
 module.exports = {
-  gameSocket
+  initialize: gameSocket
 }
