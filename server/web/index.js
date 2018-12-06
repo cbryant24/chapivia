@@ -1,7 +1,6 @@
 const app = require('./server');
 const winston = require('winston');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 
 const logger = winston.createLogger({
   transports: [
@@ -13,7 +12,6 @@ const logger = winston.createLogger({
 });
 
 app.use(cors());
-app.use(bodyParser.json({ type: '*/*'}));
 
 const port = 4000;
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

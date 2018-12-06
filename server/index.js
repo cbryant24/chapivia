@@ -8,5 +8,5 @@ if (type === 'web') {
 } 
 
 if (db_action === 'trivia_db_add') {
-  require('./db/trivia_questions');
+  require('./db/actions/trivia_question_add');
 }
