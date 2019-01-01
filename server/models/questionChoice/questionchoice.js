@@ -1,5 +1,7 @@
 'use strict';
-// const { Questions } = require('@models');
+const { triviaConfig } = require('../../config/config');
+const dateFormat = require('dateformat');
+const Nedb = require('../nedb')
 
 module.exports = (sequelize, DataTypes) => {
   var QuestionChoice = sequelize.define('questionChoice', {
@@ -17,5 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     QuestionChoice.belongsTo(models.Question);
     QuestionChoice.belongsToMany(models.Question, {through: 'userQuestionChoice'});
   };
+
   return QuestionChoice;
 };
