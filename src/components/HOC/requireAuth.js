@@ -1,31 +1,35 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import currentUserQuery from '../../queries/CurrentUser';
 import { connect } from 'react-redux';
 
-export default (ChildComponent) => {
-  class ComposedComponent extends Component {
+export default (WrappedComponent) => {
+  class RequireAuth extends Component {
 
-    componentDidMount() {
-      this.shouldNavigateAway();
-    }
+    // componentDidMount() {
+    //   this.shouldNavigateAway();
+    // }
   
-    componentDidUpdate() {
-      this.shouldNavigateAway();
-    }
+    // componentDidUpdate() {
+    //   this.shouldNavigateAway();
+    // }
   
-    shouldNavigateAway() {
-      if(!this.props.auth) {
+    // shouldNavigateAway() {
+    //   if(!this.props.auth) {
+    //     this.props.history.push('/');
+    //   }
+    // }
+
+    componentDidUpdate(prevProps) {
+      if(!this.props.data.loading && !this.props.data.user) {
         this.props.history.push('/');
       }
     }
 
     render() {
-      return <ChildComponent {...this.props} />;
+      return <WrappedComponent {...this.props} />;
     }
   }
 
-  function mapStateToProps(state) {
-    return { auth: state.auth.authenticated };
-  }
-
-  return connect(mapStateToProps)(ComposedComponent);
+  return graphql(currentUserQuery)(RequireAuth);
 };

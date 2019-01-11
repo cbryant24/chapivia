@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { keyBy, map } from 'lodash';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { compose, graphql } from 'react-apollo'
+
+import query from '../queries/Scores';
 
 import * as actions from '../actions';
 import { GridItem, Table, Image, Text } from './elements';
@@ -10,13 +13,13 @@ import kgrad from '../img/kgrad.png';
 class Scoreboard extends Component {
 
   componentWillMount() {
-    this.props.getPlayerScores();
+    // this.props.getPlayerScores();
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.announceAnswer && this.props.announceAnswer !== prevProps.announceAnswer) {
-      this.props.getPlayerScores();
-    }
+    // if(this.props.announceAnswer && this.props.announceAnswer !== prevProps.announceAnswer) {
+    //   this.props.getPlayerScores();
+    // }
   }
 
   displayTableHeaders(headers) {
@@ -38,13 +41,17 @@ class Scoreboard extends Component {
 
   dispalayPlayerScores(playerScores) {
     const renderedScores = [];
-    for(let player in playerScores) {
+
+    if (this.props.data.loading) return <Table.tr></Table.tr>
+    
+    if (!this.props.data.scores) return <Table.tr></Table.tr>
+    this.props.data.scores.map( player => {
       renderedScores.push(
         <Table.tr
           fontSize="1.6rem"
           textAlign="center"
           height="4rem"
-          key={player}
+          key={player.id}
         >
           <Table.td display="flex" width="100%"> 
             {/* <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/> */}
@@ -54,7 +61,7 @@ class Scoreboard extends Component {
               fontWeight="500"
               padding-left="2rem"
             >
-              {player}
+              {player.name}
             </Text.span>
           </Table.td>
           <Table.td width="30%">
@@ -62,12 +69,12 @@ class Scoreboard extends Component {
               fontSize="1.7rem"
               fontWeight="500"
             >
-              {playerScores[player]}
+              {player.score}
             </Text.span>
           </Table.td>
         </Table.tr>
       )
-    }
+    });
     return renderedScores;
   }
 
@@ -85,7 +92,7 @@ class Scoreboard extends Component {
             <Table.tr border="1px solid black">
               {this.displayTableHeaders(['Name', 'Score'])}
             </Table.tr>
-            {this.dispalayPlayerScores(this.props.playerScores)}
+            {this.dispalayPlayerScores()}
           </Table.body>
         </Table>
       </GridItem>
@@ -93,11 +100,13 @@ class Scoreboard extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    announceAnswer: state.game.announceAnswer,
-    playerScores: state.players.playerScores
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     announceAnswer: state.game.announceAnswer,
+//     playerScores: state.players.playerScores
+//   }
+// }
 
-export default connect(mapStateToProps, actions)(Scoreboard);
+// export default connect(mapStateToProps, actions)(Scoreboard);
+
+export default graphql(query)(Scoreboard);

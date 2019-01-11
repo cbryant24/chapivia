@@ -2,7 +2,6 @@ const graphql = require('graphql');
 const {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLBoolean,
   GraphQLID
 } = graphql;
 const QuestionChoiceType = require('./question_choice_type');
@@ -13,6 +12,7 @@ const QuestionType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     question: { type: GraphQLString },
+    correctChoice: { type: GraphQLString },
     questionChoice: {
       type: QuestionChoiceType,
       resolve(parentValue) {

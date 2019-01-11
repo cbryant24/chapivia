@@ -47,6 +47,12 @@ const RootQueryType = new GraphQLObjectType({
       resolve(parentValue, args, req) {
         return User.correctGuesses();
       }
+    },
+    nonGuessedPlayers: {
+      type: new GraphQLList(UserType),
+      resolve(parentValue, args, req) {
+        return User.getUnguessedPlayers();
+      }
     }
   }
 });

@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     const dayOfWeek = date.getDay();
     const gameDate = dateFormat('yyyy-mm-dd');
     let currentHour = new Date().getHours();
-
     
     const dailyQuestion = await this.findOne({ 
       where: {
@@ -31,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         difficulty: 'medium',
         is_used: 'false'
     }});
+    
     return dailyQuestion
   }
   return Question;

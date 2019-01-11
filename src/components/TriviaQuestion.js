@@ -2,23 +2,21 @@ import React, { Component } from 'react';
 import { AllHtmlEntities as Entities } from 'html-entities';
 import { concat, shuffle } from 'lodash';
 import { connect } from 'react-redux';
+import { graphql } from 'react-apollo';
 
+import mutation from '../mutations/Guess';
+import query from '../queries/Trivia';
 import * as actions from '../actions';
 
 import { Grid, GridItem, Text, List, Item, Heading } from './elements';
 
 class TriviaQuestion extends Component {
 
-  async componentWillMount() {
-    this.props.getTrivia();
-  }
-
   displayGuesses() {
-
-    const triviaChoices = this.props.trivia.triviaChoices || [];
+    const { choices } = this.props.data.trivia.questionChoice;
 
     return (
-      triviaChoices.map( (choice, idx) => {
+      choices.map( (choice, idx) => {
         return(
           <Item 
             pl="2rem" 
@@ -28,7 +26,7 @@ class TriviaQuestion extends Component {
           </Item>
         )
       })
-    )
+    );
   }
 
   convertHTMLChar(str) {
@@ -37,9 +35,12 @@ class TriviaQuestion extends Component {
   }
   
   render() {
-    if(!this.props.gameStatus) return (
+    if(new Date().getHours() < 11) return (
       <Heading.h1>Checkback after 11:00am</Heading.h1>
-    )
+    );
+
+    if(this.props.data.loading) return <div></div>
+    
     return (
       <GridItem 
         gridRow={this.props.gridRow} 
@@ -51,7 +52,7 @@ class TriviaQuestion extends Component {
           p="2rem"
           fontSize="2.1rem"
         >
-          {this.convertHTMLChar(this.props.trivia.triviaQuestion) || ""}
+          {this.convertHTMLChar(this.props.data.trivia.question) || ""}
         </Text.p>
         <List>
           {this.displayGuesses()}
@@ -61,11 +62,6 @@ class TriviaQuestion extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    trivia: state.trivia.triviaData,
-    gameStatus: state.game.gameStatus
-  }
-}
-
-export default connect(mapStateToProps, actions)(TriviaQuestion);
+export default graphql(query)(
+  graphql(mutation)(TriviaQuestion)
+);

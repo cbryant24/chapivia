@@ -8,6 +8,7 @@ const {
 const ScoreType = new GraphQLObjectType({
   name: 'ScoreType',
   fields: {
+    id: { type: GraphQLID },
     name: { type: GraphQLString },
     score: { type: GraphQLString }
   }

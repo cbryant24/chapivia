@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-
+import { compose, graphql } from 'react-apollo';
 import * as actions from '../actions';
 import { GridItem, Field, OutlineButton, Input } from './elements';
+import mutation from '../mutations/Guess';
+import UnguessedPlayers from '../queries/UnguessedPlayers';
+import TriviaQuery from '../queries/Trivia';
+import GuessListQuery from '../queries/GuessList'
+
+
 
 class GuessForm extends Component {
   constructor(props) {
@@ -19,16 +25,12 @@ class GuessForm extends Component {
     }
   }
 
-  componentWillMount() {
-    this.props.getPlayers();
-  }
-
   addPlayersToForm() {
     const players = [];
-    for ( let player in this.props.players) {
-      if( !this.props.playersGuessed.some( guesser => guesser.name === player) )
-        players.push(<option key={player} value={player}>{player}</option>)
-    }
+    debugger
+    this.props.players.nonGuessedPlayers.map( player => {
+      players.push( <option key={player.id} value={player.id}>{player.name}</option> );
+    });
     return players;
   }
 
@@ -46,6 +48,7 @@ class GuessForm extends Component {
   }
 
   handleSubmit(event) {
+    debugger
     event.preventDefault();
     if( !this.state.guess || !this.state.selectedPlayer ) {
       return this.setState(() => ({
@@ -56,14 +59,31 @@ class GuessForm extends Component {
       }));
     }
 
-    const playerGuessData = {
-      playerId: this.props.players[this.state.selectedPlayer].id,
-      guess: this.props.triviaData.triviaChoices[this.state.guess.charCodeAt(0) - 65],
-      questionId: this.props.triviaData.triviaIds.questionId,
-      questionChoiceId: this.props.triviaData.triviaIds.choiceId,
-    }
+    // const playerGuessData = {
+    //   playerId: this.props.players[this.state.selectedPlayer].id,
+    //   guess: this.props.triviaData.triviaChoices[this.state.guess.charCodeAt(0) - 65],
+    //   questionId: this.props.triviaData.triviaIds.questionId,
+    //   questionChoiceId: this.props.triviaData.triviaIds.choiceId,
+    // }
 
-    this.props.recordPlayerGuess(playerGuessData, this.props.getPlayerGuesses);
+    debugger
+    const { trivia } = this.props.triviaData;
+    
+    this.props.guessMutation({
+      variables: {
+        userId: this.state.selectedPlayer,
+        questionId: trivia.id,
+        questionChoiceId: trivia.questionChoice.id,
+        guess: trivia.questionChoice.choices[this.state.guess.charCodeAt(0) - 65]        
+      },
+      refetchQueries: [{ query: UnguessedPlayers }, { query: GuessListQuery }]
+    }).catch( res => {
+      //TODO add error handling to guess mutation
+      debugger
+      const errors = res.graphQLErrors.map(error => error.message);
+    });
+
+    // this.props.recordPlayerGuess(playerGuessData, this.props.getPlayerGuesses);
     this.clearForm();
   }
 
@@ -80,11 +100,11 @@ class GuessForm extends Component {
        },
        guess: '',
        selectedPlayer: '',
-    }))
+    }));
   }
 
   render() {
-    if(!this.props.gameStatus) return (
+    if(new Date().getHours() < 11) return (
       <GridItem
         border="1px solid purple"
         gridRow={this.props.gridRow}
@@ -92,8 +112,8 @@ class GuessForm extends Component {
       >
         Checkback after 11:00am
       </GridItem>
-    )
-    if(this.props.announceAnswer) return (
+    );
+    if(new Date().getHours() >= 15) return (
       <GridItem
         border="1px solid purple"
         gridRow={this.props.gridRow}
@@ -101,7 +121,9 @@ class GuessForm extends Component {
       >
         Checkback for another trivia!
       </GridItem>
-    )
+    );
+    if(this.props.players.loading) return <div></div>
+
     return (
       <GridItem
         border="1px solid purple"
@@ -127,7 +149,7 @@ class GuessForm extends Component {
             label="Guess"
             error={this.state.error.guess}
             value={this.state.guess}
-            onChange={(event) => this.handleGuessSelection(event)}
+            onChange={ (event) => this.handleGuessSelection(event) }
           >
           </Field>
           <Input
@@ -151,15 +173,18 @@ class GuessForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    todaysGuesses: state.players.playersGuessed,
-    triviaData: state.trivia.triviaData,
-    players: state.players.players,
-    playersGuessed: state.players.playersGuessed,
-    gameStatus: state.game.gameStatus,
-    announceAnswer: state.game.announceAnswer
-  }
-};
+// export default graphql(mutations)(
+//   graphql(query)(GuessForm)
+// );
 
-export default connect(mapStateToProps, actions)(GuessForm);
+export default compose(
+  graphql(UnguessedPlayers, {
+    name: "players"
+  }),
+  graphql(TriviaQuery, {
+    name: "triviaData"
+  }),
+  graphql(mutation, {
+    name: 'guessMutation'
+  })
+)(GuessForm);

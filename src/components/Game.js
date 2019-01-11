@@ -68,13 +68,15 @@ class Game extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    gameStatus: state.game.gameStatus
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     gameStatus: state.game.gameStatus
+//   }
+// }
 
-export default compose(
-  connect(mapStateToProps),
-  requireAuth
-)(Game)
+// export default compose(
+//   connect(mapStateToProps),
+//   requireAuth
+// )(Game)
+
+export default Game;

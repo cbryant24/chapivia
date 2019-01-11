@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { includes, keyBy, map } from 'lodash';
 import update from 'immutability-helper';
+import { graphql, compose } from 'react-apollo'
+
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
-import { GridItem, Table, OutlineButton, Input, Image, Text, Flex } from './elements';
+import guessListQuery from '../queries/GuessList';
+import triviaQuery from '../queries/Trivia';
+import mutation from '../mutations/Guess';
+import { GridItem, Table, OutlineButton, Input, Image, Text, Flex, Field } from './elements';
 import kgrad from '../img/kgrad.png';
 
 class GuessList extends Component {
@@ -17,10 +22,6 @@ class GuessList extends Component {
       selectedPlayer: {},
       updatedGuess: ''
     }
-  }
-
-  componentWillMount() {
-    this.props.getPlayerGuesses();
   }
 
   updateGuessChoice(event) {
@@ -62,25 +63,43 @@ class GuessList extends Component {
   }
 
   handleGuessUpdate(event) {
-    event.preventDefault();
-    const playerGuessData = {
-      playerId: this.state.selectedPlayer.id,
-      guess: this.props.triviaData.triviaChoices[this.state.updatedGuess.charCodeAt(0) - 65],
-      questionId: this.props.triviaData.triviaIds.questionId,
-      questionChoiceId: this.props.triviaData.triviaIds.choiceId,
-    }
+    if(this.state.error || !this.state.updatedGuess ) return
 
-    this.setState( () => ({ selectedPlayer: ""}));
-    this.props.updatePlayerChoice(playerGuessData);
+    const { trivia } = this.props.triviaData;
+
+    event.preventDefault();
+    debugger
+    this.props.guessMutation({
+      variables: {
+        userId: this.state.selectedPlayer.id,
+        questionId: trivia.id,
+        questionChoiceId: trivia.questionChoice.id,
+        guess: trivia.questionChoice.choices[this.state.updatedGuess.charCodeAt(0) - 65]        
+      }
+    }).catch( res => {
+      //TODO add error handling to guess mutation
+      debugger
+      const errors = res.graphQLErrors.map(error => error.message);
+    });
+    
+    this.setState( () => ({ 
+      selectedPlayer: '',
+      updatedGuess: ''
+    }));
   }
 
   handleChangeCancel() {
-    this.setState( () => ({selectedPlayer: ''}))
+    this.setState( () => ({ 
+      selectedPlayer: '',
+      updatedGuess: ''
+    }))
   }
 
   dispalayGuesses() {
+    if(this.props.guessList.loading) return <Table.tr></Table.tr>
+
     return (
-      map(this.props.todaysGuesses, guess => (
+      map(this.props.guessList.guesses, guess => (
         <Table.tr
           fontSize="1.6rem"
           textAlign="center"
@@ -104,9 +123,9 @@ class GuessList extends Component {
               <Flex
                 justifyContent="space-around"
               >
-                <Input 
+                <Field 
                   name="password"
-                  // type="password"
+                  type="password"
                   minHeight="1.1rem"
                   fontSize="1.1rem"
                   width="25%"
@@ -114,8 +133,8 @@ class GuessList extends Component {
                   onChange={(event) => this.updateGuessChoice(event)}
                   value={this.state.updatedGuess}
                 >
-                </Input>
-                <Input
+                </Field>
+                <Field
                   borderRadius="0"
                   borderWidth="2px"
                   minHeight="1rem"
@@ -198,12 +217,24 @@ class GuessList extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    todaysGuesses: state.players.playersGuessed,
-    triviaData: state.trivia.triviaData,
-    announceAnswer: state.game.announceAnswer
-  }
-};
+// const mapStateToProps = state => {
+//   return {
+//     todaysGuesses: state.players.playersGuessed,
+//     triviaData: state.trivia.triviaData,
+//     announceAnswer: state.game.announceAnswer
+//   }
+// };
 
-export default connect(mapStateToProps, actions)(GuessList);
+// export default connect(mapStateToProps, actions)(GuessList);
+
+export default compose(
+  graphql(guessListQuery, {
+    name: "guessList"
+  }),
+  graphql(triviaQuery, {
+    name: "triviaData"
+  }),
+  graphql(mutation, {
+    name: 'guessMutation'
+  })
+)(GuessList);

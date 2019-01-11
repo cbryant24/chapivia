@@ -12,9 +12,7 @@ const QuestionChoiceType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     correctChoice: { type: GraphQLString },
-    incorrectChoiceOne: { type: GraphQLString },
-    incorrectChoiceTwo: { type: GraphQLString },
-    incorrectChoiceThree: { type: GraphQLString },
+    choices: { type: new GraphQLList(GraphQLString) }
   })
 });
 

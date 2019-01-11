@@ -1,10 +1,9 @@
 'use strict';
 const bcrypt = require('bcrypt-nodejs');
-const {
-  keyBy
-} = require('lodash');
+const { keyBy, map } = require('lodash');
 const AppError = require('../../error');
 const dateFormat = require('dateformat');
+const moment = require('moment');
 
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('user', {
@@ -47,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
     })
   }
 
-  User.prototype.getPlayers = async function () {
+  User.getPlayers = async function () {
     try {
       const users = await User.findAll();
       let players = users.map(user => ({
@@ -62,14 +61,35 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
+  User.getUnguessedPlayers = async function() {
+    try {
+      const players = await this.findAll();
+      const todaysGuesses = await this.todaysGuesses();
+
+      const unguessedPlayers = [];
+      players.map( player => {
+        if( !todaysGuesses.some( guesser => guesser.id === player.id) )
+        unguessedPlayers.push(player);
+      });
+
+      return unguessedPlayers;
+    } catch(e) {
+      debugger
+      //TODO add error handling for getting unguessed players
+      throw new AppError();
+    }
+  }
   
 
   User.scores = async function() {
-    let date = new Date();
-    const currentHour = date.getHours();
-    const gameDate = dateFormat('yyyy-mm-dd');
-    const tomorrowsDate = dateFormat(date.setDate(date.getDate() + 1), 'yyyy-mm-dd')
+    const currentHour = moment().format('HH');
+    // const currentMonth = (date.getMonth() + 1);
+    // const gameDate = dateFormat('yyyy-mm-dd');
+    const tomorrowsDate = moment().add(1, 'day').toDate();
+    const yesterDaysDate = moment().add(-1, 'day').toDate();
+    const startOfMonth = moment().startOf('month').toDate();
 
+    const gameDate   = moment().format();
       try {
         const userCorrectGuesses = await this.findAll({
           include: [{ 
@@ -77,16 +97,15 @@ module.exports = (sequelize, DataTypes) => {
             where: {
               isCorrect: true,
               updatedAt: {
-                $lt: currentHour >= 15 ?  tomorrowsDate : gameDate
+                $between: currentHour >= 15 ?  
+                  [startOfMonth, tomorrowsDate] : [startOfMonth, yesterDaysDate]
               }
             }
           }]
         });
-
         userCorrectGuesses.map( userCorrectGuess => {
           userCorrectGuess.score = userCorrectGuess.userQuestionChoices.length;
         });
-        debugger
         return userCorrectGuesses
       } catch (e) {
         debugger
@@ -96,7 +115,7 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   User.todaysGuesses = async function() {
-    const gameDate = dateFormat('yyyy-mm-dd');
+    const gameDate = moment().startOf('day').toDate();
     
     try {
       const todaysGuesses = await this.findAll({
