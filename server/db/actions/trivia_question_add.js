@@ -9,7 +9,7 @@ const readDirAsync = promisify(fs.readdir);
 
 let triviaCategories;
 let triviaFiles = {};
-let triviaRoot = './server/db/data/trivia_questions/';
+let triviaRoot = 'db/data/trivia_questions/';
 let triviaQuestions = [];
 
 ( async function () {
@@ -45,4 +45,4 @@ let triviaQuestions = [];
   } catch(err) {
     console.log(err);
   }
-})
+})()
