@@ -7,13 +7,18 @@ import {
   color,
   border,
   fontSize,
+  fontFamily,
   textAlign,
   responsiveStyle,
   height,
   display,
+  position,
+  zIndex,
   propTypes
-} from 'styled-system'
+} from 'styled-system';
+import { fontStyle } from './theme'
 import theme, { filterProps } from './theme'
+import { clipPath } from './theme';
 import cleanElement from 'clean-element'
 
 
@@ -22,7 +27,7 @@ const Base = props => {
   return <div {...next} />
 }
 
-const Box = styled(cleanElement(Base))([], space, width, color, fontSize, textAlign, height, border, display);
+const Box = styled(cleanElement(Base))([], space, width, color, fontSize, textAlign, height, border, display, position, zIndex, fontFamily, fontStyle, clipPath);
 
 Box.displayName = 'Box'
 Box.header = Box.withComponent('header')

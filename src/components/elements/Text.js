@@ -1,15 +1,22 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import PropTypes from 'prop-types'
 import {
   fontSize,
   fontWeight,
+  fontStyle,
   textAlign,
   space,
   color,
+  position,
   responsiveStyle,
+  top,
+  bottom,
+  left,
+  right,
   propTypes,
 } from 'styled-system'
+import { clipPath } from './theme';
 import cleanElement from 'clean-element';
 import theme, { filterProps, textTransform } from './theme'
 
@@ -30,6 +37,8 @@ const Base = props => {
 const Text = styled(cleanElement(Base))(
   [],
   fontSize,
+  fontStyle,
+  clipPath,
   space,
   color,
   caps,
@@ -37,7 +46,12 @@ const Text = styled(cleanElement(Base))(
   bold,
   regular,
   fontWeight,
-  textTransform
+  textTransform,
+  position,
+  top,
+  bottom,
+  left,
+  right
 )
 
 Text.displayName = 'Text'

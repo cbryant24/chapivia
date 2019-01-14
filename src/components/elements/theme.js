@@ -74,6 +74,21 @@ export const bold = 700;
 // styled-system's `fontWeight` function can hook into the `fontWeights` object
 export const fontWeights = { regular, bold };
 
+export const fontStyle = style({
+  //React prop name
+  prop: 'fontStyle',
+  // The corresponding CSS property (defaults to prop argument)
+  cssProperty: 'font-style',
+  // key for theme values
+  key: 'fontStyle',
+  // convert number values to pixels
+  numberToPx: false,
+  // accessor function for transforming the value
+  getter: n => n,
+  // shorthand alias React prop name
+  alias: 'fs'
+})
+
 export const textTransform = style({
   //React prop name
   prop: 'textTransform',
@@ -111,6 +126,21 @@ const textShadow = style({
   getter: n => n,
   // shorthand alias React prop name
   alias: 'sh'
+});
+
+export const clipPath = style({
+  // React prop name
+  prop: 'clipPath',
+  // The corresponding CSS property (defaults to prop argument)
+  cssProperty: 'clip-path',
+  // key for theme values
+  key: 'clipPath',
+  // convert number values to pixels
+  numberToPx: false,
+  // accessor function for transforming the value
+  getter: n => n,
+  // shorthand alias React prop name
+  alias: 'cp'
 })
 
 export const scaleFactor = 17 / 16;
@@ -156,6 +186,8 @@ export const filterProps = props =>
     'bg',
     'fill',
     'fontSize',
+    'fontFamily',
+    'fontStyle',
     'f',
     'image',
     'maxWidth',
@@ -191,6 +223,7 @@ const theme = {
   mono,
   font,
   fontSizes,
+  fontStyle,
   remSizes,
   fontWeights,
   regular,
