@@ -141,6 +141,24 @@ export const clipPath = style({
   getter: n => n,
   // shorthand alias React prop name
   alias: 'cp'
+});
+
+export const backgroundColor = style({
+  prop: 'backgroundColor',
+  cssProperty: 'background-color',
+  key: 'backgroundColor',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'bc'
+});
+
+export const backgroundImage = style({
+  prop: 'backgroundImage',
+  cssProperty: 'background-image',
+  key: 'backgroundImage',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'bi'
 })
 
 export const scaleFactor = 17 / 16;

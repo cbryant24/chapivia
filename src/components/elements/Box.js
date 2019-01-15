@@ -9,25 +9,36 @@ import {
   fontSize,
   fontFamily,
   textAlign,
+  backgroundSize,
   responsiveStyle,
   height,
   display,
   position,
+  top,
+  bottom,
+  left,
+  right,
   zIndex,
   propTypes
 } from 'styled-system';
-import { fontStyle } from './theme'
+import { fontStyle, backgroundColor } from './theme'
 import theme, { filterProps } from './theme'
 import { clipPath } from './theme';
 import cleanElement from 'clean-element'
-
+import { backgroundImage } from './theme';
 
 const Base = props => {
   const next = filterProps(props)
   return <div {...next} />
 }
 
-const Box = styled(cleanElement(Base))([], space, width, color, fontSize, textAlign, height, border, display, position, zIndex, fontFamily, fontStyle, clipPath);
+const Box = styled(cleanElement(Base))([], space, width, color, fontSize, textAlign, height, border, display, position, zIndex, fontFamily, fontStyle, clipPath, top,
+  bottom,
+  left,
+  right,
+  backgroundColor,
+  backgroundImage,
+  backgroundSize);
 
 Box.displayName = 'Box'
 Box.header = Box.withComponent('header')

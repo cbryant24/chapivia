@@ -48,10 +48,8 @@ class Winner extends Component {
         Winners and Answer will be announced at 3pm...
       </GridItem>
     )
-    debugger
     if(this.props.triviaData.loading) return <div></div>;
 
-    debugger
     return(
       <GridItem
         gridRow={this.props.gridRow}
