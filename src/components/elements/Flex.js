@@ -19,7 +19,7 @@ const bgAnimation = keyframes`
 
 const bgAnimationGlow = keyframes`
   0% { opacity: 0.1; }
-  50% { opacity: 0.2; }
+  50% { opacity: 0.25; }
 `
 
 const Flex = Box.extend`

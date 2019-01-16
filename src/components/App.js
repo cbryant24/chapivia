@@ -35,22 +35,6 @@ export default ({ children }) => {
             width="100%"
             zIndex="-1"
           />
-          {/* <Flex
-            background="linear-gradient(
-              to bottom, 
-              rgba(255, 255, 255, 0), 
-              rgba(255, 255, 255, 0) 50%, 
-              rgba(0, 0, 0, 0.2) 70%, 
-              rgba(0, 0, 0, 0.6)
-            );"
-            backgroundSize="100% 0.3rem"
-            top="0"
-            left="0"
-            borderRadius="2rem"
-            height="100%"
-            width="100%"
-            position="absolute"
-          /> */}
           <Flex
             backgroundImage="repeating-linear-gradient(
               to bottom,
@@ -68,7 +52,6 @@ export default ({ children }) => {
             height="100%"
             width="100%"
             position="absolute"
-            zIndex="5"
           />
           <Flex 
             background="radial-gradient(
@@ -83,9 +66,10 @@ export default ({ children }) => {
             left="0"
             height="100%"
             width="100%"
-            opacity="0.25"
+            opacity="0.5"
             position="fixed"
-            // bgAnimationGlow
+            // zIndex
+            bgAnimationGlow
           />
           <Title />
             {children}

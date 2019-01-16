@@ -11,7 +11,6 @@ import {
   fontFamily,
   textAlign,
   background,
-  opacity,
   backgroundSize,
   borderRadius,
   responsiveStyle,
@@ -29,7 +28,7 @@ import { fontStyle, backgroundColor } from './theme'
 import theme, { filterProps } from './theme'
 import { clipPath } from './theme';
 import cleanElement from 'clean-element'
-import { backgroundImage, fontSmooth, textShadow, transformOrigin, transform, content } from './theme';
+import { backgroundImage, fontSmooth, textShadow, transformOrigin, transform, content, opacity } from './theme';
 
 const Base = props => {
   const next = filterProps(props)

@@ -7,7 +7,7 @@ export default (props) => {
     <FlexItem
       m="0"
       p="0"
-      letterSpacing="4rem"
+      letterSpacing="3rem"
       filter="drop-shadow(0 0 20px hsla(320, 40%, 60%, 0.8))"
       position="relative"
       zIndex="1"
@@ -18,14 +18,14 @@ export default (props) => {
         caps 
         color="hsl(320, 90%, 90%)"
         clipPath="inset(40% 0% 40% 0%)"
-        fontSize="6rem"
+        fontSize="8rem"
         zIndex="5"
       >
         Chapivia
       </Text.p>
       <Text.p 
         caps 
-        fontSize="6rem"
+        fontSize="8rem"
         position="absolute"
         top="0"
         left="0"
@@ -38,7 +38,7 @@ export default (props) => {
       </Text.p>
       <Text.p 
         caps 
-        fontSize="6rem"
+        fontSize="8rem"
         position="absolute"
         top="0"
         left="0"
@@ -60,7 +60,7 @@ export default (props) => {
         animation="20s steps(1) infinite"
       >
       </FlexItem>
-      <FlexItem
+      {/* <FlexItem
         position="absolute"
         height="100%"
         width="100%"
@@ -76,7 +76,7 @@ export default (props) => {
         )"
         backgroundSize="100% 2px"
       >
-      </FlexItem>
+      </FlexItem> */}
     </FlexItem>
   )
 }

@@ -25,6 +25,7 @@ class Game extends Component {
         alignContent="center"
         width="100%"
         p="1rem 2rem"
+        zIndex="10"
       >
         <GuessList 
           gridRow="first-row-start / first-row-end" 

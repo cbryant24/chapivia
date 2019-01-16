@@ -17,8 +17,8 @@ function generateRandomClipFrames(keyframes, len){
 }
 
 const FlexItem = Box.extend`
+  animation: ${props => props.animation ? `${generateRandomClipFrames(keyframes, 200)} ${props.animation}` : ''};
   filter: ${props => props.filter ? props.filter : ''};
-  animation: ${props => props.animation ? `${generateRandomClipFrames(keyframes, 200)} ${props.animation}` : ''}
   ${alignSelf} ${justifySelf} ${letterSpacing}
 `
 FlexItem.displayName = 'FlexItem';
