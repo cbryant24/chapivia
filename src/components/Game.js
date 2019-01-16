@@ -13,22 +13,7 @@ import GuessForm from './GuessForm';
 import Winner from './Winner';
 
 class Game extends Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  componentWillMount() {
-    // const choices = shuffle([incorrectChoiceOne, incorrectChoiceTwo, 
-    //   incorrectChoiceThree, correctChoice])
 
-    try {
-
-    } catch(e) {
-      console.log(e)
-      //TODO add react error response for data pull for question and choice database pull
-    }
-    
-  }
 
   render() {
     return (
@@ -38,7 +23,6 @@ class Game extends Component {
                       second-row-start] .5fr [second-row-end]"
         gridGap="1.5rem"
         alignContent="center"
-        height="100vh"
         width="100%"
         p="1rem 2rem"
       >
@@ -67,16 +51,5 @@ class Game extends Component {
     )
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     gameStatus: state.game.gameStatus
-//   }
-// }
-
-// export default compose(
-//   connect(mapStateToProps),
-//   requireAuth
-// )(Game)
 
 export default Game;

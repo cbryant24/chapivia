@@ -83,56 +83,14 @@ function generateRandomKeyFrames(keyframes, dis, len, name){
   for(var i = 0; i < len; i++){
     keyframe += `${(i / len) * 100}%{transform: translateX(${Math.Ran(dis)}px)}`
   }
-  debugger
-  // let style = document.createElement('style');
-  // style.innerHTML = `@keyframes ${name} { ${keyframes} }`;
-  
-  // document.body.appendChild(style);
 
   return keyframes`${keyframe}`
 }
 
-function generateRandomClipFrames(dis, len, name){
-  let keyframe = ``;
-  let size = 100;
-  for(var i = 0; i < len; i++){
-    keyframe += 
-      `${(i / len) * 100}%{
-    clip-path: inset(${Math.Ran(size)}% ${Math.Ran(size)}% ${Math.Ran(size)}% ${Math.Ran(size)}%)
-    }`
-  }
-
-  return keyframes`${keyframe}`;
-
-  debugger
-  // let style = document.createElement('style');
-  // style.innerHTML = `@keyframes ${name} {
-  //   ${keyframes} 
-  // }`;
-
-  // document.body.appendChild(style);
-
-}
-
-
-// generateRandomKeyFrames(10, 10, "random2");
-// generateRandomClipFrames(200, "random-clip-1")
-
-// const rotate = keyframes`
-//   from {
-//     transform: rotate(0deg);
-//   }
-
-//   to {
-//     transform: rotate(360deg);
-//   }
-// `;
-
 Text.span = Text.withComponent('span');
 Text.p = Text.withComponent('p').extend`
   animation: ${props => props.animation_one ? `${generateRandomKeyFrames(keyframes, 15, 16, "random1")} ${props.animation_one};` : ''};
-  animation: ${props => props.animation_two ? `${generateRandomKeyFrames(keyframes, 10, 10, "random1")} ${props.animation_two};` : ''}
-
+  animation: ${props => props.animation_two ? `${generateRandomKeyFrames(keyframes, 10, 10, "random1")} ${props.animation_two};` : ''};
 `
 Text.s = Text.withComponent('s');
 Text.hOne = Text.withComponent('h1').extend`

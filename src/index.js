@@ -34,16 +34,19 @@ const client = new ApolloClient();
 
 ReactDOM.render(
   // <Provider store={store}>
+  
     <ApolloProvider client={ client } >
       <Router>
         <ThemeProvider theme={theme}>
-            <App>
-              <Route path='/game' exact component={Game}/>
-              {/* <Route path='' component={GameController}/> */}
-              {/* <Route path='/signup' exact component={Signup}/> */}
-              <Route path='/' exact component={Signin}/>
-              <Route path='/signup' component={Signup}/>
-            </App>
+          <div style={{ position: 'relative' }}>
+              <App>
+                <Route path='/game' exact component={Game}/>
+                {/* <Route path='' component={GameController}/> */}
+                {/* <Route path='/signup' exact component={Signup}/> */}
+                <Route path='/' exact component={Signin}/>
+                <Route path='/signup' component={Signup}/>
+              </App>
+            </div>
         </ThemeProvider>
       </Router>
     </ApolloProvider>,

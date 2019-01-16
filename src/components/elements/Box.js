@@ -6,10 +6,14 @@ import {
   width,
   color,
   border,
+  boxShadow,
   fontSize,
   fontFamily,
   textAlign,
+  background,
+  opacity,
   backgroundSize,
+  borderRadius,
   responsiveStyle,
   height,
   display,
@@ -25,7 +29,7 @@ import { fontStyle, backgroundColor } from './theme'
 import theme, { filterProps } from './theme'
 import { clipPath } from './theme';
 import cleanElement from 'clean-element'
-import { backgroundImage } from './theme';
+import { backgroundImage, fontSmooth, textShadow, transformOrigin, transform, content } from './theme';
 
 const Base = props => {
   const next = filterProps(props)
@@ -38,7 +42,16 @@ const Box = styled(cleanElement(Base))([], space, width, color, fontSize, textAl
   right,
   backgroundColor,
   backgroundImage,
-  backgroundSize);
+  backgroundSize,
+  fontSmooth,
+  borderRadius,
+  boxShadow,
+  textShadow,
+  background,
+  opacity,
+  transform,
+  transformOrigin,
+  content);
 
 Box.displayName = 'Box'
 Box.header = Box.withComponent('header')

@@ -20,8 +20,10 @@ class TriviaQuestion extends Component {
         return(
           <Item 
             pl="2rem" 
-            pb="1rem" 
-            key={choice}>
+            pb="1rem"
+            hover
+            key={choice}
+          >
             {String.fromCharCode(65 + idx)}: { this.convertHTMLChar(choice) }
           </Item>
         )
@@ -47,6 +49,8 @@ class TriviaQuestion extends Component {
         gridColumn={this.props.gridColumn}
         border="1px solid black"
         flexDirection="column"
+        fontFamily="VT323"
+        fontSmooth="none"
       >
         <Text.p
           p="2rem"

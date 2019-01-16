@@ -14,15 +14,15 @@ const myStore = new SequelizeStore({
   autoReconnect: true
 });
 
-app.use(session({
-  resave: true,
-  saveUninitialized: true,
-  secret: 'aaabbbccc',
-  store: myStore
-}));
+// app.use(session({
+//   resave: true,
+//   saveUninitialized: true,
+//   secret: 'aaabbbccc',
+//   store: myStore
+// }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.use('/graphql', expressGraphQL({
   schema,

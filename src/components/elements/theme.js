@@ -113,13 +113,13 @@ export const minHeight = style({
   alias: 'tt'
 })
 
-const textShadow = style({
+export const textShadow = style({
   // React prop name
-  prop: 'shadow',
+  prop: 'textShadow',
   // The corresponding CSS property (defaults to prop argument)
-  cssProperty: 'textShadow',
+  cssProperty: 'text-shadow',
   // key for theme values
-  key: 'shadows',
+  key: 'textShadow',
   // convert number values to pixels
   numberToPx: false,
   // accessor function for transforming the value
@@ -159,6 +159,51 @@ export const backgroundImage = style({
   numberToPx: false,
   getter: n => n,
   alias: 'bi'
+});
+
+export const opacity = style({
+  prop: 'opacity',
+  cssProperty: 'opacity',
+  key: 'opacity',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'op'
+})
+
+export const fontSmooth = style({
+  prop: 'fontSmooth',
+  cssProperty: '-webkit-font-smoothing',
+  key: 'fontSmooth',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'fsh'
+});
+
+export const transformOrigin = style({
+  prop: 'transformOrigin',
+  cssProperty: 'transform-origin',
+  key: 'transformOrigin',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'to'
+});
+
+export const transform = style({
+  prop: 'transform',
+  cssProperty: 'transform',
+  key: 'transform',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'tf'
+});
+
+export const content = style({
+  prop: 'content',
+  cssProperty: 'content',
+  key: 'content',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'ct'
 })
 
 export const scaleFactor = 17 / 16;

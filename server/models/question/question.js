@@ -1,5 +1,5 @@
 'use strict';
-const { triviaConfig } = require('../../config/config');
+const { triviaConfig } = require('../../config/');
 const dateFormat = require('dateformat');
 const Nedb = require('../nedb');
 
