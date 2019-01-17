@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AllHtmlEntities as Entities } from 'html-entities';
-import { GridItem, Heading, FlexItem } from './elements';
+import { GridItem, Heading, FlexItem, Span } from './elements';
 import { connect } from 'react-redux';
 import { compose, graphql } from 'react-apollo';
 import CorrectGuessesQuery from '../queries/CorrectGuesses';
@@ -39,13 +39,27 @@ class Winner extends Component {
 
   render() {
     // const {triviaData, }
-    if(new Date().getHours() < 15) return (
+    if(new Date().getHours() < 19) return (
       <GridItem
         gridRow={this.props.gridRow}
         gridColumn={this.props.gridColumn}
         border="1px solid brown"
       >
-        Winners and Answer will be announced at 3pm...
+      <Span
+        joltAnimation
+        display="inline-block"
+      >
+        <Span
+          glitchBefore
+          glitchAfter
+          boxText="Winners"
+          fontSize="40px"
+          position="relative"
+        >
+          Winners
+        </Span>
+      </Span>
+      
       </GridItem>
     )
     if(this.props.triviaData.loading) return <div></div>;
@@ -64,20 +78,6 @@ class Winner extends Component {
     )
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     triviaAnswer: state.trivia.triviaData.triviaAnswer,
-//     correctGuessers: state.players.correctGuessers,
-//     announceAnswer: state.game.announceAnswer,
-//   }
-// };
-
-// export default connect(mapStateToProps, actions)(Winner);
-
-// export default Winner;
-
-// export default graphql(query)(Winner);
 
 export default compose(
   graphql(TriviaQuery, {

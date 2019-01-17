@@ -58,6 +58,7 @@ Box.main = Box.withComponent('main')
 Box.article = Box.withComponent('article')
 Box.section = Box.withComponent('section')
 Box.footer = Box.withComponent('footer')
+Box.span = Box.withComponent('span');
 
 Box.defaultProps = {
   theme

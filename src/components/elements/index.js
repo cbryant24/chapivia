@@ -4,6 +4,7 @@ export { default as FlexSection } from './FlexSection';
 export { default as FlexItem } from './FlexItem';
 export { default as Grid } from './Grid';
 export { default as GridItem } from './GridItem';
+export { default as Span } from './Span'
 
 //Typography
 export { default as Text } from './Text';

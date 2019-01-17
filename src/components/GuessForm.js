@@ -27,7 +27,6 @@ class GuessForm extends Component {
 
   addPlayersToForm() {
     const players = [];
-    debugger
     this.props.players.nonGuessedPlayers.map( player => {
       players.push( <option key={player.id} value={player.id}>{player.name}</option> );
     });
@@ -48,7 +47,6 @@ class GuessForm extends Component {
   }
 
   handleSubmit(event) {
-    debugger
     event.preventDefault();
     if( !this.state.guess || !this.state.selectedPlayer ) {
       return this.setState(() => ({
@@ -59,14 +57,6 @@ class GuessForm extends Component {
       }));
     }
 
-    // const playerGuessData = {
-    //   playerId: this.props.players[this.state.selectedPlayer].id,
-    //   guess: this.props.triviaData.triviaChoices[this.state.guess.charCodeAt(0) - 65],
-    //   questionId: this.props.triviaData.triviaIds.questionId,
-    //   questionChoiceId: this.props.triviaData.triviaIds.choiceId,
-    // }
-
-    debugger
     const { trivia } = this.props.triviaData;
     
     this.props.guessMutation({

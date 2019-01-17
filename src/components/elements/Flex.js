@@ -18,8 +18,10 @@ const bgAnimation = keyframes`
 `
 
 const bgAnimationGlow = keyframes`
-  0% { opacity: 0.1; }
+  0% { opacity: 0.15; }
   50% { opacity: 0.25; }
+  75% { opacity: 0.18; }
+  100% { opacity: .28; }
 `
 
 const Flex = Box.extend`
@@ -33,7 +35,7 @@ const Flex = Box.extend`
     border-top-color: #020202;
   ` : ''}
   animation: ${props => props.bgAnimation ? `${bgAnimation} 10s infinite`: ''};
-  animation: ${props => props.bgAnimationGlow ? `${bgAnimationGlow} 60s infinite`: ''};
+  animation: ${props => props.bgAnimationGlow ? `${bgAnimationGlow} 60s infinite ease`: ''};
   ${alignSelf} ${alignItems} ${justifyContent} ${wrap} ${flexDirection} ${flex};
 `;
 
