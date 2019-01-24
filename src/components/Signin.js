@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
 
 import { FlexItem, Field } from './elements';
 import { OutlineButton } from './elements';
@@ -6,6 +7,9 @@ import theme from './elements/theme';
 import helpers from './helpers';
 import * as actions from '../actions'
 import { connect } from 'react-redux';
+
+import mutation from '../mutations/Login';
+import query from '../queries/CurrentUser';
 
 //TODO: Errors message applicable to correct field only
 
@@ -28,21 +32,14 @@ class Signin extends Component {
     this.setState( () =>   { return {[name]: value} } );
   }
 
-  componentWillMount() {
-    if (localStorage.getItem('token')) return this.props.history.push('/game');
-  }
+  componentDidUpdate(prevProps) {
 
-  static getDerivedStateFromProps(props, state) {
-    if(props.errorMessage) {
-      return {...state, error: helpers.handleError('invalid')};
-    }
-  }
-  // componentDidUpdate() {
-  //   debugger
-  //   if(this.props.errorMessage)
-  //     return this.setState(() => {return {...this.state, error: helpers.handleError('invalid')} });
-  // }
+    if(this.props.errorMessage)
+      return this.setState(() => {return {...this.state, error: helpers.handleError('invalid')} });
 
+    if(this.props.data.user) 
+      return this.props.history.push('/game');
+  }
 
   async signin(event) {
     event.preventDefault();
@@ -52,8 +49,11 @@ class Signin extends Component {
     if (!email || !password )
       return this.setState(() => {return {...this.state, error: helpers.handleError('blank')} });
 
-    this.props.signin({email, password}, () => {
-      this.props.history.push('/game');
+    this.props.mutate({
+      variables: { email, password },
+      refetchQueries: [{ query }]
+    }).catch( res => {
+      debugger
     });
 
     if(this.state.error.statusType)
@@ -86,7 +86,6 @@ class Signin extends Component {
             name="password"
             type="password"
             label="Password"
-            error={this.state.error.message}
             value={this.state.password}
             onChange={(event) => this.handleChange(event)}
           >
@@ -106,8 +105,12 @@ class Signin extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { errorMessage: state.auth.errorMessage };
-}
+// const mapStateToProps = (state) => {
+//   return { errorMessage: state.auth.errorMessage };
+// }
 
-export default connect(mapStateToProps, actions)(Signin);
+// export default connect(mapStateToProps, actions)(Signin);
+
+export default graphql(query)(
+  graphql(mutation)(Signin)
+);

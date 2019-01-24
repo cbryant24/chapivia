@@ -12,6 +12,7 @@ const allUsers = () => user.getPlayers();
 const userScores = async function() {
   const scores = {};
   let currentHour = new Date().getHours();
+  console.log()
   if( currentHour >= 15) {
     try { 
       players = await allUsers();

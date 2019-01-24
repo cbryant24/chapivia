@@ -1,11 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const path = require('path')
-
+const path = require('path');
 
 const { auth, users, trivia } = require('./api');
-
 const router = express.Router();
 
 router.use(bodyParser.json({ type: '*/*'}));
@@ -90,6 +88,5 @@ router.use( express.static( `${__dirname}/../../../build` ) );
 router.get('*', (req, res)=>{
   res.sendFile(path.join(__dirname, '../../../build/index.html'));
 });
-
 
 module.exports = router;

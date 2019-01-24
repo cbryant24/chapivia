@@ -1,15 +1,22 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import PropTypes from 'prop-types'
 import {
   fontSize,
   fontWeight,
+  fontStyle,
   textAlign,
   space,
   color,
+  position,
   responsiveStyle,
+  top,
+  bottom,
+  left,
+  right,
   propTypes,
 } from 'styled-system'
+import { clipPath } from './theme';
 import cleanElement from 'clean-element';
 import theme, { filterProps, textTransform } from './theme'
 
@@ -30,6 +37,8 @@ const Base = props => {
 const Text = styled(cleanElement(Base))(
   [],
   fontSize,
+  fontStyle,
+  clipPath,
   space,
   color,
   caps,
@@ -37,7 +46,12 @@ const Text = styled(cleanElement(Base))(
   bold,
   regular,
   fontWeight,
-  textTransform
+  textTransform,
+  position,
+  top,
+  bottom,
+  left,
+  right
 )
 
 Text.displayName = 'Text'
@@ -56,10 +70,28 @@ Text.propTypes = {
 Text.defaultProps = {
   theme,
   m: 0
+};
+
+Math.Ran = function(max){
+  let rn = Math.round(Math.random() * max);
+  rn *= Math.random() > 0.5 ? -1 : 1;
+  return rn
+};
+
+function generateRandomKeyFrames(keyframes, dis, len, name){
+  let keyframe = ``;
+  for(var i = 0; i < len; i++){
+    keyframe += `${(i / len) * 100}%{transform: translateX(${Math.Ran(dis)}px)}`
+  }
+
+  return keyframes`${keyframe}`
 }
 
 Text.span = Text.withComponent('span');
-Text.p = Text.withComponent('p');
+Text.p = Text.withComponent('p').extend`
+  animation: ${props => props.animation_one ? `${generateRandomKeyFrames(keyframes, 15, 16, "random1")} ${props.animation_one};` : ''};
+  animation: ${props => props.animation_two ? `${generateRandomKeyFrames(keyframes, 10, 10, "random1")} ${props.animation_two};` : ''};
+`
 Text.s = Text.withComponent('s');
 Text.hOne = Text.withComponent('h1').extend`
   font-size: "2.2rem"

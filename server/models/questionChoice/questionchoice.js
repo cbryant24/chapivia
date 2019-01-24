@@ -1,5 +1,8 @@
 'use strict';
-// const { Questions } = require('@models');
+const { triviaConfig } = require('../../config/config');
+const dateFormat = require('dateformat');
+const Nedb = require('../nedb');
+const { concat, shuffle } =  require('lodash');
 
 module.exports = (sequelize, DataTypes) => {
   var QuestionChoice = sequelize.define('questionChoice', {
@@ -10,6 +13,17 @@ module.exports = (sequelize, DataTypes) => {
     questionId: DataTypes.INTEGER,
     
   }, {
+    hooks: {
+      afterFind: function(questionChoices) {
+        questionChoices.choices = shuffle([
+          questionChoices.correctChoice,
+          questionChoices.incorrectChoiceOne,
+          questionChoices.incorrectChoiceTwo,
+          questionChoices.incorrectChoiceThree,
+        ]);
+        return questionChoices;
+      }
+    },
     freezeTableName: true,
   });
   QuestionChoice.associate = function(models) {
@@ -17,5 +31,6 @@ module.exports = (sequelize, DataTypes) => {
     QuestionChoice.belongsTo(models.Question);
     QuestionChoice.belongsToMany(models.Question, {through: 'userQuestionChoice'});
   };
+
   return QuestionChoice;
 };

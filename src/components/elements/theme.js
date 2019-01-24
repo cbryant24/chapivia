@@ -74,6 +74,21 @@ export const bold = 700;
 // styled-system's `fontWeight` function can hook into the `fontWeights` object
 export const fontWeights = { regular, bold };
 
+export const fontStyle = style({
+  //React prop name
+  prop: 'fontStyle',
+  // The corresponding CSS property (defaults to prop argument)
+  cssProperty: 'font-style',
+  // key for theme values
+  key: 'fontStyle',
+  // convert number values to pixels
+  numberToPx: false,
+  // accessor function for transforming the value
+  getter: n => n,
+  // shorthand alias React prop name
+  alias: 'fs'
+})
+
 export const textTransform = style({
   //React prop name
   prop: 'textTransform',
@@ -98,19 +113,97 @@ export const minHeight = style({
   alias: 'tt'
 })
 
-const textShadow = style({
+export const textShadow = style({
   // React prop name
-  prop: 'shadow',
+  prop: 'textShadow',
   // The corresponding CSS property (defaults to prop argument)
-  cssProperty: 'textShadow',
+  cssProperty: 'text-shadow',
   // key for theme values
-  key: 'shadows',
+  key: 'textShadow',
   // convert number values to pixels
   numberToPx: false,
   // accessor function for transforming the value
   getter: n => n,
   // shorthand alias React prop name
   alias: 'sh'
+});
+
+export const clipPath = style({
+  // React prop name
+  prop: 'clipPath',
+  // The corresponding CSS property (defaults to prop argument)
+  cssProperty: 'clip-path',
+  // key for theme values
+  key: 'clipPath',
+  // convert number values to pixels
+  numberToPx: false,
+  // accessor function for transforming the value
+  getter: n => n,
+  // shorthand alias React prop name
+  alias: 'cp'
+});
+
+export const backgroundColor = style({
+  prop: 'backgroundColor',
+  cssProperty: 'background-color',
+  key: 'backgroundColor',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'bc'
+});
+
+export const backgroundImage = style({
+  prop: 'backgroundImage',
+  cssProperty: 'background-image',
+  key: 'backgroundImage',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'bi'
+});
+
+export const opacity = style({
+  prop: 'opacity',
+  cssProperty: 'opacity',
+  key: 'opacity',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'op'
+})
+
+export const fontSmooth = style({
+  prop: 'fontSmooth',
+  cssProperty: '-webkit-font-smoothing',
+  key: 'fontSmooth',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'fsh'
+});
+
+export const transformOrigin = style({
+  prop: 'transformOrigin',
+  cssProperty: 'transform-origin',
+  key: 'transformOrigin',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'to'
+});
+
+export const transform = style({
+  prop: 'transform',
+  cssProperty: 'transform',
+  key: 'transform',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'tf'
+});
+
+export const content = style({
+  prop: 'content',
+  cssProperty: 'content',
+  key: 'content',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'ct'
 })
 
 export const scaleFactor = 17 / 16;
@@ -129,6 +222,10 @@ export const boxShadows = [
   baseShadow + `0 12px 12px 0 ${shadowColor}`,
   baseShadow + `0 24px 24px 0 ${shadowColor}`
 ];
+
+//DEFAULT INPUT STYLING
+export const inputMaxWidth = "38rem";
+export const inputWidth = "100%";
 
 export const hexa = (color, alpha) => {
   const hex = cx(color);
@@ -156,6 +253,8 @@ export const filterProps = props =>
     'bg',
     'fill',
     'fontSize',
+    'fontFamily',
+    'fontStyle',
     'f',
     'image',
     'maxWidth',
@@ -181,7 +280,21 @@ export const filterProps = props =>
     "borderColor",
     "justifyContent",
     "borderRadius",
-    "borderWidth"
+    "borderWidth",
+    "bgAnimation",
+    "backgroundColor",
+    "textShadow",
+    "zIndex",
+    "backgroundImage",
+    "backgroundSize",
+    "transformOrigin",
+    "alignItems",
+    "boxShadow",
+    "fontSmooth",
+    "bgAnimation",
+    "windowBorder",
+    "bgAnimationGlow",
+    "textAlign"
   ])
 
 const theme = {
@@ -191,6 +304,7 @@ const theme = {
   mono,
   font,
   fontSizes,
+  fontStyle,
   remSizes,
   fontWeights,
   regular,
@@ -205,6 +319,8 @@ const theme = {
   shadowColor,
   cx,
   hexa,
+  inputMaxWidth,
+  inputWidth
 }
 
 export default theme;

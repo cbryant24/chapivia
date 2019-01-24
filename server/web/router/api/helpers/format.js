@@ -11,8 +11,8 @@ module.exports = {
             data.incorrectChoiceThree,
             data.correctChoice
           ],
-          question: data.question.question,
-          correctChoice: data.correctChoice
+          question: data.question.question
+          // correctChoice: data.correctChoice
         }
         return trivia;
         break

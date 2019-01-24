@@ -30,4 +30,6 @@ class GameController extends Component {
   }
 }
 
-export default connect(null, actions)(GameController);
+// export default connect(null, actions)(GameController);
+
+export default GameController;
