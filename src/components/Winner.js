@@ -9,26 +9,22 @@ import TriviaQuery from '../queries/Trivia';
 import * as actions from '../actions';
 
 class Winner extends Component {
-  componentWillMount() {
-    // this.props.getCorrectGuessers();
-  }
-
-  componentDidUpdate(prevProps) {
-    if(this.props.announceAnswer && this.props.announceAnswer !== prevProps.announceAnswer) {
-      // this.props.getCorrectGuessers();
-    }
-  }
 
   displayWinners() {
     if(this.props.winners.loading) return
     
-    return this.props.winners.correctGuesses.map( guesser => (
-      <Heading.h4
+    return this.props.winners.correctGuesses.map( (guesser, idx) => (
+      <Heading.h3
         textTransform="uppercase"
         key={guesser.id}
+        position="relative"
       >
-        {guesser.name}
-      </Heading.h4>
+        <Span.glitchAnimation
+          glitchAnimation={`${idx % 2 === 0 ? guesser.name : ''}`}
+        >
+          {guesser.name}
+        </Span.glitchAnimation>
+      </Heading.h3>
     ));
   }
 
@@ -38,26 +34,14 @@ class Winner extends Component {
   }
 
   render() {
-    // const {triviaData, }
-    if(new Date().getHours() < 19) return (
+    if(new Date().getHours() < 15) return (
       <GridItem
         gridRow={this.props.gridRow}
         gridColumn={this.props.gridColumn}
         border="1px solid brown"
       >
-      <Span
-        joltAnimation
-        display="inline-block"
-      >
-        <Span
-          glitchBefore
-          glitchAfter
-          boxText="Winners"
-          fontSize="40px"
-          position="relative"
-        >
-          Winners
-        </Span>
+      <Span>
+        Check back after 3pm for the answer and winners
       </Span>
       
       </GridItem>
@@ -68,11 +52,14 @@ class Winner extends Component {
       <GridItem
         gridRow={this.props.gridRow}
         gridColumn={this.props.gridColumn}
-        border="1px solid brown"
       >
-        <Heading.h3 textTransform="uppercase">
+        <Span 
+          position="relative"
+          textTransform="uppercase"
+          fontSize="3.6rem"
+        >
           {this.convertHTMLChar(this.props.triviaData.trivia.questionChoice.correctChoice)}
-        </Heading.h3>
+        </Span>
         {this.displayWinners()}
       </GridItem>
     )

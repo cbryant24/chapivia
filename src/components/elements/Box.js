@@ -9,6 +9,7 @@ import {
   boxShadow,
   fontSize,
   fontFamily,
+  minHeight,
   textAlign,
   background,
   backgroundSize,
@@ -22,6 +23,7 @@ import {
   left,
   right,
   zIndex,
+  flexDirection,
   propTypes
 } from 'styled-system';
 import { fontStyle, backgroundColor } from './theme'
@@ -50,7 +52,9 @@ const Box = styled(cleanElement(Base))([], space, width, color, fontSize, textAl
   opacity,
   transform,
   transformOrigin,
-  content);
+  content,
+  flexDirection,
+  minHeight);
 
 Box.displayName = 'Box'
 Box.header = Box.withComponent('header')

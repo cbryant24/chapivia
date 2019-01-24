@@ -223,6 +223,10 @@ export const boxShadows = [
   baseShadow + `0 24px 24px 0 ${shadowColor}`
 ];
 
+//DEFAULT INPUT STYLING
+export const inputMaxWidth = "38rem";
+export const inputWidth = "100%";
+
 export const hexa = (color, alpha) => {
   const hex = cx(color);
   if (!includes(hex, '#')) return shadowColor
@@ -276,7 +280,21 @@ export const filterProps = props =>
     "borderColor",
     "justifyContent",
     "borderRadius",
-    "borderWidth"
+    "borderWidth",
+    "bgAnimation",
+    "backgroundColor",
+    "textShadow",
+    "zIndex",
+    "backgroundImage",
+    "backgroundSize",
+    "transformOrigin",
+    "alignItems",
+    "boxShadow",
+    "fontSmooth",
+    "bgAnimation",
+    "windowBorder",
+    "bgAnimationGlow",
+    "textAlign"
   ])
 
 const theme = {
@@ -301,6 +319,8 @@ const theme = {
   shadowColor,
   cx,
   hexa,
+  inputMaxWidth,
+  inputWidth
 }
 
 export default theme;

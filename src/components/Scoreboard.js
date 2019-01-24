@@ -7,7 +7,7 @@ import { compose, graphql } from 'react-apollo'
 import query from '../queries/Scores';
 
 import * as actions from '../actions';
-import { GridItem, Table, Image, Text } from './elements';
+import { GridItem, Flex, FlexItem, Image, Text } from './elements';
 import kgrad from '../img/kgrad.png';
 
 class Scoreboard extends Component {
@@ -22,38 +22,39 @@ class Scoreboard extends Component {
     // }
   }
 
-  displayTableHeaders(headers) {
+  displayHeaders(headers) {
     return (
       headers.map( title =>  {
         return (
-          <Table.th
+          <Flex
             key={title}
             m="2rem"
             textAlign="center"
             textTransform="uppercase"
           >
             {title}
-          </Table.th>
+          </Flex>
         )
       })
     )
   }
 
-  dispalayPlayerScores(playerScores) {
+  dispalayPlayerScores() {
     const renderedScores = [];
 
-    if (this.props.data.loading) return <Table.tr></Table.tr>
+    if (this.props.data.loading) return <Flex></Flex>;
     
-    if (!this.props.data.scores) return <Table.tr></Table.tr>
+    if (!this.props.data.scores) return <Flex></Flex>;
+
     this.props.data.scores.map( player => {
       renderedScores.push(
-        <Table.tr
+        <Flex
           fontSize="1.6rem"
           textAlign="center"
           height="4rem"
           key={player.id}
         >
-          <Table.td display="flex" width="100%"> 
+          <FlexItem display="flex" width="100%"> 
             {/* <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/> */}
             <Text.span
               textTransform="uppercase"
@@ -63,16 +64,16 @@ class Scoreboard extends Component {
             >
               {player.name}
             </Text.span>
-          </Table.td>
-          <Table.td width="30%">
+          </FlexItem>
+          <FlexItem width="30%">
             <Text.span 
               fontSize="1.7rem"
               fontWeight="500"
             >
               {player.score}
             </Text.span>
-          </Table.td>
-        </Table.tr>
+          </FlexItem>
+        </Flex>
       )
     });
     return renderedScores;
@@ -83,30 +84,17 @@ class Scoreboard extends Component {
       < GridItem 
         gridRow={this.props.gridRow}
         gridColumn={this.props.gridColumn}
-        border="1px solid blue"
       >
-        <Table
-          width="100%"
+        <Flex
+          justifyContent="space-between"
         >
-          <Table.body>
-            <Table.tr border="1px solid black">
-              {this.displayTableHeaders(['Name', 'Score'])}
-            </Table.tr>
-            {this.dispalayPlayerScores()}
-          </Table.body>
-        </Table>
+            <Text.p>Player</Text.p>
+            <Text.p>Score</Text.p>
+        </Flex>
+        {this.dispalayPlayerScores()}
       </GridItem>
     );
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     announceAnswer: state.game.announceAnswer,
-//     playerScores: state.players.playerScores
-//   }
-// }
-
-// export default connect(mapStateToProps, actions)(Scoreboard);
 
 export default graphql(query)(Scoreboard);

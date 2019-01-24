@@ -21,7 +21,8 @@ export default ({ children }) => {
             flexDirection="column"
             m="auto"
             width="98%"
-            height="98vh"
+            height="auto"
+            minHeight="100vh"
           >
           <Flex 
             bgAnimation
@@ -52,6 +53,7 @@ export default ({ children }) => {
             height="100%"
             width="100%"
             position="absolute"
+            zIndex="5"
           />
           <Flex 
             background="radial-gradient(
@@ -71,7 +73,7 @@ export default ({ children }) => {
             // zIndex
             bgAnimationGlow
           />
-          <Title />
+          {/* <Title /> */}
             {children}
           </Flex>
       </ThemeProvider>

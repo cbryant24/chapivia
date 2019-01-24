@@ -47,6 +47,7 @@ class GuessForm extends Component {
   }
 
   handleSubmit(event) {
+    
     event.preventDefault();
     if( !this.state.guess || !this.state.selectedPlayer ) {
       return this.setState(() => ({
@@ -73,7 +74,6 @@ class GuessForm extends Component {
       const errors = res.graphQLErrors.map(error => error.message);
     });
 
-    // this.props.recordPlayerGuess(playerGuessData, this.props.getPlayerGuesses);
     this.clearForm();
   }
 
@@ -94,29 +94,28 @@ class GuessForm extends Component {
   }
 
   render() {
-    if(new Date().getHours() < 11) return (
-      <GridItem
-        border="1px solid purple"
-        gridRow={this.props.gridRow}
-        gridColumn={this.props.gridColumn}
-      >
-        Checkback after 11:00am
-      </GridItem>
-    );
-    if(new Date().getHours() >= 15) return (
-      <GridItem
-        border="1px solid purple"
-        gridRow={this.props.gridRow}
-        gridColumn={this.props.gridColumn}
-      >
-        Checkback for another trivia!
-      </GridItem>
-    );
+    // if(new Date().getHours() < 11) return (
+    //   <GridItem
+    //     gridRow={this.props.gridRow}
+    //     gridColumn={this.props.gridColumn}
+    //   >
+    //     Checkback after 11:00am
+    //   </GridItem>
+    // );
+
+    // if(new Date().getHours() >= 15) return (
+    //   <GridItem
+    //     gridRow={this.props.gridRow}
+    //     gridColumn={this.props.gridColumn}
+    //   >
+    //     Checkback for another trivia!
+    //   </GridItem>
+    // );
+
     if(this.props.players.loading) return <div></div>
 
     return (
       <GridItem
-        border="1px solid purple"
         gridRow={this.props.gridRow}
         gridColumn={this.props.gridColumn}
       >
@@ -126,6 +125,8 @@ class GuessForm extends Component {
             type="select"
             label="Player"
             color="black"
+            width="75%"
+            mb="2rem"
             error={this.state.error.player}
             onChange={(event) => this.handlePlayerSelect(event)}
             value={this.state.selectedPlayer}
@@ -137,6 +138,7 @@ class GuessForm extends Component {
             name="guess"
             type="password"
             label="Guess"
+            width="75%"
             error={this.state.error.guess}
             value={this.state.guess}
             onChange={ (event) => this.handleGuessSelection(event) }
@@ -150,22 +152,21 @@ class GuessForm extends Component {
             type="submit"
             value="Submit"
           />
-          <OutlineButton
-            color="white"
-            borderColor='primary'
-            mt="1rem"
-          >
-            Cancel
-          </OutlineButton>
         </form>
+        <Input
+          color="white"
+          width="10rem"
+          borderColor='primary'
+          mt="1rem"
+          textAlign="center"
+          type="submit"
+          value="Cancel"
+          onClick={ () => this.clearForm()}
+        />
       </GridItem>
     );
   }
 }
-
-// export default graphql(mutations)(
-//   graphql(query)(GuessForm)
-// );
 
 export default compose(
   graphql(UnguessedPlayers, {

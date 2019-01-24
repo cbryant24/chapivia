@@ -19,6 +19,7 @@ export const Error = Text.extend.attrs({
 `
 
 const Field = ({ type, name, label, placeholder, error, ...props }) => {
+  
   const Component =
     {
       select: InputSelect,
@@ -26,13 +27,16 @@ const Field = ({ type, name, label, placeholder, error, ...props }) => {
       textarea: InputTextarea
     }[type] || Input
   return (
-    <Label className={type} id={name} mb={2} color={theme.colors.white}>
+    <Flex
+      justifyContent="space-around"
+    >
+      <Label className={type} id={name} mb={2} color={theme.colors.white} />
       <Flex align="center" mb="2px" wrap>
         {label}
         {error && <Error children={error} />}
       </Flex>
       <Component name={name} type={type} placeholder={placeholder} {...props} />
-    </Label>
+    </Flex>
   );
 };
 

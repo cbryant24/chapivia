@@ -47,7 +47,6 @@ class TriviaQuestion extends Component {
       <GridItem 
         gridRow={this.props.gridRow} 
         gridColumn={this.props.gridColumn}
-        border="1px solid black"
         flexDirection="column"
         fontFamily="VT323"
         fontSmooth="none"

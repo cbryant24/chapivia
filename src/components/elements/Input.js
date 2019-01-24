@@ -21,7 +21,8 @@ const Input = styled(cleanElement(Base))`
   appearance: none;
   display: ${props => props.display || 'block'};
   vertical-align: middle;
-  max-width: 32rem;
+  width: ${props => props.width || props.theme.inputWidth };
+  max-width: ${props => props.maxWidth || props.theme.inputMaxWidth };
   min-height: 3.6rem;
   line-height: inherit;
   font-family: inherit;

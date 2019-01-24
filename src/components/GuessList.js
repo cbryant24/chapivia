@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { includes, keyBy, map } from 'lodash';
-import update from 'immutability-helper';
 import { graphql, compose } from 'react-apollo'
 
-import { connect } from 'react-redux';
-
-import * as actions from '../actions';
 import guessListQuery from '../queries/GuessList';
 import triviaQuery from '../queries/Trivia';
 import mutation from '../mutations/Guess';
-import { GridItem, Table, OutlineButton, Input, Image, Text, Flex, Field } from './elements';
-import kgrad from '../img/kgrad.png';
+import { GridItem, OutlineButton, Input, Image, Text, Flex, Field, FlexItem, Span } from './elements';
 
 class GuessList extends Component {
   constructor(props) {
@@ -39,23 +33,6 @@ class GuessList extends Component {
     return
   }
 
-  displayTableHeaders(headers) {
-    return (
-      headers.map( title =>  {
-        return (
-          <Table.th
-            key={title}
-            m="2rem"
-            textAlign="center"
-            textTransform="uppercase"
-          >
-          {title}
-        </Table.th>
-        )
-      })
-    );
-  }
-
   handleGuessChange(player) {
     this.setState( () => ({
       selectedPlayer: player
@@ -68,7 +45,7 @@ class GuessList extends Component {
     const { trivia } = this.props.triviaData;
 
     event.preventDefault();
-    debugger
+    
     this.props.guessMutation({
       variables: {
         userId: this.state.selectedPlayer.id,
@@ -96,33 +73,33 @@ class GuessList extends Component {
   }
 
   dispalayGuesses() {
-    if(this.props.guessList.loading) return <Table.tr></Table.tr>
+    if(new Date().getHours() < 15) return <FlexItem></FlexItem>
+    
+    if(this.props.guessList.loading) return <FlexItem></FlexItem>
 
     return (
-      map(this.props.guessList.guesses, guess => (
-        <Table.tr
+      this.props.guessList.guesses.map( (guess, idx) => (
+        <Flex
           fontSize="1.6rem"
           textAlign="center"
           height="4rem"
+          justifyContent="space-between"
+          position="relative"
           key={guess.id}
         >
-          <Table.td display="flex" width="100%"> 
             {/* <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/> */}
-            <Text.span
+            <Span.glitchAnimation
               textTransform="uppercase"
               fontSize="2.4rem"
               fontWeight="500"
               padding-left="2rem"
+              glitchAnimation={`${idx % 2 === 1 ? guess.name : ''}`}
             >
               {guess.name}
-            </Text.span>
-          </Table.td>
-          <Table.td width="20%">
+            </Span.glitchAnimation>
           <form onSubmit={event => this.handleGuessUpdate(event)}>
               {guess === this.state.selectedPlayer ?
-              <Flex
-                justifyContent="space-around"
-              >
+              <Flex>
                 <Field 
                   name="password"
                   type="password"
@@ -132,6 +109,7 @@ class GuessList extends Component {
                   display="inline-block"
                   onChange={(event) => this.updateGuessChoice(event)}
                   value={this.state.updatedGuess}
+                  justifyContent="space-around"
                 >
                 </Field>
                 <Field
@@ -145,13 +123,11 @@ class GuessList extends Component {
                   fontWeight="700"
                   type="submit"
                   value="Submit"
-                  width="60%"
                 />
               </Flex>
               : '*'}
             </form>
-          </Table.td>
-          <Table.td width="30%">
+          <FlexItem>
             { this.state.selectedPlayer === guess ? '': <OutlineButton
               bg="primary"
               fontSize="1.1rem"
@@ -179,53 +155,33 @@ class GuessList extends Component {
             >
               cancel
             </OutlineButton> : ""}
-          </Table.td>
-        </Table.tr>
+            </FlexItem>
+          </Flex>
       ))
     )
   }
 
   render() {
-    if(this.props.announceAnswer) return (
-      <Table>
-        <Table.body>
-          <Table.tr border="1px solid black">
-            {this.displayTableHeaders(['Name', 'Guessed', ""])}
-          </Table.tr>
-        </Table.body>
-      </Table>
-    );
     return (
       < GridItem 
         gridRow={this.props.gridRow}
         gridColumn={this.props.gridColumn}
-        border="1px solid yellow"
+        display="flex"
+        flexDirection="column"
       >
-        <Table
-          width="100%"
+        <Flex
+          justifyContent="space-around"
         >
-          <Table.body>
-            <Table.tr border="1px solid black">
-              {this.displayTableHeaders(['Name', 'Guessed', ""])}
-            </Table.tr>
-            {this.dispalayGuesses()}
-          </Table.body>
-        </Table>
+          <Text.p>Player</Text.p>
+          <Text.p>Guess</Text.p>
+        </Flex>
+        <FlexItem>
+          {this.dispalayGuesses()}
+        </FlexItem>
       </GridItem>
     );
-  
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     todaysGuesses: state.players.playersGuessed,
-//     triviaData: state.trivia.triviaData,
-//     announceAnswer: state.game.announceAnswer
-//   }
-// };
-
-// export default connect(mapStateToProps, actions)(GuessList);
 
 export default compose(
   graphql(guessListQuery, {
