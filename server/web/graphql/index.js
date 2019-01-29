@@ -29,4 +29,6 @@ app.use('/graphql', expressGraphQL({
   graphiql: true
 }));
 
+myStore.sync();
+
 module.exports = app;
