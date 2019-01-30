@@ -2,10 +2,8 @@ const { promisify } = require('util');
 const fs = require('fs');
 const { Question, QuestionChoice } = require('../../models');
 
-
 const readFileAsync = promisify(fs.readFile);
 const readDirAsync = promisify(fs.readdir);
-
 
 let triviaCategories;
 let triviaFiles = {};
@@ -13,6 +11,7 @@ let triviaRoot = 'db/data/trivia_questions/';
 let triviaQuestions = [];
 
 ( async function () {
+  
   try {
     triviaCategories = await readDirAsync(triviaRoot);
 
@@ -25,7 +24,7 @@ let triviaQuestions = [];
         triviaQuestions.push(...trivia);
       }
     }
-
+    
     for (const trivia of triviaQuestions) {
       let isCreated = await QuestionChoice.create({
         correctChoice: trivia.correct_answer,

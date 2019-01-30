@@ -4,15 +4,17 @@ const Question = require('./question');
 const UserQuestionChoice = require('./userQuestionChoice');
 const Nedb = require('./nedb');
 
-// QuestionChoice.Question = QuestionChoice.belongsTo(Question);
 const models = {
   User,
   QuestionChoice,
   Question,
   UserQuestionChoice
 }
+
 User.associate(models);
 UserQuestionChoice.associate(models);
+Question.associate(models);
+QuestionChoice.associate(models);
 
 module.exports = {
   User,

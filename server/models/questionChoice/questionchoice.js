@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
   });
   QuestionChoice.associate = function(models) {
+    debugger
     // associations can be defined here
     QuestionChoice.belongsTo(models.Question);
     QuestionChoice.belongsToMany(models.Question, {through: 'userQuestionChoice'});
