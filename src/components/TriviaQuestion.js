@@ -19,7 +19,6 @@ class TriviaQuestion extends Component {
       choices.map( (choice, idx) => {
         return(
           <Item 
-            pl="2rem" 
             pb="1rem"
             hover
             key={choice}
@@ -52,7 +51,7 @@ class TriviaQuestion extends Component {
         fontSmooth="none"
       >
         <Text.p
-          p="2rem"
+          p="0 0 2rem 0;"
           fontSize="2.1rem"
         >
           {this.convertHTMLChar(this.props.data.trivia.question) || ""}

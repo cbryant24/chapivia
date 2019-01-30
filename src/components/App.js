@@ -12,7 +12,7 @@ export default ({ children }) => {
       <ThemeProvider theme={theme}>
           <Flex
             fontFamily="VT323"
-            justifyContent="center"
+            justifyContent="flex-start"
             windowBorder
             alignItems="center"
             bg="transparent"
