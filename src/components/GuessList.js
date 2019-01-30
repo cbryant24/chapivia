@@ -72,11 +72,37 @@ class GuessList extends Component {
     }))
   }
 
+  displayGuessesAfterDeadline() {
+    return (
+      this.props.guessList.guesses.map( (guess, idx) => (
+        <Flex
+          fontSize="1.6rem"
+          textAlign="center"
+          height="4rem"
+          justifyContent="space-between"
+          position="relative"
+          key={guess.id}
+        >
+          {/* <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/> */}
+          <Span.glitchAnimation
+            textTransform="uppercase"
+            fontSize="2.4rem"
+            fontWeight="500"
+            padding-left="2rem"
+            glitchAnimation={`${idx % 2 === 1 ? guess.name : ''}`}
+          >
+            {guess.name}
+          </Span.glitchAnimation>
+        </Flex>
+      ))
+    )
+        
+  }
+
   dispalayGuesses() {
-    debugger
-    if(new Date().getHours() > 15) return <FlexItem></FlexItem>
-    debugger
     if(this.props.guessList.loading) return <FlexItem></FlexItem>
+
+    if(new Date().getHours() >= 15) return <FlexItem>{this.displayGuessesAfterDeadline()}</FlexItem>
 
     return (
       this.props.guessList.guesses.map( (guess, idx) => (
@@ -88,16 +114,16 @@ class GuessList extends Component {
           position="relative"
           key={guess.id}
         >
-            {/* <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/> */}
-            <Span.glitchAnimation
-              textTransform="uppercase"
-              fontSize="2.4rem"
-              fontWeight="500"
-              padding-left="2rem"
-              glitchAnimation={`${idx % 2 === 1 ? guess.name : ''}`}
-            >
-              {guess.name}
-            </Span.glitchAnimation>
+          {/* <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/> */}
+          <Span.glitchAnimation
+            textTransform="uppercase"
+            fontSize="2.4rem"
+            fontWeight="500"
+            padding-left="2rem"
+            glitchAnimation={`${idx % 2 === 1 ? guess.name : ''}`}
+          >
+            {guess.name}
+          </Span.glitchAnimation>
           <form onSubmit={event => this.handleGuessUpdate(event)}>
               {guess === this.state.selectedPlayer ?
               <Flex>
