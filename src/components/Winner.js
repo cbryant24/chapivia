@@ -38,12 +38,10 @@ class Winner extends Component {
       <GridItem
         gridRow={this.props.gridRow}
         gridColumn={this.props.gridColumn}
-        border="1px solid brown"
       >
-      <Span>
-        Check back after 3pm for the answer and winners
-      </Span>
-      
+        <Span>
+          Check back after 3pm for the answer and winners
+        </Span>
       </GridItem>
     )
     if(this.props.triviaData.loading) return <div></div>;

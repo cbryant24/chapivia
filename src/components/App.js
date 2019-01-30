@@ -73,7 +73,7 @@ export default ({ children }) => {
             // zIndex
             bgAnimationGlow
           />
-          {/* <Title /> */}
+          <Title />
             {children}
           </Flex>
       </ThemeProvider>

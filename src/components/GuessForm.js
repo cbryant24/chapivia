@@ -94,23 +94,23 @@ class GuessForm extends Component {
   }
 
   render() {
-    // if(new Date().getHours() < 11) return (
-    //   <GridItem
-    //     gridRow={this.props.gridRow}
-    //     gridColumn={this.props.gridColumn}
-    //   >
-    //     Checkback after 11:00am
-    //   </GridItem>
-    // );
+    if(new Date().getHours() < 11) return (
+      <GridItem
+        gridRow={this.props.gridRow}
+        gridColumn={this.props.gridColumn}
+      >
+        Checkback after 11:00am
+      </GridItem>
+    );
 
-    // if(new Date().getHours() >= 15) return (
-    //   <GridItem
-    //     gridRow={this.props.gridRow}
-    //     gridColumn={this.props.gridColumn}
-    //   >
-    //     Checkback for another trivia!
-    //   </GridItem>
-    // );
+    if(new Date().getHours() >= 15) return (
+      <GridItem
+        gridRow={this.props.gridRow}
+        gridColumn={this.props.gridColumn}
+      >
+        Checkback for another trivia!
+      </GridItem>
+    );
 
     if(this.props.players.loading) return <div></div>
 

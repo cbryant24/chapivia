@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 
-import { FlexItem, Field } from './elements';
+import { FlexItem, Field, FlexForm } from './elements';
 import { OutlineButton } from './elements';
 import theme from './elements/theme';
 import helpers from './helpers';
@@ -66,17 +66,25 @@ class Signin extends Component {
     return (
       <FlexItem
         border="1px solid black"
-        p="5rem"
+        p="2rem"
         bg="black"
-        height="65%"
+        height="55vh"
         width="40%"
+        zIndex="20"
       >
-        <form onSubmit={(event) => this.signin(event)}>
+        <FlexForm 
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-evenly"
+          height="100%"
+          onSubmit={(event) => this.signin(event)}
+        >
           <Field 
           name="email"
           type="email"
           label="Email"
-          placeholder="zach@hackclub.com"
+          placeholder="charles@chapman.com"
+          width="75%"
           error={this.state.error.message}
           value={this.state.email}
           onChange={(event) => this.handleChange(event)}
@@ -86,6 +94,7 @@ class Signin extends Component {
             name="password"
             type="password"
             label="Password"
+            width="75%"
             value={this.state.password}
             onChange={(event) => this.handleChange(event)}
           >
@@ -95,11 +104,13 @@ class Signin extends Component {
             borderColor='primary'
             mt="1rem"
             type="submit"
+            width="40%"
             onClick={(e) => this.signin(e)}
           >
             Sign In
           </OutlineButton>
-        </form>
+        </FlexForm>
+
       </FlexItem>
     );
   }
