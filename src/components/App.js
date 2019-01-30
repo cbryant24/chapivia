@@ -70,7 +70,6 @@ export default ({ children }) => {
             width="100%"
             opacity="0.5"
             position="fixed"
-            // zIndex
             bgAnimationGlow
           />
           <Title />

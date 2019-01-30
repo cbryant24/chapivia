@@ -204,7 +204,7 @@ export const content = style({
   numberToPx: false,
   getter: n => n,
   alias: 'ct'
-})
+});
 
 export const scaleFactor = 17 / 16;
 export const transition = '0.125s ease-out';

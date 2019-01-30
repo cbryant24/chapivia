@@ -41,7 +41,7 @@ class Signin extends Component {
       return this.props.history.push('/game');
   }
 
-  async signin(event) {
+  signin(event) {
     event.preventDefault();
     const { email, password } = this.state;
 
@@ -115,12 +115,6 @@ class Signin extends Component {
     );
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return { errorMessage: state.auth.errorMessage };
-// }
-
-// export default connect(mapStateToProps, actions)(Signin);
 
 export default graphql(query)(
   graphql(mutation)(Signin)
