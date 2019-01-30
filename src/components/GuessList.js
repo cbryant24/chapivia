@@ -73,8 +73,9 @@ class GuessList extends Component {
   }
 
   dispalayGuesses() {
-    if(new Date().getHours() < 15) return <FlexItem></FlexItem>
-    
+    debugger
+    if(new Date().getHours() > 15) return <FlexItem></FlexItem>
+    debugger
     if(this.props.guessList.loading) return <FlexItem></FlexItem>
 
     return (
