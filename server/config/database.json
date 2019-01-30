@@ -1,23 +1,29 @@
 {
   "development": {
     "username": "chapivia",
+    "user": "chapivia",
     "password": "root",
     "database": "chapivia",
     "host": "127.0.0.1",
-    "dialect": "postgresql"
+    "dialect": "postgresql",
+    "port": 5432
   },
   "test": {
     "username": "chapivia",
+    "user": "chapivia",
     "password": "root",
     "database": "chapivia",
     "host": "127.0.0.1",
-    "dialect": "postgresql"
+    "dialect": "postgresql",
+    "port": 5432
   },
   "production": {
     "username": "chapivia",
+    "user": "chapivia",
     "password": "root",
     "database": "chapivia",
     "host": "127.0.0.1",
-    "dialect": "postgresql"
+    "dialect": "postgresql",
+    "port": 5432
   }
 }
