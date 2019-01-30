@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { compose, graphql } from 'react-apollo';
 import * as actions from '../actions';
-import { GridItem, Field, OutlineButton, Input } from './elements';
+import { GridItem, Field, OutlineButton, Input, Flex } from './elements';
 import mutation from '../mutations/Guess';
 import UnguessedPlayers from '../queries/UnguessedPlayers';
 import TriviaQuery from '../queries/Trivia';
@@ -26,11 +26,11 @@ class GuessForm extends Component {
   }
 
   addPlayersToForm() {
-    const players = [];
-    this.props.players.nonGuessedPlayers.map( player => {
-      players.push( <option key={player.id} value={player.id}>{player.name}</option> );
-    });
-    return players;
+    return (
+      this.props.players.nonGuessedPlayers.map( player => {
+        return <option key={player.id} value={player.id}>{player.name}</option>
+      })
+    );
   }
 
   handleGuessSelection(event) {
@@ -47,7 +47,7 @@ class GuessForm extends Component {
   }
 
   handleSubmit(event) {
-    
+    debugger
     event.preventDefault();
     if( !this.state.guess || !this.state.selectedPlayer ) {
       return this.setState(() => ({
@@ -74,7 +74,7 @@ class GuessForm extends Component {
       const errors = res.graphQLErrors.map(error => error.message);
     });
 
-    this.clearForm();
+    this.clearForm(event);
   }
 
   handlePlayerSelect(event) {
@@ -82,7 +82,10 @@ class GuessForm extends Component {
     this.setState( () => ({ selectedPlayer: player }) );
   }
 
-  clearForm() {
+  clearForm(event) {
+    debugger
+    event.preventDefault();
+
     this.setState( () => ({ 
       error: {
         guess: '',
@@ -144,25 +147,30 @@ class GuessForm extends Component {
             onChange={ (event) => this.handleGuessSelection(event) }
           >
           </Field>
-          <Input
-            color="white"
-            width="10rem"
-            borderColor='primary'
+          <Flex
             mt="1rem"
-            type="submit"
-            value="Submit"
-          />
+            justifyContent="flex-start"
+          >
+            <Input
+              color="white"
+              width="10rem"
+              borderColor='primary'
+              type="submit"
+              value="Submit"
+              mr="2rem"
+            />
+            <Input
+              color="white"
+              width="10rem"
+              borderColor='primary'
+              textAlign="center"
+              type="cancel"
+              value="Cancel"
+              onClick={ (event) => this.clearForm(event)}
+            />
+          </Flex>
         </form>
-        <Input
-          color="white"
-          width="10rem"
-          borderColor='primary'
-          mt="1rem"
-          textAlign="center"
-          type="submit"
-          value="Cancel"
-          onClick={ () => this.clearForm()}
-        />
+        
       </GridItem>
     );
   }

@@ -24,57 +24,57 @@ export default ({ children }) => {
             height="auto"
             minHeight="100vh"
           >
-          <Flex 
-            bgAnimation
-            p="3rem 2rem"
-            backgroundColor="#031e11"
-            textShadow="0rem 0.2rem 1rem rgba(3, 30, 17, 1)"
-            position="absolute"
-            top="0"
-            left="0"
-            height="100%"
-            width="100%"
-            zIndex="-1"
-          />
-          <Flex
-            backgroundImage="repeating-linear-gradient(
-              to bottom,
-              transparent 0,
-              transparent 1px, #000 1px, #000 2px
-            )"
-            backgroundSize="100% 2px, cover"
-            transformOrigin="50% 50%"
-            transform="rotate(0)"
-            content=""
-            opacity="0.6"
-            top="0"
-            left="0"
-            borderRadius="2rem"
-            height="100%"
-            width="100%"
-            position="absolute"
-            zIndex="5"
-          />
-          <Flex 
-            background="radial-gradient(
-              circle at center,
-              rgba(27,212,89,1) 0%,
-              rgba(27,212,89,0.88) 58%,
-              rgba(21,235,92,0.57) 80%,
-              rgba(19,94,29,0.27) 93%,
-              rgba(10,23,12,0) 100%
-            );"
-            top="0"
-            left="0"
-            height="100%"
-            width="100%"
-            opacity="0.5"
-            position="fixed"
-            // zIndex
-            bgAnimationGlow
-          />
-          {/* <Title /> */}
-            {children}
+            <Flex 
+              bgAnimation
+              p="3rem 2rem"
+              backgroundColor="#031e11"
+              textShadow="0rem 0.2rem 1rem rgba(3, 30, 17, 1)"
+              position="absolute"
+              top="0"
+              left="0"
+              height="100%"
+              width="100%"
+              zIndex="-1"
+            />
+            <Flex
+              backgroundImage="repeating-linear-gradient(
+                to bottom,
+                transparent 0,
+                transparent 1px, #000 1px, #000 2px
+              )"
+              backgroundSize="100% 2px, cover"
+              transformOrigin="50% 50%"
+              transform="rotate(0)"
+              content=""
+              opacity="0.6"
+              top="0"
+              left="0"
+              borderRadius="2rem"
+              height="100%"
+              width="100%"
+              position="absolute"
+              zIndex="5"
+            />
+            <Flex 
+              background="radial-gradient(
+                circle at center,
+                rgba(27,212,89,1) 0%,
+                rgba(27,212,89,0.88) 58%,
+                rgba(21,235,92,0.57) 80%,
+                rgba(19,94,29,0.27) 93%,
+                rgba(10,23,12,0) 100%
+              );"
+              top="0"
+              left="0"
+              height="100%"
+              width="100%"
+              opacity="0.5"
+              position="fixed"
+              // zIndex
+              bgAnimationGlow
+            />
+            <Title />
+              {children}
           </Flex>
       </ThemeProvider>
   );

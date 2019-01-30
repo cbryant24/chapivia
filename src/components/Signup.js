@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { graphql } from 'react-apollo';
+
 import { FlexItem, Field } from './elements';
 import { OutlineButton } from './elements';
 import helpers from './helpers';
 import theme from './elements/theme';
+import mutation from '../mutations/Signup';
+import query from '../queries/UnguessedPlayers';
+
 
 //TODO: Errors message applicable to correct field only
 
@@ -28,11 +33,7 @@ class Signup extends Component {
     this.setState( () =>   { return {[name]: value} } );
   }
 
-  componentWillMount() {
-    if (localStorage.getItem('token')) return this.props.history.push('/game');
-  }
-
-  async signin(event) {
+  signin(event) {
     event.preventDefault()
     let { email, name, password, confirm_password } = this.state;
 
@@ -42,16 +43,18 @@ class Signup extends Component {
     if(password !== confirm_password)
       return this.setState(() => {return {error: helpers.handleError('mismatch')} });
 
-    try {
-      const {data: {token} } = await axios.post('/api/signup', {email, name, password});
-      if(this.state.error.statusType)
+    this.props.mutate({
+      variables: { email, password, name },
+      refetchQueries: [{ query }]
+    }).catch( res => {
+      debugger
+      this.setState( () => {return  { error: helpers.handleError(res) } });
+    });
+
+    if(this.state.error.statusType)
         this.setState( () => {return { error: helpers.clearError() } });
 
-      localStorage.setItem('token', token);
-      return this.props.history.push('/game');
-    } catch(err) {
-      this.setState( () => {return  { error: helpers.handleError(err) } });
-    }
+    this.props.history.push('/game');
   }
 
   render() {
@@ -117,4 +120,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default graphql(mutation)(Signup);
