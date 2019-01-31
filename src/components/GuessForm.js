@@ -7,9 +7,8 @@ import { GridItem, Field, OutlineButton, Input, Flex } from './elements';
 import mutation from '../mutations/Guess';
 import UnguessedPlayers from '../queries/UnguessedPlayers';
 import TriviaQuery from '../queries/Trivia';
-import GuessListQuery from '../queries/GuessList'
-
-
+import GuessListQuery from '../queries/GuessList';
+import CurrentUserQuery from '../queries/CurrentUser';
 
 class GuessForm extends Component {
   constructor(props) {
@@ -58,6 +57,14 @@ class GuessForm extends Component {
       }));
     }
 
+    if( this.props.signedIn.user.id !== this.state.selectedPlayer && this.props.signedIn.user.id !== "7") {
+      return this.setState(() => ({
+        error: {
+          player: 'Please guess only for yourself'
+        }
+      }));
+    }
+
     const { trivia } = this.props.triviaData;
     
     this.props.guessMutation({
@@ -97,23 +104,23 @@ class GuessForm extends Component {
   }
 
   render() {
-    if(new Date().getHours() < 11) return (
-      <GridItem
-        gridRow={this.props.gridRow}
-        gridColumn={this.props.gridColumn}
-      >
-        Checkback after 11:00am
-      </GridItem>
-    );
+    // if(new Date().getHours() < 11) return (
+    //   <GridItem
+    //     gridRow={this.props.gridRow}
+    //     gridColumn={this.props.gridColumn}
+    //   >
+    //     Checkback after 11:00am
+    //   </GridItem>
+    // );
 
-    if(new Date().getHours() >= 15) return (
-      <GridItem
-        gridRow={this.props.gridRow}
-        gridColumn={this.props.gridColumn}
-      >
-        Checkback for another trivia!
-      </GridItem>
-    );
+    // if(new Date().getHours() >= 15) return (
+    //   <GridItem
+    //     gridRow={this.props.gridRow}
+    //     gridColumn={this.props.gridColumn}
+    //   >
+    //     Checkback for another trivia!
+    //   </GridItem>
+    // );
 
     if(this.props.players.loading) return <div></div>
 
@@ -185,5 +192,8 @@ export default compose(
   }),
   graphql(mutation, {
     name: 'guessMutation'
+  }),
+  graphql(CurrentUserQuery, {
+    name: 'signedIn'
   })
 )(GuessForm);

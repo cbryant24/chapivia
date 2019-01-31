@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { AllHtmlEntities as Entities } from 'html-entities';
-import { GridItem, Heading, FlexItem, Span } from './elements';
 import { connect } from 'react-redux';
 import { compose, graphql } from 'react-apollo';
 import CorrectGuessesQuery from '../queries/CorrectGuesses';
 import TriviaQuery from '../queries/Trivia';
 
-import * as actions from '../actions';
+import { GridItem, Heading, FlexItem, Span } from './elements';
+import * as Elements from './elements';
 
 class Winner extends Component {
 
@@ -47,20 +47,23 @@ class Winner extends Component {
     if(this.props.triviaData.loading) return <div></div>;
 
     return(
-      <GridItem
-        gridRow={this.props.gridRow}
-        gridColumn={this.props.gridColumn}
+      <Elements.Flex
+        flexDirection="column"
+        width="50%"
       >
-        <Span 
-          position="relative"
+        <Elements.Heading.h1
           textTransform="uppercase"
-          fontSize="3.6rem"
         >
-          {this.convertHTMLChar(this.props.triviaData.trivia.questionChoice.correctChoice)}
-        </Span>
+          Answer: {this.convertHTMLChar(this.props.triviaData.trivia.questionChoice.correctChoice)}!
+        </Elements.Heading.h1>
+        <Elements.Heading.h2
+          textTransform="uppercase"
+        >
+          Correct Guesses:
+        </Elements.Heading.h2>
         {this.displayWinners()}
-      </GridItem>
-    )
+      </Elements.Flex>
+    );
   }
 }
 

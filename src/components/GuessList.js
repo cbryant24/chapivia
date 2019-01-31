@@ -5,7 +5,9 @@ import { graphql, compose } from 'react-apollo'
 import guessListQuery from '../queries/GuessList';
 import triviaQuery from '../queries/Trivia';
 import mutation from '../mutations/Guess';
+import CurrentUserQuery from '../queries/CurrentUser';
 import { GridItem, OutlineButton, Input, Image, Text, Flex, Field, FlexItem, Span } from './elements';
+import * as Element from './elements'
 
 class GuessList extends Component {
   constructor(props) {
@@ -40,11 +42,17 @@ class GuessList extends Component {
   }
 
   handleGuessUpdate(event) {
+    event.preventDefault();
+    debugger
     if(this.state.error || !this.state.updatedGuess ) return
 
     const { trivia } = this.props.triviaData;
 
-    event.preventDefault();
+    if( this.props.signedIn.user.id !== this.state.selectedPlayer.id && this.props.signedIn.user.id !== "7") {
+      return this.setState(() => ({
+        error: 'Please guess only for yourself'
+      }));
+    }
     
     this.props.guessMutation({
       variables: {
@@ -59,10 +67,7 @@ class GuessList extends Component {
       const errors = res.graphQLErrors.map(error => error.message);
     });
     
-    this.setState( () => ({ 
-      selectedPlayer: '',
-      updatedGuess: ''
-    }));
+    this.handleChangeCancel();
   }
 
   handleChangeCancel() {
@@ -75,7 +80,7 @@ class GuessList extends Component {
   displayGuessesAfterDeadline() {
     return (
       this.props.guessList.guesses.map( (guess, idx) => (
-        <Flex
+        <Element.Flex
           fontSize="1.6rem"
           textAlign="center"
           height="4rem"
@@ -93,16 +98,17 @@ class GuessList extends Component {
           >
             {guess.name}
           </Span.glitchAnimation>
-        </Flex>
+        </Element.Flex>
       ))
     )
         
   }
 
   dispalayGuesses() {
+    
     if(this.props.guessList.loading) return <FlexItem></FlexItem>
 
-    if(new Date().getHours() >= 15) return <FlexItem>{this.displayGuessesAfterDeadline()}</FlexItem>
+    // if(new Date().getHours() >= 15) return <FlexItem>{this.displayGuessesAfterDeadline()}</FlexItem>
 
     return (
       this.props.guessList.guesses.map( (guess, idx) => (
@@ -124,8 +130,8 @@ class GuessList extends Component {
           >
             {guess.name}
           </Span.glitchAnimation>
-          <form onSubmit={event => this.handleGuessUpdate(event)}>
-              {guess === this.state.selectedPlayer ?
+          <Element.FlexForm onSubmit={event => this.handleGuessUpdate(event)}>
+            {guess === this.state.selectedPlayer ?
               <Flex>
                 <Field 
                   name="password"
@@ -139,7 +145,7 @@ class GuessList extends Component {
                   justifyContent="space-around"
                 >
                 </Field>
-                <Field
+                {/* <Field
                   borderRadius="0"
                   borderWidth="2px"
                   minHeight="1rem"
@@ -150,10 +156,27 @@ class GuessList extends Component {
                   fontWeight="700"
                   type="submit"
                   value="Submit"
+                /> */}
+                <Element.Input
+                  color="white"
+                  width="2rem"
+                  borderColor='primary'
+                  type="submit"
+                  value="Submit"
+                  mr="2rem"
+                />
+                <Element.Input
+                  color="white"
+                  width="2rem"
+                  borderColor='primary'
+                  textAlign="center"
+                  type="cancel"
+                  value="Cancel"
+                  onClick={ () => this.handleChangeCancel(guess)}
                 />
               </Flex>
-              : '*'}
-            </form>
+            : '*'}
+          </Element.FlexForm>
           <FlexItem>
             { this.state.selectedPlayer === guess ? '': <OutlineButton
               bg="primary"
@@ -219,5 +242,8 @@ export default compose(
   }),
   graphql(mutation, {
     name: 'guessMutation'
+  }),
+  graphql(CurrentUserQuery, {
+    name: 'signedIn'
   })
 )(GuessList);

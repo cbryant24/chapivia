@@ -8,6 +8,7 @@ import mutation from '../mutations/Guess';
 import query from '../queries/Trivia';
 import * as actions from '../actions';
 
+import GuessForm from './GuessForm';
 import { Grid, GridItem, Text, List, Item, Heading } from './elements';
 
 class TriviaQuestion extends Component {
@@ -59,6 +60,7 @@ class TriviaQuestion extends Component {
         <List>
           {this.displayGuesses()}
         </List>
+        <GuessForm/>
       </GridItem>
     );
   }

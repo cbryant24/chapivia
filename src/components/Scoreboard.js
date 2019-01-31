@@ -8,6 +8,7 @@ import query from '../queries/Scores';
 
 import * as actions from '../actions';
 import { GridItem, Flex, FlexItem, Image, Text } from './elements';
+import * as Elements from './elements';
 import kgrad from '../img/kgrad.png';
 
 class Scoreboard extends Component {
@@ -42,38 +43,34 @@ class Scoreboard extends Component {
   dispalayPlayerScores() {
     const renderedScores = [];
 
-    if (this.props.data.loading) return <Flex></Flex>;
+    if (this.props.data.loading) return <Elements.Flex></Elements.Flex>;
     
-    if (!this.props.data.scores) return <Flex></Flex>;
+    if (!this.props.data.scores) return <Elements.Flex></Elements.Flex>;
 
     this.props.data.scores.map( player => {
       renderedScores.push(
-        <Flex
+        <Elements.Flex
           fontSize="1.6rem"
           textAlign="center"
+          justifyContent="space-between"
           height="4rem"
           key={player.id}
         >
-          <FlexItem display="flex" width="100%"> 
-            {/* <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/> */}
-            <Text.span
-              textTransform="uppercase"
-              fontSize="1.7rem"
-              fontWeight="500"
-              padding-left="2rem"
-            >
-              {player.name}
-            </Text.span>
-          </FlexItem>
-          <FlexItem width="30%">
+          <Text.span
+            textTransform="uppercase"
+            fontSize="1.7rem"
+            fontWeight="500"
+            padding-left="2rem"
+          >
+            {player.name}
+          </Text.span>
             <Text.span 
               fontSize="1.7rem"
               fontWeight="500"
             >
               {player.score}
             </Text.span>
-          </FlexItem>
-        </Flex>
+        </Elements.Flex>
       )
     });
     return renderedScores;
@@ -81,18 +78,18 @@ class Scoreboard extends Component {
 
   render() {
     return(
-      < GridItem 
-        gridRow={this.props.gridRow}
-        gridColumn={this.props.gridColumn}
+      < Elements.Flex 
+        width="25%"
+        flexDirection="column"
       >
-        <Flex
+        <Elements.Flex
           justifyContent="space-between"
         >
-            <Text.p>Player</Text.p>
-            <Text.p>Score</Text.p>
-        </Flex>
+            <Elements.Text.p>Player</Elements.Text.p>
+            <Elements.Text.p>Score</Elements.Text.p>
+        </Elements.Flex>
         {this.dispalayPlayerScores()}
-      </GridItem>
+      </ Elements.Flex>
     );
   }
 }

@@ -42,7 +42,6 @@ ReactDOM.render(
               <App>
                 <Route path='/game' exact component={Game}/>
                 {/* <Route path='' component={GameController}/> */}
-                {/* <Route path='/signup' exact component={Signup}/> */}
                 <Route path='/' exact component={Signin}/>
                 <Route path='/signup' component={Signup}/>
               </App>
