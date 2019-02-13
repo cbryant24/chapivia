@@ -2,13 +2,16 @@
 const { triviaConfig } = require('../../config/');
 const dateFormat = require('dateformat');
 const Nedb = require('../nedb');
+const moment = require('moment');
+
 
 module.exports = (sequelize, DataTypes) => {
   var Question = sequelize.define('question', {
     question: DataTypes.STRING,
     is_used: DataTypes.BOOLEAN,
     difficulty: DataTypes.STRING,
-    category: DataTypes.STRING
+    category: DataTypes.STRING,
+    dateUsed: DataTypes.DATEONLY
   }, {
     freezeTableName: true,
   });
@@ -19,19 +22,45 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   Question.dailyQuestion = async function() {
-    const date = new Date();
-    const dayOfWeek = date.getDay();
-    const gameDate = dateFormat('yyyy-mm-dd');
-    let currentHour = new Date().getHours();
+    const dayOfWeek = new Date().getDay();
+    const todaysDate = moment().format('YYYY-MM-DD');
+    const previousGameDate = dayOfWeek === 1 ? 
+      moment().add(-3, 'day').format('YYYY-MM-DD') : moment().add(-1, 'day').format('YYYY-MM-DD');
     
-    const dailyQuestion = await this.findOne({ 
-      where: {
-        category: triviaConfig[dayOfWeek],
-        difficulty: 'medium',
-        is_used: 'false'
-    }});
+    if (dayOfWeek === 0 || dayOfWeek === 6) return null
+
+    try {
+      let dailyQuestion = await this.findOne({ 
+        where: {
+          category: triviaConfig[dayOfWeek],
+          difficulty: 'medium',
+          is_used: 'false',
+          dateUsed: todaysDate 
+      }});
     
-    return dailyQuestion
+      if( !dailyQuestion ) {
+        dailyQuestion = await this.findOne({ 
+          where: {
+            category: triviaConfig[dayOfWeek],
+            difficulty: 'medium',
+            is_used: 'false',
+        }});
+
+        dailyQuestion.dateUsed = todaysDate
+        dailyQuestion.save();
+      }
+
+      dailyQuestion.previousGameQuestion = await this.findOne({ 
+        where: {
+          dateUsed: previousGameDate 
+      }});
+
+      return dailyQuestion
+    } catch(e) {
+      debugger
+      console.log(e)
+    }
   }
+
   return Question;
 };

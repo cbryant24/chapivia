@@ -3,11 +3,13 @@ const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
 const { 
   User, 
   Question,
-  UserQuestionChoice } = require('../../../../models');
+  QuestionChoice,
+} = require('../../../../models');
 const UserType = require('./user_type');
 // const QuestionChoiceType = require('./question_choice_type');
 const QuestionType = require('./question_type');
 const ScoreType = require('./score_type');
+const CorrectAnswerType = require('./correct_answer_type');
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -46,6 +48,12 @@ const RootQueryType = new GraphQLObjectType({
       type: new GraphQLList(UserType),
       resolve(parentValue, args, req) {
         return User.correctGuesses();
+      }
+    },
+    correctAnswer: {
+      type: CorrectAnswerType,
+      resolve(parentValue, args, req) {
+        return QuestionChoice.getTriviaAnswer()
       }
     },
     nonGuessedPlayers: {

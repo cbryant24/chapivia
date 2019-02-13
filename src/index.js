@@ -15,40 +15,22 @@ import Game from './components/Game';
 import GameController from './components/GameController';
 import App from './components/App';
 
-import reducers from './reducers';
-// import { client } from './reducers';
-
-export const store = createStore(
-  reducers,
-  // applyMiddleware(reduxThunk)
-);
-
-// const networkInterface = createNetworkInterface({
-//   uri: '/graphql',
-//   opts: {
-//     credentials: 'same-origin'
-//   }
-// });
-
 const client = new ApolloClient();
 
 ReactDOM.render(
-  // <Provider store={store}>
-  
-    <ApolloProvider client={ client } >
-      <Router>
-        <ThemeProvider theme={theme}>
-          <div style={{ position: 'relative' }}>
-              <App>
-                <Route path='/game' exact component={Game}/>
-                {/* <Route path='' component={GameController}/> */}
-                <Route path='/' exact component={Signin}/>
-                <Route path='/signup' component={Signup}/>
-              </App>
-            </div>
-        </ThemeProvider>
-      </Router>
-    </ApolloProvider>,
-  // </Provider>,
+  <ApolloProvider client={ client } >
+    <Router>
+      <ThemeProvider theme={theme}>
+        <div style={{ position: 'relative' }}>
+            <App>
+              <Route path='/game' exact component={Game}/>
+              {/* <Route path='' component={GameController}/> */}
+              <Route path='/' exact component={Signin}/>
+              <Route path='/signup' component={Signup}/>
+            </App>
+          </div>
+      </ThemeProvider>
+    </Router>
+  </ApolloProvider>,
   document.getElementById('root')
 );

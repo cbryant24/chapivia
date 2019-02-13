@@ -18,25 +18,42 @@ class Game extends Component {
   render() {
     return (
       <React.Fragment>
-        <Element.Flex
+        <Element.Grid
           width="100%"
           p="1rem 2rem"
           zIndex="10"
+          templateColumns="1fr 1.5fr .5fr"
+          templateRows="1fr 1fr"
+          gridGap="2rem 4rem"
+          justifyContent="space-between"
         >
-          <GuessList />
-          <TriviaQuestion />
-          
-          
-        </Element.Flex>
-        <Element.Flex
-          width="100%"
-          justifyContent="space-around"
-        >
-          <Scoreboard />
-          <Winner />
-        </Element.Flex>
+          <Element.GridItem
+            gridRow="1 / span 2"
+            gridColumn="1 / span 1"
+          >
+            <GuessList />
+          </Element.GridItem>
+          <Element.GridItem
+            gridRow="1 / span 1"
+            gridColumn="2 / span 1"
+          >
+            <TriviaQuestion />
+          </Element.GridItem>
+          <Element.GridItem
+            gridRow="1 / span 1"
+            gridColumn="3 / span 1"
+          >
+            <Scoreboard />
+          </Element.GridItem>
+          <Element.GridItem
+            gridRow="2 / span 1"
+            gridColumn="2 / span 1"
+          >
+            <Winner />
+          </Element.GridItem>
+        </Element.Grid>
       </React.Fragment>
-    )
+    );
   }
 }
 

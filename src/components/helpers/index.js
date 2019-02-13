@@ -1,5 +1,6 @@
 export default {
   handleError: (err) => {
+    
     if(err.response) {
       return {
         statusType: err.response.status,

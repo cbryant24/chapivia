@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { fontSize, space, width, color, propTypes, minHeight, fontWeight } from 'styled-system'
+import { fontSize, space, width, color, propTypes, minHeight, fontWeight, textAlign, maxHeight, height } from 'styled-system'
 import cleanElement from 'clean-element';
 import theme, { filterProps } from './theme'
 import PropTypes from 'prop-types'
@@ -23,7 +23,6 @@ const Input = styled(cleanElement(Base))`
   vertical-align: middle;
   width: ${props => props.width || props.theme.inputWidth };
   max-width: ${props => props.maxWidth || props.theme.inputMaxWidth };
-  min-height: 3.6rem;
   line-height: inherit;
   font-family: inherit;
   background-color: transparent;
@@ -47,7 +46,7 @@ const Input = styled(cleanElement(Base))`
     background: #fff url("data:image/svg+xml;charset=utf8,${chevron()}") no-repeat right .75rem center;
     background-size: .5rem;
   }
-  ${fontSize} ${space} ${width} ${color} ${minHeight} ${fontWeight};
+  ${fontSize} ${space} ${color} ${minHeight} ${fontWeight} ${textAlign} ${maxHeight} ${height};
 `
 
 Input.displayName = 'Input'
@@ -64,8 +63,6 @@ Input.defaultProps = {
   theme,
   w: 1,
   m: 0,
-  py: 1,
-  px: 2,
   fontSize: `${theme.remSizes[16]}rem`,
   color: 'inherit',
   bg: 'transparent'

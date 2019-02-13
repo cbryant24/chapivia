@@ -46,7 +46,6 @@ class GuessForm extends Component {
   }
 
   handleSubmit(event) {
-    debugger
     event.preventDefault();
     if( !this.state.guess || !this.state.selectedPlayer ) {
       return this.setState(() => ({
@@ -90,7 +89,6 @@ class GuessForm extends Component {
   }
 
   clearForm(event) {
-    debugger
     event.preventDefault();
 
     this.setState( () => ({ 
@@ -104,23 +102,15 @@ class GuessForm extends Component {
   }
 
   render() {
-    // if(new Date().getHours() < 11) return (
-    //   <GridItem
-    //     gridRow={this.props.gridRow}
-    //     gridColumn={this.props.gridColumn}
-    //   >
-    //     Checkback after 11:00am
-    //   </GridItem>
-    // );
 
-    // if(new Date().getHours() >= 15) return (
-    //   <GridItem
-    //     gridRow={this.props.gridRow}
-    //     gridColumn={this.props.gridColumn}
-    //   >
-    //     Checkback for another trivia!
-    //   </GridItem>
-    // );
+    if(new Date().getHours() >= 17) return (
+      <GridItem
+        gridRow={this.props.gridRow}
+        gridColumn={this.props.gridColumn}
+      >
+        Checkback for another trivia!
+      </GridItem>
+    );
 
     if(this.props.players.loading) return <div></div>
 

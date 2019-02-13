@@ -83,7 +83,6 @@ function generateRandomKeyFrames(keyframes, dis, len, name){
   for(var i = 0; i < len; i++){
     keyframe += `${(i / len) * 100}%{transform: translateX(${Math.Ran(dis)}px)}`
   }
-
   return keyframes`${keyframe}`
 }
 
@@ -91,6 +90,9 @@ Text.span = Text.withComponent('span');
 Text.p = Text.withComponent('p').extend`
   animation: ${props => props.animation_one ? `${generateRandomKeyFrames(keyframes, 15, 16, "random1")} ${props.animation_one};` : ''};
   animation: ${props => props.animation_two ? `${generateRandomKeyFrames(keyframes, 10, 10, "random1")} ${props.animation_two};` : ''};
+  :hover {
+    cursor: ${props =>  props.cursor || ''}
+  }
 `
 Text.s = Text.withComponent('s');
 Text.hOne = Text.withComponent('h1').extend`

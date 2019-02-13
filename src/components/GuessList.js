@@ -43,7 +43,7 @@ class GuessList extends Component {
 
   handleGuessUpdate(event) {
     event.preventDefault();
-    debugger
+    
     if(this.state.error || !this.state.updatedGuess ) return
 
     const { trivia } = this.props.triviaData;
@@ -108,21 +108,21 @@ class GuessList extends Component {
     
     if(this.props.guessList.loading) return <FlexItem></FlexItem>
 
-    // if(new Date().getHours() >= 15) return <FlexItem>{this.displayGuessesAfterDeadline()}</FlexItem>
+    if(new Date().getHours() >= 17) return <FlexItem>{this.displayGuessesAfterDeadline()}</FlexItem>
 
     return (
       this.props.guessList.guesses.map( (guess, idx) => (
         <Flex
           fontSize="1.6rem"
           textAlign="center"
-          height="4rem"
           justifyContent="space-between"
           position="relative"
+          mb="5px"
           key={guess.id}
         >
-          {/* <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/> */}
           <Span.glitchAnimation
             textTransform="uppercase"
+            textAlign="start"
             fontSize="2.4rem"
             fontWeight="500"
             padding-left="2rem"
@@ -130,10 +130,17 @@ class GuessList extends Component {
           >
             {guess.name}
           </Span.glitchAnimation>
-          <Element.FlexForm onSubmit={event => this.handleGuessUpdate(event)}>
+          <Element.FlexForm
+            justifyContent="flex-end"
+            maxWidth="60%"
+            onSubmit={event => this.handleGuessUpdate(event)}
+          >
             {guess === this.state.selectedPlayer ?
-              <Flex>
-                <Field 
+              <Flex
+                justifyContent="flex-end"
+              >
+                {/* <Field
+                  display="flex"
                   name="password"
                   type="password"
                   minHeight="1.1rem"
@@ -144,83 +151,69 @@ class GuessList extends Component {
                   value={this.state.updatedGuess}
                   justifyContent="space-around"
                 >
-                </Field>
-                {/* <Field
-                  borderRadius="0"
-                  borderWidth="2px"
-                  minHeight="1rem"
-                  border="20px solid white"
-                  py="0"
-                  px="0"
-                  fontSize="1.1rem"
-                  fontWeight="700"
-                  type="submit"
-                  value="Submit"
-                /> */}
+                </Field> */}
                 <Element.Input
-                  color="white"
-                  width="2rem"
-                  borderColor='primary'
-                  type="submit"
-                  value="Submit"
+                  type="password"
+                  fontSize="1.1rem"
+                  width="10%"
+                  display="inline-block"
+                  height="75%"
                   mr="2rem"
+                  p="0"
+                  value={this.state.updatedGuess}
+                  onChange={(event) => this.updateGuessChoice(event)}
                 />
                 <Element.Input
                   color="white"
-                  width="2rem"
+                  width="25%"
                   borderColor='primary'
                   textAlign="center"
+                  mr="2rem"
+                  height="75%"
+                  p="0"
+                  type="submit"
+                  value="Submit"
+                />
+                <Element.Input
+                  color="white"
+                  width="25%"
+                  borderColor='primary'
+                  textAlign="center"
+                  height="75%"
+                  p="0"
                   type="cancel"
                   value="Cancel"
                   onClick={ () => this.handleChangeCancel(guess)}
                 />
               </Flex>
-            : '*'}
-          </Element.FlexForm>
-          <FlexItem>
-            { this.state.selectedPlayer === guess ? '': <OutlineButton
-              bg="primary"
-              fontSize="1.1rem"
-              borderWidth="1px"
-              color="white"
-              px="4px"
-              py="2px"
-              mr="2px"
-              borderRadius="2px"
-              onClick={ () => this.handleGuessChange(guess) }
-            >
-              change
-            </OutlineButton>}
-            {guess === this.state.selectedPlayer ? 
+            : 
             <OutlineButton
               bg="primary"
               fontSize="1.1rem"
               borderWidth="1px"
               color="white"
-              px="4px"
-              py="2px"
-              ml="2px"
+              maxHeight="20px"
               borderRadius="2px"
-              onClick={ () => this.handleChangeCancel(guess)}
+              before="*"
+              onClick={ () => this.handleGuessChange(guess) }
             >
-              cancel
-            </OutlineButton> : ""}
-            </FlexItem>
-          </Flex>
+              change
+            </OutlineButton>}
+          </Element.FlexForm>
+        </Flex>
       ))
     )
   }
 
   render() {
     return (
-      < GridItem 
-        gridRow={this.props.gridRow}
-        gridColumn={this.props.gridColumn}
-        display="flex"
+      < Flex         
         flexDirection="column"
+        minWidth="50%"
+        height="auto"
       >
         <Flex
-          justifyContent="space-around"
+          justifyContent="space-between"
         >
           <Text.p>Player</Text.p>
           <Text.p>Guess</Text.p>
@@ -228,7 +221,7 @@ class GuessList extends Component {
         <FlexItem>
           {this.dispalayGuesses()}
         </FlexItem>
-      </GridItem>
+      </Flex>
     );
   }
 }

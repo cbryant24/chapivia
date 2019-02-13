@@ -79,7 +79,6 @@ class Scoreboard extends Component {
   render() {
     return(
       < Elements.Flex 
-        width="25%"
         flexDirection="column"
       >
         <Elements.Flex

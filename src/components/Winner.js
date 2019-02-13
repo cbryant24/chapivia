@@ -3,7 +3,7 @@ import { AllHtmlEntities as Entities } from 'html-entities';
 import { connect } from 'react-redux';
 import { compose, graphql } from 'react-apollo';
 import CorrectGuessesQuery from '../queries/CorrectGuesses';
-import TriviaQuery from '../queries/Trivia';
+import TriviaAnswer from '../queries/TriviaAnswer';
 
 import { GridItem, Heading, FlexItem, Span } from './elements';
 import * as Elements from './elements';
@@ -34,27 +34,18 @@ class Winner extends Component {
   }
 
   render() {
-    if(new Date().getHours() < 15) return (
-      <GridItem
-        gridRow={this.props.gridRow}
-        gridColumn={this.props.gridColumn}
-      >
-        <Span>
-          Check back after 3pm for the answer and winners
-        </Span>
-      </GridItem>
-    )
-    if(this.props.triviaData.loading) return <div></div>;
-
+    
+    if(this.props.triviaChoices.loading) return <div></div>;
+    
     return(
       <Elements.Flex
         flexDirection="column"
-        width="50%"
+        width="100%"
       >
         <Elements.Heading.h1
           textTransform="uppercase"
         >
-          Answer: {this.convertHTMLChar(this.props.triviaData.trivia.questionChoice.correctChoice)}!
+          Answer: {this.convertHTMLChar(this.props.triviaChoices.correctAnswer.correctChoice)}!
         </Elements.Heading.h1>
         <Elements.Heading.h2
           textTransform="uppercase"
@@ -68,8 +59,8 @@ class Winner extends Component {
 }
 
 export default compose(
-  graphql(TriviaQuery, {
-    name: "triviaData"
+  graphql(TriviaAnswer, {
+    name: "triviaChoices"
   }),
   graphql(CorrectGuessesQuery, {
     name: "winners"

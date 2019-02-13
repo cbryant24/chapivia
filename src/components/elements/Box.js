@@ -24,7 +24,8 @@ import {
   right,
   zIndex,
   flexDirection,
-  propTypes
+  propTypes,
+  minWidth
 } from 'styled-system';
 import { fontStyle, backgroundColor } from './theme'
 import theme, { filterProps } from './theme'
@@ -54,7 +55,8 @@ const Box = styled(cleanElement(Base))([], space, width, color, fontSize, textAl
   transformOrigin,
   content,
   flexDirection,
-  minHeight);
+  minHeight,
+  minWidth);
 
 Box.displayName = 'Box'
 Box.header = Box.withComponent('header')

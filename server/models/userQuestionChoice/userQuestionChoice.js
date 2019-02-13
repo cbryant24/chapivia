@@ -1,4 +1,6 @@
 'use strict';
+const moment = require('moment');
+
 module.exports = (sequelize, DataTypes) => {
   var UserQuestionChoice = sequelize.define('userQuestionChoice', {
     isCorrect: DataTypes.BOOLEAN,
@@ -20,6 +22,11 @@ module.exports = (sequelize, DataTypes) => {
       questionChoiceId,
       guess
     } = guessData;
+
+    const currentHour = moment().format('HH');
+
+    if (currentHour >= 17) return null;
+    
     try {
       const { correctChoice } = await this.associations.questionChoice.target.findById(questionChoiceId);
     
