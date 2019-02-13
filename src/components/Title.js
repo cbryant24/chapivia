@@ -11,7 +11,9 @@ import query from '../queries/CurrentUser';
 class Title extends Component {
   onLogoutClick() {
     
-    this.props.mutate();
+    this.props.mutate({
+      refetchQueries: [{ query }]
+    });
     this.props.history.push('/');
   }
 

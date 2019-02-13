@@ -33,28 +33,29 @@ class Signin extends Component {
   }
 
   componentDidUpdate(prevProps) {
-
+    debugger
     if(this.props.errorMessage)
       return this.setState(() => {return {...this.state, error: helpers.handleError('invalid')} });
-
+    
     if(this.props.data.user) 
       return this.props.history.push('/game');
   }
 
-  signin(event) {
+  async signin(event) {
     event.preventDefault();
     const { email, password } = this.state;
-
 
     if (!email || !password )
       return this.setState(() => {return {...this.state, error: helpers.handleError('blank')} });
 
-    this.props.mutate({
-      variables: { email, password },
-      refetchQueries: [{ query }]
-    }).catch( res => {
+    try {
+      const res = await this.props.mutate({
+        variables: { email, password },
+        refetchQueries: [{ query }]
+      });
+    } catch(e) {
       debugger
-    });
+    }
 
     if(this.state.error.statusType)
         this.setState( () => {return { error: helpers.clearError() }});
