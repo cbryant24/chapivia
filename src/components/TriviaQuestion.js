@@ -37,9 +37,6 @@ class TriviaQuestion extends Component {
   }
   
   render() {
-    if(new Date().getHours() < 11) return (
-      <Heading.h1>Checkback after 11:00am</Heading.h1>
-    );
 
     if(this.props.data.loading) return <div></div>
     
