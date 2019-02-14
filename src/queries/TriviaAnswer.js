@@ -4,6 +4,9 @@ export default gql`
 {
   correctAnswer {
     correctChoice
+    question {
+      question
+    }
   }
 }
 `;

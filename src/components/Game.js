@@ -40,7 +40,7 @@ class Game extends Component {
             <TriviaQuestion />
           </Element.GridItem>
           <Element.GridItem
-            gridRow="1 / span 1"
+            gridRow="1 / span 2"
             gridColumn="3 / span 1"
           >
             <Scoreboard />

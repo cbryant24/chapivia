@@ -19,7 +19,7 @@ class Title extends Component {
 
   render() {
     if (this.props.data.loading) return <Flex></Flex>;
-
+    debugger
     return (
       <Flex
         justifyContent="center"
@@ -91,10 +91,10 @@ class Title extends Component {
         >
           <Text.p
             cursor="pointer"
-            fontSize="20px"
+            fontSize="16px"
             onClick={ this.onLogoutClick.bind(this) }
           >
-            signout
+            signout { this.props.data.user.name }
           </Text.p>
         </FlexItem>
       </Flex>

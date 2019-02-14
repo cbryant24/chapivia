@@ -35,18 +35,23 @@ class Winner extends Component {
 
   render() {
     
-    if(this.props.triviaChoices.loading) return <div></div>;
-    
+    if(this.props.triviaAnswer.loading) return <div></div>;
+    debugger
     return(
       <Elements.Flex
         flexDirection="column"
         width="100%"
       >
-        <Elements.Heading.h1
+        <Elements.Text.p
           textTransform="uppercase"
         >
-          Answer: {this.convertHTMLChar(this.props.triviaChoices.correctAnswer.correctChoice)}!
-        </Elements.Heading.h1>
+          Trivia: {this.convertHTMLChar(this.props.triviaAnswer.correctAnswer.question.question)}!
+        </Elements.Text.p>
+        <Elements.Heading.h2
+          textTransform="uppercase"
+        >
+          Answer: {this.convertHTMLChar(this.props.triviaAnswer.correctAnswer.correctChoice)}!
+        </Elements.Heading.h2>
         <Elements.Heading.h2
           textTransform="uppercase"
         >
@@ -60,7 +65,7 @@ class Winner extends Component {
 
 export default compose(
   graphql(TriviaAnswer, {
-    name: "triviaChoices"
+    name: "triviaAnswer"
   }),
   graphql(CorrectGuessesQuery, {
     name: "winners"

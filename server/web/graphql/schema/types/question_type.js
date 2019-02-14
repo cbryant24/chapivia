@@ -12,13 +12,6 @@ const QuestionType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     question: { type: GraphQLString },
-    correctChoice: { type: GraphQLString },
-    yesterdaysAnswer: {
-      type: QuestionChoiceType,
-      resolve(parentValue) {
-        return QuestionChoice.find({ where: { questionId: parentValue.previousGameQuestion.id } })
-      }
-    },
     questionChoice: {
       type: QuestionChoiceType,
       resolve(parentValue) {

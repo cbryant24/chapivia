@@ -39,7 +39,7 @@ class TriviaQuestion extends Component {
   render() {
 
     if(this.props.data.loading) return <div></div>
-    
+    debugger
     return (
       <GridItem 
         gridRow={this.props.gridRow} 

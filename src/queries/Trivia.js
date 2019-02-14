@@ -7,7 +7,6 @@ export default gql`
       question
       questionChoice {
         id
-        correctChoice
         choices
       }
     }

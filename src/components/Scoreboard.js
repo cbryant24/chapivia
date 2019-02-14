@@ -13,16 +13,6 @@ import kgrad from '../img/kgrad.png';
 
 class Scoreboard extends Component {
 
-  componentWillMount() {
-    // this.props.getPlayerScores();
-  }
-
-  componentDidUpdate(prevProps) {
-    // if(this.props.announceAnswer && this.props.announceAnswer !== prevProps.announceAnswer) {
-    //   this.props.getPlayerScores();
-    // }
-  }
-
   displayHeaders(headers) {
     return (
       headers.map( title =>  {

@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       moment().add(-3, 'day').format('YYYY-MM-DD') : moment().add(-1, 'day').format('YYYY-MM-DD');
     
     if (dayOfWeek === 0 || dayOfWeek === 6) return null
-
+    
     try {
       let dailyQuestion = await this.findOne({ 
         where: {
