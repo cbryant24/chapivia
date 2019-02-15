@@ -83,20 +83,22 @@ class Title extends Component {
             >
             </FlexItem>
         </FlexItem>
-        <FlexItem
-          position="absolute"
-          right="0"
-          display={ this.props.data.user ? "inline-block" : "none" }
-          zIndex="20"
-        >
-          <Text.p
-            cursor="pointer"
-            fontSize="16px"
-            onClick={ this.onLogoutClick.bind(this) }
+        { this.props.data.user ? 
+          <FlexItem
+            position="absolute"
+            right="0"
+            display={ this.props.data.user ? "inline-block" : "none" }
+            zIndex="20"
           >
-            signout { this.props.data.user.name }
-          </Text.p>
-        </FlexItem>
+            <Text.p
+              cursor="pointer"
+              fontSize="16px"
+              onClick={ this.onLogoutClick.bind(this) }
+            >
+              signout { this.props.data.user.name }
+            </Text.p>
+          </FlexItem> : ''
+        }
       </Flex>
     );
   }

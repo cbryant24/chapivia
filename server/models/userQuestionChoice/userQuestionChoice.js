@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     isCorrect: DataTypes.BOOLEAN,
     userId: DataTypes.INTEGER,
     questionId: DataTypes.INTEGER,
-    questionChoiceId: DataTypes.INTEGER
+    questionChoiceId: DataTypes.INTEGER,
+    createdAt: DataTypes.DATEONLY,
+    updatedAt: DataTypes.DATEONLY,
   },{
     freezeTableName: true,
   });

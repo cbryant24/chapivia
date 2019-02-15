@@ -94,7 +94,7 @@ class GuessList extends Component {
             fontSize="2.4rem"
             fontWeight="500"
             padding-left="2rem"
-            glitchAnimation={`${idx % 2 === 1 ? guess.name : ''}`}
+            glitchAnimation={`${Math.floor((Math.random() * 10) + 1) % 2 === 1 ? guess.name : ''}`}
           >
             {guess.name}
           </Span.glitchAnimation>

@@ -111,15 +111,16 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   User.todaysGuesses = async function() {
-    const gameDate = moment().startOf('day').toDate();
-    
+    const startOfToday = moment().startOf('day').toDate();
+    const endOfToday = moment().endOf('day').toDate();
+    debugger
     try {
       const todaysGuesses = await this.findAll({
         include: [{ 
           model: this.associations.userQuestionChoices.target,
           where: {
             updatedAt: {
-              $gte: gameDate
+              between: [startOfToday, endOfToday]
             }
           }
         }]
@@ -136,9 +137,11 @@ module.exports = (sequelize, DataTypes) => {
   User.correctGuesses = async function() {
     const currentHour = moment().format('HH');
     const dayOfWeek = new Date().getDay();
-    const todaysDate = moment().format('YYYY-MM-DD');
-    const previousGameDate = dayOfWeek === 1 ? 
-      moment().add(-3, 'day').format('YYYY-MM-DD') : moment().add(-1, 'day').format('YYYY-MM-DD');
+    
+    const startOfToday = moment().startOf('day').toDate();
+    const endOfToday = moment().endOf('day').toDate();
+    const startOfPreviousGameDate = moment().add(`${dayOfWeek === 1 ? -3 : -1}`, 'day').startOf('day').toDate();
+    const endOfPreviousGameDate = moment().add(`${dayOfWeek === 1 ? -3 : -1}`, 'day').endOf('day').toDate();
     
     try { 
       const correctGuesses = await this.findAll({
@@ -147,7 +150,8 @@ module.exports = (sequelize, DataTypes) => {
           where: {
             isCorrect: true,
             updatedAt: {
-              gte: currentHour >= 17 ? todaysDate : previousGameDate
+              $between: currentHour >= 17 ?  
+                [startOfToday, endOfToday] : [startOfPreviousGameDate, endOfPreviousGameDate]
             }
           }
         }]

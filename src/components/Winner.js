@@ -20,7 +20,7 @@ class Winner extends Component {
         position="relative"
       >
         <Span.glitchAnimation
-          glitchAnimation={`${idx % 2 === 0 ? guesser.name : ''}`}
+          glitchAnimation={`${Math.floor((Math.random() * 10) + 1) % 2 === 1 ? guesser.name : ''}`}
         >
           {guesser.name}
         </Span.glitchAnimation>
@@ -45,17 +45,19 @@ class Winner extends Component {
         <Elements.Text.p
           textTransform="uppercase"
         >
-          Trivia: {this.convertHTMLChar(this.props.triviaAnswer.correctAnswer.question.question)}!
+          {new Date().getHours() >= 17 ? "Trivia" : "Yesterdays Trivia"}:&nbsp;
+          {this.convertHTMLChar(this.props.triviaAnswer.correctAnswer.question.question)}!
         </Elements.Text.p>
         <Elements.Heading.h2
           textTransform="uppercase"
         >
-          Answer: {this.convertHTMLChar(this.props.triviaAnswer.correctAnswer.correctChoice)}!
+          {new Date().getHours() >= 17 ? "Answer" : "Yesterdays Answer"}:&nbsp;
+          {this.convertHTMLChar(this.props.triviaAnswer.correctAnswer.correctChoice)}!
         </Elements.Heading.h2>
         <Elements.Heading.h2
           textTransform="uppercase"
         >
-          Correct Guesses:
+          {new Date().getHours() >= 17 ? "Correct Guesses" : "Yesterdays Correct Guesses"}:&nbsp;
         </Elements.Heading.h2>
         {this.displayWinners()}
       </Elements.Flex>
