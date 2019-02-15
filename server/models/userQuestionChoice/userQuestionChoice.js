@@ -7,8 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     questionId: DataTypes.INTEGER,
     questionChoiceId: DataTypes.INTEGER,
-    createdAt: DataTypes.DATEONLY,
-    updatedAt: DataTypes.DATEONLY,
   },{
     freezeTableName: true,
   });
@@ -24,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       questionChoiceId,
       guess
     } = guessData;
-
+    
     const currentHour = moment().format('HH');
 
     if (currentHour >= 17) return null;
