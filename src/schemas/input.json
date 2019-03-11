@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "id": "http://chapivia.online/schemas/input.json",
+  "title": "Auth",
+  "description": "User auth",
+  "type": "object",
+  "properties": {
+    "email": { 
+      "type": ["string", "null"],
+      "pattern": "^$|^[a-zA-Z0-9@*#!$.]+$"
+    },
+    "password": { 
+      "type": "string", 
+      "pattern": "^[a-zA-Z0-9@*#!$.]+$",
+      "minLength": 1
+    },
+    "triviaGuess": {
+      "type": "string",
+      "pattern": "",
+      "maxLength": 1,
+      "minLength": 1
+    }
+  }
+}

@@ -82,10 +82,10 @@ module.exports = (sequelize, DataTypes) => {
 
   User.scores = async function() {
     const currentHour = moment().format('HH');
-    const tomorrowsDate = moment().add(1, 'day').toDate();
-    const yesterDaysDate = moment().add(-1, 'day').toDate();
+    const endOfToday = moment().endOf('day').toDate();
+    const endOfYesterday = moment().add(-1, 'day').endOf('day').toDate();
     const startOfMonth = moment().startOf('month').toDate();
-
+    debugger
     try {
       const userCorrectGuesses = await this.findAll({
         include: [{ 
@@ -94,7 +94,7 @@ module.exports = (sequelize, DataTypes) => {
             isCorrect: true,
             updatedAt: {
               $between: currentHour >= 17 ?  
-                [startOfMonth, tomorrowsDate] : [startOfMonth, yesterDaysDate]
+                [startOfMonth, endOfToday] : [startOfMonth, endOfYesterday]
             }
           }
         }]

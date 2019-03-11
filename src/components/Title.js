@@ -19,7 +19,6 @@ class Title extends Component {
 
   render() {
     if (this.props.data.loading) return <Flex></Flex>;
-    debugger
     return (
       <Flex
         justifyContent="center"

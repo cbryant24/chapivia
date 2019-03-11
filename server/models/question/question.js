@@ -27,8 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     const previousGameDate = dayOfWeek === 1 ? 
       moment().add(-3, 'day').format('YYYY-MM-DD') : moment().add(-1, 'day').format('YYYY-MM-DD');
     
-    if (dayOfWeek === 0 || dayOfWeek === 6) return null
-    
+    // if (dayOfWeek === 0 || dayOfWeek === 6) return null
+    debugger
     try {
       let dailyQuestion = await this.findOne({ 
         where: {

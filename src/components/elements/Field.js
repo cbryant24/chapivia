@@ -26,16 +26,18 @@ const Field = ({ type, name, label, placeholder, error, ...props }) => {
       slider: Slider,
       textarea: InputTextarea
     }[type] || Input
-
   return (
     <Flex
       justifyContent={ "space-around" && props.justifyContent }
+      flexDirection={ "row" && props.flexDirection }
     >
-      <Label className={type} id={name} mb={2} color={theme.colors.white}>
-        {label}
-      </Label>
-      <Flex align="center" mb="2px" wrap>
-        {error && <Error children={error} />}
+      <Flex>
+        <Label className={type} id={name} mb={2} color={theme.colors.white}>
+          {label}
+        </Label>
+        <Flex align="center" mb="2px" wrap>
+          {error && <Error children={error} />}
+        </Flex>
       </Flex>
       <Component name={name} type={type} placeholder={placeholder} {...props} />
     </Flex>
