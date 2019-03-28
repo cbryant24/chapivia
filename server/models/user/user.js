@@ -85,7 +85,7 @@ module.exports = (sequelize, DataTypes) => {
     const endOfToday = moment().endOf('day').toDate();
     const endOfYesterday = moment().add(-1, 'day').endOf('day').toDate();
     const startOfMonth = moment().startOf('month').toDate();
-    debugger
+
     try {
       const userCorrectGuesses = await this.findAll({
         include: [{ 
@@ -113,7 +113,7 @@ module.exports = (sequelize, DataTypes) => {
   User.todaysGuesses = async function() {
     const startOfToday = moment().startOf('day').toDate();
     const endOfToday = moment().endOf('day').toDate();
-    debugger
+    
     try {
       const todaysGuesses = await this.findAll({
         include: [{ 

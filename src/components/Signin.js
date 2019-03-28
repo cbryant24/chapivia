@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Link } from 'react-router-dom'
 
 import AuthForm from './AuthForm';
-import { validation } from './helpers/validators';
+import { validate } from './helpers/validators';
 
-import { FlexItem, Field, FlexForm } from './elements';
+import { FlexItem, Field, FlexForm, Flex } from './elements';
 import { OutlineButton } from './elements';
 import theme from './elements/theme';
 import helpers from './helpers';
@@ -44,17 +45,29 @@ class Signin extends Component {
   }
 
   handleChange(event) {
-    const { name, value } = event.target;
+    const { name: field, value } = event.target;
+    const valid = validate.input({ [field]: value });
+    
+    if(this.state.email.error.message == "Invalid email and or password")
+      this.setError('clear');
 
-    if(this.validate(name, value))
-      this.setState( state => { return {
-        ...state, 
-        [name]: {
-          ...state[name],
-          value
+    if(!valid)
+      return this.setError('character', field);
+    
+    // if(this.state[field].error.status)
+    //   this.setError('clear', field)
+
+    this.setState( state => { return {
+      ...state, 
+      [field]: {
+        ...state[field],
+        value,
+        error: {
+          status: false,
+          message: ''
         }
       }
-    });
+    }});
   }
 
   componentDidUpdate(prevProps) {
@@ -62,9 +75,9 @@ class Signin extends Component {
       return this.props.history.push('/game');
   }
 
-  handleBlur = (field) => (evt) => {
+  handleBlur = (field) => (event) => {
     const { value } = this.state[field];
-    const valid = validation.inputValidate({ [field]: value });
+    const valid = validate.blur({ [field]: value });
 
     if (!this.state[field].touched) {
       this.setState( state =>  ({
@@ -77,25 +90,25 @@ class Signin extends Component {
     }
 
     if(!valid) 
-      return this.setError(field, 'field')
+      return this.setError('input', field);
+
+    if(this.state[field].error.status)
+      return this.setError('clear', field);
   }
 
   async onSubmit(event) {
     event.preventDefault();
-    const { email: {value: email }, password: {value: password} } = this.state;
-    const valid = validation.authValidate({ email, password });
-    debugger
+    const { email: { value: email }, password: { value: password } } = this.state;
+    const valid = validate.signin({ email, password });
 
     /**
      * using the errors obj returned from ajv set error state
      * ajv uses dot notation to reference property drop period to dynamically set
      */
     if (!valid) {
-      validation.authValidate.errors.forEach( error => {
+      validate.signin.errors.forEach( error => {
         const field = error.dataPath.split('.').join("");
-
-        //SET ERROR STATE
-        this.setErrors(field, 'input')
+        this.setError('input', field);
       });
       return
     }
@@ -107,53 +120,26 @@ class Signin extends Component {
       });
     } catch(e) {
       debugger
+      return this.setError('login')
     }
     
     return this.props.history.push('/game');
   }
-  
-  validate(field, value) {
-    /**
-     * ajv validation used to verify only valid characters specified in schema are input
-     */
-    const valid = validation.inputValidate({ [field]: value });
 
-    
-    if (!valid) {
-      this.setState( state => { return { 
-        ...state,
-        [field]: {
-          ...state[field],
-          error: {
-            status: true,
-            message: `Invalid character used in ${field}`   
-          }
-        }
-      }});
-
-      return false
-    }
-
-    if(this.state[field].error.status) {
-      this.setState( state => { return { 
-        ...state,
-        [field]: {
-          ...state[field],
-          error: {
-            status: false,
-            message: ''
-          }
-        }
-      }});
-    }
-
-    return true
-  }
-
-  setError(field, type) {
+  setError( type, field = "email") {
     switch(type) {
       case 'character':
-
+        this.setState( state => ({
+          ...state,
+          [field]: {
+            ...state[field],
+            error: {
+              status: true,
+              message: `Invalid character used in ${field}`
+            }
+          }
+        }));
+        break
       case 'input':
         this.setState( state => ({
           ...state,
@@ -161,7 +147,31 @@ class Signin extends Component {
             ...state[field],
             error: {
               status: true,
-              message: `please enter a valid ${field}`
+              message: `Please enter a valid ${field}`
+            }
+          }
+        }));
+        break
+      case 'login':
+        this.setState( state => ({
+          ...state,
+          [field]: {
+            ...state[field],
+            error: {
+              status: true,
+              message: `Invalid email and or password`
+            }
+          }
+        }));
+        break
+      case 'clear': 
+        this.setState( state => ({
+          ...state,
+          [field]: {
+            ...state[field],
+            error: {
+              status: false,
+              message: ''
             }
           }
         }));
@@ -185,13 +195,7 @@ class Signin extends Component {
           }
         }));
     }
-
   }
-
-  getErrors() {
-    //returns an array of errors pulled from state and passed to error displayer
-  }
-
 
   render() {
 
@@ -204,16 +208,16 @@ class Signin extends Component {
     const isEnabled = {
       errors: Object.keys(this.state).some( property => this.state[property].error.status),
       touched: Object.keys(this.state).some( property => this.state[property].touched),
-      length: Object.keys(this.state).some( property => this.state[property].value.length >= 1)
+      length: Object.keys(this.state).some( property => this.state[property].value.length < 1)
     };
-    const testArr = ['hello', 'world']
-
+    
+    const errorMessages = Object.keys(this.state)
+                          .map( prop => this.state[prop].error.message ).filter( msg => msg );
     return (
       <FlexItem
         border="1px solid black"
         p="2rem"
         bg="black"
-        height="55vh"
         width="40%"
         zIndex="20"
       >
@@ -232,7 +236,7 @@ class Signin extends Component {
             width="75%"
             flexDirection="column"
             onBlur={ this.handleBlur('email') }
-            error={testArr}
+            error={ errorMessages }
             value={email.value}
             onChange={(event) => this.handleChange(event)}
           >
@@ -254,12 +258,19 @@ class Signin extends Component {
             mt="1rem"
             type="submit"
             width="40%"
-            disabled={ !isEnabled.errors && isEnabled.touched && isEnabled.length ? false : true }
+            disabled={ !isEnabled.errors && isEnabled.touched && !isEnabled.length ? false : true }
             onClick={ (e) => this.onSubmit(e) }
           >
             Sign In
           </OutlineButton>
         </FlexForm>
+        <Flex
+          my="2rem"
+          flexDirection="column"
+        >
+          <Link to="/signup">Click here to signup</Link>
+          <Link to="/signup">Forgotten Password</Link>
+        </Flex>
       </FlexItem>
       // <AuthForm errors={this.state.error} onSubmit={this.onSubmit.bind(this)}/>
     );

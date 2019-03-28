@@ -1,7 +1,5 @@
 'use strict';
 const { triviaConfig } = require('../../config/');
-const dateFormat = require('dateformat');
-const Nedb = require('../nedb');
 const moment = require('moment');
 
 
@@ -28,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       moment().add(-3, 'day').format('YYYY-MM-DD') : moment().add(-1, 'day').format('YYYY-MM-DD');
     
     // if (dayOfWeek === 0 || dayOfWeek === 6) return null
-    debugger
+    
     try {
       let dailyQuestion = await this.findOne({ 
         where: {
@@ -46,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
             is_used: 'false',
         }});
 
-        dailyQuestion.dateUsed = todaysDate
+        dailyQuestion.dateUsed = todaysDate;
         dailyQuestion.save();
       }
 
@@ -54,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
         where: {
           dateUsed: previousGameDate 
       }});
-
+      
       return dailyQuestion
     } catch(e) {
       debugger

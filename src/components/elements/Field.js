@@ -2,6 +2,8 @@ import React from 'react'
 import Label from './Label'
 import Flex from './Flex'
 import Text from './Text'
+import List from './List'
+import Item from './Item'
 import Input, { InputSelect, InputTextarea } from './Input'
 import Slider from './Slider'
 import PropTypes from 'prop-types'
@@ -18,6 +20,10 @@ export const Error = Text.extend.attrs({
   &:before { content: '— '; }
 `
 
+const displayErrors = (errors) => {
+  return errors.map( error => <Item key={error}><Error>{error}</Error></Item>);
+};
+
 const Field = ({ type, name, label, placeholder, error, ...props }) => {
   
   const Component =
@@ -31,13 +37,19 @@ const Field = ({ type, name, label, placeholder, error, ...props }) => {
       justifyContent={ "space-around" && props.justifyContent }
       flexDirection={ "row" && props.flexDirection }
     >
-      <Flex>
-        <Label className={type} id={name} mb={2} color={theme.colors.white}>
+      <Flex
+        alignItems="flex-end"
+      >
+        <Label className={type} id={name} color={theme.colors.white}>
           {label}
         </Label>
-        <Flex align="center" mb="2px" wrap>
-          {error && <Error children={error} />}
-        </Flex>
+        <List
+            display="flex"
+            flexDirection="column"
+            alignItems="flex-start"
+        >
+          {error && error.length >= 1 ? displayErrors(error) : ''}
+        </List>
       </Flex>
       <Component name={name} type={type} placeholder={placeholder} {...props} />
     </Flex>

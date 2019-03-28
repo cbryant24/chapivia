@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "id": "http://chapivia.online/schemas/guess.json",
+  "title": "Guess",
+  "description": "User Guess",
+  "type": "object",
+  "properties": {
+    "userId": { 
+      "type": ["string", "integer"],
+      "pattern": "^[0-9]*$"
+    },
+    "questionId": { 
+      "type": ["string", "integer"],
+      "pattern": "^[0-9]*$"
+    },
+    "questionChoiceId": { 
+      "type": ["string", "integer"],
+      "pattern": "^[0-9]*$"
+    },
+    "guess": { 
+      "type": "string"
+    }
+  },
+  "required": ["userId", "questionId", "questionChoiceId", "guess"]
+}

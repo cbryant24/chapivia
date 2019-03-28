@@ -1,5 +1,6 @@
 'use strict';
 const moment = require('moment');
+const validate = require('../../config/schemas');
 
 module.exports = (sequelize, DataTypes) => {
   var UserQuestionChoice = sequelize.define('userQuestionChoice', {
@@ -7,8 +8,6 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     questionId: DataTypes.INTEGER,
     questionChoiceId: DataTypes.INTEGER,
-    createdAt: DataTypes.DATEONLY,
-    updatedAt: DataTypes.DATEONLY,
   },{
     freezeTableName: true,
   });
@@ -24,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
       questionChoiceId,
       guess
     } = guessData;
+  
+    const valid = validate.guess({ userId, questionId, questionChoiceId, guess });
+    
+    if (!valid) { throw new Error("Invalid character used in field") }    
 
     const currentHour = moment().format('HH');
 

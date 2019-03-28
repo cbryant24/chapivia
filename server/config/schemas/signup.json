@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "id": "http://chapivia.online/schemas/signin.json",
-  "title": "Signin",
-  "description": "User Signin",
+  "id": "http://chapivia.online/schemas/singup.json",
+  "title": "Signup",
+  "description": "User Signup",
   "type": "object",
   "properties": {
     "email": { 
@@ -10,11 +10,16 @@
       "format": "email",
       "maxLength": 128
     },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9!$.\\s]+$",
+      "maxLength": 256
+    },
     "password": { 
       "type": "string", 
       "pattern": "^[a-zA-Z0-9@*#!$.]+$",
       "maxLength": 128
     }
   },
-  "required": ["email", "password"]
+  "required": ["email", "name", "password"]
 }

@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { graphql } from 'react-apollo';
 
+import { validate } from './helpers/validators';
+
 import { FlexItem, Field, FlexForm } from './elements';
 import { OutlineButton } from './elements';
 import helpers from './helpers';
 import theme from './elements/theme';
 import mutation from '../mutations/Signup';
 import query from '../queries/UnguessedPlayers';
+import Form from './Form';
 
 
 //TODO: Errors message applicable to correct field only
@@ -17,31 +20,207 @@ class Signup extends Component {
     super(props);
 
     this.state = {
-      email: '',
-      name: '',
-      password: '',
-      confirm_password: '',
-      error: {
-        statusType: null,
-        message: ''
+      email: {
+        value: '',
+        touched: false,
+        error: {
+          status: false,
+          message: ''
+        }
+      },
+      name: {
+        value: '',
+        touched: false,
+        error: {
+          status: false,
+          message: ''
+        }
+      },
+      password: {
+        value: '',
+        touched: false,
+        show: false,
+        error: {
+          status: false,
+          message: ''
+        }
+      },
+      confirmPassword: {
+        value: '',
+        touched: false,
+        show: false,
+        error: {
+          status: false,
+          message: ''
+        }
       }
     }
   }
 
   handleChange(event) {
-    const { name, value } = event.target;
-    this.setState( () =>   { return {[name]: value } } );
+    const { name: field, value } = event.target;
+    const valid = validate.input({ [field]: value });
+    
+    if(this.state.email.error.message == `${field} already in use`)
+      this.setError('clear');
+
+    if(!valid)
+      return this.setError('character', field);
+    
+    if(this.state[field].error.status)
+      this.setError('clear', field);
+
+    if(this.state.password.error.message == "password does not match")
+      this.setError('clear', "password")
+
+    this.setState( state => { return {
+      ...state, 
+      [field]: {
+        ...state[field],
+        value
+      }
+    }});
   }
 
-  async signin(event) {
+  setError( type, field = "email") {
+    switch(type) {
+      case 'character':
+        this.setState( state => ({
+          ...state,
+          [field]: {
+            ...state[field],
+            error: {
+              status: true,
+              message: `Invalid character used in ${field}`
+            }
+          }
+        }));
+        break
+      case 'input':
+        this.setState( state => ({
+          ...state,
+          [field]: {
+            ...state[field],
+            error: {
+              status: true,
+              message: `Please enter a valid ${field}`
+            }
+          }
+        }));
+        break
+      case 'mismatch':
+        this.setState( state => ({
+          ...state,
+          [field]: {
+            ...state[field],
+            error: {
+              status: true,
+              message: `${field} does not match`
+            }
+          }
+        }));
+        break
+      case 'duplicate':
+        this.setState( state => ({
+          ...state,
+          [field]: {
+            ...state[field],
+            error: {
+              sataus: true,
+              message: `${field} already in use`
+            }
+          }
+        }));
+        break
+      case 'clear': 
+        this.setState( state => ({
+          ...state,
+          [field]: {
+            ...state[field],
+            error: {
+              status: false,
+              message: ''
+            }
+          }
+        }));
+        break
+      default:
+        this.setState( state =>  ({
+          ...state, 
+          email: {
+            ...state.email,
+            error: { 
+              status: false,
+              message: ''
+            }
+          },
+          name: {
+            ...state.name,
+            error: {
+              status: false,
+              message: ''
+            }
+          },
+          password: {
+            ...state.password,
+            error: { 
+              status: false,
+              message: ''
+            }
+          },
+          confirmPassword: {
+            ...state.confirmPassword,
+            error: {
+              status: false,
+              message: ''
+            }
+          }
+        }));
+    }
+  }
+
+  handleBlur = (field) => (evt) => {
+    const { value } = this.state[field];
+    const valid = validate.blur({ [field]: value });
+
+    if (!this.state[field].touched) {
+      this.setState( state =>  ({
+        ...state, 
+        [field]: {
+          ...state[field],
+          touched: true,
+        }
+      }));
+    }
+
+    if(!valid) 
+      return this.setError('input', field);
+
+    if(this.state[field].error.status)
+      return this.setError('clear', field);
+  }
+
+  async signup(event) {
     event.preventDefault()
-    let { email, name, password, confirm_password } = this.state;
+    const { 
+      email: { value: email },
+      name: { value: name },
+      password: { value: password },
+      confirmPassword: { value: confirmPassword }
+    } = this.state;
 
-    if(!email || !name || !password || !confirm_password ) 
-      return this.setState(() => {return {error: helpers.handleError('empty')} });
+    const valid = validate.signup({ email, name, password, confirmPassword });
 
-    if(password !== confirm_password)
-      return this.setState(() => {return {error: helpers.handleError('mismatch')} });
+    if (!valid) {
+      validate.signup.errors.forEach( error => {
+        const field = error.dataPath.split('.').join("");
+        this.setError('input', field);
+      });
+      return
+    }
+
+    if(password !== confirmPassword)
+      return this.setError('mismatch', 'password');
 
     try {
       const result = await this.props.mutate({
@@ -50,41 +229,54 @@ class Signup extends Component {
       });
     } catch(res) {
       debugger
-      return this.setState(() => { return {error: { statusType: "user", message: res.message } } })
+      return this.setError('duplicate');
     }
     
-    if(this.state.error.statusType)
-        this.setState( () => {return { error: helpers.clearError() } });
+    this.setError();
 
     return this.props.history.push('/game');
   }
 
   render() {
+    const { email, name, password, confirmPassword } = this.state;
+
+    const isEnabled = {
+      errors: Object.keys(this.state).some( property => this.state[property].error.status),
+      touched: Object.keys(this.state).some( property => this.state[property].touched),
+      length: Object.keys(this.state).some( property => this.state[property].value.length < 1)
+    };
+    
+    const errorMessages = Object.keys(this.state)
+                          .map( prop => this.state[prop].error.message ).filter( msg => msg );
+    
     return (
       <FlexItem
         border="1px solid black"
+        p="2rem"
         bg="black"
-        height="50vh"
         width="40%"
-        zIndex="10"
+        zIndex="20"
       >
-        <FlexForm
-          height="50vh"
-          justifyContent="space-around"
+        <Form/>
+        {/* <FlexForm
+          display="flex"
           flexDirection="column"
+          justifyContent="space-evenly"
+          height="100%"
           px="4rem"
-          onSubmit={(event) => this.signin(event)}
+          onSubmit={(event) => this.signup(event)}
         >
           <Field 
             name="email"
             type="email"
             label="Email"
-            maxHeight="3rem"
+            flexDirection="column"
             justifyContent="space-between"
-            width="70%"
-            placeholder="zach@hackclub.com"
-            error={this.state.error.message}
-            value={this.state.email}
+            width="75%"
+            placeholder="charles@chapman.com"
+            error={ errorMessages }
+            value={email.value}
+            onBlur={ this.handleBlur('email') }
             onChange={(event) => this.handleChange(event)}
           >
           </Field>
@@ -92,12 +284,12 @@ class Signup extends Component {
             name="name"
             type="text"
             label="Name"
-            width="70%"
-            maxHeight="3rem"
+            width="75%"
+            flexDirection="column"
             justifyContent="space-between"
-            placeholder="charles@chapman.com"
-            error={this.state.error.message}
-            value={this.state.name}
+            placeholder="charles chapman"
+            value={name.value}
+            onBlur={ this.handleBlur('name') }
             onChange={(event) => this.handleChange(event)}
           >
           </Field>
@@ -105,23 +297,23 @@ class Signup extends Component {
             name="password"
             type="password"
             label="Password"
-            width="70%"
-            maxHeight="3rem"
+            width="75%"
+            flexDirection="column"
             justifyContent="space-between"
-            error={this.state.error.message}
-            value={this.state.password}
+            value={password.value}
+            onBlur={ this.handleBlur('password') }
             onChange={(event) => this.handleChange(event)}
           >
           </Field>
           <Field 
-            name="confirm_password"
+            name="confirmPassword"
             type="password"
             label="Confirm Password"
-            width="70%"
-            maxHeight="3rem"
+            width="75%"
+            flexDirection="column"
             justifyContent="space-between"
-            error={this.state.error.message}
-            value={this.state.confirm_password}
+            value={confirmPassword.value}
+            onBlur={ this.handleBlur('confirmPassword') }
             onChange={(event) => this.handleChange(event)}
           >
           </Field>
@@ -130,12 +322,13 @@ class Signup extends Component {
             borderColor='primary'
             mt="1rem"
             type="submit"
-            width="25%"
-            onClick={(e) => this.signin(e)}
+            width="40%"
+            disabled={ !isEnabled.errors && isEnabled.touched && !isEnabled.length ? false : true }
+            onClick={(e) => this.signup(e)}
           >
             Sign Up
           </OutlineButton>
-        </FlexForm>
+        </FlexForm> */}
       </FlexItem>
     );
   }

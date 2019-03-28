@@ -35,8 +35,11 @@ class Winner extends Component {
 
   render() {
     
-    if(this.props.triviaAnswer.loading) return <div></div>;
-    debugger
+    if(this.props.trivia.loading) return <div></div>;
+    
+    if (!this.props.trivia.correctAnswer) 
+      return <div>Checkback after 5pm for the trivia answer and winners</div>;
+    
     return(
       <Elements.Flex
         flexDirection="column"
@@ -46,13 +49,13 @@ class Winner extends Component {
           textTransform="uppercase"
         >
           {new Date().getHours() >= 17 ? "Trivia" : "Yesterdays Trivia"}:&nbsp;
-          {this.convertHTMLChar(this.props.triviaAnswer.correctAnswer.question.question)}!
+          {this.convertHTMLChar(this.props.trivia.correctAnswer.question.question)}!
         </Elements.Text.p>
         <Elements.Heading.h2
           textTransform="uppercase"
         >
           {new Date().getHours() >= 17 ? "Answer" : "Yesterdays Answer"}:&nbsp;
-          {this.convertHTMLChar(this.props.triviaAnswer.correctAnswer.correctChoice)}!
+          {this.convertHTMLChar(this.props.trivia.correctAnswer.correctChoice)}!
         </Elements.Heading.h2>
         <Elements.Heading.h2
           textTransform="uppercase"
@@ -67,7 +70,7 @@ class Winner extends Component {
 
 export default compose(
   graphql(TriviaAnswer, {
-    name: "triviaAnswer"
+    name: "trivia"
   }),
   graphql(CorrectGuessesQuery, {
     name: "winners"

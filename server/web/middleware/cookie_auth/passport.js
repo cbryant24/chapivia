@@ -3,9 +3,9 @@ require('module-alias/register');
 const passport = require('passport');
 const { User } = require('../../../models');
 const config = require('../../../config/config');
-// const JwtStrategy = require('passport-jwt').Strategy;
-// const ExtractJwt = require('passport-jwt').ExtractJwt;
 const LocalStrategy = require('passport-local').Strategy;
+const validate = require('../../../config/schemas');
+
 
 // SerializeUser is used to provide some identifying token that can be saved
 // in the users session.  We traditionally use the 'ID' for this.
@@ -48,12 +48,16 @@ passport.use( new LocalStrategy( { usernameField: 'email'}, async (email, passwo
 
 async function signup({ name, email, password, req }) {  
   if (!email || !password || !name ) { throw new Error('You must provide an email, password, and name.'); }
+
+  const valid = validate.signup({ name, email, password });
+  
+  if (!valid) { throw new Error("Invalid character used in field") }
   
   return User.findOne({ where: { email } })
     .then(existingUser => {
       if (existingUser) { throw new Error('Email in use'); }
 
-      return User.create({name, email, password });
+      return User.create({ name, email, password });
     })
     .then(user => {
       return new Promise((resolve, reject) => {
@@ -71,6 +75,11 @@ async function signup({ name, email, password, req }) {
 // Express.  We have another compatibility layer here to make it work nicely with
 // GraphQL, as GraphQL always expects to see a promise for handling async code.
 function login({ email, password, req }) {
+  
+  const valid = validate.signin({ email, password });
+  
+  if (!valid) { throw new Error("Invalid character used in field") }
+
   return new Promise((resolve, reject) => {
     passport.authenticate('local', (err, user) => {
       if (!user) { reject('Invalid credentials.') }

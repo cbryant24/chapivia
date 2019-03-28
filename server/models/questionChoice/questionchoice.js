@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks: {
       afterFind: function(questionChoices) {
+        
+        if (!questionChoices) return null;
+
         questionChoices.choices = shuffle([
           questionChoices.correctChoice,
           questionChoices.incorrectChoiceOne,
@@ -50,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
           }
         }]
       });
-      
+
       return triviaAnswer;
     } catch(e) {
       debugger

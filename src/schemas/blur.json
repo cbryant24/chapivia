@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "id": "http://chapivia.online/schemas/auth.json",
+  "title": "Blur",
+  "description": "Form blur",
+  "type": "object",
+  "properties": {
+    "email": {
+      "anyOf": [
+        { "type": "string", "pattern": "^$" },
+        { "type": "string", "format": "email" }
+      ]
+    },
+    "name": {
+      "anyOf": [
+        { "type": "string", "pattern": "^$" },
+        { "type": "string", "pattern": "^[a-zA-Z0-9!$.\\s]+$" }
+      ]
+    },
+    "password": {
+      "anyOf": [
+        { "type": "string", "pattern": "^$" },
+        { "type": "string", "pattern": "^[a-zA-Z0-9@*#!$.]+$" }
+      ]
+    },
+    "confirmPassword": {
+      "anyOf": [
+        { "type": "string", "pattern": "^$" },
+        { "type": "string", "pattern": "^[a-zA-Z0-9@*#!$.]+$" }
+      ]
+    },
+    "guess": {
+      "anyOf": [
+        { "type": "string", "pattern": "^$" },
+        { "type": "string", "pattern": "^[a-dA-D]+$" }
+      ],
+      "maxLength": 1
+    }
+  }
+}

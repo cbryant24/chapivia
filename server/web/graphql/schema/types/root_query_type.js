@@ -53,7 +53,7 @@ const RootQueryType = new GraphQLObjectType({
     correctAnswer: {
       type: CorrectAnswerType,
       resolve(parentValue, args, req) {
-        return QuestionChoice.getTriviaAnswer()
+        return QuestionChoice.getTriviaAnswer();
       }
     },
     nonGuessedPlayers: {

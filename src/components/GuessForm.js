@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { compose, graphql } from 'react-apollo';
 import * as actions from '../actions';
 import { GridItem, Field, OutlineButton, Input, Flex } from './elements';
+import * as Element from './elements';
+import { validate } from './helpers/validators';
 import mutation from '../mutations/Guess';
 import UnguessedPlayers from '../queries/UnguessedPlayers';
 import TriviaQuery from '../queries/Trivia';
@@ -15,12 +17,23 @@ class GuessForm extends Component {
     super(props);
 
     this.state = {
-      error: {
-       guess: '',
-       player: '' 
+      // selectedPlayer: '',
+      player: {
+        value: '',
+        touched: false,
+        error: {
+          status: false,
+          message: ''
+        }
       },
-      guess: '',
-      selectedPlayer: '',
+      guess: {
+        value: '',
+        touched: false,
+        error: {
+          status: false,
+          message: ''
+        }
+      }
     }
   }
 
@@ -33,30 +46,38 @@ class GuessForm extends Component {
   }
 
   handleGuessSelection(event) {
-    const guess = event.target.value.toUpperCase();
-    if ( !["A", "B", "C", "D"].includes(guess) ) {
-      return this.setState( () => ({ 
-        guess: '',
+    // const value = event.target.value.toUpperCase();
+    const { name: field, value } = event.target;
+    const valid = validate.input({ [field]: value });
+
+    if (!valid)
+      return this.setError('character', field);
+
+    return this.setState( state => ({
+      ...state,
+      [field]: {
+        ...state[field],
+        value,
         error: {
-          guess: 'Enter either A, B, C, D'
+          status: false,
+          message: ''
         }
-      }));
-    }
-    return this.setState(() => ({ guess }));
+      }
+    }));
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    if( !this.state.guess || !this.state.selectedPlayer ) {
+    if( !this.state.guess || !this.state.player ) {
       return this.setState(() => ({
         error: {
           guess: this.state.guess ? '' : 'Enter a guess',
-          player: this.state.selectedPlayer ? '' : 'Select a player'
+          player: this.state.player ? '' : 'Select a player'
         }
       }));
     }
 
-    if( this.props.signedIn.user.id !== this.state.selectedPlayer && this.props.signedIn.user.id !== "7") {
+    if( this.props.signedIn.user.id !== this.state.player && this.props.signedIn.user.id !== "7") {
       return this.setState(() => ({
         error: {
           player: 'Please guess only for yourself'
@@ -68,7 +89,7 @@ class GuessForm extends Component {
     
     this.props.guessMutation({
       variables: {
-        userId: this.state.selectedPlayer,
+        userId: this.state.player,
         questionId: trivia.id,
         questionChoiceId: trivia.questionChoice.id,
         guess: trivia.questionChoice.choices[this.state.guess.charCodeAt(0) - 65]        
@@ -83,9 +104,30 @@ class GuessForm extends Component {
     this.clearForm(event);
   }
 
+  handleBlur = (field) => (event) => {
+    const { value } = this.state[field];
+    const valid = validate.blur({ [field]: value });
+
+    if (!this.state[field].touched) {
+      this.setState( state =>  ({
+        ...state, 
+        [field]: {
+          ...state[field],
+          touched: true,
+        }
+      }));
+    }
+
+    if(!valid) 
+      return this.setError('input', field);
+
+    if(this.state[field].error.status)
+      return this.setError('clear', field);
+  }
+
   handlePlayerSelect(event) {
     const {value: player} = event.target;
-    this.setState( () => ({ selectedPlayer: player }) );
+    this.setState( () => ({ player: player }) );
   }
 
   clearForm(event) {
@@ -97,8 +139,55 @@ class GuessForm extends Component {
         player: '' 
        },
        guess: '',
-       selectedPlayer: '',
+       player: '',
     }));
+  }
+
+  setError( type, field = "guess") {
+    switch(type) {
+      case 'character':
+        this.setState( state => ({
+          ...state,
+          [field]: {
+            ...state[field],
+            error: {
+              status: true,
+              message: `Invalid character used in ${field}`
+            }
+          }
+        }));
+        break
+      case 'player':
+        this.setState( state => ({
+          ...state,
+          [field]: {
+            ...state[field],
+            error: {
+              status: true,
+              message: `Please select a player`
+            }
+          }
+        }))
+      
+      default:
+        this.setState( state =>  ({
+          ...state, 
+          player: {
+            ...state.player,
+            error: { 
+              status: false,
+              message: ''
+            }
+          },
+          guess: {
+            ...state.guess,
+            error: { 
+              status: false,
+              message: ''
+            }
+          }
+        }));
+    }
   }
 
   render() {
@@ -119,17 +208,21 @@ class GuessForm extends Component {
         gridRow={this.props.gridRow}
         gridColumn={this.props.gridColumn}
       >
-        <form onSubmit={(event) => this.handleSubmit(event)}>
+        <Element.FlexForm 
+          flexDirection="column"
+          onSubmit={(event) => this.handleSubmit(event)}
+        >
           <Field
-            name="select"
+            name="player"
             type="select"
             label="Player"
+            flexDirection="column"
             color="black"
             width="75%"
             mb="2rem"
-            error={this.state.error.player}
+            // error={this.state.error.player}
             onChange={(event) => this.handlePlayerSelect(event)}
-            value={this.state.selectedPlayer}
+            value={this.state.player.value}
           >
             <option value=''></option>
             {this.addPlayersToForm()}
@@ -138,9 +231,10 @@ class GuessForm extends Component {
             name="guess"
             type="password"
             label="Guess"
+            flexDirection="column"
             width="75%"
-            error={this.state.error.guess}
-            value={this.state.guess}
+            onBlur={ this.handleBlur('guess') }
+            value={this.state.guess.value}
             onChange={ (event) => this.handleGuessSelection(event) }
           >
           </Field>
@@ -166,7 +260,7 @@ class GuessForm extends Component {
               onClick={ (event) => this.clearForm(event)}
             />
           </Flex>
-        </form>
+        </Element.FlexForm>
         
       </GridItem>
     );
