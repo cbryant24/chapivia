@@ -8,7 +8,6 @@ export default function Form({inputs, form}) {
   // const name = useFormInput('');
   const [{ theme }, dispatch] = useStateValue();
   
-
   const displayFields = () => {
     return inputs.map( input =>  {
       const field = useFormInput();
