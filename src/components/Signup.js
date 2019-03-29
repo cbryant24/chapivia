@@ -9,6 +9,7 @@ import theme from './elements/theme';
 import mutation from '../mutations/Signup';
 import query from '../queries/UnguessedPlayers';
 
+import Form from './Form';
 
 //TODO: Errors message applicable to correct field only
 
@@ -34,32 +35,54 @@ class Signup extends Component {
   }
 
   async signin(event) {
-    event.preventDefault()
-    let { email, name, password, confirm_password } = this.state;
+    debugger
+  //   event.preventDefault()
+  //   let { email, name, password, confirm_password } = this.state;
 
-    if(!email || !name || !password || !confirm_password ) 
-      return this.setState(() => {return {error: helpers.handleError('empty')} });
+  //   if(!email || !name || !password || !confirm_password ) 
+  //     return this.setState(() => {return {error: helpers.handleError('empty')} });
 
-    if(password !== confirm_password)
-      return this.setState(() => {return {error: helpers.handleError('mismatch')} });
+  //   if(password !== confirm_password)
+  //     return this.setState(() => {return {error: helpers.handleError('mismatch')} });
 
-    try {
-      const result = await this.props.mutate({
-        variables: { email, password, name },
-        refetchQueries: [{ query }]
-      });
-    } catch(res) {
-      debugger
-      return this.setState(() => { return {error: { statusType: "user", message: res.message } } })
-    }
+  //   try {
+  //     const result = await this.props.mutate({
+  //       variables: { email, password, name },
+  //       refetchQueries: [{ query }]
+  //     });
+  //   } catch(res) {
+  //     debugger
+  //     return this.setState(() => { return {error: { statusType: "user", message: res.message } } })
+  //   }
     
-    if(this.state.error.statusType)
-        this.setState( () => {return { error: helpers.clearError() } });
+  //   if(this.state.error.statusType)
+  //       this.setState( () => {return { error: helpers.clearError() } });
 
-    return this.props.history.push('/game');
+  //   return this.props.history.push('/game');
+  }
+
+  testButtonCB() {
+    debugger
   }
 
   render() {
+    const inputs = [
+      {
+        data: { type: 'input', name: 'name', label: 'name', placeholder: 'enter name' }, 
+        flexStyle: { width: '75%', maxHeight: '3rem', height: '3rem', justifyContent: 'space-around' },
+        inputStyle: { color: '#ff0000'},
+      },
+      {
+        data: { type: 'input', name: 'email', label: 'email', placeholder: 'enter email' },
+        flexStyle: { width: '75%', maxHeight: '3rem', height: '3rem', justifyContent: 'space-between' },
+        inputStyle: { color: '#ff00f3'}
+      }
+    ]
+    const form = {
+      data: { submit: this.signin, cancel: null, buttons: [{cancel: this.testButtonCB}] },
+      style: { height: '50vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem' },
+    }
+    
     return (
       <FlexItem
         border="1px solid black"
@@ -67,8 +90,13 @@ class Signup extends Component {
         height="50vh"
         width="40%"
         zIndex="10"
+        flexDirection="column"
       >
-        <FlexForm
+        <Form 
+          form={form}
+          inputs={inputs}
+        />
+        {/* <FlexForm
           height="50vh"
           justifyContent="space-around"
           flexDirection="column"
@@ -135,7 +163,7 @@ class Signup extends Component {
           >
             Sign Up
           </OutlineButton>
-        </FlexForm>
+        </FlexForm> */}
       </FlexItem>
     );
   }

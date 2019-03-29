@@ -18,26 +18,22 @@ export const Error = Text.extend.attrs({
   &:before { content: '— '; }
 `
 
-const Field = ({ type, name, label, placeholder, error, ...props }) => {
-  
+const Field = ({ data: { name, type, placeholder, label, error}, flexStyle, inputStyle, ...props }) => {
   const Component =
     {
       select: InputSelect,
       slider: Slider,
       textarea: InputTextarea
     }[type] || Input
-
   return (
-    <Flex
-      justifyContent={ "space-around" && props.justifyContent }
-    >
-      <Label className={type} id={name} mb={2} color={theme.colors.white}>
+    <Flex {...flexStyle}>
+      <Label for={name} id={name} >
         {label}
       </Label>
       <Flex align="center" mb="2px" wrap>
         {error && <Error children={error} />}
       </Flex>
-      <Component name={name} type={type} placeholder={placeholder} {...props} />
+      <Component  name={name} type={type} placeholder={placeholder} {...props} {...inputStyle}/>
     </Flex>
   );
 };

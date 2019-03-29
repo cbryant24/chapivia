@@ -72,7 +72,7 @@ export default ({ children }) => {
             position="fixed"
             bgAnimationGlow
           />
-          <Title />
+          {/* <Title /> */}
             {children}
           </Flex>
       </ThemeProvider>
