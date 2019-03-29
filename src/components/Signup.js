@@ -10,7 +10,7 @@ import helpers from './helpers';
 import theme from './elements/theme';
 import mutation from '../mutations/Signup';
 import query from '../queries/UnguessedPlayers';
-import Form from './Form';
+import FormApp from './FormApp';
 
 
 //TODO: Errors message applicable to correct field only
@@ -201,40 +201,45 @@ class Signup extends Component {
   }
 
   async signup(event) {
-    event.preventDefault()
-    const { 
-      email: { value: email },
-      name: { value: name },
-      password: { value: password },
-      confirmPassword: { value: confirmPassword }
-    } = this.state;
+    debugger
+    // event.preventDefault()
+    // const { 
+    //   email: { value: email },
+    //   name: { value: name },
+    //   password: { value: password },
+    //   confirmPassword: { value: confirmPassword }
+    // } = this.state;
 
-    const valid = validate.signup({ email, name, password, confirmPassword });
+    // const valid = validate.signup({ email, name, password, confirmPassword });
 
-    if (!valid) {
-      validate.signup.errors.forEach( error => {
-        const field = error.dataPath.split('.').join("");
-        this.setError('input', field);
-      });
-      return
-    }
+    // if (!valid) {
+    //   validate.signup.errors.forEach( error => {
+    //     const field = error.dataPath.split('.').join("");
+    //     this.setError('input', field);
+    //   });
+    //   return
+    // }
 
-    if(password !== confirmPassword)
-      return this.setError('mismatch', 'password');
+    // if(password !== confirmPassword)
+    //   return this.setError('mismatch', 'password');
 
-    try {
-      const result = await this.props.mutate({
-        variables: { email, password, name },
-        refetchQueries: [{ query }]
-      });
-    } catch(res) {
-      debugger
-      return this.setError('duplicate');
-    }
+    // try {
+    //   const result = await this.props.mutate({
+    //     variables: { email, password, name },
+    //     refetchQueries: [{ query }]
+    //   });
+    // } catch(res) {
+    //   debugger
+    //   return this.setError('duplicate');
+    // }
     
-    this.setError();
+    // this.setError();
 
-    return this.props.history.push('/game');
+    // return this.props.history.push('/game');
+  }
+
+  testButtonCB() {
+    debugger
   }
 
   render() {
@@ -249,6 +254,22 @@ class Signup extends Component {
     const errorMessages = Object.keys(this.state)
                           .map( prop => this.state[prop].error.message ).filter( msg => msg );
     
+    const inputs = [
+      {
+        data: { type: 'input', name: 'name', label: 'name', placeholder: 'enter name' }, 
+        flexStyle: { width: '75%', maxHeight: '3rem', height: '3rem', justifyContent: 'space-around' },
+        inputStyle: { color: '#ff0000'},
+      },
+      {
+        data: { type: 'input', name: 'email', label: 'email', placeholder: 'enter email' },
+        flexStyle: { width: '75%', maxHeight: '3rem', height: '3rem', justifyContent: 'space-between' },
+        inputStyle: { color: '#ff00f3'}
+      }
+    ]
+    const form = {
+      data: { submit: this.signup, cancel: null, buttons: [{cancel: this.testButtonCB}] },
+      style: { height: '50vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem' },
+    }
     return (
       <FlexItem
         border="1px solid black"
@@ -257,7 +278,10 @@ class Signup extends Component {
         width="40%"
         zIndex="20"
       >
-        <Form/>
+        <FormApp 
+          form={form}
+          inputs={inputs}
+        />
         {/* <FlexForm
           display="flex"
           flexDirection="column"

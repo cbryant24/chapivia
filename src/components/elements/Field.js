@@ -24,7 +24,7 @@ const displayErrors = (errors) => {
   return errors.map( error => <Item key={error}><Error>{error}</Error></Item>);
 };
 
-const Field = ({ type, name, label, placeholder, error, ...props }) => {
+const Field = ({ data: { name, type, placeholder, label, error}, flexStyle, inputStyle, ...props }) => {
   
   const Component =
     {
@@ -33,14 +33,11 @@ const Field = ({ type, name, label, placeholder, error, ...props }) => {
       textarea: InputTextarea
     }[type] || Input
   return (
-    <Flex
-      justifyContent={ "space-around" && props.justifyContent }
-      flexDirection={ "row" && props.flexDirection }
-    >
+    <Flex {...flexStyle}>
       <Flex
         alignItems="flex-end"
       >
-        <Label className={type} id={name} color={theme.colors.white}>
+        <Label for={name} id={name}>
           {label}
         </Label>
         <List
