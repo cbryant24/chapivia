@@ -1,32 +1,30 @@
 import React from 'react';
 import { useFormInput } from './useInput';
 import * as Element from './elements';
-import { useStateValue } from './FormState';
+import { useStateValue } from './FormApp';
 
 
 export default function Form({inputs, form}) {
   // const name = useFormInput('');
-  const [{ theme }, dispatch] = useStateValue();
-  
+  const [{ fields }, dispatch] = useStateValue();
   const displayFields = () => {
     return inputs.map( input =>  {
-      const field = useFormInput();
+      const field = useFormInput(input);
       return <Element.Field {...input} {...field}/> 
-    })
+    });
   }
 
   const handleCancel = cb => {
-    debugger
-    // useFormInput('');
-    // if(form.data.buttons) 
-    //   return form.data.buttons[0].cancel();
+    dispatch({type: 'RESET'});
   }
+
+  const handleSubmit = form.data.submit
 
   debugger
   return (
     <Element.FlexForm
-      // {...form.style}
-      // onSubmit={(event) => form.data.submit(event)}
+      {...form.style}
+      onSubmit={(event) => form.data.submit(event, fields)}
     >
       {displayFields()}
       <Element.Input
