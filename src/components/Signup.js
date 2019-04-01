@@ -10,12 +10,12 @@ import helpers from './helpers';
 import theme from './elements/theme';
 import mutation from '../mutations/Signup';
 import query from '../queries/UnguessedPlayers';
-import FormApp from './FormApp';
+import FormApp from './Form/App';
 
 
 //TODO: Errors message applicable to correct field only
 
-function Signup() {
+function Signup(props) {
   // const [{ fields: {name, email } }] = useStateValue();
 
   // handleChange(event) {
@@ -167,9 +167,7 @@ function Signup() {
     debugger
     // const [{ fields: { name, email } }] = useStateValue();
 
-
     event.preventDefault()
-    debugger
     // const { 
     //   email: { value: email },
     //   name: { value: name },

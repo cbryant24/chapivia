@@ -1,12 +1,12 @@
 import React from 'react';
 import { useFormInput } from './useInput';
-import * as Element from './elements';
-import { useStateValue } from './FormApp';
+import * as Element from '../elements';
+import { useStateValue } from './App';
 
 
 export default function Form({inputs, form}) {
-  // const name = useFormInput('');
   const [{ fields }, dispatch] = useStateValue();
+
   const displayFields = () => {
     return inputs.map( input =>  {
       const field = useFormInput(input);
@@ -18,8 +18,6 @@ export default function Form({inputs, form}) {
     dispatch({type: 'RESET'});
   }
 
-  const handleSubmit = form.data.submit
-
   debugger
   return (
     <Element.FlexForm
@@ -28,12 +26,11 @@ export default function Form({inputs, form}) {
     >
       {displayFields()}
       <Element.Input
-        // color="white"
-        // borderColor='primary'
-        // mt="1rem"
-        // type="submit"
-        // width="25%"
-        // onClick={ (e) => form.data.submit(e) }
+        color="white"
+        borderColor='primary'
+        mt="1rem"
+        type="submit"
+        width="25%"
         type="submit"
       />
       <Element.OutlineButton

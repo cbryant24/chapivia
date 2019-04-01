@@ -1,7 +1,6 @@
 import React from 'react';
 import { StateProvider } from './FormState';
 import Form from './Form';
-import { useFormInput } from './useInput';
 import AuthReducer from './reducers';
 
 import { useStateValue } from './FormState';
@@ -19,8 +18,10 @@ export default function FormApp({form, inputs}) {
         ...initialState.fields,
         [input.data.name]: {
           value: '',
-          error: false,
-          errorMessage: '',
+          error: {
+            status: false,
+            message: ''
+          },
           touched: false,
           dirty: false
         }
@@ -50,18 +51,7 @@ export default function FormApp({form, inputs}) {
             ...state.fields,
             [action.payload.field]: {
               ...state.fields[action.payload.field],
-              value: action.payload.value
-            }
-          }
-        };
-      case 'CHANGE_ERROR_MESSAGE':
-        return {
-          ...state,
-          fields: {
-            ...state.fields,
-            [action.payload.field]: {
-              ...state.fields[action.payload.field],
-              value: action.payload.value
+              error: action.payload.value
             }
           }
         };
@@ -72,7 +62,7 @@ export default function FormApp({form, inputs}) {
             ...state.fields,
             [action.payload.field]: {
               ...state.fields[action.payload.field],
-              value: action.payload.value
+              touched: action.payload.value
             }
           }
         };
@@ -83,7 +73,7 @@ export default function FormApp({form, inputs}) {
             ...state.fields,
             [action.payload.field]: {
               ...state.fields[action.payload.field],
-              value: action.payload.value
+              dirty: action.payload.value
             }
           }
         };
