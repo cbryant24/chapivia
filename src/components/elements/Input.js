@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { fontSize, space, width, color, propTypes, minHeight, fontWeight, textAlign, maxHeight, height } from 'styled-system'
+import { fontSize, space, width, color, propTypes, minHeight, fontWeight, textAlign, maxHeight, height, verticalAlign, border } from 'styled-system'
 import cleanElement from 'clean-element';
-import theme, { filterProps } from './theme'
+import theme, { filterProps, flexGrow } from './theme'
 import PropTypes from 'prop-types'
 
 const chevron = () => {
@@ -24,12 +24,13 @@ const Input = styled(cleanElement(Base))`
   width: ${props => props.width || props.theme.inputWidth };
   max-width: ${props => props.maxWidth || props.theme.inputMaxWidth };
   line-height: inherit;
+  letter-spacing: 1px;
   font-family: inherit;
   background-color: transparent;
   border-radius: ${props => props.borderRadius || props.theme.radius };
   border-width: ${props => props.borderWidth || "1px"};
   border-style: solid;
-  border-color: ${props => props.theme.colors.smoke};
+  border-color: ${props => props.borderColor || props.theme.colors.smoke};
   transition: ${props => props.theme.transition} box-shadow;
   ::placeholder {
     color: ${props => props.theme.colors.grey};
@@ -39,14 +40,14 @@ const Input = styled(cleanElement(Base))`
   }
   &:focus {
     outline: none;
-    border-color: ${props => props.theme.colors.info};
-    box-shadow: 0 0 0 2px ${props => props.theme.colors.blue[2]};
+    border-color: ${props => props.focusColor || props.theme.colors.info};
+    box-shadow: 0 0 0 1px ${props => props.foucsBoxShadowColor || props.theme.colors.blue[2]};
   }
   &[type='select'] {
     background: #fff url("data:image/svg+xml;charset=utf8,${chevron()}") no-repeat right .75rem center;
     background-size: .5rem;
   }
-  ${fontSize} ${space} ${color} ${minHeight} ${fontWeight} ${textAlign} ${maxHeight} ${height};
+  ${fontSize} ${space} ${color} ${minHeight} ${fontWeight} ${textAlign} ${maxHeight} ${height} ${verticalAlign} ${flexGrow} ${border};
 `
 
 Input.displayName = 'Input'

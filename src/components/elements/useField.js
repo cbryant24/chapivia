@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+
 import Label from './Label'
 import Flex from './Flex'
+import { FlexInput } from './Flex';
 import Text from './Text'
 import List from './List'
 import Item from './Item'
@@ -17,38 +19,51 @@ export const Error = Text.extend.attrs({
   my: 0
 })`
   font-weight: normal;
-  &:before { content: '— '; }
+  &:before { content: '—'; }
 `
 
-const displayErrors = (errors) => {
-  return errors.map( error => <Item key={error}><Error>{error}</Error></Item>);
-};
-
-const Field = ({ data: { name, type, placeholder, label, error}, flexStyle, inputStyle, ...props }) => {
-  
+const Field = ({ data: { name, type, placeholder, label }, flexStyle, inputStyle, ...props }) => {
+  const [shown, setShown ] = React.useState(false);
+  const errorColor = props.error.errorMessage ? '#e95667' : null; 
   const Component =
     {
       select: InputSelect,
       slider: Slider,
       textarea: InputTextarea
     }[type] || Input
+    debugger
   return (
     <Flex {...flexStyle}>
-      <Flex
-        alignItems="flex-end"
+      <Label for={name} id={name}>
+        {label}
+      </Label>
+      <FlexInput
+        borderColor={errorColor}
+        focusColor={errorColor} 
+        foucsBoxShadowColor={errorColor}
+        flexDirection="row"
+        flexGrow="2"
+        p="4px"
       >
-        <Label for={name} id={name}>
-          {label}
-        </Label>
-        <List
-            display="flex"
-            flexDirection="column"
-            alignItems="flex-start"
-        >
-          {error && error.length >= 1 ? displayErrors(error) : ''}
-        </List>
-      </Flex>
-      <Component name={name} type={type} placeholder={placeholder} {...props} />
+        <Component 
+          {...props}
+          name={name} 
+          type={shown && type === "password" ? 'text' : type} 
+          placeholder={placeholder}
+          
+          flexGrow="2"
+          border="none"
+          borderFocus="transparent"
+          focusColor="transparent"
+          foucsBoxShadowColor="transparent"
+        />
+        {type ==="password" ? 
+        <span
+          
+          onClick={() => setShown(!shown)}
+        >Show/Hide</span> : ''}
+      </FlexInput>
+      {props.error.errorMessage && <Error>{props.error.errorMessage}</Error>}
     </Flex>
   );
 };

@@ -54,6 +54,7 @@ injectGlobal`
     font-family: ${theme.font};
     color: ${theme.colors.white}
     line-height: 1.5;
+    letter-spacing: 1px;
     position: relative;
     height: 100%;
     max-height: 100%;

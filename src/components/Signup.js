@@ -221,18 +221,23 @@ function Signup(props) {
   const inputs = [
     {
       data: { type: 'input', name: 'name', label: 'name', placeholder: 'enter name' }, 
-      flexStyle: { width: '75%', maxHeight: '3rem', height: '3rem', justifyContent: 'space-around' },
+      flexStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-around', flexDirection: 'column' },
       inputStyle: { color: '#ff0000'},
     },
     {
-      data: { type: 'input', name: 'email', label: 'email', placeholder: 'enter email' },
-      flexStyle: { width: '75%', maxHeight: '3rem', height: '3rem', justifyContent: 'space-between' },
+      data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email' },
+      flexStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-between', flexDirection: 'column'},
+      inputStyle: { color: '#ff00f3' }
+    },
+    {
+      data: { type: 'password', name: 'password', label: 'password', placeholder: 'enter password' },
+      flexStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: { color: '#ff00f3' }
     }
   ]
   const form = {
     data: { submit: signup, cancel: null, buttons: [{cancel: 'testButtonCB'}] },
-    style: { height: '50vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem' },
+    style: { height: '60vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem' },
   }
 
   // return {

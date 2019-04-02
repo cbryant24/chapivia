@@ -10,7 +10,7 @@ export default function Form({inputs, form}) {
   const displayFields = () => {
     return inputs.map( input =>  {
       const field = useFormInput(input);
-      return <Element.Field {...input} {...field}/> 
+      return <Element.Field {...input} {...field}/>  
     });
   }
 
@@ -18,7 +18,6 @@ export default function Form({inputs, form}) {
     dispatch({type: 'RESET'});
   }
 
-  debugger
   return (
     <Element.FlexForm
       {...form.style}

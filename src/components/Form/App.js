@@ -18,10 +18,7 @@ export default function FormApp({form, inputs}) {
         ...initialState.fields,
         [input.data.name]: {
           value: '',
-          error: {
-            status: false,
-            message: ''
-          },
+          errorMessage: '',
           touched: false,
           dirty: false
         }
@@ -31,7 +28,6 @@ export default function FormApp({form, inputs}) {
   }
 
   const reducer = (state, action) => {
-    debugger
     switch (action.type) {
       case 'CHANGE_VALUE':
         return {
@@ -44,14 +40,14 @@ export default function FormApp({form, inputs}) {
             }
           }
         };
-      case 'CHANGE_ERROR_STATUS':
+      case 'CHANGE_ERROR_MESSAGE':
         return {
           ...state,
           fields: {
             ...state.fields,
             [action.payload.field]: {
               ...state.fields[action.payload.field],
-              error: action.payload.value
+              errorMessage: action.payload
             }
           }
         };
@@ -62,7 +58,7 @@ export default function FormApp({form, inputs}) {
             ...state.fields,
             [action.payload.field]: {
               ...state.fields[action.payload.field],
-              touched: action.payload.value
+              touched: action.payload
             }
           }
         };
@@ -73,7 +69,7 @@ export default function FormApp({form, inputs}) {
             ...state.fields,
             [action.payload.field]: {
               ...state.fields[action.payload.field],
-              dirty: action.payload.value
+              dirty: action.payload
             }
           }
         };

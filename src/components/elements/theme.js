@@ -87,7 +87,7 @@ export const fontStyle = style({
   getter: n => n,
   // shorthand alias React prop name
   alias: 'fs'
-})
+});
 
 export const textTransform = style({
   //React prop name
@@ -111,7 +111,16 @@ export const minHeight = style({
   numberToPx: false,
   getter: n => n,
   alias: 'tt'
-})
+});
+
+export const flexGrow = style({
+  prop: 'flexGrow',
+  cssProperty: 'flex-grow',
+  key: 'flexGrow',
+  numberToPx: false,
+  getter: n => n,
+  alias: 'fg'
+});
 
 export const textShadow = style({
   // React prop name
@@ -294,7 +303,8 @@ export const filterProps = props =>
     "bgAnimation",
     "windowBorder",
     "bgAnimationGlow",
-    "textAlign"
+    "textAlign",
+    "flexGrow"
   ])
 
 const theme = {
