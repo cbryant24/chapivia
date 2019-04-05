@@ -58,7 +58,7 @@ export default function FormApp({form, inputs}) {
             ...state.fields,
             [action.payload.field]: {
               ...state.fields[action.payload.field],
-              touched: action.payload
+              touched: action.payload.touched
             }
           }
         };
@@ -69,7 +69,7 @@ export default function FormApp({form, inputs}) {
             ...state.fields,
             [action.payload.field]: {
               ...state.fields[action.payload.field],
-              dirty: action.payload
+              dirty: action.payload.dirty
             }
           }
         };
@@ -81,7 +81,6 @@ export default function FormApp({form, inputs}) {
   return (
     <StateProvider initialState={setInitialStateValues()} reducer={reducer}>
         <Form inputs={inputs} form={form}/>
-        <useFormInput inputs={form}/>
     </StateProvider>
   );
 }

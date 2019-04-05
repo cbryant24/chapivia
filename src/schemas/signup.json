@@ -20,11 +20,12 @@
       "pattern": "^[a-zA-Z0-9@*#!$.]+$",
       "maxLength": 128
     },
-    "confirmPassword": { 
+    "confirm password": { 
       "type": "string", 
       "pattern": "^[a-zA-Z0-9@*#!$.]+$",
+      "const": {"$data": "1/password"},
       "maxLength": 128
     }
   },
-  "required": ["email", "name", "password", "confirmPassword"]
+  "required": ["email", "name", "password", "confirm password"]
 }

@@ -18,7 +18,7 @@
       "type": "string", 
       "pattern": "^$|^[a-zA-Z0-9@*#!$.]+$"
     },
-    "confirmPassword": { 
+    "confirm password": { 
       "type": "string", 
       "pattern": "^$|^[a-zA-Z0-9@*#!$.]+$"
     },
@@ -26,6 +26,11 @@
       "type": "string",
       "pattern": "^$|^[a-dA-D]+$",
       "maxLength": 1
+    }
+  },
+  "errorMessage": {
+    "properties": {
+      "name": "wrong char bro"
     }
   }
 }

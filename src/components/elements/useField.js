@@ -31,7 +31,7 @@ const Field = ({ data: { name, type, placeholder, label }, flexStyle, inputStyle
       slider: Slider,
       textarea: InputTextarea
     }[type] || Input
-    debugger
+
   return (
     <Flex {...flexStyle}>
       <Label for={name} id={name}>
@@ -50,7 +50,6 @@ const Field = ({ data: { name, type, placeholder, label }, flexStyle, inputStyle
           name={name} 
           type={shown && type === "password" ? 'text' : type} 
           placeholder={placeholder}
-          
           flexGrow="2"
           border="none"
           borderFocus="transparent"
@@ -58,10 +57,15 @@ const Field = ({ data: { name, type, placeholder, label }, flexStyle, inputStyle
           foucsBoxShadowColor="transparent"
         />
         {type ==="password" ? 
-        <span
-          
+        <Text.p
+          fontSize="12px"
+          m="auto"
           onClick={() => setShown(!shown)}
-        >Show/Hide</span> : ''}
+          caps
+          cursor='pointer'
+        >
+          {shown ? 'hide':'show'}
+        </Text.p> : ''}
       </FlexInput>
       {props.error.errorMessage && <Error>{props.error.errorMessage}</Error>}
     </Flex>

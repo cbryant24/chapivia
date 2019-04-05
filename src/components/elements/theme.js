@@ -304,7 +304,15 @@ export const filterProps = props =>
     "windowBorder",
     "bgAnimationGlow",
     "textAlign",
-    "flexGrow"
+    "flexGrow",
+    "foucsBoxShadowColor",
+    "focusColor",
+    "borderFocus",
+    "maxHeight",
+    "foucsBoxShadowColor",
+    "focusColor",
+    "borderFocus",
+    "error"
   ])
 
 const theme = {

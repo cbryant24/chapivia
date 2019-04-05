@@ -1,15 +1,15 @@
 import React from 'react';
-import { useFormInput } from './useInput';
+import { FormInput } from './FormInput';
 import * as Element from '../elements';
 import { useStateValue } from './App';
-
+import { validate } from '../helpers/validators';
 
 export default function Form({inputs, form}) {
   const [{ fields }, dispatch] = useStateValue();
 
   const displayFields = () => {
     return inputs.map( input =>  {
-      const field = useFormInput(input);
+      const field = FormInput(input);
       return <Element.Field {...input} {...field}/>  
     });
   }
@@ -18,10 +18,20 @@ export default function Form({inputs, form}) {
     dispatch({type: 'RESET'});
   }
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    const formVals = {}
+    Object.keys(fields).map( field => formVals[field] = fields[field].value);
+
+    const valid = validate.signup(formVals);
+    console.log(validate.signup.errors);
+    debugger
+  }
+
   return (
     <Element.FlexForm
       {...form.style}
-      onSubmit={(event) => form.data.submit(event, fields)}
+      onSubmit={(event) => handleSubmit(event)}
     >
       {displayFields()}
       <Element.Input

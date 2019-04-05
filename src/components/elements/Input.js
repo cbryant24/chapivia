@@ -24,7 +24,7 @@ const Input = styled(cleanElement(Base))`
   width: ${props => props.width || props.theme.inputWidth };
   max-width: ${props => props.maxWidth || props.theme.inputMaxWidth };
   line-height: inherit;
-  letter-spacing: 1px;
+  letter-spacing: inherit;
   font-family: inherit;
   background-color: transparent;
   border-radius: ${props => props.borderRadius || props.theme.radius };

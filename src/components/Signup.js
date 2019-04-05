@@ -233,6 +233,11 @@ function Signup(props) {
       data: { type: 'password', name: 'password', label: 'password', placeholder: 'enter password' },
       flexStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: { color: '#ff00f3' }
+    },
+    {
+      data: { type: 'password', name: 'confirm password', label: 'confirm password', placeholder: 'reenter password' },
+      flexStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-between', flexDirection: 'column'},
+      inputStyle: { color: '#ff00f3' }
     }
   ]
   const form = {
