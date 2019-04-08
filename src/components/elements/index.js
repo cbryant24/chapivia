@@ -23,3 +23,4 @@ export { default as ModalBackground } from './ModalBackground';
 
 //Forms
 export { default as FlexForm } from './Form';
+export { default as OutlineSubmit } from './OutlineSubmit';

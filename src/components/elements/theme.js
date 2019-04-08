@@ -4,6 +4,7 @@ import { style } from 'styled-system'
 
 const red = '#e42d42'
 const blue = '#2d9ce4'
+const white = '#ffffff'
 export const palette = palx(blue)
 
 export const grays = {
@@ -16,7 +17,7 @@ export const grays = {
 }
 
 export const brand = {
-  primary: red,
+  primary: white,
   accent: palette.indigo[4],
   success: palette.teal[5],
   info: palette.blue[5],
@@ -65,7 +66,7 @@ const emoji = '"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"';
 export const font = `development,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif,${emoji}`;
 export const mono = 'SFMono-Regular,"Roboto Mono",Menlo,monospace';
 
-export const fontSizes = [12, 14, 16, 20, 24, 32, 48, 64, 72, 96];
+export const fontSizes = ['12px', 14, 16, 20, 24, 32, 48, 64, 72, 96];
 export const remSizes = range(0, 100).map( num => num / 10)
 
 export const regular = 400;

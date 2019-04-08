@@ -38,25 +38,11 @@ const Base = props => {
   return <div {...next} />
 }
 
-const Box = styled(cleanElement(Base))([], space, width, color, fontSize, textAlign, height, border, display, position, zIndex, fontFamily, fontStyle, clipPath, top,
-  bottom,
-  left,
-  right,
-  backgroundColor,
-  backgroundImage,
-  backgroundSize,
-  fontSmooth,
-  borderRadius,
-  boxShadow,
-  textShadow,
-  background,
-  opacity,
-  transform,
-  transformOrigin,
-  content,
-  flexDirection,
-  minHeight,
-  minWidth);
+const Box = styled(cleanElement(Base))([], 
+    space, width, color, fontSize, textAlign, height, border, display, position, zIndex, fontFamily, fontStyle, clipPath, top,
+    bottom, left, right, backgroundColor, backgroundImage, backgroundSize, fontSmooth, borderRadius, boxShadow, textShadow,
+    background, opacity, transform, transformOrigin, content, flexDirection, minHeight, minWidth
+  );
 
 Box.displayName = 'Box'
 Box.header = Box.withComponent('header')

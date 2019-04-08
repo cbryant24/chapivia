@@ -1,24 +1,16 @@
 import Button from './Button'
-import { maxHeight } from 'styled-system'
-import theme, { cx } from './theme'
+import { maxHeight } from 'styled-system';
+import theme, { cx } from './theme';
+import { outlineButton } from './ButtonCSS';
 
 const OutlineButton = Button.extend`
-  box-shadow: none !important;
-  background-color: transparent !important;
-  color: ${props => cx(props.color)};
-  border-width: 2px;
-  border-style: solid;
-  border-color: currentColor;
-  ${maxHeight}
+  ${outlineButton}
 `
 
 OutlineButton.displayName = 'OutlineButton'
 
 OutlineButton.defaultProps = {
   theme,
-  color: 'primary',
-  f: 3,
-  m: 0,
 }
 
 export default OutlineButton

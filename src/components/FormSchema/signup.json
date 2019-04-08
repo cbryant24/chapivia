@@ -36,12 +36,12 @@
     "submit": {
       "type": "submit",
       "text": "Submit",
-      "callback": true
+      "cb": null
     },
     "cancel": {
       "type": "cancel",
       "text": "Cancel",
-      "callback": true
+      "cb": null
     }
   },
   "style": {

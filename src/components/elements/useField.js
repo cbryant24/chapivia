@@ -22,16 +22,19 @@ export const Error = Text.extend.attrs({
   &:before { content: '—'; }
 `
 
+const handleErrorMessages = errorMessages => {
+  return errorMessages.map( errorMessage => <Item key={errorMessage}>{errorMessage}</Item> )
+}
+
 const Field = ({ data: { name, type, placeholder, label }, flexStyle, inputStyle, ...props }) => {
   const [shown, setShown ] = React.useState(false);
-  const errorColor = props.error.errorMessage ? '#e95667' : null; 
+  const errorColor = props.errors.length >= 1 ? '#e95667' : null; 
   const Component =
     {
       select: InputSelect,
       slider: Slider,
       textarea: InputTextarea
     }[type] || Input
-
   return (
     <Flex {...flexStyle}>
       <Label for={name} id={name}>
@@ -56,7 +59,7 @@ const Field = ({ data: { name, type, placeholder, label }, flexStyle, inputStyle
           focusColor="transparent"
           foucsBoxShadowColor="transparent"
         />
-        {type ==="password" ? 
+        { type ==="password" ? 
         <Text.p
           fontSize="12px"
           m="auto"
@@ -65,9 +68,9 @@ const Field = ({ data: { name, type, placeholder, label }, flexStyle, inputStyle
           cursor='pointer'
         >
           {shown ? 'hide':'show'}
-        </Text.p> : ''}
+        </Text.p> : '' }
       </FlexInput>
-      {props.error.errorMessage && <Error>{props.error.errorMessage}</Error>}
+      {props.errors.length >= 1 ? <List>handleErrorMessages(props.error)</List> : ''}
     </Flex>
   );
 };
@@ -91,7 +94,7 @@ Field.propTypes = {
   /** label text */
   label: PropTypes.string.isRequired,
   /** validation message */
-  error: PropTypes.string,
+  error: PropTypes.array,
   /** placeholder text */
   placeholder: PropTypes.string
 }
