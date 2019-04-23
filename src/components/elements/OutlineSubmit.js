@@ -6,11 +6,6 @@ import Button from './Button';
 import theme, { filterProps, flexGrow } from './theme';
 import PropTypes from 'prop-types';
 
-const Base = props => {
-  const next = filterProps(props);
-  return <input {...next} />
-}
-
 const OutlineSubmit = Button.withComponent('input').extend`
   ${ outlineButton }
 `

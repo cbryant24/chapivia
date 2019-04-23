@@ -1,19 +1,19 @@
 {
+  "id": "http://localhost:4001/src/schema/form.json",
   "$schema": "http://json-schema.org/draft-07/schema",
-  "id": "http://chapivia.online/schemas/singup.json",
   "title": "Signup",
   "description": "User Signup",
   "type": "object",
-  "": {
-    "email": { 
+  "properties": {
+    "email": {
       "type": "string", 
-      "format": "email",
+      "$ref": "signup.json#/definitions",
       "maxLength": 128
     },
     "name": {
       "type": "string",
-      "pattern": "^[a-zA-Z0-9!$.\\s]+$",
-      "maxLength": 256
+      "$ref": "patterns.json#/definitions/blur/properties/emptyOrSafeString",
+      "maxLength": 1
     },
     "password": { 
       "type": "string", 
@@ -27,5 +27,9 @@
       "maxLength": 128
     }
   },
-  "required": ["email", "name", "password", "confirm password"]
+  "errorMessage": {
+    "properties": {
+      "name": "Name should only contain letters and numbers"
+    }
+  }
 }

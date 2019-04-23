@@ -4,7 +4,7 @@ import * as Element from '../elements';
 import { useStateValue } from './App';
 import { validate } from '../helpers/validators';
 
-export default function Form({inputs, form}) {
+export default function Form({inputs, form, buttons}) {
   const [{ fields }, dispatch] = useStateValue();
 
   const displayFields = () => {
@@ -21,12 +21,13 @@ export default function Form({inputs, form}) {
     event.preventDefault();
     const formVals = {}
     Object.keys(fields).map( field => formVals[field] = fields[field].value);
-
     const valid = validate.signup(formVals);
+    console.log(validate)
+    debugger
   }
 
   const createButtons = () => {
-
+    return form.data.buttons
   }
 
   return (
@@ -35,9 +36,7 @@ export default function Form({inputs, form}) {
       onSubmit={ event => handleSubmit(event) }
     >
       {displayFields()}
-      <Element.Flex
-        justifyContent="space-around"
-      >
+      <Element.Flex >
         <Element.OutlineSubmit
           mt="1rem"
           type="submit"

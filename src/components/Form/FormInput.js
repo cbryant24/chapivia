@@ -7,7 +7,12 @@ export const formInput = ({data}) => {
 
   function handleChange(e) {
     const { name: field, value } = e.target;
-    const valid = validate.input({ [field]: value });
+    // const valid = validate.input({ [field]: value });
+    // console.log(validate)
+    // debugger
+    const valid = validate.form({ name: value });
+    console.log(validate.form.errors)
+    debugger
 
     if(!fields[field].dirty)
       dispatch({ type: 'SET_INPUT_DIRTY', payload: { field, dirty: true } });

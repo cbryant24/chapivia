@@ -10,6 +10,8 @@ import helpers from './helpers';
 import theme from './elements/theme';
 import mutation from '../mutations/Signup';
 import query from '../queries/UnguessedPlayers';
+import formButtons from './FormSchema/signupButtons.json';
+import signupSchema from './FormSchema/signup.json';
 import FormApp from './Form/App';
 
 
@@ -163,7 +165,7 @@ function Signup(props) {
 
   function signup(event, vals) {
     
-    const { email: { value: email }, name: { value: name } } = vals;
+    // const { email: { value: email }, name: { value: name } } = vals;
     debugger
     // const [{ fields: { name, email } }] = useStateValue();
 
@@ -242,8 +244,13 @@ function Signup(props) {
   ]
   const form = {
     data: { submit: signup, cancel: null, buttons: [{cancel: 'testButtonCB'}] },
-    style: { height: '60vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem' },
+    style: { height: '60vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem',  },
   }
+
+  // const buttonStyles = formButtons;
+  // const { buttons, inputs, data: form } = signupSchema;
+  // const signupValidate = validate
+  // form.submit = signup;
 
   // return {
     // const { email, name, password, confirmPassword } = this.state;
@@ -273,12 +280,13 @@ function Signup(props) {
     //   data: { submit: this.signup, cancel: null, buttons: [{cancel: this.testButtonCB}] },
     //   style: { height: '50vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem' },
     // }
-  return (
+
+return (
     <FlexItem
       border="1px solid black"
       p="2rem"
       bg="black"
-      width="40%"
+      width="60%"
       zIndex="20"
     >
       <FormApp 

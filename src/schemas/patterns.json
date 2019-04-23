@@ -1,0 +1,43 @@
+{
+  "id": "patterns.json",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Signup",
+  "description": "User Signup",
+  "type": "object",
+  "definitions": {
+    "blur": {
+      "properties": {
+        "emptyOrEmail": {
+          "anyOf": [
+            { "type": "string", "pattern": "^$" },
+            { "type": "string", "format": "email" }
+          ]
+        },
+        "emptyOrSafeStringSpaces": {
+          "anyOf": [
+            { "type": "string", "pattern": "^$" },
+            { "type": "string", "pattern": "^[a-zA-Z0-9@*!$.\\s]+$" }
+          ]
+        },
+        "emptyOrSafeString": {
+          "anyOf": [
+            { "type": "string", "pattern": "^$" },
+            { "type": "string", "pattern": "^[a-zA-Z0-9@*#!$.]+$" }
+          ]
+        },
+        "numbers": { 
+          "type": ["string", "integer"],
+          "pattern": "^[0-9]*$"
+        },
+        "anyString": { 
+          "type": "string",
+          "maxLength": 1
+        },
+        "maxOfLength": {
+          "type": "number",
+          "maxLength": 2
+        }
+      }
+    }
+  }
+}

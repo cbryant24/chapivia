@@ -3,51 +3,91 @@
   "title": "A simple signup form",
   "description": "Allows users to register an account",
   "type": "object",
-  "required": [
-    "email",
-    "name",
-    "password"
-  ],
-  "properties": {
-    "email": { 
-      "type": "string", 
-      "title": "email",
-      "inputType": "input",
-      "maxLength": 128,
-      "validation": "email"
+  "data": {
+    "submit": null,
+    "cancel": null,
+    "cb": null,
+    "style": {
+      "height": "50vh",
+      "justifyContent": "space-around",
+      "flexDirection": "column",
+      "px": "4rem"
+    }
+  },
+  "inputs": [{
+      "email": {
+        "type": "string",
+        "title": "email",
+        "inputType": "input",
+        "style": {
+          "field": {
+            "width": "75%",
+            "maxHeight": "3rem",
+            "justifyContent": "space-between"
+          }
+        }
+      }
     },
-    "password": { 
-      "type": "string", 
-      "title": "password",
-      "inputType": "input",
-      "maxLength": 128,
-      "validation": "password",
-      "style": {
-        "field": {
-          "width": "75%", 
-          "maxHeight": "3rem", 
-          "height": "3rem", 
-          "justifyContent": "space-between"
+    {
+      "name": {
+        "type": "string",
+        "title": "name",
+        "inputType": "input",
+        "style": {
+          "field": {
+            "width": "75%",
+            "maxHeight": "3rem",
+            "height": "3rem",
+            "justifyContent": "space-between"
+          }
+        }
+      }
+    },
+    {
+      "password": {
+        "type": "string",
+        "title": "password",
+        "inputType": "input",
+        "style": {
+          "field": {
+            "width": "75%",
+            "maxHeight": "3rem",
+            "height": "3rem",
+            "justifyContent": "space-between"
+          }
+        }
+      }
+    },
+    {
+      "confirm password": {
+        "type": "string",
+        "title": "email",
+        "inputType": "password",
+        "style": {
+          "field": {
+            "width": "75%",
+            "maxHeight": "3rem",
+            "justifyContent": "space-between"
+          }
         }
       }
     }
-  },
-  "buttons": {
-    "submit": {
-      "type": "submit",
-      "text": "Submit",
-      "cb": null
+  ],
+  "buttons": [{
+      "submit": {
+        "type": "submit",
+        "text": "Submit",
+        "cb": null,
+        "queries": null
+      }
     },
-    "cancel": {
-      "type": "cancel",
-      "text": "Cancel",
-      "cb": null
+    {
+      "cancel": {
+        "type": "cancel",
+        "text": "Cancel",
+        "cb": null,
+        "queries": null
+      }
     }
-  },
-  "style": {
-    "height": "50vh",
-    "justifyContent": "space-around",
-    "flexDirection": "column",
-    "px": "4rem"
-  }
+  ]
 }

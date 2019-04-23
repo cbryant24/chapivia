@@ -7,7 +7,7 @@ import { useStateValue } from './FormState';
 
 export { useStateValue };
 
-export default function FormApp({form, inputs}) {
+export default function FormApp({form, inputs, buttons}) {
   const initialState = {
     fields: {}
   };
@@ -80,7 +80,7 @@ export default function FormApp({form, inputs}) {
   
   return (
     <StateProvider initialState={setInitialStateValues()} reducer={reducer}>
-        <Form inputs={inputs} form={form}/>
+        <Form inputs={inputs} form={form} buttons={buttons}/>
     </StateProvider>
   );
 }
