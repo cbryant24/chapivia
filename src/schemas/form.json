@@ -8,7 +8,8 @@
     "email": {
       "type": "string", 
       "$ref": "patterns.json#/definitions/blur/emptyOrSafeString",
-      "maxLength": 128
+      "maxLength": 128,
+      "default": "baz@gmail.com"
     },
     "name": {
       "type": "string",

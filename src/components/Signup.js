@@ -227,9 +227,11 @@ function Signup(props) {
         name: 'name', 
         label: 'name', 
         placeholder: 'enter name',
-        // validation: {
-        //   maxLength: 2
-        // }
+        validation: {
+          maxLength: 4,
+          minLength: 2,
+          const: null
+        }
      }, 
       flexStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-around', flexDirection: 'column' },
       inputStyle: { color: '#ff0000'},
@@ -251,7 +253,7 @@ function Signup(props) {
     }
   ]
   const form = {
-    data: { submit: signup, cancel: null, buttons: [{cancel: 'testButtonCB'}] },
+    data: { submit: signup, cancel: null, validation: { const: 'password' }, buttons: [{cancel: 'testButtonCB'}] },
     style: { height: '60vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem',  },
   }
 

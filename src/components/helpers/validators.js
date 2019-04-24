@@ -9,9 +9,9 @@ import blurSchema from '../../schemas/blur';
 
 const pattSchema = patternSchema
 // jsonPointers: true,
-const ajv = new Ajv({ allErrors: true, verbose: true, jsonPointers: true, $data: true });
+const ajv = new Ajv({ allErrors: true, verbose: true, jsonPointers: true, $data: true, useDefaults: true });
 ajv_errors(ajv);
-const blur = ajv.addSchema(patternSchema, 'patterns.json').compile(blurSchema);
+const form = ajv.addSchema(patternSchema, 'patterns.json').compile(blurSchema);
 // const signin = ajv.compile(authSchema);
 // const input = ajv.compile(inputSchema);
 // const blur = ajv.compile(blurSchema);
@@ -24,5 +24,5 @@ export const validate = {
   // blur,
   // signup,
   // guess,
-  blur
+  form
 }

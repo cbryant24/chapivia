@@ -6,32 +6,58 @@
   "type": "object",
   "properties": {
     "email": {
-      "type": "string",
-      "maxLength": 1,
-      "$ref": "patterns.json#/definitions/blur/emptyOrSafeString"
+      "blur": {
+        "$ref": "patterns.json#/definitions/emptyOrEmail"
+      }
     },
     "name": {
-      "type": "string",
-      "maxLength": 1,
-      "$ref": "patterns.json#/definitions/blur/emptyOrSafeStringSpaces"
+      "type": "object",
+      "properties": {
+        "blur": {
+          "$ref": "patterns.json#/definitions/emptyOrSafeStringSpaces"
+        }
+      }
     },
     "password": { 
-      "type": "string", 
-      "$ref": "patterns.json#/definitions/blur/emptyOrSafeString",
-      "maxLength": 128
+      "properties": {
+        "blur": {
+          "$ref": "patterns.json#/definitions/emptyOrSafeString"
+        }
+      }
     },
     "confirm password": { 
-      "type": "string", 
-      "pattern": "^[a-zA-Z0-9@*#!$.]+$",
-      "const": {"$data": "1/password"},
-      "maxLength": 128
+      "properties": {
+        "blur": {
+          "$ref": "patterns.json#/definitions/emptyOrSafeString"
+        }
+      }
+    },
+    "submit": {
+      "properties": {
+        "email": {
+          "$ref": "patterns.json#/definitions/safeString"
+        },
+        "name": {
+          "$ref": "patterns.json#/definitions/safeStringSpaces"
+        },
+        "password": { 
+          "$ref": "patterns.json#/definitions/safeString"
+        },
+        "confirm password": {
+          "allOf": [
+            { "$ref": "patterns.json#/definitions/safeString" },
+            { "const": { "$data": "1/password" }}
+          ]
+        }
+      }
     }
   },
   "errorMessage": {
     "properties": {
-      "name": "Name should only contain letters and numbers",
+      "name": "Name should only contain letters, numbers, ",
       "email": "Email should be in email format",
-      "password": "Password should only contain letters, numbers, symbols: "
+      "password": "Password should only contain letters, numbers, symbols: ",
+      "confirmPassword": "Confirfm password should match password"
     }
   }
 }

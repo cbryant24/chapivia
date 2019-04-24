@@ -5,6 +5,7 @@ import { useStateValue } from './App';
 import { validate } from '../helpers/validators';
 
 export default function Form({inputs, form, buttons}) {
+  // debugger
   const [{ fields }, dispatch] = useStateValue();
 
   const displayFields = () => {
@@ -17,10 +18,11 @@ export default function Form({inputs, form, buttons}) {
   const handleCancel = () => dispatch({type: 'RESET'});
 
   const handleSubmit = event => {
+    const { validation } = form.data
     event.preventDefault();
     const formVals = {}
     Object.keys(fields).map( field => formVals[field] = fields[field].value);
-    const valid = validate.signup(formVals);
+    const valid = validate.form({ submit: { ...formVals }, ...validation });
     console.log(validate)
     debugger
   }
