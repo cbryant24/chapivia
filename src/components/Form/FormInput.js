@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useStateValue } from './FormState';
 import { validate } from '../helpers/validators';
 
-export const formInput = ({data}) => {
+export const formInput = ({data: { name, validation } }) => {
   const [{ fields }, dispatch] = useStateValue();
 
   function handleChange(e) {
@@ -10,8 +10,8 @@ export const formInput = ({data}) => {
     // const valid = validate.input({ [field]: value });
     // console.log(validate)
     // debugger
-    const valid = validate.form({ name: value });
-    console.log(validate.form.errors)
+    const valid = validate.blur({ [field]: value, ...validation });
+    console.log(validate.blur.errors)
     debugger
 
     if(!fields[field].dirty)
@@ -41,8 +41,8 @@ export const formInput = ({data}) => {
   }
 
   return {
-    value: fields[data.name].value,
-    errors: fields[data.name].errorMessage,
+    value: fields[name].value,
+    errors: fields[name].errorMessage,
     onBlur: handleBlur,
     onChange: handleChange
   }

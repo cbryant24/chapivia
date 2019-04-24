@@ -7,13 +7,13 @@
   "properties": {
     "email": {
       "type": "string", 
-      "$ref": "signup.json#/definitions",
+      "$ref": "patterns.json#/definitions/blur/emptyOrSafeString",
       "maxLength": 128
     },
     "name": {
       "type": "string",
-      "$ref": "patterns.json#/definitions/blur/properties/emptyOrSafeString",
-      "maxLength": 1
+      "$ref": "patterns.json#/definitions/blur/emptyOrSafeStringSpaces",
+      "maxLength": 2
     },
     "password": { 
       "type": "string", 
@@ -29,7 +29,9 @@
   },
   "errorMessage": {
     "properties": {
-      "name": "Name should only contain letters and numbers"
+      "name": "Name should only contain letters and numbers",
+      "email": "Email should be in email format",
+      "password": "Password should only contain letters, numbers, symbols: "
     }
   }
 }

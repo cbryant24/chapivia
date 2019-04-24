@@ -1,5 +1,5 @@
 import React from 'react';
-import { formInput } from './formInput';
+import { formInput } from './FormInput';
 import * as Element from '../elements';
 import { useStateValue } from './App';
 import { validate } from '../helpers/validators';
@@ -10,7 +10,6 @@ export default function Form({inputs, form, buttons}) {
   const displayFields = () => {
     return inputs.map( input =>  {
       const field = formInput(input);
-      
       return <Element.Field key={input.data.name} {...input} {...field}/>  
     });
   }

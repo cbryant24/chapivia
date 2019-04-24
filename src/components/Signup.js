@@ -222,7 +222,15 @@ function Signup(props) {
   
   const inputs = [
     {
-      data: { type: 'input', name: 'name', label: 'name', placeholder: 'enter name' }, 
+      data: { 
+        type: 'input', 
+        name: 'name', 
+        label: 'name', 
+        placeholder: 'enter name',
+        // validation: {
+        //   maxLength: 2
+        // }
+     }, 
       flexStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-around', flexDirection: 'column' },
       inputStyle: { color: '#ff0000'},
     },

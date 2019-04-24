@@ -1,40 +1,37 @@
 {
+  "id": "http://localhost:4001/src/schema/form.json",
   "$schema": "http://json-schema.org/draft-07/schema",
-  "id": "http://chapivia.online/schemas/auth.json",
-  "title": "Blur",
-  "description": "Form blur",
+  "title": "Signup",
+  "description": "User Signup",
   "type": "object",
   "properties": {
     "email": {
-      "anyOf": [
-        { "type": "string", "pattern": "^$" },
-        { "type": "string", "format": "email" }
-      ]
+      "type": "string",
+      "maxLength": 1,
+      "$ref": "patterns.json#/definitions/blur/emptyOrSafeString"
     },
     "name": {
-      "anyOf": [
-        { "type": "string", "pattern": "^$" },
-        { "type": "string", "pattern": "^[a-zA-Z0-9!$.\\s]+$" }
-      ]
+      "type": "string",
+      "maxLength": 1,
+      "$ref": "patterns.json#/definitions/blur/emptyOrSafeStringSpaces"
     },
-    "password": {
-      "anyOf": [
-        { "type": "string", "pattern": "^$" },
-        { "type": "string", "pattern": "^[a-zA-Z0-9@*#!$.]+$" }
-      ]
+    "password": { 
+      "type": "string", 
+      "$ref": "patterns.json#/definitions/blur/emptyOrSafeString",
+      "maxLength": 128
     },
-    "confirmPassword": {
-      "anyOf": [
-        { "type": "string", "pattern": "^$" },
-        { "type": "string", "pattern": "^[a-zA-Z0-9@*#!$.]+$" }
-      ]
-    },
-    "guess": {
-      "anyOf": [
-        { "type": "string", "pattern": "^$" },
-        { "type": "string", "pattern": "^[a-dA-D]+$" }
-      ],
-      "maxLength": 1
+    "confirm password": { 
+      "type": "string", 
+      "pattern": "^[a-zA-Z0-9@*#!$.]+$",
+      "const": {"$data": "1/password"},
+      "maxLength": 128
+    }
+  },
+  "errorMessage": {
+    "properties": {
+      "name": "Name should only contain letters and numbers",
+      "email": "Email should be in email format",
+      "password": "Password should only contain letters, numbers, symbols: "
     }
   }
 }
