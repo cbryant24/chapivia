@@ -1,0 +1,62 @@
+{
+  "id": "http://localhost:4001/src/schema/form.json",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Signup",
+  "description": "User Signup",
+  "type": "object",
+  "properties": {
+    "email": {
+      "blur": { "type": "string",
+        "format": "email" },
+      "change": { "$ref": "patterns.json#/definitions/safeString" }
+    },
+    "name": {
+      "type": "object",
+      "properties": {
+        "blur": { "$ref": "patterns.json#/definitions/emptyOrSafeStringSpaces" },
+        "change": { "$ref": "patterns.json#/definitions/safeStringSpaces" }
+      }
+    },
+    "password": { 
+      "properties": {
+        "blur": { "$ref": "patterns.json#/definitions/emptyOrSafeString" },
+        "change": { "$ref": "patterns.json#/definitions/safeString" }
+      }
+    },
+    "confirm password": { 
+      "properties": {
+        "blur": { "$ref": "patterns.json#/definitions/emptyOrSafeString" },
+        "change": { "$ref": "patterns.json#/definitions/safeString" }
+      }
+    },
+    "submit": {
+      "properties": {
+        "email": { "$ref": "patterns.json#/definitions/safeString" },
+        "name":  { "$ref": "patterns.json#/definitions/safeStringSpaces" } ,
+        "password": { "$ref": "patterns.json#/definitions/safeString" },
+        "confirm password": {
+          "allOf": [
+            { "$ref": "patterns.json#/definitions/safeString" },
+            { "const": { "$data": "1/password" }}
+          ]
+        }
+      },
+      "errorMessage": {
+        "properties": {
+          "name": "There was an error in the name field",
+          "email": "There was an error in the email field",
+          "password": "There was an error in the password field",
+          "confirmPassword": "There was an error in the confirm password field"
+        }
+      }
+    }
+  },
+  "errorMessage": {
+    "properties": {
+      "name": "Name should only contain letters, numbers, ",
+      "email": "Email should be in email format",
+      "password": "Password should only contain letters, numbers, symbols: ",
+      "confirmPassword": "Confirfm password should match password"
+    }
+  }
+}

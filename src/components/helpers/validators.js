@@ -5,18 +5,12 @@ import inputSchema from '../../schemas/input';
 import signupSchema from '../../schemas/signup';
 import guessSchema from '../../schemas/guess';
 import patternSchema from '../../schemas/patterns';
-import blurSchema from '../../schemas/blur';
+import signupFormSchema from '../../schemas/signupForm';
 
-const pattSchema = patternSchema
-// jsonPointers: true,
 const ajv = new Ajv({ allErrors: true, verbose: true, jsonPointers: true, $data: true, useDefaults: true });
 ajv_errors(ajv);
-const form = ajv.addSchema(patternSchema, 'patterns.json').compile(blurSchema);
-// const signin = ajv.compile(authSchema);
-// const input = ajv.compile(inputSchema);
-// const blur = ajv.compile(blurSchema);
-// const signup = ajv.compile(signupSchema);
-// const guess = ajv.compile(guessSchema);
+const signupForm = ajv.addSchema(patternSchema, 'patterns.json').compile(signupFormSchema);
+
 
 export const validate = {
   // signin,
@@ -24,5 +18,5 @@ export const validate = {
   // blur,
   // signup,
   // guess,
-  form
+  signupForm
 }

@@ -22,8 +22,8 @@ export default function Form({inputs, form, buttons}) {
     event.preventDefault();
     const formVals = {}
     Object.keys(fields).map( field => formVals[field] = fields[field].value);
-    const valid = validate.form({ submit: { ...formVals }, ...validation });
-    console.log(validate)
+    const valid = validate.signupForm({ submit: { ...formVals, ...validation } });
+    console.log(validate.signupForm.errors)
     debugger
   }
 

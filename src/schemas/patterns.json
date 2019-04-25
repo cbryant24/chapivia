@@ -62,60 +62,20 @@
       "safeString": {
         "type": "string", 
         "pattern": "^[a-zA-Z0-9@*#!$.]+$",
-        "enum": { "$data": "1/enum" },
-        "format": { "$data": "1/format " },
-        "maximum": { "$data": "1/maximum" },
-        "minimum": { "$data": "1/minimum" },
-        "exclusiveMaximum": { "$data": "1/exclusiveMaximum" },
-        "exclusiveMinimum": { "$data": "1/exclusiveMinimum" },
-        "maxItems": { "$data": "1/maxItems" },
-        "minItems": { "$data": "1/minItems" },
-        "maxProperties": { "$data": "1/maxProperties" },
-        "minProperties": { "$data": "1/minProperties" },
-        "formatMaximum": { "$data": "1/formatMaximum" },
-        "formatMinimum": { "$data": "1/formatMinimum" },
-        "formatExclusiveMaximum": { "$data": "1/formatExclusiveMaximum" },
-        "formatExclusiveMinimum": { "$data": "1/formatExclusiveMinimum" },
-        "multipleOf": { "$data": "1/multipleOf" },
-        "pattern": { "$data": "1/pattern" },
-        "required": { "$data": "1/required" },
-        "uniqueItems": { "$data": "1/uniqueItems" },
-        "allOf": [
-          { "maxLength": { "$data": "1/maxLength" }},
-          { "maxLength": 128 },
-          { "minLength": { "$data": "1/minLength" }},
-          { "minLength": 1 }
-        ]
+        "maxLength": 128,
+        "minLength": 1 
       },
       "safeStringSpaces": {
         "type": "string", 
         "pattern": "^[a-zA-Z0-9@*!$.\\s]+$",
+        "maxLength": 128,
+        "minLength": 1
+      },
+      "safeStringEmail": {
         "type": "string", 
-        "pattern": "^[a-zA-Z0-9@*#!$.]+$",
-        "enum": { "$data": "1/enum" },
-        "format": { "$data": "1/format " },
-        "maximum": { "$data": "1/maximum" },
-        "minimum": { "$data": "1/minimum" },
-        "exclusiveMaximum": { "$data": "1/exclusiveMaximum" },
-        "exclusiveMinimum": { "$data": "1/exclusiveMinimum" },
-        "maxItems": { "$data": "1/maxItems" },
-        "minItems": { "$data": "1/minItems" },
-        "maxProperties": { "$data": "1/maxProperties" },
-        "minProperties": { "$data": "1/minProperties" },
-        "formatMaximum": { "$data": "1/formatMaximum" },
-        "formatMinimum": { "$data": "1/formatMinimum" },
-        "formatExclusiveMaximum": { "$data": "1/formatExclusiveMaximum" },
-        "formatExclusiveMinimum": { "$data": "1/formatExclusiveMinimum" },
-        "multipleOf": { "$data": "1/multipleOf" },
-        "pattern": { "$data": "1/pattern" },
-        "required": { "$data": "1/required" },
-        "uniqueItems": { "$data": "1/uniqueItems" },
-        "allOf": [
-          { "maxLength": { "$data": "1/maxLength" }},
-          { "maxLength": 128 },
-          { "minLength": { "$data": "1/minLength" }},
-          { "minLength": 1 }
-        ]
+        "format": "email",
+        "maxLength": 128,
+        "minLength": 1 
       },
       "numbers": { 
         "type": ["string", "integer"],
