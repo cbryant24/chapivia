@@ -1,65 +1,36 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { includes, keyBy, map } from 'lodash';
-import { graphql, compose } from 'react-apollo'
+import { graphql, compose } from 'react-apollo';
 
 import guessListQuery from '../queries/GuessList';
 import triviaQuery from '../queries/Trivia';
 import mutation from '../mutations/Guess';
 import CurrentUserQuery from '../queries/CurrentUser';
-import { GridItem, OutlineButton, Input, Image, Text, Flex, Field, FlexItem, Span } from './elements';
-import * as Element from './elements'
+import { GridItem, OutlineButton, Input, Image, Text, Flex, Field, FlexItem, Box } from './element';
+import * as Element from './element';
+import { generateRandomClipFrames } from '../style/animations';
+import FormApp from './Form/App';
+import { validate } from './helpers/validators';
 
-class GuessList extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      error: '',
-      selectedPlayer: {},
-      updatedGuess: ''
-    }
-  }
+function GuessList(props) {
+  const [ selectedPlayer, setSelectedPlayer ] = useState(null);
 
-  updateGuessChoice(event) {
-    const updatedGuess = event.target.value.toUpperCase();
+  function handleGuessUpdate(event, vals) {
+    // debugger
 
-    if ( !["A", "B", "C", "D"].includes(updatedGuess) ) {
-      return this.setState( () => ({ 
-        updatedGuess: '',
-        error: 'Enter either A, B, C, D'
-      }));
-    }
-
-    this.setState( () => ({ updatedGuess }));
-
-    return
-  }
-
-  handleGuessChange(player) {
-    this.setState( () => ({
-      selectedPlayer: player
-    }));
-  }
-
-  handleGuessUpdate(event) {
-    event.preventDefault();
+    // if( props.signedIn.user.id !== selectedPlayer.id && props.signedIn.user.id !== "7") {
+    //   return this.setState(() => ({
+    //     error: 'Please guess only for yourself'
+    //   }));
+    // }
     
-    if(this.state.error || !this.state.updatedGuess ) return
-
-    const { trivia } = this.props.triviaData;
-
-    if( this.props.signedIn.user.id !== this.state.selectedPlayer.id && this.props.signedIn.user.id !== "7") {
-      return this.setState(() => ({
-        error: 'Please guess only for yourself'
-      }));
-    }
-    
-    this.props.guessMutation({
+    props.guessMutation({
       variables: {
-        userId: this.state.selectedPlayer.id,
-        questionId: trivia.id,
-        questionChoiceId: trivia.questionChoice.id,
-        guess: trivia.questionChoice.choices[this.state.updatedGuess.charCodeAt(0) - 65]        
+        userId: selectedPlayer.id,
+        questionId: props.triviaData.trivia.id,
+        questionChoiceId: props.triviaData.trivia.questionChoice.id,
+        guess: props.triviaData.trivia.questionChoice.choices[vals.guess.toUpperCase().charCodeAt(0) - 65]        
       }
     }).catch( res => {
       //TODO add error handling to guess mutation
@@ -67,19 +38,13 @@ class GuessList extends Component {
       const errors = res.graphQLErrors.map(error => error.message);
     });
     
-    this.handleChangeCancel();
+    handleChangeCancel();
   }
 
-  handleChangeCancel() {
-    this.setState( () => ({ 
-      selectedPlayer: '',
-      updatedGuess: ''
-    }))
-  }
-
-  displayGuessesAfterDeadline() {
+  function displayGuessesAfterDeadline() {
+    
     return (
-      this.props.guessList.guesses.map( (guess, idx) => (
+      props.guessList.guesses.map( guess => (
         <Element.Flex
           fontSize="1.6rem"
           textAlign="center"
@@ -89,29 +54,59 @@ class GuessList extends Component {
           key={guess.id}
         >
           {/* <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/> */}
-          <Span.glitchAnimation
+          {Math.floor((Math.random() * 10) + 1) % 2 === 1 ? 
+          <Box
+            as="span"
             textTransform="uppercase"
             fontSize="2.4rem"
             fontWeight="500"
             padding-left="2rem"
-            glitchAnimation={`${Math.floor((Math.random() * 10) + 1) % 2 === 1 ? guess.name : ''}`}
+            animation="glitch"        
           >
             {guess.name}
-          </Span.glitchAnimation>
+          </Box>
+           : '' }
+          <Box
+
+            animation=''
+          >
+            {guess.name}
+          </Box>
         </Element.Flex>
       ))
     )
-        
   }
 
-  dispalayGuesses() {
+  function handleChangeCancel() {
+    setSelectedPlayer(null);
+  }
+
+  function dispalayGuesses() {
+    const input = [
+      {
+        data: {
+          type: 'password', 
+          name: 'guess', 
+          label: 'guess',
+          initialValue: '',
+          required: true
+        },
+        fieldStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-between', flexDirection: 'column'},
+        inputStyle: { color: 'black' }
+      }
+    ]
+  
+    const form = {
+      data: { name: 'guessForm', submit: 'signup', cb: handleGuessUpdate, cancel: handleChangeCancel },
+      style: { height: '5vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem',  },
+    }
     
-    if(this.props.guessList.loading) return <FlexItem></FlexItem>
+    if(props.guessList.loading) return <FlexItem></FlexItem>
 
-    if(new Date().getHours() >= 17) return <FlexItem>{this.displayGuessesAfterDeadline()}</FlexItem>
-
+    // if(new Date().getHours() >= 17) return <FlexItem>{displayGuessesAfterDeadline()}</FlexItem>
+    
     return (
-      this.props.guessList.guesses.map( (guess, idx) => (
+      props.guessList.guesses.map( guess => (
         <Flex
           fontSize="1.6rem"
           textAlign="center"
@@ -120,74 +115,24 @@ class GuessList extends Component {
           mb="5px"
           key={guess.id}
         >
-          <Span.glitchAnimation
+          <Box
+            as="span"
             textTransform="uppercase"
             textAlign="start"
             fontSize="2.4rem"
             fontWeight="500"
             padding-left="2rem"
-            glitchAnimation={`${idx % 2 === 1 ? guess.name : ''}`}
+            glitchAnimation={`${Math.floor((Math.random() * 10) + 1) % 2 === 1 ? guess.name : ''}`}
           >
             {guess.name}
-          </Span.glitchAnimation>
-          <Element.FlexForm
-            justifyContent="flex-end"
-            maxWidth="60%"
-            onSubmit={event => this.handleGuessUpdate(event)}
-          >
-            {guess === this.state.selectedPlayer ?
-              <Flex
-                justifyContent="flex-end"
-              >
-                {/* <Field
-                  display="flex"
-                  name="password"
-                  type="password"
-                  minHeight="1.1rem"
-                  fontSize="1.1rem"
-                  width="25%"
-                  display="inline-block"
-                  onChange={(event) => this.updateGuessChoice(event)}
-                  value={this.state.updatedGuess}
-                  justifyContent="space-around"
-                >
-                </Field> */}
-                <Element.Input
-                  type="password"
-                  fontSize="1.1rem"
-                  width="10%"
-                  display="inline-block"
-                  height="75%"
-                  mr="2rem"
-                  p="0"
-                  value={this.state.updatedGuess}
-                  onChange={(event) => this.updateGuessChoice(event)}
-                />
-                <Element.Input
-                  color="white"
-                  width="25%"
-                  borderColor='primary'
-                  textAlign="center"
-                  mr="2rem"
-                  height="75%"
-                  p="0"
-                  type="submit"
-                  value="Submit"
-                />
-                <Element.Input
-                  color="white"
-                  width="25%"
-                  borderColor='primary'
-                  textAlign="center"
-                  height="75%"
-                  p="0"
-                  type="cancel"
-                  value="Cancel"
-                  onClick={ () => this.handleChangeCancel(guess)}
-                />
-              </Flex>
-            : 
-            <OutlineButton
+          </Box>
+          {selectedPlayer === guess ? 
+          <FormApp
+            form={form}
+            inputs={input}
+            validate={validate}
+          /> : 
+          <OutlineButton
               bg="primary"
               fontSize="1.1rem"
               borderWidth="1px"
@@ -195,36 +140,37 @@ class GuessList extends Component {
               maxHeight="20px"
               borderRadius="2px"
               before="*"
-              onClick={ () => this.handleGuessChange(guess) }
+              onClick={ () => setSelectedPlayer(guess) }
             >
               change
             </OutlineButton>}
-          </Element.FlexForm>
         </Flex>
       ))
     )
   }
 
-  render() {
-    return (
-      < Flex         
-        flexDirection="column"
-        minWidth="50%"
-        height="auto"
+  return (
+    < Flex         
+      flexDirection="column"
+      minWidth="50%"
+      height="auto"
+    >
+      <Flex
+        justifyContent="space-between"
       >
-        <Flex
-          justifyContent="space-between"
-        >
-          <Text.p>Player</Text.p>
-          <Text.p>Guess</Text.p>
-        </Flex>
-        <FlexItem>
-          {this.dispalayGuesses()}
-        </FlexItem>
+        <Text.p>Player</Text.p>
+        <Text.p>Guess</Text.p>
       </Flex>
-    );
-  }
+      <FlexItem>
+        {dispalayGuesses()}
+      </FlexItem>
+    </Flex>
+  );
 }
+
+
+
+
 
 export default compose(
   graphql(guessListQuery, {

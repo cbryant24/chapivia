@@ -6,27 +6,27 @@
   "type": "object",
   "properties": {
     "email": {
-      "blur": { "type": "string",
-        "format": "email" },
-      "change": { "$ref": "patterns.json#/definitions/safeString" }
+      "properties": {
+        "blur": { "$ref": "patterns.json#/definitions/emptyOrEmail" },
+        "change": { "$ref": "patterns.json#/definitions/emptyOrSafeString" }
+      }
     },
     "name": {
-      "type": "object",
       "properties": {
         "blur": { "$ref": "patterns.json#/definitions/emptyOrSafeStringSpaces" },
-        "change": { "$ref": "patterns.json#/definitions/safeStringSpaces" }
+        "change": { "$ref": "patterns.json#/definitions/emptyOrSafeStringSpaces" }
       }
     },
     "password": { 
       "properties": {
         "blur": { "$ref": "patterns.json#/definitions/emptyOrSafeString" },
-        "change": { "$ref": "patterns.json#/definitions/safeString" }
+        "change": { "$ref": "patterns.json#/definitions/emptyOrSafeString" }
       }
     },
     "confirm password": { 
       "properties": {
         "blur": { "$ref": "patterns.json#/definitions/emptyOrSafeString" },
-        "change": { "$ref": "patterns.json#/definitions/safeString" }
+        "change": { "$ref": "patterns.json#/definitions/emptyOrSafeString" }
       }
     },
     "submit": {
@@ -46,17 +46,17 @@
           "name": "There was an error in the name field",
           "email": "There was an error in the email field",
           "password": "There was an error in the password field",
-          "confirmPassword": "There was an error in the confirm password field"
+          "confirm password": "passwords should match please check"
         }
       }
     }
   },
   "errorMessage": {
     "properties": {
-      "name": "Name should only contain letters, numbers, ",
+      "name": "Name should only contain letters and numbers",
       "email": "Email should be in email format",
-      "password": "Password should only contain letters, numbers, symbols: ",
-      "confirmPassword": "Confirfm password should match password"
+      "password": "Password should only contain letters, numbers, !@#$% characters ",
+      "confirm password": "Confirfm password should match password"
     }
   }
 }

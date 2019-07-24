@@ -1,0 +1,37 @@
+{
+  "id": "http://localhost:4001/src/schema/form.json",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Guess",
+  "description": "Trivia Guess",
+  "type": "object",
+  "properties": {
+    "player": {
+      "properties": {
+        "blur": { "$ref": "patterns.json#/definitions/emptyOrSafeString" },
+        "change": { "$ref": "patterns.json#/definitions/emptyOrSafeString" }
+      }
+    },
+    "guess": {
+      "properties": {
+        "blur": { "$ref": "patterns.json#/definitions/emptyOrSafeStringSingleCharABCD" },
+        "change": { "$ref": "patterns.json#/definitions/emptyOrSafeStringSingleCharABCD" }
+      }
+    },
+    "submit": {
+      "properties": {
+        "player": { "$ref": "patterns.json#/definitions/safeStringSpaces" },
+        "guess": { "$ref": "patterns.json#/definitions/safeStringSingleCharABCD" }
+      },
+      "errorMessage": {
+        "properties": {
+          "guess": "Please only enter A, B, C, D"
+        }
+      }
+    }
+  },
+  "errorMessage": {
+    "properties": {
+      "guess": "Guess should only be A, B, C, D"
+    }
+  }
+}

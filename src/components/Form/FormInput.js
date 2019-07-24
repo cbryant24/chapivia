@@ -1,46 +1,46 @@
 import React, { useState } from 'react';
 import { useStateValue } from './FormState';
-import { validate } from '../helpers/validators';
 
-export const formInput = ({data: { name, validation } }) => {
-  const [{ fields }, dispatch] = useStateValue();
+export const formInput = ( { data: { name, inputData, validation } }, validate) => {
+  const [{ formName, fields }, dispatch] = useStateValue();
 
   function handleChange(e) {
     const { name: field, value } = e.target;
-    const valid = validate.signupForm({
-      [field]: { change: value, ...validation } 
+    const valid = validate[formName]({
+      [field]: { change: value }
     });
-
+    
     if(!fields[field].dirty)
       dispatch({ type: 'SET_INPUT_DIRTY', payload: { field, dirty: true } });
 
     if(!valid) {
       const errorMessages = [];
-      validate.signupForm.errors.map( error => errorMessages.push(error.message));
+      validate[formName].errors.map( error => errorMessages.push(error.message));
       return dispatch({ type: 'SET_ERROR_MESSAGE', payload: { field, errorMessages }});
     }
 
-    if(fields[field].errorMessage)
-      dispatch({ type: 'SET_ERROR_MESSAGE', payload: { field, errorMessage: [] } });
+    if(fields[field].errorMessages)
+      dispatch({ type: 'SET_ERROR_MESSAGE', payload: { field, errorMessages: [] } });
 
-    dispatch({type: 'SET_VALUE', payload: { field, value } } );
+    dispatch({type: 'SET_VALUE', payload: { field, value }});
   }
 
   function handleBlur(e) {
     const { name: field, value } = e.target;
-    const valid = validate.signupForm({ [field]: { blur: value, ...validation }});
-    debugger
+    
+    const valid = validate[formName]({ [field]: { blur: value, ...validation }});
+    
     if(!fields[field].touched)
       dispatch({ type: 'SET_INPUT_TOUCH', payload: { field, touched: true }});
 
     if(!valid) {
       const errorMessages = [];
-      validate.signupForm.errors.map( error => errorMessages.push(error.message));
+      validate[formName].errors.map( error => errorMessages.push(error.message));
       return dispatch({ type: 'SET_ERROR_MESSAGE', payload: { field, errorMessages }});
     }
 
-    if(valid && fields[field].errorMessage)
-      dispatch({ type: 'SET_ERROR_MESSAGE', payload: { field, errorMessage: '' } });
+    if(valid && fields[field].errorMessages)
+      dispatch({ type: 'SET_ERROR_MESSAGE', payload: { field, errorMessages: [] } });
   }
 
   return {

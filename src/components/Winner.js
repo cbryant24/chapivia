@@ -5,8 +5,8 @@ import { compose, graphql } from 'react-apollo';
 import CorrectGuessesQuery from '../queries/CorrectGuesses';
 import TriviaAnswer from '../queries/TriviaAnswer';
 
-import { GridItem, Heading, FlexItem, Span } from './elements';
-import * as Elements from './elements';
+import { GridItem, Heading, FlexItem, BoxAnimated } from './element';
+import * as Elements from './element';
 
 class Winner extends Component {
 
@@ -19,11 +19,12 @@ class Winner extends Component {
         key={guesser.id}
         position="relative"
       >
-        <Span.glitchAnimation
+        <BoxAnimated
+          as="span"
           glitchAnimation={`${Math.floor((Math.random() * 10) + 1) % 2 === 1 ? guesser.name : ''}`}
         >
           {guesser.name}
-        </Span.glitchAnimation>
+        </BoxAnimated>
       </Heading.h3>
     ));
   }

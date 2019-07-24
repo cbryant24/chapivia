@@ -1,24 +1,26 @@
 import React from 'react';
 import { StateProvider } from './FormState';
-import Form from './Form';
+import Form from './useForm';
 import AuthReducer from './reducers';
 
 import { useStateValue } from './FormState';
 
 export { useStateValue };
 
-export default function FormApp({form, inputs, buttons}) {
+export default function FormApp({form, inputs, validate}) {
   const initialState = {
+    formName: form.data.name,
     fields: {}
   };
 
   function setInitialStateValues() {
+  
     inputs.forEach( input => (
       initialState.fields = {
         ...initialState.fields,
         [input.data.name]: {
-          value: '',
-          errorMessage: [],
+          value: input.data.initialValue || '',
+          errorMessages: [],
           touched: false,
           dirty: false
         }
@@ -80,7 +82,7 @@ export default function FormApp({form, inputs, buttons}) {
   
   return (
     <StateProvider initialState={setInitialStateValues()} reducer={reducer}>
-        <Form inputs={inputs} form={form} buttons={buttons}/>
+        <Form inputs={inputs} form={form} validate={validate} />
     </StateProvider>
   );
 }

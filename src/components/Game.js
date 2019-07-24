@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import requireAuth from './HOC/requireAuth';
-import * as Element from './elements';
+import * as Element from './element';
 import GuessList from './GuessList';
 import TriviaQuestion from './TriviaQuestion';
 import Scoreboard from './Scoreboard';

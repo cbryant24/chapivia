@@ -1,22 +1,20 @@
 import Ajv from 'ajv';
 import ajv_errors from 'ajv-errors';
-import authSchema from '../../schemas/auth';
-import inputSchema from '../../schemas/input';
-import signupSchema from '../../schemas/signup';
-import guessSchema from '../../schemas/guess';
-import patternSchema from '../../schemas/patterns';
+import patternSchema from '../../components/Form/patterns';
 import signupFormSchema from '../../schemas/signupForm';
+import signinFormSchema from '../../schemas/signinForm';
+import guessFormSchema from '../../schemas/guessForm';
 
 const ajv = new Ajv({ allErrors: true, verbose: true, jsonPointers: true, $data: true, useDefaults: true });
 ajv_errors(ajv);
-const signupForm = ajv.addSchema(patternSchema, 'patterns.json').compile(signupFormSchema);
+ajv.addSchema(patternSchema, 'patterns.json')
+const signupForm  = ajv.compile(signupFormSchema),
+      signinForm  = ajv.compile(signinFormSchema),
+      guessForm   = ajv.compile(guessFormSchema);
 
 
 export const validate = {
-  // signin,
-  // input,
-  // blur,
-  // signup,
-  // guess,
-  signupForm
+  signupForm,
+  signinForm,
+  guessForm
 }

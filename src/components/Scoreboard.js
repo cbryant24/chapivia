@@ -7,8 +7,8 @@ import { compose, graphql } from 'react-apollo'
 import query from '../queries/Scores';
 
 import * as actions from '../actions';
-import { GridItem, Flex, FlexItem, Image, Text } from './elements';
-import * as Elements from './elements';
+import { GridItem, Flex, FlexItem, Image, Text } from './element';
+import * as Elements from './element';
 import kgrad from '../img/kgrad.png';
 
 class Scoreboard extends Component {

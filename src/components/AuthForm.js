@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import * as Element from './elements';
+import * as Element from './element';
 
 class AuthForm extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class AuthForm extends Component {
   render() {
     return (
       <Element.Flex>
-        <Element.FlexForm>
+        <Element.FlexForm as="form">
           <Element.Field
               name="email"
               type="email"

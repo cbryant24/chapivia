@@ -9,7 +9,7 @@ import query from '../queries/Trivia';
 import * as actions from '../actions';
 
 import GuessForm from './GuessForm';
-import { Grid, GridItem, Text, List, Item, Heading } from './elements';
+import { Grid, GridItem, Text, List, Item, Heading } from './element';
 
 class TriviaQuestion extends Component {
 
@@ -54,7 +54,9 @@ class TriviaQuestion extends Component {
         >
           {this.convertHTMLChar(this.props.data.trivia.question) || ""}
         </Text.p>
-        <List>
+        <List
+          as="ul"
+        >
           {this.displayGuesses()}
         </List>
         <GuessForm/>
