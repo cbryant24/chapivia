@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { formInput } from './FormInput';
 import * as Element from '../element';
 import { useStateValue } from './App';
@@ -57,7 +57,7 @@ export default function Form({ inputs, form, validate }) {
 
     return !disabled;
   };
-
+  // debugger
   return (
     <Element.Flex
       as="form"
@@ -76,6 +76,7 @@ export default function Form({ inputs, form, validate }) {
       <Element.Flex
         width={size.width * .60 * .25}px
         justifyContent="space-between"
+        fontSize="28rem"
       >
         <Element.OutlineSubmit
           disabled={ !isEnabled() }

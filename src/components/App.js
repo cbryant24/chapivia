@@ -13,7 +13,7 @@ export default ({ children }) => {
       <ThemeProvider theme={theme}>
           <GlobalStyle />
           <Flex id="hello">
-            <Background/>
+            {/* <Background/> */}
             {children}
           </Flex>
       </ThemeProvider>

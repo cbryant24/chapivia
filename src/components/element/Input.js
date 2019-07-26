@@ -1,13 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import {  typography, 
+import {  typography,
+          background,
+          layout,
           space, 
           color,
           border } from 'styled-system'
 import cleanElement from 'clean-element';
 import theme from './theme'
 import PropTypes from 'prop-types'
-import { filterProps, appearance, verticalAlign, transition, outline } from './css-helpers';
+import { filterProps, appearance, transition, outline } from './css-helpers';
+// import Base from './Base';
 
 const chevron = () => {
   const props = `xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'`
@@ -17,9 +20,14 @@ const chevron = () => {
 }
 
 const Base = (props) => {
-  debugger
-  const next = filterProps(props);
-  return <input {...next} />
+  //creates a clean component with all css property attributes passed 
+  //as props which are non-valid html attributes removed from the element.
+  //`as` property is used with the `forwaredAs` to pass the element type
+  //`forwaredAs` is used instead of `as` due to being wrapped in `cleanElement` HOC
+  const { as }  = props;
+  const next    = filterProps(props);
+  const Component = styled.div``;
+  return <Component as={as} {...next} />
 }
 
 const Input = styled(cleanElement(Base))(
@@ -27,7 +35,7 @@ const Input = styled(cleanElement(Base))(
     boxSizing: 'border-box',
     minWidth: 0,
   },
-  appearance, space, typography, verticalAlign, transition, outline, border, color
+  layout, appearance, space, typography, transition, outline, border, color, background, 
 );
 
 // Input.displayName = 'Input'

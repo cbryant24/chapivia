@@ -467,7 +467,7 @@ export const animation = style({
 });
 
 export const animationDelay = style({
-  props: 'animationDelay',
+  prop: 'animationDelay',
   cssProperty: 'animation-delay',
   key: 'animation-delay',
   numberToPx: false,
@@ -476,1690 +476,1690 @@ export const animationDelay = style({
 });
 
 export const animationDirection = style({
-  props: 'animationDirection',
+  prop: 'animationDirection',
   cssProperty: 'animation-direction',
   key: 'animation-direction',
   numberToPx: false,
 })
 
 export const animationDuration = style({
-  props: 'animationDuration',
+  prop: 'animationDuration',
   cssProperty: 'animation-duration',
   key: 'animation-duration',
   numberToPx: false
 });
 
 export const animationFillMode = style({
-  props: 'animationFillMode',
+  prop: 'animationFillMode',
   cssProperty: 'animation-fill-mode',
   key: 'animationFillMode',
   numberToPx: false
 });
 
 export const animationIterationCount = style({
-  props: 'animationIterationCount',
+  prop: 'animationIterationCount',
   cssProperty: 'animation-iteration-count',
   key: 'animationIterationCount',
   numberToPx: false
 });
 
 export const animationName = style({
-  props: 'animationName',
+  prop: 'animationName',
   cssProperty: 'animation-name',
   key: 'animationName',
   numberToPx: false
 });
 
 export const animationPlayState = style({
-  props: 'animationPlayState',
+  prop: 'animationPlayState',
   cssProperty: 'animation-play-state',
   key: 'animationPlayState',
   numberToPx: false
 });
 
 export const animationTimingFunction = style({
-  props: 'animationTimingFunction',
+  prop: 'animationTimingFunction',
   cssProperty: 'animation-timing-function',
   key: 'animationTimingFunction',
   numberToPx: false
 });
 
 export const appearance = style({
-  props: 'appearance',
+  prop: 'appearance',
   cssProperty: 'appearance',
   key: 'appearance',
   numberToPx: false
 });
 
 export const azimuth = style({
-  props: 'azimuth',
+  prop: 'azimuth',
   cssProperty: 'azimuth',
   key: 'azimuth',
   numberToPx: false
 });
 
 export const backdropFilter = style({
-  props: 'backdropFilter',
+  prop: 'backdropFilter',
   cssProperty: 'backdrop-filter',
   key: 'backdropFilter',
   numberToPx: false
 });
 
 export const backfaceVisibility = style({
-  props: 'backfaceVisibility',
+  prop: 'backfaceVisibility',
   cssProperty: 'backface-visibility',
   key: 'backfaceVisibility',
   numberToPx: false
 });
 
 export const backgroundAttachment = style({
-  props: 'backgroundAttachment',
+  prop: 'backgroundAttachment',
   cssProperty: 'background-attachment',
   key: 'backgroundAttachment',
   numberToPx: false
 });
 
 export const backgroundBlendMode = style({
-  props: 'backgroundBlendMode',
+  prop: 'backgroundBlendMode',
   cssProperty: 'background-blend-mode',
   key: 'background-blend-mode',
   numberToPx: false
 });
 
 export const backgroundClip = style({
-  props: 'backgroundClip',
+  prop: 'backgroundClip',
   cssProperty: 'background-clip',
   key: 'backgroundClip',
   numberToPx: false
 });
 
 export const backgroundOrigin = style({
-  props: 'backgroundOrigin',
+  prop: 'backgroundOrigin',
   cssProperty: 'background-origin',
   key: 'backgroundOrigin',
   numberToPx: false
 });
 
 export const backgroundPositionX = style({
-  props: 'backgroundPositionX',
+  prop: 'backgroundPositionX',
   cssProperty: 'background-position-x',
   key: 'backgroundPositionX',
   numberToPx: false
 });
 
 export const backgroundPositionY = style({
-  props: 'backgroundPositionY',
+  prop: 'backgroundPositionY',
   cssProperty: 'background-position-y',
   key: 'backgroundPositionY',
   numberToPx: false
 });
 
 export const blockSize = style({
-  props: 'blockSize',
+  prop: 'blockSize',
   cssProperty: 'block-size',
   key: 'blockSize',
   numberToPx: false
 });
 
 export const borderBlockEnd = style({
-  props: 'borderBlockEnd',
+  prop: 'borderBlockEnd',
   cssProperty: 'border-block-end',
   key: 'borderBlockEnd',
   numberToPx: false
 });
 
 export const borderBlockEndColor = style({
-  props: 'borderBlockEndColor',
+  prop: 'borderBlockEndColor',
   cssProperty: 'border-block-end-color',
   key: 'borderBlockEndColor',
   numberToPx: false
 });
 
 export const borderBlockEndStyle = style({
-  props: 'borderBlockEndStyle',
+  prop: 'borderBlockEndStyle',
   cssProperty: 'border-block-end-style',
   key: 'borderBlockEndStyle',
   numberToPx: false
 });
 
 export const borderBlockEndWidth = style({
-  props: 'borderBlockEndWidth',
+  prop: 'borderBlockEndWidth',
   cssProperty: 'border-block-end-width',
   key: 'borderBlockEndWidth',
   numberToPx: false
 });
 
 export const borderBlockStart = style({
-  props: 'borderBlockStart',
+  prop: 'borderBlockStart',
   cssProperty: 'border-block-start',
   key: 'borderBlockStart',
   numberToPx: false
 });
 
 export const borderBlockStartColor = style({
-  props: 'borderBlockStartColor',
+  prop: 'borderBlockStartColor',
   cssProperty: 'border-block-start-color',
   key: 'borderBlockStartColor',
   numberToPx: false
 });
 
 export const borderBlockStartStyle = style({
-  props: 'borderBlockStartStyle',
+  prop: 'borderBlockStartStyle',
   cssProperty: 'border-block-start-style',
   key: 'borderBlockStartStyle',
   numberToPx: false
 });
 
 export const borderBlockStartWidth = style({
-  props: 'borderBlockStartWidth',
+  prop: 'borderBlockStartWidth',
   cssProperty: 'border-block-start-width',
   key: 'borderBlockStartWidth',
   numberToPx: false
 });
 
 export const borderBottomColor = style({
-  props: 'borderBottomColor',
+  prop: 'borderBottomColor',
   cssProperty: 'border-bottom-color',
   key: 'borderBottomColor',
   numberToPx: false
 });
 
 export const borderBottomLeftRadius = style({
-  props: 'borderBottomLeftRadius',
+  prop: 'borderBottomLeftRadius',
   cssProperty: 'border-bottom-left-radius',
   key: 'borderBottomLeftRadius',
   numberToPx: false
 });
 
 export const borderBottomRightRadius = style({
-  props: 'borderBottomRightRadius',
+  prop: 'borderBottomRightRadius',
   cssProperty: 'border-bottom-right-radius',
   key: 'borderBottomRightRadius',
   numberToPx: false
 });
 
 export const borderBottomStyle = style({
-  props: 'borderBottomStyle',
+  prop: 'borderBottomStyle',
   cssProperty: 'border-bottom-style',
   key: 'borderBottomStyle',
   numberToPx: false
 });
 
 export const borderBottomWidth = style({
-  props: 'borderBottomWidth',
+  prop: 'borderBottomWidth',
   cssProperty: 'border-bottom-width',
   key: 'borderBottomWidth',
   numberToPx: false
 });
 
 export const borderCollapse = style({
-  props: 'borderCollapse',
+  prop: 'borderCollapse',
   cssProperty: 'border-collapse',
   key: 'borderCollapse',
   numberToPx: false
 });
 
 export const borderImage = style({
-  props: 'borderImage',
+  prop: 'borderImage',
   cssProperty: 'border-image',
   key: 'borderImage',
   numberToPx: false
 });
 
 export const borderImageOutset = style({
-  props: 'borderImageOutset',
+  prop: 'borderImageOutset',
   cssProperty: 'border-image-outset',
   key: 'borderImageOutset',
   numberToPx: false
 });
 
 export const borderImageRepeat = style({
-  props: 'borderImageRepeat',
+  prop: 'borderImageRepeat',
   cssProperty: 'border-image-repeat',
   key: 'borderImageRepeat',
   numberToPx: false
 });
 
 export const borderImageSlice = style({
-  props: 'borderImageSlice',
+  prop: 'borderImageSlice',
   cssProperty: 'border-image-slice',
   key: 'borderImageSlice',
   numberToPx: false
 });
 
 export const borderImageSource = style({
-  props: 'borderImageSource',
+  prop: 'borderImageSource',
   cssProperty: 'border-image-source',
   key: 'borderImageSource',
   numberToPx: false
 });
 
 export const borderImageWidth = style({
-  props: 'borderImageWidth',
+  prop: 'borderImageWidth',
   cssProperty: 'border-image-width',
   key: 'borderImageWidth',
   numberToPx: false
 });
 
 export const borderInlineEnd = style({
-  props: 'borderInlineEnd',
+  prop: 'borderInlineEnd',
   cssProperty: 'border-inline-end',
   key: 'borderInlineEnd',
   numberToPx: false
 });
 
 export const borderInlineEndColor = style({
-  props: 'borderInlineEndColor',
+  prop: 'borderInlineEndColor',
   cssProperty: 'border-inline-end-color',
   key: 'borderInlineEndColor',
   numberToPx: false
 });
 
 export const borderInlineEndStyle = style({
-  props: 'borderInlineEndStyle',
+  prop: 'borderInlineEndStyle',
   cssProperty: 'border-inline-end-style',
   key: 'borderInlineEndStyle',
   numberToPx: false
 });
 
 export const borderInlineEndWidth = style({
-  props: 'borderInlineEndWidth',
+  prop: 'borderInlineEndWidth',
   cssProperty: 'border-inline-end-width',
   key: 'borderInlineEndWidth',
   numberToPx: false
 });
 
 export const borderInlineStart = style({
-  props: 'borderInlineStart',
+  prop: 'borderInlineStart',
   cssProperty: 'border-inline-start',
   key: 'borderInlineStart',
   numberToPx: false
 });
 
 export const borderInlineStartColor = style({
-  props: 'borderInlineStartColor',
+  prop: 'borderInlineStartColor',
   cssProperty: 'border-inline-start-color',
   key: 'borderInlineStartColor',
   numberToPx: false
 });
 
 export const borderInlineStartStyle = style({
-  props: 'borderInlineStartStyle',
+  prop: 'borderInlineStartStyle',
   cssProperty: 'border-inline-start-style',
   key: 'borderInlineStartStyle',
   numberToPx: false
 });
 
 export const borderInlineStartWidth = style({
-  props: 'borderInlineStartWidth',
+  prop: 'borderInlineStartWidth',
   cssProperty: 'border-inline-start-width',
   key: 'borderInlineStartWidth',
   numberToPx: false
 });
 
 export const borderLeftColor = style({
-  props: 'borderLeftColor',
+  prop: 'borderLeftColor',
   cssProperty: 'border-left-color',
   key: 'borderLeftColor',
   numberToPx: false
 });
 
 export const borderLeftStyle = style({
-  props: 'borderLeftStyle',
+  prop: 'borderLeftStyle',
   cssProperty: 'border-left-style',
   key: 'borderLeftStyle',
   numberToPx: false
 });
 
 export const borderLeftWidth = style({
-  props: 'borderLeftWidth',
+  prop: 'borderLeftWidth',
   cssProperty: 'border-left-width',
   key: 'borderLeftWidth',
   numberToPx: false
 });
 
 export const borderRightColor = style({
-  props: 'borderRightColor',
+  prop: 'borderRightColor',
   cssProperty: 'border-right-color',
   key: 'borderRightColor',
   numberToPx: false
 });
 
 export const borderRightStyle = style({
-  props: 'borderRightStyle',
+  prop: 'borderRightStyle',
   cssProperty: 'border-right-style',
   key: 'borderRightStyle',
   numberToPx: false
 });
 
 export const borderRightWidth = style({
-  props: 'borderRightWidth',
+  prop: 'borderRightWidth',
   cssProperty: 'border-right-width',
   key: 'borderRightWidth',
   numberToPx: false
 });
 
 export const borderSpacing = style({
-  props: 'borderSpacing',
+  prop: 'borderSpacing',
   cssProperty: 'border-spacing',
   key: 'borderSpacing',
   numberToPx: false
 });
 
 export const borderTopColor = style({
-  props: 'borderTopColor',
+  prop: 'borderTopColor',
   cssProperty: 'border-top-color',
   key: 'borderTopColor',
   numberToPx: false
 });
 
 export const borderTopLeftRadius = style({
-  props: 'borderTopLeftRadius',
+  prop: 'borderTopLeftRadius',
   cssProperty: 'border-top-left-radius',
   key: 'borderTopLeftRadius',
   numberToPx: false
 });
 
 export const borderTopRightRadius = style({
-  props: 'borderTopRightRadius',
+  prop: 'borderTopRightRadius',
   cssProperty: 'border-top-right-radius',
   key: 'borderTopRightRadius',
   numberToPx: false
 });
 
 export const borderTopStyle = style({
-  props: '',
+  prop: '',
   cssProperty: 'border-top-style',
   key: 'border-top-style',
   numberToPx: false
 });
 
 export const borderTopWidth = style({
-  props: 'borderTopWidth',
+  prop: 'borderTopWidth',
   cssProperty: 'border-top-width',
   key: 'borderTopWidth',
   numberToPx: false
 });
 
 export const bottom = style({
-  props: 'bottom',
+  prop: 'bottom',
   cssProperty: 'bottom',
   key: 'bottom',
   numberToPx: false
 });
 
 export const boxAlign  = style({
-  props: 'boxAlign',
+  prop: 'boxAlign',
   cssProperty: 'box-align',
   key: 'boxAlign',
   numberToPx: false
 });
 
 export const boxDecorationBreak = style({
-  props: 'boxDecorationBreak',
+  prop: 'boxDecorationBreak',
   cssProperty: 'box-decoration-break',
   key: 'boxDecorationBreak',
   numberToPx: false
 });
 
 export const boxDirection = style({
-  props: 'boxDirection',
+  prop: 'boxDirection',
   cssProperty: 'box-direction',
   key: 'boxDirection',
   numberToPx: false
 });
 
 export const boxFlex = style({
-  props: 'boxFlex',
+  prop: 'boxFlex',
   cssProperty: 'box-flex',
   key: 'boxFlex',
   numberToPx: false
 });
 
 export const boxFlexGroup = style({
-  props: 'boxFlexGroup',
+  prop: 'boxFlexGroup',
   cssProperty: 'box-flex-group',
   key: 'boxFlexGroup',
   numberToPx: false
 });
 
 export const boxLines = style({
-  props: 'boxLines',
+  prop: 'boxLines',
   cssProperty: 'box-lines',
   key: 'boxLines',
   numberToPx: false
 });
 
 export const boxOrdinalGroup = style({
-  props: 'boxOrdinalGroup',
+  prop: 'boxOrdinalGroup',
   cssProperty: 'box-ordinal-group',
   key: 'boxOrdinalGroup',
   numberToPx: false
 });
 
 export const boxOrient = style({
-  props: 'boxOrient',
+  prop: 'boxOrient',
   cssProperty: 'box-orient',
   key: 'boxOrient',
   numberToPx: false
 });
 
 export const boxPack = style({
-  props: 'boxPack',
+  prop: 'boxPack',
   cssProperty: 'box-pack',
   key: 'boxPack',
   numberToPx: false
 });
 
 export const boxSizing = style({
-  props: 'boxSizing',
+  prop: 'boxSizing',
   cssProperty: 'box-sizing',
   key: 'boxSizing',
   numberToPx: false
 });
 
 export const breakAfter = style({
-  props: 'breakAfter',
+  prop: 'breakAfter',
   cssProperty: 'break-after',
   key: 'breakAfter',
   numberToPx: false
 });
 
 export const breakBefore = style({
-  props: 'breakBefore',
+  prop: 'breakBefore',
   cssProperty: 'break-before',
   key: 'breakBefore',
   numberToPx: false
 });
 
 export const breakInside = style({
-  props: 'breakInside',
+  prop: 'breakInside',
   cssProperty: 'break-inside',
   key: 'breakInside',
   numberToPx: false
 });
 
 export const captionSide = style({
-  props: 'captionSide',
+  prop: 'captionSide',
   cssProperty: 'caption-side',
   key: 'captionSide',
   numberToPx: false
 });
 
 export const caretColor = style({
-  props: 'caretColor',
+  prop: 'caretColor',
   cssProperty: 'caret-color',
   key: 'caretColor',
   numberToPx: false
 });
 
 export const clear = style({
-  props: 'clear',
+  prop: 'clear',
   cssProperty: 'clear',
   key: 'clear',
   numberToPx: false
 });
 
 export const clip = style({
-  props: 'clip',
+  prop: 'clip',
   cssProperty: 'clip',
   key: 'clip',
   numberToPx: false
 });
 
 export const columnCount = style({
-  props: 'columnCount',
+  prop: 'columnCount',
   cssProperty: 'column-count',
   key: 'columnCount',
   numberToPx: false
 });
 
 export const columnFill = style({
-  props: 'columnFill',
+  prop: 'columnFill',
   cssProperty: 'column-fill',
   key: 'columnFill',
   numberToPx: false
 });
 export const columnRule = style({
-  props: 'columnRule',
+  prop: 'columnRule',
   cssProperty: 'column-rule',
   key: 'columnRule',
   numberToPx: false
 });
 
 export const columnRuleColor = style({
-  props: 'columnRuleColor',
+  prop: 'columnRuleColor',
   cssProperty: 'column-rule-color',
   key: 'columnRuleColor',
   numberToPx: false
 });
 
 export const columnRuleStyle = style({
-  props: 'columnRuleStyle',
+  prop: 'columnRuleStyle',
   cssProperty: 'column-rule-style',
   key: 'columnRuleStyle',
   numberToPx: false
 });
 
 export const columnRuleWidth = style({
-  props: 'columnRuleWidth',
+  prop: 'columnRuleWidth',
   cssProperty: 'column-rule-width',
   key: 'columnRuleWidth',
   numberToPx: false
 });
 
 export const columnSpan = style({
-  props: 'columnSpan',
+  prop: 'columnSpan',
   cssProperty: 'column-span',
   key: 'columnSpan',
   numberToPx: false
 });
 
 export const columnWidth = style({
-  props: 'columnWidth',
+  prop: 'columnWidth',
   cssProperty: 'column-width',
   key: 'columnWidth',
   numberToPx: false
 });
 
 export const columns = style({
-  props: 'columns',
+  prop: 'columns',
   cssProperty: 'columns',
   key: 'columns',
   numberToPx: false
 });
 
 export const contain = style({
-  props: 'contain',
+  prop: 'contain',
   cssProperty: 'contain',
   key: 'contain',
   numberToPx: false
 });
 
 export const counterIncrement = style({
-  props: 'counterIncrement',
+  prop: 'counterIncrement',
   cssProperty: 'counter-increment',
   key: 'counterIncrement',
   numberToPx: false
 });
 
 export const counterReset = style({
-  props: 'counterReset',
+  prop: 'counterReset',
   cssProperty: 'counter-reset',
   key: 'counterReset',
   numberToPx: false
 });
 
 export const cursor = style({
-  props: 'cursor',
+  prop: 'cursor',
   cssProperty: 'cursor',
   key: 'cursor',
   numberToPx: false
 });
 
 export const direction = style({
-  props: 'direction',
+  prop: 'direction',
   cssProperty: 'direction',
   key: 'direction',
   numberToPx: false
 });
 
 export const displayInside = style({
-  props: 'displayInside',
+  prop: 'displayInside',
   cssProperty: 'display-inside',
   key: 'displayInside',
   numberToPx: false
 });
 
 export const displayList = style({
-  props: 'displayList',
+  prop: 'displayList',
   cssProperty: 'display-list',
   key: 'displayList',
   numberToPx: false
 });
 
 export const displayOutside = style({
-  props: 'displayOutside',
+  prop: 'displayOutside',
   cssProperty: 'display-outside',
   key: 'displayOutside',
   numberToPx: false
 });
 
 export const emptyCells = style({
-  props: 'emptyCells',
+  prop: 'emptyCells',
   cssProperty: 'empty-cells',
   key: 'emptyCells',
   numberToPx: false
 });
 
 export const filter = style({
-  props: 'filter',
+  prop: 'filter',
   cssProperty: 'filter',
   key: 'filter',
   numberToPx: false
 });
 
 export const flexFlow = style({
-  props: 'flexFlow',
+  prop: 'flexFlow',
   cssProperty: 'flex-flow',
   key: 'flexFlow',
   numberToPx: false
 });
 
 export const float = style({
-  props: 'float',
+  prop: 'float',
   cssProperty: 'float',
   key: 'float',
   numberToPx: false
 });
 
 export const font = style({
-  props: 'font',
+  prop: 'font',
   cssProperty: 'font',
   key: 'font',
   numberToPx: false
 });
 
 export const fontFeatureSettings = style({
-  props: 'fontFeatureSettings',
+  prop: 'fontFeatureSettings',
   cssProperty: 'font-feature-settings',
   key: 'fontFeatureSettings',
   numberToPx: false
 });
 
 export const fontKerning = style({
-  props: 'fontKerning',
+  prop: 'fontKerning',
   cssProperty: 'font-kerning',
   key: 'fontKerning',
   numberToPx: false
 });
 
 export const fontLanguageOverride = style({
-  props: 'fontLanguageOverride',
+  prop: 'fontLanguageOverride',
   cssProperty: 'font-language-override',
   key: 'fontLanguageOverride',
   numberToPx: false
 });
 
 export const fontVariationSettings = style({
-  props: 'fontVariationSettings',
+  prop: 'fontVariationSettings',
   cssProperty: 'font-variation-settings',
   key: 'fontVariationSettings',
   numberToPx: false
 });
 
 export const fontSizeAdjust = style({
-  props: 'fontSizeAdjust',
+  prop: 'fontSizeAdjust',
   cssProperty: 'font-size-adjust',
   key: 'fontSizeAdjust',
   numberToPx: false
 });
 
 export const fontStretch = style({
-  props: 'fontStretch',
+  prop: 'fontStretch',
   cssProperty: 'font-stretch',
   key: 'fontStretch',
   numberToPx: false
 });
 
 export const fontSynthesis = style({
-  props: 'fontSynthesis',
+  prop: 'fontSynthesis',
   cssProperty: 'font-synthesis',
   key: 'fontSynthesis',
   numberToPx: false
 });
 
 export const fontVariant = style({
-  props: 'fontVariant',
+  prop: 'fontVariant',
   cssProperty: 'font-variant',
   key: 'fontVariant',
   numberToPx: false
 });
 
 export const fontVariantAlternates = style({
-  props: 'fontVariantAlternates',
+  prop: 'fontVariantAlternates',
   cssProperty: 'font-variant-alternates',
   key: 'fontVariantAlternates',
   numberToPx: false
 });
 
 export const fontVariantCaps = style({
-  props: 'fontVariantCaps',
+  prop: 'fontVariantCaps',
   cssProperty: 'font-variant-caps',
   key: 'fontVariantCaps',
   numberToPx: false
 });
 
 export const fontVariantEastAsian = style({
-  props: 'fontVariantEastAsian',
+  prop: 'fontVariantEastAsian',
   cssProperty: 'font-variant-east-asian',
   key: 'fontVariantEastAsian',
   numberToPx: false
 });
 export const fontVariantLigatures = style({
-  props: 'fontVariantLigatures',
+  prop: 'fontVariantLigatures',
   cssProperty: 'font-variant-ligatures',
   key: 'fontVariantLigatures',
   numberToPx: false
 });
 
 export const fontVariantNumeric = style({
-  props: 'fontVariantNumeric',
+  prop: 'fontVariantNumeric',
   cssProperty: 'font-variant-numeric',
   key: 'fontVariantNumeric',
   numberToPx: false
 });
 
 export const fontVariantPosition = style({
-  props: 'fontVariantPosition',
+  prop: 'fontVariantPosition',
   cssProperty: 'font-variant-position',
   key: 'fontVariantPosition',
   numberToPx: false
 });
 
 export const gridColumnEnd = style({
-  props: 'gridColumnEnd',
+  prop: 'gridColumnEnd',
   cssProperty: 'grid-column-end',
   key: 'gridColumnEnd',
   numberToPx: false
 });
 
 export const gridColumnStart = style({
-  props: 'gridColumnStart',
+  prop: 'gridColumnStart',
   cssProperty: 'grid-column-start',
   key: 'gridColumnStart',
   numberToPx: false
 });
 
 export const gridRowEnd = style({
-  props: 'gridRowEnd',
+  prop: 'gridRowEnd',
   cssProperty: 'grid-row-end',
   key: 'gridRowEnd',
   numberToPx: false
 });
 
 export const gridRowStart = style({
-  props: 'gridRowStart',
+  prop: 'gridRowStart',
   cssProperty: 'grid-row-start',
   key: 'gridRowStart',
   numberToPx: false
 });
 
 export const gridTemplate = style({
-  props: 'gridTemplate',
+  prop: 'gridTemplate',
   cssProperty: 'grid-template',
   key: 'gridTemplate',
   numberToPx: false
 });
 
 export const hyphens = style({
-  props: 'hyphens',
+  prop: 'hyphens',
   cssProperty: 'hyphens',
   key: 'hyphens',
   numberToPx: false
 });
 
 export const imageOrientation = style({
-  props: 'imageOrientation',
+  prop: 'imageOrientation',
   cssProperty: 'image-orientation',
   key: 'imageOrientation',
   numberToPx: false
 });
 
 export const imageRendering = style({
-  props: 'imageRendering',
+  prop: 'imageRendering',
   cssProperty: 'image-rendering',
   key: 'imageRendering',
   numberToPx: false
 });
 
 export const imageResolution = style({
-  props: 'imageResolution',
+  prop: 'imageResolution',
   cssProperty: 'image-resolution',
   key: 'imageResolution',
   numberToPx: false
 });
 
 export const imeMode = style({
-  props: 'imeMode',
+  prop: 'imeMode',
   cssProperty: 'ime-mode',
   key: 'imeMode',
   numberToPx: false
 });
 
 export const initialLetter = style({
-  props: 'initialLetter',
+  prop: 'initialLetter',
   cssProperty: 'initial-letter',
   key: 'initialLetter',
   numberToPx: false
 });
 
 export const initialLetterAlign = style({
-  props: 'initialLetterAlign',
+  prop: 'initialLetterAlign',
   cssProperty: 'initial-letter-align',
   key: 'initialLetterAlign',
   numberToPx: false
 });
 
 export const inlineSize = style({
-  props: 'inlineSize',
+  prop: 'inlineSize',
   cssProperty: 'inline-size',
   key: 'inlineSize',
   numberToPx: false
 });
 
 export const isolation = style({
-  props: 'isolation',
+  prop: 'isolation',
   cssProperty: 'isolation',
   key: 'isolation',
   numberToPx: false
 });
 
 export const lineBreak = style({
-  props: 'lineBreak',
+  prop: 'lineBreak',
   cssProperty: 'line-break',
   key: 'lineBreak',
   numberToPx: false
 });
 
 export const lineHeightStep = style({
-  props: 'lineHeightStep',
+  prop: 'lineHeightStep',
   cssProperty: 'line-height-step',
   key: 'lineHeightStep',
   numberToPx: false
 });
 
 export const listStyle = style({
-  props: 'listStyle',
+  prop: 'listStyle',
   cssProperty: 'list-style',
   key: 'listStyle',
   numberToPx: false
 });
 
 export const listStyleImage = style({
-  props: 'listStyleImage',
+  prop: 'listStyleImage',
   cssProperty: 'list-style-image',
   key: 'listStyleImage',
   numberToPx: false
 });
 
 export const listStylePosition = style({
-  props: 'listStylePosition',
+  prop: 'listStylePosition',
   cssProperty: 'list-style-position',
   key: 'listStylePosition',
   numberToPx: false
 });
 
 export const listStyleType = style({
-  props: 'listStyleType',
+  prop: 'listStyleType',
   cssProperty: 'list-style-type',
   key: 'listStyleType',
   numberToPx: false
 });
 
 export const marginBlockEnd = style({
-  props: 'marginBlockEnd',
+  prop: 'marginBlockEnd',
   cssProperty: 'margin-block-end',
   key: 'marginBlockEnd',
   numberToPx: false
 });
 
 export const marginBlockStart = style({
-  props: 'marginBlockStart',
+  prop: 'marginBlockStart',
   cssProperty: 'margin-block-start',
   key: 'marginBlockStart',
   numberToPx: false
 });
 
 export const marginInlineEnd = style({
-  props: 'marginInlineEnd',
+  prop: 'marginInlineEnd',
   cssProperty: 'margin-inline-end',
   key: 'marginInlineEnd',
   numberToPx: false
 });
 
 export const marginInlineStart = style({
-  props: 'marginInlineStart',
+  prop: 'marginInlineStart',
   cssProperty: 'margin-inline-start',
   key: 'marginInlineStart',
   numberToPx: false
 });
 
 export const markerOffset = style({
-  props: 'markerOffset',
+  prop: 'markerOffset',
   cssProperty: 'marker-offset',
   key: 'markerOffset',
   numberToPx: false
 });
 
 export const mask = style({
-  props: 'mask',
+  prop: 'mask',
   cssProperty: 'mask',
   key: 'mask',
   numberToPx: false
 });
 
 export const maskClip = style({
-  props: 'maskClip',
+  prop: 'maskClip',
   cssProperty: 'mask-clip',
   key: 'maskClip',
   numberToPx: false
 });
 
 export const maskComposite = style({
-  props: 'maskComposite',
+  prop: 'maskComposite',
   cssProperty: 'mask-composite',
   key: 'maskComposite',
   numberToPx: false
 });
 
 export const maskImage = style({
-  props: 'maskImage',
+  prop: 'maskImage',
   cssProperty: 'mask-image',
   key: 'maskImage',
   numberToPx: false
 });
 
 export const maskMode = style({
-  props: 'maskMode',
+  prop: 'maskMode',
   cssProperty: 'mask-mode',
   key: 'maskMode',
   numberToPx: false
 });
 
 export const maskOrigin = style({
-  props: 'maskOrigin',
+  prop: 'maskOrigin',
   cssProperty: 'mask-origin',
   key: 'maskOrigin',
   numberToPx: false
 });
 
 export const maskPosition = style({
-  props: 'maskPosition',
+  prop: 'maskPosition',
   cssProperty: 'mask-position',
   key: 'maskPosition',
   numberToPx: false
 });
 
 export const maskRepeat = style({
-  props: 'maskRepeat',
+  prop: 'maskRepeat',
   cssProperty: 'mask-repeat',
   key: 'maskRepeat',
   numberToPx: false
 });
 
 export const maskSize = style({
-  props: 'maskSize',
+  prop: 'maskSize',
   cssProperty: 'mask-size',
   key: 'maskSize',
   numberToPx: false
 });
 
 export const maskType = style({
-  props: 'maskType',
+  prop: 'maskType',
   cssProperty: 'mask-type',
   key: 'maskType',
   numberToPx: false
 });
 
 export const maxBlockSize = style({
-  props: 'maxBlockSize',
+  prop: 'maxBlockSize',
   cssProperty: 'max-block-size',
   key: 'maxBlockSize',
   numberToPx: false
 });
 
 export const maxInlineSize = style({
-  props: 'maxInlineSize',
+  prop: 'maxInlineSize',
   cssProperty: 'max-inline-size',
   key: 'maxInlineSize',
   numberToPx: false
 });
 
 export const minBlockSize = style({
-  props: 'minBlockSize',
+  prop: 'minBlockSize',
   cssProperty: 'min-block-size',
   key: 'minBlockSize',
   numberToPx: false
 });
 
 export const minInlineSize = style({
-  props: 'minInlineSize',
+  prop: 'minInlineSize',
   cssProperty: 'min-inline-size',
   key: 'minInlineSize',
   numberToPx: false
 });
 
 export const mixBlendMode = style({
-  props: 'mixBlendMode',
+  prop: 'mixBlendMode',
   cssProperty: 'mix-blend-mode',
   key: 'mixBlendMode',
   numberToPx: false
 });
 
 export const objectFit = style({
-  props: 'objectFit',
+  prop: 'objectFit',
   cssProperty: 'object-fit',
   key: 'objectFit',
   numberToPx: false
 });
 
 export const objectPosition = style({
-  props: 'objectPosition',
+  prop: 'objectPosition',
   cssProperty: 'object-position',
   key: 'objectPosition',
   numberToPx: false
 });
 
 export const offset = style({
-  props: 'offset',
+  prop: 'offset',
   cssProperty: 'offset',
   key: 'offset',
   numberToPx: false
 });
 
 export const offsetAnchor = style({
-  props: 'offsetAnchor',
+  prop: 'offsetAnchor',
   cssProperty: 'offset-anchor',
   key: 'offsetAnchor',
   numberToPx: false
 });
 
 export const offsetBlockEnd = style({
-  props: 'offsetBlockEnd',
+  prop: 'offsetBlockEnd',
   cssProperty: 'offset-block-end',
   key: 'offsetBlockEnd',
   numberToPx: false
 });
 
 export const offsetBlockStart = style({
-  props: 'offsetBlockStart',
+  prop: 'offsetBlockStart',
   cssProperty: 'offset-block-start',
   key: 'offsetBlockStart',
   numberToPx: false
 });
 
 export const offsetInlineEnd = style({
-  props: 'offsetInlineEnd',
+  prop: 'offsetInlineEnd',
   cssProperty: 'offset-inline-end',
   key: 'offsetInlineEnd',
   numberToPx: false
 });
 
 export const offsetInlineStart = style({
-  props: 'offsetInlineStart',
+  prop: 'offsetInlineStart',
   cssProperty: 'offset-inline-start',
   key: 'offsetInlineStart',
   numberToPx: false
 });
 
 export const offsetDistance = style({
-  props: 'offsetDistance',
+  prop: 'offsetDistance',
   cssProperty: 'offset-distance',
   key: 'offsetDistance',
   numberToPx: false
 });
 
 export const offsetPath = style({
-  props: 'offsetPath',
+  prop: 'offsetPath',
   cssProperty: 'offset-path',
   key: 'offsetPath',
   numberToPx: false
 });
 
 export const offsetPosition = style({
-  props: 'offsetPosition',
+  prop: 'offsetPosition',
   cssProperty: 'offset-position',
   key: 'offsetPosition',
   numberToPx: false
 });
 
 export const offsetRotate = style({
-  props: 'offsetRotate',
+  prop: 'offsetRotate',
   cssProperty: 'offset-rotate',
   key: 'offsetRotate',
   numberToPx: false
 });
 
 export const order = style({
-  props: 'order',
+  prop: 'order',
   cssProperty: 'order',
   key: 'order',
   numberToPx: false
 });
 
 export const orphans = style({
-  props: 'orphans',
+  prop: 'orphans',
   cssProperty: 'orphans',
   key: 'orphans',
   numberToPx: false
 });
 
 export const outline = style({
-  props: 'outline',
+  prop: 'outline',
   cssProperty: 'outline',
   key: 'outline',
   numberToPx: false
 });
 
 export const outlineColor = style({
-  props: 'outlineColor',
+  prop: 'outlineColor',
   cssProperty: 'outline-color',
   key: 'outlineColor',
   numberToPx: false
 });
 
 export const outlineOffset = style({
-  props: 'outlineOffset',
+  prop: 'outlineOffset',
   cssProperty: 'outline-offset',
   key: 'outlineOffset',
   numberToPx: false
 });
 export const outlineStyle = style({
-  props: 'outlineStyle',
+  prop: 'outlineStyle',
   cssProperty: 'outline-style',
   key: 'outlineStyle',
   numberToPx: false
 });
 
 export const outlineWidth = style({
-  props: 'outlineWidth',
+  prop: 'outlineWidth',
   cssProperty: 'outline-width',
   key: 'outlineWidth',
   numberToPx: false
 });
 
 export const overflow = style({
-  props: 'overflow',
+  prop: 'overflow',
   cssProperty: 'overflow',
   key: 'overflow',
   numberToPx: false
 });
 
 export const overflowClipBox = style({
-  props: 'overflowClipBox',
+  prop: 'overflowClipBox',
   cssProperty: 'overflow-clip-box',
   key: 'overflowClipBox',
   numberToPx: false
 });
 
 export const overflowWrap = style({
-  props: 'overflowWrap',
+  prop: 'overflowWrap',
   cssProperty: 'overflow-wrap',
   key: 'overflowWrap',
   numberToPx: false
 });
 
 export const overflowX = style({
-  props: 'overflowX',
+  prop: 'overflowX',
   cssProperty: 'overflow-x',
   key: 'overflowX',
   numberToPx: false
 });
 
 export const overflowY = style({
-  props: 'overflowY',
+  prop: 'overflowY',
   cssProperty: 'overflow-y',
   key: 'overflowY',
   numberToPx: false
 });
 
 export const paddingBlockEnd = style({
-  props: 'paddingBlockEnd',
+  prop: 'paddingBlockEnd',
   cssProperty: 'padding-block-end',
   key: 'paddingBlockEnd',
   numberToPx: false
 });
 
 export const paddingBlockStart = style({
-  props: 'paddingBlockStart',
+  prop: 'paddingBlockStart',
   cssProperty: 'padding-block-start',
   key: 'paddingBlockStart',
   numberToPx: false
 });
 
 export const paddingInlineEnd = style({
-  props: 'paddingInlineEnd',
+  prop: 'paddingInlineEnd',
   cssProperty: 'padding-inline-end',
   key: 'paddingInlineEnd',
   numberToPx: false
 });
 
 export const paddingInlineStart = style({
-  props: 'paddingInlineStart',
+  prop: 'paddingInlineStart',
   cssProperty: 'padding-inline-start',
   key: 'paddingInlineStart',
   numberToPx: false
 });
 
 export const pageBreakAfter = style({
-  props: 'pageBreakAfter',
+  prop: 'pageBreakAfter',
   cssProperty: 'page-break-after',
   key: 'pageBreakAfter',
   numberToPx: false
 });
 
 export const pageBreakBefore = style({
-  props: 'pageBreakBefore',
+  prop: 'pageBreakBefore',
   cssProperty: 'page-break-before',
   key: 'pageBreakBefore',
   numberToPx: false
 });
 
 export const pageBreakInside = style({
-  props: 'pageBreakInside',
+  prop: 'pageBreakInside',
   cssProperty: 'page-break-inside',
   key: 'pageBreakInside',
   numberToPx: false
 });
 
 export const perspective = style({
-  props: 'perspective',
+  prop: 'perspective',
   cssProperty: 'perspective',
   key: 'perspective',
   numberToPx: false
 });
 
 export const perspectiveOrigin = style({
-  props: 'perspectiveOrigin',
+  prop: 'perspectiveOrigin',
   cssProperty: 'perspective-origin',
   key: 'perspectiveOrigin',
   numberToPx: false
 });
 
 export const pointerEvents = style({
-  props: 'pointerEvents',
+  prop: 'pointerEvents',
   cssProperty: 'pointer-events',
   key: 'pointerEvents',
   numberToPx: false
 });
 
 export const quotes = style({
-  props: 'quotes',
+  prop: 'quotes',
   cssProperty: 'quotes',
   key: 'quotes',
   numberToPx: false
 });
 
 export const resize = style({
-  props: 'resize',
+  prop: 'resize',
   cssProperty: 'resize',
   key: 'resize',
   numberToPx: false
 });
 
 export const rubyAlign = style({
-  props: 'rubyAlign',
+  prop: 'rubyAlign',
   cssProperty: 'ruby-align',
   key: 'rubyAlign',
   numberToPx: false
 });
 
 export const rubyMerge = style({
-  props: 'rubyMerge',
+  prop: 'rubyMerge',
   cssProperty: 'ruby-merge',
   key: 'rubyMerge',
   numberToPx: false
 });
 
 export const rubyPosition = style({
-  props: 'rubyPosition',
+  prop: 'rubyPosition',
   cssProperty: 'ruby-position',
   key: 'rubyPosition',
   numberToPx: false
 });
 
 export const scrollBehavior = style({
-  props: 'scrollBehavior',
+  prop: 'scrollBehavior',
   cssProperty: 'scroll-behavior',
   key: 'scrollBehavior',
   numberToPx: false
 });
 
 export const scrollSnapCoordinate = style({
-  props: 'scrollSnapCoordinate',
+  prop: 'scrollSnapCoordinate',
   cssProperty: 'scroll-snap-coordinate',
   key: 'scrollSnapCoordinate',
   numberToPx: false
 });
 
 export const scrollSnapDestination = style({
-  props: 'scrollSnapDestination',
+  prop: 'scrollSnapDestination',
   cssProperty: 'scroll-snap-destination',
   key: 'scrollSnapDestination',
   numberToPx: false
 });
 
 export const scrollSnapPointsX = style({
-  props: 'scrollSnapPointsX',
+  prop: 'scrollSnapPointsX',
   cssProperty: 'scroll-snap-points-x',
   key: 'scrollSnapPointsX',
   numberToPx: false
 });
 
 export const scrollSnapPointsY = style({
-  props: 'scrollSnapPointsY',
+  prop: 'scrollSnapPointsY',
   cssProperty: 'scroll-snap-points-y',
   key: 'scrollSnapPointsY',
   numberToPx: false
 });
 
 export const scrollSnapType = style({
-  props: 'scrollSnapType',
+  prop: 'scrollSnapType',
   cssProperty: 'scroll-snap-type',
   key: 'scrollSnapType',
   numberToPx: false
 });
 
 export const scrollSnapTypeX = style({
-  props: 'scrollSnapTypeX',
+  prop: 'scrollSnapTypeX',
   cssProperty: 'scroll-snap-type-x',
   key: 'scrollSnapTypeX',
   numberToPx: false
 });
 
 export const scrollSnapTypeY = style({
-  props: 'scrollSnapTypeY',
+  prop: 'scrollSnapTypeY',
   cssProperty: 'scroll-snap-type-y',
   key: 'scrollSnapTypeY',
   numberToPx: false
 });
 
 export const shapeImageThreshold = style({
-  props: 'shapeImageThreshold',
+  prop: 'shapeImageThreshold',
   cssProperty: 'shape-image-threshold',
   key: 'shapeImageThreshold',
   numberToPx: false
 });
 export const shapeMargin = style({
-  props: 'shapeMargin',
+  prop: 'shapeMargin',
   cssProperty: 'shape-margin',
   key: 'shapeMargin',
   numberToPx: false
 });
 
 export const shapeOutside = style({
-  props: 'shapeOutside',
+  prop: 'shapeOutside',
   cssProperty: 'shape-outside',
   key: 'shapeOutside',
   numberToPx: false
 });
 
 export const tabSize = style({
-  props: 'tabSize',
+  prop: 'tabSize',
   cssProperty: 'tab-size',
   key: 'tabSize',
   numberToPx: false
 });
 
 export const tableLayout = style({
-  props: 'tableLayout',
+  prop: 'tableLayout',
   cssProperty: 'table-layout',
   key: 'tableLayout',
   numberToPx: false
 });
 
 export const textAlignLast = style({
-  props: 'textAlignLast',
+  prop: 'textAlignLast',
   cssProperty: 'text-align-last',
   key: 'textAlignLast',
   numberToPx: false
 });
 
 export const textCombineUpright = style({
-  props: 'textCombineUpright',
+  prop: 'textCombineUpright',
   cssProperty: 'text-combine-upright',
   key: 'textCombineUpright',
   numberToPx: false
 });
 
 export const textDecoration = style({
-  props: 'textDecoration',
+  prop: 'textDecoration',
   cssProperty: 'text-decoration',
   key: 'textDecoration',
   numberToPx: false
 });
 
 export const textDecorationColor = style({
-  props: 'textDecorationColor',
+  prop: 'textDecorationColor',
   cssProperty: 'text-decoration-color',
   key: 'textDecorationColor',
   numberToPx: false
 });
 
 export const textDecorationLine = style({
-  props: 'textDecorationLine',
+  prop: 'textDecorationLine',
   cssProperty: 'text-decoration-line',
   key: 'textDecorationLine',
   numberToPx: false
 });
 
 export const textDecorationSkip = style({
-  props: 'textDecorationSkip',
+  prop: 'textDecorationSkip',
   cssProperty: 'text-decoration-skip',
   key: 'textDecorationSkip',
   numberToPx: false
 });
 
 export const textDecorationStyle = style({
-  props: 'textDecorationStyle',
+  prop: 'textDecorationStyle',
   cssProperty: 'text-decoration-style',
   key: 'textDecorationStyle',
   numberToPx: false
 });
 
 export const textEmphasis = style({
-  props: 'textEmphasis',
+  prop: 'textEmphasis',
   cssProperty: 'text-emphasis',
   key: 'textEmphasis',
   numberToPx: false
 });
 
 export const textEmphasisColor = style({
-  props: 'textEmphasisColor',
+  prop: 'textEmphasisColor',
   cssProperty: 'text-emphasis-color',
   key: 'textEmphasisColor',
   numberToPx: false
 });
 
 export const textEmphasisPosition = style({
-  props: 'textEmphasisPosition',
+  prop: 'textEmphasisPosition',
   cssProperty: 'text-emphasis-position',
   key: 'textEmphasisPosition',
   numberToPx: false
 });
 
 export const textEmphasisStyle = style({
-  props: 'textEmphasisStyle',
+  prop: 'textEmphasisStyle',
   cssProperty: 'text-emphasis-style',
   key: 'textEmphasisStyle',
   numberToPx: false
 });
 
 export const textIndent = style({
-  props: 'textIndent',
+  prop: 'textIndent',
   cssProperty: 'text-indent',
   key: 'textIndent',
   numberToPx: false
 });
 
 export const textJustify = style({
-  props: 'textJustify',
+  prop: 'textJustify',
   cssProperty: 'text-justify',
   key: 'textJustify',
   numberToPx: false
 });
 
 export const textOrientation = style({
-  props: 'textOrientation',
+  prop: 'textOrientation',
   cssProperty: 'text-orientation',
   key: 'textOrientation',
   numberToPx: false
 });
 
 export const textOverflow = style({
-  props: 'textOverflow',
+  prop: 'textOverflow',
   cssProperty: 'text-overflow',
   key: 'textOverflow',
   numberToPx: false
 });
 
 export const textRendering = style({
-  props: 'textRendering',
+  prop: 'textRendering',
   cssProperty: 'text-rendering',
   key: 'textRendering',
   numberToPx: false
 });
 
 export const textSizeAdjust = style({
-  props: 'textSizeAdjust',
+  prop: 'textSizeAdjust',
   cssProperty: 'text-size-adjust',
   key: 'textSizeAdjust',
   numberToPx: false
 });
 
 export const textUnderlinePosition = style({
-  props: 'textUnderlinePosition',
+  prop: 'textUnderlinePosition',
   cssProperty: 'text-underline-position',
   key: 'textUnderlinePosition',
   numberToPx: false
 });
 
 export const touchAction = style({
-  props: 'touchAction',
+  prop: 'touchAction',
   cssProperty: 'touch-action',
   key: 'touchAction',
   numberToPx: false
 });
 
 export const transformBox = style({
-  props: 'transformBox',
+  prop: 'transformBox',
   cssProperty: 'transform-box',
   key: 'transformBox',
   numberToPx: false
 });
 
 export const transformStyle = style({
-  props: 'transformStyle',
+  prop: 'transformStyle',
   cssProperty: 'transform-style',
   key: 'transformStyle',
   numberToPx: false
 });
 
 export const transition = style({
-  props: 'transition',
+  prop: 'transition',
   cssProperty: 'transition',
   key: 'transition',
   numberToPx: false
 });
 
 export const transitionDelay = style({
-  props: 'transitionDelay',
+  prop: 'transitionDelay',
   cssProperty: 'transition-delay',
   key: 'transitionDelay',
   numberToPx: false
 });
 
 export const transitionDuration = style({
-  props: 'transitionDuration',
+  prop: 'transitionDuration',
   cssProperty: 'transition-duration',
   key: 'transitionDuration',
   numberToPx: false
 });
 
 export const transitionProperty = style({
-  props: 'transitionProperty',
+  prop: 'transitionProperty',
   cssProperty: 'transition-property',
   key: 'transitionProperty',
   numberToPx: false
 });
 
 export const transitionTimingFunction = style({
-  props: 'transitionTimingFunction',
+  prop: 'transitionTimingFunction',
   cssProperty: 'transition-timing-function',
   key: 'transitionTimingFunction',
   numberToPx: false
 });
 
 export const unicodeBidi = style({
-  props: 'unicodeBidi',
+  prop: 'unicodeBidi',
   cssProperty: 'unicode-bidi',
   key: 'unicodeBidi',
   numberToPx: false
 });
 export const userSelect = style({
-  props: 'userSelect',
+  prop: 'userSelect',
   cssProperty: 'user-select',
   key: 'userSelect',
   numberToPx: false
 });
 
 export const verticalAlign = style({
-  props: 'verticalAlign',
+  prop: 'verticalAlign',
   cssProperty: 'vertical-align',
   key: 'verticalAlign',
   numberToPx: false
 });
 
 export const visibility = style({
-  props: 'visibility',
+  prop: 'visibility',
   cssProperty: 'visibility',
   key: 'visibility',
   numberToPx: false
 });
 
 export const whiteSpace = style({
-  props: 'whiteSpace',
+  prop: 'whiteSpace',
   cssProperty: 'white-space',
   key: 'whiteSpace',
   numberToPx: false
 });
 
 export const widows = style({
-  props: 'widows',
+  prop: 'widows',
   cssProperty: 'widows',
   key: 'widows',
   numberToPx: false
 });
 
 export const willChange = style({
-  props: 'willChange',
+  prop: 'willChange',
   cssProperty: 'will-change',
   key: 'willChange',
   numberToPx: false
 });
 
 export const wordBreak = style({
-  props: 'wordBreak',
+  prop: 'wordBreak',
   cssProperty: 'word-break',
   key: 'wordBreak',
   numberToPx: false
 });
 
 export const wordSpacing = style({
-  props: 'wordSpacing',
+  prop: 'wordSpacing',
   cssProperty: 'word-spacing',
   key: 'wordSpacing',
   numberToPx: false
 });
 
 export const wordWrap = style({
-  props: 'wordWrap',
+  prop: 'wordWrap',
   cssProperty: 'word-wrap',
   key: 'wordWrap',
   numberToPx: false
 });
 
 export const writingMode = style({
-  props: 'writingMode',
+  prop: 'writingMode',
   cssProperty: 'writing-mode',
   key: 'writingMode',
   numberToPx: false
 });
 
-export const filterProps = props => {
+export const filterProps = prop => {
   // debugger
-  return omit(props, [
+  return omit(prop, [
     'theme',
     'xs',
     'sm',
@@ -2490,5 +2490,6 @@ export const filterProps = props => {
     "p",
     "px",
     "py",
-    "border"
+    "border",
+    "as"
   ])}

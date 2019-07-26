@@ -11,7 +11,7 @@ import { filterProps, clipPath, textTransform } from './css-helpers';
 import theme from './theme';
 
 const Base = props => {
-  debugger
+  // debugger
   const next = filterProps(props);
   return <div {...next} />;
 }

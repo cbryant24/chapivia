@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 import Text from './Text';
 import Flex from './Flex';
+import InputContainer from './InputContainer';
 import Box from './Box';
 import Input from './Input';
 import theme from './theme';
@@ -25,7 +26,7 @@ const handleErrorMessages = errorMessages => {
 const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyle, ...props }) => {
   const [shown, setShown] = React.useState(false);
   const errorColor = props.errors.length >= 1 ? '#e95667' : null; 
-  const component =
+  const inputType =
     {
       select: 'select',
       slider: 'slider',
@@ -37,26 +38,31 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyl
       <Flex
         alignItems="flex-end"
       >
-        <Text as="label" for={name} id={name}>
+      <Box
+        objectFit="cover"
+      >
+        Hello
+      </Box>
+        <Text fontSize="2rem" for={name} id={name}>
           {label}
         </Text>
         {props.errors.length >= 1 ? <Box as="list" ml="2rem" color={errorColor} fontSize="1.2rem">{handleErrorMessages(props.errors)}</Box> : ''}
       </Flex>
-      <Flex
-        {...inputStyle}
+      <InputContainer
+        //{...inputStyle}
         borderColor={errorColor}
         focusColor={errorColor} 
         foucsBoxShadowColor={errorColor}
       >
         <Input
-          {...props}
+          //{...props}
           {...inputStyle}
-          as={component}
+          forwardedAs={inputType}
           name={name}
           type={shown && type === "password" ? 'text' : type} 
           placeholder={placeholder}
         />
-        { type ==="password" ? 
+        { type === "password" ? 
         <Text
           as="p"
           fontSize="12px"
@@ -67,7 +73,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyl
         >
           {shown ? 'hide':'show'}
         </Text> : '' }
-      </Flex>
+      </InputContainer>
     </Flex>
   );
 };
