@@ -11,7 +11,6 @@ export { default as Text } from './Text';
 export { default as Field } from './useField';
 export { default as Input } from './Input';
 export { default as OutlineButton } from './OutlineButton';
-export { default as Table } from './Table';
 export { default as Button } from './Button';
 export { default as Image } from './Image';
 export { default as List } from './List';

@@ -37,6 +37,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyl
       <Flex
         alignItems="flex-end"
       >
+        <Box objectFit="cover"></Box>
         <Text as="label" for={name} id={name}>
           {label}
         </Text>
