@@ -9,7 +9,7 @@ import query from '../queries/Trivia';
 import * as actions from '../actions';
 
 import GuessForm from './GuessForm';
-import { Grid, GridItem, Text, List, Item, Heading } from './element';
+import { Box, Grid, GridItem, Text, List, Item, Heading } from './element';
 
 class TriviaQuestion extends Component {
 
@@ -19,13 +19,14 @@ class TriviaQuestion extends Component {
     return (
       choices.map( (choice, idx) => {
         return(
-          <Item 
+          <Box
+            as="li"
             pb="1rem"
             hover
             key={choice}
           >
             {String.fromCharCode(65 + idx)}: { this.convertHTMLChar(choice) }
-          </Item>
+          </Box>
         )
       })
     );
@@ -48,17 +49,17 @@ class TriviaQuestion extends Component {
         fontFamily="VT323"
         fontSmooth="none"
       >
-        <Text.p
+        <Text
           p="0 0 2rem 0;"
           fontSize="2.1rem"
         >
           {this.convertHTMLChar(this.props.data.trivia.question) || ""}
-        </Text.p>
-        <List
+        </Text>
+        <Box
           as="ul"
         >
           {this.displayGuesses()}
-        </List>
+        </Box>
         <GuessForm/>
       </GridItem>
     );

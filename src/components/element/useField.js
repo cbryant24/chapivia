@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import Text from './Text';
 import Flex from './Flex';
 import Box from './Box';
+import Grid from './Grid';
+import { ExtendedBox } from './ExtendedComponents';
 import Input from './Input';
 import theme from './theme';
 
@@ -37,7 +39,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyl
       <Flex
         alignItems="flex-end"
       >
-        <Box objectFit="cover"></Box>
+        <Grid grid-row-start="1">Hello</Grid>
         <Text as="label" for={name} id={name}>
           {label}
         </Text>

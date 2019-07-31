@@ -333,5 +333,23 @@ export const filterProps = props => {
     "p",
     "px",
     "py",
-    "border"
+    "border",
+    "opacity",
+    "border-radius",
+    "borderBottom",
+    "borderLeft",
+    "borderRight",
+    "borderTop",
+    "background",
+    "position",
+    "flex-flow",
+    "grid-row-start",
+    "grid-column-start",
+    "grid-row-end",
+    "grid-column-end",
+    "itemname"
   ])}
+
+  export const removeProvidedProps = (vals) => {
+
+  }

@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import React from 'react';
 import Box from './Box';
-import { alignSelf, justifySelf } from 'styled-system';
+import { grid } from 'styled-system';
 import theme from './theme';
 
 
 const GridItem = styled(Box)`
-  grid-row: ${props => props.gridRow};
-  grid-column: ${props => props.gridColumn}
-  ${alignSelf} ${justifySelf}
+  ${grid}
 `
 
 GridItem.defaultProps = {

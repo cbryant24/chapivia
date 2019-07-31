@@ -368,7 +368,7 @@ export default [
   'word-spacing',
   'word-wrap',
   'writing-mode',
-  'z-index'
+  'z-index',
 ];
 
 export const textTransform = style({
@@ -2155,6 +2155,14 @@ export const writingMode = style({
   numberToPx: false
 });
 
+export const itemName = style({
+  props: 'itemName',
+  cssProperty: 'itemname',
+  key: 'itemName',
+  numberToPx: false
+});
+
+
 export const cssProperties = {
   textTransform,
   minHeight,
@@ -2408,5 +2416,5 @@ export const cssProperties = {
   wordBreak,
   wordSpacing,
   wordWrap,
-  writingMode
+  writingMode  
 }
