@@ -2,27 +2,30 @@ import React, { useState, useEffect, useRef } from 'react';
 import { BaseModalBackground } from './baseStyles';
 import { Provider } from './context';
 import usePrevious from '../../../hooks/usePrev';
+import Box from '../Box';
 
 const ModalProvider = (props) => {
   const [modalNode, setModalNode] = useState(null);
-  const [backgroundComponent, setBackgroundComponent] = useState(BaseModalBackground);
-  const prevBackgroundComponet = usePrevious(backgroundComponent);
+  const [BackgroundComponent, setBackgroundComponent] = useState(BaseModalBackground);
+  const prevBackgroundComponet = usePrevious(BackgroundComponent);
   const modalDiv = useRef();
-
+  
   useEffect( () => {
     setModalNode(modalDiv);
   }, [modalDiv]);
 
   //Need to figure out what backgroundComponent Stuff
   useEffect( () => {
-    if(backgroundComponent !== prevBackgroundComponet && backgroundComponent)
+    if(props.backgroundComponent !== prevBackgroundComponet && props.backgroundComponent) {
+      debugger
       setBackgroundComponent(props.backgroundComponent);
+    }
   });
 
   return (
     <Provider value={{
       modalNode,
-      backgroundComponent
+      BackgroundComponent
     }}>
       {props.children}
       <div ref={modalDiv}/>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom'
 
@@ -17,6 +17,7 @@ import Modal from './element/modal';
 
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
+  const [isOpen, setIsOpen] = useState(false);
   
   async function signin(event, vals) {
 
@@ -31,6 +32,11 @@ function Signin(props) {
     }
     
     return props.history.push('/game');
+  }
+
+  const toggleModal = e => {
+    // debugger
+    setIsOpen(!isOpen);
   }
 
   const inputStyle = {
@@ -86,6 +92,15 @@ return (
         inputs={inputs}
         validate={validate}
       />
+      <button onClick={toggleModal} >Modal Action</button>
+      <Modal
+        isOpen={isOpen}
+        onBackgroundClick={toggleModal}
+        onEscapeKeydown={toggleModal}
+      >
+        <span>I am a modal!</span>
+        <button onClick={toggleModal}>Close Me</button>
+      </Modal>
     </FlexItem>
   );
 }

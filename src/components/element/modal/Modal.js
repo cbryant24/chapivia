@@ -5,7 +5,7 @@ import { Consumer } from './context'
 import usePrevious from '../../../hooks/usePrev';
 import Box from '../Box';
 
-export default Modal => props => {
+const Modal = props => {
   const [modalOpen, setModalOpen] = useState(false);
   const prevModalOpen = usePrevious(modalOpen);
 
@@ -13,15 +13,16 @@ export default Modal => props => {
   const prevIsOpen = usePrevious(isOpen);
 
   const nodeRef = useRef();
-  //const backgroundRef = useRef();
 
-  const prevBodyOverflow = null;
+  let prevBodyOverflow = null;
 
   useEffect(() => {
+    // debugger
     props.isOpen && setModalOpen(props.isOpen);
   }, [isOpen]);
 
   useEffect(() => {
+    // debugger
     if ( prevModalOpen !== modalOpen) {
       if(!modalOpen) {
         cleanUp();
@@ -67,6 +68,7 @@ export default Modal => props => {
   };
 
   const handleChange = (event, newState) => {
+    // debugger
     if (props[event]) {
       try {
         props[event]()
@@ -88,7 +90,9 @@ export default Modal => props => {
   return (
           <Consumer>
             {({ modalNode, BackgroundComponent }) => {
+              debugger
               if (modalNode && BackgroundComponent && isOpen) {
+                debugger
                 return ReactDOM.createPortal((
                   <BackgroundComponent
                     {...backgroundProps}
@@ -102,8 +106,10 @@ export default Modal => props => {
               }
             }}
           </Consumer>
-  )
+  );
 }
+
+export default Modal;
 
 // // class Modal extends Component {
 // //   constructor (props) {
