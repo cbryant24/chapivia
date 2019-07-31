@@ -8,6 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { ModalProvider } from './components/element/modal';
 
 import Signin from './components/Signin';
 import Signup from './components/Signup';
@@ -21,7 +22,8 @@ ReactDOM.render(
   <ApolloProvider client={ client } >
     <Router>
       <ThemeProvider theme={theme}>
-        <div style={{ position: 'relative' }}>
+        <ModalProvider>
+          <div style={{ position: 'relative' }}>
             <App>
               <Route path='/game' exact component={Game}/>
               {/* <Route path='' component={GameController}/> */}
@@ -29,6 +31,7 @@ ReactDOM.render(
               <Route path='/signup' component={Signup}/>
             </App>
           </div>
+        </ModalProvider>
       </ThemeProvider>
     </Router>
   </ApolloProvider>,

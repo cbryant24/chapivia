@@ -5,7 +5,7 @@ import { compose, graphql } from 'react-apollo';
 import CorrectGuessesQuery from '../queries/CorrectGuesses';
 import TriviaAnswer from '../queries/TriviaAnswer';
 
-import { GridItem, Heading, FlexItem, BoxAnimated } from './element';
+import { GridItem, Text, FlexItem, BoxAnimated } from './element';
 import * as Elements from './element';
 
 class Winner extends Component {
@@ -14,7 +14,8 @@ class Winner extends Component {
     if(this.props.winners.loading) return
     
     return this.props.winners.correctGuesses.map( (guesser, idx) => (
-      <Heading.h3
+      <Text
+        as="h3"
         textTransform="uppercase"
         key={guesser.id}
         position="relative"
@@ -25,7 +26,7 @@ class Winner extends Component {
         >
           {guesser.name}
         </BoxAnimated>
-      </Heading.h3>
+      </Text>
     ));
   }
 
@@ -46,23 +47,26 @@ class Winner extends Component {
         flexDirection="column"
         width="100%"
       >
-        <Elements.Text.p
+        <Text
+          as="p"
           textTransform="uppercase"
         >
           {new Date().getHours() >= 17 ? "Trivia" : "Yesterdays Trivia"}:&nbsp;
           {this.convertHTMLChar(this.props.trivia.correctAnswer.question.question)}!
-        </Elements.Text.p>
-        <Elements.Heading.h2
+        </Text>
+        <Text
+          as="p"
           textTransform="uppercase"
         >
           {new Date().getHours() >= 17 ? "Answer" : "Yesterdays Answer"}:&nbsp;
           {this.convertHTMLChar(this.props.trivia.correctAnswer.correctChoice)}!
-        </Elements.Heading.h2>
-        <Elements.Heading.h2
+        </Text>
+        <Text
+          as="p"
           textTransform="uppercase"
         >
           {new Date().getHours() >= 17 ? "Correct Guesses" : "Yesterdays Correct Guesses"}:&nbsp;
-        </Elements.Heading.h2>
+        </Text>
         {this.displayWinners()}
       </Elements.Flex>
     );

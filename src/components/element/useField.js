@@ -5,6 +5,8 @@ import Text from './Text';
 import Flex from './Flex';
 import InputContainer from './InputContainer';
 import Box from './Box';
+import Grid from './Grid';
+import { ExtendedBox } from './ExtendedComponents';
 import Input from './Input';
 import theme from './theme';
 
@@ -38,12 +40,8 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyl
       <Flex
         alignItems="flex-end"
       >
-      <Box
-        objectFit="cover"
-      >
-        Hello
-      </Box>
-        <Text fontSize="2rem" for={name} id={name}>
+        <Grid grid-row-start="1">Hello</Grid>
+        <Text as="label" for={name} id={name}>
           {label}
         </Text>
         {props.errors.length >= 1 ? <Box as="list" ml="2rem" color={errorColor} fontSize="1.2rem">{handleErrorMessages(props.errors)}</Box> : ''}

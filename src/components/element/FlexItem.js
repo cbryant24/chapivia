@@ -6,4 +6,6 @@ const FlexItem = styled(Box)`
   ${flex}
 `;
 
+FlexItem.displayName = "FlexItem";
+
 export default FlexItem;

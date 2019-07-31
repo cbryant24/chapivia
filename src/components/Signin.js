@@ -13,6 +13,8 @@ import mutation from '../mutations/Login';
 import query from '../queries/CurrentUser';
 import { blockSize } from './element/css-helpers';
 
+import Modal from './element/modal';
+
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
   
@@ -68,7 +70,7 @@ function Signin(props) {
 
   const form = {
     data: { name: 'signinForm', submit: 'signup', cb: signin },
-    style: { height: '66vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem' },
+    style: { height: '66vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem'},
   }
 
 return (

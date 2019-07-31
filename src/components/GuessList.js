@@ -132,18 +132,19 @@ function GuessList(props) {
             inputs={input}
             validate={validate}
           /> : 
-          <OutlineButton
-              bg="primary"
-              fontSize="1.1rem"
-              borderWidth="1px"
-              color="white"
-              maxHeight="20px"
-              borderRadius="2px"
-              before="*"
-              onClick={ () => setSelectedPlayer(guess) }
+          <Box
+            as="button"
+            bg="primary"
+            fontSize="1.1rem"
+            borderWidth="1px"
+            color="white"
+            maxHeight="20px"
+            borderRadius="2px"
+            before="*"
+            onClick={ () => setSelectedPlayer(guess) }
             >
               change
-            </OutlineButton>}
+          </Box>}
         </Flex>
       ))
     )

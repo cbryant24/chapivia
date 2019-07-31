@@ -9,8 +9,8 @@ import {  typography,
 import cleanElement from 'clean-element';
 import theme from './theme'
 import PropTypes from 'prop-types'
-import { filterProps, appearance, transition, outline } from './css-helpers';
-// import Base from './Base';
+import { appearance, verticalAlign, transition, outline } from './css-helpers';
+import { filterProps } from './utils/index'
 
 const chevron = () => {
   const props = `xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'`

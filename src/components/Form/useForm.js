@@ -1,6 +1,6 @@
 import React from 'react';
 import { formInput } from './FormInput';
-import * as Element from '../element';
+import {Box, Field, Flex} from '../element';
 import { useStateValue } from './App';
 import { useWindowSize }from '../../hooks';
 
@@ -14,12 +14,12 @@ export default function Form({ inputs, form, validate }) {
   const displayFields = () => {
     return inputs.map( input =>  {
       const field = formInput(input, validate);
-      return <Element.Field key={input.data.name} {...input} {...field} errors={fields[input.data.name].errorMessages}/>
+      return <Field key={input.data.name} {...input} {...field} errors={fields[input.data.name].errorMessages}/>
     });
   }
 
   const handleErrorMessages = errorMessages => {
-    return errorMessages.map( errorMessage => <Element.Item key={errorMessage.message}>{errorMessage.message}</Element.Item> )
+    return errorMessages.map( errorMessage => <Box as="li" key={errorMessage.message}>{errorMessage.message}</Box> )
   }
 
   const handleCancel = () => {
@@ -59,36 +59,39 @@ export default function Form({ inputs, form, validate }) {
   };
   // debugger
   return (
-    <Element.Flex
+    <Flex
       as="form"
       {...form.style}
       onSubmit={ event => handleSubmit(event) }
     >
-      {formErrors.length >= 1 ? <Element.Box
+      {formErrors.length >= 1 ? <Box
                                   as="li"
                                   ml="2rem" 
                                   color={errorColor} 
                                   fontSize="1.2rem"
                                 >
                                   {handleErrorMessages(formErrors)}
-                                </Element.Box> : ''}
+                                </Box> : ''}
       {displayFields()}
-      <Element.Flex
+      <Flex
         width={size.width * .60 * .25}px
         justifyContent="space-between"
         fontSize="28rem"
       >
-        <Element.OutlineSubmit
+        <Box
+          as="button"
+          type="submit"
           disabled={ !isEnabled() }
 
           type="submit"
         />
-        <Element.OutlineButton
+        <Box
+          as="button"
           onClick={ handleCancel }
         >
           Cancel
-        </Element.OutlineButton>
-      </Element.Flex>
-    </Element.Flex>
+        </Box>
+      </Flex>
+    </Flex>
   )
 }
