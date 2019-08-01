@@ -12,7 +12,7 @@ import helpers from './helpers';
 import mutation from '../mutations/Login';
 import query from '../queries/CurrentUser';
 import { blockSize } from './element/css-helpers';
-
+import { Box } from './element'
 import Modal from './element/modal';
 
 //TODO: Errors message applicable to correct field only
@@ -98,7 +98,8 @@ return (
         onBackgroundClick={toggleModal}
         onEscapeKeydown={toggleModal}
       >
-        <span>I am a modal!</span>
+        <Box color="#ffffff">I am a modal!</Box>
+        <Box color="#FF0000">I am another box in the modal</Box>
         <button onClick={toggleModal}>Close Me</button>
       </Modal>
     </FlexItem>

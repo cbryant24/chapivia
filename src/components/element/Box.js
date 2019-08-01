@@ -1,18 +1,15 @@
 import React from 'react';
 import styled, { keyframes, css } from 'styled-components/macro';
-import { 
-  space, 
-  color, 
-  layout, 
-  background, 
-  border, 
-  position,
-  shadow,
-  opacity,
-  compose,
-  style,
-  system
- } from 'styled-system';
+// import { 
+//   space, 
+//   color, 
+//   layout, 
+//   background, 
+//   border, 
+//   position,
+//   shadow
+//  } from 'styled-system';
+import { COMMON, LAYOUT } from './constants';
 import { fontStyle, backgroundColor } from './theme';
 import theme from './theme';
 import cleanElement from 'clean-element';
@@ -31,8 +28,9 @@ const Box = styled(cleanElement(Base))(
     boxSizing: 'border-box',
     minWidth: 0,
   },
-  space, color, layout, background, shadow, transformOrigin, transform, content,
-  position, border
+  COMMON, LAYOUT
+  // space, color, layout, background, shadow, transformOrigin, transform, content,
+  // position, border
 );
 
 export const BoxAnimated = styled(Box)`

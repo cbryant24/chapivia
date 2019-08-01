@@ -15,14 +15,45 @@ import Signup from './components/Signup';
 import Game from './components/Game';
 import GameController from './components/GameController';
 import App from './components/App';
+import { Flex, Box } from './components/element';
+
+import styled from 'styled-components';
 
 const client = new ApolloClient();
 
+const BackgroundModal = <Box
+                          display="flex"
+                          position="fixed"
+                          top="0"
+                          left="0"
+                          width="100vw"
+                          height="100vh"
+                          zIndex="30"
+                          backgroundColor="rghba(255, 255, 255, .5)"
+                          alignItems="center"
+                          justifyContent="center"
+                        />
+
+//                   const RandomDiv = <div></div>
+
+// const OtherModalBackground = styled.div`
+//   display: flex;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   z-index: 30;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   align-items: center;
+//   justify-content: center;
+// `
+// debugger
 ReactDOM.render(
   <ApolloProvider client={ client } >
     <Router>
       <ThemeProvider theme={theme}>
-        <ModalProvider>
+        <ModalProvider backgroundComponent={BackgroundModal}>
           <div style={{ position: 'relative' }}>
             <App>
               <Route path='/game' exact component={Game}/>

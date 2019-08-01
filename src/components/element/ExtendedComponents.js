@@ -15,7 +15,6 @@ const addStyles = props => {
   return system({ ...cssProps });
 };
 
-
 export const ExtendedBox = styled(Box)`
   ${props => addStyles(props)}
 `;

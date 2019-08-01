@@ -22,3 +22,4 @@ export { default as Box } from './Box';
 export { BoxAnimated as BoxAnimated } from './Box';
 export { default as TextAnimated } from './TextAnimated';
 export { ExtendedBox as ExtendedBox } from './ExtendedComponents';
+export { default as BackgroundModal } from './BackgroundModal';

@@ -1,6 +1,6 @@
-import { BaseModalBackground } from './baseStyles'
+// import { BaseModalBackground } from './baseStyles'
 import ModalProvider from './ModalProvider'
 import Modal from './Modal'
 
-export { ModalProvider, BaseModalBackground }
+export { ModalProvider }
 export default Modal

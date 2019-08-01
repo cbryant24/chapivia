@@ -1,6 +1,8 @@
 import * as styledSystem from 'styled-system';
 import * as cssProps from './css-helpers';
 
+const { compose } = styledSystem;
+
 export const COMMON = compose(
   styledSystem.space,
   styledSystem.color,
