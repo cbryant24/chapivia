@@ -9,7 +9,7 @@ import {  typography,
 import cleanElement from 'clean-element';
 import theme from './theme'
 import PropTypes from 'prop-types'
-import { appearance, verticalAlign, transition, outline } from './css-helpers';
+import { appearance, verticalAlign, transition, outline } from './utils/cssHelpers';
 import { filterProps } from './utils/index'
 
 const chevron = () => {

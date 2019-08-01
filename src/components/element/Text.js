@@ -7,7 +7,7 @@ import {
   position
 } from 'styled-system';
 import cleanElement from 'clean-element';
-import { clipPath, textTransform } from './css-helpers';
+import { clipPath, textTransform } from './utils/cssHelpers';
 import { filterProps } from './utils/index'
 import theme from './theme';
 

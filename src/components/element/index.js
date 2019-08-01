@@ -1,6 +1,6 @@
 //Layouts
 export { default as Flex } from './Flex';
-export { default as FlexItem } from './BoxFlexItem';
+export { default as FlexItem } from './FlexItem';
 export { default as Grid } from './Grid';
 export { default as GridItem } from './GridItem';
 

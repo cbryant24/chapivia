@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import { BaseModalBackground } from './baseStyles';
 import { Provider } from './context';
 import usePrevious from '../../../hooks/usePrev';
-import Box from '../Box';
 
 const ModalProvider = (props) => {
   const [modalNode, setModalNode]             = useState(null);

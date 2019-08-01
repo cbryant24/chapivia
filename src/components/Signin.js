@@ -11,7 +11,7 @@ import helpers from './helpers';
 
 import mutation from '../mutations/Login';
 import query from '../queries/CurrentUser';
-import { blockSize } from './element/css-helpers';
+import { blockSize } from './element/utils/cssHelpers';
 import { Box } from './element'
 import Modal from './element/modal';
 

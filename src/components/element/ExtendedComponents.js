@@ -5,15 +5,10 @@ import Flex from './Flex';
 import Text from './Text';
 import Input from './Input';
 import Grid from './Grid';
-import { cssProperties, offset, objectFit } from './css-helpers';
+import Button from './Button';
+import { cssProperties, offset, objectFit } from './utils/cssHelpers';
+import { addStyles } from './utils'
 
-const addStyles = props => {
-  const cssProps = {};
-  for (let key in props) {
-    if(cssProperties[key]) cssProps[key] = true;
-  }
-  return system({ ...cssProps });
-};
 
 export const ExtendedBox = styled(Box)`
   ${props => addStyles(props)}
@@ -40,5 +35,9 @@ export const ExtendedText = styled(Text)`
 `;
 
 export const ExtendedInput = styled(Input)`
+  ${props => addStyles(props)}
+`;
+
+export const ExtendedButton = styled(Button)`
   ${props => addStyles(props)}
 `;

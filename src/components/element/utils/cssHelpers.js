@@ -1,6 +1,6 @@
 import { style } from 'styled-system';
 
-export default [
+export const cssList = [
   '--*',
   '-ms-overflow-style',
   '-moz-appearance',
