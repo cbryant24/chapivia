@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react'
 import { ThemeProvider as Root, css, createGlobalStyle } from 'styled-components'
 import PropTypes from 'prop-types'
-import theme from './theme'
-
+debugger
 export const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
@@ -39,9 +38,8 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-size: ${theme.remSizes[16]}rem;
-    font-family: ${theme.font};
-    color: ${theme.colors.white}
+    font-family: 16px;
+    color: #ffffff
     line-height: 1.5;
     letter-spacing: 1px;
     position: relative;
@@ -60,9 +58,12 @@ export const GlobalStyle = createGlobalStyle`
     resize: none;
   }
 `;
-
+let providedTheme = null;
+debugger
 const ThemeProvider = ({ theme, ...props }) => {
   // if (webfonts) injectGlobal([], fontsCss)
+  console.log(providedTheme)
+  debugger
   return (
     <Root
       theme={theme}
@@ -78,7 +79,7 @@ ThemeProvider.propTypes = {
 }
 
 ThemeProvider.defaultProps = {
-  theme,
+  // theme,
   webfonts: false
 }
 

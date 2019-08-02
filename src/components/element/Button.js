@@ -1,21 +1,20 @@
+import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import Box from './Box';
-import { BORDER, TYPOGRAPHY, CURSOR } from './utils';
-import theme, { cx, hexa } from './theme';
+import { TYPOGRAPHY, CURSOR, TRANSITION, TEXTDECORATION } from './utils';
 
 const Button = styled(Box)`
-  ${BORDER} ${TYPOGRAPHY} ${CURSOR}
+  ${TYPOGRAPHY} ${CURSOR} ${TRANSITION} ${TEXTDECORATION}
 `
 
 Button.displayName = 'Button';
-
+debugger
 Button.defaultProps = {
-  theme,
-  bg: 'primary',
+  // ...theme.button,
+  backgroundColor: 'primary',
   color: 'white',
-  f: 3,
-  m: 0,
+  fontSize: 3,
+  margin: 0,
   px: 3,
   py: 2
 };

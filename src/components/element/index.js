@@ -1,4 +1,7 @@
 //Layouts
+export { GlobalStyle as GlobalStyle } from './ThemeProvider';
+export { default as ThemeProvider } from './ThemeProvider';
+
 export { default as Flex } from './Flex';
 export { default as FlexItem } from './FlexItem';
 export { default as Grid } from './Grid';
@@ -15,8 +18,6 @@ export { default as ModalBackground } from './ModalBackground';
 
 //Forms
 export { default as FlexForm } from './Form';
-export { GlobalStyle as GlobalStyle } from './ThemeProvider';
-export { default as ThemeProvider } from './ThemeProvider';
 
 export { default as Box } from './Box';
 export { BoxAnimated as BoxAnimated } from './Box';

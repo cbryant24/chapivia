@@ -1,9 +1,10 @@
 import { filterProps } from './filterProps';
-import { cssList, cssProperties } from './cssHelpers';
+import { cssList, cssProperties, psuedoClasses, psuedoElements } from './cssHelpers';
 import { addStyles } from './addStyles';
 import { 
   COMMON, BORDER, TYPOGRAPHY, LAYOUT, SPACE, CURSOR,
-  POSITION, FLEX, GRID, TRANSITION, COLOR, APPEARANCE
+  POSITION, FLEX, GRID, TRANSITION, COLOR, APPEARANCE,
+  SHADOW, TEXTDECORATION
 } from './constants';
 
 export {
@@ -11,6 +12,8 @@ export {
   addStyles,
   cssList,
   cssProperties,
+  psuedoElements,
+  psuedoClasses,
   COMMON,
   BORDER,
   TYPOGRAPHY,
@@ -22,5 +25,7 @@ export {
   SPACE,
   COLOR,
   APPEARANCE,
-  CURSOR
+  CURSOR,
+  SHADOW,
+  TEXTDECORATION
 };

@@ -6,7 +6,7 @@ import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 
 import { FlexItem, Field, FlexForm, Flex } from './element';
-import theme from './element/theme';
+import theme from './elements/theme';
 import helpers from './helpers';
 
 import mutation from '../mutations/Login';

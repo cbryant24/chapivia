@@ -30,12 +30,13 @@ export const brand = {
 export const colors = {
   ...brand,
   ...grays,
-  ...palette
+  ...palette,
+  red
 }
 
 export const cx = key => get(colors, key, key);
 
-const createMediaQuery = n => `@media screen and (min-width:${n}em)`;
+const createMediaQuery = n => `@media screen and (min-width:${n}px)`;
 
 const addAliases = (arr, aliases) =>
   aliases.forEach((key, i) =>
@@ -50,7 +51,7 @@ const addAliases = (arr, aliases) =>
   );
 
 const aliases = ['sm', 'md', 'lg', 'xl'];
-export const breakpoints = [32, 48, 64, 80];
+export const breakpoints = [544, 768, 1012, 1280];
 
 export const mediaQueries = {
   ...breakpoints.map(createMediaQuery),
@@ -61,122 +62,21 @@ export const mediaQueries = {
 addAliases(breakpoints, aliases);
 addAliases(mediaQueries, aliases);
 
-// export const space = [0, 4, 8, 16, 32, 64, 128, 256, 512];
-
 const emoji = '"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"';
 export const font = `development,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif,${emoji}`;
 export const mono = 'SFMono-Regular,"Roboto Mono",Menlo,monospace';
 
-// export const fontSizes = ['12px', 14, 16, 20, 24, 32, 48, 64, 72, 96];
-export const fontSizes = ['0rem', '.8rem', '1.2rem', '1.4rem', '1.6rem', '1.8rem', '2.2rem', '2.6rem', '3.2rem', '4.8rem', '6.0rem', '7.2rem'];
-export const remSizes = range(0, 100).map( num => num / 10)
-export const space = ['0rem', '1rem', '1.5rem', '2.0rem', '2.5rem', '3.0rem', '3.5rem', '4.0rem']
+export const fontSizes = [0, 1.2, 1.6, 2.2, 2.8, 3.2 ];
+export const space = [0, 1, 2, 3, 4];
+export const sizes = [0, '40%', 20, 30, 40];
 
+export const light = 300;
 export const regular = 400;
-export const bold = 700;
+export const bold = 600;
+export const extraBold = 700;
 
 // styled-system's `fontWeight` function can hook into the `fontWeights` object
-export const fontWeights = { regular, bold };
-
-
-export const textTransform = style({
-  //React prop name
-  prop: 'textTransform',
-  // The corresponding CSS property (defaults to prop argument)
-  cssProperty: 'text-transform',
-  // key for theme values
-  key: 'textTransform',
-  // convert number values to pixels
-  numberToPx: false,
-  // accessor function for transforming the value
-  getter: n => n,
-  // shorthand alias React prop name
-  alias: 'tt'
-});
-
-// export const textShadow = style({
-//   // React prop name
-//   prop: 'textShadow',
-//   // The corresponding CSS property (defaults to prop argument)
-//   cssProperty: 'text-shadow',
-//   // key for theme values
-//   key: 'textShadow',
-//   // convert number values to pixels
-//   numberToPx: false,
-//   // accessor function for transforming the value
-//   getter: n => n,
-//   // shorthand alias React prop name
-//   alias: 'sh'
-// });
-
-export const clipPath = style({
-  // React prop name
-  prop: 'clipPath',
-  // The corresponding CSS property (defaults to prop argument)
-  cssProperty: 'clip-path',
-  // key for theme values
-  key: 'clipPath',
-  // convert number values to pixels
-  numberToPx: false,
-  // accessor function for transforming the value
-  getter: n => n,
-  // shorthand alias React prop name
-  alias: 'cp'
-});
-
-// export const backgroundColor = style({
-//   prop: 'backgroundColor',
-//   cssProperty: 'background-color',
-//   key: 'backgroundColor',
-//   numberToPx: false,
-//   getter: n => n,
-//   alias: 'bc'
-// });
-
-// export const opacity = style({
-//   prop: 'opacity',
-//   cssProperty: 'opacity',
-//   key: 'opacity',
-//   numberToPx: false,
-//   getter: n => n,
-//   alias: 'op'
-// })
-
-export const fontSmooth = style({
-  prop: 'fontSmooth',
-  cssProperty: '-webkit-font-smoothing',
-  key: 'fontSmooth',
-  numberToPx: false,
-  getter: n => n,
-  alias: 'fsh'
-});
-
-export const transformOrigin = style({
-  prop: 'transformOrigin',
-  cssProperty: 'transform-origin',
-  key: 'transformOrigin',
-  numberToPx: false,
-  getter: n => n,
-  alias: 'to'
-});
-
-export const transform = style({
-  prop: 'transform',
-  cssProperty: 'transform',
-  key: 'transform',
-  numberToPx: false,
-  getter: n => n,
-  alias: 'tf'
-});
-
-export const content = style({
-  prop: 'content',
-  cssProperty: 'content',
-  key: 'content',
-  numberToPx: false,
-  getter: n => n,
-  alias: 'ct'
-});
+export const fontWeights = { light, regular, bold, extraBold };
 
 export const scaleFactor = 17 / 16;
 export const transition = '0.125s ease-out';
@@ -221,15 +121,46 @@ export const windowBorderStyle = css`
   border-right-color: #080808;
   border-top-color: #020202;
 `
+const button = {
+  fordwardedAs: "button",
+  display: "inline-block",
+  verticalAlign: 'middle',
+  textAlign: 'middle',
+  fontFamily: 'inherit',
+  appearance: 'none',
+  cursor: 'pointer',
+}
+
+export const buttons = {
+  display: "inline-block",
+  verticalAlign: "middle",
+  textAlign: "center",
+  fontFamily: "inherit",
+  fontWeight: "700",
+  lineHeight: "1.125",
+  appearance: "none",
+  cursor: "pointer",
+  color: "rgb(255, 255, 255)",
+  boxShadow: "none",
+  backgroundColor: "transparent",
+  margin: "1rem 0px 0px",
+  textDecoration: "none",
+  transition: "box-shadow 0.125s ease-out 0s",
+  borderWidth: "2px",
+  borderStyle: "solid",
+  borderColor: "currentcolor",
+  px: "0",
+  py: "0",
+}
 
 const theme = {
   breakpoints,
   mediaQueries,
   space,
+  sizes,
   mono,
   font,
   fontSizes,
-  remSizes,
   fontWeights,
   regular,
   bold,
@@ -245,7 +176,8 @@ const theme = {
   hexa,
   inputMaxWidth,
   inputWidth,
-  windowBorderStyle
+  windowBorderStyle,
+  button
 }
 
 export default theme;

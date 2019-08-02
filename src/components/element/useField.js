@@ -8,7 +8,6 @@ import Box from './Box';
 import Grid from './Grid';
 import { ExtendedBox } from './ExtendedComponents';
 import Input from './Input';
-import theme from './theme';
 
 export const Error = styled(Text).attrs({
   className: 'error',
@@ -79,7 +78,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyl
 Field.displayName = 'Field';
 
 Field.defaultProps = {
-  theme,
+  // theme,
   type: 'text'
 }
 

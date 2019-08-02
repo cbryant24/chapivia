@@ -31,6 +31,10 @@ export const CURSOR = system({
   cursor: true
 });
 
+export const TEXTDECORATION = system({
+  textDecoration: true
+})
+
 export const TYPOGRAPHY = styledSystem.typography;
 export const LAYOUT = styledSystem.layout;
 export const POSITION = styledSystem.position;
@@ -38,4 +42,4 @@ export const FLEX = styledSystem.flexbox;
 export const GRID = styledSystem.grid;
 export const SPACE = styledSystem.space;
 export const COLOR = styledSystem.color;
-
+export const SHADOW = styledSystem.color;

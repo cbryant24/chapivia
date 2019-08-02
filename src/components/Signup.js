@@ -3,7 +3,7 @@ import axios from 'axios';
 import { graphql } from 'react-apollo';
 
 import { FlexItem } from './element';
-import theme from './element/theme';
+import theme from './elements/theme';
 import mutation from '../mutations/Signup';
 import query from '../queries/UnguessedPlayers';
 import FormApp from './Form/App';

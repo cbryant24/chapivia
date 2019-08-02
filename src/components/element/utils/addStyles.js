@@ -9,3 +9,7 @@ export const addStyles = props => {
   }
   return system({ ...cssProps });
 };
+
+export const addPsuedo = props => {
+  // switch(props.psuedo)
+}

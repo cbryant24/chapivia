@@ -1,6 +1,7 @@
 import React from 'react';
 import { formInput } from './FormInput';
 import {Box, Field, Flex} from '../element';
+// import { SquareButton } from './elements/Buttons'
 import { useStateValue } from './App';
 import { useWindowSize }from '../../hooks';
 
@@ -27,7 +28,6 @@ export default function Form({ inputs, form, validate }) {
 
     if (form.data.cancel) form.data.cancel();
   }
-
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -74,23 +74,20 @@ export default function Form({ inputs, form, validate }) {
                                 </Box> : ''}
       {displayFields()}
       <Flex
-        width={size.width * .60 * .25}px
+        // width={size.width * .60 * .25}px
         justifyContent="space-between"
         fontSize="28rem"
       >
-        <Box
-          as="button"
+        {/* <SquareButton
           type="submit"
           disabled={ !isEnabled() }
-
           type="submit"
+          text="Sign-In"
         />
-        <Box
-          as="button"
+        <SquareButton
+          text="Cancel"
           onClick={ handleCancel }
-        >
-          Cancel
-        </Box>
+        /> */}
       </Flex>
     </Flex>
   )

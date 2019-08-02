@@ -2,7 +2,6 @@ import styled from "styled-components";
 import React from 'react';
 import Box from './Box';
 import { grid } from 'styled-system';
-import theme from './theme';
 
 
 const GridItem = styled(Box)`
@@ -10,7 +9,7 @@ const GridItem = styled(Box)`
 `
 
 GridItem.defaultProps = {
-  theme,
+  // theme,
   gridRow: "auto",
   gridColumn: "auto"
 }

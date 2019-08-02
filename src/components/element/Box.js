@@ -1,23 +1,26 @@
 import React from 'react';
 import styled, { keyframes, css } from 'styled-components/macro';
 import { SPACE, COLOR, LAYOUT, APPEARANCE } from './utils';
-import { fontStyle, backgroundColor } from './theme';
-import theme from './theme';
+import { fontStyle, backgroundColor } from '../elements/theme';
 import cleanElement from 'clean-element';
-import { content, transform, transformOrigin } from './theme';
+import { content, transform, transformOrigin } from '../elements/theme';
 import { filterProps } from './utils/index';
 
 const Base = props => {
 
+  const Div = styled.div``;
   const next = filterProps(props);
-  return <div {...next} />;
-}
 
+  return <Div {...next} />;
+}
 
 const Box = styled(cleanElement(Base))(
   { 
     boxSizing: 'border-box',
     minWidth: 0,
+  },
+  props => {
+    debugger
   },
   LAYOUT, SPACE, COLOR, APPEARANCE
 );

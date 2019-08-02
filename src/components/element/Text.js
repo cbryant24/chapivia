@@ -9,7 +9,6 @@ import {
 import cleanElement from 'clean-element';
 import { clipPath, textTransform } from './utils/cssHelpers';
 import { filterProps } from './utils/index'
-import theme from './theme';
 
 const Base = props => {
   // debugger
