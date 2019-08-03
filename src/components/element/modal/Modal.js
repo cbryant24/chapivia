@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import ReactDOM from 'react-dom'
 import styled, { css } from 'styled-components'
-import { Consumer } from './context'
+// import { Consumer } from './context'
 import usePrevious from '../../../hooks/usePrev';
-import BackgroundModal from '../BackgroundModal';
+import * as Element from '../index';
+import ModalContext from './context';
 
 const Modal = props => {
   const [modalOpen, setModalOpen] = useState(false);
   const prevModalOpen = usePrevious(modalOpen);
-
+  const { BackgroundComponent, modalNode } = useContext(ModalContext);
   const {isOpen, afterClose, allowScroll, onEscapeKeydown, afterOpen, backgroundProps} = props;
   const prevIsOpen = usePrevious(isOpen);
-
+  // debugger
   //used to get areference to the background to click on
   const nodeRef = useRef();
 
@@ -84,34 +85,20 @@ const Modal = props => {
 
   const onBackgroundClick = (e) => {
     // debugger
-    if (nodeRef.current.props.className === e.target.className) {
+    if (nodeRef.current.props.id === e.target.id) {
       props.onBackgroundClick && props.onBackgroundClick(e)
     }
   };
+  
+  if (modalNode && BackgroundComponent && isOpen) {
+    // debugger
+    // When passing a styled-system component need to clone the element to add props and event handlers
+    const NewModalBackground = React.cloneElement(BackgroundComponent, { onClick: onBackgroundClick, ref: nodeRef, id: 'modalBackgroundComponent' }, ...props.children)
 
-  return (
-          <Consumer>
-            {({ modalNode, backgroundStyle }) => {
-              // debugger
-              if (modalNode && isOpen) {
-                // debugger
-                return ReactDOM.createPortal((
-                  <BackgroundModal
-                    id="background-modal"
-                    // {...backgroundProps}
-                    // {...backgroundStyle}
-                    onClick={onBackgroundClick}
-                    ref={nodeRef}
-                  >
-                    {props.children}
-                  </BackgroundModal>
-                ), modalNode.current)
-              } else {
-                return null
-              }
-            }}
-          </Consumer>
-  );
+    return ReactDOM.createPortal( NewModalBackground, modalNode.current);
+  }
+
+  return <div></div>
 }
 
 export default Modal;

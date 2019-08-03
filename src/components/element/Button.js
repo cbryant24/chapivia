@@ -8,7 +8,7 @@ const Button = styled(Box)`
 `
 
 Button.displayName = 'Button';
-debugger
+
 Button.defaultProps = {
   // ...theme.button,
   backgroundColor: 'primary',

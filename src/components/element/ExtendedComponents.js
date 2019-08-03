@@ -34,9 +34,9 @@ export const ExtendedText = styled(Text)`
   ${props => addStyles(props)}
 `;
 
-export const ExtendedInput = styled(Input)`
-  ${props => addStyles(props)}
-`;
+// export const ExtendedInput = styled(Input)`
+//   ${props => addStyles(props)}
+// `;
 
 export const ExtendedButton = styled(Button)`
   ${props => addStyles(props)}

@@ -4,7 +4,7 @@ import { flex } from 'styled-system';
 import Input from './Input';
 
 const InputContainer = styled(Input)`
-  flex
+  display: flex
 `
 
 InputContainer.defaultProps = {

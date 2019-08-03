@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 
-import { FlexItem, Field, FlexForm, Flex } from './element';
+import { FlexItem, addProps } from './element';
 import theme from './elements/theme';
 import helpers from './helpers';
 
@@ -14,6 +14,8 @@ import query from '../queries/CurrentUser';
 import { blockSize } from './element/utils/cssHelpers';
 import { Box } from './element'
 import Modal from './element/modal';
+
+import { StyledInput, StyledField } from './elements/FieldInput';
 
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
@@ -79,6 +81,11 @@ function Signin(props) {
     style: { height: '66vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem'},
   }
 
+// const StyledInput = addProps(StyledInput, { type: 'password'})
+const Inputs = addProps([StyledInput, StyledInput], 
+                [{ type: 'email', name: 'email', placeholder: 'enter email', require: true }, 
+                {type: 'password', name: 'password', placeholder: 'enter password', require: true}])
+// debugger
 return (
     <FlexItem
       border="1px solid black"
@@ -87,6 +94,7 @@ return (
       width="60%"
       zIndex="20"
     >
+      {Inputs}
       <FormApp 
         form={form}
         inputs={inputs}

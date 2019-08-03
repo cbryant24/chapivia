@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Provider } from './context';
+import ModalContext from './context';
 import usePrevious from '../../../hooks/usePrev';
+import ModalBackground from './ModalBackground';
 
 const ModalProvider = (props) => {
   const [modalNode, setModalNode]             = useState(null);
-  const [backgroundStyle, setBackgroundStyle] = useState(null);
-  const prevBackgroundStyle                   = usePrevious(backgroundStyle);
+  const [BackgroundComponent, setBackgroundComponent] = useState(ModalBackground);
+  const prevBackgroundComponent                   = usePrevious(BackgroundComponent);
   const modalDiv                              = useRef();
   
   useEffect( () => {
@@ -14,20 +15,20 @@ const ModalProvider = (props) => {
   // debugger
   
   useEffect( () => {
-    if(props.backgroundStyle !== prevBackgroundStyle && props.backgroundStyle) {
-      debugger
-      setBackgroundStyle(props.backgroundStyle);
+    if(props.BackgroundComponent !== prevBackgroundComponent && props.BackgroundComponent) {
+      // debugger
+      setBackgroundComponent(props.BackgroundComponent);
     }
   });
 
   return (
-    <Provider value={{
+    <ModalContext.Provider value={{
       modalNode,
-      backgroundStyle
+      BackgroundComponent
     }}>
       {props.children}
       <div ref={modalDiv}/>
-    </Provider>
+    </ModalContext.Provider>
   );
 
 }

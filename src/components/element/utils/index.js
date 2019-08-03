@@ -1,6 +1,7 @@
 import { filterProps } from './filterProps';
 import { cssList, cssProperties, psuedoClasses, psuedoElements } from './cssHelpers';
 import { addStyles } from './addStyles';
+import { addProps } from './addProps';
 import { 
   COMMON, BORDER, TYPOGRAPHY, LAYOUT, SPACE, CURSOR,
   POSITION, FLEX, GRID, TRANSITION, COLOR, APPEARANCE,
@@ -9,6 +10,7 @@ import {
 
 export {
   filterProps,
+  addProps,
   addStyles,
   cssList,
   cssProperties,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../element';
 
-const SquareButton = props => (
+export const SquareButton = props => (
   <Button
 
   />

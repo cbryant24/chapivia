@@ -15,12 +15,13 @@ import Signup from './components/Signup';
 import Game from './components/Game';
 import GameController from './components/GameController';
 import App from './components/App';
-import { Flex, Box } from './components/element';
 import { Provider as GlobalThemeProvider } from './components/context/ThemeContext';
 
-import styled from 'styled-components';
+import { ModalBackground } from './components/elements';
 
 const client = new ApolloClient();
+
+
 
 ReactDOM.render(
   <ApolloProvider client={ client } >
@@ -28,7 +29,7 @@ ReactDOM.render(
       <GlobalThemeProvider>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
-          <ModalProvider>
+          <ModalProvider BackgroundComponent={ModalBackground}>
             <div style={{ position: 'relative' }}>
               <App>
                 <Route path='/game' exact component={Game}/>

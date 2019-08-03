@@ -10,7 +10,7 @@ const Base = props => {
 
   const Div = styled.div``;
   const next = filterProps(props);
-
+  // debugger
   return <Div {...next} />;
 }
 
@@ -18,9 +18,6 @@ const Box = styled(cleanElement(Base))(
   { 
     boxSizing: 'border-box',
     minWidth: 0,
-  },
-  props => {
-    debugger
   },
   LAYOUT, SPACE, COLOR, APPEARANCE
 );

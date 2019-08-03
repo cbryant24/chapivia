@@ -13,14 +13,18 @@ export { default as Text } from './Text';
 //Components
 export { default as Field } from './useField';
 export { default as Input } from './Input';
+export { default as InputContainer } from './InputContainer';
 export { default as Button } from './Button';
-export { default as ModalBackground } from './ModalBackground';
 
 //Forms
 export { default as FlexForm } from './Form';
 
 export { default as Box } from './Box';
+export { default as BoxPosition } from './BoxPosition';
 export { BoxAnimated as BoxAnimated } from './Box';
 export { default as TextAnimated } from './TextAnimated';
 export { ExtendedBox as ExtendedBox } from './ExtendedComponents';
-export { default as BackgroundModal } from './BackgroundModal';
+
+
+//Utilities
+export { addProps as addProps } from './utils';

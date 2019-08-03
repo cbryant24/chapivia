@@ -39,7 +39,6 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyl
       <Flex
         alignItems="flex-end"
       >
-        <Grid grid-row-start="1">Hello</Grid>
         <Text as="label" for={name} id={name}>
           {label}
         </Text>

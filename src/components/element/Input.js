@@ -9,7 +9,7 @@ import {  typography,
 import cleanElement from 'clean-element';
 import PropTypes from 'prop-types'
 import { appearance, verticalAlign, transition, outline } from './utils/cssHelpers';
-import { filterProps } from './utils/index'
+import { filterProps } from './utils/'
 
 // const chevron = () => {
 //   const props = `xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'`
@@ -21,12 +21,10 @@ import { filterProps } from './utils/index'
 const Base = (props) => {
   //creates a clean component with all css property attributes passed 
   //as props which are non-valid html attributes removed from the element.
-  //`as` property is used with the `forwaredAs` to pass the element type
-  //`forwaredAs` is used instead of `as` due to being wrapped in `cleanElement` HOC
-  const { as }  = props;
-  const next    = filterProps(props);
+  const next      = filterProps(props);
+  // if ()
   const Component = styled.div``;
-  return <Component as={as} {...next} />
+  return <Component {...next} />
 }
 
 const Input = styled(cleanElement(Base))(

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { ThemeProvider as Root, css, createGlobalStyle } from 'styled-components'
 import PropTypes from 'prop-types'
-debugger
+
 export const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
@@ -58,12 +58,10 @@ export const GlobalStyle = createGlobalStyle`
     resize: none;
   }
 `;
-let providedTheme = null;
-debugger
+
 const ThemeProvider = ({ theme, ...props }) => {
   // if (webfonts) injectGlobal([], fontsCss)
-  console.log(providedTheme)
-  debugger
+
   return (
     <Root
       theme={theme}
