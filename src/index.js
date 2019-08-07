@@ -15,7 +15,6 @@ import Signup from './components/Signup';
 import Game from './components/Game';
 import GameController from './components/GameController';
 import App from './components/App';
-import { Provider as GlobalThemeProvider } from './components/context/ThemeContext';
 
 import { ModalBackground } from './components/elements';
 
@@ -26,7 +25,6 @@ const client = new ApolloClient();
 ReactDOM.render(
   <ApolloProvider client={ client } >
     <Router>
-      <GlobalThemeProvider>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <ModalProvider BackgroundComponent={ModalBackground}>
@@ -40,7 +38,6 @@ ReactDOM.render(
             </div>
           </ModalProvider>
         </ThemeProvider>
-      </GlobalThemeProvider>
     </Router>
   </ApolloProvider>,
   document.getElementById('root')

@@ -38,8 +38,8 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: 16px;
-    color: #ffffff
+    font-family: 'VT323';
+    color: #ffffff;
     line-height: 1.5;
     letter-spacing: 1px;
     position: relative;

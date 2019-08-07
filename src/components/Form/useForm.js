@@ -1,11 +1,13 @@
 import React from 'react';
 import { formInput } from './FormInput';
-import {Box, Field, Flex} from '../element';
-// import { SquareButton } from './elements/Buttons'
+import {Box, Field, Flex, Button} from '../element';
 import { useStateValue } from './App';
 import { useWindowSize }from '../../hooks';
 
-export default function Form({ inputs, form, validate }) {
+import { squareButton } from '../elements/theme';
+
+export default function Form({ inputs, form, validate, buttons }) {
+  
   const [{ formName, fields }, dispatch] = useStateValue();
   const [formErrors, setFormErrors] = React.useState([]);
   const size = useWindowSize();
@@ -17,6 +19,31 @@ export default function Form({ inputs, form, validate }) {
       const field = formInput(input, validate);
       return <Field key={input.data.name} {...input} {...field} errors={fields[input.data.name].errorMessages}/>
     });
+  }
+
+  const displayButtons = () => {
+    // debugger
+    const vals = {
+      fontSize: [2, 3]
+    }
+    return buttons.map( button => (
+      button.type === 'submit' ? 
+      <Button
+        forwardedAs="button"
+        type={ button.type }
+        disabled={ !isEnabled() }
+        {...squareButton}
+      > {button.text} </Button> :
+      <Button
+        forwardedAs="button"
+        //fontSize={[1, 2, 3]}
+        {...squareButton}
+        //{...vals}
+        type={ button.type }
+      >
+        {button.text}
+      </Button>
+    ))
   }
 
   const handleErrorMessages = errorMessages => {
@@ -78,13 +105,13 @@ export default function Form({ inputs, form, validate }) {
         justifyContent="space-between"
         fontSize="28rem"
       >
-        {/* <SquareButton
+        {displayButtons()}
+        {/* <Button
           type="submit"
           disabled={ !isEnabled() }
-          type="submit"
           text="Sign-In"
         />
-        <SquareButton
+        <Button
           text="Cancel"
           onClick={ handleCancel }
         /> */}

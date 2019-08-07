@@ -33,6 +33,13 @@ export const CURSOR = system({
 //TODO Add typography to this and change to TYPOGRAPHY
 export const TEXTDECORATION = system({
   textDecoration: true
+});
+
+export const FONTSIZESMODULES = system({
+  fontSizeModule: {
+    property: 'fontSize',
+    scale: 'fontSizesModule'
+  }
 })
 
 export const TYPOGRAPHY = styledSystem.typography;

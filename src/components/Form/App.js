@@ -7,12 +7,11 @@ import { useStateValue } from './FormState';
 
 export { useStateValue };
 
-export default function FormApp({form, inputs, validate}) {
+export default function FormApp({form, inputs, validate, buttons}) {
   const initialState = {
     formName: form.data.name,
     fields: {}
   };
-
   function setInitialStateValues() {
   
     inputs.forEach( input => (
@@ -82,7 +81,7 @@ export default function FormApp({form, inputs, validate}) {
   
   return (
     <StateProvider initialState={setInitialStateValues()} reducer={reducer}>
-        <Form inputs={inputs} form={form} validate={validate} />
+        <Form inputs={inputs} form={form} validate={validate} buttons={buttons} />
     </StateProvider>
   );
 }

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 
-import { FlexItem, addProps } from './element';
+import { FlexItem, addProps, Field, Flex, Text } from './element';
 import theme from './elements/theme';
 import helpers from './helpers';
 
@@ -14,8 +14,6 @@ import query from '../queries/CurrentUser';
 import { blockSize } from './element/utils/cssHelpers';
 import { Box } from './element'
 import Modal from './element/modal';
-
-import { StyledInput, StyledField } from './elements/FieldInput';
 
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
@@ -58,10 +56,6 @@ function Signin(props) {
     transition: 'box-shadow 0.125s ease-out 0s',
     margin: '0px'
   }
-
-  const fieldStyle = {
-
-  }
   
   const inputs = [
     {
@@ -76,30 +70,37 @@ function Signin(props) {
     }
   ]
 
+  const buttons = [
+    { text: 'Submit', type: 'submit', cb: null, style: 'squareButton' },
+    { text: 'Cancel', type: 'cancel', cb: null, style: 'squareButton' }
+  ]
+
   const form = {
     data: { name: 'signinForm', submit: 'signup', cb: signin },
-    style: { height: '66vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem'},
+    style: { height: 1, justifyContent: 'space-around', flexDirection: 'column', px: 2, fontSizeModule: [1, 2, 3, 4]},
   }
 
-// const StyledInput = addProps(StyledInput, { type: 'password'})
-const Inputs = addProps([StyledInput, StyledInput], 
-                [{ type: 'email', name: 'email', placeholder: 'enter email', require: true }, 
-                {type: 'password', name: 'password', placeholder: 'enter password', require: true}])
-// debugger
 return (
     <FlexItem
       border="1px solid black"
-      p="2rem"
+      p={[1, 2, 3]}
       bg="black"
-      width="60%"
+      width={[1, 2, 3, 4]}
       zIndex="20"
     >
-      {Inputs}
-      <FormApp 
+      <FormApp
+        height={1}
+        justifyContent="space-around"
+        flexDirection="column"
+        px="4rem"
+        name="sign-in"
+        onSubmit={signin}
         form={form}
         inputs={inputs}
         validate={validate}
-      />
+        buttons={buttons}
+      >
+      </FormApp>
       <button onClick={toggleModal} >Modal Action</button>
       <Modal
         isOpen={isOpen}

@@ -51,7 +51,7 @@ const addAliases = (arr, aliases) =>
   );
 
 const aliases = ['sm', 'md', 'lg', 'xl'];
-export const breakpoints = [544, 768, 1012, 1280];
+export const breakpoints = ['544px', '768px', '1012px', '1280px'];
 
 export const mediaQueries = {
   ...breakpoints.map(createMediaQuery),
@@ -61,14 +61,21 @@ export const mediaQueries = {
 
 addAliases(breakpoints, aliases);
 addAliases(mediaQueries, aliases);
-
+// debugger
 const emoji = '"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"';
 export const font = `development,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif,${emoji}`;
 export const mono = 'SFMono-Regular,"Roboto Mono",Menlo,monospace';
 
-export const fontSizes = [0, 1.2, 1.6, 2.2, 2.8, 3.2 ];
-export const space = [0, 1, 2, 3, 4];
-export const sizes = [0, '40%', 20, 30, 40];
+export const fontSizes = [0, '1.6em', '1.4em', '1.2em', '.9em', '.8em' ];
+export const space = [0, '1em', '1.4em', '1.6em', '2em'];
+export const sizes = ['0%', '100%', '60%', '40%', '20%'];
+export const lineHeights = { "condensedUltra": 1, "condensed": 1.25, "default": 1.5 }
+
+//fontSizesModule is used to size for repsonsiveness using the css design philospohy
+//of modular design with font-size rem for global design and font-size em for local design
+//see https://css-tricks.com/rem-global-em-local/ for explanation `fontSizesModule` is a 
+//custom system-styled property that can be used with the scale for parent module font-size design
+export const fontSizesModule = [0, '1rem', '2rem', '3em', '4rem']
 
 export const light = 300;
 export const regular = 400;
@@ -130,34 +137,32 @@ const button = {
   appearance: 'none',
   cursor: 'pointer',
 }
-
-export const buttons = {
+//THEME WILL BE PROVIDED TO FORM APP 
+export const squareButton = {
   display: "inline-block",
   verticalAlign: "middle",
   textAlign: "center",
+  fontSizeModule: [1, 2],
   fontFamily: "inherit",
-  fontWeight: "700",
-  lineHeight: "1.125",
+  fontWeight: "extraBold",
+  lineHeight: "condensed",
   appearance: "none",
   cursor: "pointer",
-  color: "rgb(255, 255, 255)",
+  color: "white",
   boxShadow: "none",
   backgroundColor: "transparent",
-  margin: "1rem 0px 0px",
   textDecoration: "none",
   transition: "box-shadow 0.125s ease-out 0s",
   borderWidth: "2px",
   borderStyle: "solid",
   borderColor: "currentcolor",
-  px: "0",
-  py: "0",
+  px: [1, 2],
+  py: [1, 2],
 }
 
 const theme = {
   breakpoints,
   mediaQueries,
-  space,
-  sizes,
   mono,
   font,
   fontSizes,
@@ -177,7 +182,12 @@ const theme = {
   inputMaxWidth,
   inputWidth,
   windowBorderStyle,
-  button
+  button,
+  squareButton,
+  sizes,
+  space,
+  fontSizesModule,
+  lineHeights
 }
 
 export default theme;
