@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 
-import { FlexItem, addProps, Field, Flex, Text } from './element';
+import { FlexItem, addProps, Field, Flex, Text, Animated, FadeAnimations, RotateAnimations } from './element';
 import theme from './elements/theme';
 import helpers from './helpers';
 
@@ -87,9 +87,13 @@ return (
       bg="black"
       width={[1, 2, 3, 4]}
       zIndex="20"
+      height={1}
     >
+      <Animated>
+
+      </Animated>
       <FormApp
-        height={1}
+        //height={1}
         justifyContent="space-around"
         flexDirection="column"
         px="4rem"

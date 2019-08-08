@@ -68,7 +68,7 @@ export const mono = 'SFMono-Regular,"Roboto Mono",Menlo,monospace';
 
 export const fontSizes = [0, '1.6em', '1.4em', '1.2em', '.9em', '.8em' ];
 export const space = [0, '1em', '1.4em', '1.6em', '2em'];
-export const sizes = ['0%', '100%', '60%', '40%', '20%'];
+export const sizes = ['0%', '70vh', '60%', '40%', '20%'];
 export const lineHeights = { "condensedUltra": 1, "condensed": 1.25, "default": 1.5 }
 
 //fontSizesModule is used to size for repsonsiveness using the css design philospohy

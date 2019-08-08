@@ -28,3 +28,12 @@ export { ExtendedBox as ExtendedBox } from './ExtendedComponents';
 
 //Utilities
 export { addProps as addProps } from './utils';
+
+//Animations
+
+export { Animated as Animated } from './animations';
+export { FadeAnimations as FadeAnimations } from './animations';
+export { BounceAnimations as BounceAnimations } from './animations';
+export { ScaleAnimations as ScaleAnimations } from './animations';
+export { RotateAnimations as RotateAnimations } from './animations';
+export { SlideAnimations as SlideAnimations } from './animations';
