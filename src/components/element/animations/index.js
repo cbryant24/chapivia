@@ -37,10 +37,12 @@ const Wrapper = styled(Box)`
 
 const Animated = props => {
   const [ delay_waited, setDelayWaited ]              = useState(false);
+  const [ inTimeWaited, setInTimeWaited ]             = useState(false);
+  const [ betweenTimeWaited, setBetweenTimeWaited ]   = useState(false);
   const [ transite_in, setTransiteIn ]                = useState(false);
   const [ transite_out, setTransiteOut ]              = useState(false);
   const [ transite_continuous, setTransiteContinous ] = useState(false);
-  // Retreive the props we need
+  const [ delayOutWaited, setDelayOutWaited ]       = useState(false);
   const { animation, transition, children }           = props;
   
   
@@ -51,79 +53,91 @@ const Animated = props => {
     // Validate Transitions
     validateTransitions(transition);
 
+    //Set delay_waited regardless of specified or not
+    setDelayAsWaited(calculateDelayInTime(animation));
+
     // Do we have an animation in?
     if (haveAnimationIn(animation)) {
       // Do we have a delay in?
       if (haveDelayIn(animation)) {
         // Wait untill the delay in is done
-        await waitUntill(calculateDelayInTime(animation));
+        // POSSIBLY USE A RECURSIVE FUNTION 
+        
+        // await waitUntill(calculateDelayInTime(animation));
+        
         // Set state that delay as waited 
-        setDelayAsWaited();
+        
         // Then trigger the IN animation
-        triggerInAnimation();
-        // Do we have a continouos animation
-        if (haveAnimationContinuous(animation)) {
-          // Wait untill the duration of the IN animation is done
-          await waitUntill(calculateDurationInTime(animation));
-          // Then trigger the CONTINUOUS animation
-          triggerContinuousAnimation();
-          // Do we have an animation out?
-          if (haveAnimationOut(animation)) {
-            // Wait untill the duration between animations is done
-            await waitUntill(
-              calculateDurationDelayBetween(animation)
-            );
-            // Then trigger the OUT animation
-            triggerOutAnimation();
-          }
-        } else {
-          // Do we have an animation out?
-          if (haveAnimationOut(animation)) {
-            // Wait untill the duration between animations is done
-            await waitUntill(
-              calculateDurationDelayBetween(animation)
-            );
-            // Then trigger the OUT animation
-            triggerOutAnimation();
-          }
-        }
+        
+        // triggerInAnimation();
+        
+        // // Do we have a continouos animation
+        // if (haveAnimationContinuous(animation)) {
+        //   // Wait untill the duration of the IN animation is done
+        //   await waitUntill(calculateDurationInTime(animation));
+        //   // Then trigger the CONTINUOUS animation
+        //   triggerContinuousAnimation();
+        //   // Do we have an animation out?
+        //   if (haveAnimationOut(animation)) {
+        //     // Wait untill the duration between animations is done
+        //     await waitUntill(
+        //       calculateDurationDelayBetween(animation)
+        //     );
+        //     // Then trigger the OUT animation
+        //     triggerOutAnimation();
+        //   }
+        // } else {
+        //   // Do we have an animation out?
+        //   if (haveAnimationOut(animation)) {
+        //     // Wait untill the duration between animations is done
+        //     await waitUntill(
+        //       calculateDurationDelayBetween(animation)
+        //     );
+        //     // Then trigger the OUT animation
+        //     triggerOutAnimation();
+        //   }
+        // }
       } else {
         // We don't have a delay in so we set the delay as waited
-        setDelayAsWaited();
+        // setDelayAsWaited(calculateDelayInTime(animation));
         // Then we trigger the IN animation
-        triggerInAnimation();
+        
+        // triggerInAnimation();
+        
         // Do we have a continouos animation?
-        if (haveAnimationContinuous(animation)) {
-          // Wait untill the duration of the IN animation is done
-          await waitUntill(calculateDurationInTime(animation));
-          // Then trigger the CONTINUOUS animation
-          triggerContinuousAnimation();
-          // Do we have an animation out?
-          if (haveAnimationOut(animation)) {
-            // Wait untill the duration between animations is done
-            await waitUntill(
-              calculateDurationDelayBetween(animation)
-            );
-            // Then trigger the OUT animation
-            triggerOutAnimation();
-          }
-        } else {
-          // Do we have an animation out?
-          if (haveAnimationOut(animation)) {
-            // Wait untill the duration between animations is done
-            await waitUntill(
-              calculateDurationDelayBetween(animation)
-            );
-            // Then trigger the OUT animation
-            triggerOutAnimation();
-          }
-        }
+        // if (haveAnimationContinuous(animation)) {
+        //   // Wait untill the duration of the IN animation is done
+        //   await waitUntill(calculateDurationInTime(animation));
+        //   // Then trigger the CONTINUOUS animation
+        //   triggerContinuousAnimation();
+        //   // Do we have an animation out?
+        //   if (haveAnimationOut(animation)) {
+        //     // Wait untill the duration between animations is done
+        //     await waitUntill(
+        //       calculateDurationDelayBetween(animation)
+        //     );
+        //     // Then trigger the OUT animation
+        //     triggerOutAnimation();
+        //   }
+        // } else {
+        //   // Do we have an animation out?
+        //   if (haveAnimationOut(animation)) {
+        //     // Wait untill the duration between animations is done
+        //     await waitUntill(
+        //       calculateDurationDelayBetween(animation)
+        //     );
+        //     // Then trigger the OUT animation
+        //     triggerOutAnimation();
+        //   }
+        // }
       }
     } else {
       // We don't have an IN animation so we set the delay as waited
-      setDelayAsWaited();
+      // setDelayAsWaited();
       // Trigger the animation IN even it's not going to be shown
-      triggerInAnimation();
+      
+      // triggerInAnimation();
+      
       // Do we have a continous animation?
       if (haveAnimationContinuous(animation)) {
         // Trigger directly the continuous animation
@@ -149,6 +163,46 @@ const Animated = props => {
     }
   }, []);
 
+  useEffect( () => {
+    triggerInAnimation();
+
+    // Do we have a continouos animation
+    if (haveAnimationContinuous(animation)) {
+      // Wait untill the duration of the IN animation is done
+      setInTimeAsWaited(calculateDurationInTime(animation))
+ 
+    } else {
+      // Do we have an animation out?
+      if (haveAnimationOut(animation)) {
+        // Wait untill the duration between animations is done
+        setBetweenTimeAsWaited(calculateDurationDelayBetween(animation));
+
+      }
+    }
+
+  }, [delay_waited]);
+
+  useEffect( () => {
+    // Then trigger the CONTINUOUS animation
+    triggerContinuousAnimation();
+    
+    // Do we have an animation out?
+    if (haveAnimationOut(animation)) {
+      // Wait untill the duration between animations is done
+      if (haveAnimationIn(animation)) {
+        return setBetweenTimeAsWaited(calculateDurationDelayBetween(animation));
+      } else {
+        return setDelayOutAsWaited()
+      }
+      
+    }
+  }, [inTimeWaited]);
+
+  useEffect( () => {
+    // Then trigger the OUT animation
+    triggerOutAnimation();
+  }, [betweenTimeWaited, delayOutWaited]);
+
   const waitUntill = amount =>
   new Promise((resolve, reject) => {
     setTimeout(function() {
@@ -156,79 +210,12 @@ const Animated = props => {
     }, amount);
   });
 
-  const checkForValidDuration = duration => {
-    return typeof duration === 'number' && duration >= 0;
-  };
-
-  const checkForValidIteration = iteration => {
-    const rounds = parseInt(iteration, 10);
-    return (
-      (typeof rounds === 'number' && rounds >= 1) || iteration === 'infinite'
-    );
-  };
-
-  const checkForValidTransitionType = transitionType => {
-    return transitionTypes.includes(transitionType);
-  };
-
-  const checkForValidFromToObject = fromToObject => {
-    return 'property' in fromToObject && 'value' in fromToObject;
-  };
-
-  const checkForValidCSSProperty = property => {
-    return cssList.includes(property);
-  };
-
-  const haveAnimationIn = animation => {
-    if (!animation) return;
-    return 'in' in animation;
-  };
-
-  const haveAnimationContinuous = animation => {
-    if (!animation) return;
-    return 'continuous' in animation;
-  };
-
-  const calculateDelayInTime = animation => {
-    if (!animation) return;
-    return animation.delay_in * 1000;
-  };
-
-  const calculateDurationInTime = animation => {
-    if (!animation) return;
-    return animation.duration_in * 1000;
-  };
-
-  const calculateDelayOutTime = animation => {
-    if (!animation) return;
-    return animation.delay_out * 1000;
-  };
-
-  const calculateDurationDelayBetween = animation => {
-    if (!animation) return;
-    return animation.delay_between * 1000;
-  };
-
-  const haveDelayIn = animation => {
-    if (!animation) return;
-    return 'delay_in' in animation;
-  };
-
-  const haveAnimationOut = animation => {
-    if (!animation) return;
-    return 'out' in animation;
-  };
-
-  const setDelayAsWaited = () => {
-    return setDelayWaited(true);
-  };
-
   const triggerInAnimation = () => {
     return setTransiteIn(true);
   };
 
   const triggerOutAnimation = () => {
-    setTransiteOut(false);
+    setTransiteOut(true);
     setTransiteContinous(false);
   };
 
@@ -238,8 +225,98 @@ const Animated = props => {
 
   const triggerDirectContinuousAnimation = () => {
     setTransiteIn(true);
-    setTransiteContinous(false);
+    setTransiteContinous(true);
     return;
+  };
+
+  const setDelayAsWaited = (waitTime = 0) => {
+    setTimeout( function() {
+      setDelayWaited(true);
+      return
+    }, waitTime)
+  };
+
+  //MY FUNCTION FOR COUNTING IN TIME
+  const setInTimeAsWaited = (waitTime = 0) => {
+    setTimeout( function() {
+      setInTimeWaited(true)
+    }, waitTime);
+  };
+
+  //MY FUNCTION FOR COUNTING BETWEEN TIME
+  const setBetweenTimeAsWaited = (waitTime = 0) => {
+    setTimeout( function() {
+      setBetweenTimeWaited(true);
+    }, waitTime);
+  };
+
+  const setDelayOutAsWaited = (waitTime = 0) => {
+    setTimeout( function() {
+      setDelayOutWaited(true);
+    }, waitTime)
+  }
+
+  const haveDelayIn = animation => {
+    if (!animation) return;
+    return 'delay_in' in animation;
+  };
+  
+  const haveAnimationIn = animation => {
+    if (!animation) return;
+    return 'in' in animation;
+  };
+
+  const haveAnimationOut = animation => {
+    if (!animation) return;
+    return 'out' in animation;
+  };
+
+  const haveAnimationContinuous = animation => {
+    if (!animation) return;
+    return 'continuous' in animation;
+  };
+
+  const calculateDelayInTime = animation => {
+    if (!animation) return;
+    return animation.delay_in * 1000 || 0;
+  };
+
+  const calculateDelayOutTime = animation => {
+    if (!animation) return;
+    return animation.delay_out * 1000 || 0;
+  };
+
+  const calculateDurationInTime = animation => {
+    if (!animation) return;
+    return animation.duration_in * 1000 || 0;
+  };
+
+  const calculateDurationDelayBetween = animation => {
+    if (!animation) return;
+    return animation.delay_between * 1000 || 0;
+  };
+
+  const checkForValidCSSProperty = property => {
+    return cssList.includes(property);
+  };
+
+  const checkForValidDuration = duration => {
+    return typeof duration === 'number' && duration >= 0;
+  };
+
+  const checkForValidTransitionType = transitionType => {
+    return transitionTypes.includes(transitionType);
+  };
+
+  const checkForValidIteration = iteration => {
+    const rounds = parseInt(iteration, 10);
+    return (
+      (typeof rounds === 'number' && rounds >= 1) || iteration === 'infinite'
+    );
+  };
+
+  const checkForValidFromToObject = fromToObject => {
+    return 'property' in fromToObject && 'value' in fromToObject;
   };
 
   const validateAnimation = animation => {
