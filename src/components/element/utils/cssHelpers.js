@@ -369,6 +369,7 @@ export const cssList = [
   'word-wrap',
   'writing-mode',
   'z-index',
+  'fontSize'
 ];
 
 export const textTransform = style({

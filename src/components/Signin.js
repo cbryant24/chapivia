@@ -85,12 +85,43 @@ return (
       border="1px solid black"
       p={[1, 2, 3]}
       bg="black"
-      width={[1, 2, 3, 4]}
+      width={1/2}
       zIndex="20"
       height={1}
     >
-      <Animated>
-
+      {/* <Animated
+        animation={{
+          delay_in: 3,
+          in: RotateAnimations.RotateInBottomLeft,
+          duration_in: 3,
+          continuous: RotateAnimations.RotateOutCenter,
+          duration_continuous: 1,
+          out: RotateAnimations.RotateOutBottomLeft,
+          duration_out: 5,
+          delay_between: 15,
+          iteration: 3
+        }}
+      >
+        <Text fontSize="2.2rem" color="red" as="p">Hello World</Text>
+      </Animated> */}
+      <Animated
+        animation={{
+          delay_in: 5,
+          in: FadeAnimations.FadeInBottom,
+          duration_in: 1,
+          continuous: FadeAnimations.FadeInFadeOut,
+          duration_continuous: 3,
+          out: FadeAnimations.FadeOutTop,
+          duration_out: 3,
+          delay_between: 10,
+        }}
+        transition={{
+          type: 'hover',
+          from: { property: 'font-size', value: '24px'},
+          to: { property: 'font-size', value: '36px'}
+        }}
+      >
+        <Text>Hello World</Text>
       </Animated>
       <FormApp
         //height={1}
