@@ -1,3 +1,5 @@
+export { keyframes as keyframes } from 'styled-components'
+
 //Layouts
 export { GlobalStyle as GlobalStyle } from './ThemeProvider';
 export { default as ThemeProvider } from './ThemeProvider';
@@ -21,6 +23,7 @@ export { default as FlexForm } from './Form';
 
 export { default as Box } from './Box';
 export { default as BoxPosition } from './BoxPosition';
+export { default as BoxBorder } from './BoxBorder';
 export { BoxAnimated as BoxAnimated } from './Box';
 export { default as TextAnimated } from './TextAnimated';
 export { ExtendedBox as ExtendedBox } from './ExtendedComponents';
@@ -30,10 +33,12 @@ export { ExtendedBox as ExtendedBox } from './ExtendedComponents';
 export { addProps as addProps } from './utils';
 
 //Animations
-
 export { Animated as Animated } from './animations';
 export { FadeAnimations as FadeAnimations } from './animations';
 export { BounceAnimations as BounceAnimations } from './animations';
 export { ScaleAnimations as ScaleAnimations } from './animations';
 export { RotateAnimations as RotateAnimations } from './animations';
 export { SlideAnimations as SlideAnimations } from './animations';
+
+//CSS Psuedo
+export { default as PsuedoBox } from './PsuedoBox';

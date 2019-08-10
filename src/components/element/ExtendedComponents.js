@@ -1,43 +1,82 @@
-import { system } from 'styled-system';
+import React from 'react';
 import styled from 'styled-components';
-import Box from './Box';
-import Flex from './Flex';
-import Text from './Text';
-import Input from './Input';
-import Grid from './Grid';
-import Button from './Button';
-import { cssProperties, offset, objectFit } from './utils/cssHelpers';
-import { addStyles } from './utils'
+import cleanElement from 'clean-element';
+import { ALL } from './utils/constants';
+import { addStyles, filterProps } from './utils'
 
+const Base = props => {
 
-export const ExtendedBox = styled(Box)`
-  ${props => addStyles(props)}
-`;
+  const Div = styled.div``;
+  const next = filterProps(props);
 
-export const ExtendedFlex = styled(Flex)`
-  ${props => addStyles(props)}
-`;
+  return <Div {...next} />;
+}
 
-export const ExtendedFlexItem = styled(Flex)`
-  ${props => addStyles(props)}
-`;
+export const ExtendedBox = styled(cleanElement(Base))(
+  {
+    boxSizing: 'border-box',
+    minWidth: 0,
+  },
+  props => addStyles(props),
+  ALL
+)
 
-export const ExtendedGrid = styled(Grid)`
-  ${props => addStyles(props)}
-`
+export const ExtendedFlex = styled(cleanElement(Base))(
+  {
+    boxSizing: 'border-box',
+    minWidth: 0,
+    display: 'flex'
+  },
+  props => addStyles(props),
+  ALL
+)
 
-export const ExtendedGridItem = styled(Grid)`
-  ${props => addStyles(props)}
-`
+export const ExtendedFlexItem = styled(cleanElement(Base))(
+  {
+    boxSizing: 'border-box',
+    minWidth: 0,
+  },
+  props => addStyles(props),
+  ALL
+)
 
-export const ExtendedText = styled(Text)`
-  ${props => addStyles(props)}
-`;
+export const ExtendedGrid = styled(cleanElement(Base))(
+  {
+    boxSizing: 'border-box',
+    minWidth: 0,
+    display: 'grid'
+  },
+  props => addStyles(props),
+  ALL
+)
+
+export const ExtendedGridItem = styled(cleanElement(Base))(
+  {
+    boxSizing: 'border-box',
+    minWidth: 0,
+  },
+  props => addStyles(props),
+  ALL
+)
+
+export const ExtendedText = styled(cleanElement(Base))(
+  {
+    boxSizing: 'border-box',
+    minWidth: 0,
+  },
+  props => addStyles(props),
+  ALL
+)
 
 // export const ExtendedInput = styled(Input)`
 //   ${props => addStyles(props)}
 // `;
 
-export const ExtendedButton = styled(Button)`
-  ${props => addStyles(props)}
-`;
+export const ExtendedButton = styled(cleanElement(Base))(
+  {
+    boxSizing: 'border-box',
+    minWidth: 0,
+  },
+  props => addStyles(props),
+  ALL
+)

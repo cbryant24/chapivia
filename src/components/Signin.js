@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 
-import { FlexItem, addProps, Field, Flex, Text, Animated, FadeAnimations, RotateAnimations } from './element';
+import { FlexItem, addProps, Field, Flex, Text, Animated, FadeAnimations, RotateAnimations, PsuedoBox } from './element';
 import theme from './elements/theme';
 import helpers from './helpers';
 
@@ -89,42 +89,8 @@ return (
       zIndex="20"
       height={1}
     >
-      {/* <Animated
-        animation={{
-          delay_in: 3,
-          in: RotateAnimations.RotateInBottomLeft,
-          duration_in: 3,
-          continuous: RotateAnimations.RotateOutCenter,
-          duration_continuous: 1,
-          out: RotateAnimations.RotateOutBottomLeft,
-          duration_out: 5,
-          delay_between: 15,
-          iteration: 3
-        }}
-      >
-        <Text fontSize="2.2rem" color="red" as="p">Hello World</Text>
-      </Animated> */}
-      <Animated
-        animation={{
-          delay_in: 5,
-          in: FadeAnimations.FadeInBottom,
-          duration_in: 1,
-          continuous: FadeAnimations.FadeInFadeOut,
-          duration_continuous: 3,
-          out: FadeAnimations.FadeOutTop,
-          duration_out: 3,
-          delay_between: 10,
-        }}
-        transition={{
-          type: 'hover',
-          from: { property: 'font-size', value: '24px'},
-          to: { property: 'font-size', value: '36px'}
-        }}
-      >
-        <Text>Hello World</Text>
-      </Animated>
-      <FormApp
-        //height={1}
+      {/* <FormApp
+        height={1}
         justifyContent="space-around"
         flexDirection="column"
         px="4rem"
@@ -135,7 +101,61 @@ return (
         validate={validate}
         buttons={buttons}
       >
-      </FormApp>
+      </FormApp> */}
+      <PsuedoBox
+        psuedoClass={{
+          type: 'link',
+          display: 'block',
+          color: 'red',
+        }}
+      >
+        <Box forwardedAs="a">Google Me</Box>
+        <Text>Bing</Text>
+        <Box forwardedAs="a">Yahoo!</Box>
+      </PsuedoBox>
+
+      <PsuedoBox
+        psuedoClass={{
+          type: 'last-child',
+          additionalSelector: 'p',
+          display: 'block',
+          color: 'red',
+          fontSize: [1, 2]
+        }}
+      >
+        <Text fontSize={3} color="blue" forwardedAs="p">Schoolboy Q</Text>
+        <Text fontSize={3} color="blue" forwardedAs="p">Kanye West</Text>
+        <Text fontSize={3} color="blue" forwardedAs="p">Kid Cudi</Text>
+        <Text fontSize={3} color="blue" forwardedAs="p">a$ap Rocky</Text>
+        <Text forwardedAs="p">Travis Scott</Text>
+      </PsuedoBox>
+      
+      <PsuedoBox
+        psuedoClass={{
+          type: 'not',
+          additionalSelector: 'p',
+          display: 'block',
+          width: [1 / 1],
+        }}
+      >
+        <Text as="p">House</Text>
+        <Text as="p">Car</Text>
+        <Box as="span">Television</Box>
+      </PsuedoBox>
+
+      <PsuedoBox
+        psuedoClass={{
+          type: 'hover',
+          additionalSelector: '#val',
+          display: 'block',
+          color: 'yellow',
+          referBack: true
+        }}
+      >
+        <Text as="p">House</Text>
+        <Text as="p">Car</Text>
+        <Box id="val">Television</Box>
+      </PsuedoBox>
       <button onClick={toggleModal} >Modal Action</button>
       <Modal
         isOpen={isOpen}

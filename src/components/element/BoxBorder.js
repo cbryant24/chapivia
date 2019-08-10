@@ -1,4 +1,4 @@
-import sylted from 'sytled-components';
+import styled from 'styled-components';
 import Box from './Box';
 import { BORDER, SHADOW } from './utils';
 
@@ -6,7 +6,7 @@ const BoxBorder = styled(Box)`
   ${BORDER} ${SHADOW}
 `
 
-BorderBox.defaultProps = {
+BoxBorder.defaultProps = {
   border: '1px solid #ffffff'
 }
 

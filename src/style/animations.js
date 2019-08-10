@@ -1,5 +1,5 @@
-import { keyframes, css } from 'styled-components';
-
+import { keyframes } from '../components/element';
+import { css } from 'styled-components';
 Math.Ran = function(max){
   let rn = Math.round(Math.random() * max);
   rn *= Math.random() > 0.5 ? -1 : 1;
@@ -18,24 +18,17 @@ export const noiseAnimation = () => {
   return keyframes`${keyframeVals}`;
 };
 
-export const bgAnimation = () => {
-  css`
-    animation: ${keyframes`
-                  0% { opacity: 0.9; }
-                  50% { opacity: 1; }
-                `} 10s infinite;
-  `
+export const bgAnimation = (props) => {
+  return keyframes`0% { opacity: 0.9; }
+                   50% { opacity: 1; }`
 }
 
-export const bgGlowAnimation = () => (
-    css`
-      animation:  ${keyframes`0% { opacity: 0.15; }
+export const bgGlowAnimation = (props) => {
+  return keyframes`0% { opacity: 0.15; }
                   50% { opacity: 0.25; }
                   75% { opacity: 0.18; }
-                  100% { opacity: .28; }`}
-                  60s ease;
-  `
-);
+                  100% { opacity: .28; }`
+};
 
 export const glitch = content => (
   css`

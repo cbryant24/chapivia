@@ -1,19 +1,20 @@
 import { filterProps } from './filterProps';
 import { cssList, cssProperties, psuedoClasses, psuedoElements } from './cssHelpers';
-import { addStyles } from './addStyles';
+import { addStyles, addPsuedo } from './utilsStyles';
 import { addProps } from './addProps';
 import { 
   COMMON, BORDER, TYPOGRAPHY, LAYOUT, SPACE, CURSOR,
   POSITION, FLEX, GRID, TRANSITION, COLOR, APPEARANCE,
-  SHADOW, TEXTDECORATION, FONTSIZESMODULES
+  SHADOW, TEXTDECORATION, FONTSIZESMODULES, ZINDEX
 } from './constants';
 
 export {
-  filterProps,
+  addPsuedo,
   addProps,
   addStyles,
   cssList,
   cssProperties,
+  filterProps,
   psuedoElements,
   psuedoClasses,
   COMMON,
@@ -30,5 +31,6 @@ export {
   CURSOR,
   SHADOW,
   TEXTDECORATION,
-  FONTSIZESMODULES
+  FONTSIZESMODULES,
+  ZINDEX
 };

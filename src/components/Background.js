@@ -1,11 +1,12 @@
 import React from 'react';
 import { bgAnimation, bgGlowAnimation } from '../style/animations';
-import { BoxAnimated, Box } from './element';
+import { BoxBorder, Animated, Box, ExtendedBox } from './element';
 import Title from './Title';
 
 function Background(props) {
+
   return (
-    <Box
+    <ExtendedBox
       fontFamily="VT323"
       border-radius="2rem"
       border="1rem solid"
@@ -16,15 +17,18 @@ function Background(props) {
       alignItems="center"
       background="transparent"
       position="fixed"
-      height="96%"
       boxShadow="inset 0 0 18rem #000, inset 0 0 3rem #000, 0 0 10rem #000"
       m="auto"
       width="100%"
       height="auto"
       minHeight="100vh"
     >
-      <BoxAnimated 
-        animation={bgAnimation}
+      <Animated
+        animation={{
+          continuous: bgAnimation(),
+          duration_continuous: 10,
+
+        }}
         display="block"
         p="3rem 2rem"
         backgroundColor="#031e11"
@@ -36,7 +40,7 @@ function Background(props) {
         width="100%"
         zIndex="-1"
       />
-      <Box
+      <ExtendedBox
         backgroundImage="repeating-linear-gradient(
           to bottom,
           transparent 0,
@@ -55,7 +59,7 @@ function Background(props) {
         position="absolute"
         zIndex="5"
       />
-      <BoxAnimated 
+      <Animated
         background="radial-gradient(
           circle at center,
           rgba(27,212,89,1) 0%,
@@ -70,10 +74,13 @@ function Background(props) {
         width="100%"
         opacity="0.5"
         position="fixed"
-        animation={bgGlowAnimation}
+        animation={{
+          continuous: bgGlowAnimation(),
+          duration_continuous: 60
+        }}
       />
       {/* <Title /> */}
-    </Box>
+    </ExtendedBox>
   )
 }
 

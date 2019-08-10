@@ -7,11 +7,11 @@ import {
   RotateAnimations,
   SlideAnimations
 } from './animations';
-import Box from '../Box';
-import { cssList } from '../utils';
+import { ExtendedBox } from '../ExtendedComponents';
+import { cssList, addProps } from '../utils';
 import { transitionTypes } from './type-transitions';
 
-const Wrapper = styled(Box)`
+const Wrapper = styled(ExtendedBox)`
   animation-duration: ${({ duration }) => (duration ? `${duration}s` : '1s')};
   animation-name: ${({ animation }) =>
     animation ? animation : 'no-animation'};
@@ -37,18 +37,16 @@ const Wrapper = styled(Box)`
 
 const Animated = props => {
   const [ delay_waited, setDelayWaited ]              = useState(false);
-  const [ in_time_waited, setInTimeWaited ]             = useState(false);
-  const [ between_time_waited, setBetweenTimeWaited ]   = useState(false);
+  const [ in_time_waited, setInTimeWaited ]           = useState(false);
+  const [ between_time_waited, setBetweenTimeWaited ] = useState(false);
   const [ transite_in, setTransiteIn ]                = useState(false);
   const [ transite_out, setTransiteOut ]              = useState(false);
   const [ transite_continuous, setTransiteContinous ] = useState(false);
-  const [ delay_out_waited, setDelayOutWaited ]         = useState(false);
+  const [ delay_out_waited, setDelayOutWaited ]       = useState(false);
   const { animation, transition, children }           = props;
-  
   
   useEffect(() => {
     // Validate Animation
-    // debugger
     validateAnimation(animation);
 
     // Validate Transitions
@@ -62,7 +60,6 @@ const Animated = props => {
 
   useEffect( () => {
     if (!delay_waited) return;
-    // debugger
     triggerInAnimation();
 
     // Do we have a continouos animation
@@ -86,7 +83,6 @@ const Animated = props => {
 
   useEffect( () => {
     if (!in_time_waited) return;
-    // debugger
     // Then trigger the CONTINUOUS animation
     triggerContinuousAnimation();
     
@@ -131,39 +127,29 @@ const Animated = props => {
     return setTransiteContinous(true);
   };
 
-  const triggerDirectContinuousAnimation = () => {
-    setTransiteIn(true);
-    setTransiteContinous(true);
-    return;
-  };
-
   const setDelayAsWaited = (waitTime = 0) => {
     setTimeout( function() {
-      console.log(delay_waited)
-      // debugger
       setDelayWaited(true);
       return
     }, waitTime)
   };
 
-  //MY FUNCTION FOR COUNTING IN TIME
+  //FUNCTION FOR COUNTING IN TIME
   const setInTimeAsWaited = (waitTime = 0) => {
     setTimeout( function() {
       setInTimeWaited(true)
     }, waitTime);
   };
 
-  //MY FUNCTION FOR COUNTING BETWEEN TIME
+  //FUNCTION FOR COUNTING BETWEEN TIME
   const setBetweenTimeAsWaited = (waitTime = 0) => {
-    // debugger
     setTimeout( function() {
-      // debugger
       setBetweenTimeWaited(true);
     }, waitTime);
   };
 
+    //FUNCTION FOR COUNTING DELAY OUT
   const setDelayOutAsWaited = (waitTime = 0) => {
-    // debugger
     setTimeout( function() {
       setDelayOutWaited(true);
     }, waitTime)
@@ -190,7 +176,6 @@ const Animated = props => {
   };
 
   const calculateDelayInTime = animation => {
-    // debugger
     if (!animation) return;
     return animation.delay_in * 1000 || 0;
   };
@@ -379,17 +364,7 @@ const Animated = props => {
     }
   };
 
-    // delay_in: 1,
-    // in: FadeAnimations.FadeInBottom,
-    // duration_in: 1,
-    // continuous: RotateAnimations.RotateCenter,
-    // duration_continuous: 1,
-    // out: FadeAnimations.FadeOutTop,
-    // duration_out: 10,
-    // delay_between: 5
-
   const getCurrentAnimation = () => {
-    // debugger
     if (!animation) return;
     const val = transite_in && !transite_continuous && !transite_out
       ? animation.in
@@ -400,8 +375,6 @@ const Animated = props => {
           transite_out
           ? animation.out
           : null;
-          
-          // debugger
 
           return val
   };
@@ -416,18 +389,16 @@ const Animated = props => {
         : transite_out
           ? animation.duration_out
           : null;
-// debugger
+
           return val
   };
-
-  // const getDuration
 
   const getCurrentIteration = () => {
 
     if (!animation) return;
 
     const val = transite_continuous ? 'infinite' : animation.iteration;
-// debugger
+
     return val
   };
 
@@ -437,7 +408,7 @@ const Animated = props => {
     const val = transition.type === 'hover'
       ? `${transition.from.property}: ${transition.from.value}`
       : '';
-      // debugger
+
       return val
   };
 
@@ -447,21 +418,30 @@ const Animated = props => {
     const val = transition.type === 'hover'
       ? `${transition.to.property}: ${transition.to.value};`
       : '';
-      // debugger
+
       return val
   };
-  // debugger
-  return ( delay_waited && transite_in ? 
-      <Wrapper
-        animation={getCurrentAnimation()}
-        duration={getCurrentDuration()}
-        iteration={getCurrentIteration()}
-        transitionFrom={getTransitionFrom()}
-        transitionTo={getTransitionTo()}
-      >
-        {children}
-      </Wrapper>
-      : <Wrapper></Wrapper>
+
+  const createAnimatedComponent = () => {
+    const { animation, transition, ...rest} = props;
+    const AnimatedWrapper = <Wrapper
+                          id="animated_thing"
+                          animation={getCurrentAnimation()}
+                          duration={getCurrentDuration()}
+                          iteration={getCurrentIteration()}
+                          transitionFrom={getTransitionFrom()}
+                          transitionTo={getTransitionTo()}
+                        >
+                          {children}
+                        </Wrapper>
+
+    const AnimatedPropsWrapper = addProps(AnimatedWrapper, rest)
+    // debugger
+    return AnimatedPropsWrapper;
+  }
+
+  return ( delay_waited && transite_in ? createAnimatedComponent() : <Wrapper></Wrapper>
+
   )
 }
 
@@ -473,5 +453,3 @@ export {
   RotateAnimations,
   SlideAnimations
 };
-
-//END HOOK FUNCTION

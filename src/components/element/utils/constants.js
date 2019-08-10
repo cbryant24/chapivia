@@ -1,6 +1,6 @@
 import * as styledSystem from 'styled-system';
 import * as cssProps from './cssHelpers';
-import { addStyles } from './addStyles';
+import { addStyles } from './utilsStyles';
 
 const { compose, system } = styledSystem;
 
@@ -40,13 +40,31 @@ export const FONTSIZESMODULES = system({
     property: 'fontSize',
     scale: 'fontSizesModule'
   }
-})
+});
 
 export const TYPOGRAPHY = styledSystem.typography;
-export const LAYOUT = styledSystem.layout;
-export const POSITION = styledSystem.position;
-export const FLEX = styledSystem.flexbox;
-export const GRID = styledSystem.grid;
-export const SPACE = styledSystem.space;
-export const COLOR = styledSystem.color;
-export const SHADOW = styledSystem.color;
+export const LAYOUT     = styledSystem.layout;
+export const POSITION   = styledSystem.position;
+export const FLEX       = styledSystem.flexbox;
+export const GRID       = styledSystem.grid;
+export const SPACE      = styledSystem.space;
+export const COLOR      = styledSystem.color;
+export const SHADOW     = styledSystem.shadow;
+export const BACKGROUND = styledSystem.background;
+export const ZINDEX     = styledSystem.zIndex;
+
+export const ALL = styledSystem.compose(
+  APPEARANCE,
+  BORDER,
+  BACKGROUND,
+  COLOR,
+  CURSOR,
+  FLEX,
+  GRID,
+  LAYOUT,
+  POSITION,
+  SPACE,
+  SHADOW,
+  TYPOGRAPHY,
+  TEXTDECORATION,
+);

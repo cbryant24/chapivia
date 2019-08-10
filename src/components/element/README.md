@@ -80,4 +80,24 @@ export default Form = (props) => {
 | focusBoxShadow       :focus { box-shadow }      string     |
 
 
+##Animations
 
+### Custom Animations
+
+A function `keyframes` is made available to create custom animations. To create a custom animation pass the created keyframes animation to Animated component in the appropriate places where keyframes are expected.
+
+
+
+
+##Psuedo Classes
+
+Psuedo classes can be added to elements using `psuedoClass` prop to the element and passing an object with valid css style properties and selectors. The `referBack` property is
+used to back to the main component which will add an `&` to the psuedo class. To use a specific selector use the `custom` property and provide only the property `type` with the custom css selector, along with the styling like normal.
+
+```javascript
+  psuedo={{
+    type: String,
+    additionalSelector: String['element', '#id', '.class'],
+    referBack: Boolean
+  }}
+```
