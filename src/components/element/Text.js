@@ -12,8 +12,9 @@ import { filterProps } from './utils/index'
 
 const Base = props => {
   // debugger
+  const P = styled.p``;
   const next = filterProps(props);
-  return <div {...next} />;
+  return <P {...next} />;
 }
 
 const Text = styled(cleanElement(Base))(

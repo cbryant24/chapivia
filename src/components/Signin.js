@@ -88,6 +88,7 @@ return (
       width={1/2}
       zIndex="20"
       height={1}
+
     >
       {/* <FormApp
         height={1}
@@ -103,54 +104,56 @@ return (
       >
       </FormApp> */}
       <PsuedoBox
-        psuedoClass={{
-          type: 'link',
-          display: 'block',
-          color: 'red',
-        }}
+        // psuedoClass={{
+        //   type: 'link',
+        //   display: 'block',
+        //   color: 'red',
+        // }}
       >
-        <Box forwardedAs="a">Google Me</Box>
+        <Box  psuedo forwardedAs="a" href="google.com">Google Me</Box>
         <Text>Bing</Text>
-        <Box forwardedAs="a">Yahoo!</Box>
+        <Box forwardedAs="a" href="yahoo.com">Yahoo!</Box>
       </PsuedoBox>
 
       <PsuedoBox
-        psuedoClass={{
-          type: 'last-child',
-          additionalSelector: 'p',
-          display: 'block',
-          color: 'red',
-          fontSize: [1, 2]
-        }}
+        // id="helloWorld"
+        // psuedoClass={{
+        //   type: 'last-child',
+        //   additionalSelector: 'p',
+        //   display: 'block',
+        //   color: 'red',
+        //   fontSize: [1, 2]
+        // }}
+        psuedo
       >
-        <Text fontSize={3} color="blue" forwardedAs="p">Schoolboy Q</Text>
-        <Text fontSize={3} color="blue" forwardedAs="p">Kanye West</Text>
-        <Text fontSize={3} color="blue" forwardedAs="p">Kid Cudi</Text>
-        <Text fontSize={3} color="blue" forwardedAs="p">a$ap Rocky</Text>
-        <Text forwardedAs="p">Travis Scott</Text>
+        <Text fontSize={3} color="blue.4">Schoolboy Q</Text>
+        <Text fontSize={3} color="blue.4" forwardedAs="h1">Kanye West <Text>Hello Kanye</Text></Text>
+        <Text fontSize={3} color="blue.4">Kid Cudi</Text>
+        <Text fontSize={3} color="blue.4">a$ap Rocky</Text>
+        <Text>Travis Scott</Text>
       </PsuedoBox>
       
       <PsuedoBox
-        psuedoClass={{
-          type: 'not',
-          additionalSelector: 'p',
-          display: 'block',
-          width: [1 / 1],
-        }}
+        // psuedoClass={{
+        //   type: 'not',
+        //   additionalSelector: 'p',
+        //   display: 'block',
+        //   width: [1 / 1],
+        // }}
       >
-        <Text as="p">House</Text>
-        <Text as="p">Car</Text>
+        <Text>House</Text>
+        <Text>Car</Text>
         <Box as="span">Television</Box>
       </PsuedoBox>
 
       <PsuedoBox
-        psuedoClass={{
-          type: 'hover',
-          additionalSelector: '#val',
-          display: 'block',
-          color: 'yellow',
-          referBack: true
-        }}
+        // psuedoClass={{
+        //   type: 'hover',
+        //   additionalSelector: '#val',
+        //   display: 'block',
+        //   color: 'yellow',
+        //   referBack: true
+        // }}
       >
         <Text as="p">House</Text>
         <Text as="p">Car</Text>

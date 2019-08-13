@@ -23,12 +23,10 @@ export const addPsuedo = props => {
     type = `${type} ${additionalSelector}`
   }
 
-  const psuedoStyle = `
-    ${referBack ? '&':''}:${type} {
-      ${rest}
-    }
-  `;
-
+  const psuedoStyle = {
+    
+  };
+  
   return psuedoStyle;
 
   function validPsuedoClass(psuedoClass) {
