@@ -160,7 +160,10 @@ export const squareButton = {
   py: [1, 2],
 }
 
+export const objectFits = ['cover', 'contain']
+
 const theme = {
+  objectFits,
   breakpoints,
   mediaQueries,
   mono,

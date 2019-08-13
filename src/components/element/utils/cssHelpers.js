@@ -2420,48 +2420,13 @@ export const cssProperties = {
   writingMode  
 }
 
-export const psuedoClasses = [
+export const pseudoClasses = [
   'active',
-  'checked',
-  'disabled',
-  'empty',
-  'enabled',
-  'first-child',
-  'firstChild',
-  'first-of-type',
-  'firstOfType',
   'focus',
   'hover',
-  'in-range',
-  'inRange',
-  'invalid',
-  //TODO: create something to accomadate lang selector check
   'lang',
-  'last-child',
   'link',
-  //TODO: create something to accomadate not selector check
-  'not',
-  //TODO: create something to accomadate nth selector check
-  'nth-child',
-  'nthChild',
-  'nth-last-child',
-  'nthLastChild',
-  'nthLastOfType',
-  'nthOfType',
-  'onlyOfType',
-  'onlyChild',
-  'optional',
-  'out-of-range',
-  'outOfRange',
-  'read-only',
-  'readOnly',
-  'read-write',
-  'readWrite',
-  'required',
-  'root',
-  'target',
-  'valid',
-  'visited',
+  'visited'
 ]
 
 export const psuedoElements = [

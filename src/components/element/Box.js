@@ -1,8 +1,10 @@
 import React from 'react';
-import styled, { keyframes, css } from 'styled-components/macro';
-import { SPACE, COLOR, LAYOUT, APPEARANCE, FONTSIZESMODULES, ZINDEX } from './utils';
+import styled, { keyframes } from 'styled-components/macro';
+import { SPACE, COLOR, LAYOUT, APPEARANCE, FONTSIZESMODULES, ZINDEX, addPseudo } from './utils';
 import cleanElement from 'clean-element';
 import { filterProps } from './utils';
+
+import css from '@styled-system/css';
 
 const Base = props => {
 
@@ -74,7 +76,7 @@ const Base = props => {
 
 //WORKS
 const obj = props => {
-  // debugger
+  debugger
   return ({
     'h1 p:hover': {
       color: '#1a8b56'
@@ -87,8 +89,9 @@ const Box = styled(cleanElement(Base))(
     boxSizing: 'border-box',
     minWidth: 0,
   },
-  // obj,
-  props => props.psuedo ? obj : '',
+  addPseudo,
+  // props => props.hover ? css({ ':focus': props.hover }) : '',
+  // props => props.hover ? { '&:hover': props.hover } : '',
   LAYOUT, SPACE, COLOR, APPEARANCE, FONTSIZESMODULES, ZINDEX
 );
 

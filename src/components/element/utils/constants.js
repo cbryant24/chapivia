@@ -42,6 +42,13 @@ export const FONTSIZESMODULES = system({
   }
 });
 
+export const HOVER = system({
+  hover: {
+    property: (() => ':hover')(),
+    scale: 'fontSizes'
+  }
+});
+
 export const TYPOGRAPHY = styledSystem.typography;
 export const LAYOUT     = styledSystem.layout;
 export const POSITION   = styledSystem.position;

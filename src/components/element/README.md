@@ -69,7 +69,6 @@ export default Form = (props) => {
   )
 }
 
-
 ##Input
 
 | Props              | CSS Style                | Value      |
@@ -79,23 +78,23 @@ export default Form = (props) => {
 | focusBorderColor     :focus { boder }           string     |
 | focusBoxShadow       :focus { box-shadow }      string     |
 
-
-##Animations
+## Animations
 
 ### Custom Animations
 
 A function `keyframes` is made available to create custom animations. To create a custom animation pass the created keyframes animation to Animated component in the appropriate places where keyframes are expected.
 
+## Psuedo Classes
+The pseudo classes `active, active, focus, hover, lang, link, visited` can be used to further style elments. To do so include the keyword `pseudo` and pass the an object using the appropriate pseudo name to style.
 
-##Psuedo Classes
-
-Psuedo classes can be added to elements using `psuedoClass` prop to the element and passing an object with valid css style properties and selectors. The `pre` property to set the selector(s) if using multiple selectors provide an array. To specifiy an element to select with the  To use a specific selector use the `custom` property and provide only the property `type` with the custom css selector, along with the styling like normal.
-
-| Selector      |    Example                                 |  Output |
-| ------------- |:-------------:                             | -----:   |
-| &             | `psuedo={{ pre: '&', type: 'hover', color: 'red.1'}}`     | `&:hover { color: #FF0000 }` |
-| ,             | `psuedo={{ pre: ['div', ',', 'p'], fontSize: {3} }}` |  `div:hover, p:hover { font-size: 1.6em }` |
-| >             | `psuedo={{ pre: ['div', '>', 'p'], type: 'focus', color: 'red.1'}}`     |    `` |
+```javascript
+  <Box
+    pseudo
+    hover={{ fontSize: [1, 2], color: 'blue.1'}}
+  >
+    I am a pseudo element
+  </Box>
+```
 
 ```javascript
   psuedo={{

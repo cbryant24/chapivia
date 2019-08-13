@@ -1,22 +1,22 @@
 import { filterProps } from './filterProps';
-import { cssList, cssProperties, psuedoClasses, psuedoElements } from './cssHelpers';
-import { addStyles, addPsuedo } from './utilsStyles';
+import { cssList, cssProperties, pseudoClasses, psuedoElements } from './cssHelpers';
+import { addStyles, addPseudo } from './utilsStyles';
 import { addProps } from './addProps';
 import { 
   COMMON, BORDER, TYPOGRAPHY, LAYOUT, SPACE, CURSOR,
   POSITION, FLEX, GRID, TRANSITION, COLOR, APPEARANCE,
-  SHADOW, TEXTDECORATION, FONTSIZESMODULES, ZINDEX
+  SHADOW, TEXTDECORATION, FONTSIZESMODULES, ZINDEX, HOVER
 } from './constants';
 
 export {
-  addPsuedo,
+  addPseudo,
   addProps,
   addStyles,
   cssList,
   cssProperties,
   filterProps,
   psuedoElements,
-  psuedoClasses,
+  pseudoClasses,
   COMMON,
   BORDER,
   TYPOGRAPHY,
@@ -32,5 +32,6 @@ export {
   SHADOW,
   TEXTDECORATION,
   FONTSIZESMODULES,
-  ZINDEX
+  ZINDEX,
+  HOVER
 };

@@ -15,6 +15,9 @@ import { blockSize } from './element/utils/cssHelpers';
 import { Box } from './element'
 import Modal from './element/modal';
 
+import css from '@styled-system/css';
+
+
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -103,37 +106,21 @@ return (
         buttons={buttons}
       >
       </FormApp> */}
-      <PsuedoBox
-        // psuedoClass={{
-        //   type: 'link',
-        //   display: 'block',
-        //   color: 'red',
-        // }}
-      >
-        <Box  psuedo forwardedAs="a" href="google.com">Google Me</Box>
+      <Box>
+        <Box forwardedAs="a" href="google.com">Google Me</Box>
         <Text>Bing</Text>
         <Box forwardedAs="a" href="yahoo.com">Yahoo!</Box>
-      </PsuedoBox>
+      </Box>
 
-      <PsuedoBox
-        // id="helloWorld"
-        // psuedoClass={{
-        //   type: 'last-child',
-        //   additionalSelector: 'p',
-        //   display: 'block',
-        //   color: 'red',
-        //   fontSize: [1, 2]
-        // }}
-        psuedo
-      >
-        <Text fontSize={3} color="blue.4">Schoolboy Q</Text>
-        <Text fontSize={3} color="blue.4" forwardedAs="h1">Kanye West <Text>Hello Kanye</Text></Text>
+      <Box>
+        <Text hover={{ fontSize: [3,4], color: 'orange.1'}} fontSize={3} color="blue.4">Schoolboy Q</Text>
+        <Text hover={{ color: 'blue.4'}} fontSize={3}  forwardedAs="h1">Kanye West <Text>Hello Kanye</Text></Text>
         <Text fontSize={3} color="blue.4">Kid Cudi</Text>
         <Text fontSize={3} color="blue.4">a$ap Rocky</Text>
         <Text>Travis Scott</Text>
-      </PsuedoBox>
+      </Box>
       
-      <PsuedoBox
+      <Box
         // psuedoClass={{
         //   type: 'not',
         //   additionalSelector: 'p',
@@ -142,23 +129,19 @@ return (
         // }}
       >
         <Text>House</Text>
-        <Text>Car</Text>
-        <Box as="span">Television</Box>
-      </PsuedoBox>
+        <Text fontSize={1}>Car</Text>
+        <Box cs active={{ color: 'blue.3', fontSize: [1, 2]}} focus={{color: 'blue.3', fontSize: [1,2], objectFit: 'cover', outline: 'none', borderBottom: '1px solid red'}}>Television</Box>
+      </Box>
 
-      <PsuedoBox
-        // psuedoClass={{
-        //   type: 'hover',
-        //   additionalSelector: '#val',
-        //   display: 'block',
-        //   color: 'yellow',
-        //   referBack: true
-        // }}
+      <Box
+        hover={{
+          color: 'blue.1'
+        }}
       >
-        <Text as="p">House</Text>
+        <Text hover={{color: 'red.1', fontSize: '23px'}} as="p">House</Text>
         <Text as="p">Car</Text>
         <Box id="val">Television</Box>
-      </PsuedoBox>
+      </Box>
       <button onClick={toggleModal} >Modal Action</button>
       <Modal
         isOpen={isOpen}
