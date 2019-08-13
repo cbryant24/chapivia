@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import cleanElement from 'clean-element';
 import { ALL } from './utils/constants';
-import { addStyles, filterProps } from './utils'
+import { addStyles, filterProps, addPseudo } from './utils'
 
 const Base = props => {
 
@@ -17,6 +17,7 @@ export const ExtendedBox = styled(cleanElement(Base))(
     boxSizing: 'border-box',
     minWidth: 0,
   },
+  addPseudo,
   props => addStyles(props),
   ALL
 )

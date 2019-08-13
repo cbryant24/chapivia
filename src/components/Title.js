@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo'
 
 import { Flex, FlexItem, Text, TextAnimated, BoxAnimated } from './element';
-import { textGlitch, randomSquareGlitch } from '../style/animations';
+import { textGlitch, randomSquareGlitch } from './elements/animations';
 import { css, keyframes } from 'styled-components';
 import { withRouter } from 'react-router-dom'
 

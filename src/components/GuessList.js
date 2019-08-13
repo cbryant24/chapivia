@@ -8,7 +8,7 @@ import mutation from '../mutations/Guess';
 import CurrentUserQuery from '../queries/CurrentUser';
 import { GridItem, OutlineButton, Input, Image, Text, Flex, Field, FlexItem, Box } from './element';
 import * as Element from './element';
-import { generateRandomClipFrames } from '../style/animations';
+import { generateRandomClipFrames } from './elements/animations';
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 

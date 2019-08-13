@@ -16,6 +16,8 @@ import { Box } from './element'
 import Modal from './element/modal';
 
 import css from '@styled-system/css';
+import { isAbsolute } from 'upath';
+import { noiseAnimation } from './elements/animations';
 
 
 //TODO: Errors message applicable to correct field only
@@ -106,42 +108,24 @@ return (
         buttons={buttons}
       >
       </FormApp> */}
-      <Box>
-        <Box forwardedAs="a" href="google.com">Google Me</Box>
-        <Text>Bing</Text>
-        <Box forwardedAs="a" href="yahoo.com">Yahoo!</Box>
-      </Box>
-
-      <Box>
-        <Text hover={{ fontSize: [3,4], color: 'orange.1'}} fontSize={3} color="blue.4">Schoolboy Q</Text>
-        <Text hover={{ color: 'blue.4'}} fontSize={3}  forwardedAs="h1">Kanye West <Text>Hello Kanye</Text></Text>
-        <Text fontSize={3} color="blue.4">Kid Cudi</Text>
-        <Text fontSize={3} color="blue.4">a$ap Rocky</Text>
-        <Text>Travis Scott</Text>
-      </Box>
-      
-      <Box
-        // psuedoClass={{
-        //   type: 'not',
-        //   additionalSelector: 'p',
-        //   display: 'block',
-        //   width: [1 / 1],
+      <Animated
+        pseudo
+        before={{
+          content: 'Hello World',
+          position: 'absolute',
+          left: '-2px',
+          textShadow: '1px 0 blue',
+          color: 'white',
+          overflow: 'hidden',
+          clip: 'rect(0, 900px,0,0)',
+          animation: noiseAnimation()
+        }}
+        // animation={{
+        //   continous=
         // }}
       >
-        <Text>House</Text>
-        <Text fontSize={1}>Car</Text>
-        <Box cs active={{ color: 'blue.3', fontSize: [1, 2]}} focus={{color: 'blue.3', fontSize: [1,2], objectFit: 'cover', outline: 'none', borderBottom: '1px solid red'}}>Television</Box>
-      </Box>
-
-      <Box
-        hover={{
-          color: 'blue.1'
-        }}
-      >
-        <Text hover={{color: 'red.1', fontSize: '23px'}} as="p">House</Text>
-        <Text as="p">Car</Text>
-        <Box id="val">Television</Box>
-      </Box>
+        Hello World
+      </Animated>
       <button onClick={toggleModal} >Modal Action</button>
       <Modal
         isOpen={isOpen}

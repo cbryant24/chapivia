@@ -1,5 +1,5 @@
 import React from 'react';
-import { bgAnimation, bgGlowAnimation } from '../style/animations';
+import { bgAnimation, bgGlowAnimation } from './elements/animations';
 import { BoxBorder, Animated, Box, ExtendedBox } from './element';
 import Title from './Title';
 

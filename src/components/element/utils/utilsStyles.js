@@ -1,5 +1,5 @@
 import { system } from 'styled-system';
-import { cssProperties, pseudoClasses } from './cssHelpers';
+import { cssProperties, pseudoClasses, pseudoElements } from './cssHelpers';
 
 import css from '@styled-system/css';
 
@@ -15,57 +15,31 @@ export const addStyles = props => {
 export const addPseudo = props => {
   if (!props.pseudo) return;
 
-  const pseudoProps = Object.getOwnPropertyNames(props).filter( prop => pseudoClasses.includes(prop));
+  const elementProps = Object.getOwnPropertyNames(props);
+  const pseudoClassProps = elementProps.filter( prop => pseudoClasses.includes(prop));
+  const pseudoElementProps = elementProps.filter( prop => pseudoElements.includes(prop));
 
-  if (!pseudoProps) return;
+  if (!pseudoClassProps && !pseudoElementProps) return;
 
-  const pseudoElements = {}
-  pseudoProps.forEach( pseudoType => pseudoElements[`:${pseudoType}`] = props[pseudoType] );
+  const pseudo = {};
+  pseudoClassProps.forEach( pseudoType => pseudo[`:${pseudoType}`] = props[pseudoType] );
+  pseudoElementProps.forEach( pseudoType => pseudo[`::${pseudoType}`] = props[pseudoType]);
 
-  debugger
-  return css({ ...pseudoElements })
+  // debugger
+  if (pseudoElementProps.indexOf('firstLine') >= 0)
+    pseudo['::first-line'] = pseudo['::firstLine'];
 
-  // let { psuedoClass: { type, additionalSelector, referBack, custom , ...rest}} = props;
+  if (pseudoElementProps.indexOf('firstLetter') >= 0)
+    pseudo['::first-letter'] = pseudo['::firstLetter'];
+    // debugger
+  if (pseudoElementProps.indexOf('before') >= 0)
+    pseudo['::before'].content = `\'${pseudo['::before'].content}\'`;
 
-  // validPsuedoClass(props.psuedo);
-
-  // if(checkForDynamicPsuedoClass(type)) {
-  //   type = `${type}(${additionalSelector})`
-  // } else if(additionalSelector) {
-  //   type = `${type} ${additionalSelector}`
-  // }
-
-  // const psuedoStyle = {
+  if (pseudoElementProps.indexOf('after') >= 0)
+    pseudo['::after'].content = `\'${pseudo['::after'].content}\'`;
     
-  // };
-  
-  // return psuedoStyle;
-
-  // function validPsuedoClass(psuedoClass) {
-  //   if(!psuedoClass) return;
-
-  //   if (psuedoClasses.includes(props.type)) {
-  //     if (checkForDynamicPsuedoClass(props.type)) {
-  //       if (!props.additionalSelector) throw new TypeError(
-  //         `${props.type} needs a selector pass value with additionalType`
-  //       );
-      
-  //       if (props.type === 'lang') {
-  //         if (typeof props.additionalSelector === 'string') throw new TypeError(
-  //           `${props.additionalSelector} is not a valid CSS selector at additionalSelector object lang must be type string`
-  //         );
-  //       }
-  //     }
-  //   } else {
-  //     throw new TypeError(
-  //       `${props.type} a valid pseudo classes need a valid type please select an appropriate psuedo class`
-  //     )
-  //   }
-  // }
-
-  // function checkForDynamicPsuedoClass(psuedoClassType) {
-  //   return psuedoDynamicClass.includes(psuedoClassType);
-  // }
+  // debugger
+  return css({ ...pseudo });
 }
 
 export const getStyles = props => {

@@ -1,5 +1,6 @@
-import { keyframes } from '../components/element';
+import { keyframes } from '../element';
 import { css } from 'styled-components';
+
 Math.Ran = function(max){
   let rn = Math.round(Math.random() * max);
   rn *= Math.random() > 0.5 ? -1 : 1;

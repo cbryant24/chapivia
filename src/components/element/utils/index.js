@@ -1,5 +1,5 @@
 import { filterProps } from './filterProps';
-import { cssList, cssProperties, pseudoClasses, psuedoElements } from './cssHelpers';
+import { cssList, cssProperties, pseudoClasses, pseudoElements } from './cssHelpers';
 import { addStyles, addPseudo } from './utilsStyles';
 import { addProps } from './addProps';
 import { 
@@ -15,7 +15,7 @@ export {
   cssList,
   cssProperties,
   filterProps,
-  psuedoElements,
+  pseudoElements,
   pseudoClasses,
   COMMON,
   BORDER,

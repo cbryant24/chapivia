@@ -2429,7 +2429,7 @@ export const pseudoClasses = [
   'visited'
 ]
 
-export const psuedoElements = [
+export const pseudoElements = [
   'after',
   'before',
   'first-line',
