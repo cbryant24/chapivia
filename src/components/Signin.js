@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 
-import { FlexItem, addProps, Field, Flex, Text, Animated, FadeAnimations, RotateAnimations, PsuedoBox } from './element';
+import { FlexItem, ExtendedBox, ExtendedTestBox, addProps, Field, Flex, Text, Animated, FadeAnimations, RotateAnimations, PsuedoBox } from './element';
 import theme from './elements/theme';
 import helpers from './helpers';
 
@@ -116,11 +116,11 @@ return (
         buttons={buttons}
       >
       </FormApp> */}
-      <Animated
+      <ExtendedTestBox
         pseudo
-        before={{
-          content: 'Hello World',
-          fontSize: [1, 2]
+        // before={{
+        //   content: 'Hello World',
+        //   fontSize: [1, 2]
           // position: 'absolute',
           // left: '-2px',
           // textShadow: '1px 0 blue',
@@ -134,7 +134,7 @@ return (
           //   animation_direction: 'alternate-reverse'
           // }
           // animation: animationsIn
-        }}
+        // }}
         after={{
           content: 'Goodbye World',
           margin: [1, 2]
@@ -143,8 +143,8 @@ return (
         //   continous=
         // }}
       >
-        {/* Hello World */}
-      </Animated>
+        Hello World
+      </ExtendedTestBox>
       <button onClick={toggleModal} >Modal Action</button>
       <Modal
         isOpen={isOpen}

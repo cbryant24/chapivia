@@ -17,6 +17,7 @@ export const addStyles = props => {
 export const addPseudo = props => {
   if (!props.pseudo) return;
 
+  let pseudoAnimations = {};
   const elementProps = Object.getOwnPropertyNames(props);
   const pseudoClassProps = elementProps.filter( prop => pseudoClasses.includes(prop));
   const pseudoElementProps = elementProps.filter( prop => pseudoElements.includes(prop));
@@ -42,16 +43,16 @@ export const addPseudo = props => {
 
     // }
     // debugger
-    const ani = keyframes`
+    pseudoAnimations.keyFrames = keyframes`
         0% { opacity: 0}
         100% { opacity: 1 }
       `
 
-      const callAni = () => css`${ani} 1s`
-      pseudo['::before'].animation = callAni;
+      // const callAni = () => css`${ani} 1s`
+      // pseudo['::before'].animation = callAni;
     // pseudo['::before']['animation-name'] = ani;
     // pseudo['::before']['animation-duration'] = '5s';
-    debugger
+    // debugger
   }
     
 
@@ -65,8 +66,9 @@ export const addPseudo = props => {
   //   const get
   // }
   const val = styledCSS({ ...pseudo });
-  debugger
-  return val
+  
+  // debugger
+  return {val, pseudoAnimations}
 }
 
 export const getStyles = props => {

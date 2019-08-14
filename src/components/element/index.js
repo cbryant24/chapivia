@@ -29,6 +29,7 @@ export { default as BoxBorder } from './BoxBorder';
 export { BoxAnimated as BoxAnimated } from './Box';
 export { default as TextAnimated } from './TextAnimated';
 export { ExtendedBox as ExtendedBox } from './ExtendedComponents';
+export { ExtendedTestBox as ExtendedTestBox } from './ExtendedComponents';
 
 
 //Utilities
