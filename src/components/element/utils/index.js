@@ -1,5 +1,6 @@
 import { filterProps } from './filterProps';
 import { cssList, cssProperties, pseudoClasses, pseudoElements } from './cssHelpers';
+import { validateAnimation, validateTransitions } from './cssValidators';
 import { addStyles, addPseudo } from './utilsStyles';
 import { addProps } from './addProps';
 import { 
@@ -17,6 +18,8 @@ export {
   filterProps,
   pseudoElements,
   pseudoClasses,
+  validateAnimation,
+  validateTransitions,
   COMMON,
   BORDER,
   TYPOGRAPHY,

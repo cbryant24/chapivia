@@ -15,10 +15,12 @@ import { blockSize } from './element/utils/cssHelpers';
 import { Box } from './element'
 import Modal from './element/modal';
 
-import css from '@styled-system/css';
+import styledCSS from '@styled-system/css';
 import { isAbsolute } from 'upath';
 import { noiseAnimation } from './elements/animations';
 
+
+import { keyframes, css } from 'styled-components';
 
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
@@ -85,6 +87,13 @@ function Signin(props) {
     style: { height: 1, justifyContent: 'space-around', flexDirection: 'column', px: 2, fontSizeModule: [1, 2, 3, 4]},
   }
 
+  const anim = keyframes`
+    0% { opacity: 0%; }
+    100% { opacity: 100%; }
+  `
+
+  const animationsIn = css`${anim} 5s infinite`
+
 return (
     <FlexItem
       border="1px solid black"
@@ -93,7 +102,6 @@ return (
       width={1/2}
       zIndex="20"
       height={1}
-
     >
       {/* <FormApp
         height={1}
@@ -112,19 +120,30 @@ return (
         pseudo
         before={{
           content: 'Hello World',
-          position: 'absolute',
-          left: '-2px',
-          textShadow: '1px 0 blue',
-          color: 'white',
-          overflow: 'hidden',
-          clip: 'rect(0, 900px,0,0)',
-          animation: noiseAnimation()
+          fontSize: [1, 2]
+          // position: 'absolute',
+          // left: '-2px',
+          // textShadow: '1px 0 blue',
+          // color: 'white',
+          // overflow: 'hidden',
+          // clip: 'rect(0, 900px,0,0)',
+          // animation: {
+          //   continous: noiseAnimation(), 
+          //   continous_duration: 10, 
+          //   animation_fill_mode: 'linear',
+          //   animation_direction: 'alternate-reverse'
+          // }
+          // animation: animationsIn
+        }}
+        after={{
+          content: 'Goodbye World',
+          margin: [1, 2]
         }}
         // animation={{
         //   continous=
         // }}
       >
-        Hello World
+        {/* Hello World */}
       </Animated>
       <button onClick={toggleModal} >Modal Action</button>
       <Modal

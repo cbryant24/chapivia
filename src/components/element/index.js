@@ -1,4 +1,6 @@
-export { keyframes as keyframes } from 'styled-components'
+export { keyframes as keyframes } from 'styled-components';
+export { css as css } from 'styled-components';
+
 
 //Layouts
 export { GlobalStyle as GlobalStyle } from './ThemeProvider';

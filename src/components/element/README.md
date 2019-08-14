@@ -82,6 +82,12 @@ export default Form = (props) => {
 
 Use the `Animated` component that is exported to add animations to an element. To define the animations provide an object to the animations props. 
 
+`animation_fill_mode` property accepts `none | forwards | backwards | both | initial | inherit;` if none is provided the default value `none` will be used.
+
+`animation_timing_function` property accepts `linear | ease | ease-in | ease-out | ease-in-out | step-start | step-end | steps(int, start|end) | cubic-bezier(n,n,n,n) | initial | inherit` if none is provided the default value of `ease` will be used.
+
+`animation_direction` property accepts `normal | reverse | alternate | alternate-reverse | initial | inherit ` if none is provided the default value of `normal` will be used.
+
 | Animation Property | Description                                                                                                                                                                                                                                                                                       | value    | output                                                                                                                                                                                                                                                         |
 |--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | delay_in           | receives integer greater than 0 to delay the in <br> animation                                                                                                                                                                                                                                    | integer  | ```javascript animation={delay_in: 5} ```                                                                                                                                                                                                                      |

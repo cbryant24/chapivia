@@ -2438,3 +2438,10 @@ export const pseudoElements = [
   'firstLetter',
   'selection'
 ]
+
+export const transitionTypes = [
+  'hover', 
+  'focus', 
+  'blur', 
+  'active'
+];

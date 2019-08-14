@@ -1,8 +1,10 @@
 import { system } from 'styled-system';
 import { cssProperties, pseudoClasses, pseudoElements } from './cssHelpers';
+import { validateAnimation } from './cssValidators';
 
-import css from '@styled-system/css';
+import styledCSS from '@styled-system/css';
 
+import { keyframes, css } from 'styled-components'
 
 export const addStyles = props => {
   const cssProps = {};
@@ -25,24 +27,48 @@ export const addPseudo = props => {
   pseudoClassProps.forEach( pseudoType => pseudo[`:${pseudoType}`] = props[pseudoType] );
   pseudoElementProps.forEach( pseudoType => pseudo[`::${pseudoType}`] = props[pseudoType]);
 
-  // debugger
   if (pseudoElementProps.indexOf('firstLine') >= 0)
     pseudo['::first-line'] = pseudo['::firstLine'];
 
   if (pseudoElementProps.indexOf('firstLetter') >= 0)
     pseudo['::first-letter'] = pseudo['::firstLetter'];
-    // debugger
-  if (pseudoElementProps.indexOf('before') >= 0)
+
+  if (pseudoElementProps.indexOf('before') >= 0) {
     pseudo['::before'].content = `\'${pseudo['::before'].content}\'`;
+
+    // if(pseudo['::before'].animation) {
+    //   validateAnimation(pseudo['::before'].animation);
+
+
+    // }
+    // debugger
+    const ani = keyframes`
+        0% { opacity: 0}
+        100% { opacity: 1 }
+      `
+
+      const callAni = () => css`${ani} 1s`
+      pseudo['::before'].animation = callAni;
+    // pseudo['::before']['animation-name'] = ani;
+    // pseudo['::before']['animation-duration'] = '5s';
+    debugger
+  }
+    
 
   if (pseudoElementProps.indexOf('after') >= 0)
     pseudo['::after'].content = `\'${pseudo['::after'].content}\'`;
     
   // debugger
-  return css({ ...pseudo });
+
+  // const buildPseudoAnimation = animation => {
+
+  //   const get
+  // }
+  const val = styledCSS({ ...pseudo });
+  debugger
+  return val
 }
 
 export const getStyles = props => {
   const styleProps = {};
-
 }

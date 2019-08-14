@@ -18,6 +18,9 @@ export const ExtendedBox = styled(cleanElement(Base))(
     minWidth: 0,
   },
   addPseudo,
+  props => {
+    debugger
+  },
   props => addStyles(props),
   ALL
 )
