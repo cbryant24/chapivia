@@ -4,6 +4,8 @@ import cleanElement from 'clean-element';
 import { ALL } from './utils/constants';
 import { addStyles, filterProps, addPseudo } from './utils'
 
+import { animationRule } from '../elements/animations'
+
 const Base = props => {
 
   const Div = styled.div``;
@@ -33,20 +35,43 @@ export const ExtendedBox = styled(cleanElement(Base))(
   ALL
 )
 
-const animation = keyframes`
-  0% {
-    opacity: 0;
-  }
+// const animation = keyframes`
+//   0% {
+//     opacity: 0;
+//   }
 
-  100% {
-    opacity: 1;
-  }
-`
+//   100% {
+//     opacity: 1;
+//   }
+// `
 
-const animationRule = css`${animation} 1s`
+// // const animationRule = css`${animation} 1s infinite alternate`
+// const animationRule = css`${animation}`
+
+const aniObj = {
+  'animation-name': () => animationRule,
+  'animation-duration': '1s',
+  'animation-iteration-count': 'infinite',
+  'animation-timing-function': 'ease',
+  'animation-direction': 'alternate',
+  'animation-delay': '0s',
+  'animation-fill-mode': 'none',
+  'animation-play-state': 'running'
+}
 
 export const ExtendedTestBox = styled(cleanElement(Base))`
-  animation: ${animationRule} 1s infinite;
+//POSSIBLY try cloning the props into it
+  ${addPseudo}
+  // ${aniObj}
+  // animation-name: ${() => { return animationRule}};
+  // animation-duration: 1s;
+  // animation-iteration-count: infinite;
+  // animation-timing-function: ease;
+  // animation-direction: alternate;
+  // animation-delay: 0s;
+  // animation-fill-mode: none;
+  // animation-play-state: running;
+  // animation: ${animationRule};
 `
 
 export const ExtendedFlex = styled(cleanElement(Base))(

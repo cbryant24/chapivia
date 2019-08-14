@@ -17,7 +17,7 @@ export const addStyles = props => {
 export const addPseudo = props => {
   if (!props.pseudo) return;
 
-  let pseudoAnimations = {};
+  let pseudoAnimations = null;
   const elementProps = Object.getOwnPropertyNames(props);
   const pseudoClassProps = elementProps.filter( prop => pseudoClasses.includes(prop));
   const pseudoElementProps = elementProps.filter( prop => pseudoElements.includes(prop));
@@ -37,16 +37,39 @@ export const addPseudo = props => {
   if (pseudoElementProps.indexOf('before') >= 0) {
     pseudo['::before'].content = `\'${pseudo['::before'].content}\'`;
 
-    // if(pseudo['::before'].animation) {
-    //   validateAnimation(pseudo['::before'].animation);
+    if(pseudo['::before'].animation) {
+      validateAnimation(pseudo['::before'].animation);
+      const { animation } = pseudo['::before'];
+      // debugger
+      // const animationName = animation.in || animation.continuous || animation.out;
+      // const animationDuration = animation.duration_continous || animation.duration_out;
 
-
-    // }
+      const animationRule = css`${animation.continuous}`
+      // pseudoAnimations = {
+      //   'animation-name': () => animationRule,
+      //   'animation-duration': animation.duration_continuous,
+      //   'animation-iteration-count': 'infinite',
+      //   'animation-timing-function': 'ease',
+      //   'animation-direction': animation.animation_direction,
+      //   'animation-delay': '0s',
+      //   'animation-fill-mode': animation.animation_fill_mode,
+      //   'animation-play-state': 'running'
+      // }
+      // debugger
+      pseudo['::before']['animation-name']= () => animationRule;
+      pseudo['::before']['animation-duration'] = animation.duration_continuous;
+      pseudo['::before']['animation-iteration-count'] = 'infinite';
+      pseudo['::before']['animation-timing-function'] = 'ease';
+      pseudo['::before']['animation-direction'] = animation.animation_direction;
+      pseudo['::before']['animation-delay'] = '0s';
+      pseudo['::before']['animation-fill-mode'] = animation.animation_fill_mode;
+      pseudo['::before']['animation-play-state'] = 'running'
+    }
     // debugger
-    pseudoAnimations.keyFrames = keyframes`
-        0% { opacity: 0}
-        100% { opacity: 1 }
-      `
+    // pseudoAnimations.keyFrames = keyframes`
+    //     0% { opacity: 0}
+    //     100% { opacity: 1 }
+    //   `
 
       // const callAni = () => css`${ani} 1s`
       // pseudo['::before'].animation = callAni;
@@ -68,7 +91,7 @@ export const addPseudo = props => {
   const val = styledCSS({ ...pseudo });
   
   // debugger
-  return {val, pseudoAnimations}
+  return val
 }
 
 export const getStyles = props => {

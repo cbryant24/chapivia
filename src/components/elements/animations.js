@@ -115,3 +115,16 @@ export const generateRandomClipFrames = (len = 200) => {
     `
   )
 }
+
+export const animationKeys = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`
+
+// const animationRule = css`${animation} 1s infinite alternate`
+export const animationRule = css`${animationKeys}`
