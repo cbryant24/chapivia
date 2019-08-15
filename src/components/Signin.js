@@ -87,12 +87,12 @@ function Signin(props) {
     style: { height: 1, justifyContent: 'space-around', flexDirection: 'column', px: 2, fontSizeModule: [1, 2, 3, 4]},
   }
 
-  const anim = () => {
-    return (keyframes`
+  const anim = keyframes`
     0% { opacity: 0%; }
     100% { opacity: 100%; }
-  `)
-};
+  `
+
+  const anime = css`${anim} 1s infinite`
 
 return (
     <FlexItem
@@ -128,16 +128,14 @@ return (
            overflow: 'hidden',
            clip: 'rect(0, 900px,0,0)',
            animation: {
-             continuous: anim, 
-             duration_continuous: 10, 
-             animation_fill_mode: 'linear',
-             animation_direction: 'alternate-reverse'
+            continuous: anim,
+            duration_continuous: 5
            }
          }}
-        after={{
-          content: 'Goodbye World',
-          margin: [1, 2]
-        }}
+        // after={{
+        //   content: 'Goodbye World',
+        //   margin: [1, 2]
+        // }}
         // animation={{
         //   continous=
         // }}

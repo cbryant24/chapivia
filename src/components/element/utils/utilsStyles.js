@@ -3,6 +3,7 @@ import { cssProperties, pseudoClasses, pseudoElements } from './cssHelpers';
 import { validateAnimation } from './cssValidators';
 
 import styledCSS from '@styled-system/css';
+import { getAnimation } from '../animations'
 
 import { keyframes, css } from 'styled-components'
 
@@ -38,44 +39,33 @@ export const addPseudo = props => {
     pseudo['::before'].content = `\'${pseudo['::before'].content}\'`;
 
     if(pseudo['::before'].animation) {
-      validateAnimation(pseudo['::before'].animation);
+      // debugger
+      // switch
       const { animation } = pseudo['::before'];
-      // debugger
-      // const animationName = animation.in || animation.continuous || animation.out;
-      // const animationDuration = animation.duration_continous || animation.duration_out;
 
-      const animationRule = css`${animation.continuous}`
-      // pseudoAnimations = {
-      //   'animation-name': () => animationRule,
-      //   'animation-duration': animation.duration_continuous,
-      //   'animation-iteration-count': 'infinite',
-      //   'animation-timing-function': 'ease',
-      //   'animation-direction': animation.animation_direction,
-      //   'animation-delay': '0s',
-      //   'animation-fill-mode': animation.animation_fill_mode,
-      //   'animation-play-state': 'running'
-      // }
+      validateAnimation(pseudo['::before'].animation);
       // debugger
-      pseudo['::before']['animation-name']= () => animationRule;
-      pseudo['::before']['animation-duration'] = animation.duration_continuous;
-      pseudo['::before']['animation-iteration-count'] = 'infinite';
-      pseudo['::before']['animation-timing-function'] = 'ease';
-      pseudo['::before']['animation-direction'] = animation.animation_direction;
-      pseudo['::before']['animation-delay'] = '0s';
-      pseudo['::before']['animation-fill-mode'] = animation.animation_fill_mode;
-      pseudo['::before']['animation-play-state'] = 'running'
+      const currentAnimation = getAnimation(pseudo['::before']);
+
+      if (currentAnimation.animation) {
+        currentAnimation.animation = () => currentAnimation.animation;
+        pseudo['::before'].animation = {...currentAnimation}
+        debugger
+      } else {
+        for (let key in animation) {
+          switch(key) {
+            case 'continuous':
+            case 'in':
+            case 'out':
+              pseudo['::before'].animation[key] = () => pseudo['::before'].animation[key]
+          }
+        }
+      }
+      
+
+      pseudo['::before'].animation.continuous = () => pseudo['::before'].animation.continous;
+
     }
-    // debugger
-    // pseudoAnimations.keyFrames = keyframes`
-    //     0% { opacity: 0}
-    //     100% { opacity: 1 }
-    //   `
-
-      // const callAni = () => css`${ani} 1s`
-      // pseudo['::before'].animation = callAni;
-    // pseudo['::before']['animation-name'] = ani;
-    // pseudo['::before']['animation-duration'] = '5s';
-    // debugger
   }
     
 
@@ -83,6 +73,7 @@ export const addPseudo = props => {
     pseudo['::after'].content = `\'${pseudo['::after'].content}\'`;
     
   // debugger
+
 
   // const buildPseudoAnimation = animation => {
 

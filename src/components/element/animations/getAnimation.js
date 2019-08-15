@@ -1,46 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import {
-  FadeAnimations,
-  BounceAnimations,
-  ScaleAnimations,
-  RotateAnimations,
-  SlideAnimations
-} from './animations';
-import { ExtendedBox } from '../ExtendedComponents';
-import { addProps } from '../utils';
 import { validateAnimation, validateTransitions } from '../utils'
 
-import { getAnimation } from './getAnimation';
-
-const Wrapper = styled(ExtendedBox)`
-  animation-duration: ${({ duration }) => (duration ? `${duration}s` : '1s')};
-  animation-name: ${({ animation }) => animation ? animation : 'no-animation'};
-  animation-fill-mode: ${({ animationFillMode }) => 
-    animationFillMode ? animationFillMode : 'forwards'};
-  animation-iteration-count: ${({ iteration }) => iteration ? iteration : '1'};
-  animation-timing-function: ${({animationTimingFunction}) => 
-    animationTimingFunction ? animationTimingFunction : 'ease'}
-  animtation-direction: ${({animationDirection}) => 
-    animationDirection ? animationDirection : 'normal'}
-  > * {
-    ${({ transitionFrom }) =>
-      transitionFrom && transitionFrom !== '' ? transitionFrom : ''};
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      ${({ transitionTo }) =>
-        transitionTo && transitionTo !== '' ? transitionTo : ''};
-    }
-  }
-  &:focus {
-    ${({ transitionTo }) =>
-      transitionTo && transitionTo !== '' ? transitionTo : ''};
-  }
-  &:active {
-  }
-`;
-
-const Animated = props => {
+export const getAnimation = animationVals => {
   const [ delay_waited, setDelayWaited ]              = useState(false);
   const [ in_time_waited, setInTimeWaited ]           = useState(false);
   const [ between_time_waited, setBetweenTimeWaited ] = useState(false);
@@ -48,8 +9,10 @@ const Animated = props => {
   const [ transite_out, setTransiteOut ]              = useState(false);
   const [ transite_continuous, setTransiteContinous ] = useState(false);
   const [ delay_out_waited, setDelayOutWaited ]       = useState(false);
-  const { animation, transition, children }           = props;
-  
+  const { animation, transition, children }           = animationVals;
+  debugger
+
+  // if (typeof animation === )
   useEffect(() => {
     // Validate Animation
     validateAnimation(animation);
@@ -160,11 +123,6 @@ const Animated = props => {
     }, waitTime)
   }
 
-  const haveDelayIn = animation => {
-    if (!animation) return;
-    return 'delay_in' in animation;
-  };
-  
   const haveAnimationIn = animation => {
     if (!animation) return;
     return 'in' in animation;
@@ -211,7 +169,7 @@ const Animated = props => {
           transite_out
           ? animation.out
           : null;
-
+// debugger
           return val
   };
 
@@ -279,38 +237,26 @@ const Animated = props => {
     return animation.animation_direction;
   }
 
-  const createAnimatedComponent = () => {
-    const { animation, transition, ...rest} = props;
-    const AnimatedWrapper = <Wrapper
-                              id="animated_thing"
-                              animation={getCurrentAnimation()}
-                              animationFillMode={getAnimationFillMode()}
-                              animationTimingFunction={getAnimationTimingFunction()}
-                              animationDirection={getAnimationDirection()}
-                              duration={getCurrentDuration()}
-                              iteration={getCurrentIteration()}
-                              transitionFrom={getTransitionFrom()}
-                              transitionTo={getTransitionTo()}
-                            >
-                              {children}
-                            </Wrapper>
+  const getAnimationValues = () => {
 
-    const AnimatedPropsWrapper = addProps(AnimatedWrapper, rest)
+    const timedAnimation = {
+      animation: getCurrentAnimation(),
+      animationFillMode: getAnimationFillMode(),
+      animationTimingFunction: getAnimationTimingFunction(),
+      animationDirection: getAnimationDirection(),
+      duration: getCurrentDuration(),
+      iteration: getCurrentIteration(),
+      transitionFrom: getTransitionFrom(),
+      transitionTo: getTransitionTo()
+    }
     // debugger
-    return AnimatedPropsWrapper;
+    return timedAnimation;
   }
 
-  return ( delay_waited && transite_in ? createAnimatedComponent() : <Wrapper></Wrapper>
+  // debugger
+  
+  const val = delay_waited && transite_in ? getAnimationValues() : '';
 
-  )
+  // debugger
+  return val
 }
-
-export {
-  Animated,
-  FadeAnimations,
-  BounceAnimations,
-  ScaleAnimations,
-  RotateAnimations,
-  SlideAnimations,
-  getAnimation
-};
