@@ -7,7 +7,7 @@ import {
   COMMON, BORDER, TYPOGRAPHY, LAYOUT, SPACE, CURSOR,
   POSITION, FLEX, GRID, TRANSITION, COLOR, APPEARANCE,
   SHADOW, TEXTDECORATION, FONTSIZESMODULES, ZINDEX, HOVER,
-  BEFOREFONTSIZE
+  ALL
 } from './constants';
 
 export {
@@ -21,9 +21,9 @@ export {
   pseudoClasses,
   validateAnimation,
   validateTransitions,
+  ALL,
   COMMON,
   BORDER,
-  BEFOREFONTSIZE,
   TYPOGRAPHY,
   LAYOUT,
   POSITION,

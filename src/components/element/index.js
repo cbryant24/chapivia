@@ -29,8 +29,6 @@ export { default as BoxBorder } from './BoxBorder';
 export { BoxAnimated as BoxAnimated } from './Box';
 export { default as TextAnimated } from './TextAnimated';
 export { ExtendedBox as ExtendedBox } from './ExtendedComponents';
-export { ExtendedTestBox as ExtendedTestBox } from './ExtendedComponents';
-
 
 //Utilities
 export { addProps as addProps } from './utils';
@@ -44,4 +42,5 @@ export { RotateAnimations as RotateAnimations } from './animations';
 export { SlideAnimations as SlideAnimations } from './animations';
 
 //CSS Psuedo
-export { default as PsuedoBox } from './PsuedoBox';
+export { BoxPseudo as BoxPseudo } from './BoxPseudo';
+export { BoxAnimatedPseudo as BoxAnimatedPseudo } from './BoxPseudo';

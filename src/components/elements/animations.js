@@ -76,6 +76,35 @@ export const textGlitch = (dis, len) => {
   );
 }
 
+export const glitchTop = () => {
+  return keyframes`
+    2%{ transform: translate(2px,-2px); }
+    4%{ transform: translate(-2px,2px); }
+    60% { transform: translate(-2px,2px); }
+    62% { transform: translate(13px,-1px) skew(-13deg); }
+    64%{ transform: translate(2px,-2px); }
+  `
+}
+
+export const glitchMiddle = () => {
+  return keyframes`
+    2%{ transform: translate(2px,0) skew(0deg);}
+    4%{ transform: translate(-2px,0) skew(0deg);}
+    60%{ transform: translate(-2px,0) skew(0deg);}
+    62%{ transform: translate(0,0) skew(5deg); }
+    64%{ transform: translate(2px,0) skew(0deg);}
+  `
+}
+
+export const glitchBottom = () => {
+  return keyframes`
+    2% { transform: translate(-2px,0); }
+    4% { transform: translate(-2px,0); }
+    60%{ transform: translate(-2px,0); }
+    62%{ transform: translate(-22px,5px) skew(21deg); }
+    64%{ transform: translate(-2px,0); }
+  `
+}
 
 export const randomSquareGlitch = () => {
 

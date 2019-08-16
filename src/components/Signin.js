@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 
-import { FlexItem, ExtendedBox, ExtendedTestBox, addProps, Field, Flex, Text, Animated, FadeAnimations, RotateAnimations, PsuedoBox } from './element';
+import { FlexItem, ExtendedBox, BoxAnimatedPseudo, addProps, Field, Flex, Text, Animated, FadeAnimations, RotateAnimations, PsuedoBox } from './element';
 import theme from './elements/theme';
 import helpers from './helpers';
 
@@ -17,7 +17,7 @@ import Modal from './element/modal';
 
 import styledCSS from '@styled-system/css';
 import { isAbsolute } from 'upath';
-import { noiseAnimation } from './elements/animations';
+import { noiseAnimation, glitchBottom, glitchTop, glitchMiddle } from './elements/animations';
 
 
 import { keyframes, css } from 'styled-components';
@@ -87,13 +87,6 @@ function Signin(props) {
     style: { height: 1, justifyContent: 'space-around', flexDirection: 'column', px: 2, fontSizeModule: [1, 2, 3, 4]},
   }
 
-  const anim = keyframes`
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  `
-
-  const anime = css`${anim} 1s infinite`
-
 return (
     <FlexItem
       border="1px solid black"
@@ -116,45 +109,42 @@ return (
         buttons={buttons}
       >
       </FormApp> */}
-      <ExtendedTestBox
+      <BoxAnimatedPseudo
         pseudo
+        position="relative"
+        fontSize={[1,2]}
+        animation={{
+          continuous: glitchMiddle(),
+          duration_continuous: 1,
+          animation_timing_function: 'linear'
+        }}
         before={{
           content: 'Hello World',
+          position: 'absolute',
           fontSize: [1,2],
-          textShadow: '1px 0 blue',
-          color: 'blue.3',
-          clip: "rect(0, 900px, 0, 0)",
+          left: 0,
+          clipPath: 'polygon(0 0, 100% 0, 100% 33%, 0 33%)',
           animation: {
-            continuous: anim,
-            duration_continuous: 5,
-            animation_direction: 'alternate',
-
+            continuous: glitchTop(),
+            duration_continuous: 1,
+            animation_timing_function: 'linear'
           }
         }}
-        // before={{
-        //    content: 'Hello World',
-        //    fontSize: [1, 2],
-        //    //position: 'absolute',
-        //    //left: '-2px',
-        //    textShadow: '1px 0 blue.1',
-        //    color: 'white',
-        //    overflow: 'hidden',
-        //    clip: 'rect(0, 900px,0,0)',
-        //    animation: {
-        //     continuous: anim,
-        //     duration_continuous: 5
-        //    }
-        //  }}
-        // after={{
-        //   content: 'Goodbye World',
-        //   margin: [1, 2]
-        // }}
-        // animation={{
-        //   continous=
-        // }}
+        after={{
+          content: 'Hello World',
+          position: 'absolute',
+          fontSize: [1,2],
+          left: 0,
+          clipPath: 'polygon(0 67%, 100% 67%, 100% 100%, 0 100%)',
+          animation: {
+            continuous: glitchBottom(),
+            duration_continuous: 1.5,
+            animation_timing_function: 'linear'
+          }
+        }}
       >
-        This Country
-      </ExtendedTestBox>
+        Hello World
+      </BoxAnimatedPseudo>
       <button onClick={toggleModal} >Modal Action</button>
       <Modal
         isOpen={isOpen}
