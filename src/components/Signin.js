@@ -88,8 +88,8 @@ function Signin(props) {
   }
 
   const anim = keyframes`
-    0% { opacity: 0%; }
-    100% { opacity: 100%; }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
   `
 
   const anime = css`${anim} 1s infinite`
@@ -119,19 +119,32 @@ return (
       <ExtendedTestBox
         pseudo
         before={{
-           content: 'Hello World',
-           fontSize: [1, 2],
-           //position: 'absolute',
-           //left: '-2px',
-           textShadow: '1px 0 blue',
-           color: 'white',
-           overflow: 'hidden',
-           clip: 'rect(0, 900px,0,0)',
-           animation: {
+          content: 'Hello World',
+          fontSize: [1,2],
+          textShadow: '1px 0 blue',
+          color: 'blue.3',
+          clip: "rect(0, 900px, 0, 0)",
+          animation: {
             continuous: anim,
-            duration_continuous: 5
-           }
-         }}
+            duration_continuous: 5,
+            animation_direction: 'alternate',
+
+          }
+        }}
+        // before={{
+        //    content: 'Hello World',
+        //    fontSize: [1, 2],
+        //    //position: 'absolute',
+        //    //left: '-2px',
+        //    textShadow: '1px 0 blue.1',
+        //    color: 'white',
+        //    overflow: 'hidden',
+        //    clip: 'rect(0, 900px,0,0)',
+        //    animation: {
+        //     continuous: anim,
+        //     duration_continuous: 5
+        //    }
+        //  }}
         // after={{
         //   content: 'Goodbye World',
         //   margin: [1, 2]

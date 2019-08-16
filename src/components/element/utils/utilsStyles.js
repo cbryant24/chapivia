@@ -17,7 +17,7 @@ export const addStyles = props => {
 
 export const addPseudo = props => {
   if (!props.pseudo) return;
-
+  debugger
   let pseudoAnimations = null;
   const elementProps = Object.getOwnPropertyNames(props);
   const pseudoClassProps = elementProps.filter( prop => pseudoClasses.includes(prop));
@@ -36,7 +36,7 @@ export const addPseudo = props => {
     pseudo['::first-letter'] = pseudo['::firstLetter'];
 
   if (pseudoElementProps.indexOf('before') >= 0) {
-    pseudo['::before'].content = `\'${pseudo['::before'].content}\'`;
+    pseudo['::before'].content = `\'${pseudo['::before'].content.replace(/['"]+/g, '')}\'`;
 
     if(pseudo['::before'].animation) {
       // debugger
@@ -48,29 +48,24 @@ export const addPseudo = props => {
       const currentAnimation = getAnimation(pseudo['::before']);
 
       if (currentAnimation.animation) {
-        currentAnimation.animation = () => currentAnimation.animation;
         pseudo['::before'].animation = {...currentAnimation}
-        debugger
+        // debugger
       } else {
-        for (let key in animation) {
-          switch(key) {
-            case 'continuous':
-            case 'in':
-            case 'out':
-              pseudo['::before'].animation[key] = () => pseudo['::before'].animation[key]
-          }
-        }
+        // for (let key in animation) {
+        //   switch(key) {
+        //     case 'continuous':
+        //     // case 'in':
+        //     // case 'out':
+        //       pseudo['::before'].animation[key] = () => pseudo['::before'].animation[key]
+        //   }
+        // }
       }
-      
-
-      pseudo['::before'].animation.continuous = () => pseudo['::before'].animation.continous;
-
     }
   }
     
 
   if (pseudoElementProps.indexOf('after') >= 0)
-    pseudo['::after'].content = `\'${pseudo['::after'].content}\'`;
+    pseudo['::after'].content = `\'${pseudo['::after'].content.replace(/['"]+/g, '')}\'`;
     
   // debugger
 
@@ -79,10 +74,10 @@ export const addPseudo = props => {
 
   //   const get
   // }
-  const val = styledCSS({ ...pseudo });
-  
   // debugger
-  return val
+  const val = styledCSS({ ...pseudo });
+  // debugger
+  return pseudo;
 }
 
 export const getStyles = props => {

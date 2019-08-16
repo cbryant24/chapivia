@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { validateAnimation, validateTransitions } from '../utils'
 
-export const getAnimation = animationVals => {
+export const getAnimation = props => {
   const [ delay_waited, setDelayWaited ]              = useState(false);
   const [ in_time_waited, setInTimeWaited ]           = useState(false);
   const [ between_time_waited, setBetweenTimeWaited ] = useState(false);
@@ -9,9 +9,10 @@ export const getAnimation = animationVals => {
   const [ transite_out, setTransiteOut ]              = useState(false);
   const [ transite_continuous, setTransiteContinous ] = useState(false);
   const [ delay_out_waited, setDelayOutWaited ]       = useState(false);
-  const { animation, transition, children }           = animationVals;
-  debugger
+  const { animation, transition, children }           = props;
+  // debugger
 
+  //DETERMINe 
   // if (typeof animation === )
   useEffect(() => {
     // Validate Animation
@@ -159,6 +160,7 @@ export const getAnimation = animationVals => {
   };
 
   const getCurrentAnimation = () => {
+    // debugger
     if (!animation) return;
     const val = transite_in && !transite_continuous && !transite_out
       ? animation.in
@@ -169,7 +171,8 @@ export const getAnimation = animationVals => {
           transite_out
           ? animation.out
           : null;
-// debugger
+
+          // debugger
           return val
   };
 
@@ -184,7 +187,7 @@ export const getAnimation = animationVals => {
           ? animation.duration_out
           : null;
 
-          return val
+          return typeof val === 'number' ? `${val}s`:val
   };
 
   const getCurrentIteration = () => {

@@ -42,6 +42,13 @@ export const FONTSIZESMODULES = system({
   }
 });
 
+export const BEFOREFONTSIZE = system({
+  beforeFontSize: {
+    property: '::before',
+    scale: 'fontSizes'
+  }
+})
+
 export const HOVER = system({
   hover: {
     property: (() => ':hover')(),

@@ -3,8 +3,12 @@ import styled, { css, keyframes } from 'styled-components';
 import cleanElement from 'clean-element';
 import { ALL } from './utils/constants';
 import { addStyles, filterProps, addPseudo } from './utils'
+import { getAnimation } from './animations';
 
 // import { animationRule } from '../elements/animations'
+
+import styledCSS from '@styled-system/css';
+
 
 const Base = props => {
 
@@ -45,8 +49,8 @@ const animation = keyframes`
   }
 `
 
-const animationRule = css`${animation} 1s infinite alternate`
-// const animationRule = css`${animation}`
+// const animationRule = css`${animation} 1s infinite alternate`
+const animationRule = css`${animation}`
 
 // const aniObj = {
 //   'animation-name': () => animationRule,
@@ -73,62 +77,39 @@ const before = css`
   }
 `
 
+
 export const ExtendedTestBox = styled(cleanElement(Base))`
+
   ${props => {
-      // debugger
-      if (props.pseudo) {
-        const val = addPseudo(props)();
-        // debugger
-        // debugger
-        // const keys = val['::before'].animation.continuous.trim()
-        // const anim = keyframes`${keys}`
-        // const before = val['::before']
-        // const anime = css`${anim} 1s infinite`
-        
-        // val['::before'] = { ...before, animation: css`${animationRule}`}
-        // // debugger
-        // return css`
-        //   ::before {
-        //     content: ${val['::before'].content};
-        //     clip: ${val['::before'].clip};
-        //     color: ${val['::before'].color};
-        //     font-size: ${val['::before'].fontSize}px;
-        //     overflow: ${val['::before'].overflow};
-        //     text-shadow: ${val['::before'].textShadow};
-        //     animation: ${val['::before'].animation};
-
-        //     @media screen and (min-width: 40em) {
-        //       font-size: 24px;
-        //     }
-        //   }
-        // `
-
-        // val['::before'].animation = css`${anim} 1s infinite`
-        // const obj = {
-        //   '::before': {
-        //     content: 'hello world',
-        //     color: 'white'
-        //   }
-        // }
-        // const what = 'hello max'
-        // `::before { content: "${what}"}`
-        // debugger
-        
-        return val
-      }
+    // debugger
+      if (!props.pseudo) return;
+      return (styledCSS({
+        '&::before': {
+          content: JSON.stringify(props.before.content),
+          fontSize: props.before.fontSize,
+        }
+      }));
     }
   }
-  
 
-  // animation-name: ${() => { return animationRule}};
-  // animation-duration: 1s;
-  // animation-iteration-count: infinite;
-  // animation-timing-function: ease;
-  // animation-direction: alternate;
-  // animation-delay: 0s;
-  // animation-fill-mode: none;
-  // animation-play-state: running;
-  // animation: ${animationRule};
+  ${ props => {
+    if (!props.pseudo || !props.before.animation) return;
+
+    const animationProperties = getAnimation(props.before);
+    // debugger
+    return (
+      css`
+        :: before {
+        animation-name: ${animationProperties.animation};
+        animation-duration: ${animationProperties.duration};
+        animation-iteration-count: ${animationProperties.iteration};
+        animation-timing-function: ${animationProperties.animationTimingFunction};
+        animation-direction: ${animationProperties.animationDirection};
+        animation-fill-mode: ${animationProperties.animationFillMode};
+        animation-play-state: running;
+      }`
+    );
+  }}
 `
 
 export const ExtendedFlex = styled(cleanElement(Base))(

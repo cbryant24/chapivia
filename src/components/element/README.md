@@ -114,7 +114,7 @@ Use the `Animated` component that is exported to add animations to an element. T
 A function `keyframes` is made available to create custom animations. To create a custom animation pass the created keyframes animation to Animated component in the appropriate places where keyframes are expected.
 
 ## Psuedo Classes/Elements
-The pseudo classes `active, focus, hover, lang, link, visited` and pseudo elements `after, before, first-letter, first-line, selection` can be used to further style elments. Include the keyword `pseudo` and pass an object using the appropriate pseudo name to style.
+The pseudo classes `active, focus, hover, lang, link, visited` and pseudo elements `after, before, first-letter, first-line, selection` can be used to further style elments. Include the keyword `pseudo` and pass an object using the appropriate pseudo name to style. 
 
 ```javascript
   <Box
@@ -123,4 +123,24 @@ The pseudo classes `active, focus, hover, lang, link, visited` and pseudo elemen
   >
     I am a pseudo element
   </Box>
+```
+
+Pseudo element animations are not able to hook into the themimng, and therefore can't take advantage of the array repsonsive design. A function that returns the window size is exported that will allow you to get the window size and update the animations is available as an alternativet
+
+```javascript 
+  import { useWindowSize, keyframes } from 'react-styled-everything'
+
+  var keyframes = windowSize >= '320px' ? 
+  keyframes`
+    0% { font-size: 16px; }
+    100% { font-size: 24px; }
+  ` :
+  keyframes`
+    0% { font-size: 18px: }
+    100% { font-size: 26px; }
+  `
+  var 
+  const pseudoElementAnimations = {
+
+  }
 ```

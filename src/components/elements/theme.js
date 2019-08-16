@@ -59,6 +59,10 @@ export const mediaQueries = {
   reduceTransparency: '@media (prefers-reduced-transparency: reduce)'
 };
 
+export const pseudoElements = {
+  
+}
+
 addAliases(breakpoints, aliases);
 addAliases(mediaQueries, aliases);
 // debugger
