@@ -49,13 +49,6 @@ export const BEFOREFONTSIZE = system({
   }
 })
 
-export const HOVER = system({
-  hover: {
-    property: (() => ':hover')(),
-    scale: 'fontSizes'
-  }
-});
-
 export const TYPOGRAPHY = styledSystem.typography;
 export const LAYOUT     = styledSystem.layout;
 export const POSITION   = styledSystem.position;
@@ -81,4 +74,5 @@ export const ALL = styledSystem.compose(
   SHADOW,
   TYPOGRAPHY,
   TEXTDECORATION,
+  TRANSITION
 );

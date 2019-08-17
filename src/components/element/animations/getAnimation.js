@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { validateAnimation, validateTransitions } from '../utils'
+import { validateAnimation } from '../utils'
 
 export const getAnimation = props => {
   const [ delay_waited, setDelayWaited ]              = useState(false);
@@ -9,17 +9,12 @@ export const getAnimation = props => {
   const [ transite_out, setTransiteOut ]              = useState(false);
   const [ transite_continuous, setTransiteContinous ] = useState(false);
   const [ delay_out_waited, setDelayOutWaited ]       = useState(false);
-  const { animation, transition, children }           = props;
+  const { animation }                                 = props;
   // debugger
 
-  //DETERMINe 
-  // if (typeof animation === )
   useEffect(() => {
     // Validate Animation
     validateAnimation(animation);
-
-    // Validate Transitions
-    validateTransitions(transition);
 
     //Set delay_waited regardless of specified or not
     setDelayAsWaited(calculateDelayInTime(animation));
@@ -74,14 +69,6 @@ export const getAnimation = props => {
     // Then trigger the OUT animation
     triggerOutAnimation();
   }, [between_time_waited, delay_out_waited]);
-  
-
-  const waitUntill = amount =>
-  new Promise((resolve, reject) => {
-    setTimeout(function() {
-      return resolve();
-    }, amount);
-  });
 
   const triggerInAnimation = () => {
     return setTransiteIn(true);
@@ -199,26 +186,6 @@ export const getAnimation = props => {
     return val
   };
 
-  const getTransitionFrom = () => {
-    
-    if (!transition) return;
-    const val = transition.type === 'hover'
-      ? `${transition.from.property}: ${transition.from.value}`
-      : '';
-
-      return val
-  };
-
-  const getTransitionTo = () => {
-
-    if (!transition) return;
-    const val = transition.type === 'hover'
-      ? `${transition.to.property}: ${transition.to.value};`
-      : '';
-
-      return val
-  };
-
   //TODO: may need to add validation check that correct animation-fill-mode is provided
   const getAnimationFillMode = () => {
     if (!animation) return;
@@ -249,8 +216,6 @@ export const getAnimation = props => {
       animationDirection: getAnimationDirection(),
       duration: getCurrentDuration(),
       iteration: getCurrentIteration(),
-      transitionFrom: getTransitionFrom(),
-      transitionTo: getTransitionTo()
     }
     // debugger
     return timedAnimation;

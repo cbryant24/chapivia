@@ -1,6 +1,6 @@
 import React from 'react';
 import { bgAnimation, bgGlowAnimation } from './elements/animations';
-import { BoxBorder, Animated, Box, ExtendedBox } from './element';
+import { BoxBorder, BoxAnimated, Box, ExtendedBox } from './element';
 import Title from './Title';
 
 function Background(props) {
@@ -23,7 +23,7 @@ function Background(props) {
       height="auto"
       minHeight="100vh"
     >
-      <Animated
+      <BoxAnimated
         animation={{
           continuous: bgAnimation(),
           duration_continuous: 10,
@@ -59,7 +59,7 @@ function Background(props) {
         position="absolute"
         zIndex="5"
       />
-      <Animated
+      <BoxAnimated
         background="radial-gradient(
           circle at center,
           rgba(27,212,89,1) 0%,

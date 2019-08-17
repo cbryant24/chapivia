@@ -348,8 +348,4 @@ export const filterProps = props => {
     "grid-row-end",
     "grid-column-end",
     "itemname"
-  ])}
-
-  export const removeProvidedProps = (vals) => {
-
-  }
+])}

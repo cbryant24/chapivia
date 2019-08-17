@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import cleanElement from 'clean-element';
-import { ALL } from './utils/constants';
+import { ALL} from './utils/constants';
 import { addStyles, filterProps, addPseudo } from './utils'
 
 const Base = props => {
@@ -20,16 +20,6 @@ export const ExtendedBox = styled(cleanElement(Base))(
   props => addStyles(props),
   ALL
 )
-
-const animation = keyframes`
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-`
 
 export const ExtendedFlex = styled(cleanElement(Base))(
   {
@@ -89,4 +79,13 @@ export const ExtendedButton = styled(cleanElement(Base))(
   },
   props => addStyles(props),
   ALL
+)
+
+export const ExtendedTestBox = styled(cleanElement(Base))(
+  {
+    boxSizing: 'border-box',
+    minWidth: 0
+  },
+  props => props.pseudo ? addPseudo(props) : null,
+  props => addStyles(props),
 )

@@ -1,12 +1,12 @@
 import { filterProps } from './filterProps';
 import { cssList, cssProperties, pseudoClasses, pseudoElements } from './cssHelpers';
-import { validateAnimation, validateTransitions } from './cssValidators';
+import { validateAnimation } from './cssValidators';
 import { addStyles, addPseudo } from './utilsStyles';
 import { addProps } from './addProps';
 import { 
   COMMON, BORDER, TYPOGRAPHY, LAYOUT, SPACE, CURSOR,
   POSITION, FLEX, GRID, TRANSITION, COLOR, APPEARANCE,
-  SHADOW, TEXTDECORATION, FONTSIZESMODULES, ZINDEX, HOVER,
+  SHADOW, TEXTDECORATION, FONTSIZESMODULES, ZINDEX,
   ALL
 } from './constants';
 
@@ -20,7 +20,6 @@ export {
   pseudoElements,
   pseudoClasses,
   validateAnimation,
-  validateTransitions,
   ALL,
   COMMON,
   BORDER,
@@ -38,5 +37,4 @@ export {
   TEXTDECORATION,
   FONTSIZESMODULES,
   ZINDEX,
-  HOVER
 };

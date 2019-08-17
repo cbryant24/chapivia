@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 
-import { FlexItem, ExtendedBox, BoxAnimatedPseudo, addProps, Field, Flex, Text, Animated, FadeAnimations, RotateAnimations, PsuedoBox } from './element';
+import { FlexItem, Modal, ExtendedBox, BoxAnimatedPseudo, addProps, Field, Flex, Text, Animated, FadeAnimations, RotateAnimations, PsuedoBox, ExtendedTestBox } from './element';
 import theme from './elements/theme';
 import helpers from './helpers';
 
@@ -13,7 +13,6 @@ import mutation from '../mutations/Login';
 import query from '../queries/CurrentUser';
 import { blockSize } from './element/utils/cssHelpers';
 import { Box } from './element'
-import Modal from './element/modal';
 
 import styledCSS from '@styled-system/css';
 import { isAbsolute } from 'upath';
@@ -87,6 +86,11 @@ function Signin(props) {
     style: { height: 1, justifyContent: 'space-around', flexDirection: 'column', px: 2, fontSizeModule: [1, 2, 3, 4]},
   }
 
+  const anim = keyframes`
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  `
+
 return (
     <FlexItem
       border="1px solid black"
@@ -95,6 +99,7 @@ return (
       width={1/2}
       zIndex="20"
       height={1}
+      fontSizeModule={[1,2]}
     >
       {/* <FormApp
         height={1}
@@ -109,41 +114,65 @@ return (
         buttons={buttons}
       >
       </FormApp> */}
-      <BoxAnimatedPseudo
+      {/* <BoxAnimatedPseudo
+        forwardedAs="p"
         pseudo
         position="relative"
-        fontSize={[1,2]}
-        animation={{
-          continuous: glitchMiddle(),
-          duration_continuous: 1,
-          animation_timing_function: 'linear'
+        // animation={{
+        //   continuous: glitchMiddle(),
+        //   duration_continuous: 1,
+        //   animation_timing_function: 'linear'
+        // }}
+        transition={{
+          type: 'hover',
+          from: { property: 'color', value: 'blue.3'},
+          to: { property: 'color', value: 'yellow.3'}
         }}
         before={{
           content: 'Hello World',
-          position: 'absolute',
-          fontSize: [1,2],
-          left: 0,
-          clipPath: 'polygon(0 0, 100% 0, 100% 33%, 0 33%)',
-          animation: {
-            continuous: glitchTop(),
-            duration_continuous: 1,
-            animation_timing_function: 'linear'
+          color: 'yellow.3',
+          tranistions: {
+            type: 'hover',
+            from: { property: 'font-size', value: '1.3em'},
+            to: { property: 'font-size', value: '2.3em'}
           }
         }}
         after={{
           content: 'Hello World',
-          position: 'absolute',
-          fontSize: [1,2],
-          left: 0,
-          clipPath: 'polygon(0 67%, 100% 67%, 100% 100%, 0 100%)',
-          animation: {
-            continuous: glitchBottom(),
-            duration_continuous: 1.5,
-            animation_timing_function: 'linear'
+          color: 'blue.3',
+          tranistions: {
+            type: 'hover',
+            from: { property: 'font-size', value: '1.3em'},
+            to: { property: 'font-size', value: '2.3em'}
           }
         }}
       >
         Hello World
+      </BoxAnimatedPseudo> */}
+      <BoxAnimatedPseudo
+        pseudo 
+        width="80%"
+        hover={{ width: [1], fontSize: [3], color: 'yellow.3' }}
+        fontSize={[2]}
+        before={{
+          content: 'Hello World',
+          color: 'yellow.3',
+          fontSize: [1],
+          animation: {
+            continuous: anim,
+            duration_continuous: 2
+          }
+        }}
+        border="2px solid yellow"
+        // transition={{
+        //   type: 'hover',
+        //   from: { property: 'fontSize', value: [1,2]},
+        //   to: { property: 'fontSize', value: [3, 4] }
+        // }}
+        transition="all 4s linear"
+      >
+        Hello World
+        <Text fontSize={1}>GoodBye WOrld</Text>
       </BoxAnimatedPseudo>
       <button onClick={toggleModal} >Modal Action</button>
       <Modal

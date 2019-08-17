@@ -8,7 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import { ModalProvider } from './components/element/modal';
+import { ModalProvider } from './components/element';
 
 import Signin from './components/Signin';
 import Signup from './components/Signup';

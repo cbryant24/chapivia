@@ -34,7 +34,6 @@ export { ExtendedBox as ExtendedBox } from './ExtendedComponents';
 export { addProps as addProps } from './utils';
 
 //Animations
-export { Animated as Animated } from './animations';
 export { FadeAnimations as FadeAnimations } from './animations';
 export { BounceAnimations as BounceAnimations } from './animations';
 export { ScaleAnimations as ScaleAnimations } from './animations';
@@ -44,3 +43,8 @@ export { SlideAnimations as SlideAnimations } from './animations';
 //CSS Psuedo
 export { BoxPseudo as BoxPseudo } from './BoxPseudo';
 export { BoxAnimatedPseudo as BoxAnimatedPseudo } from './BoxPseudo';
+
+
+export { ExtendedTestBox as ExtendedTestBox } from './ExtendedComponents';
+export { default as Modal } from './modal';
+export { ModalProvider as ModalProvider } from './modal';

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { addStyles } from './utils';
 import styledCSS from '@styled-system/css';
 import cleanElement from 'clean-element';
-import { ALL, filterProps } from './utils';
+import { ALL, filterProps, addPseudo } from './utils';
 import { getAnimation } from './animations';
 
 const Base = props => {
@@ -19,6 +19,11 @@ const Base = props => {
 export const BoxPseudo = styled(cleanElement(Base))`
   ${ props => addStyles(props) } 
   ${ ALL }
+  ${props => {
+    const { animation, before, after, ...rest } = props;
+
+    return props.pseudo ? addPseudo(rest) : null
+  }}
   ${props => {
       if (!props.pseudo || !props.before) return;
       const { animation, content, ...rest } = props.before;
@@ -83,6 +88,12 @@ export const BoxPseudo = styled(cleanElement(Base))`
 export const BoxAnimatedPseudo = styled(cleanElement(Base))`
   ${ props => addStyles(props) }
   ${ ALL }
+  ${props => {
+    const { animation, before, after, ...rest } = props;
+
+    return props.pseudo ? addPseudo(rest) : null
+  }}
+  
   ${props => {
       if (!props.animation) return;
 

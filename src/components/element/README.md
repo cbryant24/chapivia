@@ -1,6 +1,7 @@
-##Basics
+## Basics
 Importing a styled-system component to display wrap the component in curly braces to render
 
+```Javascript
 export const StyledFlex = (
   <Flex
     width="75%"
@@ -8,15 +9,21 @@ export const StyledFlex = (
   />
 )
 
-import StyledFlex from './StyledFlex
+import StyledFlex from './StyledFlex'
 
 return (
   <div>
     {StyledFlex}
   </div>
 )
+```
 
-##Adding Props
+### Setting HTML Elements
+To set an Component as a specific HTML element use the `forwardedAs` prop on the component 
+
+```Javascript <Box forwadedAs="span"> I'm a span element now</Box>```
+
+## Adding Props
 If props need to be added to a passed styled-system component a helper function can be imported and used
 
 export const Input = (
@@ -102,10 +109,17 @@ Use the `Animated` component that is exported to add animations to an element. T
 ```javascript
   <Animated
     animations={{
-      
+      delay_in: 5,
+      in: FadeAnimations.FadeInBottom,
+      duration_in: 1,
+      continuous: RotateAnimations.RotateCenter,
+      duration_continuous: 1,
+      out: FadeAnimations.FadeOutTop,
+      duration_out: 1,
+      delay_between: 5
     }}
   >
-  
+    I'm animating
   </Animated>
 ```
 
@@ -139,8 +153,35 @@ Pseudo element animations are not able to hook into the themimng, and therefore 
     0% { font-size: 18px: }
     100% { font-size: 26px; }
   `
-  var 
-  const pseudoElementAnimations = {
-
-  }
+  <BoxPseudo
+    pseudo
+    before={{
+      color: 'blue.1'
+      fontSize: [1, 2],
+      animation: {
+        in: keyframes,
+        duration_in: 5,
+        delay_in: 5
+      }
+    }}
+  >
+    I'm Pseudo Animation
+  </BoxPseudo>
 ```
+
+## Transitions
+
+Transitions can be added for the following states `hover, focus, & active` you can add a transition by either adding the pseudo class as instructed to here (TODO ADD A REFERENCE LINK BACK TO THE PSEUDO SECTION) then define the transition in the `transition` property
+
+```javascript
+<BoxPseudo
+  pseudo
+  hover={ { fontSize: [4] } }
+  transition="font-size 4s linear"
+>
+  I will transition on hover
+<BoxPseudo>
+```
+
+## Modal
+
