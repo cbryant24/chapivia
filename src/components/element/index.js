@@ -15,7 +15,7 @@ export { default as GridItem } from './GridItem';
 export { default as Text } from './Text';
 
 //Components
-export { default as Field } from './useField';
+export { default as Field } from './Field';
 export { default as Input } from './Input';
 export { default as InputContainer } from './InputContainer';
 export { default as Button } from './Button';

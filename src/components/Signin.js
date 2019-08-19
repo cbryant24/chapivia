@@ -101,7 +101,7 @@ return (
       height={1}
       fontSizeModule={[1,2]}
     >
-      {/* <FormApp
+      <FormApp
         height={1}
         justifyContent="space-around"
         flexDirection="column"
@@ -113,77 +113,8 @@ return (
         validate={validate}
         buttons={buttons}
       >
-      </FormApp> */}
-      {/* <BoxAnimatedPseudo
-        forwardedAs="p"
-        pseudo
-        position="relative"
-        // animation={{
-        //   continuous: glitchMiddle(),
-        //   duration_continuous: 1,
-        //   animation_timing_function: 'linear'
-        // }}
-        transition={{
-          type: 'hover',
-          from: { property: 'color', value: 'blue.3'},
-          to: { property: 'color', value: 'yellow.3'}
-        }}
-        before={{
-          content: 'Hello World',
-          color: 'yellow.3',
-          tranistions: {
-            type: 'hover',
-            from: { property: 'font-size', value: '1.3em'},
-            to: { property: 'font-size', value: '2.3em'}
-          }
-        }}
-        after={{
-          content: 'Hello World',
-          color: 'blue.3',
-          tranistions: {
-            type: 'hover',
-            from: { property: 'font-size', value: '1.3em'},
-            to: { property: 'font-size', value: '2.3em'}
-          }
-        }}
-      >
-        Hello World
-      </BoxAnimatedPseudo> */}
-      <BoxAnimatedPseudo
-        pseudo 
-        width="80%"
-        hover={{ width: [1], fontSize: [3], color: 'yellow.3' }}
-        fontSize={[2]}
-        before={{
-          content: 'Hello World',
-          color: 'yellow.3',
-          fontSize: [1],
-          animation: {
-            continuous: anim,
-            duration_continuous: 2
-          }
-        }}
-        border="2px solid yellow"
-        // transition={{
-        //   type: 'hover',
-        //   from: { property: 'fontSize', value: [1,2]},
-        //   to: { property: 'fontSize', value: [3, 4] }
-        // }}
-        transition="all 4s linear"
-      >
-        Hello World
-        <Text fontSize={1}>GoodBye WOrld</Text>
-      </BoxAnimatedPseudo>
-      <button onClick={toggleModal} >Modal Action</button>
-      <Modal
-        isOpen={isOpen}
-        onBackgroundClick={toggleModal}
-        onEscapeKeydown={toggleModal}
-      >
-        <Box color="#ffffff">I am a modal!</Box>
-        <Box color="#FF0000">I am another box in the modal</Box>
-        <button onClick={toggleModal}>Close Me</button>
-      </Modal>
+      </FormApp>
+      
     </FlexItem>
   );
 }

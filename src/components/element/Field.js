@@ -51,7 +51,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyl
         foucsBoxShadowColor={errorColor}
       >
         <Input
-          //{...props}
+          {...props}
           {...inputStyle}
           forwardedAs={inputType}
           name={name}

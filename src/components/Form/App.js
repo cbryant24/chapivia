@@ -1,6 +1,6 @@
 import React from 'react';
 import { StateProvider } from './FormState';
-import Form from './useForm';
+import Form from './Form';
 import AuthReducer from './reducers';
 
 import { useStateValue } from './FormState';
