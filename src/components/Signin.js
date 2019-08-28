@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom'
 
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 
-import { FlexItem, Modal, ExtendedBox, BoxAnimatedPseudo, addProps, Field, Flex, Text, Animated, FadeAnimations, RotateAnimations, PsuedoBox, ExtendedTestBox } from './element';
+import { FlexItem, ExtendedBox, BoxAnimatedPseudo, addProps, Field, Input, Flex, Text, Animated, FadeAnimations, RotateAnimations, PsuedoBox } from './element';
 import theme from './elements/theme';
 import helpers from './helpers';
 
 import mutation from '../mutations/Login';
 import query from '../queries/CurrentUser';
 import { blockSize } from './element/utils/cssHelpers';
-import { Box } from './element'
+import { Box } from './element';
+import Modal from './element/modal';
 
 import styledCSS from '@styled-system/css';
 import { isAbsolute } from 'upath';
@@ -24,7 +25,11 @@ import { keyframes, css } from 'styled-components';
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
   const [isOpen, setIsOpen] = useState(false);
-  
+
+  //TESTING
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const inputRef = useRef();
   async function signin(event, vals) {
 
     const { email, password, name } = vals;
@@ -46,11 +51,12 @@ function Signin(props) {
   }
 
   const inputStyle = {
+    pseudo: true,
     appearance: 'none',
     display: 'block',
     verticalAlign: 'middle',
-    width: '75%',
-    maxWidth: '38rem',
+    width: [2],
+    color: 'white',
     lineHeight: 'inherit',
     letterSpacing: 'inherit',
     fontFamily: 'inherit',
@@ -60,18 +66,21 @@ function Signin(props) {
     borderStyle: 'solid',
     borderColor: 'rgb(221, 225, 228)',
     transition: 'box-shadow 0.125s ease-out 0s',
-    margin: '0px'
+    margin: '10px',
+    focus: {
+      outline: 'none'
+    }
   }
   
   const inputs = [
     {
       data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
-      fieldStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-between', flexDirection: 'column'},
+      fieldStyle: { width: [1], maxHeight: '5em', justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: { ...inputStyle }
     },
     {
       data: { type: 'password', name: 'password', label: 'password', placeholder: 'enter password', required: true },
-      fieldStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-between', flexDirection: 'column'},
+      fieldStyle: { width: [1], maxHeight: ['5em'], justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: { ...inputStyle }
     }
   ]
@@ -83,108 +92,66 @@ function Signin(props) {
 
   const form = {
     data: { name: 'signinForm', submit: 'signup', cb: signin },
-    style: { height: 1, justifyContent: 'space-around', flexDirection: 'column', px: 2, fontSizeModule: [1, 2, 3, 4]},
+    style: { 
+      height: [2],
+      justifyContent: 'space-around', 
+      flexDirection: 'column', 
+      backgroundColor: 'black',
+      border: '1px solid black',
+      width: [1],
+      px: [2],
+      zIndex: 20
+    },
   }
 
-  const anim = keyframes`
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  `
+  //TESTING
+  const itChanged = (e) => {
+    // debugger
+    if(e.target.value === 'h') return; 
+
+    if(e.target.name === 'email')
+      return setEmail(e.target.value);
+    
+    return  setPassword(e.target.value)
+  }
 
 return (
-    <FlexItem
-      border="1px solid black"
-      p={[1, 2, 3]}
-      bg="black"
-      width={1/2}
-      zIndex="20"
-      height={1}
-      fontSizeModule={[1,2]}
-    >
-      {/* <FormApp
-        height={1}
-        justifyContent="space-around"
-        flexDirection="column"
-        px="4rem"
-        name="sign-in"
-        onSubmit={signin}
-        form={form}
-        inputs={inputs}
-        validate={validate}
-        buttons={buttons}
-      >
-      </FormApp> */}
-      {/* <BoxAnimatedPseudo
-        forwardedAs="p"
-        pseudo
-        position="relative"
-        // animation={{
-        //   continuous: glitchMiddle(),
-        //   duration_continuous: 1,
-        //   animation_timing_function: 'linear'
-        // }}
-        transition={{
-          type: 'hover',
-          from: { property: 'color', value: 'blue.3'},
-          to: { property: 'color', value: 'yellow.3'}
-        }}
-        before={{
-          content: 'Hello World',
-          color: 'yellow.3',
-          tranistions: {
-            type: 'hover',
-            from: { property: 'font-size', value: '1.3em'},
-            to: { property: 'font-size', value: '2.3em'}
-          }
-        }}
-        after={{
-          content: 'Hello World',
-          color: 'blue.3',
-          tranistions: {
-            type: 'hover',
-            from: { property: 'font-size', value: '1.3em'},
-            to: { property: 'font-size', value: '2.3em'}
-          }
-        }}
-      >
-        Hello World
-      </BoxAnimatedPseudo> */}
-      <BoxAnimatedPseudo
-        pseudo 
-        width="80%"
-        hover={{ width: [1], fontSize: [3], color: 'yellow.3' }}
-        fontSize={[2]}
-        before={{
-          content: 'Hello World',
-          color: 'yellow.3',
-          fontSize: [1],
-          animation: {
-            continuous: anim,
-            duration_continuous: 2
-          }
-        }}
-        border="2px solid yellow"
-        // transition={{
-        //   type: 'hover',
-        //   from: { property: 'fontSize', value: [1,2]},
-        //   to: { property: 'fontSize', value: [3, 4] }
-        // }}
-        transition="all 4s linear"
-      >
-        Hello World
-        <Text fontSize={1}>GoodBye WOrld</Text>
-      </BoxAnimatedPseudo>
-      <button onClick={toggleModal} >Modal Action</button>
-      <Modal
-        isOpen={isOpen}
-        onBackgroundClick={toggleModal}
-        onEscapeKeydown={toggleModal}
-      >
-        <Box color="#ffffff">I am a modal!</Box>
-        <Box color="#FF0000">I am another box in the modal</Box>
-        <button onClick={toggleModal}>Close Me</button>
-      </Modal>
-    </FlexItem>
+  <Box id="signin-box-module" 
+    fontSizeModule={[1,2]} 
+    width={[2,3]}
+    height={['100vh']}
+    margin={['auto']}
+  >
+  {/* <Box
+    isA="form"
+    height={1}
+    backgroundColor="black"
+  >
+    <Field
+      data={{name: 'email', type: 'text', placehold: 'enter email', label: 'email'} }
+      onChange={itChanged}
+      value={email}
+      errors={[]}
+      inputStyle={inputStyle}
+    />
+
+    <Field
+      data={{name: 'password', type: 'password', placehold: 'enter password', label: 'password'} }
+      onChange={itChanged}
+      value={password}
+      errors={[]}
+      inputStyle={inputStyle}
+    />
+    <Box name="email" onChange={itChanged} value={email} isA="input"/>
+  </Box> */}
+    <FormApp
+      onSubmit={signin}
+      form={form}
+      inputs={inputs}
+      validate={validate}
+      buttons={buttons}
+    />
+  </Box>
   );
 }
 

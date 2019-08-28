@@ -249,6 +249,7 @@ export const filterProps = props => {
     "overflowWrap",
     "overflowX",
     "overflowY",
+    "padding",
     "paddingBlockEnd",
     "paddingBlockStart",
     "paddingInlineEnd",
@@ -347,5 +348,11 @@ export const filterProps = props => {
     "grid-column-start",
     "grid-row-end",
     "grid-column-end",
-    "itemname"
+    "itemname",
+    "focus",
+    "::before",
+    "::after",
+    "fontSizeModule",
+    "borderWidth",
+    "cursor"
 ])}

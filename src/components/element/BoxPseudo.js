@@ -3,34 +3,26 @@ import { css } from 'styled-components';
 import styled from 'styled-components';
 
 import { addStyles } from './utils';
-import styledCSS from '@styled-system/css';
-import cleanElement from 'clean-element';
-import { ALL, filterProps, addPseudo } from './utils';
+import systemStyledCSS from '@styled-system/css';
+import { ALL, addPseudo } from './utils';
+import Box from './Box';
 import { getAnimation } from './animations';
 
-const Base = props => {
-
-  const Div = styled.div``;
-  const next = filterProps(props);
-
-  return <Div {...next} />;
-}
-
-export const BoxPseudo = styled(cleanElement(Base))`
+export const BoxPseudo = styled(Box)`
   ${ props => addStyles(props) } 
   ${ ALL }
   ${props => {
-    const { animation, before, after, ...rest } = props;
+    const { animation, before, after, ...restProps } = props;
 
-    return props.pseudo ? addPseudo(rest) : null
+    return props.pseudo ? addPseudo(restProps) : null
   }}
   ${props => {
       if (!props.pseudo || !props.before) return;
-      const { animation, content, ...rest } = props.before;
-      return (styledCSS({
+      const { animation, content, ...restProps } = props.before;
+      return (systemStyledCSS({
         '&::before': {
           content: JSON.stringify(content),
-          ...rest
+          ...restProps
         }
       }));
     }
@@ -38,11 +30,11 @@ export const BoxPseudo = styled(cleanElement(Base))`
 
   ${props => {
       if (!props.pseudo || !props.after) return;
-      const { animation, content, ...rest } = props.after;
-      return (styledCSS({
+      const { animation, content, ...restProps } = props.after;
+      return (systemStyledCSS({
         '&::after': {
           content: JSON.stringify(content),
-          ...rest
+          ...restProps
         }
       }));
     }
@@ -55,14 +47,14 @@ export const BoxPseudo = styled(cleanElement(Base))`
     return (
       css`
         ::before {
-        animation-name: ${animationProperties.animation};
-        animation-duration: ${animationProperties.duration};
-        animation-iteration-count: ${animationProperties.iteration};
-        animation-timing-function: ${animationProperties.animationTimingFunction};
-        animation-direction: ${animationProperties.animationDirection};
-        animation-fill-mode: ${animationProperties.animationFillMode};
-        animation-play-state: running;
-      }`
+          animation-name: ${animationProperties.animation};
+          animation-duration: ${animationProperties.duration};
+          animation-iteration-count: ${animationProperties.iteration};
+          animation-timing-function: ${animationProperties.animationTimingFunction};
+          animation-direction: ${animationProperties.animationDirection};
+          animation-fill-mode: ${animationProperties.animationFillMode};
+          animation-play-state: running;
+        }`
     );
   }}
 
@@ -85,13 +77,13 @@ export const BoxPseudo = styled(cleanElement(Base))`
   }}
 `
 
-export const BoxAnimatedPseudo = styled(cleanElement(Base))`
-  ${ props => addStyles(props) }
+export const BoxAnimatedPseudo = styled(Box)`
+  //${ props => addStyles(props) }
   ${ ALL }
   ${props => {
-    const { animation, before, after, ...rest } = props;
-
-    return props.pseudo ? addPseudo(rest) : null
+    const { animation, before, after, children, ...restProps } = props;
+    // debugger
+    return props.pseudo ? addPseudo(restProps) : null
   }}
   
   ${props => {
@@ -114,11 +106,11 @@ export const BoxAnimatedPseudo = styled(cleanElement(Base))`
   ${props => {
       if (!props.pseudo || !props.before) return;
 
-      const { animation, content, ...rest } = props.before;
-      return (styledCSS({
+      const { animation, content, ...restProps } = props.before;
+      return (systemStyledCSS({
         '&::before': {
           content: JSON.stringify(content),
-          ...rest
+          ...restProps
         }
       }));
     }
@@ -126,11 +118,11 @@ export const BoxAnimatedPseudo = styled(cleanElement(Base))`
 
   ${props => {
       if (!props.pseudo || !props.after) return;
-      const { animation, content, ...rest } = props.after;
-      return (styledCSS({
+      const { animation, content, ...restProps } = props.after;
+      return (systemStyledCSS({
         '&::after': {
           content: JSON.stringify(content),
-          ...rest
+          ...restProps
         }
       }));
     }

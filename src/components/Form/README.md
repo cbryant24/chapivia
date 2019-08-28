@@ -165,3 +165,66 @@ Custom error messages can be set for each input field. To set custom error messa
 
 A function for submit is required and should be passed with the property name `submit` in the form data object. Optionally a cancel callback function can be passed as well to be invoked when the cancel button is clicked and will be invoked after the form values are cleared. To pass a cancel callback function use the property `cancel` on the form data object.
 
+## Styling
+
+This library uses `react-styled-everything` library for styling which utilizes `styled-components` and `styled-system` add css styling to elements. For a deeper look into how this styling is done see [ADD LINK TO `REACT-STYLED-EVERYTHING`] library.
+to style `input` elements include on the `inputStyle` property and pass an object of camelcase css properties and values.
+
+```javascript
+inputs = [
+  {
+    data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
+    fieldStyle: { width: [1], maxHeight: '5em', justifyContent: 'space-between', flexDirection: 'column'},
+    inputStyle: {
+      appearance: 'none',
+      display: 'block',
+      verticalAlign: 'middle',
+      width: '75%',
+      maxWidth: '38rem',
+      color: 'white',
+      lineHeight: 'inherit',
+      letterSpacing: 'inherit',
+      fontFamily: 'inherit',
+      backgroundColor: 'transparent',
+      borderRadius: '5px',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'rgb(221, 225, 228)',
+      transition: 'box-shadow 0.125s ease-out 0s',
+      margin: [1,2]
+    }
+  }
+]
+```
+
+### Pseudo Styling
+
+For pseudo elements and animations see [LINK TO `REACT-STYLED-EVERYTHING` USING PESUDO AND ANIMATIONS] one notiable difference is to include pseudo elements include the property `pseudo: true` to make use of pseudo elements/classes
+
+```javascript
+inputs = [
+  {
+    data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
+    fieldStyle: { width: [1], maxHeight: '5em', justifyContent: 'space-between', flexDirection: 'column'},
+    inputStyle: {
+      pseudo: true,
+      appearance: 'none',
+      display: 'block',
+      verticalAlign: 'middle',
+      width: '75%',
+      maxWidth: '38rem',
+      color: 'white',
+      lineHeight: 'inherit',
+      letterSpacing: 'inherit',
+      fontFamily: 'inherit',
+      backgroundColor: 'transparent',
+      borderRadius: '5px',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'rgb(221, 225, 228)',
+      transition: 'box-shadow 0.125s ease-out 0s',
+      margin: [1,2]
+    }
+  }
+]
+```

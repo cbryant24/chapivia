@@ -1,6 +1,6 @@
 import React from 'react';
 import { formInput } from './FormInput';
-import {Box, Field, Flex, Button} from '../element';
+import {Box, Field, Flex, BoxAll} from '../element';
 import { useStateValue } from './App';
 import { useWindowSize }from '../../hooks';
 
@@ -12,7 +12,6 @@ export default function Form({ inputs, form, validate, buttons }) {
   const [formErrors, setFormErrors] = React.useState([]);
   const size = useWindowSize();
   const errorColor = formErrors.length >= 1 ? '#e95667' : null;
-  // const formFlex = 
   
   const displayFields = () => {
     return inputs.map( input =>  {
@@ -28,26 +27,24 @@ export default function Form({ inputs, form, validate, buttons }) {
     }
     return buttons.map( button => (
       button.type === 'submit' ? 
-      <Button
-        forwardedAs="button"
+      <BoxAll
+        isA="button"
         type={ button.type }
         disabled={ !isEnabled() }
         {...squareButton}
-      > {button.text} </Button> :
-      <Button
-        forwardedAs="button"
-        //fontSize={[1, 2, 3]}
+      > {button.text} </BoxAll> :
+      <BoxAll
+        isA="button"
         {...squareButton}
-        //{...vals}
         type={ button.type }
       >
         {button.text}
-      </Button>
+      </BoxAll>
     ))
   }
 
   const handleErrorMessages = errorMessages => {
-    return errorMessages.map( errorMessage => <Box as="li" key={errorMessage.message}>{errorMessage.message}</Box> )
+    return errorMessages.map( errorMessage => <Box isA="li" key={errorMessage.message}>{errorMessage.message}</Box> )
   }
 
   const handleCancel = () => {
@@ -84,15 +81,17 @@ export default function Form({ inputs, form, validate, buttons }) {
 
     return !disabled;
   };
-  // debugger
+
   return (
-    <Flex
-      as="form"
+    <BoxAll
+      color="#fff"
+      objectFit="cover"
+      isA="form"
       {...form.style}
       onSubmit={ event => handleSubmit(event) }
     >
       {formErrors.length >= 1 ? <Box
-                                  as="li"
+                                  isA="li"
                                   ml="2rem" 
                                   color={errorColor} 
                                   fontSize="1.2rem"
@@ -100,7 +99,7 @@ export default function Form({ inputs, form, validate, buttons }) {
                                   {handleErrorMessages(formErrors)}
                                 </Box> : ''}
       {displayFields()}
-      <Flex
+      <Box
         // width={size.width * .60 * .25}px
         justifyContent="space-between"
         fontSize="28rem"
@@ -115,7 +114,7 @@ export default function Form({ inputs, form, validate, buttons }) {
           text="Cancel"
           onClick={ handleCancel }
         /> */}
-      </Flex>
-    </Flex>
+      </Box>
+    </BoxAll>
   )
 }

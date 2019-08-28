@@ -4,10 +4,24 @@ import { addStyles } from './utilsStyles';
 
 const { compose, system } = styledSystem;
 
+const APPEARANCE = system({
+  appearance: true
+});
+
+const FONTSIZESMODULES = system({
+  fontSizeModule: {
+    property: 'fontSize',
+    scale: 'fontSizesModule'
+  }
+});
+
 export const COMMON = compose(
   styledSystem.space,
   styledSystem.color,
-  styledSystem.display
+  styledSystem.layout,
+  styledSystem.zIndex,
+  APPEARANCE,
+  FONTSIZESMODULES,
 );
 
 export const BORDER = compose(
@@ -23,23 +37,12 @@ export const TRANSITION = system({
   transitionTimingFunction: true
 });
 
-export const APPEARANCE = system({
-  appearance: true
-});
-
 export const CURSOR = system({
   cursor: true
 });
 //TODO Add typography to this and change to TYPOGRAPHY
 export const TEXTDECORATION = system({
   textDecoration: true
-});
-
-export const FONTSIZESMODULES = system({
-  fontSizeModule: {
-    property: 'fontSize',
-    scale: 'fontSizesModule'
-  }
 });
 
 export const BEFOREFONTSIZE = system({
@@ -49,28 +52,37 @@ export const BEFOREFONTSIZE = system({
   }
 })
 
+export const GRID = compose(
+  styledSystem.grid,
+  system({
+    'grid-row-start': true,
+    'grid-column-start': true,
+    'grid-row-end': true,
+    'grid-column-end': true,
+    'itemname': true,    
+  })
+);
+
+export const POSITION = compose(
+  styledSystem.position,
+  styledSystem.top,
+  styledSystem.right,
+  styledSystem.bottom,
+  styledSystem.left
+);
+
 export const TYPOGRAPHY = styledSystem.typography;
-export const LAYOUT     = styledSystem.layout;
-export const POSITION   = styledSystem.position;
 export const FLEX       = styledSystem.flexbox;
-export const GRID       = styledSystem.grid;
-export const SPACE      = styledSystem.space;
-export const COLOR      = styledSystem.color;
 export const SHADOW     = styledSystem.shadow;
 export const BACKGROUND = styledSystem.background;
-export const ZINDEX     = styledSystem.zIndex;
 
 export const ALL = styledSystem.compose(
-  APPEARANCE,
   BORDER,
   BACKGROUND,
-  COLOR,
   CURSOR,
   FLEX,
   GRID,
-  LAYOUT,
   POSITION,
-  SPACE,
   SHADOW,
   TYPOGRAPHY,
   TEXTDECORATION,

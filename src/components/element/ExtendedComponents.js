@@ -1,27 +1,20 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
-import cleanElement from 'clean-element';
-import { ALL} from './utils/constants';
-import { addStyles, filterProps, addPseudo } from './utils'
+import { ALL } from './utils/constants';
+import Box from './Box';
+import { addStyles, addPseudo } from './utils'
 
-const Base = props => {
 
-  const Div = styled.div``;
-  const next = filterProps(props);
-
-  return <Div {...next} />;
-}
-
-export const ExtendedBox = styled(cleanElement(Base))(
+export const ExtendedBox = styled(Box)(
   {
     boxSizing: 'border-box',
     minWidth: 0,
   },
   props => addStyles(props),
   ALL
-)
+);
 
-export const ExtendedFlex = styled(cleanElement(Base))(
+export const ExtendedFlex = styled(Box)(
   {
     boxSizing: 'border-box',
     minWidth: 0,
@@ -29,18 +22,18 @@ export const ExtendedFlex = styled(cleanElement(Base))(
   },
   props => addStyles(props),
   ALL
-)
+);
 
-export const ExtendedFlexItem = styled(cleanElement(Base))(
+export const ExtendedFlexItem = styled(Box)(
   {
     boxSizing: 'border-box',
     minWidth: 0,
   },
   props => addStyles(props),
   ALL
-)
+);
 
-export const ExtendedGrid = styled(cleanElement(Base))(
+export const ExtendedGrid = styled(Box)(
   {
     boxSizing: 'border-box',
     minWidth: 0,
@@ -48,44 +41,31 @@ export const ExtendedGrid = styled(cleanElement(Base))(
   },
   props => addStyles(props),
   ALL
-)
+);
 
-export const ExtendedGridItem = styled(cleanElement(Base))(
+export const ExtendedGridItem = styled(Box)(
   {
     boxSizing: 'border-box',
     minWidth: 0,
   },
   props => addStyles(props),
   ALL
-)
+);
 
-export const ExtendedText = styled(cleanElement(Base))(
+export const ExtendedText = styled(Box)(
   {
     boxSizing: 'border-box',
     minWidth: 0,
   },
   props => addStyles(props),
   ALL
-)
+);
 
-// export const ExtendedInput = styled(Input)`
-//   ${props => addStyles(props)}
-// `;
-
-export const ExtendedButton = styled(cleanElement(Base))(
+export const ExtendedButton = styled(Box)(
   {
     boxSizing: 'border-box',
     minWidth: 0,
   },
   props => addStyles(props),
   ALL
-)
-
-export const ExtendedTestBox = styled(cleanElement(Base))(
-  {
-    boxSizing: 'border-box',
-    minWidth: 0
-  },
-  props => props.pseudo ? addPseudo(props) : null,
-  props => addStyles(props),
-)
+);

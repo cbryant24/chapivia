@@ -185,3 +185,62 @@ Transitions can be added for the following states `hover, focus, & active` you c
 
 ## Modal
 
+To use a styled-react-modal import both the `ModalProvider, Modal` components. Set the `<ModalProvider></ModalProvider>` at the level you want to render the modal. 
+
+```javascript
+import { ModalProvider, Modal } from 'react-styled-everything';
+
+
+<ModalProvider BackgroundComponent={ModalBackground}>
+  <div style={{ position: 'relative' }}>
+    <App>
+    </App>
+  </div>
+</ModalProvider>
+
+
+function ModalDemo(props) {
+
+  return (
+      <Modal
+        isOpen={isOpen}
+        onBackgroundClick={toggleModal}
+        onEscapeKeydown={toggleModal}
+      >
+        <Box color="#ffffff">I am a modal!</Box>
+        <Box color="#FF0000">I am another box in the modal</Box>
+        <button onClick={toggleModal}>Close Me</button>
+      </Modal>
+  ) 
+}
+```
+
+| Property          | Type     | Description                                                                                                                                     |
+|-------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| isOpen            | Boolean  | A boolean that indicates whether the modal is to be open or closed.                                                                             |
+| onBackgroundClick | Function |  A function that is called when the modal background is clicked.                                                                                |
+| onEscapeKeydown   | Function | A function that is called when the escape key is pressed while the modal is open.                                                               |
+| backgroundProps   | Object   | A props object that is spread over the backgroundComponent when included.                                                                       |
+| allowScroll       | Boolean  | When true, scrolling in the document body is not disabled when the modal is open.                                                               |
+| beforeOpen        | Function | A function that is called before the modal opens. If this function returns a promise, then the modal is opened after the promise is resolved.   |
+| afterOpen         | Function | A function that is called after the modal opens.                                                                                                |
+| beforeClose       | Function | A function that is called before the modal closes. If this function returns a promise,  then the modal is closed after the promise is resolved. |
+| afterClose        | Function |  A function that is called after the modal closes.                                                                                              |
+
+The `BackgroundComponent` Takes a component that will be rendered as the background for this level modal if one is not provided the default `BackgroundComponent` will be used. 
+
+```javascript
+<BoxPosition 
+  display='flex'
+  position='fixed'
+  top="0"
+  left="0"
+  width='100vw'
+  height='100vh'
+  zIndex="30"
+  backgroundColor='rgba(0, 0, 0, 0.5)'
+  alignItems='center'
+  justifyContent='center'
+/>
+
+```

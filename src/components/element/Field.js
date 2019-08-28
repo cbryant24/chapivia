@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import React, { useState } from 'react'
 
+import BoxAll from './BoxAll';
+
 import Text from './Text';
 import Flex from './Flex';
-import InputContainer from './InputContainer';
 import Box from './Box';
-import Grid from './Grid';
-import { ExtendedBox } from './ExtendedComponents';
-import Input from './Input';
+
 
 export const Error = styled(Text).attrs({
   className: 'error',
@@ -21,12 +20,16 @@ export const Error = styled(Text).attrs({
 `
 
 const handleErrorMessages = errorMessages => {
-  return errorMessages.map( errorMessage => <Box as="item" key={errorMessage}><Error>{errorMessage}</Error></Box> )
+  return errorMessages.map( errorMessage => <Box isA="item" key={errorMessage}><Error>{errorMessage}</Error></Box> )
 }
 
+//TODO: add option to chose normal password field no "show" option
 const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyle, ...props }) => {
-  const [shown, setShown] = React.useState(false);
+  const [shown, setShown] = useState(false);
   const errorColor = props.errors.length >= 1 ? '#e95667' : null; 
+  const {display, ...inputStyleContainer } = inputStyle;
+  const {border, borderTop, borderRight, borderBottom, borderLeft, borderRadius, borderWidth, borderColor, borderStyle, ...inputStyleNoBorder } = inputStyle;
+  
   const inputType =
     {
       select: 'select',
@@ -35,42 +38,47 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyl
     }[type] || 'input'
     // debugger
   return (
-    <Flex {...fieldStyle}>
+    <BoxAll {...fieldStyle}>
       <Flex
         alignItems="flex-end"
       >
-        <Text as="label" for={name} id={name}>
+        <Box isA="label" for={name} id={name}>
           {label}
-        </Text>
-        {props.errors.length >= 1 ? <Box as="list" ml="2rem" color={errorColor} fontSize="1.2rem">{handleErrorMessages(props.errors)}</Box> : ''}
+        </Box>
+        {props.errors.length >= 1 ? <Box isA="list" ml="2rem" color={errorColor} fontSize="1.2rem">{handleErrorMessages(props.errors)}</Box> : ''}
       </Flex>
-      <InputContainer
-        //{...inputStyle}
+      <BoxAll
+        {...inputStyleContainer}
+        display="flex"
+        justifyContent="space-between"
         borderColor={errorColor}
         focusColor={errorColor} 
         foucsBoxShadowColor={errorColor}
       >
-        <Input
-          //{...props}
-          {...inputStyle}
-          forwardedAs={inputType}
+        <BoxAll
+          {...props}
+          {...inputStyleNoBorder}
+          border="none"
+          margin="0"
+          padding="0"
+          isA={inputType}
           name={name}
           type={shown && type === "password" ? 'text' : type} 
           placeholder={placeholder}
         />
         { type === "password" ? 
-        <Text
-          as="p"
-          fontSize="12px"
+        <BoxAll
+          isA="p"
+          fontSize="10px"
           m="auto"
           onClick={() => setShown(!shown)}
-          caps
+          textTransform="uppercase"
           cursor='pointer'
         >
           {shown ? 'hide':'show'}
-        </Text> : '' }
-      </InputContainer>
-    </Flex>
+        </BoxAll> : '' }
+      </BoxAll>
+    </BoxAll>
   );
 };
 

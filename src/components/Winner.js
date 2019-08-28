@@ -15,13 +15,13 @@ class Winner extends Component {
     
     return this.props.winners.correctGuesses.map( (guesser, idx) => (
       <Text
-        as="h3"
+        isA="h3"
         textTransform="uppercase"
         key={guesser.id}
         position="relative"
       >
         <BoxAnimated
-          as="span"
+          isA="span"
           glitchAnimation={`${Math.floor((Math.random() * 10) + 1) % 2 === 1 ? guesser.name : ''}`}
         >
           {guesser.name}
@@ -48,21 +48,21 @@ class Winner extends Component {
         width="100%"
       >
         <Text
-          as="p"
+          isA="p"
           textTransform="uppercase"
         >
           {new Date().getHours() >= 17 ? "Trivia" : "Yesterdays Trivia"}:&nbsp;
           {this.convertHTMLChar(this.props.trivia.correctAnswer.question.question)}!
         </Text>
         <Text
-          as="p"
+          isA="p"
           textTransform="uppercase"
         >
           {new Date().getHours() >= 17 ? "Answer" : "Yesterdays Answer"}:&nbsp;
           {this.convertHTMLChar(this.props.trivia.correctAnswer.correctChoice)}!
         </Text>
         <Text
-          as="p"
+          isA="p"
           textTransform="uppercase"
         >
           {new Date().getHours() >= 17 ? "Correct Guesses" : "Yesterdays Correct Guesses"}:&nbsp;

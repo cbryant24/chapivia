@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useStateValue } from './FormState';
 
 export const formInput = ( { data: { name, inputData, validation } }, validate) => {
   const [{ formName, fields }, dispatch] = useStateValue();
+// debugger
+  useEffect( () => {
 
+  }, [])
   function handleChange(e) {
     const { name: field, value } = e.target;
     const valid = validate[formName]({

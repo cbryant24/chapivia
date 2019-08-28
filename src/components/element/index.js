@@ -15,7 +15,7 @@ export { default as GridItem } from './GridItem';
 export { default as Text } from './Text';
 
 //Components
-export { default as Field } from './useField';
+export { default as Field } from './Field';
 export { default as Input } from './Input';
 export { default as InputContainer } from './InputContainer';
 export { default as Button } from './Button';
@@ -44,7 +44,6 @@ export { SlideAnimations as SlideAnimations } from './animations';
 export { BoxPseudo as BoxPseudo } from './BoxPseudo';
 export { BoxAnimatedPseudo as BoxAnimatedPseudo } from './BoxPseudo';
 
-
-export { ExtendedTestBox as ExtendedTestBox } from './ExtendedComponents';
 export { default as Modal } from './modal';
 export { ModalProvider as ModalProvider } from './modal';
+export { default as BoxAll } from './BoxAll';
