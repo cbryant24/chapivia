@@ -5,6 +5,7 @@
   "proxy": "http://localhost:4000",
   "dependencies": {
     "@styled-system/css": "^5.0.23",
+    "@styled-system/theme-get": "^5.1.1",
     "@types/styled-system": "^5.0.1",
     "ajv": "^6.9.1",
     "ajv-errors": "^1.0.1",

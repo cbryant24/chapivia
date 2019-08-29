@@ -1,11 +1,10 @@
 import { system } from 'styled-system';
-import { cssProperties, pseudoClasses, pseudoElements } from './cssHelpers';
-import { validateAnimation } from './cssValidators';
-
+import { themeGet } from '@styled-system/theme-get';
 import styledCSS from '@styled-system/css';
-import { getAnimation } from '../animations'
 
-import { keyframes, css } from 'styled-components'
+import { cssProperties, pseudoClasses, pseudoElements } from './cssHelpers';
+
+
 
 export const addStyles = props => {
   const cssProps = {};
@@ -37,6 +36,24 @@ export const addPseudo = props => {
   const val = styledCSS({ ...pseudo });
   // debugger
   return val;
+}
+
+export const addThemeStyle = props => {
+  if (props.themeStyle) {
+
+    if (Array.isArray(props.themeStyle)) {
+      let combinedStyle = {};
+
+      props.themeStyle.forEach( style => {
+        const themeVals = themeGet(style)(props);
+        combinedStyle = { ...combinedStyle, ...themeVals }
+      });
+
+      return styledCSS(combinedStyle);
+    }
+
+    return styledCSS(themeGet(props.themeStyle)(props))
+  }
 }
 
 export const getStyles = props => {

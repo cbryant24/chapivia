@@ -45,13 +45,6 @@ export const TEXTDECORATION = system({
   textDecoration: true
 });
 
-export const BEFOREFONTSIZE = system({
-  beforeFontSize: {
-    property: '::before',
-    scale: 'fontSizes'
-  }
-})
-
 export const GRID = compose(
   styledSystem.grid,
   system({

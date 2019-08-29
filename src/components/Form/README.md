@@ -167,15 +167,17 @@ A function for submit is required and should be passed with the property name `s
 
 ## Styling
 
-This library uses `react-styled-everything` library for styling which utilizes `styled-components` and `styled-system` add css styling to elements. For a deeper look into how this styling is done see [ADD LINK TO `REACT-STYLED-EVERYTHING`] library.
-to style `input` elements include on the `inputStyle` property and pass an object of camelcase css properties and values.
+This library uses `react-styled-everything` library for styling which utilizes `styled-components` and `styled-system` to add css styling to elements. For a deeper look into how this styling is done see [ADD LINK TO `REACT-STYLED-EVERYTHING`] library.
+
+### Input Styling
+to style `input` elements include the `style` property with an object of camelcase css properties and values. 
 
 ```javascript
-inputs = [
+const inputs = [
   {
     data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
     fieldStyle: { width: [1], maxHeight: '5em', justifyContent: 'space-between', flexDirection: 'column'},
-    inputStyle: {
+    style: {
       appearance: 'none',
       display: 'block',
       verticalAlign: 'middle',
@@ -195,6 +197,128 @@ inputs = [
     }
   }
 ]
+```
+
+If using `react-styled-everthing` `ThemeProvider` with a `theme` object a string with the name of the style that can be found in theme can be provided or an array of strings if applying multiple styles. 
+
+```javascript
+  const myInput = {
+    appearance: 'none',
+      display: 'block',
+      verticalAlign: 'middle',
+      width: '75%',
+      maxWidth: '38rem',
+      color: 'white',
+      lineHeight: 'inherit',
+      letterSpacing: 'inherit',
+      fontFamily: 'inherit',
+      backgroundColor: 'transparent',
+      borderRadius: '5px',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'rgb(221, 225, 228)',
+      transition: 'box-shadow 0.125s ease-out 0s',
+      margin: [1,2]
+  }
+
+  const inputSmall = {
+    width: '50%'
+    maxWidth: '24rem',
+    fontSize: 1
+  }
+
+  const theme = {
+    myInput,
+    inputSmall
+  }
+
+  const inputs = [
+    {
+      data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
+      fieldStyle: { width: [1], maxHeight: '5em', justifyContent: 'space-between', flexDirection: 'column'},
+      style: 'myInput'
+    },
+    {
+      data: { type: 'password', name: 'password', label: 'password', placeholder: 'enter password', required: true },
+      fieldStyle: { width: [1], maxHeight: '5em', justifyContent: 'space-between', flexDirection: 'column'},
+      style: ['myInput', 'inputSmall']
+    },
+  ]
+```
+
+### Button Styling
+
+To style the form `button` elements include the style property with an object of camelcase css properties and values. 
+
+```javascript
+export const squareButton = 
+
+const buttons = [
+    { text: 'Submit', type: 'submit', cb: null, style: 
+      {
+        display: "inline-block",
+        verticalAlign: "middle",
+        textAlign: "center",
+        fontSize: [1, 2],
+        fontFamily: "inherit",
+        fontWeight: "extraBold",
+        lineHeight: "condensed",
+        appearance: "none",
+        cursor: "pointer",
+        color: "white",
+        boxShadow: "none",
+        backgroundColor: "transparent",
+        textDecoration: "none",
+        transition: "box-shadow 0.125s ease-out 0s",
+        borderWidth: "2px",
+        borderStyle: "solid",
+        borderColor: "currentcolor",
+        px: [2, 3],
+        py: [2, 3]
+      }
+    }
+  ]
+```
+
+If using `react-styled-everthing` `ThemeProvider` with a `theme` object a string with the name of the style that can be found in theme can be provided or an array of strings if applying multiple styles. 
+
+```javascript
+  const myButton = {
+    display: "inline-block",
+    verticalAlign: "middle",
+    textAlign: "center",
+    fontSize: [1, 2],
+    fontFamily: "inherit",
+    fontWeight: "extraBold",
+    lineHeight: "condensed",
+    appearance: "none",
+    cursor: "pointer",
+    color: "white",
+    boxShadow: "none",
+    backgroundColor: "transparent",
+    textDecoration: "none",
+    transition: "box-shadow 0.125s ease-out 0s",
+    borderWidth: "2px",
+    borderStyle: "solid",
+    borderColor: "currentcolor",
+    px: [2, 3],
+    py: [2, 3]
+  }
+
+  const smallButton = {
+    px: [1,2],
+    py: [1,2]
+  }
+  
+  const theme = {
+    myButton,
+    smallButton
+  }
+
+  const buttons = [
+    { text: 'Submit', type: 'submit', cb: null, style: 'myButton' },
+    { text: 'Cancel', type: 'cancel', cb: null, style: ['myButton', 'smallButton'] }
+  ]
 ```
 
 ### Pseudo Styling

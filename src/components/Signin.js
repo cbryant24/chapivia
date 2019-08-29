@@ -49,44 +49,22 @@ function Signin(props) {
     // debugger
     setIsOpen(!isOpen);
   }
-
-  const inputStyle = {
-    pseudo: true,
-    appearance: 'none',
-    display: 'block',
-    verticalAlign: 'middle',
-    width: [2],
-    color: 'white',
-    lineHeight: 'inherit',
-    letterSpacing: 'inherit',
-    fontFamily: 'inherit',
-    backgroundColor: 'transparent',
-    borderRadius: '5px',
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    borderColor: 'rgb(221, 225, 228)',
-    transition: 'box-shadow 0.125s ease-out 0s',
-    margin: '10px',
-    focus: {
-      outline: 'none'
-    }
-  }
   
   const inputs = [
     {
       data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
       fieldStyle: { width: [1], maxHeight: '5em', justifyContent: 'space-between', flexDirection: 'column'},
-      inputStyle: { ...inputStyle }
+      style: 'input'
     },
     {
       data: { type: 'password', name: 'password', label: 'password', placeholder: 'enter password', required: true },
       fieldStyle: { width: [1], maxHeight: ['5em'], justifyContent: 'space-between', flexDirection: 'column'},
-      inputStyle: { ...inputStyle }
+      style: 'input'
     }
   ]
 
   const buttons = [
-    { text: 'Submit', type: 'submit', cb: null, style: 'squareButton' },
+    { text: 'Submit', type: 'submit', cb: null, style: theme.squareButton },
     { text: 'Cancel', type: 'cancel', cb: null, style: 'squareButton' }
   ]
 

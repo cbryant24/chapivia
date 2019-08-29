@@ -4,8 +4,7 @@ import {Box, Field, Flex, BoxAll} from '../element';
 import { useStateValue } from './App';
 import { useWindowSize }from '../../hooks';
 
-import { squareButton } from '../elements/theme';
-
+//TODO: add option for user to provide html .class or #id for styling or selection themselves
 export default function Form({ inputs, form, validate, buttons }) {
   
   const [{ formName, fields }, dispatch] = useStateValue();
@@ -21,27 +20,32 @@ export default function Form({ inputs, form, validate, buttons }) {
   }
 
   const displayButtons = () => {
-    // debugger
-    const vals = {
-      fontSize: [2, 3]
-    }
-    return buttons.map( button => (
-      button.type === 'submit' ? 
-      <BoxAll
-        isA="button"
-        type={ button.type }
-        disabled={ !isEnabled() }
-        {...squareButton}
-      > {button.text} </BoxAll> :
-      <BoxAll
-        isA="button"
-        {...squareButton}
-        type={ button.type }
-      >
-        {button.text}
-      </BoxAll>
-    ))
-  }
+
+    return buttons.map( button => {
+      const buttonStyle = typeof button.style === 'string' ? { themeStyle: button.style } : { ...button.style };
+      debugger
+      return ( 
+        button.type === "submit" ? 
+          <BoxAll
+            isA="button"
+            type={ button.type }
+            disabled={ !isEnabled() }
+            // [propName]={'squareButton'}
+            {...buttonStyle}
+          > 
+            {button.text} 
+          </BoxAll> :
+          <BoxAll
+            isA="button"
+            themeStyle="squareButton"
+            type={ button.type }
+            travis
+          >
+            {button.text}
+          </BoxAll>
+      );
+    });
+  };
 
   const handleErrorMessages = errorMessages => {
     return errorMessages.map( errorMessage => <Box isA="li" key={errorMessage.message}>{errorMessage.message}</Box> )

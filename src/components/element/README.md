@@ -1,27 +1,30 @@
 ## Basics
-Importing a styled-system component to display wrap the component in curly braces to render
+Styles can be applied to components by writing css styles directly as props 
 
-```Javascript
+```javascript
 export const StyledFlex = (
   <Flex
     width="75%"
     maxHeight="75"
   />
 )
+```
+Optionally styles can be defined and spread onto the component to provide reusability for styles
 
-import StyledFlex from './StyledFlex'
-
-return (
-  <div>
-    {StyledFlex}
-  </div>
-)
+```javascript
+  const styles = {
+    width: [1, 2],
+    fontSize: [1, 2],
+    color: 'black',
+    border: '1px solid black'
+  }
+  <Box
+    {...styles}
+  >
+    I'm a styled div
+  </Box>
 ```
 
-### Setting HTML Elements
-To set an Component as a specific HTML element use the `forwardedAs` prop on the component 
-
-```Javascript <Box forwadedAs="span"> I'm a span element now</Box>```
 
 ## Adding Props
 If props need to be added to a passed styled-system component a helper function can be imported and used
@@ -244,3 +247,147 @@ The `BackgroundComponent` Takes a component that will be rendered as the backgro
 />
 
 ```
+
+## Element Types
+
+To use different element types i.e. `<span></span> <p></p>` use the prop `isA` and select the element type needed.
+
+```javascript
+<Box
+  isA="p"
+  fontSize={[1,2]}
+  zIndex='10'
+>
+  I am now a styled paragraph element
+</Box>
+```
+
+## Theme 
+
+To create a theme provide a `theme` object and prop for the `ThemeProvider`
+
+```javascript
+const breakpoints = ['544px', '768px', '1012px', '1280px'];
+export const sizes = ['0%', '100%', '75%', '50%', '25%'];
+const colors = {
+  black: '#000000',
+  white: '#ffffff',
+  red: '#FF0000'
+}
+const fontSizes = [0, '1.6em', '1.4em', '1.2em', '.9em', '.8em' ];
+
+const theme = {
+  breakpoints,
+  sizes,
+  colors,
+  fontSizes
+}
+
+import {ThemeProvider} from 'react-styled-everything';
+
+ReactDOM.render(
+  <ThemeProvider theme={theme}>
+    <App/>
+  </ThemeProvider>,
+  document.getElementById('root')
+);
+```
+
+### Theme 
+
+Defined styles in the theme can be used on components by using the `themeStyles` prop and passing either a string representing the object name or an array of strings to provide multiple styles defined in the theme. Note when using an array any shared properties will be overriden by the last item in the array.
+
+```javascript
+
+const squareButton = {
+  display: "inline-block",
+  boxShadow: "none",
+  backgroundColor: "transparent",
+  textDecoration: "none",
+  transition: "box-shadow 0.125s ease-out 0s",
+  borderWidth: "2px",
+  borderStyle: "solid",
+  borderColor: "currentcolor",
+  px: [1, 2],
+  py: [1, 2],
+}
+
+const largeButton = {
+  px: [2, 3],
+  py: [2, 3],
+  color: 'yellow.2'
+}
+
+const theme = {
+  squareButton,
+  largeButton
+}
+
+const Buttons = (props) => {
+  return (
+    <Box
+      isA="button"
+      type='text'
+      themeStyle="squareButton"
+    >
+      I'm a square button style
+    </Box>
+    <Box
+      isA="button"
+      type='text'
+      themeStyle={["squareButton", "largeButton"]}
+    >
+      I'm a large square button style
+    </Box>
+  )
+}
+```
+
+For styles defined in the theme and passed as a string or an array the following values can be used with your theme values
+
+| Property            | Theme Key      |
+|---------------------|----------------|
+| fontFamily          | fonts          |
+| fontSize            | fontSizes      |
+| fontWeight          | fontWeights    |
+| lineHeight          | lineHeights    |
+| letterSpacing       | letterSpacings |
+| color               | colors         |
+| backgroundColor, bg | colors         |
+| margin,m            | space          |
+| marginTop, mt       | space          |
+| marginRight, mr     | space          |
+| marginBottom, mb    | space          |
+| marginLeft, ml      | space          |
+| marginX, mx         | space          |
+| marginY, my         | space          |
+| padding, p          | space          |
+| paddingTop, pt      | space          |
+| paddingRight, pr    | space          |
+| paddingBottom       | space          |
+| paddingLeft, pl     | space          |
+| paddingX, px        | space          |
+| paddingY, py        | space          |
+| top                 | space          |
+| bottom              | space          |
+| left                | space          |
+| right               | space          |
+| border              | borders        |
+| borderTop           | borders        |
+| borderBottom        | borders        |
+| borderLeft          | borders        |
+| borderColor         | colors         |
+| borderWidth         | borderWidths   |
+| borderStyle         | borderStyles   |
+| borderRadius        | radii          |
+| boxShadow           | shadows        |
+| textShadow          | shadows        |
+| zIndex              | zIndices       |
+| width               | sizes          |
+| minWidth            | sizes          |
+| maxWidth            | sizes          |
+| height              | sizes          |
+| minHeight           | sizes          |
+| maxHeight           | sizes          |
+| size                | sizes          |
+
