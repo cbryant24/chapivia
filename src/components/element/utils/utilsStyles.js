@@ -56,6 +56,4 @@ export const addThemeStyle = props => {
   }
 }
 
-export const getStyles = props => {
-  const styleProps = {};
-}
+export const styleType = styles => typeof styles === 'string' ? { themeStyle: styles } : { ...styles };

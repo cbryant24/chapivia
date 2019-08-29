@@ -26,10 +26,6 @@ import { keyframes, css } from 'styled-components';
 function Signin(props) {
   const [isOpen, setIsOpen] = useState(false);
 
-  //TESTING
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const inputRef = useRef();
   async function signin(event, vals) {
 
     const { email, password, name } = vals;
@@ -45,21 +41,18 @@ function Signin(props) {
     return props.history.push('/game');
   }
 
-  const toggleModal = e => {
-    // debugger
-    setIsOpen(!isOpen);
-  }
+  const toggleModal = e => setIsOpen(!isOpen);
   
   const inputs = [
     {
       data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
       fieldStyle: { width: [1], maxHeight: '5em', justifyContent: 'space-between', flexDirection: 'column'},
-      style: 'input'
+      inputStyle: 'inputNormal'
     },
     {
       data: { type: 'password', name: 'password', label: 'password', placeholder: 'enter password', required: true },
       fieldStyle: { width: [1], maxHeight: ['5em'], justifyContent: 'space-between', flexDirection: 'column'},
-      style: 'input'
+      inputStyle: 'inputNormal'
     }
   ]
 
@@ -82,23 +75,9 @@ function Signin(props) {
     },
   }
 
-  //TESTING
-  const itChanged = (e) => {
-    // debugger
-    if(e.target.value === 'h') return; 
-
-    if(e.target.name === 'email')
-      return setEmail(e.target.value);
-    
-    return  setPassword(e.target.value)
-  }
-
 return (
   <Box id="signin-box-module" 
-    fontSizeModule={[1,2]} 
-    width={[2,3]}
-    height={['100vh']}
-    margin={['auto']}
+    themeStyle='testVal'
   >
   {/* <Box
     isA="form"

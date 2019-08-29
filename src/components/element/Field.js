@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React, { useState } from 'react'
+import { styleType } from './utils';
 
 import BoxAll from './BoxAll';
 
@@ -24,12 +25,12 @@ const handleErrorMessages = errorMessages => {
 }
 
 //TODO: add option to chose normal password field no "show" option
-const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyle, ...props }) => {
+const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputStyle={}, ...props }) => {
   const [shown, setShown] = useState(false);
   const errorColor = props.errors.length >= 1 ? '#e95667' : null; 
-  const {display, ...inputStyleContainer } = inputStyle;
-  const {border, borderTop, borderRight, borderBottom, borderLeft, borderRadius, borderWidth, borderColor, borderStyle, ...inputStyleNoBorder } = inputStyle;
-  
+  // const {display, ...inputStyleContainer } = inputStyle;
+  // const {border, borderTop, borderRight, borderBottom, borderLeft, borderRadius, borderWidth, borderColor, borderStyle, ...inputStyleNoBorder } = inputStyle;
+  // debugger
   const inputType =
     {
       select: 'select',
@@ -38,7 +39,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyl
     }[type] || 'input'
     // debugger
   return (
-    <BoxAll {...fieldStyle}>
+    <BoxAll {...styleType(fieldStyle)}>
       <Flex
         alignItems="flex-end"
       >
@@ -48,7 +49,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyl
         {props.errors.length >= 1 ? <Box isA="list" ml="2rem" color={errorColor} fontSize="1.2rem">{handleErrorMessages(props.errors)}</Box> : ''}
       </Flex>
       <BoxAll
-        {...inputStyleContainer}
+        {...styleType(inputStyle)}
         display="flex"
         justifyContent="space-between"
         borderColor={errorColor}
@@ -57,7 +58,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle, inputStyl
       >
         <BoxAll
           {...props}
-          {...inputStyleNoBorder}
+          {...styleType(inputStyle)}
           border="none"
           margin="0"
           padding="0"

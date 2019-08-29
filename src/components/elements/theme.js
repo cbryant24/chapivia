@@ -171,7 +171,7 @@ export const squareButton = {
   py: [1, 2],
 }
 
-const input = {
+const inputNormal = {
   pseudo: true,
   appearance: 'none',
   display: 'block',
@@ -196,6 +196,13 @@ const input = {
 const inputSmall = {
   width: [1]
 };
+
+const testVal = {
+  fontSize: [1,2],
+  width: [2,3],
+  height: ['100vh'],
+  margin: ['auto']
+}
 
 const theme = {
   breakpoints,
@@ -225,7 +232,8 @@ const theme = {
   lineHeights,
   squareButton,
   button,
-  input
+  inputNormal,
+  testVal
 }
 
 export default theme;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StateProvider } from './FormState';
 import Form from './Form';
+import { styleType } from './utils';
 
 import { useStateValue } from './FormState';
 

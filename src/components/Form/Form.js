@@ -3,6 +3,7 @@ import { formInput } from './FormInput';
 import {Box, Field, Flex, BoxAll} from '../element';
 import { useStateValue } from './App';
 import { useWindowSize }from '../../hooks';
+import { styleType } from './utils';
 
 //TODO: add option for user to provide html .class or #id for styling or selection themselves
 export default function Form({ inputs, form, validate, buttons }) {
@@ -13,17 +14,22 @@ export default function Form({ inputs, form, validate, buttons }) {
   const errorColor = formErrors.length >= 1 ? '#e95667' : null;
   
   const displayFields = () => {
-    return inputs.map( input =>  {
-      const field = formInput(input, validate);
-      return <Field key={input.data.name} {...input} {...field} errors={fields[input.data.name].errorMessages}/>
-    });
+    if (Array.isArray(inputs)) {
+      return inputs.map( input =>  {
+        const field = formInput(input, validate);
+        return <Field key={input.data.name} {...input} {...field} errors={fields[input.data.name].errorMessages}/>
+      });
+    }
+    const field = formInput(inputs, validate);
+    return <Field {...inputs} {...field} errors={fields[inputs.data.name].errorMessages}/>
+    
   }
 
   const displayButtons = () => {
 
     return buttons.map( button => {
-      const buttonStyle = typeof button.style === 'string' ? { themeStyle: button.style } : { ...button.style };
-      debugger
+      const buttonStyle = styleType(button.style);
+      // debugger
       return ( 
         button.type === "submit" ? 
           <BoxAll
@@ -91,7 +97,7 @@ export default function Form({ inputs, form, validate, buttons }) {
       color="#fff"
       objectFit="cover"
       isA="form"
-      {...form.style}
+      {...styleType(form.style)}
       onSubmit={ event => handleSubmit(event) }
     >
       {formErrors.length >= 1 ? <Box
