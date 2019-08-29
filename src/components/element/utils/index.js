@@ -1,18 +1,18 @@
 import { filterProps } from './filterProps';
 import { cssList, cssProperties, pseudoClasses, pseudoElements } from './cssHelpers';
 import { validateAnimation } from './cssValidators';
-import { addStyles, addPseudo } from './utilsStyles';
+import { addStyles, addPseudo, addThemeStyle } from './utilsStyles';
 import { addProps } from './addProps';
 import { 
-  COMMON, BORDER, TYPOGRAPHY, LAYOUT, SPACE, CURSOR,
-  POSITION, FLEX, GRID, TRANSITION, COLOR, APPEARANCE,
-  SHADOW, TEXTDECORATION, FONTSIZESMODULES, ZINDEX,
-  ALL
+  COMMON, BORDER, TYPOGRAPHY, CURSOR,
+  POSITION, FLEX, GRID, TRANSITION,
+  SHADOW, TEXTDECORATION, ALL
 } from './constants';
 
 export {
   addPseudo,
   addProps,
+  addThemeStyle,
   addStyles,
   cssList,
   cssProperties,
@@ -24,17 +24,11 @@ export {
   COMMON,
   BORDER,
   TYPOGRAPHY,
-  LAYOUT,
   POSITION,
   FLEX,
   GRID,
   TRANSITION,
-  SPACE,
-  COLOR,
-  APPEARANCE,
   CURSOR,
   SHADOW,
   TEXTDECORATION,
-  FONTSIZESMODULES,
-  ZINDEX,
 };

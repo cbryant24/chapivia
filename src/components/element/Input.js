@@ -11,6 +11,8 @@ import PropTypes from 'prop-types'
 import { appearance, verticalAlign, transition, outline } from './utils/cssHelpers';
 import { filterProps } from './utils/'
 
+import Box from './Box';
+
 // const chevron = () => {
 //   const props = `xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'`
 //   const slate = '%23' + theme.colors.slate.replace('#', '')
@@ -26,14 +28,12 @@ const Base = (props) => {
   const Component = styled.div``;
   return <Component {...next} />
 }
+// const Input = styled.input`
+//   box-sizing: 'border-box',
+//   min-width: 0
+// `
 
-const Input = styled(cleanElement(Base))(
-  { 
-    boxSizing: 'border-box',
-    minWidth: 0,
-  },
-  layout, appearance, space, typography, transition, outline, border, color, background, 
-);
+const Input = styled(Box)``
 
 Input.displayName = 'Input'
 

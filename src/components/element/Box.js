@@ -1,27 +1,30 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components/macro';
-import { SPACE, COLOR, LAYOUT, APPEARANCE, FONTSIZESMODULES, ZINDEX, addPseudo } from './utils';
+import { COMMON, addPseudo } from './utils';
+import { filterProps, addThemeStyle } from './utils';
 import cleanElement from 'clean-element';
-import { filterProps } from './utils';
-
 import css from '@styled-system/css';
 
 const Base = props => {
+  const { isA, ...newProps} = props;
+  const next = filterProps(newProps);
+  const type = isA || 'div';
 
-  const Div = styled.div``;
-  const next = filterProps(props);
+  //TODO: Check if issue with children being passed here
+  const element = React.createElement(type, {...next}, props.children)
 
-  return <Div {...next} />;
+  return element;
 }
 
 const Box = styled(cleanElement(Base))(
-  { 
+  {
     boxSizing: 'border-box',
     minWidth: 0,
   },
+  COMMON,
   addPseudo,
-  LAYOUT, SPACE, COLOR, APPEARANCE, FONTSIZESMODULES, ZINDEX
-);
+  addThemeStyle
+)
 
 export const BoxAnimated = styled(Box)`
   ${props => props.animation()}

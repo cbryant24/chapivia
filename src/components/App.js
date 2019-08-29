@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex } from './element';
+import { Box } from './element';
 import {ThemeProvider, GlobalStyle} from './element';
 import Background from './Background';
 import theme from './elements/theme';
@@ -12,10 +12,10 @@ export default ({ children }) => {
   return (
       // <ThemeProvider theme={theme}>
       //     <GlobalStyle />
-          <Flex id="hello">
+          <Box>
             {/* <Background/> */}
             {children}
-          </Flex>
+          </Box>
       // </ThemeProvider>
   );
 }

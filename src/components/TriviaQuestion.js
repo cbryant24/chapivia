@@ -20,7 +20,7 @@ class TriviaQuestion extends Component {
       choices.map( (choice, idx) => {
         return(
           <Box
-            as="li"
+            isA="li"
             pb="1rem"
             hover
             key={choice}
@@ -56,7 +56,7 @@ class TriviaQuestion extends Component {
           {this.convertHTMLChar(this.props.data.trivia.question) || ""}
         </Text>
         <Box
-          as="ul"
+          isA="ul"
         >
           {this.displayGuesses()}
         </Box>

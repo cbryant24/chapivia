@@ -368,7 +368,6 @@ export const cssList = [
   'word-spacing',
   'word-wrap',
   'writing-mode',
-  'z-index',
   'fontSize'
 ];
 

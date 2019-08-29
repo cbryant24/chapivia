@@ -5,18 +5,11 @@ import css from '@styled-system/css';
 
 import { filterProps } from './utils';
 import { getAnimation } from './animations';
+import Box from './Box';
 import { ALL } from './utils';
 
 
-const Base = props => {
-
-  const Div = styled.div``;
-  const next = filterProps(props);
-
-  return <Div {...next} />;
-}
-
-const Box = styled(cleanElement(Base))(
+const Box = styled(Box)(
   { 
     boxSizing: 'border-box',
     minWidth: 0,

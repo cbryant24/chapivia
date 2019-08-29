@@ -44,7 +44,6 @@ export { SlideAnimations as SlideAnimations } from './animations';
 export { BoxPseudo as BoxPseudo } from './BoxPseudo';
 export { BoxAnimatedPseudo as BoxAnimatedPseudo } from './BoxPseudo';
 
-
-export { ExtendedTestBox as ExtendedTestBox } from './ExtendedComponents';
 export { default as Modal } from './modal';
 export { ModalProvider as ModalProvider } from './modal';
+export { default as BoxAll } from './BoxAll';

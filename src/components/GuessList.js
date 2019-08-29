@@ -56,7 +56,7 @@ function GuessList(props) {
           {/* <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/> */}
           {Math.floor((Math.random() * 10) + 1) % 2 === 1 ? 
           <Box
-            as="span"
+            isA="span"
             textTransform="uppercase"
             fontSize="2.4rem"
             fontWeight="500"
@@ -116,7 +116,7 @@ function GuessList(props) {
           key={guess.id}
         >
           <Box
-            as="span"
+            isA="span"
             textTransform="uppercase"
             textAlign="start"
             fontSize="2.4rem"
@@ -133,7 +133,7 @@ function GuessList(props) {
             validate={validate}
           /> : 
           <Box
-            as="button"
+            isA="button"
             bg="primary"
             fontSize="1.1rem"
             borderWidth="1px"

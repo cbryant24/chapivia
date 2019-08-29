@@ -18,7 +18,7 @@ export const grays = {
 }
 
 export const brand = {
-  primary: white,
+  primary: 'rgba(27, 212, 89, 0.88)',
   accent: palette.indigo[4],
   success: palette.teal[5],
   info: palette.blue[5],
@@ -59,9 +59,7 @@ export const mediaQueries = {
   reduceTransparency: '@media (prefers-reduced-transparency: reduce)'
 };
 
-export const pseudoElements = {
-  
-}
+
 
 addAliases(breakpoints, aliases);
 addAliases(mediaQueries, aliases);
@@ -70,16 +68,22 @@ const emoji = '"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"';
 export const font = `development,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif,${emoji}`;
 export const mono = 'SFMono-Regular,"Roboto Mono",Menlo,monospace';
 
-export const fontSizes = [0, '1.6em', '1.4em', '1.2em', '.9em', '.8em' ];
-export const space = [0, '1em', '1.4em', '1.6em', '2em'];
-export const sizes = ['0%', '70vh', '60%', '40%', '20%'];
+export const fontSizes = [0, '.8em', '.9em', '1.2em', '1.4em', '1.6em'];
+
+//margin/padding[all, left, right top bottom] 
+//grid [grid-gap, grid-column-gap, grid-row-gap]
+export const space = [0, '.5em', '1em', '1.5em', '2em'];
+
+//width, height, min-width, max-width, min-height, max-height
+export const sizes = ['0%', '100%', '75%', '50%', '25%'];
+
 export const lineHeights = { "condensedUltra": 1, "condensed": 1.25, "default": 1.5 }
 
 //fontSizesModule is used to size for repsonsiveness using the css design philospohy
 //of modular design with font-size rem for global design and font-size em for local design
 //see https://css-tricks.com/rem-global-em-local/ for explanation `fontSizesModule` is a 
 //custom system-styled property that can be used with the scale for parent module font-size design
-export const fontSizesModule = [0, '1rem', '2rem', '3em', '4rem']
+export const fontSizesModule = [0, '2.2rem', '2.0rem', '1.8erm', '1.6rem']
 
 export const light = 300;
 export const regular = 400;
@@ -109,6 +113,8 @@ export const boxShadows = [
 //DEFAULT INPUT STYLING
 export const inputMaxWidth = "38rem";
 export const inputWidth = "100%";
+
+export const buttonPadding = [0, '.5em', '1em']
 
 export const hexa = (color, alpha) => {
   const hex = cx(color);
@@ -143,10 +149,11 @@ const button = {
 }
 //THEME WILL BE PROVIDED TO FORM APP 
 export const squareButton = {
+  pseudo: true,
   display: "inline-block",
   verticalAlign: "middle",
   textAlign: "center",
-  fontSizeModule: [1, 2],
+  fontSize: [1, 2],
   fontFamily: "inherit",
   fontWeight: "extraBold",
   lineHeight: "condensed",
@@ -164,10 +171,33 @@ export const squareButton = {
   py: [1, 2],
 }
 
-export const objectFits = ['cover', 'contain']
+const input = {
+  pseudo: true,
+  appearance: 'none',
+  display: 'block',
+  verticalAlign: 'middle',
+  width: [2],
+  color: 'white',
+  lineHeight: 'inherit',
+  letterSpacing: 'inherit',
+  fontFamily: 'inherit',
+  backgroundColor: 'transparent',
+  borderRadius: '5px',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: 'rgb(221, 225, 228)',
+  transition: 'box-shadow 0.125s ease-out 0s',
+  margin: '10px',
+  focus: {
+    outline: 'none'
+  }
+};
+
+const inputSmall = {
+  width: [1]
+};
 
 const theme = {
-  objectFits,
   breakpoints,
   mediaQueries,
   mono,
@@ -189,12 +219,13 @@ const theme = {
   inputMaxWidth,
   inputWidth,
   windowBorderStyle,
-  button,
-  squareButton,
   sizes,
   space,
   fontSizesModule,
-  lineHeights
+  lineHeights,
+  squareButton,
+  button,
+  input
 }
 
 export default theme;

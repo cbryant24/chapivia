@@ -1,13 +1,13 @@
 import React from 'react';
 import { StateProvider } from './FormState';
 import Form from './Form';
-import AuthReducer from './reducers';
 
 import { useStateValue } from './FormState';
 
 export { useStateValue };
 
 export default function FormApp({form, inputs, validate, buttons}) {
+
   const initialState = {
     formName: form.data.name,
     fields: {}

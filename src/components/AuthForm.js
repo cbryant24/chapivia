@@ -32,7 +32,7 @@ class AuthForm extends Component {
   render() {
     return (
       <Element.Flex>
-        <Element.FlexForm as="form">
+        <Element.FlexForm isA="form">
           <Element.Field
               name="email"
               type="email"
