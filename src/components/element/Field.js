@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import React, { useState } from 'react'
-import { styleType } from './utils';
+import React, { useState } from 'react';
+import { styleType, removeStyles } from './utils';
 
 import BoxAll from './BoxAll';
 
@@ -27,9 +27,8 @@ const handleErrorMessages = errorMessages => {
 //TODO: add option to chose normal password field no "show" option
 const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputStyle={}, ...props }) => {
   const [shown, setShown] = useState(false);
-  const errorColor = props.errors.length >= 1 ? '#e95667' : null; 
-  // const {display, ...inputStyleContainer } = inputStyle;
-  // const {border, borderTop, borderRight, borderBottom, borderLeft, borderRadius, borderWidth, borderColor, borderStyle, ...inputStyleNoBorder } = inputStyle;
+  const errorColor = props.errors.length >= 1 ? '#e95667' : null;
+
   // debugger
   const inputType =
     {
@@ -49,7 +48,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
         {props.errors.length >= 1 ? <Box isA="list" ml="2rem" color={errorColor} fontSize="1.2rem">{handleErrorMessages(props.errors)}</Box> : ''}
       </Flex>
       <BoxAll
-        {...styleType(inputStyle)}
+        {...styleType(inputStyle, 'display')}
         display="flex"
         justifyContent="space-between"
         borderColor={errorColor}
@@ -58,10 +57,15 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
       >
         <BoxAll
           {...props}
-          {...styleType(inputStyle)}
+          pseudo
+          background="transparent"
+          width={type === "password" ? "75%" : "100%"}
+          height="100%"
           border="none"
+          color="inherit"
           margin="0"
           padding="0"
+          focus={{outline: "none"}}
           isA={inputType}
           name={name}
           type={shown && type === "password" ? 'text' : type} 

@@ -23,7 +23,10 @@ const Box = styled(cleanElement(Base))(
   },
   COMMON,
   addPseudo,
-  addThemeStyle
+  addThemeStyle(props),
+  props => {
+    // debugger
+  }
 )
 
 export const BoxAnimated = styled(Box)`

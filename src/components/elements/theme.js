@@ -233,7 +233,8 @@ const theme = {
   squareButton,
   button,
   inputNormal,
-  testVal
+  testVal,
+  inputSmall
 }
 
 export default theme;

@@ -45,7 +45,6 @@ export default function Form({ inputs, form, validate, buttons }) {
             isA="button"
             themeStyle="squareButton"
             type={ button.type }
-            travis
           >
             {button.text}
           </BoxAll>

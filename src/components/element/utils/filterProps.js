@@ -354,5 +354,6 @@ export const filterProps = props => {
     "::after",
     "fontSizeModule",
     "borderWidth",
-    "cursor"
+    "cursor",
+    "errors"
 ])}

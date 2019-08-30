@@ -14,7 +14,7 @@ export const addStyles = props => {
   return system({ ...cssProps });
 };
 
-export const addPseudo = props => {
+export const addPseudo = (props, isThemeStyled=false) => {
   if (!props.pseudo) return;
   // debugger
   const elementProps = Object.getOwnPropertyNames(props);
@@ -33,27 +33,66 @@ export const addPseudo = props => {
   if (pseudoElementProps.indexOf('firstLetter') >= 0)
     pseudo['::first-letter'] = pseudo['::firstLetter'];
 
-  const val = styledCSS({ ...pseudo });
-  // debugger
-  return val;
+  if (isThemeStyled) return pseudo;
+
+  return styledCSS({ ...pseudo });
 }
 
 export const addThemeStyle = props => {
-  if (props.themeStyle) {
+  if (!props.themeStyle) return;
+    // debugger
+  if (Array.isArray(props.themeStyle)) {
+    let combinedStyle = {};
 
-    if (Array.isArray(props.themeStyle)) {
-      let combinedStyle = {};
-
-      props.themeStyle.forEach( style => {
-        const themeVals = themeGet(style)(props);
-        combinedStyle = { ...combinedStyle, ...themeVals }
-      });
-
-      return styledCSS(combinedStyle);
+    props.themeStyle.forEach( style => {
+      const themeVals = themeGet(style)(props);
+      combinedStyle = { ...combinedStyle, ...themeVals }
+    });
+    // debugger
+    if (combinedStyle.pseudo) {
+      combinedStyle = {...combinedStyle, ...addPseudo(combinedStyle, true)}
+      //debugger
     }
-
-    return styledCSS(themeGet(props.themeStyle)(props))
+    return styledCSS(combinedStyle);
   }
+
+  let themedStyles = themeGet(props.themeStyle)(props);
+  // debugger
+  if (themedStyles.pseudo) {
+    themedStyles = {...themedStyles, ...addPseudo(themedStyles, true)}
+    //debugger
+  }
+  // debugger
+  return styledCSS(themedStyles)
 }
 
-export const styleType = styles => typeof styles === 'string' ? { themeStyle: styles } : { ...styles };
+//CONTINUE HERE: add another property for string/array and removal of styles to object version if remove is not null
+export const styleType = (styles, remove) => {
+  typeof styles === 'string' || Array.isArray(styles) ? { themeStyle: styles } : { ...styles };
+}
+
+export const removeStyles = (props, styles, removedStyles) => {
+  // debugger
+  const stylesType = styleType(styles);
+  let style = stylesType;
+
+  if (stylesType.hasOwnProperty('themeStyle')) {
+    debugger
+    style = themeGet(styles)(props)
+    debugger
+    if (Array.isArray(removedStyles)) {
+      removedStyles.forEach( (style, idx) => {
+        const { [removedStyles[idx]]: removed, ...rest} = style;
+        style = rest;
+      })
+    }
+
+    const { [removedStyles]: removed, ...rest} = style;
+    style = rest;
+    debugger
+    return style
+  } else {
+    // const { dislpay, ...rest } = inputStyle;
+    // stylesRemoved = rest;
+  }
+}
