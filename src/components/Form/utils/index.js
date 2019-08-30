@@ -1,5 +1,5 @@
-import { styleType } from './utilsStyles';
+import { styleBuildRemove } from './utilsStyles';
 
 export {
-  styleType
+  styleBuildRemove
 };

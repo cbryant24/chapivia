@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useState } from 'react';
-import { styleType, removeStyles } from './utils';
+import { styleBuildRemove, removeStyles } from './utils';
 
 import BoxAll from './BoxAll';
 
@@ -38,7 +38,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
     }[type] || 'input'
     // debugger
   return (
-    <BoxAll {...styleType(fieldStyle)}>
+    <BoxAll {...styleBuildRemove(fieldStyle)}>
       <Flex
         alignItems="flex-end"
       >
@@ -48,7 +48,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
         {props.errors.length >= 1 ? <Box isA="list" ml="2rem" color={errorColor} fontSize="1.2rem">{handleErrorMessages(props.errors)}</Box> : ''}
       </Flex>
       <BoxAll
-        {...styleType(inputStyle, 'display')}
+        {...styleBuildRemove(inputStyle, 'display')}
         display="flex"
         justifyContent="space-between"
         borderColor={errorColor}

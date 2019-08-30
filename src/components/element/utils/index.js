@@ -1,7 +1,7 @@
 import { filterProps } from './filterProps';
 import { cssList, cssProperties, pseudoClasses, pseudoElements } from './cssHelpers';
 import { validateAnimation } from './cssValidators';
-import { addStyles, addPseudo, addThemeStyle, styleType, removeStyles } from './utilsStyles';
+import { addStyles, addPseudo, addThemeStyle, styleBuildRemove, removeStyles } from './utilsStyles';
 import { addProps } from './addProps';
 import { 
   COMMON, BORDER, TYPOGRAPHY, CURSOR,
@@ -20,7 +20,7 @@ export {
   filterProps,
   pseudoElements,
   pseudoClasses,
-  styleType,
+  styleBuildRemove,
   validateAnimation,
   ALL,
   COMMON,

@@ -58,41 +58,38 @@ export const addThemeStyle = props => {
 
   let themedStyles = themeGet(props.themeStyle)(props);
   // debugger
-  if (themedStyles.pseudo) {
+  if (themedStyles.pseudo) 
     themedStyles = {...themedStyles, ...addPseudo(themedStyles, true)}
     //debugger
-  }
   // debugger
+  if (props.remove)
+    themedStyles = removeStyles(themedStyles, props.remove)
+
   return styledCSS(themedStyles)
 }
 
 //CONTINUE HERE: add another property for string/array and removal of styles to object version if remove is not null
-export const styleType = (styles, remove) => {
-  typeof styles === 'string' || Array.isArray(styles) ? { themeStyle: styles } : { ...styles };
+export const styleBuildRemove = (styles, remove) => {
+  return (
+    typeof styles === 'string' || Array.isArray(styles) ? { themeStyle: styles, remove } : 
+                                                  remove ? removeStyles(styles, remove) : { ...styles  }
+  )
 }
 
-export const removeStyles = (props, styles, removedStyles) => {
-  // debugger
-  const stylesType = styleType(styles);
-  let style = stylesType;
+export const removeStyles = (styles, remove) => {
+  let removedStyles = styles;
 
-  if (stylesType.hasOwnProperty('themeStyle')) {
-    debugger
-    style = themeGet(styles)(props)
-    debugger
-    if (Array.isArray(removedStyles)) {
-      removedStyles.forEach( (style, idx) => {
-        const { [removedStyles[idx]]: removed, ...rest} = style;
-        style = rest;
-      })
-    }
+  if (Array.isArray(remove)) {
+    remove.forEach( (style, idx) => {
+      const { [style]: removed, ...rest} = removedStyles;
+      removedStyles = rest;
+    })
 
-    const { [removedStyles]: removed, ...rest} = style;
-    style = rest;
-    debugger
-    return style
-  } else {
-    // const { dislpay, ...rest } = inputStyle;
-    // stylesRemoved = rest;
+    return  removedStyles;
   }
+  debugger
+  const { [remove]: removed, ...rest } = styles;
+  removedStyles = rest;
+  debugger
+  return removedStyles
 }

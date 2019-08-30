@@ -3,7 +3,7 @@ import { formInput } from './FormInput';
 import {Box, Field, Flex, BoxAll} from '../element';
 import { useStateValue } from './App';
 import { useWindowSize }from '../../hooks';
-import { styleType } from './utils';
+import { styleBuildRemove } from './utils';
 
 //TODO: add option for user to provide html .class or #id for styling or selection themselves
 export default function Form({ inputs, form, validate, buttons }) {
@@ -28,7 +28,7 @@ export default function Form({ inputs, form, validate, buttons }) {
   const displayButtons = () => {
 
     return buttons.map( button => {
-      const buttonStyle = styleType(button.style);
+      const buttonStyle = styleBuildRemove(button.style);
       // debugger
       return ( 
         button.type === "submit" ? 
@@ -96,7 +96,7 @@ export default function Form({ inputs, form, validate, buttons }) {
       color="#fff"
       objectFit="cover"
       isA="form"
-      {...styleType(form.style)}
+      {...styleBuildRemove(form.style)}
       onSubmit={ event => handleSubmit(event) }
     >
       {formErrors.length >= 1 ? <Box
