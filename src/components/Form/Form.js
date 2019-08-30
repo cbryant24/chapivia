@@ -29,14 +29,13 @@ export default function Form({ inputs, form, validate, buttons }) {
 
     return buttons.map( button => {
       const buttonStyle = styleBuildRemove(button.style);
-      // debugger
+
       return ( 
         button.type === "submit" ? 
           <BoxAll
             isA="button"
             type={ button.type }
             disabled={ !isEnabled() }
-            // [propName]={'squareButton'}
             {...buttonStyle}
           > 
             {button.text} 
@@ -93,8 +92,6 @@ export default function Form({ inputs, form, validate, buttons }) {
 
   return (
     <BoxAll
-      color="#fff"
-      objectFit="cover"
       isA="form"
       {...styleBuildRemove(form.style)}
       onSubmit={ event => handleSubmit(event) }
@@ -114,15 +111,6 @@ export default function Form({ inputs, form, validate, buttons }) {
         fontSize="28rem"
       >
         {displayButtons()}
-        {/* <Button
-          type="submit"
-          disabled={ !isEnabled() }
-          text="Sign-In"
-        />
-        <Button
-          text="Cancel"
-          onClick={ handleCancel }
-        /> */}
       </Box>
     </BoxAll>
   )

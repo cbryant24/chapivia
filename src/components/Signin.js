@@ -46,26 +46,27 @@ function Signin(props) {
   const inputs = [
     {
       data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
-      fieldStyle: { width: [1], maxHeight: '5em', justifyContent: 'space-between', flexDirection: 'column'},
+      fieldStyle: { width: [1], height: ['33%'], justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: 'inputNormal'
     },
     {
       data: { type: 'password', name: 'password', label: 'password', placeholder: 'enter password', required: true },
-      fieldStyle: { width: [1], maxHeight: ['5em'], justifyContent: 'space-between', flexDirection: 'column'},
+      fieldStyle: { width: [1], height: ['33%'], justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: 'inputNormal'
     }
   ]
 
   const buttons = [
-    { text: 'Submit', type: 'submit', cb: null, style: theme.squareButton },
+    { text: 'Submit', type: 'submit', cb: null, style: {...theme.squareButton, mr: [3]} },
     { text: 'Cancel', type: 'cancel', cb: null, style: 'squareButton' }
   ]
 
   const form = {
     data: { name: 'signinForm', submit: 'signup', cb: signin },
-    style: { 
-      height: [2],
-      justifyContent: 'space-around', 
+    style: {
+      display: 'flex',
+      height: '100%',
+      justifyContent: 'space-evenly', 
       flexDirection: 'column', 
       backgroundColor: 'black',
       border: '1px solid black',
@@ -77,37 +78,19 @@ function Signin(props) {
 
 return (
   <Box id="signin-box-module" 
-    themeStyle='testVal'
+    fontSizeModule={[1,2]}
+    width={[2,3]}
+    height='75vh'
+    margin='auto'
+    alignSelf=""
   >
-  {/* <Box
-    isA="form"
-    height={1}
-    backgroundColor="black"
-  >
-    <Field
-      data={{name: 'email', type: 'text', placehold: 'enter email', label: 'email'} }
-      onChange={itChanged}
-      value={email}
-      errors={[]}
-      inputStyle={inputStyle}
-    />
-
-    <Field
-      data={{name: 'password', type: 'password', placehold: 'enter password', label: 'password'} }
-      onChange={itChanged}
-      value={password}
-      errors={[]}
-      inputStyle={inputStyle}
-    />
-    <Box name="email" onChange={itChanged} value={email} isA="input"/>
-  </Box> */}
-    <FormApp
-      onSubmit={signin}
-      form={form}
-      inputs={inputs}
-      validate={validate}
-      buttons={buttons}
-    />
+  <FormApp
+    onSubmit={signin}
+    form={form}
+    inputs={inputs}
+    validate={validate}
+    buttons={buttons}
+  />
   </Box>
   );
 }

@@ -87,9 +87,8 @@ export const removeStyles = (styles, remove) => {
 
     return  removedStyles;
   }
-  debugger
   const { [remove]: removed, ...rest } = styles;
   removedStyles = rest;
-  debugger
+
   return removedStyles
 }

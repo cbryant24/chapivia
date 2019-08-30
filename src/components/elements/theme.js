@@ -59,11 +59,9 @@ export const mediaQueries = {
   reduceTransparency: '@media (prefers-reduced-transparency: reduce)'
 };
 
-
-
 addAliases(breakpoints, aliases);
 addAliases(mediaQueries, aliases);
-// debugger
+
 const emoji = '"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"';
 export const font = `development,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif,${emoji}`;
 export const mono = 'SFMono-Regular,"Roboto Mono",Menlo,monospace';
@@ -177,6 +175,7 @@ const inputNormal = {
   display: 'block',
   verticalAlign: 'middle',
   width: [2],
+  height: ['25%'],
   color: 'white',
   lineHeight: 'inherit',
   letterSpacing: 'inherit',
@@ -187,7 +186,7 @@ const inputNormal = {
   borderStyle: 'solid',
   borderColor: 'rgb(221, 225, 228)',
   transition: 'box-shadow 0.125s ease-out 0s',
-  margin: '10px',
+  mt: [1],
   focus: {
     outline: 'none'
   }
@@ -198,10 +197,7 @@ const inputSmall = {
 };
 
 const testVal = {
-  fontSize: [1,2],
-  width: [2,3],
-  height: ['100vh'],
-  margin: ['auto']
+
 }
 
 const theme = {
@@ -233,7 +229,6 @@ const theme = {
   squareButton,
   button,
   inputNormal,
-  testVal,
   inputSmall
 }
 
