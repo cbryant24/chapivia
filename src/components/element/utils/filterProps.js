@@ -355,5 +355,11 @@ export const filterProps = props => {
     "fontSizeModule",
     "borderWidth",
     "cursor",
-    "errors"
+    "errors",
+    "top",
+    "left",
+    "right",
+    "bottom",
+    "themeStyle",
+    "remove"
 ])}

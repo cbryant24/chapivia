@@ -6,7 +6,7 @@ import { TYPOGRAPHY, CURSOR, TRANSITION, TEXTDECORATION } from './utils';
 import { system } from 'styled-system';
 
 const Button = styled(Box)`
-  ${TYPOGRAPHY} ${CURSOR} ${TRANSITION} ${TEXTDECORATION}
+  ${TYPOGRAPHY} ${TRANSITION} ${TEXTDECORATION}
 `
 
 Button.displayName = 'Button';

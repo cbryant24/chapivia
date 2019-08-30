@@ -24,11 +24,11 @@ export { default as Button } from './Button';
 export { default as FlexForm } from './Form';
 
 export { default as Box } from './Box';
-export { default as BoxPosition } from './BoxPosition';
 export { default as BoxBorder } from './BoxBorder';
-export { BoxAnimated as BoxAnimated } from './Box';
+export { default as BoxAnimated } from './BoxAnimated';
 export { default as TextAnimated } from './TextAnimated';
 export { ExtendedBox as ExtendedBox } from './ExtendedComponents';
+export { ExtendedText as ExtendedText } from './ExtendedComponents';
 
 //Utilities
 export { addProps as addProps } from './utils';

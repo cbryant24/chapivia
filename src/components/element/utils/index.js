@@ -4,8 +4,8 @@ import { validateAnimation } from './cssValidators';
 import { addStyles, addPseudo, addThemeStyle, styleBuildRemove, removeStyles } from './utilsStyles';
 import { addProps } from './addProps';
 import { 
-  COMMON, BORDER, TYPOGRAPHY, CURSOR,
-  POSITION, FLEX, GRID, TRANSITION,
+  COMMON, BORDER, TYPOGRAPHY, 
+  FLEX, GRID, TRANSITION,
   SHADOW, TEXTDECORATION, ALL
 } from './constants';
 
@@ -26,11 +26,9 @@ export {
   COMMON,
   BORDER,
   TYPOGRAPHY,
-  POSITION,
   FLEX,
   GRID,
   TRANSITION,
-  CURSOR,
   SHADOW,
   TEXTDECORATION,
 };

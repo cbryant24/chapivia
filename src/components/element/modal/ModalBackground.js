@@ -1,7 +1,7 @@
 import React from 'react';
-import BoxPosition from '../BoxPosition';
+import Box from '../Box';
 
-export default <BoxPosition 
+export default <Box
                 display='flex'
                 position='fixed'
                 top="0"

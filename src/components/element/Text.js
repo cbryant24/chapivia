@@ -1,20 +1,19 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import {
-  typography,
-  color,
-  shadow,
-  position
-} from 'styled-system';
+import styled from 'styled-components';
+import { COMMON, TYPOGRAPHY, addPseudo } from './utils';
 import cleanElement from 'clean-element';
 import { clipPath, textTransform } from './utils/cssHelpers';
 import { filterProps } from './utils/index'
 
 const Base = props => {
-  // debugger
-  const P = styled.p``;
-  const next = filterProps(props);
-  return <P {...next} />;
+  const { isA, ...newProps} = props;
+  const next = filterProps(newProps);
+  const type = isA || 'p';
+
+  //TODO: Check if issue with children being passed here
+  const element = React.createElement(type, {...next}, props.children)
+
+  return element;
 }
 
 const Text = styled(cleanElement(Base))(
@@ -22,7 +21,8 @@ const Text = styled(cleanElement(Base))(
     boxSizing: 'border-box',
     minWidth: 0,
   },
-  typography, color, shadow, position, clipPath, textTransform
+  addPseudo,
+  COMMON, TYPOGRAPHY
 );
 
 Text.displayName = 'Text'

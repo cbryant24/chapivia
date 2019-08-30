@@ -1,8 +1,8 @@
 import React from 'react';
-import { BoxPosition } from '../element';
+import { Box } from '../element';
 
 export const ModalBackground = (
-  <BoxPosition 
+  <Box 
     display='flex'
     position='fixed'
     top="0"

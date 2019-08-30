@@ -24,6 +24,7 @@ function Background(props) {
       minHeight="100vh"
     >
       <BoxAnimated
+        id="bacground-animation"
         animation={{
           continuous: bgAnimation(),
           duration_continuous: 10,
@@ -36,11 +37,12 @@ function Background(props) {
         position="absolute"
         top="0"
         left="0"
-        height="100%"
-        width="100%"
+        height={[1]}
+        width={[1]}
         zIndex="-1"
       />
       <ExtendedBox
+        id="background-lines"
         backgroundImage="repeating-linear-gradient(
           to bottom,
           transparent 0,
@@ -60,6 +62,7 @@ function Background(props) {
         zIndex="5"
       />
       <BoxAnimated
+        id="bacground-glow"
         background="radial-gradient(
           circle at center,
           rgba(27,212,89,1) 0%,
@@ -68,12 +71,12 @@ function Background(props) {
           rgba(19,94,29,0.27) 93%,
           rgba(10,23,12,0) 100%
         );"
+        position="fixed"
         top="0"
         left="0"
-        height="100%"
-        width="100%"
+        height={[1]}
+        width={[1]}
         opacity="0.5"
-        position="fixed"
         animation={{
           continuous: bgGlowAnimation(),
           duration_continuous: 60

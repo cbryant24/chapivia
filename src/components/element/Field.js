@@ -25,6 +25,7 @@ const handleErrorMessages = errorMessages => {
 }
 
 //TODO: add option to chose normal password field no "show" option
+//TODO: add theme keys to allow styling for form input
 const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputStyle={}, ...props }) => {
   const [shown, setShown] = useState(false);
   const errorColor = props.errors.length >= 1 ? '#e95667' : null;
@@ -64,7 +65,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
           border="none"
           color="inherit"
           margin="0"
-          padding="0"
+          padding={['0 1em']}
           focus={{outline: "none"}}
           isA={inputType}
           name={name}
@@ -74,7 +75,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
         { type === "password" ? 
         <BoxAll
           isA="p"
-          fontSize="10px"
+          fontSize="12px"
           m="auto"
           onClick={() => setShown(!shown)}
           textTransform="uppercase"

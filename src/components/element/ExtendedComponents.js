@@ -53,10 +53,6 @@ export const ExtendedGridItem = styled(Box)(
 );
 
 export const ExtendedText = styled(Box)(
-  {
-    boxSizing: 'border-box',
-    minWidth: 0,
-  },
   props => addStyles(props),
   ALL
 );

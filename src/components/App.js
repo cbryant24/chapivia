@@ -11,8 +11,10 @@ export default ({ children }) => {
   return (
           <Flex
             minHeight="100vh"
+            flexDirection="column"
           >
-            {/* <Background/> */}
+            <Title/>
+            <Background/>
             {children}
           </Flex>
   );

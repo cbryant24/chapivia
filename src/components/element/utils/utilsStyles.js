@@ -26,6 +26,9 @@ export const addPseudo = (props, isThemeStyled=false) => {
   const pseudo = {};
   pseudoClassProps.forEach( pseudoType => pseudo[`:${pseudoType}`] = props[pseudoType] );
   pseudoElementProps.forEach( pseudoType => pseudo[`::${pseudoType}`] = props[pseudoType]);
+  // debugger
+  if (pseudoClassProps.indexOf('focusWithin') >= 0)
+    pseudo[':focus-within'] = pseudo[':focusWithin'];
 
   if (pseudoElementProps.indexOf('firstLine') >= 0)
     pseudo['::first-line'] = pseudo['::firstLine'];

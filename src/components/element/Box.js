@@ -1,9 +1,8 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import { COMMON, addPseudo } from './utils';
 import { filterProps, addThemeStyle } from './utils';
 import cleanElement from 'clean-element';
-import css from '@styled-system/css';
 
 const Base = props => {
   const { isA, ...newProps} = props;
@@ -25,9 +24,5 @@ const Box = styled(cleanElement(Base))(
   addPseudo,
   props => props.themeStyle ? addThemeStyle(props) : '',
 )
-
-export const BoxAnimated = styled(Box)`
-  ${props => props.animation()}
-`
 
 export default Box;

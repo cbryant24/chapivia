@@ -26,12 +26,12 @@ import { keyframes, css } from 'styled-components';
 function Signin(props) {
   const [isOpen, setIsOpen] = useState(false);
 
-  async function signin(event, vals) {
+  async function signin(event, formVals) {
 
-    const { email, password, name } = vals;
+    const { email, password } = formVals;
     try {
       await props.mutate({
-        variables: { email, password, name },
+        variables: { email, password },
         refetchQueries: [{ query }]
       });
     } catch(res) {
@@ -43,15 +43,20 @@ function Signin(props) {
 
   const toggleModal = e => setIsOpen(!isOpen);
   
+  const testButton = () => {
+    // debugger
+    console.log('hello world')
+  }
+
   const inputs = [
     {
       data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
-      fieldStyle: { width: [1], height: ['33%'], justifyContent: 'space-between', flexDirection: 'column'},
+      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: 'inputNormal'
     },
     {
       data: { type: 'password', name: 'password', label: 'password', placeholder: 'enter password', required: true },
-      fieldStyle: { width: [1], height: ['33%'], justifyContent: 'space-between', flexDirection: 'column'},
+      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: 'inputNormal'
     }
   ]
@@ -80,9 +85,9 @@ return (
   <Box id="signin-box-module" 
     fontSizeModule={[1,2]}
     width={[2,3]}
-    height='75vh'
+    height={['65vh']}
     margin='auto'
-    alignSelf=""
+    zIndex={[1]}
   >
   <FormApp
     onSubmit={signin}

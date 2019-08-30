@@ -2172,15 +2172,6 @@ export const cssProperties = {
   transform,
   content,
   all,
-  animation,
-  animationDelay,
-  animationDirection,
-  animationDuration,
-  animationFillMode,
-  animationIterationCount,
-  animationName,
-  animationPlayState,
-  animationTimingFunction,
   appearance,
   azimuth,
   backdropFilter,
@@ -2425,7 +2416,9 @@ export const pseudoClasses = [
   'hover',
   'lang',
   'link',
-  'visited'
+  'visited',
+  'focus-within',
+  'focusWithin'
 ]
 
 export const pseudoElements = [

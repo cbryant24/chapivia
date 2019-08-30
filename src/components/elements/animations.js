@@ -69,11 +69,7 @@ export const textGlitch = (dis, len) => {
     return keyframe
   }
 
-  return (
-    css`
-      animation: ${keyframes`${generateRandomKeyFrames(dis, len)}`} 1000ms steps(1) alternate infinite;
-    `
-  );
+  return keyframes`${generateRandomKeyFrames(dis, len)}`;
 }
 
 export const glitchTop = () => {
@@ -121,11 +117,8 @@ export const randomSquareGlitch = () => {
     return keyframe;
   }
 
-  return (
-    css`
-      animation: ${keyframes`${generateRandomClipFrames(200)}`} 20s steps(1) infinite;
-    `
-  );
+  return keyframes`${generateRandomClipFrames(200)}} 20s steps(1) infinite`;
+  
 }
 
 export const generateRandomClipFrames = (len = 200) => {

@@ -1,7 +1,6 @@
 import { css } from 'styled-components';
 import palx from 'palx';
 import { get, includes, omit, range } from 'lodash';
-import { style } from 'styled-system'
 
 const red = '#e42d42'
 const blue = '#2d9ce4'
@@ -108,9 +107,9 @@ export const boxShadows = [
   baseShadow + `0 24px 24px 0 ${shadowColor}`
 ];
 
+export const zIndices = [0, 1, 5, 10];
+
 //DEFAULT INPUT STYLING
-export const inputMaxWidth = "38rem";
-export const inputWidth = "100%";
 
 export const buttonPadding = [0, '.5em', '1em']
 
@@ -175,7 +174,7 @@ const inputNormal = {
   display: 'block',
   verticalAlign: 'middle',
   width: [2],
-  height: ['25%'],
+  height: ['35%'],
   color: 'white',
   lineHeight: 'inherit',
   letterSpacing: 'inherit',
@@ -187,18 +186,14 @@ const inputNormal = {
   borderColor: 'rgb(221, 225, 228)',
   transition: 'box-shadow 0.125s ease-out 0s',
   mt: [1],
-  focus: {
-    outline: 'none'
+  focusWithin: {
+    boxShadow: '0px 0px 8px green'
   }
 };
 
 const inputSmall = {
   width: [1]
 };
-
-const testVal = {
-
-}
 
 const theme = {
   breakpoints,
@@ -219,8 +214,6 @@ const theme = {
   shadowColor,
   cx,
   hexa,
-  inputMaxWidth,
-  inputWidth,
   windowBorderStyle,
   sizes,
   space,

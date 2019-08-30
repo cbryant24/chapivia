@@ -28,7 +28,7 @@ export default function Form({ inputs, form, validate, buttons }) {
   const displayButtons = () => {
 
     return buttons.map( button => {
-      const buttonStyle = styleBuildRemove(button.style);
+      // const buttonStyle = ;
 
       return ( 
         button.type === "submit" ? 
@@ -36,14 +36,23 @@ export default function Form({ inputs, form, validate, buttons }) {
             isA="button"
             type={ button.type }
             disabled={ !isEnabled() }
-            {...buttonStyle}
+            {...styleBuildRemove(button.style)}
           > 
             {button.text} 
+          </BoxAll> : button.type === 'cancel' ?
+          <BoxAll
+            isA="button"
+            {...styleBuildRemove(button.style)}          
+            onClick={button.cb ? (e) => handleCancel(e, button.cb) : handleCancel}
+            type={ button.type }
+          >
+            {button.text}
           </BoxAll> :
           <BoxAll
             isA="button"
-            themeStyle="squareButton"
-            type={ button.type }
+            {...styleBuildRemove(button.style)}
+            type={button.type}
+            onClick={button.cb}
           >
             {button.text}
           </BoxAll>
@@ -55,10 +64,14 @@ export default function Form({ inputs, form, validate, buttons }) {
     return errorMessages.map( errorMessage => <Box isA="li" key={errorMessage.message}>{errorMessage.message}</Box> )
   }
 
-  const handleCancel = () => {
+  const handleCancel = (e, cb) => {
+    e.preventDefault();
+
     dispatch({ type: 'RESET' });
 
-    if (form.data.cancel) form.data.cancel();
+    cb && cb();
+
+    form.data.cancel && form.data.cancel();
   }
 
   const handleSubmit = event => {

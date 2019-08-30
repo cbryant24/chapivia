@@ -1,23 +1,18 @@
-import React from 'react';
-import styled from 'styled-components';
-import cleanElement from 'clean-element';
-import css from '@styled-system/css';
+import styled, { css } from 'styled-components';
 
-import { filterProps } from './utils';
+import { addStyles } from './utils';
 import { getAnimation } from './animations';
 import Box from './Box';
 import { ALL } from './utils';
 
-
-const Box = styled(Box)(
-  { 
-    boxSizing: 'border-box',
-    minWidth: 0,
-  },
+const BoxAnimated = styled(Box)(
+  ALL,
+  props => addStyles(props),
   props => {
     if (!props.animation) return;
 
     const animationProperties = getAnimation(props);
+    // debugger
     return (
       css`
         animation-name: ${animationProperties.animation};
@@ -30,12 +25,7 @@ const Box = styled(Box)(
       `
     );
   },
-  ALL,
-  props => addStyles(props)
+  
 );
 
-export const BoxAnimated = styled(Box)`
-  ${props => props.animation()}
-`
-
-export default Box;
+export default BoxAnimated;
