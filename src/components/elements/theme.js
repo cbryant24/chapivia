@@ -69,7 +69,7 @@ export const fontSizes = [0, '.8em', '.9em', '1.2em', '1.4em', '1.6em'];
 
 //margin/padding[all, left, right top bottom] 
 //grid [grid-gap, grid-column-gap, grid-row-gap]
-export const space = [0, '.5em', '1em', '1.5em', '2em'];
+export const space = [0, '.25em', '.5em', '1em', '2em'];
 
 //width, height, min-width, max-width, min-height, max-height
 export const sizes = ['0%', '100%', '75%', '50%', '25%'];
@@ -150,7 +150,7 @@ export const squareButton = {
   display: "inline-block",
   verticalAlign: "middle",
   textAlign: "center",
-  fontSize: [1, 2],
+  fontSize: [1],
   fontFamily: "inherit",
   fontWeight: "extraBold",
   lineHeight: "condensed",
@@ -164,8 +164,8 @@ export const squareButton = {
   borderWidth: "2px",
   borderStyle: "solid",
   borderColor: "currentcolor",
-  px: [1, 2],
-  py: [1, 2],
+  px: [2],
+  py: [1],
 }
 
 const inputNormal = {

@@ -88,7 +88,7 @@ const Modal = props => {
   };
 
   const onBackgroundClick = (e) => {
-
+    
     if (nodeRef.current.props.id === e.target.id) {
       props.onBackgroundClick && props.onBackgroundClick(e)
     }
@@ -96,14 +96,16 @@ const Modal = props => {
   
   //TODO: need to add a check for a proper background and and if they want "no background"
   if (modalNode && BackgroundComponent && isOpen) {
-
+    // debugger
     // When passing a styled-system component need to clone the element to add props and event handlers
     const NewModalBackground = React.cloneElement(BackgroundComponent, 
                                                   { 
+                                                    id: props.id ? props.id : 'background-modal',
+                                                    ...props.backgroundProps,
                                                     onClick: onBackgroundClick, 
                                                     ref: nodeRef, 
                                                   }, 
-                                                  ...props.children)
+                                                  {...props.children})
 
     return ReactDOM.createPortal( NewModalBackground, modalNode.current);
   }

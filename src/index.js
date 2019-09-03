@@ -18,7 +18,7 @@ import App from './components/App';
 
 import { ModalBackground } from './components/elements';
 
-const client = new ApolloClient();
+const client = new ApolloClient({uri: 'localhost:3000'});
 
 
 

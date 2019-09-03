@@ -1,9 +1,8 @@
 import React from 'react';
 import { Box, Flex } from './element';
 import {ThemeProvider, GlobalStyle} from './element';
-import Background from './Background';
+import BackgroundTitle from './BackgroundTitle';
 import theme from './elements/theme';
-import Title from './Title';
 
 
 export default ({ children }) => {
@@ -13,8 +12,8 @@ export default ({ children }) => {
             minHeight="100vh"
             flexDirection="column"
           >
-            <Title/>
-            <Background/>
+            <BackgroundTitle/>
+            {/* <Title/> */}
             {children}
           </Flex>
   );

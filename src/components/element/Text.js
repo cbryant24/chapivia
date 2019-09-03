@@ -11,9 +11,9 @@ const Base = props => {
   const type = isA || 'p';
 
   //TODO: Check if issue with children being passed here
-  const element = React.createElement(type, {...next}, props.children)
+  const cleanedElement = React.createElement(type, {...next}, props.children)
 
-  return element;
+  return cleanedElement;
 }
 
 const Text = styled(cleanElement(Base))(

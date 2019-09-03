@@ -1,6 +1,7 @@
 import React from 'react';
-import { bgAnimation, bgGlowAnimation } from './elements/animations';
-import { BoxBorder, BoxAnimated, Box, ExtendedBox } from './element';
+import { bgAnimation, bgGlowAnimation } from '../elements/animations';
+import { BoxBorder, BoxAnimated, Box, ExtendedBox } from '../element';
+import BackgroundLines from './BackgroundLines';
 import Title from './Title';
 
 function Background(props) {
@@ -27,8 +28,7 @@ function Background(props) {
         id="bacground-animation"
         animation={{
           continuous: bgAnimation(),
-          duration_continuous: 10,
-
+          duration_continuous: 10
         }}
         display="block"
         p="3rem 2rem"
@@ -40,26 +40,6 @@ function Background(props) {
         height={[1]}
         width={[1]}
         zIndex="-1"
-      />
-      <ExtendedBox
-        id="background-lines"
-        backgroundImage="repeating-linear-gradient(
-          to bottom,
-          transparent 0,
-          transparent 1px, #000 1px, #000 2px
-        )"
-        backgroundSize="100% 2px, cover"
-        transformOrigin="50% 50%"
-        transform="rotate(0)"
-        content=""
-        opacity="0.6"
-        top="0"
-        left="0"
-        borderRadius="2rem"
-        height="100%"
-        width="100%"
-        position="absolute"
-        zIndex="5"
       />
       <BoxAnimated
         id="bacground-glow"
@@ -82,7 +62,8 @@ function Background(props) {
           duration_continuous: 60
         }}
       />
-      {/* <Title /> */}
+      <BackgroundLines/>
+      <Title />
     </ExtendedBox>
   )
 }

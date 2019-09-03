@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Box from './Box';
-import { TYPOGRAPHY, CURSOR, TRANSITION, TEXTDECORATION } from './utils';
+import { TYPOGRAPHY, CURSOR, TRANSITION } from './utils';
 
 import { system } from 'styled-system';
 
 const Button = styled(Box)`
-  ${TYPOGRAPHY} ${TRANSITION} ${TEXTDECORATION}
+  ${TYPOGRAPHY} ${TRANSITION}
 `
 
 Button.displayName = 'Button';

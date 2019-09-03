@@ -12,7 +12,7 @@ import Box from './Box';
 export const Error = styled(Text).attrs({
   className: 'error',
   color: 'error',
-  f: 1,
+  fontSize: 1,
   ml: 1,
   my: 0
 })`
@@ -46,7 +46,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
         <Box isA="label" for={name} id={name}>
           {label}
         </Box>
-        {props.errors.length >= 1 ? <Box isA="list" ml="2rem" color={errorColor} fontSize="1.2rem">{handleErrorMessages(props.errors)}</Box> : ''}
+        {props.errors.length >= 1 ? <Box isA="list" ml="2rem" color={errorColor} fontSize="1rem">{handleErrorMessages(props.errors)}</Box> : ''}
       </Flex>
       <BoxAll
         {...styleBuildRemove(inputStyle, 'display')}

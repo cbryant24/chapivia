@@ -1,7 +1,4 @@
 import * as styledSystem from 'styled-system';
-import * as cssProps from './cssHelpers';
-import { addStyles } from './utilsStyles';
-import { zIndex } from 'styled-system'
 const { compose, system } = styledSystem;
 
 const APPEARANCE = system({
@@ -44,12 +41,6 @@ export const TRANSITION = system({
   transitionTimingFunction: true
 });
 
-
-//TODO Add typography to this and change to TYPOGRAPHY
-export const TEXTDECORATION = system({
-  textDecoration: true
-});
-
 export const GRID = compose(
   styledSystem.grid,
   system({
@@ -64,11 +55,11 @@ export const GRID = compose(
 export const TYPOGRAPHY = compose(
   styledSystem.typography,
   system({
-    'textTransform': true
+    textTransform: true,
+    textDecoration: true
   })
 )
 
-//export const TYPOGRAPHY = styledSystem.typography;
 export const FLEX       = styledSystem.flexbox;
 export const SHADOW     = styledSystem.shadow;
 export const BACKGROUND = styledSystem.background;
@@ -76,11 +67,18 @@ export const BACKGROUND = styledSystem.background;
 export const ALL = styledSystem.compose(
   BORDER,
   BACKGROUND,
-  CURSOR,
   FLEX,
   GRID,
   SHADOW,
   TYPOGRAPHY,
-  TEXTDECORATION,
+  TRANSITION
+);
+
+export const TEXTALL = styledSystem.compose(
+  BORDER,
+  BACKGROUND,
+  FLEX,
+  GRID,
+  SHADOW,
   TRANSITION
 );

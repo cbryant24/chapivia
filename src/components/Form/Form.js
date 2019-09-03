@@ -28,15 +28,24 @@ export default function Form({ inputs, form, validate, buttons }) {
   const displayButtons = () => {
 
     return buttons.map( button => {
-      // const buttonStyle = ;
+      // debugger
 
+      const disabled = !isEnabled() ? {
+        disabled: true,
+        color: 'graytext',
+        cursor: 'default'
+      }: {};
+      // debugger
       return ( 
         button.type === "submit" ? 
           <BoxAll
             isA="button"
             type={ button.type }
-            disabled={ !isEnabled() }
+            //disabled={ !isEnabled() }
             {...styleBuildRemove(button.style)}
+            //color={ !isEnabled() ? "graytext" : ''}
+            //cursor={ !isEnabled() ? "default" : ''}
+            {...disabled}
           > 
             {button.text} 
           </BoxAll> : button.type === 'cancel' ?

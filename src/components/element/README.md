@@ -191,6 +191,9 @@ Transitions can be added for the following states `hover, focus, & active` you c
 
 To use a styled-react-modal import both the `ModalProvider, Modal` components. Set the `<ModalProvider></ModalProvider>` at the level you want to render the modal. 
 
+//TODO: [ADD CODE TO SHOW isOpen takes a boolean value]
+//TODO: [ADD CODE to show what toggleModal does]
+//TODO: [ADD DOCUMENTATIO only a single child can be passed]
 ```javascript
 import { ModalProvider, Modal } from 'react-styled-everything';
 
@@ -224,7 +227,7 @@ function ModalDemo(props) {
 | isOpen            | Boolean  | A boolean that indicates whether the modal is to be open or closed.                                                                             |
 | onBackgroundClick | Function |  A function that is called when the modal background is clicked.                                                                                |
 | onEscapeKeydown   | Function | A function that is called when the escape key is pressed while the modal is open.                                                               |
-| backgroundProps   | Object   | A props object that is spread over the backgroundComponent when included.                                                                       |
+| backgroundProps   | Object   | A props object that adds props to the backgroundComponent when included.                                                                       |
 | allowScroll       | Boolean  | When true, scrolling in the document body is not disabled when the modal is open.                                                               |
 | beforeOpen        | Function | A function that is called before the modal opens. If this function returns a promise, then the modal is opened after the promise is resolved.   |
 | afterOpen         | Function | A function that is called after the modal opens.                                                                                                |

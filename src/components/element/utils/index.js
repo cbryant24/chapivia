@@ -6,7 +6,7 @@ import { addProps } from './addProps';
 import { 
   COMMON, BORDER, TYPOGRAPHY, 
   FLEX, GRID, TRANSITION,
-  SHADOW, TEXTDECORATION, ALL
+  SHADOW, ALL, TEXTALL
 } from './constants';
 
 export {
@@ -25,10 +25,10 @@ export {
   ALL,
   COMMON,
   BORDER,
-  TYPOGRAPHY,
   FLEX,
   GRID,
+  TEXTALL,
   TRANSITION,
+  TYPOGRAPHY,
   SHADOW,
-  TEXTDECORATION,
 };

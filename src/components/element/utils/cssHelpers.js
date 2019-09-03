@@ -371,20 +371,6 @@ export const cssList = [
   'fontSize'
 ];
 
-export const textTransform = style({
-  //React prop name
-  prop: 'textTransform',
-  // The corresponding CSS property (defaults to prop argument)
-  cssProperty: 'text-transform',
-  // key for theme values
-  key: 'textTransform',
-  // convert number values to pixels
-  numberToPx: false,
-  // accessor function for transforming the value
-  getter: n => n,
-  // shorthand alias React prop name
-  alias: 'tt'
-});
 
 export const minHeight = style({
   prop: 'minHeight',
@@ -2164,7 +2150,6 @@ export const itemName = style({
 
 
 export const cssProperties = {
-  textTransform,
   minHeight,
   fontSmooth,
   clipPath,

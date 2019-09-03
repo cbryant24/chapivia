@@ -1,15 +1,34 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo'
 
-import { Flex, FlexItem, Text, ExtendedText, TextAnimated, BoxAnimated, ExtendedBox } from './element';
-import { textGlitch, randomSquareGlitch } from './elements/animations';
+import { Flex, FlexItem, Text, ExtendedText, TextAnimated, BoxAnimated, ExtendedBox, FadeAnimations } from '../element';
+import { textGlitch, randomSquareGlitch } from '../elements/animations';
 import { css, keyframes } from 'styled-components';
 import { withRouter } from 'react-router-dom'
-
-import mutation from '../mutations/Logout';
-import query from '../queries/CurrentUser';
+import mutation from '../../mutations/Logout';
+import query from '../../queries/CurrentUser';
 
 function Title(props) {
+
+  const titleTextStyle = {
+    textTransform: "uppercase",
+    fontSize: ["5rem", "8rem"],
+    position: "absolute",
+    top: "0",
+    left: "0",
+    zIndex: "10",
+    color: "hsl(260, 90%, 80%)",
+    fontFamily: "'Passion One', cursive",
+    letterSpacing: ".25em",
+    animation: {
+      continuous: () => textGlitch(10, 10),
+      duration_continuous: 1,
+      animation_timing_function: 'steps(1)',
+      iteration: 'infinite',
+      animation_direction: 'alternate'
+    }
+  }
+  
   function onLogoutClick() {
     debugger
     props.mutate({
@@ -26,31 +45,11 @@ function Title(props) {
       justifyContent="center"
       position="relative"
       width="100%"
+      height={['15vh', '20vh']}
     >
-      <ExtendedBox
-        id="background-lines"
-        position="absolute"
-        top="0"
-        left="0"
-        backgroundImage="repeating-linear-gradient(
-          to bottom,
-          transparent 0,
-          transparent 1px, #000 1px, #000 2px
-        )"
-        backgroundSize="100% 2px, cover"
-        transformOrigin="50% 50%"
-        transform="rotate(0)"
-        content=""
-        opacity="0.6"
-
-        height="100%"
-        width="100%"
-        zIndex="5"
-      />
       <FlexItem
         m={[0]}
         p={[0]}
-        letterSpacing="3rem"
         filter="drop-shadow(0 0 20px hsla(320, 40%, 60%, 0.8))"
         position="relative"
         zIndex="1"
@@ -58,52 +57,25 @@ function Title(props) {
         fontStyle="italic"
         >
           <ExtendedText
-            textTransform="uppercase"
             color="hsl(320, 90%, 90%)"
             clipPath="inset(40% 0% 40% 0%)"
-            fontSize="8rem"
-            fontFamily="'Passion One', cursive"
+            textTransform={titleTextStyle.textTransform}
+            fontSize={titleTextStyle.fontSize}
+            fontFamily={titleTextStyle.fontFamily}
+            letterSpacing={titleTextStyle.letterSpacing}
             zIndex="5"
           >
             Chapivia
           </ExtendedText>
           <TextAnimated 
-            textTransform="uppercase"
-            fontSize="8rem"
-            position="absolute"
-            top="0"
-            left="0"
-            zIndex="10"
-            color="hsl(260, 90%, 80%)"
+            {...titleTextStyle}
             clipPath="inset(0% 0% 60% 0%)"
-            fontFamily="'Passion One', cursive"
-            animation={{
-              continuous: () => textGlitch(15, 16),
-              duration_continuous: 1,
-              animation_timing_function: 'steps(1)',
-              iteration: 'infinite',
-              animation_direction: 'alternate'
-            }}
           >
             Chapivia
           </TextAnimated>
-          <TextAnimated 
-            textTransform="uppercase"
-            fontSize="8rem"
-            position="absolute"
-            top="0"
-            left="0"
-            zIndex="10"
-            color="hsl(260, 90%, 80%)"
+          <TextAnimated
+            {...titleTextStyle}
             clipPath="inset(60% 0% 0% 0%)"
-            fontFamily="'Passion One', cursive"
-            animation={{
-              continuous: () => textGlitch(10, 10),
-              duration_continuous: 1,
-              animation_timing_function: 'steps(1)',
-              iteration: 'infinite',
-              animation_direction: 'alternate'
-            }}
           >
             Chapivia
           </TextAnimated>
@@ -124,11 +96,11 @@ function Title(props) {
             }}
           />
       </FlexItem>
-      { !props.data.user ? 
+      { props.data.user ? 
         <FlexItem
           position="absolute"
           right="0"
-          display={ !props.data.user ? "inline-block" : "none" }
+          display={ props.data.user ? "inline-block" : "none" }
           zIndex="20"
         >
           <Text
@@ -136,7 +108,7 @@ function Title(props) {
             fontSize="16px"
             onClick={ onLogoutClick.bind(this) }
           >
-            signout chris
+            signout { this.props.data.user.name }
           </Text>
         </FlexItem> : ''
       }

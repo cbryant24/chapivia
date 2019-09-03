@@ -78,7 +78,7 @@ export const BoxPseudo = styled(Box)`
 `
 
 export const BoxAnimatedPseudo = styled(Box)`
-  //${ props => addStyles(props) }
+  ${ props => addStyles(props) }
   ${ ALL }
   ${props => {
     const { animation, before, after, children, ...restProps } = props;

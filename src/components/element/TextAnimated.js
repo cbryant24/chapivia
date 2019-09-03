@@ -3,10 +3,10 @@ import styled, { css } from 'styled-components';
 import { addStyles } from './utils';
 import { getAnimation } from './animations';
 import Text from './Text';
-import { ALL } from './utils';
+import { TEXTALL } from './utils';
 
 const TextAnimated = styled(Text)(
-  ALL,
+  TEXTALL,
   props => addStyles(props),
   props => {
     if (!props.animation) return;
