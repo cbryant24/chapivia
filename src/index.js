@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/react-hooks';
 import { ModalProvider } from './components/element';
 
 import Signin from './components/Signin';
@@ -18,7 +18,7 @@ import App from './components/App';
 
 import { ModalBackground } from './components/elements';
 
-const client = new ApolloClient({uri: 'localhost:3000'});
+const client = new ApolloClient({uri: '/graphql'});
 
 
 

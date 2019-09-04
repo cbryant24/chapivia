@@ -80,7 +80,7 @@ export const lineHeights = { "condensedUltra": 1, "condensed": 1.25, "default": 
 //of modular design with font-size rem for global design and font-size em for local design
 //see https://css-tricks.com/rem-global-em-local/ for explanation `fontSizesModule` is a 
 //custom system-styled property that can be used with the scale for parent module font-size design
-export const fontSizesModule = [0, '2.2rem', '2.0rem', '1.8erm', '1.6rem']
+export const fontSizesModule = [0, '2.2rem', '2.0rem', '1.8rem', '1.6rem']
 
 export const light = 300;
 export const regular = 400;

@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom'
 
@@ -19,6 +20,7 @@ import styledCSS from '@styled-system/css';
 import { isAbsolute } from 'upath';
 import { noiseAnimation, glitchBottom, glitchTop, glitchMiddle } from './elements/animations';
 
+import { usePrev } from '../hooks';
 
 import { keyframes, css } from 'styled-components';
 
@@ -26,26 +28,42 @@ import { keyframes, css } from 'styled-components';
 function Signin(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const { loading, error, data: queryData } = useQuery(query);
+  const [ login, { data: mutationData }] = useMutation(mutation);
+  const prevUserState = usePrev(queryData)
+
 
   async function signin(event, formVals) {
     // debugger
     const { email, password } = formVals;
     try {
-      await props.mutate({
+      await login({
         variables: { email, password },
         refetchQueries: [{ query }]
       });
-
+      // debugger
       props.history.push('/game');
       return
     } catch(res) {
       // debugger
+      console.log(`this is the error message ${res}`);
+      debugger
       setIsOpen(true);
       setModalMessage('Error Logging In');
       //TODO: ADD modal on login fail
     }
     
   }
+
+  useEffect( () => {
+    console.log(props)
+    if (loading) return;
+
+    console.log(prevUserState)
+    debugger
+    
+    if (props.data.user) return props.history.push('/game');
+  }, [queryData]);
 
   const toggleModal = e => setIsOpen(!isOpen);
 
@@ -82,70 +100,77 @@ function Signin(props) {
     },
   }
 
-return (
-  <BoxAll
-    id="signin-box-module" 
-    fontSizeModule={[4]}
-    width={[2]}
-    height={['65vh']}
-    margin='auto'
-    mt={["8rem", "12rem"]}
-    maxWidth={["75vw", "50vw", "40vw"]}
-    zIndex={[1]}
-  >
-    <Modal
-      id="chapivia-modal"
-      isOpen={isOpen}
-      onBackgroundClick={toggleModal}
-      onEscapeKeydown={toggleModal}
+
+  if (loading) return;
+
+  return (
+    <BoxAll
+      id="signin-box-module" 
+      fontSizeModule={[4]}
+      width={[2]}
+      height={['65vh']}
+      margin='auto'
+      mt={["auto", "20%", "15%", "10%"]}
+      maxWidth={["75vw", "50vw", "40vw"]}
+      zIndex={[1]}
     >
-      <BoxAll
-        pseudo
-        display="flex"
-        flexDirection="column"
-        backgroundColor="black"
-        color="white"
-        width={["25vw"]}
-        height={["25vh"]}
-        margin="auto"
-        transform="translateY(-500px)"
-        animation={{
-          in: BounceAnimations.BounceInTop,
-          duration_in: 1,
-          animation_fill_mode: 'both'
-        }}
+      <Modal
+        id="chapivia-modal"
+        isOpen={isOpen}
+        onBackgroundClick={toggleModal}
+        onEscapeKeydown={toggleModal}
       >
-        <Text
-          isA="h3"
-          fontSize={[3,4]}
-          textAlign="center"
-          my={[4]}
+        <BoxAll
+          pseudo
+          display="flex"
+          fontSizeModule={[3]}
+          flexDirection="column"
+          justifyContent="space-evenly"
+          backgroundColor="black"
+          color="white"
+          width={["50vw", "25vw"]}
+          height={["25vh"]}
+          margin="auto"
+          transform="translateY(-500px)"
+          animation={{
+            in: BounceAnimations.BounceInTop,
+            duration_in: 1,
+            animation_fill_mode: 'both'
+          }}
         >
-          {modalMessage}
-        </Text>
-        <FlexItem
-          isA="button"
-          themeStyle="squareButton"
-          width="5em"
-          alignSelf="flex-end"
-          mr={4}
-          onClick={toggleModal}
-        >
-          Close
-        </FlexItem>
-      </BoxAll>
-    </Modal>
-    <FormApp
-      onSubmit={signin}
-      form={form}
-      inputs={inputs}
-      validate={validate}
-      buttons={buttons}
-    />
-  </BoxAll>
+          <Text
+            isA="h3"
+            fontSize={[3,4]}
+            textAlign="center"
+            my={[4]}
+          >
+            {modalMessage}
+          </Text>
+          <FlexItem
+            isA="button"
+            themeStyle="squareButton"
+            width="5em"
+            alignSelf="flex-end"
+            mr={4}
+            onClick={toggleModal}
+          >
+            Close
+          </FlexItem>
+        </BoxAll>
+      </Modal>
+      <FormApp
+        onSubmit={signin}
+        form={form}
+        inputs={inputs}
+        validate={validate}
+        buttons={buttons}
+      />
+    </BoxAll>
   );
 }
 
-export default graphql(query)(
-  graphql(mutation)(Signin)
-);
+export default Signin;
+
+// export default graphql(query)(
+//   graphql(mutation)(Signin)
+// );

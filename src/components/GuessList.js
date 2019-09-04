@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { includes, keyBy, map } from 'lodash';
 import { graphql, compose } from 'react-apollo';
 
@@ -7,7 +7,7 @@ import triviaQuery from '../queries/Trivia';
 import mutation from '../mutations/Guess';
 import CurrentUserQuery from '../queries/CurrentUser';
 import { GridItem, OutlineButton, Input, Image, Text, Flex, Field, FlexItem, Box } from './element';
-import * as Element from './element';
+// import * as Element from './element';
 import { generateRandomClipFrames } from './elements/animations';
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
@@ -16,6 +16,10 @@ import { validate } from './helpers/validators';
 function GuessList(props) {
   const [ selectedPlayer, setSelectedPlayer ] = useState(null);
 
+  useEffect(() => {
+    console.log(props)
+    // debugger
+  })
   function handleGuessUpdate(event, vals) {
     // debugger
 
@@ -45,7 +49,7 @@ function GuessList(props) {
     
     return (
       props.guessList.guesses.map( guess => (
-        <Element.Flex
+        <Flex
           fontSize="1.6rem"
           textAlign="center"
           height="4rem"
@@ -72,7 +76,7 @@ function GuessList(props) {
           >
             {guess.name}
           </Box>
-        </Element.Flex>
+        </Flex>
       ))
     )
   }
@@ -159,8 +163,8 @@ function GuessList(props) {
       <Flex
         justifyContent="space-between"
       >
-        <Text.p>Player</Text.p>
-        <Text.p>Guess</Text.p>
+        <Text>Player</Text>
+        <Text>Guess</Text>
       </Flex>
       <FlexItem>
         {dispalayGuesses()}

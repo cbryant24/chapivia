@@ -16,9 +16,20 @@ class Game extends Component {
 
 
   render() {
+    console.log(this.props)
+    // debugger
+
     return (
       <React.Fragment>
-        <Element.Grid
+          <Element.GridItem
+            gridRow="1 / span 2"
+            gridColumn="1 / span 1"
+          >
+            <GuessList />
+          </Element.GridItem>
+
+
+        {/* <Element.Grid
           width="100%"
           p="1rem 2rem"
           zIndex="10"
@@ -51,7 +62,7 @@ class Game extends Component {
           >
             <Winner />
           </Element.GridItem>
-        </Element.Grid>
+        </Element.Grid> */}
       </React.Fragment>
     );
   }
