@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+
 import { AllHtmlEntities as Entities } from 'html-entities';
-import { connect } from 'react-redux';
-import { compose, graphql } from 'react-apollo';
+// import { compose, graphql } from 'react-apollo';
 import CorrectGuessesQuery from '../queries/CorrectGuesses';
 import TriviaAnswer from '../queries/TriviaAnswer';
 
@@ -73,11 +74,13 @@ class Winner extends Component {
   }
 }
 
-export default compose(
-  graphql(TriviaAnswer, {
-    name: "trivia"
-  }),
-  graphql(CorrectGuessesQuery, {
-    name: "winners"
-  })
-)(Winner);
+// export default compose(
+//   graphql(TriviaAnswer, {
+//     name: "trivia"
+//   }),
+//   graphql(CorrectGuessesQuery, {
+//     name: "winners"
+//   })
+// )(Winner);
+
+export default Winner;

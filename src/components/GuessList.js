@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+
 import { includes, keyBy, map } from 'lodash';
-import { graphql, compose } from 'react-apollo';
+// import { graphql, compose } from 'react-apollo';
 
 import guessListQuery from '../queries/GuessList';
 import triviaQuery from '../queries/Trivia';
@@ -177,17 +179,19 @@ function GuessList(props) {
 
 
 
-export default compose(
-  graphql(guessListQuery, {
-    name: "guessList"
-  }),
-  graphql(triviaQuery, {
-    name: "triviaData"
-  }),
-  graphql(mutation, {
-    name: 'guessMutation'
-  }),
-  graphql(CurrentUserQuery, {
-    name: 'signedIn'
-  })
-)(GuessList);
+// export default compose(
+//   graphql(guessListQuery, {
+//     name: "guessList"
+//   }),
+//   graphql(triviaQuery, {
+//     name: "triviaData"
+//   }),
+//   graphql(mutation, {
+//     name: 'guessMutation'
+//   }),
+//   graphql(CurrentUserQuery, {
+//     name: 'signedIn'
+//   })
+// )(GuessList);
+
+export default GuessList;

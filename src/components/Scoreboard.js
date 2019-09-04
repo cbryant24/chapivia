@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { keyBy, map } from 'lodash';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { compose, graphql } from 'react-apollo'
+import { useQuery, useMutation } from '@apollo/react-hooks';
+
+// import { compose, graphql } from 'react-apollo'
 
 import query from '../queries/Scores';
 
-import * as actions from '../actions';
 import { GridItem, Flex, FlexItem, Image, Text } from './element';
 import * as Elements from './element';
 import kgrad from '../img/kgrad.png';
@@ -83,4 +81,6 @@ class Scoreboard extends Component {
   }
 }
 
-export default graphql(query)(Scoreboard);
+// export default graphql(query)(Scoreboard);
+
+export default Scoreboard;

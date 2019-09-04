@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom'
 
 import FormApp from './Form/App';
@@ -17,7 +16,6 @@ import { Box } from './element';
 import Modal from './element/modal';
 
 import styledCSS from '@styled-system/css';
-import { isAbsolute } from 'upath';
 import { noiseAnimation, glitchBottom, glitchTop, glitchMiddle } from './elements/animations';
 
 import { usePrev } from '../hooks';
@@ -62,7 +60,7 @@ function Signin(props) {
     console.log(prevUserState)
     debugger
     
-    if (props.data.user) return props.history.push('/game');
+    if (queryData.user) return props.history.push('/game');
   }, [queryData]);
 
   const toggleModal = e => setIsOpen(!isOpen);
@@ -101,7 +99,7 @@ function Signin(props) {
   }
 
 
-  if (loading) return;
+  if (loading) return <div></div>;
 
   return (
     <BoxAll

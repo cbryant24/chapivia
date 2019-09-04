@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { graphql } from 'react-apollo';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+
+// import { graphql } from 'react-apollo';
 
 import { FlexItem } from './element';
 import theme from './elements/theme';
@@ -73,6 +74,8 @@ return (
   );
 }
 
-export default graphql(query)(
-  graphql(mutation)(Signup)
-);
+// export default graphql(query)(
+//   graphql(mutation)(Signup)
+// );
+
+export default Signup;

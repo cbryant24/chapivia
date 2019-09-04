@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { compose, graphql } from 'react-apollo';
-import * as actions from '../actions';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+// import { graphql, compose } from 'react-apollo';
+
 import { GridItem, Field, OutlineButton, Input, FlexItem } from './element';
 import * as Element from './element';
 
@@ -387,17 +386,19 @@ return (
 //   }
 // }
 
-export default compose(
-  graphql(UnguessedPlayers, {
-    name: "players"
-  }),
-  graphql(TriviaQuery, {
-    name: "triviaData"
-  }),
-  graphql(mutation, {
-    name: 'guessMutation'
-  }),
-  graphql(CurrentUserQuery, {
-    name: 'signedIn'
-  })
-)(GuessForm);
+// export default compose(
+//   graphql(UnguessedPlayers, {
+//     name: "players"
+//   }),
+//   graphql(TriviaQuery, {
+//     name: "triviaData"
+//   }),
+//   graphql(mutation, {
+//     name: 'guessMutation'
+//   }),
+//   graphql(CurrentUserQuery, {
+//     name: 'signedIn'
+//   })
+// )(GuessForm);
+
+export default GuessForm;

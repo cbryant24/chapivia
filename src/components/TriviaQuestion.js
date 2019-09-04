@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+
 import { AllHtmlEntities as Entities } from 'html-entities';
-import { concat, shuffle } from 'lodash';
-import { connect } from 'react-redux';
-import { graphql } from 'react-apollo';
+
+// import { graphql } from 'react-apollo';
 
 import mutation from '../mutations/Guess';
 import query from '../queries/Trivia';
-import * as actions from '../actions';
 
 import GuessForm from './GuessForm';
 import { Box, Grid, GridItem, Text, List, Item, Heading } from './element';
@@ -66,6 +66,8 @@ class TriviaQuestion extends Component {
   }
 }
 
-export default graphql(query)(
-  graphql(mutation)(TriviaQuestion)
-);
+// export default graphql(query)(
+//   graphql(mutation)(TriviaQuestion)
+// );
+
+export default TriviaQuestion;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo'
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import { Flex, FlexItem, Text, ExtendedText, TextAnimated, BoxAnimated, ExtendedBox, FadeAnimations } from '../element';
@@ -10,6 +9,7 @@ import mutation from '../../mutations/Logout';
 import query from '../../queries/CurrentUser';
 
 function Title(props) {
+  console.log(query)
   const { loading, error, data: queryData } = useQuery(query);
   const [ logout, { data: mutationData }] = useMutation(mutation);
 
@@ -35,9 +35,7 @@ function Title(props) {
   async function onLogoutClick() {
     debugger
     console.log(mutationData)
-    await logout({
-      refetchQueries: [{ query }]
-    });
+    await logout();
     debugger
     props.history.push('/');
   }
@@ -102,11 +100,11 @@ function Title(props) {
             }}
           />
       </FlexItem>
-      { props.data.user ? 
+      { queryData.user ? 
         <FlexItem
           position="absolute"
           right="0"
-          display={ props.data.user ? "inline-block" : "none" }
+          display={ queryData.user ? "inline-block" : "none" }
           zIndex="20"
         >
           <Text
@@ -114,7 +112,7 @@ function Title(props) {
             fontSize="16px"
             onClick={ onLogoutClick.bind(this) }
           >
-            signout { queryData.data.user.name }
+            signout { queryData.user.name }
           </Text>
         </FlexItem> : ''
       }

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
 
 class GameController extends Component {
   // constructor(props) {
