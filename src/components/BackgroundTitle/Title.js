@@ -9,8 +9,7 @@ import mutation from '../../mutations/Logout';
 import query from '../../queries/CurrentUser';
 
 function Title(props) {
-  console.log(query)
-  const { loading, error, data: queryData } = useQuery(query);
+  const { loading, error, data: queryData, refetch, client } = useQuery(query);
   const [ logout, { data: mutationData }] = useMutation(mutation);
 
   const titleTextStyle = {
@@ -33,10 +32,11 @@ function Title(props) {
   }
   
   async function onLogoutClick() {
-    debugger
+    // debugger
     console.log(mutationData)
     await logout();
-    debugger
+    refetch()
+    // debugger
     props.history.push('/');
   }
 
@@ -100,11 +100,11 @@ function Title(props) {
             }}
           />
       </FlexItem>
-      { queryData.user ? 
+      {/* { client.user ? 
         <FlexItem
           position="absolute"
           right="0"
-          display={ queryData.user ? "inline-block" : "none" }
+          display={ client.user ? "inline-block" : "none" }
           zIndex="20"
         >
           <Text
@@ -112,10 +112,10 @@ function Title(props) {
             fontSize="16px"
             onClick={ onLogoutClick.bind(this) }
           >
-            signout { queryData.user.name }
+            signout { client.user.name }
           </Text>
         </FlexItem> : ''
-      }
+      } */}
     </Flex>
   );
 }

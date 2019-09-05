@@ -12,11 +12,11 @@ import Winner from './Winner';
 
 
 const Game = (props) => {
-  const { loading, error, data } = useQuery(query);
+  const { loading, error, data, client } = useQuery(query);
 
   if (loading) return <div></div>
 
-  if (!data.user) {
+  if (!client.user) {
     props.history.push('/')
   }
 

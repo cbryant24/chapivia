@@ -16,9 +16,18 @@ import App from './components/App';
 
 import { ModalBackground } from './components/elements';
 
-const client = new ApolloClient({uri: '/graphql'});
 
 
+const client = new ApolloClient({
+  uri: '/graphql',
+  resolvers: {}
+});
+
+client.writeData({
+  data: {
+    user: null
+  }
+});
 
 ReactDOM.render(
   <ApolloProvider client={ client } >

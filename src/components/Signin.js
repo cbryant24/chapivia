@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks';
+
 import { Link } from 'react-router-dom'
 
 import FormApp from './Form/App';
@@ -26,20 +27,26 @@ import { keyframes, css } from 'styled-components';
 function Signin(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-  const { loading, error, data: queryData } = useQuery(query);
+  const { loading, error, data: queryData, refetch } = useQuery(query);
   const [ login, { data: mutationData }] = useMutation(mutation);
   const prevUserState = usePrev(queryData)
+  const client = useApolloClient();
+  client.cache.writeData({ data: { user: 'value' } });
+
 
 
   async function signin(event, formVals) {
     // debugger
     const { email, password } = formVals;
+
     try {
       await login({
-        variables: { email, password },
-        refetchQueries: [{ query }]
+        variables: { email, password }
       });
       // debugger
+      // refetch();
+      console.log(queryData)
+      debugger
       props.history.push('/game');
       return
     } catch(res) {
@@ -54,11 +61,15 @@ function Signin(props) {
   }
 
   useEffect( () => {
-    console.log(props)
+    // console.log(client)
+    // refetch();
+    debugger
     if (loading) return;
+    // debugger
+    // if (networkStatus === 4) return;
 
     console.log(prevUserState)
-    debugger
+    // debugger
     
     if (queryData.user) return props.history.push('/game');
   }, [queryData]);
