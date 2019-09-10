@@ -1,0 +1,31 @@
+const { ApolloServer, gql } = require('apollo-server-express');
+// const { typeDefs, resolvers } = require('./schema');
+const  typeDefs = require('./typeDefs');
+const resolvers = require('./resolvers');
+// const { sequelizeConnection: sequelize } = require('../../db');
+const { 
+  User, 
+  Question,
+  QuestionChoice,
+} = require('../../models');
+const { cookieSignup, cookieLogin } = require('../auth');
+
+const db = {
+  user: User,
+  question: Question,
+  questionChoice: QuestionChoice
+}
+// debugger
+const { app } = require('../initializer');
+// debugger
+const server = new ApolloServer({
+  typeDefs: typeDefs,
+  resolvers,
+  context: { ...db, cookieSignup, cookieLogin }
+});
+// debugger
+server.applyMiddleware({ app });
+
+module.exports = {
+  initializer: () => server
+}
