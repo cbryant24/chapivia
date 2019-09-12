@@ -28,10 +28,20 @@ function Signin(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const { loading, error, data: queryData, refetch } = useQuery(query);
-  const [ login, { data: mutationData }] = useMutation(mutation);
+  const [ login, { data: mutationData }] = useMutation(mutation
+      // {
+      //   update(cache, { data: { login }}) {
+      //     // debugger
+      //     cache.writeQuery({
+      //       query: queryData,
+      //       data: { user: login }
+      //     })
+      //   } 
+      // }
+    );
   const prevUserState = usePrev(queryData)
-  const client = useApolloClient();
-  client.cache.writeData({ data: { user: 'value' } });
+  // const client = useApolloClient();
+  // client.cache.writeData({ data: { user: 'value' } });
 
 
 
@@ -44,15 +54,15 @@ function Signin(props) {
         variables: { email, password }
       });
       // debugger
-      // refetch();
+      await refetch();
       console.log(queryData)
-      debugger
+      // debugger
       props.history.push('/game');
       return
     } catch(res) {
       // debugger
       console.log(`this is the error message ${res}`);
-      debugger
+      // debugger
       setIsOpen(true);
       setModalMessage('Error Logging In');
       //TODO: ADD modal on login fail
@@ -63,7 +73,7 @@ function Signin(props) {
   useEffect( () => {
     // console.log(client)
     // refetch();
-    debugger
+    // debugger
     if (loading) return;
     // debugger
     // if (networkStatus === 4) return;

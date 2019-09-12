@@ -20,14 +20,14 @@ import { ModalBackground } from './components/elements';
 
 const client = new ApolloClient({
   uri: '/graphql',
-  resolvers: {}
+  // resolvers: {}
 });
 
-client.writeData({
-  data: {
-    user: null
-  }
-});
+// client.writeData({
+//   data: {
+//     user: null
+//   }
+// });
 
 ReactDOM.render(
   <ApolloProvider client={ client } >

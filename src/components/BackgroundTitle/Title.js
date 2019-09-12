@@ -35,14 +35,14 @@ function Title(props) {
     // debugger
     console.log(mutationData)
     await logout();
-    refetch()
+    await refetch()
     // debugger
     props.history.push('/');
   }
 
   //debugger
   if (loading) return <Flex></Flex>;
-  debugger
+  // debugger
   return (
     <Flex
       id="title"
@@ -100,22 +100,22 @@ function Title(props) {
             }}
           />
       </FlexItem>
-      {/* { client.user ? 
+      { queryData.user ? 
         <FlexItem
           position="absolute"
           right="0"
-          display={ client.user ? "inline-block" : "none" }
+          display={ queryData.user ? "inline-block" : "none" }
           zIndex="20"
         >
           <Text
             cursor="pointer"
             fontSize="16px"
-            onClick={ onLogoutClick.bind(this) }
+            onClick={ onLogoutClick }
           >
-            signout { client.user.name }
+            signout { queryData.user.name }
           </Text>
         </FlexItem> : ''
-      } */}
+      }
     </Flex>
   );
 }

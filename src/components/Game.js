@@ -4,19 +4,19 @@ import query from '../queries/CurrentUser';
 
 // import requireAuth from './HOC/requireAuth';
 import { GridItem } from './element';
-import GuessList from './GuessList';
-import TriviaQuestion from './TriviaQuestion';
-import Scoreboard from './Scoreboard';
-import GuessForm from './GuessForm';
-import Winner from './Winner';
+// import GuessList from './GuessList';
+// import TriviaQuestion from './TriviaQuestion';
+// import Scoreboard from './Scoreboard';
+// import GuessForm from './GuessForm';
+// import Winner from './Winner';
 
 
 const Game = (props) => {
   const { loading, error, data, client } = useQuery(query);
 
   if (loading) return <div></div>
-
-  if (!client.user) {
+  // debugger
+  if (!data.user) {
     props.history.push('/')
   }
 
@@ -25,6 +25,7 @@ const Game = (props) => {
           <GridItem
             gridRow="1 / span 2"
             gridColumn="1 / span 1"
+            color="black"
           >
             Hello World
           </GridItem>

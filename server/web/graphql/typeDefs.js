@@ -4,10 +4,12 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type Query {
     dailyTrivia: Question!
+    user: User
   }
 
   type Mutation {
-    login(email: String, password: String): User!
+    login(email: String, password: String): User!,
+    logout: User
   }
 
   # type DailyTrivia {
@@ -34,8 +36,8 @@ const typeDefs = gql`
 
   type User {
     id: ID!
-    name: String
-    email: String
+    name: String!
+    email: String!
   }
 `
 

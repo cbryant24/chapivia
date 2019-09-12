@@ -12,12 +12,20 @@ module.exports = {
   Query: {
     dailyTrivia: (parent, { id }, { question } , info) => {
       debugger
-      return question.dailyQuestion()
+      return question.dailyQuestion();
+    },
+    user: (parent, args, { req }, info) => {
+      return req.user;
     }
   },
   Mutation: {
-    login: (parent, { email, password }, { cookieLogin }, info) => {
-      debugger
+    login: (parent, { email, password }, { cookieLogin, req }, info) => {
+      return cookieLogin({ email, password, req });
+    },
+    logout: (parent, args, { req }, info) => {
+      req.logout();
+      const { user } = req;
+      return user;
     }
   }
 }

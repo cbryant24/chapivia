@@ -21,7 +21,14 @@ const { app } = require('../initializer');
 const server = new ApolloServer({
   typeDefs: typeDefs,
   resolvers,
-  context: { ...db, cookieSignup, cookieLogin }
+  context: ({ req }) => {
+    return { 
+      ...db, 
+      cookieSignup, 
+      cookieLogin,
+      req
+    }
+  }
 });
 // debugger
 server.applyMiddleware({ app });
