@@ -10,12 +10,13 @@ import { GridItem } from './element';
 // import GuessForm from './GuessForm';
 // import Winner from './Winner';
 
+import { GET_USER } from '../localState/Queries';
 
 const Game = (props) => {
-  const { loading, error, data, client } = useQuery(query);
-
+  const { loading, data } = useQuery(query);
+  debugger
   if (loading) return <div></div>
-  // debugger
+
   if (!data.user) {
     props.history.push('/')
   }

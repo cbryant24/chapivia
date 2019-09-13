@@ -23,11 +23,15 @@ import { usePrev } from '../hooks';
 
 import { keyframes, css } from 'styled-components';
 
+import { MODAL_STATUS } from '../localState/Queries';
+
+
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const { loading, error, data: queryData, refetch } = useQuery(query);
+  // const { data: modalData, client } = useQuery(MODAL_STATUS);
   const [ login, { data: mutationData }] = useMutation(mutation
       // {
       //   update(cache, { data: { login }}) {
@@ -39,7 +43,11 @@ function Signin(props) {
       //   } 
       // }
     );
-  const prevUserState = usePrev(queryData)
+
+  // const { data: userQuery, client } = useQuery(GET_USER);
+
+  // const client = useApolloClient();
+  const prevUserState = usePrev(queryData);
   // const client = useApolloClient();
   // client.cache.writeData({ data: { user: 'value' } });
 
@@ -48,22 +56,16 @@ function Signin(props) {
   async function signin(event, formVals) {
     // debugger
     const { email, password } = formVals;
-
+    
     try {
       await login({
         variables: { email, password }
       });
-      // debugger
       await refetch();
-      console.log(queryData)
-      // debugger
-      props.history.push('/game');
-      return
     } catch(res) {
-      // debugger
       console.log(`this is the error message ${res}`);
-      // debugger
-      setIsOpen(true);
+      debugger
+      toggleModal();
       setModalMessage('Error Logging In');
       //TODO: ADD modal on login fail
     }
@@ -71,14 +73,10 @@ function Signin(props) {
   }
 
   useEffect( () => {
-    // console.log(client)
-    // refetch();
-    // debugger
-    if (loading) return;
-    // debugger
-    // if (networkStatus === 4) return;
 
-    console.log(prevUserState)
+    if (loading) return;
+
+    console.log(queryData)
     // debugger
     
     if (queryData.user) return props.history.push('/game');
@@ -89,12 +87,12 @@ function Signin(props) {
   const inputs = [
     {
       data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
-      fieldStyle: { width: [1], height: ['25%'], justifyContent: 'space-between', flexDirection: 'column'},
+      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: 'inputNormal'
     },
     {
       data: { type: 'password', name: 'password', label: 'password', placeholder: 'enter password', required: true },
-      fieldStyle: { width: [1], height: ['25%'], justifyContent: 'space-between', flexDirection: 'column'},
+      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: 'inputNormal'
     }
   ]
@@ -127,7 +125,7 @@ function Signin(props) {
       id="signin-box-module" 
       fontSizeModule={[4]}
       width={[2]}
-      height={['65vh']}
+      height={['50vh']}
       margin='auto'
       mt={["auto", "20%", "15%", "10%"]}
       maxWidth={["75vw", "50vw", "40vw"]}
@@ -147,7 +145,7 @@ function Signin(props) {
           justifyContent="space-evenly"
           backgroundColor="black"
           color="white"
-          width={["50vw", "25vw"]}
+          width={["50vw", null, "25vw"]}
           height={["25vh"]}
           margin="auto"
           transform="translateY(-500px)"

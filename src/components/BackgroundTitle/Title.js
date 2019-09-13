@@ -8,6 +8,9 @@ import { withRouter } from 'react-router-dom'
 import mutation from '../../mutations/Logout';
 import query from '../../queries/CurrentUser';
 
+import { GET_USER } from '../../localState/Queries';
+
+
 function Title(props) {
   const { loading, error, data: queryData, refetch, client } = useQuery(query);
   const [ logout, { data: mutationData }] = useMutation(mutation);
@@ -33,7 +36,6 @@ function Title(props) {
   
   async function onLogoutClick() {
     // debugger
-    console.log(mutationData)
     await logout();
     await refetch()
     // debugger

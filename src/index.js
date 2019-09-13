@@ -23,11 +23,14 @@ const client = new ApolloClient({
   // resolvers: {}
 });
 
-// client.writeData({
-//   data: {
-//     user: null
-//   }
-// });
+client.writeData({
+  data: {
+    modal: {
+      isOpen: false,
+      modalMessage: '',
+    }
+  }
+});
 
 ReactDOM.render(
   <ApolloProvider client={ client } >
