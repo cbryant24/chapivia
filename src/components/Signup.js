@@ -5,7 +5,7 @@ import theme from './elements/theme';
 
 import { FlexItem, BoxAll, BounceAnimations, Text } from './element';
 import mutation from '../mutations/Signup';
-import query from '../queries/UnguessedPlayers';
+import query from '../queries/CurrentUser';
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 import Modal from './element/modal';
@@ -18,9 +18,9 @@ function Signup(props) {
   const [ userSignup ] = useMutation(mutation);
   const { data, refetch } = useQuery(query);
   
-  async function signup(event, vals) {
+  async function signup(event, formVals) {
 
-    const { email, password, name } = vals;
+    const { email, password, name } = formVals;
     try {
       await userSignup({
         variables: { email, password, name}
@@ -36,8 +36,6 @@ function Signup(props) {
       toggleModal();
       setModalMessage('Error Signing Up');
     }
-    
-    
   }
   
   const toggleModal = e => setIsOpen(!isOpen);

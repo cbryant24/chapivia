@@ -14,12 +14,14 @@ import { GET_USER } from '../localState/Queries';
 
 const Game = (props) => {
   const { loading, data } = useQuery(query);
-  debugger
+  // debugger
   if (loading) return <div></div>
 
-  if (!data.user) {
-    props.history.push('/')
-  }
+  useEffect( () => {
+    if (loading) return;
+    
+    if (!data.user) return props.history.push('/');
+  })
 
   return (
     <React.Fragment>
