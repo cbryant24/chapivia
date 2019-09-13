@@ -25,8 +25,8 @@ module.exports = {
     login: (parent, { email, password }, { cookieLogin, req }, info) => {
       return cookieLogin({ email, password, req });
     },
-    signup: (parent, { email, name, password}, { cookieSignup }, info ) => {
-      return cookieSignup({ email, password, req });
+    signup: (parent, { email, name, password}, { cookieSignup, req }, info ) => {
+      return cookieSignup({ email, name, password, req });
     },
     logout: (parent, args, { req }, info) => {
       req.logout();

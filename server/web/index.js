@@ -11,6 +11,7 @@ const { app } = require('./initializer');
 const auth = require('./auth')
 const graphql = require('./graphql');
 
+// const port = process.env.PORT || 4001;
 const port = 4000;
 
 // const app = require('../web/graphql');
