@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import { useLastLocation } from 'react-router-last-location';
+
 import query from '../queries/CurrentUser';
+import Modal from './Modal';
 
 // import requireAuth from './HOC/requireAuth';
-import { GridItem } from './element';
+import { GridItem, BoxAll, Text, FlexItem, BounceAnimations } from './element';
 // import GuessList from './GuessList';
 // import TriviaQuestion from './TriviaQuestion';
 // import Scoreboard from './Scoreboard';
@@ -14,8 +17,10 @@ import { GET_USER } from '../localState/Queries';
 
 const Game = (props) => {
   const { loading, data } = useQuery(query);
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const lastLocation = useLastLocation();
   // debugger
-  if (loading) return <div></div>
 
   useEffect( () => {
     if (loading) return;
@@ -23,15 +28,33 @@ const Game = (props) => {
     if (!data.user) return props.history.push('/');
   })
 
+  useEffect( () => {
+    if (!lastLocation || !lastLocation.pathname === '/signup') return
+
+    if (!data.user) return;
+
+    toggleModal();
+    setModalMessage(`Welcome To Chapivia ${data.user.name}!`);
+  }, [data.user]);
+
+  const toggleModal = e => setIsOpen(!isOpen);
+
+  if (loading) return <div></div>
+
   return (
     <React.Fragment>
-          <GridItem
-            gridRow="1 / span 2"
-            gridColumn="1 / span 1"
-            color="black"
-          >
-            Hello World
-          </GridItem>
+      <Modal
+        isOpen={isOpen}
+        modalMessage={modalMessage}
+        toggleModal={toggleModal}
+      />
+      <GridItem
+        gridRow="1 / span 2"
+        gridColumn="1 / span 1"
+        color="black"
+      >
+        Hello World
+      </GridItem>
     </React.Fragment>
   )
 }

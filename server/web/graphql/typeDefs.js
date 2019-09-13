@@ -24,7 +24,7 @@ const typeDefs = gql`
     is_used: Boolean
     difficulty: String
     category: String
-    questionChoices: [QuestionChoice]
+    choices: [QuestionChoice]
   }
 
   type QuestionChoice {

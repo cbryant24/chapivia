@@ -14,7 +14,7 @@ import mutation from '../mutations/Login';
 import query from '../queries/CurrentUser';
 import { blockSize } from './element/utils/cssHelpers';
 import { Box } from './element';
-import Modal from './element/modal';
+import Modal from './Modal';
 
 import styledCSS from '@styled-system/css';
 import { noiseAnimation, glitchBottom, glitchTop, glitchMiddle } from './elements/animations';
@@ -132,49 +132,10 @@ function Signin(props) {
       zIndex={[1]}
     >
       <Modal
-        id="chapivia-modal"
         isOpen={isOpen}
-        onBackgroundClick={toggleModal}
-        onEscapeKeydown={toggleModal}
-      >
-        <BoxAll
-          pseudo
-          display="flex"
-          fontSizeModule={[3]}
-          flexDirection="column"
-          justifyContent="space-evenly"
-          backgroundColor="black"
-          color="white"
-          width={["50vw", null, "25vw"]}
-          height={["25vh"]}
-          margin="auto"
-          transform="translateY(-500px)"
-          animation={{
-            in: BounceAnimations.BounceInTop,
-            duration_in: 1,
-            animation_fill_mode: 'both'
-          }}
-        >
-          <Text
-            isA="h3"
-            fontSize={[3,4]}
-            textAlign="center"
-            my={[4]}
-          >
-            {modalMessage}
-          </Text>
-          <FlexItem
-            isA="button"
-            themeStyle="squareButton"
-            width="5em"
-            alignSelf="flex-end"
-            mr={4}
-            onClick={toggleModal}
-          >
-            Close
-          </FlexItem>
-        </BoxAll>
-      </Modal>
+        modalMessage={modalMessage}
+        toggleModal={toggleModal}
+      />
       <FormApp
         onSubmit={signin}
         form={form}

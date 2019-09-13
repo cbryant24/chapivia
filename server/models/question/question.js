@@ -67,7 +67,7 @@ module.exports = (sequelize, DataTypes) => {
         where: {
           dateUsed: previousGameDate 
       }});
-      debugger
+      // debugger
       return dailyQuestion || "Out Of Questions!"
     } catch(e) {
       debugger

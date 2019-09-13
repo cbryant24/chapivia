@@ -15,7 +15,7 @@ import GameController from './components/GameController';
 import App from './components/App';
 
 import { ModalBackground } from './components/elements';
-
+import { LastLocationProvider } from 'react-router-last-location';
 
 
 const client = new ApolloClient({
@@ -23,18 +23,19 @@ const client = new ApolloClient({
   // resolvers: {}
 });
 
-client.writeData({
-  data: {
-    modal: {
-      isOpen: false,
-      modalMessage: '',
-    }
-  }
-});
+// client.writeData({
+//   data: {
+//     modal: {
+//       isOpen: false,
+//       modalMessage: '',
+//     }
+//   }
+// });
 
 ReactDOM.render(
   <ApolloProvider client={ client } >
     <Router>
+      <LastLocationProvider>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <ModalProvider BackgroundComponent={ModalBackground}>
@@ -48,6 +49,7 @@ ReactDOM.render(
             </div>
           </ModalProvider>
         </ThemeProvider>
+      </LastLocationProvider>
     </Router>
   </ApolloProvider>,
   document.getElementById('root')

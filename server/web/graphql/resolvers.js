@@ -4,14 +4,18 @@ module.exports = {
   //     debugger
   //   }
   // },
-  // User: {
-  //   user: (parent, args, context, info) => {
-  //     debugger
-  //   }
-  // },
+  Question: {
+    choices: async (parent, args, { questionChoice }, info) => {
+      // console.log(parent)
+      // console.log(context)
+      const vals = await questionChoice.find({ where: { questionId: parent.id } })
+      debugger
+      return vals
+    }
+  },
   Query: {
     dailyTrivia: (parent, { id }, { question } , info) => {
-      debugger
+      // debugger
       return question.dailyQuestion();
     },
     user: (parent, args, { req }, info) => {
