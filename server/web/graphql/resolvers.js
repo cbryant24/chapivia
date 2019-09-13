@@ -5,12 +5,8 @@ module.exports = {
   //   }
   // },
   Question: {
-    choices: async (parent, args, { questionChoice }, info) => {
-      // console.log(parent)
-      // console.log(context)
-      const vals = await questionChoice.find({ where: { questionId: parent.id } })
-      debugger
-      return vals
+    triviaChoices: (parent, args, { questionChoice }, info) => {
+      return questionChoice.find({ where: { questionId: parent.id } })
     }
   },
   Query: {

@@ -19,7 +19,7 @@ const Game = (props) => {
   const { loading, data } = useQuery(query);
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-  const lastLocation = useLastLocation();
+  const lastLocation = useLastLocation() || {};
   // debugger
 
   useEffect( () => {
@@ -29,7 +29,7 @@ const Game = (props) => {
   })
 
   useEffect( () => {
-    if (!lastLocation || !lastLocation.pathname === '/signup') return
+    if (lastLocation.pathname !== '/signup') return;
 
     if (!data.user) return;
 

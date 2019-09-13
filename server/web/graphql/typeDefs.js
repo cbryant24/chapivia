@@ -24,16 +24,12 @@ const typeDefs = gql`
     is_used: Boolean
     difficulty: String
     category: String
-    choices: [QuestionChoice]
+    triviaChoices: QuestionChoice
   }
 
   type QuestionChoice {
     id: ID!
-    correctChoice: String!
-    incorrectChoiceOne: String!
-    incorrectChoiceTwo: String!,
-    incorrectChoiceThree: String!,
-    questionId: Int!,
+    choices: [String!]
   }
 
   type User {
