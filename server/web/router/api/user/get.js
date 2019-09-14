@@ -78,7 +78,7 @@ const currentUserGuesses = async function() {
 
   try {
     guessedPlayers = todaysGuesses.map( async guess => {
-        let {name, id} = await User.find({
+        let {name, id} = await User.findOne({
           where: {
             id: guess.userId
           }
@@ -115,7 +115,7 @@ const correctUserGuesses = async () => {
 
   try {
     correctGuessedPlayers = todaysCorrectGuesses.map( async guess => {
-        let {name, id} = await User.find({
+        let {name, id} = await User.findOne({
           where: {
             id: guess.userId
           }

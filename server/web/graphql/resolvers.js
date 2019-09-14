@@ -6,7 +6,7 @@ module.exports = {
   // },
   Question: {
     triviaChoices: (parent, args, { questionChoice }, info) => {
-      return questionChoice.find({ where: { questionId: parent.id } })
+      return questionChoice.findOne({ where: { questionId: parent.id } })
     }
   },
   Query: {
@@ -19,6 +19,9 @@ module.exports = {
     },
     nonGuessedPlayers: (parent, args, { user }, info) => {
       return user.getUnguessedPlayers();
+    },
+    guessedPlayers: (parent, args, { user }, info) => {
+      return user.todaysGuesses();
     }
   },
   Mutation: {

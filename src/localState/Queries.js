@@ -8,3 +8,16 @@ export const MODAL_STATUS = gql`
     }
   }
 `;
+
+export const DAILY_TRIVIA = gql`
+  {
+    localTrivia @client {
+      id
+      question
+      triviaChoices {
+        id
+        choices
+      }
+    }
+  }
+`

@@ -7,7 +7,7 @@ import * as Element from './element';
 
 import mutation from '../mutations/Guess';
 import UnguessedPlayers from '../queries/UnguessedPlayers';
-import TriviaQuery from '../queries/Trivia';
+// import TriviaQuery from '../queries/Trivia';
 import GuessListQuery from '../queries/GuessList';
 import CurrentUserQuery from '../queries/CurrentUser';
 
@@ -16,11 +16,14 @@ import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 
 function GuessForm(props) {
+  const { loading: unguessedPlayersLoading, data: unguessedPlayersData } = useQuery(UnguessedPlayers);
+  const { loading: currentUserLoading, data: currentUserData } = useQuery(CurrentUserQuery);
+  const [ guess, { data: guessData }] = useMutation(mutation);
   
   async function recordGuess(event, vals) {
     const { id } = props.players.nonGuessedPlayers.find( player => player.id == vals.player);
-    
-    props.guessMutation({
+    debugger
+    guess({
       variables: {
         userId: id,
         questionId: props.triviaData.trivia.id,
@@ -35,47 +38,49 @@ function GuessForm(props) {
     });
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    if( !this.state.guess || !this.state.player ) {
-      return this.setState(() => ({
-        error: {
-          guess: this.state.guess ? '' : 'Enter a guess',
-          player: this.state.player ? '' : 'Select a player'
-        }
-      }));
-    }
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   if( !this.state.guess || !this.state.player ) {
+  //     return this.setState(() => ({
+  //       error: {
+  //         guess: this.state.guess ? '' : 'Enter a guess',
+  //         player: this.state.player ? '' : 'Select a player'
+  //       }
+  //     }));
+  //   }
 
-    if( this.props.signedIn.user.id !== this.state.player && this.props.signedIn.user.id !== "7") {
-      return this.setState(() => ({
-        error: {
-          player: 'Please guess only for yourself'
-        }
-      }));
-    }
+  //   if( this.props.signedIn.user.id !== this.state.player && this.props.signedIn.user.id !== "7") {
+  //     return this.setState(() => ({
+  //       error: {
+  //         player: 'Please guess only for yourself'
+  //       }
+  //     }));
+  //   }
 
-    const { trivia } = this.props.triviaData;
+  //   const { trivia } = this.props.triviaData;
     
-    this.props.guessMutation({
-      variables: {
-        userId: this.state.player,
-        questionId: trivia.id,
-        questionChoiceId: trivia.questionChoice.id,
-        guess: trivia.questionChoice.choices[this.state.guess.charCodeAt(0) - 65]        
-      },
-      refetchQueries: [{ query: UnguessedPlayers }, { query: GuessListQuery }]
-    }).catch( res => {
-      //TODO add error handling to guess mutation
-      debugger
-      const errors = res.graphQLErrors.map(error => error.message);
-    });
+  //   this.props.guessMutation({
+  //     variables: {
+  //       userId: this.state.player,
+  //       questionId: trivia.id,
+  //       questionChoiceId: trivia.questionChoice.id,
+  //       guess: trivia.questionChoice.choices[this.state.guess.charCodeAt(0) - 65]        
+  //     },
+  //     refetchQueries: [{ query: UnguessedPlayers }, { query: GuessListQuery }]
+  //   }).catch( res => {
+  //     //TODO add error handling to guess mutation
+  //     debugger
+  //     const errors = res.graphQLErrors.map(error => error.message);
+  //   });
 
-    this.clearForm(event);
-  }
+  //   this.clearForm(event);
+  // }
   
-  const getPlayers = async () => {
-    const players = props.players.nonGuessedPlayers
-  }
+  // const getPlayers = async () => {
+  //   const players = props.players.nonGuessedPlayers
+  // }
+
+  if (unguessedPlayersLoading) return <div></div>
   
   const inputs = [
     {

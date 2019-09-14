@@ -23,14 +23,11 @@ const client = new ApolloClient({
   // resolvers: {}
 });
 
-// client.writeData({
-//   data: {
-//     modal: {
-//       isOpen: false,
-//       modalMessage: '',
-//     }
-//   }
-// });
+client.writeData({
+  data: {
+    localTrivia: {}
+  }
+});
 
 ReactDOM.render(
   <ApolloProvider client={ client } >

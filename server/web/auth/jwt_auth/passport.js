@@ -44,7 +44,7 @@ const jwtLogin = new JwtStrategy(jwtOptions, async (payload, done) => {
   // otherwise, call done without a user object
   console.log('am i hitting this strategy')
   try {
-    const user = await User.findById(payload.sub);
+    const user = await User.findByPk(payload.sub);
 
     if (user) return done(null, user);
 

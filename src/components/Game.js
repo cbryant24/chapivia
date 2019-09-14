@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { useLastLocation } from 'react-router-last-location';
 
-import query from '../queries/CurrentUser';
+import userQuery from '../queries/CurrentUser';
+import triviaQuery from '../queries/Trivia';
+
 import Modal from './Modal';
 
 // import requireAuth from './HOC/requireAuth';
 import { GridItem, BoxAll, Text, FlexItem, BounceAnimations } from './element';
-// import GuessList from './GuessList';
-// import TriviaQuestion from './TriviaQuestion';
+import GuessList from './GuessList';
+import TriviaQuestion from './TriviaQuestion';
+
 // import Scoreboard from './Scoreboard';
 // import GuessForm from './GuessForm';
 // import Winner from './Winner';
@@ -16,30 +19,53 @@ import { GridItem, BoxAll, Text, FlexItem, BounceAnimations } from './element';
 import { GET_USER } from '../localState/Queries';
 
 const Game = (props) => {
-  const { loading, data } = useQuery(query);
+  const { loading: userLoading, data: userData } = useQuery(userQuery);
+  const { loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const lastLocation = useLastLocation() || {};
-  // debugger
+  const client = useApolloClient();
+  debugger
 
   useEffect( () => {
-    if (loading) return;
+    if (userLoading) return;
     
-    if (!data.user) return props.history.push('/');
-  })
+    if (!userData.user) return props.history.push('/');
+  });
 
   useEffect( () => {
     if (lastLocation.pathname !== '/signup') return;
 
-    if (!data.user) return;
+    if (!userData.user) return;
 
     toggleModal();
-    setModalMessage(`Welcome To Chapivia ${data.user.name}!`);
-  }, [data.user]);
+    setModalMessage(`Welcome To Chapivia ${userData.user.name}!`);
+  }, [userData.user]);
 
   const toggleModal = e => setIsOpen(!isOpen);
 
-  if (loading) return <div></div>
+  if (userLoading || triviaLoading) return <div></div>;
+  // debugger
+  // client.writeData({ 
+  //   data: {
+  //     localTrivia: {
+  //       id: triviaData.dailyTrivia.id,
+  //       question: triviaData.dailyTrivia.question,
+  //       triviaChoices: {
+  //         id: triviaData.dailyTrivia.triviaChoices.id,
+  //         choices: triviaData.dailyTrivia.triviaChoices.choices
+  //       }
+  //     }
+  //   } 
+  // })
+
+  client.writeData({
+    data: {
+      localTrivia: {
+        hello: 'world'
+      }
+    }
+  })
 
   return (
     <React.Fragment>
@@ -51,9 +77,14 @@ const Game = (props) => {
       <GridItem
         gridRow="1 / span 2"
         gridColumn="1 / span 1"
-        color="black"
       >
-        Hello World
+        <GuessList/>
+      </GridItem>
+      <GridItem
+        gridRow="1 / span 1"
+        gridColumn="2 / span 1"
+      >
+        <TriviaQuestion/>
       </GridItem>
     </React.Fragment>
   )

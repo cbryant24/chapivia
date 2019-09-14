@@ -7,7 +7,7 @@ import { includes, keyBy, map } from 'lodash';
 import guessListQuery from '../queries/GuessList';
 import triviaQuery from '../queries/Trivia';
 import mutation from '../mutations/Guess';
-import CurrentUserQuery from '../queries/CurrentUser';
+import currentUserQuery from '../queries/CurrentUser';
 import { GridItem, OutlineButton, Input, Image, Text, Flex, Field, FlexItem, Box } from './element';
 // import * as Element from './element';
 import { generateRandomClipFrames } from './elements/animations';
@@ -17,19 +17,23 @@ import { validate } from './helpers/validators';
 
 function GuessList(props) {
   const [ selectedPlayer, setSelectedPlayer ] = useState(null);
+  const {loading: currentUserLoading, data: currentUserData } = useQuery(currentUserQuery);
+  const {loading: guessListLoading, data: guessListData } = useQuery(guessListQuery);
+  const {loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
+  const [ changeGuess, { data: guessedData }] = useMutation(mutation);
 
   useEffect(() => {
     console.log(props)
     // debugger
   })
   function handleGuessUpdate(event, vals) {
-    // debugger
+    debugger
 
-    // if( props.signedIn.user.id !== selectedPlayer.id && props.signedIn.user.id !== "7") {
-    //   return this.setState(() => ({
-    //     error: 'Please guess only for yourself'
-    //   }));
-    // }
+    if( props.signedIn.user.id !== selectedPlayer.id && props.signedIn.user.id !== "7") {
+      return this.setState(() => ({
+        error: 'Please guess only for yourself'
+      }));
+    }
     
     props.guessMutation({
       variables: {
@@ -107,12 +111,11 @@ function GuessList(props) {
       style: { height: '5vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem',  },
     }
     
-    if(props.guessList.loading) return <FlexItem></FlexItem>
+    if(guessListLoading) return <FlexItem></FlexItem>
 
     // if(new Date().getHours() >= 17) return <FlexItem>{displayGuessesAfterDeadline()}</FlexItem>
-    
     return (
-      props.guessList.guesses.map( guess => (
+      guessListData.guessedPlayers.map( guess => (
         <Flex
           fontSize="1.6rem"
           textAlign="center"

@@ -30,12 +30,12 @@ module.exports = (sequelize, DataTypes) => {
 
     const currentHour = moment().format('HH');
 
-    if (currentHour >= 17) return null;
+    if (currentHour >= 18) return null;
     
     try {
-      const { correctChoice } = await this.associations.questionChoice.target.findById(questionChoiceId);
+      const { correctChoice } = await this.associations.questionChoice.target.findByPk(questionChoiceId);
     
-      const priorGuess = await this.find({
+      const priorGuess = await this.findOne({
         where: {
           questionId,
           userId
