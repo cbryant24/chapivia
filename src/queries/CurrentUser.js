@@ -2,10 +2,11 @@ import gql from 'graphql-tag';
 
 export default gql`
   {
-    user @client {
+    user {
       id
       name
       email
+      role
     }
   }
 `;

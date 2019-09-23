@@ -16,9 +16,9 @@ passport.serializeUser((user, done) => {
 // The counterpart of 'serializeUser'.  Given only a user's ID, we must return
 // the user object.  This object is placed on 'req.user'.
 passport.deserializeUser( async (id, done) => {
-  
-  const user = await User.findById(id);
-  
+
+  const user = await User.findByPk(id);
+
   return done(null, user);
   
 });
@@ -83,9 +83,8 @@ function login({ email, password, req }) {
   return new Promise((resolve, reject) => {
     passport.authenticate('local', (err, user) => {
       if (!user) { reject('Invalid credentials.') }
-
       req.login(user, () => resolve(user));
-    })({ body: { email, password } });
+    })({ body: { email, password }});
   });
 }
 

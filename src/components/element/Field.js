@@ -31,6 +31,48 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
   const errorColor = props.errors.length >= 1 ? '#e95667' : null;
 
   // debugger
+
+    // debugger
+    const buildInput = () => {
+      const inputType =
+      {
+        select: 'select',
+        slider: 'slider',
+        textarea: 'textarea'
+      }[type] || 'input'
+
+      const inputProps = {
+        ...props,
+        pseudo: true,
+        background: "transparent",
+        width: type === "password" ? "75%" : "100%",
+        height: "auto",
+        border: "none",
+        color: "inherit",
+        margin: "0",
+        padding: ['0 1em'],
+        focus: {outline: "none"},
+        isA: inputType,
+        name: name,
+        type: shown && type === "password" ? 'text' : type,
+        placeholder
+      }
+
+
+      switch(inputType) {
+        case 'input':
+          return (<BoxAll {...inputProps} />);
+        case 'select':
+            
+          return (
+            <BoxAll {...inputProps}>
+              //ADD ERROR CATCH NEED TO PASS OPTIONS FOR SELECT
+              {props.options.map( option => <option value={option.id}>{option.name}</option>)}
+            </BoxAll>
+          )
+      }
+    }
+
   const inputType =
     {
       select: 'select',
@@ -38,6 +80,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
       textarea: 'textarea'
     }[type] || 'input'
     // debugger
+  //TODO: Change tags to fieldset html elements for form
   return (
     <BoxAll {...styleBuildRemove(fieldStyle)}>
       <Flex
@@ -46,7 +89,10 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
         <Box isA="label" for={name} id={name}>
           {label}
         </Box>
-        {props.errors.length >= 1 ? <Box isA="list" ml="2rem" color={errorColor} fontSize="1rem">{handleErrorMessages(props.errors)}</Box> : ''}
+        { props.errors.length >= 1 ? 
+          <Box isA="list" ml="2rem" color={errorColor} fontSize="1rem">{handleErrorMessages(props.errors)}</Box> 
+          : ''
+        }
       </Flex>
       <BoxAll
         {...styleBuildRemove(inputStyle, 'display')}
@@ -56,7 +102,7 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
         focusColor={errorColor} 
         foucsBoxShadowColor={errorColor}
       >
-        <BoxAll
+        {/* <BoxAll
           {...props}
           pseudo
           background="transparent"
@@ -71,7 +117,8 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
           name={name}
           type={shown && type === "password" ? 'text' : type} 
           placeholder={placeholder}
-        />
+        /> */}
+        {buildInput()}
         { type === "password" ? 
         <BoxAll
           isA="p"

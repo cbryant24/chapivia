@@ -31,8 +31,6 @@ module.exports = (sequelize, DataTypes) => {
       let dailyQuestion = await this.findOne({ 
         where: {
           category: triviaConfig[dayOfWeek],
-          difficulty: 'medium',
-          is_used: 'false',
           dateUsed: todaysDate 
       }});
     
@@ -41,8 +39,25 @@ module.exports = (sequelize, DataTypes) => {
           where: {
             category: triviaConfig[dayOfWeek],
             difficulty: 'medium',
-            is_used: 'false',
         }});
+
+        if (!dailyQuestion) {
+          dailyQuestion = await this.findOne({
+            where: {
+              category: triviaConfig[dayOfWeek],
+              difficulty: 'hard'
+            }
+          })
+        }
+
+        if (!dailyQuestion) {
+          dailyQuestion = await this.findOne({
+            where: {
+              category: triviaConfig[dayOfWeek],
+              difficulty: 'easy'
+            }
+          })
+        }
 
         dailyQuestion.dateUsed = todaysDate;
         dailyQuestion.save();
@@ -52,8 +67,8 @@ module.exports = (sequelize, DataTypes) => {
         where: {
           dateUsed: previousGameDate 
       }});
-      
-      return dailyQuestion
+      // debugger
+      return dailyQuestion || "Out Of Questions!"
     } catch(e) {
       debugger
       console.log(e)

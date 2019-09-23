@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('user', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    role: DataTypes.STRING,
+    gameLobby: DataTypes.STRING
   }, {
     freezeTableName: true,
     hooks: {
@@ -64,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
     try {
       const players = await this.findAll();
       const todaysGuesses = await this.todaysGuesses();
-
+      debugger
       const unguessedPlayers = [];
       players.map( player => {
         if( !todaysGuesses.some( guesser => guesser.id === player.id) )
@@ -114,6 +116,7 @@ module.exports = (sequelize, DataTypes) => {
     const startOfToday = moment().startOf('day').toDate();
     const endOfToday = moment().endOf('day').toDate();
     
+    debugger
     try {
       const todaysGuesses = await this.findAll({
         include: [{ 
@@ -125,6 +128,7 @@ module.exports = (sequelize, DataTypes) => {
           }
         }]
       });
+      debugger
 
       return todaysGuesses;
     } catch(e) {

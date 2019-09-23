@@ -26,7 +26,7 @@ exports.signup = async (req, res, next) => {
 
   // See if a given user exists
   try {
-    const currentUser = await User.find({ where: {email} });
+    const currentUser = await User.findOne({ where: {email} });
     console.log('is there a current user lets find out', currentUser);
     if (currentUser) return res.status(422).send({ error: 'Email is in use'});
   } catch (e) {

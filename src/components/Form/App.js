@@ -12,9 +12,17 @@ export default function FormApp({form, inputs, validate, buttons}) {
     formName: form.data.name,
     fields: {}
   };
+
+  //TODO: add filter check object validation with proper fields and types maybe JOI or TypeScript???
+  inputs = inputs.filter(Boolean);
+
   function setInitialStateValues() {
   
-    inputs.forEach( input => (
+    inputs.forEach( input => {
+
+      if (!input) return;
+
+      return (
       initialState.fields = {
         ...initialState.fields,
         [input.data.name]: {
@@ -23,8 +31,9 @@ export default function FormApp({form, inputs, validate, buttons}) {
           touched: false,
           dirty: false
         }
-      } 
-    ));
+      }
+      )
+    });
     return initialState
   }
 

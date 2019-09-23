@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     questionId: DataTypes.INTEGER,
     questionChoiceId: DataTypes.INTEGER,
+    guess: DataTypes.STRING
   },{
     freezeTableName: true,
   });
@@ -23,19 +24,19 @@ module.exports = (sequelize, DataTypes) => {
       questionChoiceId,
       guess
     } = guessData;
-  
+    
     const valid = validate.guess({ userId, questionId, questionChoiceId, guess });
     
     if (!valid) { throw new Error("Invalid character used in field") }    
 
     const currentHour = moment().format('HH');
 
-    if (currentHour >= 17) return null;
+    // if (currentHour >= 18) return null;
     
     try {
-      const { correctChoice } = await this.associations.questionChoice.target.findById(questionChoiceId);
+      const { correctChoice } = await this.associations.questionChoice.target.findByPk(questionChoiceId);
     
-      const priorGuess = await this.find({
+      const priorGuess = await this.findOne({
         where: {
           questionId,
           userId
@@ -53,6 +54,7 @@ module.exports = (sequelize, DataTypes) => {
         userId,
         questionId,
         questionChoiceId,
+        guess,
         isCorrect: correctChoice === guess ? true : false
       });
 

@@ -15,7 +15,7 @@ const QuestionType = new GraphQLObjectType({
     questionChoice: {
       type: QuestionChoiceType,
       resolve(parentValue) {
-        return QuestionChoice.find({ where: { questionId: parentValue.id } });
+        return QuestionChoice.findOne({ where: { questionId: parentValue.id } });
       }
     }
   })

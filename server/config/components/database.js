@@ -4,21 +4,21 @@ const config = {
     password: "root",
     database: "chapivia",
     host: "127.0.0.1",
-    dialect: "postgresql"
+    dialect: "postgres"
   },
   test: {
     username: "chapivia",
     password: "root",
     database: "chapivia",
     host: "127.0.0.1",
-    dialect: "postgresql"
+    dialect: "postgres"
   },
   production: {
     username: "chapivia",
     password: "root",
     database: "chapivia",
     host: "127.0.0.1",
-    dialect: "postgresql"
+    dialect: "postgres"
   }
 }
 

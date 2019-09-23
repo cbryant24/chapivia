@@ -14,7 +14,7 @@ import mutation from '../mutations/Login';
 import query from '../queries/CurrentUser';
 import { blockSize } from './element/utils/cssHelpers';
 import { Box } from './element';
-import Modal from './element/modal';
+import Modal from './Modal';
 
 import styledCSS from '@styled-system/css';
 import { noiseAnimation, glitchBottom, glitchTop, glitchMiddle } from './elements/animations';
@@ -23,37 +23,49 @@ import { usePrev } from '../hooks';
 
 import { keyframes, css } from 'styled-components';
 
+import { MODAL_STATUS } from '../localState/Queries';
+
+
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const { loading, error, data: queryData, refetch } = useQuery(query);
-  const [ login, { data: mutationData }] = useMutation(mutation);
-  const prevUserState = usePrev(queryData)
-  const client = useApolloClient();
-  client.cache.writeData({ data: { user: 'value' } });
+  // const { data: modalData, client } = useQuery(MODAL_STATUS);
+  const [ login, { data: mutationData }] = useMutation(mutation
+      // {
+      //   update(cache, { data: { login }}) {
+      //     // debugger
+      //     cache.writeQuery({
+      //       query: queryData,
+      //       data: { user: login }
+      //     })
+      //   } 
+      // }
+    );
+
+  // const { data: userQuery, client } = useQuery(GET_USER);
+
+  // const client = useApolloClient();
+  const prevUserState = usePrev(queryData);
+  // const client = useApolloClient();
+  // client.cache.writeData({ data: { user: 'value' } });
 
 
 
   async function signin(event, formVals) {
     // debugger
     const { email, password } = formVals;
-
+    
     try {
       await login({
         variables: { email, password }
       });
-      // debugger
-      // refetch();
-      console.log(queryData)
-      debugger
-      props.history.push('/game');
-      return
+      await refetch();
     } catch(res) {
-      // debugger
       console.log(`this is the error message ${res}`);
       debugger
-      setIsOpen(true);
+      toggleModal();
       setModalMessage('Error Logging In');
       //TODO: ADD modal on login fail
     }
@@ -61,14 +73,10 @@ function Signin(props) {
   }
 
   useEffect( () => {
-    // console.log(client)
-    // refetch();
-    debugger
-    if (loading) return;
-    // debugger
-    // if (networkStatus === 4) return;
 
-    console.log(prevUserState)
+    if (loading) return;
+
+    console.log(queryData)
     // debugger
     
     if (queryData.user) return props.history.push('/game');
@@ -79,12 +87,12 @@ function Signin(props) {
   const inputs = [
     {
       data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
-      fieldStyle: { width: [1], height: ['25%'], justifyContent: 'space-between', flexDirection: 'column'},
+      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: 'inputNormal'
     },
     {
       data: { type: 'password', name: 'password', label: 'password', placeholder: 'enter password', required: true },
-      fieldStyle: { width: [1], height: ['25%'], justifyContent: 'space-between', flexDirection: 'column'},
+      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: 'inputNormal'
     }
   ]
@@ -117,56 +125,17 @@ function Signin(props) {
       id="signin-box-module" 
       fontSizeModule={[4]}
       width={[2]}
-      height={['65vh']}
+      height={['50vh']}
       margin='auto'
       mt={["auto", "20%", "15%", "10%"]}
       maxWidth={["75vw", "50vw", "40vw"]}
       zIndex={[1]}
     >
       <Modal
-        id="chapivia-modal"
         isOpen={isOpen}
-        onBackgroundClick={toggleModal}
-        onEscapeKeydown={toggleModal}
-      >
-        <BoxAll
-          pseudo
-          display="flex"
-          fontSizeModule={[3]}
-          flexDirection="column"
-          justifyContent="space-evenly"
-          backgroundColor="black"
-          color="white"
-          width={["50vw", "25vw"]}
-          height={["25vh"]}
-          margin="auto"
-          transform="translateY(-500px)"
-          animation={{
-            in: BounceAnimations.BounceInTop,
-            duration_in: 1,
-            animation_fill_mode: 'both'
-          }}
-        >
-          <Text
-            isA="h3"
-            fontSize={[3,4]}
-            textAlign="center"
-            my={[4]}
-          >
-            {modalMessage}
-          </Text>
-          <FlexItem
-            isA="button"
-            themeStyle="squareButton"
-            width="5em"
-            alignSelf="flex-end"
-            mr={4}
-            onClick={toggleModal}
-          >
-            Close
-          </FlexItem>
-        </BoxAll>
-      </Modal>
+        modalMessage={modalMessage}
+        toggleModal={toggleModal}
+      />
       <FormApp
         onSubmit={signin}
         form={form}

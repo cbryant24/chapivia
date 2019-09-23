@@ -2,10 +2,10 @@ import gql from 'graphql-tag';
 
 export default gql`
   {
-    trivia {
+    dailyTrivia {
       id
       question
-      questionChoice {
+      triviaChoices {
         id
         choices
       }

@@ -6,8 +6,8 @@ const userGuess = async function(playerGuess) {
   try {
     const { playerId: userId, questionChoiceId, questionId, guess} = playerGuess;
 
-    const { correctChoice } = await QuestionChoice.findById(questionChoiceId);
-    const priorGuess = await UserQuestionChoice.find({
+    const { correctChoice } = await QuestionChoice.findByPk(questionChoiceId);
+    const priorGuess = await UserQuestionChoice.findOne({
       where: {
         questionId,
         userId

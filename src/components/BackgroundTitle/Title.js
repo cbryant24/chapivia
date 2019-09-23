@@ -8,6 +8,9 @@ import { withRouter } from 'react-router-dom'
 import mutation from '../../mutations/Logout';
 import query from '../../queries/CurrentUser';
 
+import { GET_USER } from '../../localState/Queries';
+
+
 function Title(props) {
   const { loading, error, data: queryData, refetch, client } = useQuery(query);
   const [ logout, { data: mutationData }] = useMutation(mutation);
@@ -33,16 +36,15 @@ function Title(props) {
   
   async function onLogoutClick() {
     // debugger
-    console.log(mutationData)
     await logout();
-    refetch()
+    await refetch()
     // debugger
     props.history.push('/');
   }
 
   //debugger
   if (loading) return <Flex></Flex>;
-  debugger
+  // debugger
   return (
     <Flex
       id="title"
@@ -100,22 +102,22 @@ function Title(props) {
             }}
           />
       </FlexItem>
-      {/* { client.user ? 
+      { queryData.user ? 
         <FlexItem
           position="absolute"
           right="0"
-          display={ client.user ? "inline-block" : "none" }
+          display={ queryData.user ? "inline-block" : "none" }
           zIndex="20"
         >
           <Text
             cursor="pointer"
             fontSize="16px"
-            onClick={ onLogoutClick.bind(this) }
+            onClick={ onLogoutClick }
           >
-            signout { client.user.name }
+            signout { queryData.user.name }
           </Text>
         </FlexItem> : ''
-      } */}
+      }
     </Flex>
   );
 }
