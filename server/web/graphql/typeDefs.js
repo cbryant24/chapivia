@@ -5,14 +5,15 @@ const typeDefs = gql`
   type Query {
     dailyTrivia: Question!
     user: User
-    nonGuessedPlayers: User,
+    nonGuessedPlayers: [User],
     guessedPlayers: [User]
   }
 
   type Mutation {
-    login(email: String, password: String): User!,
+    login(email: String!, password: String!): User!,
     logout: User
-    signup(email: String, password: String, name: String): User
+    signup(email: String!, password: String!, name: String!): User
+    guess(userId: Int!, questionId: Int!, questionChoiceId: Int!, guess: String!): UserQuestionChoice
   }
 
   # type DailyTrivia {
@@ -38,6 +39,15 @@ const typeDefs = gql`
     name: String!
     email: String!
     role: String
+  }
+
+  type UserQuestionChoice {
+    id: ID!
+    userId: Int!
+    questionId: Int!
+    questionChoiceId: Int!
+    guess: String!
+    isCorrect: Boolean!
   }
 `
 

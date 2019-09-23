@@ -361,5 +361,6 @@ export const filterProps = props => {
     "right",
     "bottom",
     "themeStyle",
-    "remove"
+    "remove",
+    "options"
 ])}

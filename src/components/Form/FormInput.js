@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useStateValue } from './FormState';
 
-export const formInput = ( { data: { name, inputData, validation } }, validate) => {
+export const formInput = ( { data: { name, inputData = {}, validation } }, validate) => {
   const [{ formName, fields }, dispatch] = useStateValue();
-// debugger
-  useEffect( () => {
+//  debugger
+  // useEffect( () => {
 
-  }, [])
+  // }, [])
   function handleChange(e) {
     const { name: field, value } = e.target;
     const valid = validate[formName]({
@@ -50,6 +50,7 @@ export const formInput = ( { data: { name, inputData, validation } }, validate) 
     value: fields[name].value,
     errors: fields[name].errorMessage,
     onBlur: handleBlur,
-    onChange: handleChange
+    onChange: handleChange,
+    options: inputData.options
   }
 }

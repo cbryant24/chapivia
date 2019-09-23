@@ -6,6 +6,7 @@ import theme from './components/elements/theme';
 
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+
 import { ModalProvider } from './components/element';
 
 import Signin from './components/Signin';
@@ -16,18 +17,31 @@ import App from './components/App';
 
 import { ModalBackground } from './components/elements';
 import { LastLocationProvider } from 'react-router-last-location';
-
+import typeDefs from './localState/typeDefs';
 
 const client = new ApolloClient({
+  clientState: {
+    defaults: {
+      localTrivia: {
+        questionId: null,
+        question: '',
+        questionChoices: [],
+        questionChoicesId: null,
+        __typename: 'dailyTrivia'
+      }
+    },
+    resolvers: {},
+    typeDefs
+  },
   uri: '/graphql',
-  // resolvers: {}
 });
+// debugger
 
-client.writeData({
-  data: {
-    localTrivia: {}
-  }
-});
+// client.writeData({
+
+//     localTrivia: {}
+
+// });
 
 ReactDOM.render(
   <ApolloProvider client={ client } >

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 // import { graphql, compose } from 'react-apollo';
 
@@ -10,33 +10,50 @@ import UnguessedPlayers from '../queries/UnguessedPlayers';
 // import TriviaQuery from '../queries/Trivia';
 import GuessListQuery from '../queries/GuessList';
 import CurrentUserQuery from '../queries/CurrentUser';
-
+import { DAILY_TRIVIA } from '../localState/Queries';
 
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
+import theme from './elements/theme';
+
+import Modal from './Modal';
 
 function GuessForm(props) {
+  const { data: { localTrivia } } = useQuery(DAILY_TRIVIA);
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
   const { loading: unguessedPlayersLoading, data: unguessedPlayersData } = useQuery(UnguessedPlayers);
   const { loading: currentUserLoading, data: currentUserData } = useQuery(CurrentUserQuery);
   const [ guess, { data: guessData }] = useMutation(mutation);
   
   async function recordGuess(event, vals) {
-    const { id } = props.players.nonGuessedPlayers.find( player => player.id == vals.player);
-    debugger
-    guess({
-      variables: {
-        userId: id,
-        questionId: props.triviaData.trivia.id,
-        questionChoiceId: props.triviaData.trivia.questionChoice.id,
-        guess: props.triviaData.trivia.questionChoice.choices[vals.guess.toUpperCase().charCodeAt(0) - 65]        
-      },
-      refetchQueries: [{ query: UnguessedPlayers }, { query: GuessListQuery }]
-    }).catch( res => {
+    try {
+      const { data: { guess: userGuess } } = await guess({
+        variables: {
+          userId: parseInt(vals.player),
+          questionId: parseInt(localTrivia.questionId),
+          questionChoiceId: parseInt(localTrivia.questionChoicesId),
+          guess: localTrivia.questionChoices[vals.guess.toUpperCase().charCodeAt(0) - 65]        
+        },
+        refetchQueries: [{ query: UnguessedPlayers }, { query: GuessListQuery }]
+      })
+
+      toggleModal();
+      setModalMessage(`You're Answer is...${ userGuess.isCorrect ?'YES!' : 'WRONG! HAHA' }!`);
+
+    } catch(err) {
       //TODO add error handling to guess mutation
+      console.log(err)
       debugger
-      const errors = res.graphQLErrors.map(error => error.message);
-    });
+      toggleModal();
+      setModalMessage(`There was an error! Try Again!`);
+    }
   }
+
+  useEffect( () => {
+    console.log(unguessedPlayersData)
+    debugger
+  }, [unguessedPlayersData])
 
   // function handleSubmit(event) {
   //   event.preventDefault();
@@ -80,10 +97,16 @@ function GuessForm(props) {
   //   const players = props.players.nonGuessedPlayers
   // }
 
-  if (unguessedPlayersLoading) return <div></div>
-  
+  if (currentUserLoading || unguessedPlayersLoading) return <div></div>;
+
+  const toggleModal = e => setIsOpen(!isOpen);
+
+  unguessedPlayersData.nonGuessedPlayers && 
+  unguessedPlayersData.nonGuessedPlayers[0].id !== null && 
+  unguessedPlayersData.nonGuessedPlayers.unshift({id: null, name: null});
+
   const inputs = [
-    {
+    currentUserData.user.role === "admin" ? {
       data: {
         type: 'select', 
         name: 'player', 
@@ -93,14 +116,19 @@ function GuessForm(props) {
         inputData: {
           display: 'name',
           value: 'id',
-          data: props.players.loading ? [] : props.players.nonGuessedPlayers
+          options: unguessedPlayersData.nonGuessedPlayers
         }
       },
-      fieldStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-between', flexDirection: 'column'},
-      inputStyle: { color: 'black' }
-    },
+      fieldStyle: { 
+        width: '75%', 
+        maxHeight: '5rem', 
+        justifyContent: 'space-between',
+        flexDirection: 'column'
+      },
+      inputStyle: { background: 'white', color: 'black', borderRadius: '1em', minHeight: '2.5em' }
+    } : null,
     {
-      data: { 
+      data: {
         type: 'password', 
         name: 'guess', 
         label: 'guess', 
@@ -108,28 +136,48 @@ function GuessForm(props) {
         initialValue: '',
         required: true,
       },
-      fieldStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-between', flexDirection: 'column'},
-      inputStyle: { color: '#ff00f3' }
+      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
+      inputStyle: 'inputNormal'
     }
   ]
 
   const form = {
     data: { name: 'guessForm', submit: 'signup', cb: recordGuess },
-    style: { height: '60vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem',  },
+    style: {
+      display: 'flex',
+      height: '100%',
+      justifyContent: 'space-evenly', 
+      flexDirection: 'column', 
+      backgroundColor: 'black',
+      border: '1px solid black',
+      width: [1],
+      px: [4],
+      zIndex: 20
+    },
   }
+
+  const buttons = [
+    { text: 'Submit', type: 'submit', cb: null, style: {...theme.squareButton, mr: [3]} },
+    { text: 'Cancel', type: 'cancel', cb: null, style: 'squareButton' }
+  ]
 
 return (
     <FlexItem
-      border="1px solid black"
-      p="2rem"
-      bg="black"
       width="60%"
-      zIndex="20"
+      height="75vh"
+      zIndex={[2]}
     >
+      <Modal
+        isOpen={isOpen}
+        modalMessage={modalMessage}
+        toggleModal={toggleModal}
+      />
       <FormApp 
         form={form}
+        onSubmit={recordGuess}
         inputs={inputs}
         validate={validate}
+        buttons={buttons}
       />
     </FlexItem>
   );

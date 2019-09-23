@@ -12,12 +12,10 @@ export const MODAL_STATUS = gql`
 export const DAILY_TRIVIA = gql`
   {
     localTrivia @client {
-      id
+      questionId
       question
-      triviaChoices {
-        id
-        choices
-      }
+      questionChoicesId
+      questionChoices
     }
   }
 `

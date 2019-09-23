@@ -35,6 +35,9 @@ module.exports = {
       req.logout();
       const { user } = req;
       return user;
+    },
+    guess: (parent, { userId, questionId, questionChoiceId, guess}, { req, userQuestionChoice }, info) => {
+      return userQuestionChoice.recordGuess({ userId, questionId, questionChoiceId, guess });
     }
   }
 }

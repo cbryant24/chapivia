@@ -16,7 +16,7 @@ import TriviaQuestion from './TriviaQuestion';
 // import GuessForm from './GuessForm';
 // import Winner from './Winner';
 
-import { GET_USER } from '../localState/Queries';
+import { DAILY_TRIVIA } from '../localState/Queries';
 
 const Game = (props) => {
   const { loading: userLoading, data: userData } = useQuery(userQuery);
@@ -24,8 +24,9 @@ const Game = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const lastLocation = useLastLocation() || {};
+  const { data } = useQuery(DAILY_TRIVIA);
   const client = useApolloClient();
-  debugger
+  // debugger
 
   useEffect( () => {
     if (userLoading) return;
@@ -34,38 +35,38 @@ const Game = (props) => {
   });
 
   useEffect( () => {
+    if (triviaLoading) return;
+    // debugger
+    try {
+      client.writeData({
+        data: {
+          localTrivia: {
+            questionId: triviaData.dailyTrivia.id,
+            question: triviaData.dailyTrivia.question,
+            questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
+            questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
+            __typename: 'dailyTrivia'
+          }
+        }
+      });
+    } catch(err) {
+      //TODO: add proper error handling
+      console.log('error getting trivia data', err)
+    }
+  }, [triviaData]);
+
+  useEffect( () => {
     if (lastLocation.pathname !== '/signup') return;
 
     if (!userData.user) return;
 
     toggleModal();
-    setModalMessage(`Welcome To Chapivia ${userData.user.name}!`);
-  }, [userData.user]);
+    setModalMessage(`Welcome To Chapivia ${ userData.user.name }!`);
+  }, [userData]);
 
   const toggleModal = e => setIsOpen(!isOpen);
 
   if (userLoading || triviaLoading) return <div></div>;
-  // debugger
-  // client.writeData({ 
-  //   data: {
-  //     localTrivia: {
-  //       id: triviaData.dailyTrivia.id,
-  //       question: triviaData.dailyTrivia.question,
-  //       triviaChoices: {
-  //         id: triviaData.dailyTrivia.triviaChoices.id,
-  //         choices: triviaData.dailyTrivia.triviaChoices.choices
-  //       }
-  //     }
-  //   } 
-  // })
-
-  client.writeData({
-    data: {
-      localTrivia: {
-        hello: 'world'
-      }
-    }
-  })
 
   return (
     <React.Fragment>
@@ -83,6 +84,7 @@ const Game = (props) => {
       <GridItem
         gridRow="1 / span 1"
         gridColumn="2 / span 1"
+        zIndex="5"
       >
         <TriviaQuestion/>
       </GridItem>

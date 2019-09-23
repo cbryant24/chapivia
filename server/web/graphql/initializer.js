@@ -7,13 +7,15 @@ const {
   User, 
   Question,
   QuestionChoice,
+  UserQuestionChoice
 } = require('../../models');
 const { cookieSignup, cookieLogin } = require('../auth');
 
 const db = {
   user: User,
   question: Question,
-  questionChoice: QuestionChoice
+  questionChoice: QuestionChoice,
+  userQuestionChoice: UserQuestionChoice
 }
 // debugger
 const { app } = require('../initializer');

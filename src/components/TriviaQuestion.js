@@ -13,11 +13,11 @@ import GuessForm from './GuessForm';
 import { Box, Grid, GridItem, Text, List, Item, Heading } from './element';
 
 const TriviaQuestion = (props) => {
-  const val = useQuery(DAILY_TRIVIA);
-  debugger
+  const { data: { localTrivia } } = useQuery(DAILY_TRIVIA);
+  // debugger
   function displayTriviaChoices() {
     return (
-      data.dailyTrivia.triviaChoices.choices.map( (choice, idx) => {
+      localTrivia.questionChoices.map( (choice, idx) => {
         return(
           <Box
             isA="li"
@@ -37,8 +37,6 @@ const TriviaQuestion = (props) => {
     return entities.decode(str);
   }
 
-  if(loading) return <div></div>
-  debugger
   return (
     <GridItem 
       gridRow={props.gridRow} 
@@ -51,16 +49,14 @@ const TriviaQuestion = (props) => {
         p="0 0 2rem 0;"
         fontSize="2.1rem"
       >
-        {convertHTMLChar(data.dailyTrivia.question) || ""}
+        {convertHTMLChar(localTrivia.question)}
       </Text>
       <Box
         isA="ul"
       >
         {displayTriviaChoices()}
       </Box>
-      <GuessForm
-        trivia={data.dailyTrivia}
-      />
+      <GuessForm/>
     </GridItem>
   );
 }

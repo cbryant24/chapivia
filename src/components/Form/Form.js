@@ -14,6 +14,7 @@ export default function Form({ inputs, form, validate, buttons }) {
   const errorColor = formErrors.length >= 1 ? '#e95667' : null;
   
   const displayFields = () => {
+    
     if (Array.isArray(inputs)) {
       return inputs.map( input =>  {
         const field = formInput(input, validate);
@@ -25,8 +26,11 @@ export default function Form({ inputs, form, validate, buttons }) {
     
   }
 
+  //TODO: Add fallback buttons if none provided
   const displayButtons = () => {
 
+    if (!buttons) return;
+    
     return buttons.map( button => {
       // debugger
 
@@ -97,7 +101,10 @@ export default function Form({ inputs, form, validate, buttons }) {
       
     if(formErrors) setFormErrors([]);
 
-    cb(event, formVals);
+    cb && cb(event, formVals);
+
+    dispatch({ type: 'RESET' });
+
   }
 
   const isEnabled = () => {
