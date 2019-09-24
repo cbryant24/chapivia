@@ -20,7 +20,7 @@ import { DAILY_TRIVIA } from '../localState/Queries';
 import { useAuth } from '../hooks';
 
 const Game = (props) => {
-  const { loading: userLoading, data: userData } = useQuery(userQuery);
+  // const { loading: userLoading, data: userData } = useQuery(userQuery);
   const { loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
@@ -42,17 +42,18 @@ const Game = (props) => {
     if (triviaLoading) return;
     // debugger
     try {
-      client.writeData({
-        data: {
-          localTrivia: {
-            questionId: triviaData.dailyTrivia.id,
-            question: triviaData.dailyTrivia.question,
-            questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
-            questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
-            __typename: 'dailyTrivia'
-          }
-        }
-      });
+
+      // client.writeData({
+      //   data: {
+      //     localTrivia: {
+      //       questionId: triviaData.dailyTrivia.id,
+      //       question: triviaData.dailyTrivia.question,
+      //       questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
+      //       questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
+      //       __typename: 'dailyTrivia'
+      //     }
+      //   }
+      // });
     } catch(err) {
       //TODO: add proper error handling
       console.log('error getting trivia data', err)
@@ -70,7 +71,7 @@ const Game = (props) => {
 
   const toggleModal = e => setIsOpen(!isOpen);
 
-  if (userLoading || triviaLoading) return <div></div>;
+  if (!user || triviaLoading) return <div></div>;
 
   return (
     <React.Fragment>

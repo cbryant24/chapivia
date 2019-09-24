@@ -25,14 +25,14 @@ import { keyframes, css } from 'styled-components';
 
 import { MODAL_STATUS } from '../localState/Queries';
 
-import { useAuth } from '../hooks'
+import { useAuth, user } from '../hooks';
 
 
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-  const { loading: userLoading, error, data: userData, refetch, client } = useQuery(query);
+  // const { loading: userLoading, error, data: userData, refetch, client } = useQuery(query);
   // const { data: modalData, client } = useQuery(MODAL_STATUS);
   const [ login, { data: mutationData }] = useMutation(mutation
       // {
@@ -64,8 +64,6 @@ function Signin(props) {
       // await refetch();
       signin(formVals)
 
-      return props.history.push('/game');
-
     } catch(res) {
       console.log(`this is the error message ${res}`);
       // debugger
@@ -77,9 +75,10 @@ function Signin(props) {
   }
 
   useEffect( () => {
+    debugger
     if (user) 
       props.history.push('/game');
-  })
+  }, [user]);
 
   // useEffect( () => {if (userData.user) props.history.push('/game')});
 
