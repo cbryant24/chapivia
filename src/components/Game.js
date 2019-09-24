@@ -17,6 +17,7 @@ import TriviaQuestion from './TriviaQuestion';
 // import Winner from './Winner';
 
 import { DAILY_TRIVIA } from '../localState/Queries';
+import { useAuth } from '../hooks';
 
 const Game = (props) => {
   const { loading: userLoading, data: userData } = useQuery(userQuery);
@@ -24,9 +25,12 @@ const Game = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const lastLocation = useLastLocation() || {};
-  const { data } = useQuery(DAILY_TRIVIA);
+  // const { data } = useQuery(DAILY_TRIVIA);
   const client = useApolloClient();
   // debugger
+
+
+  const auth = useAuth();
 
   useEffect( () => {
     if (userLoading) return;

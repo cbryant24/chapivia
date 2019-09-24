@@ -19,3 +19,13 @@ export const DAILY_TRIVIA = gql`
     }
   }
 `
+
+export const GET_PLAYER = gql`
+  {
+    player @client {
+      id
+      name
+      email
+    }
+  }
+`

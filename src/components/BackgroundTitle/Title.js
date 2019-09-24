@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import { Flex, FlexItem, Text, ExtendedText, TextAnimated, BoxAnimated, ExtendedBox, FadeAnimations } from '../element';
@@ -7,14 +7,19 @@ import { css, keyframes } from 'styled-components';
 import { withRouter } from 'react-router-dom'
 import mutation from '../../mutations/Logout';
 import query from '../../queries/CurrentUser';
+import { usePrev } from '../../hooks';
 
 import { GET_USER } from '../../localState/Queries';
+import { useAuth } from '../../hooks';
 
 
 function Title(props) {
-  const { loading, error, data: queryData, refetch, client } = useQuery(query);
+  const { loading: userLoading, error, data: userData, refetch, client } = useQuery(query);
+  const prevUser = usePrev(userData);
   const [ logout, { data: mutationData }] = useMutation(mutation);
+  const { signout } = useAuth();
 
+  // debugger
   const titleTextStyle = {
     textTransform: "uppercase",
     fontSize: ["6rem", "8rem"],
@@ -35,15 +40,36 @@ function Title(props) {
   }
   
   async function onLogoutClick() {
-    // debugger
-    await logout();
-    await refetch()
-    // debugger
+    signout();
+
     props.history.push('/');
   }
 
+  useEffect( () => {
+    console.log(userData);
+    // debugger
+    // if (userLoading || userData.user) {
+    //   client.writeData({
+    //     data: {
+    //       player: {
+    //         id: '',
+    //         name: '',
+    //         email: '',
+    //         role: '',
+    //         __typename: 'player'
+    //       }
+    //     }
+    //   });
+    // };
+
+
+    // debugger
+  }, [userData])
+
   //debugger
-  if (loading) return <Flex></Flex>;
+  if (userLoading) return <Flex></Flex>;
+  // return <Flex></Flex>;
+
   // debugger
   return (
     <Flex
@@ -102,11 +128,11 @@ function Title(props) {
             }}
           />
       </FlexItem>
-      { queryData.user ? 
+      { userData.user ? 
         <FlexItem
           position="absolute"
           right="0"
-          display={ queryData.user ? "inline-block" : "none" }
+          display={ userData.user ? "inline-block" : "none" }
           zIndex="20"
         >
           <Text
@@ -114,7 +140,7 @@ function Title(props) {
             fontSize="16px"
             onClick={ onLogoutClick }
           >
-            signout { queryData.user.name }
+            signout { userData.user.name }
           </Text>
         </FlexItem> : ''
       }

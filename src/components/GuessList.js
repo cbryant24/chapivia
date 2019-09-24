@@ -8,6 +8,7 @@ import guessListQuery from '../queries/GuessList';
 import triviaQuery from '../queries/Trivia';
 import mutation from '../mutations/Guess';
 import currentUserQuery from '../queries/CurrentUser';
+import { GET_PLAYER } from '../localState/Queries'
 import { GridItem, OutlineButton, Input, Image, Text, Flex, Field, FlexItem, Box } from './element';
 // import * as Element from './element';
 import { generateRandomClipFrames } from './elements/animations';
@@ -21,11 +22,13 @@ function GuessList(props) {
   const {loading: guessListLoading, data: guessListData } = useQuery(guessListQuery);
   const {loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
   const [ changeGuess, { data: guessedData }] = useMutation(mutation);
-
+  const { data: playerData } = useQuery(GET_PLAYER);
+  
   useEffect(() => {
-    console.log(props)
+    console.log(playerData)
     // debugger
-  })
+  }, [playerData])
+
   function handleGuessUpdate(event, vals) {
     debugger
 
@@ -54,7 +57,7 @@ function GuessList(props) {
   function displayGuessesAfterDeadline() {
     
     return (
-      props.guessList.guesses.map( guess => (
+      guessListData.guessedPlayers.map( guess => (
         <Flex
           fontSize="1.6rem"
           textAlign="center"
@@ -111,9 +114,9 @@ function GuessList(props) {
       style: { height: '5vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem',  },
     }
     
-    if(guessListLoading) return <FlexItem></FlexItem>
+    if(guessListLoading || currentUserLoading) return <FlexItem></FlexItem>
 
-    // if(new Date().getHours() >= 17) return <FlexItem>{displayGuessesAfterDeadline()}</FlexItem>
+    if(currentUserData.user.role !== "admin") return <FlexItem>{displayGuessesAfterDeadline()}</FlexItem>
     return (
       guessListData.guessedPlayers.map( guess => (
         <Flex

@@ -9,4 +9,11 @@ export default `
     questionChoices: [String]
     questionChoicesId: Int
   }
+
+  type User {
+    userId: Int,
+    name: String,
+    email: String,
+    role: String
+  }
 `
