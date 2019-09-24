@@ -30,30 +30,30 @@ const Game = (props) => {
   // debugger
 
 
-  const auth = useAuth();
+  const { user } = useAuth();
 
-  useEffect( () => {
-    if (userLoading) return;
+  // useEffect( () => {
+  //   if (userLoading) return;
     
-    if (!userData.user) return props.history.push('/');
-  });
+  //   if (!userData.user) return props.history.push('/');
+  // });
 
   useEffect( () => {
     if (triviaLoading) return;
     // debugger
     try {
 
-      // client.writeData({
-      //   data: {
-      //     localTrivia: {
-      //       questionId: triviaData.dailyTrivia.id,
-      //       question: triviaData.dailyTrivia.question,
-      //       questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
-      //       questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
-      //       __typename: 'dailyTrivia'
-      //     }
-      //   }
-      // });
+      client.writeData({
+        data: {
+          localTrivia: {
+            questionId: triviaData.dailyTrivia.id,
+            question: triviaData.dailyTrivia.question,
+            questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
+            questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
+            __typename: 'dailyTrivia'
+          }
+        }
+      });
     } catch(err) {
       //TODO: add proper error handling
       console.log('error getting trivia data', err)
@@ -67,7 +67,7 @@ const Game = (props) => {
 
     toggleModal();
     setModalMessage(`Welcome To Chapivia ${ userData.user.name }!`);
-  }, [userData]);
+  }, [user]);
 
   const toggleModal = e => setIsOpen(!isOpen);
 
