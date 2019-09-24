@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt-nodejs');
 const { keyBy, map } = require('lodash');
 const AppError = require('../../error');
 const moment = require('moment');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('user', {
@@ -57,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
       players = keyBy(players, 'name');
       return players
     } catch (e) {
-      //TODO add descriptive error handling and winston logging or error
+      //TODO: add descriptive error handling and winston logging or error
       throw new AppError();
     }
   }
@@ -66,17 +68,16 @@ module.exports = (sequelize, DataTypes) => {
     try {
       const players = await this.findAll();
       const todaysGuesses = await this.todaysGuesses();
-      debugger
       const unguessedPlayers = [];
       players.map( player => {
         if( !todaysGuesses.some( guesser => guesser.id === player.id) )
-        unguessedPlayers.push(player);
+          unguessedPlayers.push(player);
       });
 
       return unguessedPlayers;
     } catch(e) {
       debugger
-      //TODO add error handling for getting unguessed players
+      //TODO: add error handling for getting unguessed players
       throw new AppError();
     }
   }
@@ -95,7 +96,7 @@ module.exports = (sequelize, DataTypes) => {
           where: {
             isCorrect: true,
             updatedAt: {
-              $between: currentHour >= 17 ?  
+              $between: currentHour >= 18 ?  
                 [startOfMonth, endOfToday] : [startOfMonth, endOfYesterday]
             }
           }
@@ -107,7 +108,7 @@ module.exports = (sequelize, DataTypes) => {
       return userCorrectGuesses
     } catch (e) {
       debugger
-      //TODO add error handling for player scores retrieval
+      //TODO: add error handling for player scores retrieval
       console.log(e);
     }
   }
@@ -115,25 +116,23 @@ module.exports = (sequelize, DataTypes) => {
   User.todaysGuesses = async function() {
     const startOfToday = moment().startOf('day').toDate();
     const endOfToday = moment().endOf('day').toDate();
-    
-    debugger
+
     try {
       const todaysGuesses = await this.findAll({
         include: [{ 
           model: this.associations.userQuestionChoices.target,
           where: {
             updatedAt: {
-              between: [startOfToday, endOfToday]
+              [Op.gte]: startOfToday
             }
           }
         }]
       });
-      debugger
 
       return todaysGuesses;
     } catch(e) {
       debugger
-      //TODO add error handling for player scores retrieval
+      //TODO: add error handling for player scores retrieval
       console.log(e);
     }    
   }
@@ -165,7 +164,7 @@ module.exports = (sequelize, DataTypes) => {
 
     } catch(e) {
       debugger
-      //TODO add error handling for player scores retrieval
+      //TODO: add error handling for player scores retrieval
       console.log(e);
     };
   }

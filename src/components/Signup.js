@@ -9,33 +9,55 @@ import query from '../queries/CurrentUser';
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 import Modal from './Modal';
+import { usePrev, useAuth } from '../hooks';
 
 //TODO: Errors message applicable to correct field only
 
 function Signup(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-  const [ userSignup ] = useMutation(mutation);
-  const { data, refetch } = useQuery(query);
+  // const [ userSignup ] = useMutation(mutation);
+  const { loading: userLoading, data: userData, refetch, client } = useQuery(query);
+  const prevUser = usePrev(userData);
+  const { signup } = useAuth();
   
-  async function signup(event, formVals) {
-
-    const { email, password, name } = formVals;
+  async function userSignup(event, formVals) {
     try {
-      await userSignup({
-        variables: { email, password, name}
-      });
-      await refetch();
-  
+      // await userSignup({
+      //   variables: { email, password, name}
+      // });
+      // await refetch();
+      debugger
+      signup(formVals);
+      debugger
       return props.history.push('/game');
 
     } catch(res) {
+      console.log(res)
       debugger
       toggleModal();
       setModalMessage('Error Signing Up');
     }
   }
-  
+
+  // useEffect( () => {
+  //   console.log(userData);
+  //   if (userLoading || !userData.user) return;
+  //   debugger
+  //   client.writeData({
+  //     data: {
+  //       player: {
+  //         id: userData.user.id,
+  //       name: userData.user.name,
+  //       email: userData.user.email,
+  //       role: userData.user.role,
+  //       __typename: 'player'
+  //       }
+  //     }
+  //   })
+  //   debugger
+  // }, [userData])
+
   const toggleModal = e => setIsOpen(!isOpen);
 
   const inputs = [
@@ -67,7 +89,7 @@ function Signup(props) {
   ]
 
   const form = {
-    data: { name: 'signupForm', submit: 'signup', cb: signup },
+    data: { name: 'signupForm', submit: 'signup', cb: userSignup },
     style: {
       display: 'flex',
       height: '100%',
@@ -98,7 +120,7 @@ return (
         toggleModal={toggleModal}
       />
       <FormApp
-        onSubmit={signup}
+        onSubmit={userSignup}
         form={form}
         inputs={inputs}
         validate={validate}

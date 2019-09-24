@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   UserQuestionChoice.associate = async function(models) {
     // associations can be defined here
-    UserQuestionChoice.belongsTo(models.QuestionChoice);
+    UserQuestionChoice.belongsTo(models.QuestionChoice, { through: "userGuesses" });
   };
 
   UserQuestionChoice.recordGuess = async function(guessData) {
@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
 
       return usersGuess;
     } catch(e) {
-      //TODO add error handling for recording user guess
+      //TODO: add error handling for recording user guess
       debugger
     }
   }

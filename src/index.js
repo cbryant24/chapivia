@@ -18,6 +18,8 @@ import App from './components/App';
 import { ModalBackground } from './components/elements';
 import { LastLocationProvider } from 'react-router-last-location';
 import typeDefs from './localState/typeDefs';
+import { ProvideAuth } from "./hooks";
+
 
 const client = new ApolloClient({
   clientState: {
@@ -35,33 +37,27 @@ const client = new ApolloClient({
   },
   uri: '/graphql',
 });
-// debugger
 
-// client.writeData({
-
-//     localTrivia: {}
-
-// });
 
 ReactDOM.render(
   <ApolloProvider client={ client } >
-    <Router>
-      <LastLocationProvider>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <ModalProvider BackgroundComponent={ModalBackground}>
-            <div style={{ position: 'relative' }}>
+    <ProvideAuth>
+      <Router>
+        <LastLocationProvider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <ModalProvider BackgroundComponent={ModalBackground}>
               <App>
                 <Route path='/game' exact component={Game}/>
                 {/* <Route path='' component={GameController}/> */}
                 <Route path='/' exact component={Signin}/>
                 <Route path='/signup' component={Signup}/>
               </App>
-            </div>
-          </ModalProvider>
-        </ThemeProvider>
-      </LastLocationProvider>
-    </Router>
+            </ModalProvider>
+          </ThemeProvider>
+        </LastLocationProvider>
+      </Router>
+    </ProvideAuth>
   </ApolloProvider>,
   document.getElementById('root')
 );

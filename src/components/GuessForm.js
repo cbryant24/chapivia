@@ -50,53 +50,6 @@ function GuessForm(props) {
     }
   }
 
-  useEffect( () => {
-    console.log(unguessedPlayersData)
-    debugger
-  }, [unguessedPlayersData])
-
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   if( !this.state.guess || !this.state.player ) {
-  //     return this.setState(() => ({
-  //       error: {
-  //         guess: this.state.guess ? '' : 'Enter a guess',
-  //         player: this.state.player ? '' : 'Select a player'
-  //       }
-  //     }));
-  //   }
-
-  //   if( this.props.signedIn.user.id !== this.state.player && this.props.signedIn.user.id !== "7") {
-  //     return this.setState(() => ({
-  //       error: {
-  //         player: 'Please guess only for yourself'
-  //       }
-  //     }));
-  //   }
-
-  //   const { trivia } = this.props.triviaData;
-    
-  //   this.props.guessMutation({
-  //     variables: {
-  //       userId: this.state.player,
-  //       questionId: trivia.id,
-  //       questionChoiceId: trivia.questionChoice.id,
-  //       guess: trivia.questionChoice.choices[this.state.guess.charCodeAt(0) - 65]        
-  //     },
-  //     refetchQueries: [{ query: UnguessedPlayers }, { query: GuessListQuery }]
-  //   }).catch( res => {
-  //     //TODO add error handling to guess mutation
-  //     debugger
-  //     const errors = res.graphQLErrors.map(error => error.message);
-  //   });
-
-  //   this.clearForm(event);
-  // }
-  
-  // const getPlayers = async () => {
-  //   const players = props.players.nonGuessedPlayers
-  // }
-
   if (currentUserLoading || unguessedPlayersLoading) return <div></div>;
 
   const toggleModal = e => setIsOpen(!isOpen);

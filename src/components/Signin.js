@@ -25,19 +25,21 @@ import { keyframes, css } from 'styled-components';
 
 import { MODAL_STATUS } from '../localState/Queries';
 
+import { useAuth } from '../hooks'
+
 
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-  const { loading, error, data: queryData, refetch } = useQuery(query);
+  const { loading: userLoading, error, data: userData, refetch, client } = useQuery(query);
   // const { data: modalData, client } = useQuery(MODAL_STATUS);
   const [ login, { data: mutationData }] = useMutation(mutation
       // {
       //   update(cache, { data: { login }}) {
       //     // debugger
       //     cache.writeQuery({
-      //       query: queryData,
+      //       query: userData,
       //       data: { user: login }
       //     })
       //   } 
@@ -47,24 +49,26 @@ function Signin(props) {
   // const { data: userQuery, client } = useQuery(GET_USER);
 
   // const client = useApolloClient();
-  const prevUserState = usePrev(queryData);
+  const prevUser = usePrev(userData);
   // const client = useApolloClient();
   // client.cache.writeData({ data: { user: 'value' } });
 
+  const { signin, user } = useAuth();
 
-
-  async function signin(event, formVals) {
+  async function userSignin(event, formVals) {
     // debugger
-    const { email, password } = formVals;
-    
     try {
-      await login({
-        variables: { email, password }
-      });
-      await refetch();
+      // await login({
+      //   variables: { email, password }
+      // });
+      // await refetch();
+      signin(formVals)
+
+      return props.history.push('/game');
+
     } catch(res) {
       console.log(`this is the error message ${res}`);
-      debugger
+      // debugger
       toggleModal();
       setModalMessage('Error Logging In');
       //TODO: ADD modal on login fail
@@ -73,14 +77,11 @@ function Signin(props) {
   }
 
   useEffect( () => {
+    if (user) 
+      props.history.push('/game');
+  })
 
-    if (loading) return;
-
-    console.log(queryData)
-    // debugger
-    
-    if (queryData.user) return props.history.push('/game');
-  }, [queryData]);
+  // useEffect( () => {if (userData.user) props.history.push('/game')});
 
   const toggleModal = e => setIsOpen(!isOpen);
 
@@ -103,7 +104,7 @@ function Signin(props) {
   ]
 
   const form = {
-    data: { name: 'signinForm', submit: 'signup', cb: signin },
+    data: { name: 'signinForm', submit: 'signup', cb: userSignin },
     style: {
       display: 'flex',
       height: '100%',
@@ -116,9 +117,6 @@ function Signin(props) {
       zIndex: 20
     },
   }
-
-
-  if (loading) return <div></div>;
 
   return (
     <BoxAll
@@ -137,7 +135,7 @@ function Signin(props) {
         toggleModal={toggleModal}
       />
       <FormApp
-        onSubmit={signin}
+        onSubmit={userSignin}
         form={form}
         inputs={inputs}
         validate={validate}
