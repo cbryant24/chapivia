@@ -12,6 +12,48 @@ const FONTSIZESMODULES = system({
   }
 });
 
+const H1FONTSIZES = system({
+  h1FontSize: {
+    property: 'fontSize',
+    scale: 'h1FontSizes'
+  }
+});
+
+const H2FONTSIZES = system({
+  h2FontSize: {
+    property: 'fontSize',
+    scale: 'h2FontSizes'
+  }
+});
+
+const H3FONTSIZES = system({
+  h3FontSize: {
+    property: 'fontSize',
+    scale: 'h3FontSizes'
+  }
+});
+
+const H4FONTSIZES = system({
+  h4FontSize: {
+    property: 'fontSize',
+    scale: 'h4FontSizes'
+  }
+});
+
+const H5FONTSIZES = system({
+  h5FontSize: {
+    property: 'fontSize',
+    scale: 'h5FontSizes'
+  }
+});
+
+const H6FONTSIZES = system({
+  h6FontSize: {
+    property: 'fontSize',
+    scale: 'h6FontSizes'
+  }
+});
+
 export const CURSOR = system({
   cursor: true
 });
@@ -54,6 +96,12 @@ export const GRID = compose(
 
 export const TYPOGRAPHY = compose(
   styledSystem.typography,
+  H1FONTSIZES,
+  H2FONTSIZES,
+  H3FONTSIZES,
+  H4FONTSIZES,
+  H5FONTSIZES,
+  H6FONTSIZES,
   system({
     textTransform: true,
     textDecoration: true

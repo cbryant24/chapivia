@@ -65,11 +65,11 @@ const emoji = '"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"';
 export const font = `development,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif,${emoji}`;
 export const mono = 'SFMono-Regular,"Roboto Mono",Menlo,monospace';
 
-export const fontSizes = [0, '.8em', '.9em', '1.2em', '1.4em', '1.6em'];
+export const fontSizes = [0, '.5em', '1em', '1.5em', '2em'];
 
 //margin/padding[all, left, right top bottom] 
 //grid [grid-gap, grid-column-gap, grid-row-gap]
-export const space = [0, '.25em', '.5em', '1em', '2em'];
+export const space = [0, '.5em', '1em', '1.5em', '2em'];
 
 //width, height, min-width, max-width, min-height, max-height
 export const sizes = ['0%', '100%', '75%', '50%', '25%'];
@@ -80,7 +80,10 @@ export const lineHeights = { "condensedUltra": 1, "condensed": 1.25, "default": 
 //of modular design with font-size rem for global design and font-size em for local design
 //see https://css-tricks.com/rem-global-em-local/ for explanation `fontSizesModule` is a 
 //custom system-styled property that can be used with the scale for parent module font-size design
-export const fontSizesModule = [0, '2.2rem', '2.0rem', '1.8rem', '1.6rem']
+export const fontSizesModule = [0, '1.2rem', '1.6rem', '2rem', '2.4rem'];
+
+//Heading font-size can be used for responsive scale using h1FontSizes
+export const h2FontSizes = [0, '3em', '3.5em', '4em'];
 
 export const light = 300;
 export const regular = 400;
@@ -185,6 +188,7 @@ const inputNormal = {
   borderStyle: 'solid',
   borderColor: 'rgb(221, 225, 228)',
   transition: 'box-shadow 0.125s ease-out 0s',
+  minHeight: '2em',
   mt: [1],
   focusWithin: {
     boxShadow: '0px 0px 8px green'
@@ -201,6 +205,7 @@ const theme = {
   mono,
   font,
   fontSizes,
+  h2FontSizes,
   fontWeights,
   regular,
   bold,

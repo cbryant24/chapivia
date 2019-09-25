@@ -25,6 +25,17 @@ Optionally styles can be defined and spread onto the component to provide reusab
   </Box>
 ```
 
+## Theme Scales
+Theme scales allow for responsive design by providing array values that correspond to specific properties with array values
+
+### Heading
+
+h1FontSizes
+h2FontSizes
+h3FontSizes
+h4FontSizes
+h5FontSizes
+h6FontSizes
 
 ## Adding Props
 If props need to be added to a passed styled-system component a helper function can be imported and used

@@ -362,5 +362,16 @@ export const filterProps = props => {
     "bottom",
     "themeStyle",
     "remove",
-    "options"
+    "options",
+    "h1FontSize",
+    "h2FontSize",
+    "h3FontSize",
+    "h4FontSize",
+    "h5FontSize",
+    "h6FontSize",
+    "paddingLeft",
+    "minWidth",
+    "fontWeight",
+    "mb",
+    "before"
 ])}

@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import {ThemeProvider, GlobalStyle} from './components/element';
-import theme from './components/elements/theme';
+import { GlobalStyle } from './components/style';
+import { ThemeProvider } from './components/element';
+import theme from './components/style/theme';
 
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
@@ -15,7 +16,7 @@ import Game from './components/Game';
 import GameController from './components/GameController';
 import App from './components/App';
 
-import { ModalBackground } from './components/elements';
+import { ModalBackground } from './components/style';
 import { LastLocationProvider } from 'react-router-last-location';
 import typeDefs from './localState/typeDefs';
 import { ProvideAuth } from "./hooks";

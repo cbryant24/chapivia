@@ -6,7 +6,7 @@ import { useWindowSize }from '../../hooks';
 import { styleBuildRemove } from './utils';
 
 //TODO: add option for user to provide html .class or #id for styling or selection themselves
-export default function Form({ inputs, form, validate, buttons }) {
+export default function Form({ inputs, form, validate, buttons, onSubmit }) {
   
   const [{ formName, fields }, dispatch] = useStateValue();
   const [formErrors, setFormErrors] = React.useState([]);
@@ -89,6 +89,7 @@ export default function Form({ inputs, form, validate, buttons }) {
 
   const handleSubmit = event => {
     event.preventDefault();
+    
     const { cb } = form.data;
     const { validation } = form.data;
     const formVals = {};
@@ -101,6 +102,7 @@ export default function Form({ inputs, form, validate, buttons }) {
       
     if(formErrors) setFormErrors([]);
 
+    onSubmit && onSubmit(event, formVals);
     cb && cb(event, formVals);
 
     dispatch({ type: 'RESET' });

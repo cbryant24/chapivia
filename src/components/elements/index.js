@@ -1,1 +1,0 @@
-export {ModalBackground as ModalBackground} from './Modal'

@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import theme from './style/theme';
 
 import { includes, keyBy, map } from 'lodash';
-// import { graphql, compose } from 'react-apollo';
-
+import GuessForm from './GuessForm';
 import guessListQuery from '../queries/GuessList';
 import triviaQuery from '../queries/Trivia';
 import mutation from '../mutations/Guess';
 import currentUserQuery from '../queries/CurrentUser';
 import { GET_PLAYER } from '../localState/Queries'
-import { GridItem, OutlineButton, Input, Image, Text, Flex, Field, FlexItem, Box } from './element';
+import { GridItem, OutlineButton, Input, Image, Text, Flex, Field, FlexItem, Box, BoxAll } from './element';
 // import * as Element from './element';
-import { generateRandomClipFrames } from './elements/animations';
+import { generateRandomClipFrames, noiseAnimation } from './style/animations';
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
+import { useAuth } from '../hooks';
 
 
 function GuessList(props) {
@@ -23,14 +24,45 @@ function GuessList(props) {
   const {loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
   const [ changeGuess, { data: guessedData }] = useMutation(mutation);
   const { data: playerData } = useQuery(GET_PLAYER);
-  
-  useEffect(() => {
-    console.log(playerData)
-    // debugger
-  }, [playerData])
+  const { user } = useAuth();
 
+  const guessNameStyle = {
+    pseudo: true,
+    textTransform: "uppercase",
+    textAlign: "start",
+    fontSize: [3],
+    fontWeight: "500",
+    paddingLeft: "2rem",
+    my: [1],
+    before: {
+      content: '',
+      position: 'absolute',
+      left:'-2px',
+      textShadow: '1px 0 blue', 
+      color: 'white',
+      overflow: 'hidden',
+      clip: 'rect(0,900px,0,0)', 
+    },
+    before: {
+      content: '',
+      position: 'absolute',
+      left:'-2px',
+      textShadow: '1px 0 blue', 
+      color: 'white',
+      overflow: 'hidden',
+      clip: 'rect(0,900px,0,0)', 
+    },
+    animation: {
+      continuous: noiseAnimation(),
+      duration_continous: 3,
+      iteration: 'infinite',
+      animation_direction: 'alternate-reverse',
+      animation_timing_function: 'linear'
+    },
+    // glitchAnimation: {`${Math.floor((Math.random() * 10) + 1) % 2 === 1 ? guess.name : ''}`},
+  }
+  
   function handleGuessUpdate(event, vals) {
-    debugger
 
     if( props.signedIn.user.id !== selectedPlayer.id && props.signedIn.user.id !== "7") {
       return this.setState(() => ({
@@ -54,7 +86,11 @@ function GuessList(props) {
     handleChangeCancel();
   }
 
-  function displayGuessesAfterDeadline() {
+  function handleChangeCancel() {
+    setSelectedPlayer(null);
+  }
+
+  function displayGuessesNonAdmin() {
     
     return (
       guessListData.guessedPlayers.map( guess => (
@@ -68,19 +104,16 @@ function GuessList(props) {
         >
           {/* <Image  width="25%" height="25%"borderRadius="9rem" src={kgrad}/> */}
           {Math.floor((Math.random() * 10) + 1) % 2 === 1 ? 
-          <Box
-            isA="span"
+          <Text
             textTransform="uppercase"
-            fontSize="2.4rem"
             fontWeight="500"
             padding-left="2rem"
-            animation="glitch"        
+            animation="glitch"
           >
             {guess.name}
-          </Box>
-           : '' }
+          </Text>
+          : '' }
           <Box
-
             animation=''
           >
             {guess.name}
@@ -90,12 +123,8 @@ function GuessList(props) {
     )
   }
 
-  function handleChangeCancel() {
-    setSelectedPlayer(null);
-  }
-
   function dispalayGuesses() {
-    const input = [
+    const inputs = [
       {
         data: {
           type: 'password', 
@@ -104,62 +133,60 @@ function GuessList(props) {
           initialValue: '',
           required: true
         },
-        fieldStyle: { width: '75%', maxHeight: '5rem', justifyContent: 'space-between', flexDirection: 'column'},
-        inputStyle: { color: 'black' }
+        fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
+        inputStyle: 'inputNormal'
       }
-    ]
+    ];
+
+    const buttons = [
+      { text: 'Submit', type: 'submit', cb: null, style: {...theme.squareButton, mr: [3]} },
+      { text: 'Cancel', type: 'cancel', cb: null, style: 'squareButton' }
+    ];
   
     const form = {
-      data: { name: 'guessForm', submit: 'signup', cb: handleGuessUpdate, cancel: handleChangeCancel },
-      style: { height: '5vh', justifyContent: 'space-around', flexDirection: 'column', px: '4rem',  },
-    }
+      data: { name: 'guessForm', submit: 'signup', cancel: handleChangeCancel },
+      style: { height: '5vh', display: 'flex', justifyContent: 'space-around', px: '4rem',  },
+    };
     
-    if(guessListLoading || currentUserLoading) return <FlexItem></FlexItem>
+    if(guessListLoading || !user) return <FlexItem></FlexItem>;
 
-    if(currentUserData.user.role !== "admin") return <FlexItem>{displayGuessesAfterDeadline()}</FlexItem>
+    if(user.role !== "admin") return <FlexItem>{displayGuessesNonAdmin()}</FlexItem>;
+
     return (
       guessListData.guessedPlayers.map( guess => (
         <Flex
-          fontSize="1.6rem"
           textAlign="center"
           justifyContent="space-between"
           position="relative"
           mb="5px"
           key={guess.id}
         >
-          <Box
-            isA="span"
-            textTransform="uppercase"
-            textAlign="start"
-            fontSize="2.4rem"
-            fontWeight="500"
-            padding-left="2rem"
-            glitchAnimation={`${Math.floor((Math.random() * 10) + 1) % 2 === 1 ? guess.name : ''}`}
+          <Text
+            {...guessNameStyle}
           >
             {guess.name}
-          </Box>
+          </Text>
           {selectedPlayer === guess ? 
-          <FormApp
+          <GuessForm
             form={form}
-            inputs={input}
-            validate={validate}
+            inputs={inputs}
+            buttons={buttons}
           /> : 
-          <Box
+          <BoxAll
+            //TODO: {PRODUCTION ISSUE} FIX APPEARANCE, TRANSITION, VERTICAL-ALIGN, CURSOR APPEARING TWICE
             isA="button"
-            bg="primary"
-            fontSize="1.1rem"
-            borderWidth="1px"
-            color="white"
-            maxHeight="20px"
-            borderRadius="2px"
-            before="*"
+            {...theme.squareButton}
+            fontSize={[2]}
+            textTransform="uppercase"
+            letterSpacing="2px"
+            height={1}
             onClick={ () => setSelectedPlayer(guess) }
-            >
-              change
-          </Box>}
+          >
+            change
+          </BoxAll>}
         </Flex>
       ))
-    )
+    );
   }
 
   return (
@@ -167,37 +194,20 @@ function GuessList(props) {
       flexDirection="column"
       minWidth="50%"
       height="auto"
+      fontSizeModule={[1]}
     >
-      <Flex
-        justifyContent="space-between"
+      <Text
+        isA="h2"
+        textAlign="center"
+        h2FontSize={[1]}
       >
-        <Text>Player</Text>
-        <Text>Guess</Text>
-      </Flex>
+        Todays Guesses
+      </Text>
       <FlexItem>
         {dispalayGuesses()}
       </FlexItem>
     </Flex>
   );
 }
-
-
-
-
-
-// export default compose(
-//   graphql(guessListQuery, {
-//     name: "guessList"
-//   }),
-//   graphql(triviaQuery, {
-//     name: "triviaData"
-//   }),
-//   graphql(mutation, {
-//     name: 'guessMutation'
-//   }),
-//   graphql(CurrentUserQuery, {
-//     name: 'signedIn'
-//   })
-// )(GuessList);
 
 export default GuessList;

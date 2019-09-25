@@ -8,7 +8,7 @@ import triviaQuery from '../queries/Trivia';
 import Modal from './Modal';
 
 // import requireAuth from './HOC/requireAuth';
-import { GridItem, BoxAll, Text, FlexItem, BounceAnimations } from './element';
+import { GridItem, BoxBorder, BoxAll, Text, FlexItem, BounceAnimations } from './element';
 import GuessList from './GuessList';
 import TriviaQuestion from './TriviaQuestion';
 
@@ -61,12 +61,13 @@ const Game = (props) => {
   }, [triviaData]);
 
   useEffect( () => {
+
+    if (!user) return props.history.push('/');
+
     if (lastLocation.pathname !== '/signup') return;
 
-    if (!userData.user) return;
-
     toggleModal();
-    setModalMessage(`Welcome To Chapivia ${ userData.user.name }!`);
+    setModalMessage(`Welcome To Chapivia ${ user.name }!`);
   }, [user]);
 
   const toggleModal = e => setIsOpen(!isOpen);
@@ -80,19 +81,22 @@ const Game = (props) => {
         modalMessage={modalMessage}
         toggleModal={toggleModal}
       />
-      <GridItem
-        gridRow="1 / span 2"
-        gridColumn="1 / span 1"
+      <BoxBorder
+        zIndex={[2]}
+        mx={[4]}
+        border="1px solid white"
+        p={[2]}
       >
         <GuessList/>
-      </GridItem>
-      <GridItem
-        gridRow="1 / span 1"
-        gridColumn="2 / span 1"
-        zIndex="5"
+      </BoxBorder>
+      {/* <BoxBorder
+        zIndex={[2]}
+        mx={[4]}
+        border="1px solid white"
+        p={[2]}
       >
         <TriviaQuestion/>
-      </GridItem>
+      </BoxBorder> */}
     </React.Fragment>
   )
 }

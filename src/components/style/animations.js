@@ -31,32 +31,33 @@ export const bgGlowAnimation = (props) => {
                   100% { opacity: .28; }`
 };
 
-export const glitch = content => (
-  css`
-    animation: ${noiseAnimation()} 2s infinite linear alternate-reverse;
-      &:before {
-        content: '${content}';
-        position: absolute;
-        left:-2px;
-        text-shadow:1px 0 blue; 
-        color:white;
-        overflow:hidden;
-        clip:rect(0,900px,0,0); 
-        animation: ${noiseAnimation()} 3s infinite linear alternate-reverse;
-      }
+// export const glitch = content => {
+//   return keyframes`${noiseAnimation()}`;
+//   // css`
+//   //   animation: ${noiseAnimation()} 2s infinite linear alternate-reverse;
+//   //     &:before {
+//   //       content: '${content}';
+//   //       position: absolute;
+//   //       left:-2px;
+//   //       text-shadow:1px 0 blue; 
+//   //       color:white;
+//   //       overflow:hidden;
+//   //       clip:rect(0,900px,0,0); 
+//   //       animation: ${noiseAnimation()} 3s infinite linear alternate-reverse;
+//   //     }
 
-      &:after {
-        content:'${content}';
-        position:absolute;
-        left:2px;
-        text-shadow:-1px 0 red;
-        color:white;
-        overflow: hidden;
-        clip:rect(0,900px,0,0); 
-        animation:${noiseAnimation()} 2s infinite linear alternate-reverse;
-      }
-  `
-);
+//   //     &:after {
+//   //       content:'${content}';
+//   //       position:absolute;
+//   //       left:2px;
+//   //       text-shadow:-1px 0 red;
+//   //       color:white;
+//   //       overflow: hidden;
+//   //       clip:rect(0,900px,0,0); 
+//   //       animation:${noiseAnimation()} 2s infinite linear alternate-reverse;
+//   //     }
+//   // `
+// };
 
 export const textGlitch = (dis, len) => {
   

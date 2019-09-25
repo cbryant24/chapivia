@@ -7,7 +7,7 @@ import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 
 import { FlexItem, BounceAnimations, BoxAll, ExtendedBox, BoxAnimatedPseudo, addProps, Field, Input, Flex, Text, Animated, FadeAnimations, RotateAnimations, PsuedoBox } from './element';
-import theme from './elements/theme';
+import theme from './style/theme';
 import helpers from './helpers';
 
 import mutation from '../mutations/Login';
@@ -17,7 +17,7 @@ import { Box } from './element';
 import Modal from './Modal';
 
 import styledCSS from '@styled-system/css';
-import { noiseAnimation, glitchBottom, glitchTop, glitchMiddle } from './elements/animations';
+import { noiseAnimation, glitchBottom, glitchTop, glitchMiddle } from './style/animations';
 
 import { usePrev } from '../hooks';
 
@@ -49,7 +49,7 @@ function Signin(props) {
   // const { data: userQuery, client } = useQuery(GET_USER);
 
   // const client = useApolloClient();
-  const prevUser = usePrev(userData);
+  // const prevUser = usePrev(userData);
   // const client = useApolloClient();
   // client.cache.writeData({ data: { user: 'value' } });
 
@@ -75,7 +75,6 @@ function Signin(props) {
   }
 
   useEffect( () => {
-    debugger
     if (user) 
       props.history.push('/game');
   }, [user]);

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import { Flex, FlexItem, Text, ExtendedText, TextAnimated, BoxAnimated, ExtendedBox, FadeAnimations } from '../element';
-import { textGlitch, randomSquareGlitch } from '../elements/animations';
+import { textGlitch, randomSquareGlitch } from '../style/animations';
 import { css, keyframes } from 'styled-components';
 import { withRouter } from 'react-router-dom'
 import mutation from '../../mutations/Logout';
@@ -39,38 +39,13 @@ function Title(props) {
     }
   }
   
-  async function onLogoutClick() {
+  function onLogoutClick() {
     signout();
-
-    props.history.push('/');
   }
 
-  useEffect( () => {
-    console.log(userData);
-    // debugger
-    // if (userLoading || userData.user) {
-    //   client.writeData({
-    //     data: {
-    //       player: {
-    //         id: '',
-    //         name: '',
-    //         email: '',
-    //         role: '',
-    //         __typename: 'player'
-    //       }
-    //     }
-    //   });
-    // };
 
-
-    // debugger
-  }, [userData])
-
-  //debugger
   if (userLoading) return <Flex></Flex>;
-  // return <Flex></Flex>;
 
-  // debugger
   return (
     <Flex
       id="title"
@@ -149,7 +124,3 @@ function Title(props) {
 }
 
 export default withRouter(Title);
-
-// export default withRouter(graphql(query)(
-//   graphql(mutation)(Title)
-// ));

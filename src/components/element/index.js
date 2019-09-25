@@ -3,7 +3,6 @@ export { css as css } from 'styled-components';
 
 
 //Layouts
-export { GlobalStyle as GlobalStyle } from './ThemeProvider';
 export { default as ThemeProvider } from './ThemeProvider';
 
 export { default as Flex } from './Flex';

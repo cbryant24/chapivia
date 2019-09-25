@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
-import theme from './elements/theme';
+import theme from './style/theme';
 
 import { FlexItem, BoxAll, BounceAnimations, Text } from './element';
 import mutation from '../mutations/Signup';
