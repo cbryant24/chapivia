@@ -26,7 +26,7 @@ const handleErrorMessages = errorMessages => {
 
 //TODO: add option to chose normal password field no "show" option
 //TODO: add theme keys to allow styling for form input
-const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputStyle={}, ...props }) => {
+const Field = ({ data: { name, type, placeholder, label, inputData }, fieldStyle={}, inputStyle={}, ...props }) => {
   const [shown, setShown] = useState(false);
   const errorColor = props.errors.length >= 1 ? '#e95667' : null;
 
@@ -63,11 +63,10 @@ const Field = ({ data: { name, type, placeholder, label }, fieldStyle={}, inputS
         case 'input':
           return (<BoxAll {...inputProps} />);
         case 'select':
-            
+          //TODO: ADD ERROR CATCH, NEED TO PASS OPTIONS FOR SELECT AND OPTIONS NEEDS TO BE TYPE ARRAY
           return (
             <BoxAll {...inputProps}>
-              //ADD ERROR CATCH NEED TO PASS OPTIONS FOR SELECT
-              {props.options.map( option => <option value={option.id}>{option.name}</option>)}
+              {inputData.options.map( option => <option value={option[inputData.value]}>{option[inputData.display]}</option>)}
             </BoxAll>
           )
       }

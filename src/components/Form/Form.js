@@ -14,7 +14,7 @@ export default function Form({ inputs, form, validate, buttons, onSubmit }) {
   const errorColor = formErrors.length >= 1 ? '#e95667' : null;
   
   const displayFields = () => {
-    
+
     if (Array.isArray(inputs)) {
       return inputs.map( input =>  {
         const field = formInput(input, validate);
@@ -101,7 +101,7 @@ export default function Form({ inputs, form, validate, buttons, onSubmit }) {
       return validate[formName].errors.forEach( error => setFormErrors( errors => [...errors, error]));
       
     if(formErrors) setFormErrors([]);
-
+    
     onSubmit && onSubmit(event, formVals);
     cb && cb(event, formVals);
 
@@ -110,6 +110,7 @@ export default function Form({ inputs, form, validate, buttons, onSubmit }) {
   }
 
   const isEnabled = () => {
+
     const disabled = inputs.some( input => {
                       return !(input.data.required ? 
                         fields[input.data.name].value.length

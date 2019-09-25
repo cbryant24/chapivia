@@ -86,7 +86,9 @@ These options available to be passed in the data field for input. The validation
 
 ### Input Data
 ----------------------------
-Passing data for use with an input can be done using the `inputData` property in the data properties object. For select input type the `inputData` property must be present and `data` property must be type array of strings or objects. `display` is used to specify propery or value associated with data to display, if none provided data is assumed to be a string and will be used. To set the value for the input value that is returned set the `value` property on `inputData` to the property name for the input data being passed.
+Passing data for use with an input can be done using the `inputData` property in the data properties object. 
+
+For `select` input type the `inputData` property must be present and `data` property must be type array of strings or objects. `display` is used to specify propery or value associated with data to display, if none provided data is assumed to be a string and will be used. To set the value for the input value that is returned set the `value` property on `inputData` to the property name for the input data being passed.
 
 Required properties: `type-$string, name-$string, label-$string`
 Optional properties: `placeholder-$string`

@@ -16,12 +16,13 @@ import FormApp from './Form/App';
 import { validate } from './helpers/validators';
 
 import Modal from './Modal';
-import { useAuth } from '../hooks'
+import { useAuth, usePrev } from '../hooks'
 
-function GuessForm({ inputs, buttons, form }) {
+function GuessForm({ inputs, buttons, form, cb }) {
   const { data: { localTrivia } } = useQuery(DAILY_TRIVIA);
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const prevModalOpen = usePrev(isOpen);
   const { loading: unguessedPlayersLoading, data: unguessedPlayersData } = useQuery(UnguessedPlayers);
   const { loading: currentUserLoading, data: currentUserData } = useQuery(CurrentUserQuery);
   const [ guess, { data: guessData }] = useMutation(mutation);
@@ -39,10 +40,10 @@ function GuessForm({ inputs, buttons, form }) {
         },
         refetchQueries: [{ query: UnguessedPlayers }, { query: GuessListQuery }]
       })
+      cb && cb();
 
       toggleModal();
       setModalMessage(`You're Answer is...${ userGuess.isCorrect ?'CORRECT!' : 'WRONG! HAHA' }!`);
-
     } catch(err) {
       //TODO add error handling to guess mutation
       console.log(err)
@@ -52,11 +53,16 @@ function GuessForm({ inputs, buttons, form }) {
     }
   }
 
+  useEffect( () => {
+    debugger
+    if (prevModalOpen && isOpen) cb && cb();
+  }, [modalMessage])
+
   if (!user || unguessedPlayersLoading) return <div></div>;
 
   const toggleModal = e => setIsOpen(!isOpen);
 
-return (
+  return (
     <FlexItem
       zIndex={[2]}
       fontSizeModule={[4]}

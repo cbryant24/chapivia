@@ -127,6 +127,27 @@ function GuessList(props) {
     const inputs = [
       {
         data: {
+          type: 'select', 
+          name: 'player', 
+          label: 'player', 
+          initialValue: '',
+          required: true,
+          inputData: {
+            display: 'name',
+            value: 'id',
+            options: [selectedPlayer]
+          }
+        },
+        fieldStyle: { 
+          width: '75%', 
+          maxHeight: '5rem', 
+          justifyContent: 'space-between',
+          flexDirection: 'column'
+        },
+        inputStyle: { background: 'white', color: 'black', borderRadius: '1em', minHeight: '2.5em' }
+      },
+      {
+        data: {
           type: 'password', 
           name: 'guess', 
           label: 'guess',
@@ -144,7 +165,7 @@ function GuessList(props) {
     ];
   
     const form = {
-      data: { name: 'guessForm', submit: 'signup', cancel: handleChangeCancel },
+      data: { name: 'guessForm', submit: 'signup', cb: null, cancel: handleChangeCancel },
       style: { height: '5vh', display: 'flex', justifyContent: 'space-around', px: '4rem',  },
     };
     
@@ -153,24 +174,25 @@ function GuessList(props) {
     if(user.role !== "admin") return <FlexItem>{displayGuessesNonAdmin()}</FlexItem>;
 
     return (
-      guessListData.guessedPlayers.map( guess => (
+      guessListData.guessedPlayers.map( guessedPlayer => (
         <Flex
           textAlign="center"
           justifyContent="space-between"
           position="relative"
           mb="5px"
-          key={guess.id}
+          key={guessedPlayer.id}
         >
           <Text
             {...guessNameStyle}
           >
-            {guess.name}
+            {guessedPlayer.name}
           </Text>
-          {selectedPlayer === guess ? 
+          {selectedPlayer === guessedPlayer ? 
           <GuessForm
             form={form}
             inputs={inputs}
             buttons={buttons}
+            cb={handleChangeCancel}
           /> : 
           <BoxAll
             //TODO: {PRODUCTION ISSUE} FIX APPEARANCE, TRANSITION, VERTICAL-ALIGN, CURSOR APPEARING TWICE
@@ -180,7 +202,7 @@ function GuessList(props) {
             textTransform="uppercase"
             letterSpacing="2px"
             height={1}
-            onClick={ () => setSelectedPlayer(guess) }
+            onClick={ () => setSelectedPlayer(guessedPlayer) }
           >
             change
           </BoxAll>}
