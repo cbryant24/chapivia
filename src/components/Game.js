@@ -12,7 +12,7 @@ import { GridItem, BoxBorder, BoxAll, Text, FlexItem, BounceAnimations } from '.
 import GuessList from './GuessList';
 import TriviaQuestion from './TriviaQuestion';
 
-// import Scoreboard from './Scoreboard';
+import Scoreboard from './Scoreboard';
 // import GuessForm from './GuessForm';
 // import Winner from './Winner';
 
@@ -81,14 +81,14 @@ const Game = (props) => {
         modalMessage={modalMessage}
         toggleModal={toggleModal}
       />
-      <BoxBorder
+      {/* <BoxBorder
         zIndex={[2]}
         mx={[4]}
         border="1px solid white"
         p={[2]}
       >
         <GuessList/>
-      </BoxBorder>
+      </BoxBorder> */}
       {/* <BoxBorder
         zIndex={[2]}
         mx={[4]}
@@ -97,6 +97,14 @@ const Game = (props) => {
       >
         <TriviaQuestion/>
       </BoxBorder> */}
+      <BoxBorder
+        zIndex={[2]}
+        mx={[4]}
+        border="1px solid white"
+        p={[2]}
+      >
+        <Scoreboard />
+      </BoxBorder>
     </React.Fragment>
   )
 }
