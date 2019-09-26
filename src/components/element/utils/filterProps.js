@@ -373,5 +373,6 @@ export const filterProps = props => {
     "minWidth",
     "fontWeight",
     "mb",
-    "before"
+    "before",
+    "after"
 ])}

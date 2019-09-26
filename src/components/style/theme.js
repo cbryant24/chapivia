@@ -196,6 +196,7 @@ const inputNormal = {
 };
 
 const inputSmall = {
+  ...inputNormal,
   width: [1]
 };
 

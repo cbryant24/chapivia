@@ -4,13 +4,13 @@ import styled from 'styled-components';
 
 import { addStyles } from './utils';
 import systemStyledCSS from '@styled-system/css';
-import { ALL, addPseudo } from './utils';
+import { TEXTALL, addPseudo } from './utils';
 import Text from './Text';
 import { getAnimation } from './animations';
 
 export const TextPseudo = styled(Text)`
   ${ props => addStyles(props) } 
-  ${ ALL }
+  ${ TEXTALL }
   ${props => {
     const { animation, before, after, ...restProps } = props;
 
@@ -78,8 +78,8 @@ export const TextPseudo = styled(Text)`
 `
 
 export const TextAnimatedPseudo = styled(Text)`
-  //${ props => addStyles(props) }
-  ${ ALL }
+  ${ props => addStyles(props) }
+  ${ TEXTALL }
   ${props => {
     const { animation, before, after, children, ...restProps } = props;
     // debugger
@@ -88,7 +88,7 @@ export const TextAnimatedPseudo = styled(Text)`
   
   ${props => {
       if (!props.animation) return;
-
+      
       const animationProperties = getAnimation(props);
       return (
         css`

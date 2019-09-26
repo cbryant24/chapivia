@@ -12,6 +12,7 @@ export { default as GridItem } from './GridItem';
 
 //Typography
 export { default as Text } from './Text';
+export { TextAnimatedPseudo as TextAnimatedPseudo} from './TextPseudo';
 
 //Components
 export { default as Field } from './Field';

@@ -13,7 +13,7 @@ import UnguessedPlayers from '../queries/UnguessedPlayers';
 import { useAuth } from '../hooks';
 
 import GuessForm from './GuessForm';
-import { Box, Grid, GridItem, Text, List, Item, Heading } from './element';
+import { Box, Grid, GridItem, Text, List, Item, Heading, FlexItem } from './element';
 
 const TriviaQuestion = (props) => {
   const { data: { localTrivia } } = useQuery(DAILY_TRIVIA);
@@ -49,8 +49,8 @@ const TriviaQuestion = (props) => {
   unguessedPlayersData.nonGuessedPlayers[0].id !== null && 
   unguessedPlayersData.nonGuessedPlayers.unshift({id: null, name: null});
 
-  const inputs = [
-    user.role === "admin" ? 
+  const inputs = user.role === "admin" ? 
+  [
     {
       data: {
         type: 'select', 
@@ -71,7 +71,7 @@ const TriviaQuestion = (props) => {
         flexDirection: 'column'
       },
       inputStyle: { background: 'white', color: 'black', borderRadius: '1em', minHeight: '2.5em' }
-    } : null,
+    },
     {
       data: {
         type: 'password', 
@@ -84,7 +84,42 @@ const TriviaQuestion = (props) => {
       fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
       inputStyle: 'inputNormal'
     }
-  ]
+  ] : unguessedPlayersData.nonGuessedPlayers.some( nonGuessedPlayer => nonGuessedPlayer.id === user.id ) ? 
+  [
+    {
+      data: {
+        type: 'select', 
+        name: 'player', 
+        label: 'player', 
+        initialValue: '',
+        required: true,
+        inputData: {
+          display: 'name',
+          value: 'id',
+          options: [user]
+        }
+      },
+      fieldStyle: { 
+        width: '75%', 
+        maxHeight: '5rem', 
+        justifyContent: 'space-between',
+        flexDirection: 'column'
+      },
+      inputStyle: { background: 'white', color: 'black', borderRadius: '1em', minHeight: '2.5em' }
+    },
+    {
+      data: {
+        type: 'password', 
+        name: 'guess', 
+        label: 'guess', 
+        placeholder: 'enter guess A, B, C, D', 
+        initialValue: '',
+        required: true,
+      },
+      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
+      inputStyle: 'inputNormal'
+    }
+  ] : null;
 
   const form = {
     data: { name: 'guessForm', submit: 'signup' },
@@ -96,19 +131,19 @@ const TriviaQuestion = (props) => {
       width: [1],
       zIndex: 20
     },
-  }
+  };
 
   const buttons = [
     { text: 'Submit', type: 'submit', cb: null, style: {...theme.squareButton, mr: [3]} },
     { text: 'Cancel', type: 'cancel', cb: null, style: 'squareButton' }
-  ]
-
+  ];
+// debugger
   return (
     <GridItem 
       gridRow={props.gridRow} 
       gridColumn={props.gridColumn}
       flexDirection="column"
-      fontSizeModule={[1]}
+      fontSizeModule={[3]}
     >
       <Text
         p="0 0 2rem 0"
@@ -120,11 +155,23 @@ const TriviaQuestion = (props) => {
       >
         {displayTriviaChoices()}
       </Box>
-      <GuessForm
-        form={form}
-        inputs={inputs}
-        buttons={buttons}
-      />
+      {
+        inputs ?
+        <FlexItem
+          zIndex={[2]}
+          fontSizeModule={[4]}
+          height={["35vh"]}
+          width={[1, 3]}
+        >
+          <GuessForm
+            form={form}
+            inputs={inputs}
+            buttons={buttons}
+          /> 
+        </FlexItem> :
+        <Text fontSize={[2]}>You have already Guessed! Contact Admin to Change Your Answer.</Text>
+      }
+      
     </GridItem>
   );
 }

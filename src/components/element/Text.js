@@ -21,7 +21,7 @@ const Text = styled(cleanElement(Base))(
     boxSizing: 'border-box',
     minWidth: 0,
   },
-  addPseudo,
+  // addPseudo,
   COMMON, TYPOGRAPHY
 );
 

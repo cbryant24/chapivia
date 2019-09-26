@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       questionChoiceId,
       guess
     } = guessData;
-    
+    debugger
     const valid = validate.guess({ userId, questionId, questionChoiceId, guess });
     
     if (!valid) { throw new Error("Invalid character used in field") }    
@@ -45,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
 
       if (priorGuess) {
         priorGuess.isCorrect = correctChoice === guess ? true : false;
+        priorGuess.guess = guess;
         const updatedGuess = await priorGuess.save();
         
         return updatedGuess;

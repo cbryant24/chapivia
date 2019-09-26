@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+
 // import { graphql, compose } from 'react-apollo';
 
 import { GridItem, Field, OutlineButton, Input, FlexItem } from './element';
@@ -18,12 +19,12 @@ import { validate } from './helpers/validators';
 import Modal from './Modal';
 import { useAuth, usePrev } from '../hooks'
 
-function GuessForm({ inputs, buttons, form, cb }) {
+function GuessForm({ inputs, buttons, form, cb}) {
   const { data: { localTrivia } } = useQuery(DAILY_TRIVIA);
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const prevModalOpen = usePrev(isOpen);
-  const { loading: unguessedPlayersLoading, data: unguessedPlayersData } = useQuery(UnguessedPlayers);
+  const { loading: unguessedPlayersLoading, data: unguessedPlayersData, refetch } = useQuery(UnguessedPlayers);
   const { loading: currentUserLoading, data: currentUserData } = useQuery(CurrentUserQuery);
   const [ guess, { data: guessData }] = useMutation(mutation);
   const { user } = useAuth();
@@ -38,9 +39,9 @@ function GuessForm({ inputs, buttons, form, cb }) {
           questionChoiceId: parseInt(localTrivia.questionChoicesId),
           guess: localTrivia.questionChoices[vals.guess.toUpperCase().charCodeAt(0) - 65]        
         },
-        refetchQueries: [{ query: UnguessedPlayers }, { query: GuessListQuery }]
-      })
-      cb && cb();
+        refetchQueries: [{ query: UnguessedPlayers }]
+      });
+      // debugger
 
       toggleModal();
       setModalMessage(`You're Answer is...${ userGuess.isCorrect ?'CORRECT!' : 'WRONG! HAHA' }!`);
@@ -54,21 +55,19 @@ function GuessForm({ inputs, buttons, form, cb }) {
   }
 
   useEffect( () => {
-    debugger
-    if (prevModalOpen && isOpen) cb && cb();
-  }, [modalMessage])
+    // debugger
+    if (prevModalOpen === true && isOpen === false) {
+      cb && cb();
+      refetch();
+    }
+  }, [isOpen])
 
   if (!user || unguessedPlayersLoading) return <div></div>;
 
   const toggleModal = e => setIsOpen(!isOpen);
 
   return (
-    <FlexItem
-      zIndex={[2]}
-      fontSizeModule={[4]}
-      height={["35vh"]}
-      width={[1, 3]}
-    >
+    <React.Fragment>
       <Modal
         isOpen={isOpen}
         modalMessage={modalMessage}
@@ -81,7 +80,7 @@ function GuessForm({ inputs, buttons, form, cb }) {
         validate={validate}
         buttons={buttons}
       />
-    </FlexItem>
+    </React.Fragment>
   );
 }
 

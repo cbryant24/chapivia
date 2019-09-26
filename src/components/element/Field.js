@@ -101,22 +101,6 @@ const Field = ({ data: { name, type, placeholder, label, inputData }, fieldStyle
         focusColor={errorColor} 
         foucsBoxShadowColor={errorColor}
       >
-        {/* <BoxAll
-          {...props}
-          pseudo
-          background="transparent"
-          width={type === "password" ? "75%" : "100%"}
-          height="100%"
-          border="none"
-          color="inherit"
-          margin="0"
-          padding={['0 1em']}
-          focus={{outline: "none"}}
-          isA={inputType}
-          name={name}
-          type={shown && type === "password" ? 'text' : type} 
-          placeholder={placeholder}
-        /> */}
         {buildInput()}
         { type === "password" ? 
         <BoxAll

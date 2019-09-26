@@ -21,7 +21,7 @@ const Box = styled(cleanElement(Base))(
     minWidth: 0,
   },
   COMMON,
-  addPseudo,
+  // addPseudo,
   props => props.themeStyle ? addThemeStyle(props) : '',
 )
 
