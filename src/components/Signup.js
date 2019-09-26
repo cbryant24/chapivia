@@ -14,49 +14,25 @@ import { usePrev, useAuth } from '../hooks';
 //TODO: Errors message applicable to correct field only
 
 function Signup(props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen]             = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-  // const [ userSignup ] = useMutation(mutation);
-  const { loading: userLoading, data: userData, refetch, client } = useQuery(query);
-  const prevUser = usePrev(userData);
-  const { signup } = useAuth();
+  const { 
+    loading: userLoading, 
+    data: userData, refetch, client }   = useQuery(query);
+  const prevUser                        = usePrev(userData);
+  const { signup }                      = useAuth();
   
   async function userSignup(event, formVals) {
     try {
-      // await userSignup({
-      //   variables: { email, password, name}
-      // });
-      // await refetch();
-      debugger
       signup(formVals);
-      debugger
       return props.history.push('/game');
 
     } catch(res) {
-      console.log(res)
       debugger
       toggleModal();
       setModalMessage('Error Signing Up');
     }
   }
-
-  // useEffect( () => {
-  //   console.log(userData);
-  //   if (userLoading || !userData.user) return;
-  //   debugger
-  //   client.writeData({
-  //     data: {
-  //       player: {
-  //         id: userData.user.id,
-  //       name: userData.user.name,
-  //       email: userData.user.email,
-  //       role: userData.user.role,
-  //       __typename: 'player'
-  //       }
-  //     }
-  //   })
-  //   debugger
-  // }, [userData])
 
   const toggleModal = e => setIsOpen(!isOpen);
 
@@ -129,9 +105,5 @@ return (
     </BoxAll>
   );
 }
-
-// export default graphql(query)(
-//   graphql(mutation)(Signup)
-// );
 
 export default Signup;
