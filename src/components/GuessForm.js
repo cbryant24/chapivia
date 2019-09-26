@@ -12,6 +12,7 @@ import UnguessedPlayers from '../queries/UnguessedPlayers';
 import GuessListQuery from '../queries/GuessList';
 import CurrentUserQuery from '../queries/CurrentUser';
 import { DAILY_TRIVIA } from '../localState/Queries';
+import ScoresQuery from '../queries/Scores';
 
 import FormApp from './Form/App';
 import { validate } from './helpers/validators';
@@ -24,8 +25,9 @@ function GuessForm({ inputs, buttons, form, cb}) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const prevModalOpen = usePrev(isOpen);
-  const { loading: unguessedPlayersLoading, data: unguessedPlayersData, refetch } = useQuery(UnguessedPlayers);
+  const { loading: unguessedPlayersLoading, data: unguessedPlayersData, refetch: unguessedPlayersRefetch } = useQuery(UnguessedPlayers);
   const { loading: currentUserLoading, data: currentUserData } = useQuery(CurrentUserQuery);
+  const { refetch: scoresRefetch } = useQuery(ScoresQuery);
   const [ guess, { data: guessData }] = useMutation(mutation);
   const { user } = useAuth();
 
@@ -57,8 +59,12 @@ function GuessForm({ inputs, buttons, form, cb}) {
   useEffect( () => {
     // debugger
     if (prevModalOpen === true && isOpen === false) {
-      cb && cb();
-      refetch();
+      (async () => {
+        cb && cb();
+        await unguessedPlayersRefetch();
+        await scoresRefetch();
+      })()
+
     }
   }, [isOpen])
 

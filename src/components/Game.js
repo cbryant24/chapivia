@@ -14,7 +14,7 @@ import TriviaQuestion from './TriviaQuestion';
 
 import Scoreboard from './Scoreboard';
 // import GuessForm from './GuessForm';
-// import Winner from './Winner';
+import Winner from './Winner';
 
 import { DAILY_TRIVIA } from '../localState/Queries';
 import { useAuth } from '../hooks';
@@ -88,15 +88,15 @@ const Game = (props) => {
         p={[2]}
       >
         <GuessList/>
-      </BoxBorder> */}
-      {/* <BoxBorder
+      </BoxBorder>
+      <BoxBorder
         zIndex={[2]}
         mx={[4]}
         border="1px solid white"
         p={[2]}
       >
         <TriviaQuestion/>
-      </BoxBorder> */}
+      </BoxBorder>
       <BoxBorder
         zIndex={[2]}
         mx={[4]}
@@ -104,6 +104,14 @@ const Game = (props) => {
         p={[2]}
       >
         <Scoreboard />
+      </BoxBorder> */}
+      <BoxBorder
+        zIndex={[2]}
+        mx={[4]}
+        border="1px solid white"
+        p={[2]}
+      >
+        <Winner/>
       </BoxBorder>
     </React.Fragment>
   )

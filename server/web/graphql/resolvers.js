@@ -1,9 +1,4 @@
 module.exports = {
-  // Question: {
-  //   questions: (parent, args, context, info) => {
-  //     debugger
-  //   }
-  // },
   Question: {
     triviaChoices: (parent, args, { questionChoice }, info) => {
       return questionChoice.findOne({ where: { questionId: parent.id } })
@@ -11,7 +6,6 @@ module.exports = {
   },
   Query: {
     dailyTrivia: (parent, { id }, { question } , info) => {
-      // debugger
       return question.dailyQuestion();
     },
     user: (parent, args, { req }, info) => {
@@ -22,6 +16,16 @@ module.exports = {
     },
     guessedPlayers: (parent, args, { user }, info) => {
       return user.todaysGuesses();
+    },
+    scores: (parent, args, { user }, info) => {
+      return user.scores();
+    },
+    triviaSolution: (parent, args, { questionChoice }, info) => {
+      return questionChoice.getTriviaAnswer();
+    },
+    correctGuesses: (parent, args, { user }, info) => {
+      debugger
+      return user.correctGuesses();
     }
   },
   Mutation: {

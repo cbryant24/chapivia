@@ -19,8 +19,8 @@ app.use(session({
   store: myStore
 }));
 
-sequelize.sync();
-myStore.sync();
+// sequelize.sync();
+// myStore.sync();
 // debugger
 module.exports = {
   app
