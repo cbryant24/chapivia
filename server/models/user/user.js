@@ -83,12 +83,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   
 
-  User.scores = async function() {
+  User.scores = async function(month="current") {
     const currentHour = moment().format('HH');
     const endOfToday = moment().endOf('day').toDate();
     const endOfYesterday = moment().add(-1, 'day').endOf('day').toDate();
-    const startOfMonth = moment().startOf('month').toDate();
-
+    const startOfMonth = month === "current" ? moment().startOf('month').toDate() :
+                          moment().subtract(1, "months").startOf("month").toDate();                
+    const endOfMonth = month === "current" ? moment().endOf('month').toDate() :
+                          moment().subtract(1, "months").startOf("month").toDate();   
     try {
       const userCorrectGuesses = await this.findAll({
         include: [{ 
@@ -167,6 +169,15 @@ module.exports = (sequelize, DataTypes) => {
       //TODO: add error handling for player scores retrieval
       console.log(e);
     };
+  }
+
+  User.winner = async function() {
+    const prevMonthEnd = moment().subtract(1, "months").endOf("month");
+    const prevMonthStart = moment().subtract(1, "months").startOf("month");
+
+    debugger
+
+
   }
 
   return User;
