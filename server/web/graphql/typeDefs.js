@@ -5,8 +5,11 @@ const typeDefs = gql`
   type Query {
     dailyTrivia: Question!
     user: User
-    nonGuessedPlayers: [User],
+    nonGuessedPlayers: [User]
     guessedPlayers: [User]
+    scores: [User]
+    triviaSolution: QuestionChoiceAnswer
+    correctGuesses: [User]
   }
 
   type Mutation {
@@ -34,11 +37,17 @@ const typeDefs = gql`
     choices: [String!]
   }
 
+  type QuestionChoiceAnswer {
+    correctChoice: String
+    question: Question
+  }
+
   type User {
     id: ID!
     name: String!
     email: String!
     role: String
+    score: Int
   }
 
   type UserQuestionChoice {

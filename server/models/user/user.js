@@ -83,14 +83,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   
 
-  User.scores = async function(month="current") {
-    const currentHour = moment().format('HH');
-    const endOfToday = moment().endOf('day').toDate();
-    const endOfYesterday = moment().add(-1, 'day').endOf('day').toDate();
-    const startOfMonth = month === "current" ? moment().startOf('month').toDate() :
-                          moment().subtract(1, "months").startOf("month").toDate();                
-    const endOfMonth = month === "current" ? moment().endOf('month').toDate() :
-                          moment().subtract(1, "months").startOf("month").toDate();   
+  User.scores = async function() {
+    const startOfMonth = moment().startOf('month').toDate();
+
     try {
       const userCorrectGuesses = await this.findAll({
         include: [{ 
@@ -98,15 +93,16 @@ module.exports = (sequelize, DataTypes) => {
           where: {
             isCorrect: true,
             updatedAt: {
-              $between: currentHour >= 18 ?  
-                [startOfMonth, endOfToday] : [startOfMonth, endOfYesterday]
+              [Op.gte]: startOfMonth 
             }
           }
         }]
       });
-      userCorrectGuesses.map( userCorrectGuess => {
+      userCorrectGuesses.forEach( userCorrectGuess => {
         userCorrectGuess.score = userCorrectGuess.userQuestionChoices.length;
       });
+      userCorrectGuesses.sort( (a,b) => b.score - a.score);
+
       return userCorrectGuesses
     } catch (e) {
       debugger
@@ -124,7 +120,7 @@ module.exports = (sequelize, DataTypes) => {
         include: [{ 
           model: this.associations.userQuestionChoices.target,
           where: {
-            updatedAt: {
+            createdAt: {
               [Op.gte]: startOfToday
             }
           }
@@ -155,13 +151,12 @@ module.exports = (sequelize, DataTypes) => {
           where: {
             isCorrect: true,
             updatedAt: {
-              $between: currentHour >= 17 ?  
+              [Op.between]: currentHour >= 18 ?  
                 [startOfToday, endOfToday] : [startOfPreviousGameDate, endOfPreviousGameDate]
             }
           }
         }]
       });
-
       return correctGuesses;
 
     } catch(e) {

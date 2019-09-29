@@ -1,92 +1,62 @@
-import React, { Component } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
 
-// import { compose, graphql } from 'react-apollo'
 
 import query from '../queries/Scores';
 
-import { Box, Flex, FlexItem, Image, Text } from './element';
-import kgrad from '../img/kgrad.png';
+import { Box, Flex, Text } from './element';
 
 const Scoreboard = props => {
-  const { loading, data, refetch } = useQuery(query);
+  const { loading, data } = useQuery(query);
 
-  if (loading) return <Box></Box>
+  function displayPlayerScores() {
+
+    return (
+      data.scores.map( player => (
+        <Flex
+          fontSize="1.6rem"
+          textAlign="center"
+          justifyContent="space-between"
+          height="4rem"
+          key={player.id}
+        >
+          <Text
+            textTransform="uppercase"
+            fontSize="1.7rem"
+            fontWeight="500"
+            padding-left="2rem"
+          >
+            {player.name}
+          </Text>
+            <Text 
+              fontSize="1.7rem"
+              fontWeight="500"
+            >
+              {player.score}
+            </Text>
+        </Flex>
+      ))
+    )
+  }
+
+  if (loading) return <Box></Box>;
+
+  return (
+    < Flex 
+      flexDirection="column"
+      fontSizeModule={[1]}
+    >
+      <Text
+        isA="h2"
+        textAlign="center"
+        h2FontSize={[1]}
+      >
+        Player Scores
+      </Text>
+      {displayPlayerScores()}
+    </ Flex>
+  );
   
 }
-
-// class Scoreboard extends Component {
-
-//   displayHeaders(headers) {
-//     return (
-//       headers.map( title =>  {
-//         return (
-//           <Flex
-//             key={title}
-//             m="2rem"
-//             textAlign="center"
-//             textTransform="uppercase"
-//           >
-//             {title}
-//           </Flex>
-//         )
-//       })
-//     )
-//   }
-
-//   dispalayPlayerScores() {
-//     const renderedScores = [];
-
-//     if (this.props.data.loading) return <Elements.Flex></Elements.Flex>;
-    
-//     if (!this.props.data.scores) return <Elements.Flex></Elements.Flex>;
-
-//     this.props.data.scores.map( player => {
-//       renderedScores.push(
-//         <Elements.Flex
-//           fontSize="1.6rem"
-//           textAlign="center"
-//           justifyContent="space-between"
-//           height="4rem"
-//           key={player.id}
-//         >
-//           <Text.span
-//             textTransform="uppercase"
-//             fontSize="1.7rem"
-//             fontWeight="500"
-//             padding-left="2rem"
-//           >
-//             {player.name}
-//           </Text.span>
-//             <Text.span 
-//               fontSize="1.7rem"
-//               fontWeight="500"
-//             >
-//               {player.score}
-//             </Text.span>
-//         </Elements.Flex>
-//       )
-//     });
-//     return renderedScores;
-//   }
-
-//   render() {
-//     return(
-//       < Elements.Flex 
-//         flexDirection="column"
-//       >
-//         <Elements.Flex
-//           justifyContent="space-between"
-//         >
-//             <Elements.Text.p>Player</Elements.Text.p>
-//             <Elements.Text.p>Score</Elements.Text.p>
-//         </Elements.Flex>
-//         {this.dispalayPlayerScores()}
-//       </ Elements.Flex>
-//     );
-//   }
-// }
-
-// export default graphql(query)(Scoreboard);
 
 export default Scoreboard;

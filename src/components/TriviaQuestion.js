@@ -4,21 +4,20 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { AllHtmlEntities as Entities } from 'html-entities';
 import theme from './style/theme';
 
-// import { graphql } from 'react-apollo';
 
-import mutation from '../mutations/Guess';
-// import query from '../queries/Trivia';
 import { DAILY_TRIVIA } from '../localState/Queries';
 import UnguessedPlayers from '../queries/UnguessedPlayers';
 import { useAuth } from '../hooks';
 
 import GuessForm from './GuessForm';
-import { Box, Grid, GridItem, Text, List, Item, Heading, FlexItem } from './element';
+import { Box, GridItem, Text, FlexItem } from './element';
 
 const TriviaQuestion = (props) => {
-  const { data: { localTrivia } } = useQuery(DAILY_TRIVIA);
-  const { loading: unguessedPlayersLoading, data: unguessedPlayersData } = useQuery(UnguessedPlayers);
-  const { user } = useAuth();
+  const { data: { localTrivia } }     = useQuery(DAILY_TRIVIA);
+  const { 
+    loading: unguessedPlayersLoading, 
+    data: unguessedPlayersData }      = useQuery(UnguessedPlayers);
+  const { user }                      = useAuth();
 
   // debugger
   function displayTriviaChoices() {
@@ -137,7 +136,7 @@ const TriviaQuestion = (props) => {
     { text: 'Submit', type: 'submit', cb: null, style: {...theme.squareButton, mr: [3]} },
     { text: 'Cancel', type: 'cancel', cb: null, style: 'squareButton' }
   ];
-// debugger
+
   return (
     <GridItem 
       gridRow={props.gridRow} 

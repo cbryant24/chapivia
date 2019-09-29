@@ -1,30 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import theme from './style/theme';
 
-import { includes, keyBy, map } from 'lodash';
 import GuessForm from './GuessForm';
 import guessListQuery from '../queries/GuessList';
-import triviaQuery from '../queries/Trivia';
-import mutation from '../mutations/Guess';
-import currentUserQuery from '../queries/CurrentUser';
-import { GET_PLAYER } from '../localState/Queries'
-import { GridItem, OutlineButton, Input, Image, Text, TextAnimatedPseudo, Flex, Field, FlexItem, Box, BoxAll } from './element';
-// import * as Element from './element';
-import { generateRandomClipFrames, noiseAnimation } from './style/animations';
-import FormApp from './Form/App';
-import { validate } from './helpers/validators';
+import { Text, TextAnimatedPseudo, Flex, FlexItem, Box, BoxAll } from './element';
+import { noiseAnimation } from './style/animations';
+
 import { useAuth } from '../hooks';
 
 
 function GuessList(props) {
   const [ selectedPlayer, setSelectedPlayer ] = useState(null);
-  const {loading: currentUserLoading, data: currentUserData } = useQuery(currentUserQuery);
-  const {loading: guessListLoading, data: guessListData, refetch } = useQuery(guessListQuery);
-  const {loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
-  const [ changeGuess, { data: guessedData }] = useMutation(mutation);
-  const { data: playerData } = useQuery(GET_PLAYER);
-  const { user } = useAuth();
+  const {loading: guessListLoading, 
+    data: guessListData }                     = useQuery(guessListQuery);
+  const { user }                              = useAuth();
 
   const animationGuessNameStyle = {
     continuous: noiseAnimation(),
