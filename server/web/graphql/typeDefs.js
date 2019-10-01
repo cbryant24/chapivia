@@ -10,6 +10,7 @@ const typeDefs = gql`
     scores: [User]
     triviaSolution: QuestionChoiceAnswer
     correctGuesses: [User]
+    prevMonthWinner: [User]
   }
 
   type Mutation {

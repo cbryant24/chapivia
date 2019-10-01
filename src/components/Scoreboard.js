@@ -12,7 +12,7 @@ const Scoreboard = props => {
   function displayPlayerScores() {
 
     return (
-      data.scores.map( player => (
+      data.scores ? data.scores.map( player => (
         <Flex
           fontSize="1.6rem"
           textAlign="center"
@@ -34,9 +34,9 @@ const Scoreboard = props => {
             >
               {player.score}
             </Text>
-        </Flex>
-      ))
-    )
+        </Flex> 
+      )) : <Flex></Flex>
+    );
   }
 
   if (loading) return <Box></Box>;

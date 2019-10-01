@@ -26,6 +26,9 @@ module.exports = {
     correctGuesses: (parent, args, { user }, info) => {
       debugger
       return user.correctGuesses();
+    },
+    prevMonthWinner: (parent, args, { user }, info) => {
+      return user.prevMonthWinner();
     }
   },
   Mutation: {

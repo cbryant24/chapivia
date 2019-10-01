@@ -15,8 +15,7 @@ import { useAuth } from '../hooks';
 function Signin(props) {
   const [isOpen, setIsOpen]             = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-
-  const { signin, user }                = useAuth();
+  const { signin, user, userLoading }                = useAuth();
 
   async function userSignin(event, formVals) {
     try {
@@ -70,14 +69,16 @@ function Signin(props) {
     },
   }
 
+  if (userLoading) return <div></div>;
+
   return (
     <BoxAll
       id="signin-box-module" 
       fontSizeModule={[4]}
       width={[2]}
-      height={['50vh']}
+      height={['75vh']}
       margin='auto'
-      mt={["auto", "20%", "15%", "10%"]}
+      mt={["25%", "20%", "15%", "10%"]}
       maxWidth={["75vw", "50vw", "40vw"]}
       zIndex={[1]}
     >

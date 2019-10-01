@@ -5,9 +5,13 @@ import { useLastLocation } from 'react-router-last-location';
 import triviaQuery from '../queries/Trivia';
 
 import Modal from './Modal';
-import { BoxBorder } from './element';
+import { Box, BoxBorder } from './element';
 
 import Winner from './Winner';
+import GuessList from './GuessList';
+import Scoreboard from './Scoreboard';
+import TriviaQuestion from './TriviaQuestion';
+import Carousel from './Carousel';
 
 import { useAuth } from '../hooks';
 
@@ -17,8 +21,7 @@ const Game = (props) => {
   const [modalMessage, setModalMessage]               = useState('');
   const lastLocation                                  = useLastLocation() || {};
   const client                                        = useApolloClient();
-
-  const { user } = useAuth();
+  const { user, userLoading }                         = useAuth();
 
   useEffect( () => {
     if (triviaLoading) return;
@@ -38,11 +41,13 @@ const Game = (props) => {
       });
     } catch(err) {
       //TODO: add proper error handling
-      console.log('error getting trivia data', err)
+      console.log('error getting trivia data', err);
     }
   }, [triviaData]);
 
   useEffect( () => {
+
+    if (userLoading) return;
 
     if (!user) return props.history.push('/');
 
@@ -54,39 +59,52 @@ const Game = (props) => {
 
   const toggleModal = e => setIsOpen(!isOpen);
 
-  if (!user || triviaLoading) return <div></div>;
+  if (userLoading || triviaLoading) return <div></div>;
 
   return (
-    <React.Fragment>
+    <Box
+      m={4}
+      zIndex={2}
+      mt={["20%", "15%"]}
+    >
       <Modal
         isOpen={isOpen}
         modalMessage={modalMessage}
         toggleModal={toggleModal}
       />
+      <BoxBorder
+        zIndex={[2]}
+        //mx={[4]}
+        border="1px solid white"
+        p={[2]}
+      >
+        <GuessList/>
+      </BoxBorder>
+      <Carousel
+        type="preview"
+      >
+        <Box>Hello</Box>
+        <Box>WOrld</Box>
+        <Box>Goodbye</Box>
+        <Box>Cruel</Box>
+        <Box>People</Box>
+      </Carousel>
       {/* <BoxBorder
         zIndex={[2]}
         mx={[4]}
         border="1px solid white"
         p={[2]}
       >
-        <GuessList/>
-      </BoxBorder>
-      <BoxBorder
-        zIndex={[2]}
-        mx={[4]}
-        border="1px solid white"
-        p={[2]}
-      >
         <TriviaQuestion/>
-      </BoxBorder>
-      <BoxBorder
+      </BoxBorder> */}
+      {/* <BoxBorder
         zIndex={[2]}
         mx={[4]}
         border="1px solid white"
         p={[2]}
       >
         <Scoreboard />
-      </BoxBorder> */}
+      </BoxBorder>
       <BoxBorder
         zIndex={[2]}
         mx={[4]}
@@ -94,8 +112,8 @@ const Game = (props) => {
         p={[2]}
       >
         <Winner/>
-      </BoxBorder>
-    </React.Fragment>
+      </BoxBorder> */}
+    </Box>
   )
 }
 

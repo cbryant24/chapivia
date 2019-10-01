@@ -154,6 +154,7 @@ export const squareButton = {
   verticalAlign: "middle",
   textAlign: "center",
   fontSize: [1],
+  minWidth: "20%",
   fontFamily: "inherit",
   fontWeight: "extraBold",
   lineHeight: "condensed",
@@ -188,7 +189,7 @@ const inputNormal = {
   borderStyle: 'solid',
   borderColor: 'rgb(221, 225, 228)',
   transition: 'box-shadow 0.125s ease-out 0s',
-  minHeight: '2em',
+  minHeight: '1.5em',
   mt: [1],
   focusWithin: {
     boxShadow: '0px 0px 8px green'

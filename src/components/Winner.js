@@ -34,7 +34,7 @@ const Winner = props => {
   }
 
   if (triviaAnswerLoading || correctGuessesLoading ) return <Box></Box>;
-  debugger
+
   function convertHTMLChar(str) {
     const entities = new Entities();
     return entities.decode(str);

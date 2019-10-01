@@ -83,27 +83,51 @@ module.exports = (sequelize, DataTypes) => {
   }
   
 
-  User.scores = async function() {
-    const startOfMonth = moment().startOf('month').toDate();
-
+  User.scores = async function(month="currentMonth") {
+    const startOfMonth = month === "prevMonth" ? moment().subtract(1, "months").startOf("month").toDate() :
+                          moment().startOf('month').toDate();
+                                          
+    const endOfMonth = month === "prevMonth" ? moment().subtract(1, "months").endOf("month").toDate() :
+                          moment().endOf('month').toDate();
+                          
+    //TODO: Update to pull only through association with joined table and only pull 3 for winner?
     try {
-      const userCorrectGuesses = await this.findAll({
+      const userCorrectGuessesScore = await this.findAll({
         include: [{ 
           model: this.associations.userQuestionChoices.target,
           where: {
             isCorrect: true,
             updatedAt: {
-              [Op.gte]: startOfMonth 
+              [Op.between]: [startOfMonth, endOfMonth]
             }
           }
         }]
       });
-      userCorrectGuesses.forEach( userCorrectGuess => {
+      userCorrectGuessesScore.forEach( userCorrectGuess => {
         userCorrectGuess.score = userCorrectGuess.userQuestionChoices.length;
       });
-      userCorrectGuesses.sort( (a,b) => b.score - a.score);
+      userCorrectGuessesScore.sort( (a,b) => b.score - a.score);
 
-      return userCorrectGuesses
+      if ( month === "prevMonth" ) {
+        const determineTopThree = () => {
+          let topThreeCutoff = 3;
+
+          userCorrectGuessesScore.some( (user, idx) => {
+            if (idx < 2) return false;
+
+            if (user.score === userCorrectGuessesScore[idx + 1].score) return false
+
+            topThreeCutoff = idx + 1;
+
+            return true;
+          });
+          userCorrectGuessesScore.splice(topThreeCutoff);
+        }
+
+        determineTopThree();
+      }
+
+      return userCorrectGuessesScore;
     } catch (e) {
       debugger
       //TODO: add error handling for player scores retrieval
@@ -114,7 +138,7 @@ module.exports = (sequelize, DataTypes) => {
   User.todaysGuesses = async function() {
     const startOfToday = moment().startOf('day').toDate();
     const endOfToday = moment().endOf('day').toDate();
-
+    debugger
     try {
       const todaysGuesses = await this.findAll({
         include: [{ 
@@ -166,13 +190,8 @@ module.exports = (sequelize, DataTypes) => {
     };
   }
 
-  User.winner = async function() {
-    const prevMonthEnd = moment().subtract(1, "months").endOf("month");
-    const prevMonthStart = moment().subtract(1, "months").startOf("month");
-
-    debugger
-
-
+  User.prevMonthWinner = async function() {
+    return this.scores('prevMonth');
   }
 
   return User;

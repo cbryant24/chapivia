@@ -17,12 +17,14 @@ function Background(props) {
       borderTop="#020202"
       alignItems="center"
       background="transparent"
-      position="fixed"
+      position="absolute"
+      top="0"
       boxShadow="inset 0 0 18rem #000, inset 0 0 3rem #000, 0 0 10rem #000"
-      m="auto"
+      //m="auto"
       width="100%"
-      height="auto"
+      height="100%"
       minHeight="100vh"
+      zIndex={0}
     >
       <BoxAnimated
         id="bacground-animation"
@@ -34,7 +36,7 @@ function Background(props) {
         p="3rem 2rem"
         backgroundColor="#031e11"
         textShadow="0rem 0.2rem 1rem rgba(3, 30, 17, 1)"
-        position="absolute"
+        position="fixed"
         top="0"
         left="0"
         height={[1]}
