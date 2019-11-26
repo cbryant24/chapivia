@@ -82,12 +82,14 @@ const Game = (props) => {
       </BoxBorder>
       <Carousel
         type="preview"
+        infinite
       >
-        <Box>Hello</Box>
-        <Box>WOrld</Box>
-        <Box>Goodbye</Box>
-        <Box>Cruel</Box>
-        <Box>People</Box>
+        <Box carouselItem>Hello</Box>
+        <Box carouselItem>WOrld</Box>
+        <Box carouselItem initialItem>Goodbye</Box>
+        <Box carouselItem>Cruel</Box>
+        <Box carouselItem>People</Box>
+        <Box><BoxBorder>Im on a boat</BoxBorder></Box>
       </Carousel>
       {/* <BoxBorder
         zIndex={[2]}
