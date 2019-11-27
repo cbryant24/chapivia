@@ -6,18 +6,21 @@ import { usePrev } from '../hooks';
 //TODO: docuemnt props type (preview: thubmnail previes below)
 //TODO: document props initialItem (builds order based on initial order)
 //TODO: create readme of personalized components and create library as part of starter skeleton project
-const Carousel = ({ children, type, animationIn, animationOut, infinite }) => {
+const Carousel = ({ children, type, animationIn, animationOut, infinite, ...props }) => {
   // const [ leftDisabled, setLeftDisabled ]           = useState(false);
   // const [ rightDisabled, setRightDisabled ]         = useState(false);
   const [ initialItemIndex, setInitialItemIndex ]   = useState(setInitialItem);
   const [ carouselOrder, setCarouselOrder ]         = useState(setInitialCarousel);
   const prevInitialItemIndex                        = usePrev(initialItemIndex);
   const prevCarouselOrder                           = usePrev(carouselOrder);
+  let carouselItems                                 = [];
 
   function setInitialItem() {
     let initialItemIndex = 0;
-    debugger
-    children.some( (child, idx) => {
+    // create carousel by filtering out children that are not carousel items to be displayed in carousel
+    carouselItems = children.filter( child => child.props.carouselItem)
+
+    carouselItems.some( (child, idx) => {
       if (child.props.initialItem) {
         initialItemIndex = idx;
 
@@ -29,15 +32,14 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite }) => {
   }
 
   function setInitialCarousel() {
-    let carouselItemCount = 0;
-    const carouselPosition = {}
-    children.forEach( child => child.props.carouselItem ? carouselItemCount++ : '');
+    const carouselPosition  = {};
+    
     if (infinite) {
       if (initialItemIndex > 0) {
         const carouselIndexStart = initialItemIndex * -1;
-        const carouselOrder =  children.reduce((o, child, idx) => !child.props.carouselItem ?  
-                                        ({...o}) : ({ ...o, [`pos${idx + carouselIndexStart}`]: idx + carouselIndexStart}), {});
-                                        console.log(carouselOrder)
+        const carouselOrder =  carouselItems.reduce((o, item, idx) => ({ ...o, [`${idx + carouselIndexStart}`]: item[initialItemIndex - idx]}), {});
+        console.log(carouselOrder)
+        debugger
         checkCarouselItemOrder(carouselOrder);
       }
     }
