@@ -72,14 +72,15 @@ const Game = (props) => {
         modalMessage={modalMessage}
         toggleModal={toggleModal}
       />
-      <BoxBorder
+      {/* <BoxBorder
         zIndex={[2]}
         //mx={[4]}
         border="1px solid white"
         p={[2]}
-      >
-        <GuessList/>
-      </BoxBorder>
+      > */}
+        {/* <GuessList/> */}
+        {/* <TriviaQuestion/> */}
+      {/* </BoxBorder> */}
       <Carousel
         type="preview"
         infinite
