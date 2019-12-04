@@ -8,7 +8,6 @@ const Base = props => {
   const { isA, ...newProps} = props;
   const next = filterProps(newProps);
   const type = isA || 'div';
-
   //TODO: Check if issue with children being passed here
   const element = React.createElement(type, {...next}, props.children)
 

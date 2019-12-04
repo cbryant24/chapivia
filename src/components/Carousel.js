@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, createRef } from 'react';
 import { Flex, BoxAnimated, SlideAnimations, BoxAll, ULFLEX } from './element';
 import { usePrev } from '../hooks';
 
@@ -19,8 +19,9 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
   const [ activeIndex, setActiveIndex ] = useState(0);
   const prevActiveIndex                 = usePrev(activeIndex);
   const carouselItems                   = children.filter( child => child.props.carouselItem);
-  // const elRef                           = useRef(carouselItems.map( () => ))
-  
+  const carouselElRef                   = carouselItems.map( () => useRef(null));
+
+  // debugger
   //https://stackoverflow.com/questions/54633690/how-can-i-use-multiple-refs-for-an-array-of-elements-with-hooks
   
   function goToSlide(index) {
@@ -95,12 +96,30 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
     );
   }
 
+  function determineSlidePosition(index, carouselProps) {
+    const carouselAnimations = {
+      in: { right: '0' },
+      out: { right: '-100em' },
+      oppositeIn: { left: '0em' },
+      oppositeOut: { left: '-100em' }
+    }
+
+    
+
+  }
+
   function carouselSlide(index) {
     //TODO: Add documentation of how to dynamically set props for css
-    // debugger
-    const carouselRef = useRef(index);
+    // const [props] = carouselItems[index].current;
+    debugger
     let carouselItemPosition = { right: '-100em' };
+
+    if (carouselElRef[index].current) {
+      carouselItemPosition = determineSlidePosition(index, carouselElRef[index].current)
+    }
+
     if (prevActiveIndex === index) {
+      
       carouselItemPosition = { right: '100em' };
     }
 
@@ -110,7 +129,7 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
     // debugger
     return (
       <BoxAll
-        ref={carouselRef}
+        ref={carouselElRef[index]}
         id={`carousel-item-${index}`}
         isA="li"
         width="100%"
@@ -130,7 +149,6 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
         >
           {`carousel Item ${index}`}
         </BoxAll>
-        <ULFLEX width="200%" appearance="button" fontSizeModule="20rem" color="red" m={[1,2]} padding="2rem">Hello World</ULFLEX>
       </BoxAll>
     )
   }
