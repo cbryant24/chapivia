@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Flex, BoxAnimated, SlideAnimations, BoxAll } from './element';
 import { usePrev } from '../hooks';
 
@@ -17,8 +17,12 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
   // let nonCarouselItems                              = [];
   
   const [ activeIndex, setActiveIndex ] = useState(0);
-  const carouselItems                   = children.filter( child => child.props.carouselItem)
-
+  const prevActiveIndex                 = usePrev(activeIndex);
+  const carouselItems                   = children.filter( child => child.props.carouselItem);
+  const elRef                           = useRef(carouselItems.map( () => ))
+  
+  //https://stackoverflow.com/questions/54633690/how-can-i-use-multiple-refs-for-an-array-of-elements-with-hooks
+  
   function goToSlide(index) {
     setActiveIndex(index);
   }
@@ -92,13 +96,33 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
   }
 
   function carouselSlide(index) {
+    //TODO: Add documentation of how to dynamically set props for css
+    debugger
+    const carouselRef = useRef(index);
+    let carouselItemPosition = { right: '-100em' };
+    if (prevActiveIndex === index) {
+      carouselItemPosition = { right: '100em' };
+    }
+
+    if (activeIndex === index) {
+      carouselItemPosition = { right: '0em' };
+    }
+    // debugger
     return (
       <BoxAll
+        ref={carouselRef}
+        id={`carousel-item-${index}`}
         isA="li"
         width="100%"
+        height="100%"
+        position="absolute"
+        transition="all 1s linear"
+        top="0"
+        // right={ index === activeIndex ? 0 : carouselItemPosition }
+        {...carouselItemPosition}
       >
         <BoxAll
-          height="20rem"
+          height="100%"
           width={[1]}
           //mx="2rem"
           border={`2px solid ${index === activeIndex ? 'red' : 'white'}`}
@@ -115,6 +139,7 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
       id="carousel-box"
       display="flex"
       flexWrap="wrap"
+      width="90vw"
       overflow="hidden"
     >
       <BoxAll
@@ -125,7 +150,10 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
       <BoxAll
         id="carousel-ul"
         isA="ul"
-        display="flex"
+        display="block"
+        position="relative"
+        height="50vh"
+        width="100%"
         //width={[1]}
       >
         { carouselItems.map( (item, idx) => (carouselSlide(idx))) }
