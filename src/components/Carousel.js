@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Flex, BoxAnimated, SlideAnimations, BoxAll } from './element';
+import { Flex, BoxAnimated, SlideAnimations, BoxAll, ULFLEX } from './element';
 import { usePrev } from '../hooks';
 
 //TODO: docuemnt props infinite (inifinite loop of carousel)
@@ -19,7 +19,7 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
   const [ activeIndex, setActiveIndex ] = useState(0);
   const prevActiveIndex                 = usePrev(activeIndex);
   const carouselItems                   = children.filter( child => child.props.carouselItem);
-  const elRef                           = useRef(carouselItems.map( () => ))
+  // const elRef                           = useRef(carouselItems.map( () => ))
   
   //https://stackoverflow.com/questions/54633690/how-can-i-use-multiple-refs-for-an-array-of-elements-with-hooks
   
@@ -97,7 +97,7 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
 
   function carouselSlide(index) {
     //TODO: Add documentation of how to dynamically set props for css
-    debugger
+    // debugger
     const carouselRef = useRef(index);
     let carouselItemPosition = { right: '-100em' };
     if (prevActiveIndex === index) {
@@ -130,6 +130,7 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
         >
           {`carousel Item ${index}`}
         </BoxAll>
+        <ULFLEX width="200%" appearance="button" fontSizeModule="20rem" color="red" m={[1,2]} padding="2rem">Hello World</ULFLEX>
       </BoxAll>
     )
   }
