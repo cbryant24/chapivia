@@ -72,15 +72,15 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
   //   )
   // }
 
-  function carouselRightArrow(e) {
-    return (
-      <div
-        onClick={ e => goToNextSlide(e)}
-      >
-        Right Arrow
-      </div>
-    )
-  }
+  // function carouselRightArrow(e) {
+  //   return (
+  //     <div
+  //       onClick={ e => goToNextSlide(e)}
+  //     >
+  //       Right Arrow
+  //     </div>
+  //   )
+  // }
 
   function carouselIndicator(index) {
     return (
@@ -96,47 +96,139 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
     );
   }
 
-  function determineSlidePosition(index, carouselProps) {
+  function getSlidePosition(index, carouselRef) {
     const carouselAnimations = {
-      in: { right: '0' },
-      out: { right: '-100em' },
-      oppositeIn: { left: '0em' },
-      oppositeOut: { left: '-100em' }
+      slideIn: {
+        in: SlideAnimations.SlideInRight,
+        duration_in: 1
+      },
+      slideOut: {
+        out: SlideAnimations.SlideOutLeft,
+        duration_out: 1
+      },
+      slideInOpposite: {
+        in: SlideAnimations.SlideInLeft,
+        duration_in: 1
+      },
+      slideOutOpposite: {
+        out: SlideAnimations.SlideOutRight,
+        duration_out: 1
+      }
     }
 
-    
+    if (carouselRef) {
+      // debugger
+      if (prevActiveIndex === index) {
+
+        if (prevActiveIndex === carouselItems.length - 1) {
+          return {
+            transform: 'translateX(100em)',
+            animation: {
+              out: SlideAnimations.SlideOutRight,
+              duration_out: 1
+            }
+          }
+        }
+
+        if (prevActiveIndex > activeIndex) {
+          return {
+            transform: 'translateX(-100em)',
+            animation: {
+              out: SlideAnimations.SlideOutRight,
+              duration_out: 1
+            }
+          }
+        }
+
+        if (prevActiveIndex < activeIndex) {
+          return {
+            transform: 'translateX(100em)',
+            animation: {
+              out: SlideAnimations.SlideOutLeft,
+              duration_out: 1
+            }
+          }
+        }
+      }
+
+      if (index === activeIndex) {
+
+        if (activeIndex === carouselItems.length - 1) {
+          return {
+            transform: 'translateX(0)',
+            animation: {
+              in: SlideAnimations.SlideInRight,
+              duration_in: 1
+            }
+          }
+        }
+
+        if (activeIndex > prevActiveIndex) {
+          return {
+            transform: 'translateX(0)',
+            animation: {
+              in: SlideAnimations.SlideInLeft,
+              duration_in: 1
+            }
+          }
+        }
+
+        if (activeIndex < prevActiveIndex) {
+          return {
+            transform: 'translateX(0)',
+            animation: {
+              in: SlideAnimations.SlideInRight,
+              duration_in: 1
+            }
+          }
+        }
+        // switch(carouselRef.props.transform) {
+        //   case "translateX(100em)":
+        //     return {
+        //       transform: 'translateX(0)',
+        //       animation: { ...carouselAnimations.slideIn }
+        //     };
+        //   case "translateX(-100em)":
+        //     return {
+        //       transform: 'translateX(0)',
+        //       animation: { ...carouselAnimations.slideInOpposite }
+        //     };
+        // }
+      }
+
+      return { transform: carouselRef.props.transform }
+    }
+
+    return { transform: activeIndex === index ? 'translateX(0)' : 'translateX(100em)'}
+
+
+
+
+
+    // if (prevActiveIndex === index) {
+    //   if (carouselProps)
+    //   return carouselAnimations.out
+    // }
 
   }
 
   function carouselSlide(index) {
     //TODO: Add documentation of how to dynamically set props for css
     // const [props] = carouselItems[index].current;
-    debugger
-    let carouselItemPosition = { right: '-100em' };
+    // debugger
+    const carouselItemPosition = getSlidePosition(index, carouselElRef[index].current);
 
-    if (carouselElRef[index].current) {
-      carouselItemPosition = determineSlidePosition(index, carouselElRef[index].current)
-    }
-
-    if (prevActiveIndex === index) {
-      
-      carouselItemPosition = { right: '100em' };
-    }
-
-    if (activeIndex === index) {
-      carouselItemPosition = { right: '0em' };
-    }
     // debugger
     return (
       <BoxAll
         ref={carouselElRef[index]}
         id={`carousel-item-${index}`}
         isA="li"
+        gridRow="1 / span 1"
+        gridColumn="1 / span 1"
         width="100%"
         height="100%"
-        position="absolute"
         transition="all 1s linear"
-        top="0"
         // right={ index === activeIndex ? 0 : carouselItemPosition }
         {...carouselItemPosition}
       >
@@ -169,7 +261,9 @@ const Carousel = ({ children, type, animationIn, animationOut, infinite, ...prop
       <BoxAll
         id="carousel-ul"
         isA="ul"
-        display="block"
+        display="grid"
+        gridTemplateRows="100%"
+        gridColumnRows="100%"
         position="relative"
         height="50vh"
         width="100%"
