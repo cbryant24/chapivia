@@ -406,3 +406,6 @@ For styles defined in the theme and passed as a string or an array the following
 | maxHeight           | sizes          |
 | size                | sizes          |
 
+## Carousel
+
+Carousel types can be determined by passing the prop `type` and the  string value for the carousel. For additional types attributes such as a clickable `preview` pass an array of types e.g. `['infinite', 'preview']` to include secondary attributes to the carousel type in combination with the main type.

@@ -375,5 +375,6 @@ export const filterProps = props => {
     "mb",
     "mt",
     "before",
-    "after"
+    "after",
+    "flexWrap"
 ])}

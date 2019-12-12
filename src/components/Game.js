@@ -22,6 +22,12 @@ const Game = (props) => {
   const lastLocation                                  = useLastLocation() || {};
   const client                                        = useApolloClient();
   const { user, userLoading }                         = useAuth();
+  const carouselAnimationsTransitions                 = {
+    transition: "all 1s linear",
+    in: "translateX(0em)",
+    out: "translateX(-100em)",
+    initial: "translate(100em)"
+  }
 
   useEffect( () => {
     if (triviaLoading) return;
@@ -82,15 +88,35 @@ const Game = (props) => {
         {/* <TriviaQuestion/> */}
       {/* </BoxBorder> */}
       <Carousel
-        type="preview"
-        infinite
+        type={["single", "infinite"]}
+        carouselAnimationsTransitions
+        width="90vw"
       >
-        <Box carouselItem>Hello</Box>
+        {/* <Box carouselItem>Hello</Box>
         <Box carouselItem>WOrld</Box>
         <Box carouselItem initialItem>Goodbye</Box>
         <Box carouselItem>Cruel</Box>
         <Box carouselItem>People</Box>
-        <Box><BoxBorder>Im on a boat</BoxBorder></Box>
+        <Box><BoxBorder>Im on a boat</BoxBorder></Box> */}
+        <GuessList
+          width="100%"
+          height="100%"
+        />
+        <TriviaQuestion
+          width="100%"
+          height="100%"
+          transform="translateX(0em)"
+        />
+        <Scoreboard
+          width="100%"
+          height="100%"
+          transform="translateX(-100em)"
+        />
+        <Winner 
+          width="100%"
+          height="100%"
+          transform="translateX(-100em)"
+        />
       </Carousel>
       {/* <BoxBorder
         zIndex={[2]}
