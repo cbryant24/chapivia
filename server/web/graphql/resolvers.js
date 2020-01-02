@@ -24,11 +24,10 @@ module.exports = {
       return questionChoice.getTriviaAnswer();
     },
     correctGuesses: (parent, args, { user }, info) => {
-      debugger
       return user.correctGuesses();
     },
-    prevMonthWinner: (parent, args, { user }, info) => {
-      return user.prevMonthWinner();
+    prevMonthWinners: (parent, args, { user }, info) => {
+      return user.prevMonthWinners();
     }
   },
   Mutation: {

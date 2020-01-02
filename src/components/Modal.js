@@ -17,8 +17,8 @@ export default ({isOpen, toggleModal, modalMessage}) => {
         justifyContent="space-evenly"
         backgroundColor="black"
         color="white"
-        width={["50vw", "25vw"]}
-        height={["25vh"]}
+        width={["60vw"]}
+        height={["50vh"]}
         margin="auto"
         transform="translateY(-500px)"
         animation={{
@@ -31,7 +31,7 @@ export default ({isOpen, toggleModal, modalMessage}) => {
           isA="h3"
           fontSize={[3,4]}
           textAlign="center"
-          my={[4]}
+          my={[3]}
         >
           {modalMessage}
         </Text>
@@ -41,6 +41,7 @@ export default ({isOpen, toggleModal, modalMessage}) => {
           width="5em"
           alignSelf="flex-end"
           mr={4}
+          mb={4}
           onClick={toggleModal}
         >
           Close

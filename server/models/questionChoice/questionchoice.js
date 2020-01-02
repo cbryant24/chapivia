@@ -1,5 +1,4 @@
 'use strict';
-const { triviaConfig } = require('../../config/config');
 const dateFormat = require('dateformat');
 const Nedb = require('../nedb');
 const { concat, shuffle } =  require('lodash');
@@ -38,18 +37,16 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   QuestionChoice.getTriviaAnswer = async function() {
-    const currentHour = moment().format('HH');
     const dayOfWeek = new Date().getDay();
-    const todaysDate = moment().format('YYYY-MM-DD');
     const previousGameDate = dayOfWeek === 1 ? 
       moment().add(-3, 'day').format('YYYY-MM-DD') : moment().add(-1, 'day').format('YYYY-MM-DD');
-    
+    debugger
     try {
       const triviaAnswer = await this.findOne({
         include: [{
           model: this.associations.question.target,
           where: {
-            dateUsed: currentHour >= 17 ? todaysDate : previousGameDate
+            dateUsed: previousGameDate
           }
         }]
       });

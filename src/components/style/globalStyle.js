@@ -55,4 +55,8 @@ export default createGlobalStyle`
   textarea {
     resize: none;
   }
+
+  h3 {
+    font-size: 2.2em;
+  }
 `;

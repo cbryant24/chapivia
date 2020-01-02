@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { useLastLocation } from 'react-router-last-location';
 
 import triviaQuery from '../queries/Trivia';
 
 import Modal from './Modal';
-import { Box, BoxBorder } from './element';
+import { BoxAll, BoxBorder } from './element';
 
 import Winner from './Winner';
 import GuessList from './GuessList';
 import Scoreboard from './Scoreboard';
 import TriviaQuestion from './TriviaQuestion';
+import PrevMonthWinners from './PrevMonthWinners';
 import Carousel from './Carousel';
 
-import { useAuth } from '../hooks';
+import { useAuth, useWindowSize } from '../hooks';
 
 const Game = (props) => {
   const { loading: triviaLoading, data: triviaData }  = useQuery(triviaQuery);
@@ -22,12 +23,7 @@ const Game = (props) => {
   const lastLocation                                  = useLastLocation() || {};
   const client                                        = useApolloClient();
   const { user, userLoading }                         = useAuth();
-  const carouselAnimationsTransitions                 = {
-    transition: "all 1s linear",
-    in: "translateX(0em)",
-    out: "translateX(-100em)",
-    initial: "translate(100em)"
-  }
+  const { width: windowWidth }                        = useWindowSize();
 
   useEffect( () => {
     if (triviaLoading) return;
@@ -65,10 +61,85 @@ const Game = (props) => {
 
   const toggleModal = e => setIsOpen(!isOpen);
 
+  function displayGame() {
+
+    if (windowWidth < 768) {
+      return (
+      <Carousel
+        type={["single", "infinite"]}
+        width="90vw"
+        transition="all 1s"
+        initialCarouselItemPos="translateX(0em)"
+        initialCarouselItemPosOut="translateX(100em)"
+        afterCarouselItemPosOut="translateX(-100em)"
+      >
+        <TriviaQuestion />
+        <GuessList />
+        <Scoreboard />
+        <Winner />
+      </Carousel>
+      )
+    }
+
+    return (
+      <BoxAll
+        display="grid"
+        gridTemplateRows="repeat(3, auto-fit)"
+        gridTemplateColumns="repeat(4, 1fr)"
+      >
+        <BoxAll
+          gridRow="1 / span 1"
+          gridColumn="1 / span 4"
+        >
+        </BoxAll>
+        <BoxAll
+          zIndex={[2]}
+          //mx={[4]}
+          border="1px solid white"
+          p={[2]}
+          gridRow="2 / span 1"
+          gridColumn="1 / span 1"
+        >
+          <GuessList/>
+        </BoxAll>
+        <BoxAll
+          zIndex={[2]}
+          mx={[4]}
+          border="1px solid white"
+          p={[2]}
+          gridRow="2 / span 1"
+          gridColumn="2 / span 2"
+        >
+          <TriviaQuestion/>
+        </BoxAll>
+        <BoxAll
+          zIndex={[2]}
+          mx={[4]}
+          border="1px solid white"
+          p={[2]}
+          gridRow="2 / span 1"
+          gridColumn="4 / span 1"
+        >
+          <Scoreboard />
+        </BoxAll>
+        <BoxAll
+          zIndex={[2]}
+          mx={[4]}
+          border="1px solid white"
+          p={[2]}
+          gridRow="3 / span 1"
+          gridColumn="2 / span 3"
+        >
+          <Winner/>
+        </BoxAll>
+      </BoxAll>
+    )
+  }
+
   if (userLoading || triviaLoading) return <div></div>;
 
   return (
-    <Box
+    <BoxAll
       m={4}
       zIndex={2}
       mt={["20%", "15%"]}
@@ -78,71 +149,9 @@ const Game = (props) => {
         modalMessage={modalMessage}
         toggleModal={toggleModal}
       />
-      {/* <BoxBorder
-        zIndex={[2]}
-        //mx={[4]}
-        border="1px solid white"
-        p={[2]}
-      > */}
-        {/* <GuessList/> */}
-        {/* <TriviaQuestion/> */}
-      {/* </BoxBorder> */}
-      <Carousel
-        type={["single", "infinite"]}
-        carouselAnimationsTransitions
-        width="90vw"
-      >
-        {/* <Box carouselItem>Hello</Box>
-        <Box carouselItem>WOrld</Box>
-        <Box carouselItem initialItem>Goodbye</Box>
-        <Box carouselItem>Cruel</Box>
-        <Box carouselItem>People</Box>
-        <Box><BoxBorder>Im on a boat</BoxBorder></Box> */}
-        <GuessList
-          width="100%"
-          height="100%"
-        />
-        <TriviaQuestion
-          width="100%"
-          height="100%"
-          transform="translateX(0em)"
-        />
-        <Scoreboard
-          width="100%"
-          height="100%"
-          transform="translateX(-100em)"
-        />
-        <Winner 
-          width="100%"
-          height="100%"
-          transform="translateX(-100em)"
-        />
-      </Carousel>
-      {/* <BoxBorder
-        zIndex={[2]}
-        mx={[4]}
-        border="1px solid white"
-        p={[2]}
-      >
-        <TriviaQuestion/>
-      </BoxBorder> */}
-      {/* <BoxBorder
-        zIndex={[2]}
-        mx={[4]}
-        border="1px solid white"
-        p={[2]}
-      >
-        <Scoreboard />
-      </BoxBorder>
-      <BoxBorder
-        zIndex={[2]}
-        mx={[4]}
-        border="1px solid white"
-        p={[2]}
-      >
-        <Winner/>
-      </BoxBorder> */}
-    </Box>
+      <PrevMonthWinners />
+      {displayGame()}
+    </BoxAll>
   )
 }
 

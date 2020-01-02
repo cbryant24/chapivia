@@ -33,18 +33,32 @@ const Winner = props => {
     ));
   }
 
-  if (triviaAnswerLoading || correctGuessesLoading ) return <Box></Box>;
-
   function convertHTMLChar(str) {
     const entities = new Entities();
     return entities.decode(str);
   }
 
+  if (triviaAnswerLoading || correctGuessesLoading ) return <Box></Box>;
+
+  if (!triviaAnswerData.triviaSolution) 
+    return (
+      <Text isA="p" textTransform="uppercase">
+        Checkback after 5pm for the correct answer
+      </Text>
+    )
+
   return (
     <Flex
       flexDirection="column"
       width="100%"
+      fontSizeModule={[2]}
     >
+    <Text
+      isA="h2"
+      textAlign="center"
+    >
+      Yesterdays Trivia Answer & Winners
+    </Text>
       <Text
         isA="p"
         textTransform="uppercase"

@@ -72,7 +72,7 @@ export const fontSizes = [0, '.5em', '1em', '1.5em', '2em'];
 export const space = [0, '.5em', '1em', '1.5em', '2em'];
 
 //width, height, min-width, max-width, min-height, max-height
-export const sizes = ['0%', '100%', '75%', '50%', '25%'];
+export const sizes = ['0%', '100%', '75%', '50%', '33%', '25%', '10%'];
 
 export const lineHeights = { "condensedUltra": 1, "condensed": 1.25, "default": 1.5 }
 

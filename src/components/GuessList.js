@@ -11,10 +11,9 @@ import { useAuth } from '../hooks';
 
 
 function GuessList(props) {
-  const [ selectedPlayer, setSelectedPlayer ] = useState(null);
-  const {loading: guessListLoading, 
-    data: guessListData }                     = useQuery(guessListQuery);
-  const { user }                              = useAuth();
+  const [ selectedPlayer, setSelectedPlayer ]             = useState(null);
+  const {loading: guessListLoading, data: guessListData } = useQuery(guessListQuery);
+  const { user }                                          = useAuth();
 
   const animationGuessNameStyle = {
     continuous: noiseAnimation(),

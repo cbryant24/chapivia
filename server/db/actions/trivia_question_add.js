@@ -10,38 +10,46 @@ let triviaFiles = {};
 let triviaRoot = 'db/data/trivia_questions/';
 let triviaQuestions = [];
 
-( async function () {
-  
-  try {
-    triviaCategories = await readDirAsync(triviaRoot);
-
-    for (const category of triviaCategories) {
-      triviaFiles[category] = await readDirAsync(`${triviaRoot}/${category}`)
-    }
-    for (triviaCategory in triviaFiles) {
-      for ( const file of triviaFiles[triviaCategory]) {
-        const { results: trivia } = JSON.parse( await readFileAsync(`${triviaRoot}/${triviaCategory}/${file}`));
-        triviaQuestions.push(...trivia);
-      }
-    }
+try {
+  ( async function () {
+    console.log('Starting db question add');
     
-    for (const trivia of triviaQuestions) {
-      let isCreated = await QuestionChoice.create({
-        correctChoice: trivia.correct_answer,
-        incorrectChoiceOne: trivia.incorrect_answers[0],
-        incorrectChoiceTwo: trivia.incorrect_answers[1],
-        incorrectChoiceThree: trivia.incorrect_answers[2],
-        question: {
-          question: trivia.question,
-          is_used: false,
-          difficulty: trivia.difficulty,
-          category: trivia.category
+    try {
+      triviaCategories = await readDirAsync(triviaRoot);
+  
+      for (const category of triviaCategories) {
+        triviaFiles[category] = await readDirAsync(`${triviaRoot}/${category}`)
+      }
+      for (triviaCategory in triviaFiles) {
+        for ( const file of triviaFiles[triviaCategory]) {
+          const { results: trivia } = JSON.parse( await readFileAsync(`${triviaRoot}/${triviaCategory}/${file}`));
+          triviaQuestions.push(...trivia);
         }
-      }, {
-        include: Question,
-      })
+      }
+      
+      for (const trivia of triviaQuestions) {
+        let isCreated = await QuestionChoice.create({
+          correctChoice: trivia.correct_answer,
+          incorrectChoiceOne: trivia.incorrect_answers[0],
+          incorrectChoiceTwo: trivia.incorrect_answers[1],
+          incorrectChoiceThree: trivia.incorrect_answers[2],
+          question: {
+            question: trivia.question,
+            is_used: false,
+            difficulty: trivia.difficulty,
+            category: trivia.category
+          }
+        }, {
+          include: Question,
+        })
+      }
+
+      console.log('done adding db questions');
+    } catch(err) {
+      console.log(err);
     }
-  } catch(err) {
-    console.log(err);
-  }
-})()
+  })()
+} catch(e) {
+  console.log('There was an error adding db questions', e);
+}
+

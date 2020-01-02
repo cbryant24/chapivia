@@ -44,8 +44,9 @@ const TriviaQuestion = (props) => {
 
   if (unguessedPlayersLoading) return <div></div>;
   
+  // debugger
   unguessedPlayersData.nonGuessedPlayers && 
-  unguessedPlayersData.nonGuessedPlayers[0].id !== null && 
+  unguessedPlayersData.nonGuessedPlayers.length > 0 &&
   unguessedPlayersData.nonGuessedPlayers.unshift({id: null, name: null});
 
   const inputs = user.role === "admin" ? 
@@ -64,8 +65,8 @@ const TriviaQuestion = (props) => {
         }
       },
       fieldStyle: { 
-        width: '75%', 
-        maxHeight: '5rem', 
+        width: '75%',
+        maxHeight: '10rem',
         justifyContent: 'space-between',
         flexDirection: 'column'
       },
@@ -100,7 +101,7 @@ const TriviaQuestion = (props) => {
       },
       fieldStyle: { 
         width: '75%', 
-        maxHeight: '5rem', 
+        maxHeight: ['10rem','5rem'], 
         justifyContent: 'space-between',
         flexDirection: 'column'
       },
@@ -144,6 +145,12 @@ const TriviaQuestion = (props) => {
       flexDirection="column"
       fontSizeModule={[3]}
     >
+    <Text
+        isA="h2"
+        textAlign="center"
+      >
+        Trivia Question
+      </Text>
       <Text
         p="0 0 2rem 0"
       >
@@ -159,8 +166,7 @@ const TriviaQuestion = (props) => {
         <FlexItem
           zIndex={[2]}
           fontSizeModule={[4]}
-          height={["35vh"]}
-          width={[1, 3]}
+          width={[1]}
         >
           <GuessForm
             form={form}

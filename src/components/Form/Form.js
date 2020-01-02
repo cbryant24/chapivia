@@ -89,7 +89,6 @@ export default function Form({ inputs, form, validate, buttons, onSubmit }) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    
     const { cb } = form.data;
     const { validation } = form.data;
     const formVals = {};
@@ -100,7 +99,8 @@ export default function Form({ inputs, form, validate, buttons, onSubmit }) {
     if (!valid)
       return validate[formName].errors.forEach( error => setFormErrors( errors => [...errors, error]));
       
-    if(formErrors) setFormErrors([]);
+    if(formErrors) 
+      setFormErrors([]);
     
     onSubmit && onSubmit(event, formVals);
     cb && cb(event, formVals);

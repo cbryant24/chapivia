@@ -96,7 +96,6 @@ return (
         toggleModal={toggleModal}
       />
       <FormApp
-        onSubmit={userSignup}
         form={form}
         inputs={inputs}
         validate={validate}

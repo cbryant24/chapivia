@@ -89,7 +89,6 @@ module.exports = (sequelize, DataTypes) => {
                                           
     const endOfMonth = month === "prevMonth" ? moment().subtract(1, "months").endOf("month").toDate() :
                           moment().endOf('month').toDate();
-                          
     //TODO: Update to pull only through association with joined table and only pull 3 for winner?
     try {
       const userCorrectGuessesScore = await this.findAll({
@@ -112,10 +111,11 @@ module.exports = (sequelize, DataTypes) => {
         const determineTopThree = () => {
           let topThreeCutoff = 3;
 
+          //DETERMINING IF THERE IS A TIE FOR 3rd PLACE AND HOW MANY
           userCorrectGuessesScore.some( (user, idx) => {
             if (idx < 2) return false;
 
-            if (user.score === userCorrectGuessesScore[idx + 1].score) return false
+            if (user.score === userCorrectGuessesScore[idx + 1].score) return false;
 
             topThreeCutoff = idx + 1;
 
@@ -124,7 +124,9 @@ module.exports = (sequelize, DataTypes) => {
           userCorrectGuessesScore.splice(topThreeCutoff);
         }
 
-        determineTopThree();
+        debugger
+        if (userCorrectGuessesScore.length > 3)
+          determineTopThree();
       }
 
       return userCorrectGuessesScore;
@@ -137,8 +139,7 @@ module.exports = (sequelize, DataTypes) => {
 
   User.todaysGuesses = async function() {
     const startOfToday = moment().startOf('day').toDate();
-    const endOfToday = moment().endOf('day').toDate();
-    debugger
+
     try {
       const todaysGuesses = await this.findAll({
         include: [{ 
@@ -190,7 +191,7 @@ module.exports = (sequelize, DataTypes) => {
     };
   }
 
-  User.prevMonthWinner = async function() {
+  User.prevMonthWinners = async function() {
     return this.scores('prevMonth');
   }
 

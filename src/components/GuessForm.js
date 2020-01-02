@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-
+import guessList from '../queries/GuessList';
 
 import mutation from '../mutations/Guess';
 import UnguessedPlayers from '../queries/UnguessedPlayers';
@@ -31,7 +31,7 @@ function GuessForm({ inputs, buttons, form, cb}) {
           questionChoiceId: parseInt(localTrivia.questionChoicesId),
           guess: localTrivia.questionChoices[vals.guess.toUpperCase().charCodeAt(0) - 65]        
         },
-        refetchQueries: [{ query: UnguessedPlayers }]
+        refetchQueries: [{ query: UnguessedPlayers }, { query: guessList}]
       });
 
       toggleModal();
