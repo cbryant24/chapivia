@@ -39,13 +39,15 @@ module.exports = (sequelize, DataTypes) => {
           where: {
             category: triviaConfig[dayOfWeek],
             difficulty: 'medium',
+            dateUsed: null
         }});
 
         if (!dailyQuestion) {
           dailyQuestion = await this.findOne({
             where: {
               category: triviaConfig[dayOfWeek],
-              difficulty: 'hard'
+              difficulty: 'hard',
+              dateUsed: null
             }
           })
         }
@@ -54,7 +56,8 @@ module.exports = (sequelize, DataTypes) => {
           dailyQuestion = await this.findOne({
             where: {
               category: triviaConfig[dayOfWeek],
-              difficulty: 'easy'
+              difficulty: 'easy',
+              dateUsed: null
             }
           })
         }

@@ -121,7 +121,6 @@ const Carousel = ({
         isA="li"
         gridRow="1 / span 1"
         gridColumn="1 / span 1"
-        border={`2px solid ${index === activeIndex ? 'red' : 'white'}`}
         width="100%"
         height="100%"
         transition={transition}

@@ -213,7 +213,8 @@ function GuessList(props) {
   }
 
   return (
-    < Flex         
+    <BoxAll
+      display="flex"
       flexDirection="column"
       minWidth="50%"
       height="auto"
@@ -221,6 +222,7 @@ function GuessList(props) {
     >
       <Text
         isA="h2"
+        m="auto"
         textAlign="center"
         h2FontSize={[1]}
       >
@@ -229,7 +231,7 @@ function GuessList(props) {
       <FlexItem>
         {dispalayGuesses()}
       </FlexItem>
-    </Flex>
+    </BoxAll>
   );
 }
 

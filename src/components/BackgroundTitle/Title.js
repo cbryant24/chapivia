@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
-import { Flex, FlexItem, Text, ExtendedText, TextAnimated, BoxAnimated, ExtendedBox, FadeAnimations } from '../element';
+import { BoxAll, Flex, FlexItem, Text, ExtendedText, TextAnimated, BoxAnimated, ExtendedBox, FadeAnimations } from '../element';
 import { textGlitch, randomSquareGlitch } from '../style/animations';
 import { css, keyframes } from 'styled-components';
 import { withRouter } from 'react-router-dom'
@@ -47,8 +47,9 @@ function Title(props) {
   if (userLoading) return <Flex></Flex>;
 
   return (
-    <Flex
+    <BoxAll
       id="title"
+      display="flex"
       justifyContent="center"
       position="relative"
       width="100%"
@@ -119,7 +120,7 @@ function Title(props) {
           </Text>
         </FlexItem> : ''
       }
-    </Flex>
+    </BoxAll>
   );
 }
 

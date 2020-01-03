@@ -6,6 +6,7 @@ import { useWindowSize } from '../hooks';
 
 //TODO: ADD Logic to use width values other than percentage
 //TODO: ADD Logic to use parts of the size value i.e. width={[4,5]} currently doesn't work
+//TODO: ADD Logic to determine contionus duration
 function Marquee({ theme, children, ...props }) {
   const { width: windowWidth } = useWindowSize();
   // debugger
@@ -30,7 +31,7 @@ function Marquee({ theme, children, ...props }) {
         right: `-${(widthInt + 100)}%`,
         animation: {
           continuous: marqueeAnimation,
-          duration_continuous: windowWidth > 1000 ? 20 : windowWidth > 700 ? 8 : windowWidth > 500 ? 6 : 4,
+          duration_continuous: windowWidth > 1000 ? 26 : windowWidth > 700 ? 22 : windowWidth > 500 ? 19 : 16,
           delay_in: index * 4,
           animation_fill_mode: 'forwards',
         }

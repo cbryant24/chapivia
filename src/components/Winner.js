@@ -6,7 +6,7 @@ import { AllHtmlEntities as Entities } from 'html-entities';
 import CorrectGuessesQuery from '../queries/CorrectGuesses';
 import TriviaAnswer from '../queries/TriviaAnswer';
 
-import { Box, Text, Flex, FlexItem, BoxAnimated } from './element';
+import { Box, BoxAll, Text, Flex, FlexItem, BoxAnimated } from './element';
 import * as Elements from './element';
 
 
@@ -48,39 +48,40 @@ const Winner = props => {
     )
 
   return (
-    <Flex
+    <BoxAll
+      display="flex"
       flexDirection="column"
       width="100%"
       fontSizeModule={[2]}
     >
-    <Text
-      isA="h2"
-      textAlign="center"
-    >
-      Yesterdays Trivia Answer & Winners
-    </Text>
       <Text
-        isA="p"
-        textTransform="uppercase"
+        isA="h2"
+        textAlign="center"
       >
-        {new Date().getHours() >= 17 ? "Trivia" : "Yesterdays Trivia"}:&nbsp;
-        {convertHTMLChar(triviaAnswerData.triviaSolution.question.question)}!
+        Yesterdays Trivia Answer & Winners
       </Text>
-      <Text
-        isA="p"
-        textTransform="uppercase"
-      >
-        {new Date().getHours() >= 17 ? "Answer" : "Yesterdays Answer"}:&nbsp;
-        {convertHTMLChar(triviaAnswerData.triviaSolution.correctChoice)}!
-      </Text>
-      <Text
-        isA="p"
-        textTransform="uppercase"
-      >
-        {new Date().getHours() >= 17 ? "Correct Guesses" : "Yesterdays Correct Guesses"}:&nbsp;
-      </Text>
-      {displayWinners()}
-    </Flex>
+        <Text
+          isA="p"
+          textTransform="uppercase"
+        >
+          {new Date().getHours() >= 17 ? "Trivia" : "Yesterdays Trivia"}:&nbsp;
+          {convertHTMLChar(triviaAnswerData.triviaSolution.question.question)}!
+        </Text>
+        <Text
+          isA="p"
+          textTransform="uppercase"
+        >
+          {new Date().getHours() >= 17 ? "Answer" : "Yesterdays Answer"}:&nbsp;
+          {convertHTMLChar(triviaAnswerData.triviaSolution.correctChoice)}!
+        </Text>
+        <Text
+          isA="p"
+          textTransform="uppercase"
+        >
+          {new Date().getHours() >= 17 ? "Correct Guesses" : "Yesterdays Correct Guesses"}:&nbsp;
+        </Text>
+        {displayWinners()}
+      </BoxAll>
   );
 }
 

@@ -84,7 +84,7 @@ const Game = (props) => {
     return (
       <BoxAll
         display="grid"
-        gridTemplateRows="repeat(3, auto-fit)"
+        gridTemplateRows="repeat(3, auto)"
         gridTemplateColumns="repeat(4, 1fr)"
       >
         <BoxAll
@@ -142,6 +142,7 @@ const Game = (props) => {
     <BoxAll
       m={4}
       zIndex={2}
+      width="100%"
       mt={["20%", "15%"]}
     >
       <Modal

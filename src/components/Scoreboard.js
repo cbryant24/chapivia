@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 
 import query from '../queries/Scores';
 
-import { Box, Flex, Text } from './element';
+import { Box, BoxAll, Flex, Text } from './element';
 
 const Scoreboard = props => {
   const { loading, data } = useQuery(query);
@@ -13,7 +13,8 @@ const Scoreboard = props => {
 
     return (
       data.scores ? data.scores.map( player => (
-        <Flex
+        <BoxAll
+          display="flex"
           fontSize="1.6rem"
           textAlign="center"
           justifyContent="space-between"
@@ -34,7 +35,7 @@ const Scoreboard = props => {
             >
               {player.score}
             </Text>
-        </Flex> 
+        </BoxAll> 
       )) : <Flex></Flex>
     );
   }
@@ -42,7 +43,8 @@ const Scoreboard = props => {
   if (loading) return <Box></Box>;
 
   return (
-    < Flex 
+    <BoxAll
+      display="flex"
       flexDirection="column"
       fontSizeModule={[1]}
     >
@@ -54,7 +56,7 @@ const Scoreboard = props => {
         Player Scores
       </Text>
       {displayPlayerScores()}
-    </ Flex>
+    </ BoxAll>
   );
   
 }
