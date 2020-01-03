@@ -66,7 +66,7 @@ const TriviaQuestion = (props) => {
       },
       fieldStyle: { 
         width: '75%',
-        maxHeight: '10rem',
+        maxHeight: '11rem',
         justifyContent: 'space-between',
         flexDirection: 'column'
       },
@@ -101,7 +101,7 @@ const TriviaQuestion = (props) => {
       },
       fieldStyle: { 
         width: '75%', 
-        maxHeight: ['10rem','5rem'], 
+        maxHeight: '11rem', 
         justifyContent: 'space-between',
         flexDirection: 'column'
       },
