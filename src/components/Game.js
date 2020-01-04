@@ -16,6 +16,8 @@ import Carousel from './Carousel';
 
 import { useAuth, useWindowSize } from '../hooks';
 
+import LedMarquee from './LedMarquee';
+
 const Game = (props) => {
   const { loading: triviaLoading, data: triviaData }  = useQuery(triviaQuery);
   const [isOpen, setIsOpen]                           = useState(false);
@@ -150,7 +152,8 @@ const Game = (props) => {
         modalMessage={modalMessage}
         toggleModal={toggleModal}
       />
-      <PrevMonthWinners />
+      <LedMarquee/>
+      {/* <PrevMonthWinners /> */}
       {displayGame()}
     </BoxAll>
   )
