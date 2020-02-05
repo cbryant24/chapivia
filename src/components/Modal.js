@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, BoxAll, BounceAnimations, FlexItem, Text } from './element';
+import { Modal, BounceAnimations, Div, P } from '@cbryant24/styled-react';
 
 export default ({isOpen, toggleModal, modalMessage}) => {
   return (
@@ -9,7 +9,7 @@ export default ({isOpen, toggleModal, modalMessage}) => {
         onBackgroundClick={toggleModal}
         onEscapeKeydown={toggleModal}
     >
-      <BoxAll
+      <Div
         pseudo
         display="flex"
         fontSizeModule={[3]}
@@ -27,15 +27,15 @@ export default ({isOpen, toggleModal, modalMessage}) => {
           animation_fill_mode: 'both'
         }}
       >
-        <Text
+        <P
           isA="h3"
           fontSize={[3,4]}
           textAlign="center"
           my={[3]}
         >
           {modalMessage}
-        </Text>
-        <FlexItem
+        </P>
+        <Div
           isA="button"
           themeStyle="squareButton"
           width="5em"
@@ -45,8 +45,8 @@ export default ({isOpen, toggleModal, modalMessage}) => {
           onClick={toggleModal}
         >
           Close
-        </FlexItem>
-      </BoxAll>
+        </Div>
+      </Div>
     </Modal>
   )
 }

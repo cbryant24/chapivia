@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { BoxAll, keyframes } from './element';
+import { BoxAll, keyframes } from '@cbryant24/styled-react';
 import { determineBreakPoint } from '../components/helpers';
 import { useWindowSize } from '../hooks';
 

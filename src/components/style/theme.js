@@ -1,39 +1,18 @@
-import { css } from 'styled-components';
-import palx from 'palx';
 import { get, includes, omit, range } from 'lodash';
+import * as spaceSettings from './space';
+import * as formInputs from './forms_inputs';
+import * as buttons from './buttons';
 
-const red = '#e42d42'
-const blue = '#2d9ce4'
-const white = '#ffffff'
-export const palette = palx(blue)
+const red = '#e42d42';
+const white = '#ffffff';
+const black = '#000000';
 
-export const grays = {
-  black: palette.black,
-  slate: palette.gray[8],
-  silver: palette.gray[7],
-  smoke: palette.gray[2],
-  snow: palette.gray[0],
-  white: '#ffffff'
-}
-
-export const brand = {
-  primary: 'rgba(27, 212, 89, 0.88)',
-  accent: palette.indigo[4],
-  success: palette.teal[5],
-  info: palette.blue[5],
-  warning: palette.orange[5],
-  error: palette.red[7],
-  muted: grays.silver
-}
 
 export const colors = {
-  ...brand,
-  ...grays,
-  ...palette,
-  red
+  red,
+  black,
+  white
 }
-
-export const cx = key => get(colors, key, key);
 
 const createMediaQuery = n => `@media screen and (min-width:${n}px)`;
 
@@ -80,10 +59,7 @@ export const lineHeights = { "condensedUltra": 1, "condensed": 1.25, "default": 
 //of modular design with font-size rem for global design and font-size em for local design
 //see https://css-tricks.com/rem-global-em-local/ for explanation `fontSizesModule` is a 
 //custom system-styled property that can be used with the scale for parent module font-size design
-export const fontSizesModule = [0, '1.2rem', '1.6rem', '2rem', '2.4rem'];
-
-//Heading font-size can be used for responsive scale using h1FontSizes
-export const h2FontSizes = [0, '3em', '3.5em', '4em'];
+export const fontSizesModule = [0, '.5rem', '1rem', '1.5rem', '2rem'];
 
 export const light = 300;
 export const regular = 400;
@@ -93,8 +69,8 @@ export const extraBold = 700;
 // styled-system's `fontWeight` function can hook into the `fontWeights` object
 export const fontWeights = { light, regular, bold, extraBold };
 
-export const scaleFactor = 17 / 16;
-export const transition = '0.125s ease-out';
+// default transition
+export const transition = 'all 0.125s ease-out';
 
 // styled-system’s `borderRadius` function can hook into the `radii` object/array
 export const pill = '9999px';
@@ -116,120 +92,36 @@ export const zIndices = [0, 1, 5, 10];
 
 export const buttonPadding = [0, '.5em', '1em']
 
-export const hexa = (color, alpha) => {
-  const hex = cx(color);
-  if (!includes(hex, '#')) return shadowColor
-  const r = parseInt(hex.slice(1, 3), 16),
-    g = parseInt(hex.slice(3, 5), 16),
-    b = parseInt(hex.slice(5, 7), 16)
+// export const hexa = (color, alpha) => {
+//   const hex = cx(color);
+//   if (!includes(hex, '#')) return shadowColor
+//   const r = parseInt(hex.slice(1, 3), 16),
+//     g = parseInt(hex.slice(3, 5), 16),
+//     b = parseInt(hex.slice(5, 7), 16)
 
-  if (alpha >= 0) {
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`
-  } else {
-    return `rgb(${r}, ${g}, ${b})`
-  }
-}
+//   if (alpha >= 0) {
+//     return `rgba(${r}, ${g}, ${b}, ${alpha})`
+//   } else {
+//     return `rgb(${r}, ${g}, ${b})`
+//   }
+// }
 
-export const windowBorderStyle = css`
-  border-radius: 2rem;
-  border: 1rem solid;
-  border-bottom-color: #121212;
-  border-left-color: #080808;
-  border-right-color: #080808;
-  border-top-color: #020202;
-`
-const button = {
-  fordwardedAs: "button",
-  display: "inline-block",
-  verticalAlign: 'middle',
-  textAlign: 'middle',
-  fontFamily: 'inherit',
-  appearance: 'none',
-  cursor: 'pointer',
-}
-//THEME WILL BE PROVIDED TO FORM APP 
-export const squareButton = {
-  pseudo: true,
-  display: "inline-block",
-  verticalAlign: "middle",
-  textAlign: "center",
-  fontSize: [1],
-  minWidth: "20%",
-  fontFamily: "inherit",
-  fontWeight: "extraBold",
-  lineHeight: "condensed",
-  appearance: "none",
-  cursor: "pointer",
-  color: "white",
-  boxShadow: "none",
-  backgroundColor: "transparent",
-  textDecoration: "none",
-  transition: "box-shadow 0.125s ease-out 0s",
-  borderWidth: "2px",
-  borderStyle: "solid",
-  borderColor: "currentcolor",
-  px: [2],
-  py: [1],
-}
-
-const inputNormal = {
-  pseudo: true,
-  appearance: 'none',
-  display: 'block',
-  verticalAlign: 'middle',
-  width: [2],
-  height: ['35%'],
-  color: 'white',
-  lineHeight: 'inherit',
-  letterSpacing: 'inherit',
-  fontFamily: 'inherit',
-  backgroundColor: 'transparent',
-  borderRadius: '5px',
-  borderWidth: '1px',
-  borderStyle: 'solid',
-  borderColor: 'rgb(221, 225, 228)',
-  transition: 'box-shadow 0.125s ease-out 0s',
-  minHeight: '1.5em',
-  mt: [1],
-  focusWithin: {
-    boxShadow: '0px 0px 8px green'
-  }
-};
-
-const inputSmall = {
-  ...inputNormal,
-  width: [1]
-};
 
 const theme = {
+  ...spaceSettings,
+  ...formInputs,
+  ...buttons,
   breakpoints,
   mediaQueries,
-  mono,
   font,
+  mono,
   fontSizes,
-  h2FontSizes,
+  fontSizesModule,
   fontWeights,
-  regular,
-  bold,
-  colors,
-  radii,
-  radius,
-  pill,
-  scaleFactor,
   transition,
   boxShadows,
-  shadowColor,
-  cx,
-  hexa,
-  windowBorderStyle,
-  sizes,
-  space,
-  fontSizesModule,
-  lineHeights,
-  squareButton,
-  button,
-  inputNormal,
-  inputSmall
+  zIndices,
+  sizes
 }
 
 export default theme;

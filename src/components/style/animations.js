@@ -1,4 +1,4 @@
-import { keyframes } from '../element';
+import { keyframes } from '@cbryant24/styled-react';
 import { css } from 'styled-components';
 
 Math.Ran = function(max){
@@ -151,3 +151,12 @@ export const animationKeys = keyframes`
 
 // const animationRule = css`${animation} 1s infinite alternate`
 export const animationRule = css`${animationKeys}`
+
+export const infiniteBackground = () => {
+// debugger
+  return keyframes`
+    from { background-position: 0 0; }
+    to { background-position: 0 -10000px; }
+
+  `;
+}

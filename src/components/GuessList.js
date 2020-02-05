@@ -4,7 +4,7 @@ import theme from './style/theme';
 
 import GuessForm from './GuessForm';
 import guessListQuery from '../queries/GuessList';
-import { Text, TextAnimatedPseudo, Flex, FlexItem, Box, BoxAll } from './element';
+import { Text, TextAnimatedPseudo, Flex, FlexItem, Box, BoxAll } from '@cbryant24/styled-react';
 import { noiseAnimation } from './style/animations';
 
 import { useAuth } from '../hooks';

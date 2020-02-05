@@ -5,7 +5,7 @@ import { useLastLocation } from 'react-router-last-location';
 import triviaQuery from '../queries/Trivia';
 
 import Modal from './Modal';
-import { BoxAll, BoxBorder } from './element';
+import { Div } from '@cbryant24/styled-react';
 
 import Winner from './Winner';
 import GuessList from './GuessList';
@@ -63,83 +63,47 @@ const Game = (props) => {
 
   function displayGame() {
 
-    if (windowWidth < 768) {
-      return (
-      <Carousel
-        type={["single", "infinite"]}
-        width="90vw"
-        transition="all 1s"
-        initialCarouselItemPos="translateX(0em)"
-        initialCarouselItemPosOut="translateX(100em)"
-        afterCarouselItemPosOut="translateX(-100em)"
-      >
-        <TriviaQuestion />
-        <GuessList />
-        <Scoreboard />
-        <Winner />
-      </Carousel>
-      )
-    }
+    // if (windowWidth < 768) {
+    //   return (
+    //   <Carousel
+    //     type={["single", "infinite"]}
+    //     width="90vw"
+    //     transition="all 1s"
+    //     initialCarouselItemPos="translateX(0em)"
+    //     initialCarouselItemPosOut="translateX(100em)"
+    //     afterCarouselItemPosOut="translateX(-100em)"
+    //   >
+    //     {/* <TriviaQuestion /> */}
+    //     {/* <GuessList /> */}
+    //     <Scoreboard />
+    //     {/* <Winner /> */}
+    //   </Carousel>
+    //   )
+    // }
 
     return (
-      <BoxAll
-        display="grid"
-        gridTemplateRows="repeat(3, auto)"
-        gridTemplateColumns="repeat(4, 1fr)"
+      <Div
       >
-        <BoxAll
-          gridRow="1 / span 1"
-          gridColumn="1 / span 4"
-        >
-        </BoxAll>
-        <BoxAll
-          zIndex={[2]}
-          //mx={[4]}
-          border="1px solid white"
-          p={[2]}
-          gridRow="2 / span 1"
-          gridColumn="1 / span 1"
-        >
+        {/* <Div>
           <GuessList/>
-        </BoxAll>
-        <BoxAll
-          zIndex={[2]}
-          mx={[4]}
-          border="1px solid white"
-          p={[2]}
-          gridRow="2 / span 1"
-          gridColumn="2 / span 2"
-        >
+        </Div>
+        <Div>
           <TriviaQuestion/>
-        </BoxAll>
-        <BoxAll
-          zIndex={[2]}
-          mx={[4]}
-          border="1px solid white"
-          p={[2]}
-          gridRow="2 / span 1"
-          gridColumn="4 / span 1"
-        >
+        </Div>
+        <Div>
           <Scoreboard />
-        </BoxAll>
-        <BoxAll
-          zIndex={[2]}
-          mx={[4]}
-          border="1px solid white"
-          p={[2]}
-          gridRow="3 / span 1"
-          gridColumn="2 / span 3"
-        >
+        </Div>
+        <Div>
           <Winner/>
-        </BoxAll>
-      </BoxAll>
+        </Div> */}
+      </Div>
     )
   }
 
   if (userLoading || triviaLoading) return <div></div>;
 
   return (
-    <BoxAll
+    <Div
       m={4}
       zIndex={2}
       width="100%"
@@ -150,9 +114,8 @@ const Game = (props) => {
         modalMessage={modalMessage}
         toggleModal={toggleModal}
       />
-      <PrevMonthWinners />
       {displayGame()}
-    </BoxAll>
+    </Div>
   )
 }
 

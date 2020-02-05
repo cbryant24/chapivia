@@ -6,8 +6,7 @@ import signinFormSchema from '../../schemas/signinForm';
 import guessFormSchema from '../../schemas/guessForm';
 
 const ajv = new Ajv({ allErrors: true, verbose: true, jsonPointers: true, $data: true, useDefaults: true });
-ajv_errors(ajv);
-ajv.addSchema(patternSchema, 'patterns.json')
+ajv.addSchema(patternSchema, 'patterns.json');
 const signupForm  = ajv.compile(signupFormSchema),
       signinForm  = ajv.compile(signinFormSchema),
       guessForm   = ajv.compile(guessFormSchema);

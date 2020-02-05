@@ -1,8 +1,7 @@
 import React from 'react';
-import { Box, Flex } from './element';
-import BackgroundTitle from './BackgroundTitle';
-import theme from './style/theme';
-
+import { FlexDiv } from '@cbryant24/styled-react';
+import Background from './Background';
+import TopMenu from './TopMenu';
 // import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks';
 
 
@@ -10,13 +9,14 @@ import theme from './style/theme';
 export default ({ children }) => {
 
   return (
-          <Flex
+          <FlexDiv
             minHeight="100vh"
             flexDirection="column"
-            justifyContent="center"
+            alignItems="center"
           >
-            <BackgroundTitle/>
+            <Background />
+            <TopMenu />
             {children}
-          </Flex>
+          </FlexDiv>
   );
 }

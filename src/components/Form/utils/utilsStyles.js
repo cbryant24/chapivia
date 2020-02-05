@@ -1,1 +1,0 @@
-export const styleBuildRemove = styles => typeof styles === 'string' ? { themeStyle: styles } : { ...styles };

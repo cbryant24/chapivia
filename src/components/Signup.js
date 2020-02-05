@@ -3,10 +3,10 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import theme from './style/theme';
 
-import { FlexItem, BoxAll, BounceAnimations, Text } from './element';
+import { FlexItem, BoxAll, BounceAnimations, Text } from '@cbryant24/styled-react';
 import mutation from '../mutations/Signup';
 import query from '../queries/CurrentUser';
-import FormApp from './Form/App';
+import FormApp from '@cbryant24/styled-react-form';
 import { validate } from './helpers/validators';
 import Modal from './Modal';
 import { usePrev, useAuth } from '../hooks';

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, createRef } from 'react';
-import { Flex, BoxAnimated, SlideAnimations, BoxAll, ULFLEX } from './element';
+import { Flex, BoxAnimated, SlideAnimations, BoxAll, ULFLEX } from '@cbryant24/styled-react';
 import { usePrev } from '../hooks';
 import { useSwipeable } from 'react-swipeable';
 
@@ -19,7 +19,7 @@ const Carousel = ({
 }) => {
   const [ activeIndex, setActiveIndex ] = useState(0);
   const prevActiveIndex                 = usePrev(activeIndex);
-  const carouselElRef                   = children.map( () => useRef(null));
+  const carouselElRef                   = children.length ? children.map( () => useRef(null)) : '';
   const handlers                        = useSwipeable({ 
     onSwipedLeft: () => goToPrevSlide(),
     onSwipedRight: () => goToNextSlide(),
@@ -131,6 +131,15 @@ const Carousel = ({
     );
   }
 
+  if (!children.length) 
+    return (
+      <BoxAll
+        width={[1]}
+        height={[1]}
+      >
+        {children}
+      </BoxAll>
+    )
   return (
       <div {...handlers}>
         <BoxAll
@@ -139,7 +148,6 @@ const Carousel = ({
           flexWrap="wrap"
           width="90vw"
           overflow="hidden"
-          //{...handlers}
           {...carouselAnimationsTransitions.transition}
         >
           <BoxAll
@@ -149,23 +157,10 @@ const Carousel = ({
             gridTemplateRows="100%"
             gridColumnRows="100%"
             position="relative"
-            //height="50vh"
             width="100%"
-            //width={[1]}
           >
             { children.map( (item, idx) => (carouselSlide(idx))) }
           </BoxAll>
-          {/* <BoxAll
-            isA="ul"
-            display="flex"
-          >
-            { children.map( (item, idx) => (carouselIndicator(idx))) }
-          </BoxAll> */}
-          {/* <BoxAll
-            onClick={ e => goToNextSlide(e) }
-          >
-            Right Arrow
-          </BoxAll> */}
         </BoxAll>
       </div>
   );

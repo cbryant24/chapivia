@@ -10,7 +10,7 @@ import UnguessedPlayers from '../queries/UnguessedPlayers';
 import { useAuth } from '../hooks';
 
 import GuessForm from './GuessForm';
-import { Box, GridItem, Text, FlexItem } from './element';
+import { Box, GridItem, Text, FlexItem } from '@cbryant24/styled-react';
 
 const TriviaQuestion = (props) => {
   const { data: { localTrivia } }     = useQuery(DAILY_TRIVIA);
@@ -122,7 +122,7 @@ const TriviaQuestion = (props) => {
   ] : null;
 
   const form = {
-    data: { name: 'guessForm', submit: 'signup' },
+    data: { name: 'guessForm' },
     style: {
       display: 'flex',
       height: '100%',

@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { GlobalStyle } from './components/style';
-import { ThemeProvider } from './components/element';
+import { ThemeProvider } from '@cbryant24/styled-react';
 import theme from './components/style/theme';
 
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
-import { ModalProvider } from './components/element';
+import { ModalProvider } from '@cbryant24/styled-react';
 
 import Signin from './components/Signin';
 import Signup from './components/Signup';
@@ -38,7 +38,6 @@ const client = new ApolloClient({
   },
   uri: '/graphql',
 });
-
 
 ReactDOM.render(
   <ApolloProvider client={ client } >

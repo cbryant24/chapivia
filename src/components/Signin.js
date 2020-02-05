@@ -1,32 +1,33 @@
 import React, { useState, useEffect } from 'react';
 
-import FormApp from './Form/App';
-import { validate } from './helpers/validators';
-
-import { BoxAll } from './element';
+import Form from '@cbryant24/styled-react-form';
+import { signinValidation } from './validations';
+import { Div, Field, H1 } from '@cbryant24/styled-react';
 import theme from './style/theme';
 
 import Modal from './Modal';
 
-import { useAuth } from '../hooks';
+import { useAuth, useAsync } from '../hooks';
 
 
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
-  const [isOpen, setIsOpen]             = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
-  const { signin, user, userLoading }                = useAuth();
+  const [isOpen, setIsOpen]       = useState(false),
+  [modalMessage, setModalMessage] = useState(''),
+  { signin, user, userLoading }   = useAuth();
+  const { execute, pending, value, error } = useAsync(signin, false);
+
+
 
   async function userSignin(event, formVals) {
     try {
       signin(formVals)
     } catch(res) {
-      console.log(`this is the error message ${res}`);
+      console.log(`the error message usersignin ${res}`);
       toggleModal();
       setModalMessage('Error Logging In');
       //TODO: ADD modal on login fail
     }
-    
   }
 
   useEffect( () => {
@@ -39,62 +40,55 @@ function Signin(props) {
   const inputs = [
     {
       data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
-      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
-      inputStyle: 'inputNormal'
+      fieldStyle: 'field',
+      inputStyle: { themeStyle: 'inputMain' }
     },
     {
       data: { type: 'password', name: 'password', label: 'password', placeholder: 'enter password', required: true },
       fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
-      inputStyle: 'inputNormal'
+      inputStyle: { themeStyle: 'inputMain' }
     }
-  ]
+  ];
 
   const buttons = [
-    { text: 'Submit', type: 'submit', cb: null, style: {...theme.squareButton, mr: [3]} },
-    { text: 'Cancel', type: 'cancel', cb: null, style: 'squareButton' }
-  ]
+    { text: 'Submit', type: 'submit', cb: null, style: {...theme.squareButton, mr: [3] }},
+    { text: 'Cancel', type: 'cancel', cb: null, style: {themeStyle: 'squareButton' } }
+  ];
 
   const form = {
-    data: { name: 'signinForm', submit: 'signup', cb: userSignin },
-    style: {
-      display: 'flex',
-      height: '100%',
-      justifyContent: 'space-evenly', 
-      flexDirection: 'column', 
-      backgroundColor: 'black',
-      border: '1px solid black',
-      width: [1],
-      px: [4],
-      zIndex: 20
-    },
+    data: { name: 'signinForm', submit: 'signup' },
+    style: { themeStyle: 'authForm' }
   }
 
+  // TODO: Add loading image here
   if (userLoading) return <div></div>;
 
   return (
-    <BoxAll
-      id="signin-box-module" 
-      fontSizeModule={[4]}
-      width={[2]}
-      height={['75vh']}
-      margin='auto'
-      mt={["25%", "20%", "15%", "10%"]}
-      maxWidth={["75vw", "50vw", "40vw"]}
-      zIndex={[1]}
+    <Div
+      id="signin-box-module"
+      width={[1]}      
     >
       <Modal
         isOpen={isOpen}
         modalMessage={modalMessage}
         toggleModal={toggleModal}
       />
-      <FormApp
-        onSubmit={userSignin}
-        form={form}
-        inputs={inputs}
-        validate={validate}
-        buttons={buttons}
-      />
-    </BoxAll>
+      <H1>Galaga</H1>
+      <Div
+        //display="none"
+      >
+        <Form
+          onSubmit={userSignin}
+          form={form}
+          inputs={inputs}
+          validate={signinValidation}
+          buttons={buttons}
+        />
+      </Div>
+      {/* <Field
+        fieldStyle={{themeStyle: 'field'}}
+      /> */}
+    </Div>
   );
 }
 

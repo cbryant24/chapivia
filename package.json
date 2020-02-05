@@ -6,6 +6,8 @@
   "dependencies": {
     "@apollo/react-hoc": "^3.0.1",
     "@apollo/react-hooks": "^3.1.3",
+    "@cbryant24/styled-react": "0.0.3",
+    "@cbryant24/styled-react-form": "0.0.2",
     "@styled-system/css": "^5.0.23",
     "@styled-system/theme-get": "^5.1.1",
     "@types/styled-system": "^5.0.1",
@@ -30,7 +32,7 @@
     "react-scripts": "2.1.8",
     "react-swipeable": "^5.5.0",
     "socket.io-client": "^2.1.1",
-    "styled-components": "^5.0.0-beta.5",
+    "styled-components": "^5.0.0",
     "styled-system": "^5.0.12",
     "yarn": "^1.16.0"
   },

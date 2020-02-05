@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '../element';
+import { Box } from '@cbryant24/styled-react';
 
 export const ModalBackground = (
   <Box 
