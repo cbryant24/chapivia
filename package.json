@@ -6,8 +6,8 @@
   "dependencies": {
     "@apollo/react-hoc": "^3.0.1",
     "@apollo/react-hooks": "^3.1.3",
-    "@cbryant24/styled-react": "0.0.3",
-    "@cbryant24/styled-react-form": "0.0.2",
+    "@cbryant24/styled-react": "0.0.4",
+    "@cbryant24/styled-react-form": "0.0.4",
     "@styled-system/css": "^5.0.23",
     "@styled-system/theme-get": "^5.1.1",
     "@types/styled-system": "^5.0.1",
