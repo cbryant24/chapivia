@@ -2,16 +2,19 @@ import { get, includes, omit, range } from 'lodash';
 import * as spaceSettings from './space';
 import * as formInputs from './forms_inputs';
 import * as buttons from './buttons';
+import * as flex from './flex';
 
 const red = '#e42d42';
 const white = '#ffffff';
 const black = '#000000';
-
-
+const primary = red;
+const secondary = '#4F4FEB'
 export const colors = {
   red,
   black,
-  white
+  white,
+  primary,
+  secondary
 }
 
 const createMediaQuery = n => `@media screen and (min-width:${n}px)`;
@@ -111,6 +114,7 @@ const theme = {
   ...spaceSettings,
   ...formInputs,
   ...buttons,
+  ...flex,
   breakpoints,
   mediaQueries,
   font,
@@ -121,7 +125,8 @@ const theme = {
   transition,
   boxShadows,
   zIndices,
-  sizes
+  sizes,
+  colors
 }
 
 export default theme;

@@ -36,6 +36,30 @@ export const marginLargeY = {
   my: ['3em', '4em']
 }
 
+export const marginTopSmall = {
+  mt: ['.5em', '1em']
+}
+
+export const marginTopMedium = {
+  mt: ['1em', '2em']
+}
+
+export const marginTopLarge = {
+  mt: ['3em', '4em']
+}
+
+export const marginBottomSmall = {
+  mb: ['.5em', '1em']
+}
+
+export const marginBottomMedium = {
+  mb: ['1em', '2em']
+}
+
+export const marginBottomLarge = {
+  mb: ['3em', '4em']
+}
+
 //////// PADDING DEFINITIONS
 
 export const paddingSmall = {

@@ -1,14 +1,8 @@
 export const authForm = {
   display: 'flex',
-  height: [1],
-  justifyContent: 'space-evenly', 
-  flexDirection: 'column', 
-  backgroundColor: 'black',
+  height: ['33rem'],
   border: '1px solid white',
-  width: [2],
-  px: [4],
-  zIndex: [1],
-  themeStyle: ['flexSpaceEvenlyColumn']
+  p: [4]
 }
 
 export const inputMain = {

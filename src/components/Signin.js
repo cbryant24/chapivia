@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import Form from '@cbryant24/styled-react-form';
 import { signinValidation } from './validations';
-import { Div, Field, H1 } from '@cbryant24/styled-react';
+import { Div, H1, H3, P } from '@cbryant24/styled-react';
 import theme from './style/theme';
 
 import Modal from './Modal';
 
-import { useAuth, useAsync } from '../hooks';
+import { useAuth, useEventListener } from '../hooks';
 
 
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
   const [isOpen, setIsOpen]       = useState(false),
+  [signinOpen, setSigninOpen]     = useState(false),
   [modalMessage, setModalMessage] = useState(''),
   { signin, user, userLoading }   = useAuth();
-  const { execute, pending, value, error } = useAsync(signin, false);
-
-
 
   async function userSignin(event, formVals) {
     try {
@@ -36,6 +34,14 @@ function Signin(props) {
   }, [user]);
 
   const toggleModal = e => setIsOpen(!isOpen);
+
+  const handler = useCallback(
+    ({ key }) => {
+      if (key === "Enter" || key === " ") setSigninOpen(true);
+    }, [setSigninOpen]
+  );
+
+  useEventListener('keydown', handler);
 
   const inputs = [
     {
@@ -57,7 +63,7 @@ function Signin(props) {
 
   const form = {
     data: { name: 'signinForm', submit: 'signup' },
-    style: { themeStyle: 'authForm' }
+    style: { themeStyle: ['authForm', 'flexSpaceBetweenColumn', 'marginBottomMedium'] }
   }
 
   // TODO: Add loading image here
@@ -66,16 +72,26 @@ function Signin(props) {
   return (
     <Div
       id="signinboxmodule"
-      width={[1]}      
+      width={[1]}
+      themeStyle={['flexCenterSpaceEvenlyColumn', 'marginTopLarge']}   
     >
       <Modal
         isOpen={isOpen}
         modalMessage={modalMessage}
         toggleModal={toggleModal}
       />
-      <H1>Galaga</H1>
+      <H1
+        themeStyle={['marginMediumY']}
+        color="secondary"
+      >Chapivia</H1>
+      <H3 
+        display={ signinOpen ? "none" : "block" }
+        textTransform="uppercase"
+        themeStyle={['marginLargeY']}
+        onClick={ () => setSigninOpen(true)}
+      >Press Start To Play</H3>
       <Div
-        //display="none"
+        display={ signinOpen ? "block" : "none" }
       >
         <Form
           onSubmit={userSignin}
@@ -85,9 +101,10 @@ function Signin(props) {
           buttons={buttons}
         />
       </Div>
-      {/* <Field
-        fieldStyle={{themeStyle: 'field'}}
-      /> */}
+      <Div textTransform="uppercase">
+        <P>&copy; 2019 Chapivia LTD.</P>
+        <P>All Rights Reserver</P>
+      </Div>
     </Div>
   );
 }

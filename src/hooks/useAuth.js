@@ -7,6 +7,8 @@ import graphqlSignin from '../mutations/Login';
 import graphqlSignup from '../mutations/Signup';
 import graphqlSignout from '../mutations/Logout';
 
+// see usage below
+// hook from https://usehooks.com/useAuth/
 
 const authContext = createContext();
 
