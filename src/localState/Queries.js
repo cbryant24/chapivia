@@ -7,6 +7,7 @@ export const DAILY_TRIVIA = gql`
       question
       questionChoicesId
       questionChoices
+      category
     }
   }
 `

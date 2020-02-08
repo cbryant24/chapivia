@@ -160,3 +160,10 @@ export const infiniteBackground = () => {
 
   `;
 }
+
+export const flashingText = () => {
+  return keyframes`
+    from { opacity: 0; }
+    to { opacity: 1 }
+  `;
+}

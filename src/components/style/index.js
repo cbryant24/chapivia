@@ -1,11 +1,12 @@
 import  { ModalBackground } from './Modal';
 import GlobalStyle from './globalStyle';
-import { infiniteBackground } from './animations'
 import theme from './theme';
+import { infiniteBackground, flashingText} from './animations';
 
 export {
+  infiniteBackground,
+  flashingText,
   GlobalStyle,
   ModalBackground,
-  infiniteBackground,
   theme
-}
+};

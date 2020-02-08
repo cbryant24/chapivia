@@ -19,9 +19,10 @@ app.use(session({
   store: myStore
 }));
 
+//TODO: Add check for first time initialization
 // sequelize.sync();
 // myStore.sync();
-// debugger
+
 module.exports = {
   app
 }

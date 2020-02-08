@@ -53,8 +53,6 @@ function useProvideAuth() {
       variables: { email, password, name}
     }).then( async data => {
       await refetch();
-      console.log('im creating a user')
-      console.log(data)
     }).catch( err => {
       console.log('we got an error here', err);
     });

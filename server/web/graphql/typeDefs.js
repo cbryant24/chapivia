@@ -29,8 +29,8 @@ const typeDefs = gql`
     question: String!
     is_used: Boolean
     difficulty: String
-    category: String
-    triviaChoices: QuestionChoice
+    category: String!
+    triviaChoices: QuestionChoice,
   }
 
   type QuestionChoice {
@@ -59,6 +59,6 @@ const typeDefs = gql`
     guess: String!
     isCorrect: Boolean!
   }
-`
+`;
 
 module.exports = typeDefs;

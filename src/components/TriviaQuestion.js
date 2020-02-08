@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 
 import { AllHtmlEntities as Entities } from 'html-entities';
 import theme from './style/theme';

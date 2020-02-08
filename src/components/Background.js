@@ -15,8 +15,8 @@ export default () => {
       backgroundRepeat="repeat"
       backgroundPosition="0 0"
       backgroundSize="auto 100%"
-      height="100vh"
-      width="100vw"
+      height={[1]}
+      width={[1]}
       animation={{
         continuous: infiniteBackground,
         duration_continuous: 75,

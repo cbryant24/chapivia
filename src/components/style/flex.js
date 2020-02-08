@@ -16,3 +16,9 @@ export const flexSpaceBetweenColumn = {
   flexDirection: 'column',
   justifyContent: 'space-between',
 };
+
+export const flexColumnCenter = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center'
+}

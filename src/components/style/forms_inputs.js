@@ -1,16 +1,12 @@
 export const authForm = {
   display: 'flex',
-  height: ['33rem'],
+  height: ['30em'],
   border: '1px solid white',
-  p: [4]
 }
 
 export const inputMain = {
   appearance: 'none',
-  display: 'block',
   verticalAlign: 'middle',
-  width: [2],
-  height: ['35%'],
   color: 'white',
   lineHeight: 'inherit',
   letterSpacing: 'inherit',
@@ -21,16 +17,15 @@ export const inputMain = {
   borderStyle: 'solid',
   borderColor: 'rgb(221, 225, 228)',
   transition: 'box-shadow 0.125s ease-out 0s',
-  minHeight: '1.5em',
+  minHeight: ['2em'],
   mt: [1],
   focusWithin: {
     boxShadow: '0px 0px 8px green'
   }
 };
 
-export const field = {
-  width: [2], 
-  height: ['15%'], 
+export const fieldMain = {
+  fontSize: [2],
   justifyContent: 'space-between', 
   flexDirection: 'column'
 }

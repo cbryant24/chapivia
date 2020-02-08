@@ -5,8 +5,11 @@ module.exports = {
     }
   },
   Query: {
-    dailyTrivia: (parent, { id }, { question } , info) => {
-      return question.dailyQuestion();
+    dailyTrivia: async (parent, { id }, { question } , info) => {
+      // debugger
+      const val = await question.dailyQuestion();
+
+      return val;
     },
     user: (parent, args, { req }, info) => {
       return req.user;

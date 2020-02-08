@@ -27,9 +27,8 @@ const Game = (props) => {
 
   useEffect( () => {
     if (triviaLoading) return;
-    // debugger
-    try {
 
+    try {
       client.writeData({
         data: {
           localTrivia: {
@@ -37,6 +36,7 @@ const Game = (props) => {
             question: triviaData.dailyTrivia.question,
             questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
             questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
+            category: triviaData.dailyTrivia.category,
             __typename: 'dailyTrivia'
           }
         }
