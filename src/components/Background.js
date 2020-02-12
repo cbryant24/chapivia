@@ -1,10 +1,9 @@
 import React from 'react';
-import { Div, } from '@cbryant24/styled-react'
+import { Div } from '@cbryant24/styled-react';
 import { infiniteBackground } from './style';
 import galagaGif from './galaga_bg.gif';
 
 export default () => {
-
   return (
     <Div
       id="background"
@@ -15,6 +14,7 @@ export default () => {
       backgroundRepeat="repeat"
       backgroundPosition="0 0"
       backgroundSize="auto 100%"
+      backgroundColor="black"
       height={[1]}
       width={[1]}
       animation={{
@@ -23,7 +23,6 @@ export default () => {
         animation_timing_function: 'linear'
       }}
       zIndex={-1}
-    >
-    </Div>
-  )
+    ></Div>
+  );
 };

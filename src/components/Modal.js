@@ -1,13 +1,13 @@
 import React from 'react';
-import { Modal, BounceAnimations, Div, P } from '@cbryant24/styled-react';
+import { Modal, BounceAnimations, Div, Ul, Li } from '@cbryant24/styled-react';
 
-export default ({isOpen, toggleModal, modalMessage}) => {
+export default ({ isOpen, toggleModal, modalMessage }) => {
   return (
     <Modal
-        id="chapivia-modal"
-        isOpen={isOpen}
-        onBackgroundClick={toggleModal}
-        onEscapeKeydown={toggleModal}
+      id="chapivia-modal"
+      isOpen={isOpen}
+      onBackgroundClick={toggleModal}
+      onEscapeKeydown={toggleModal}
     >
       <Div
         pseudo
@@ -17,8 +17,8 @@ export default ({isOpen, toggleModal, modalMessage}) => {
         justifyContent="space-evenly"
         backgroundColor="black"
         color="white"
-        width={["60vw"]}
-        height={["50vh"]}
+        width={['60vw']}
+        height={['50vh']}
         margin="auto"
         transform="translateY(-500px)"
         animation={{
@@ -27,14 +27,13 @@ export default ({isOpen, toggleModal, modalMessage}) => {
           animation_fill_mode: 'both'
         }}
       >
-        <P
-          isA="h3"
-          fontSize={[3,4]}
-          textAlign="center"
-          my={[3]}
-        >
-          {modalMessage}
-        </P>
+        <Ul isA="h3" fontSize={[3, 4]} textAlign="center" my={[3]}>
+          {Array.isArray(modalMessage) ? (
+            modalMessage.map(message => <Li>{message}</Li>)
+          ) : (
+            <Li>{modalMessage}</Li>
+          )}
+        </Ul>
         <Div
           isA="button"
           themeStyle="squareButton"
@@ -48,5 +47,5 @@ export default ({isOpen, toggleModal, modalMessage}) => {
         </Div>
       </Div>
     </Modal>
-  )
-}
+  );
+};

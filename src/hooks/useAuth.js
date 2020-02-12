@@ -1,5 +1,5 @@
 // Top level App component
-import React, { useState, useEffect, useContext, createContext } from "react";
+import React, { useState, useEffect, useContext, createContext } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import graphqlUser from '../queries/CurrentUser';
@@ -28,44 +28,51 @@ export const useAuth = () => {
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
   const [user, setUser] = useState(null);
-  const { loading: userLoading, error, data: userData, refetch } = useQuery(graphqlUser);
-  const [ userSignin ] = useMutation(graphqlSignin);
-  const [ userSignout ] = useMutation(graphqlSignout);
-  const [ userSignup ] = useMutation(graphqlSignup);
+  const { loading: userLoading, error, data: userData, refetch } = useQuery(
+    graphqlUser
+  );
+  const [userSignin] = useMutation(graphqlSignin);
+  const [userSignout] = useMutation(graphqlSignout);
+  const [userSignup] = useMutation(graphqlSignup);
 
-  
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
 
-  const signin = ({ email, password}) => {
+  const signin = ({ email, password }) => {
     userSignin({
       variables: { email, password }
-    }).then( async data => {
-      await refetch();
-    }).catch( err => {
-      console.log('we got an error here', err);
-    });
+    })
+      .then(async data => {
+        await refetch();
+      })
+      .catch(err => {
+        console.log('error in signin', err);
+        return err;
+      });
   };
 
-
-  const signup = ({email, password, name}) => {
-    userSignup({
-      variables: { email, password, name}
-    }).then( async data => {
-      await refetch();
-    }).catch( err => {
-      console.log('we got an error here', err);
-    });
-  }
+  const signup = ({ email, password, name }) => {
+    return userSignup({
+      variables: { email, password, name }
+    })
+      .then(async data => {
+        await refetch();
+      })
+      .catch(err => {
+        console.log('error in signup', err);
+        throw err;
+      });
+  };
 
   const signout = () => {
-    userSignout().then( async data => {
-      await refetch();
-
-    }).catch( err => {
-      console.log('we got an error here', err);
-    });
-  }
+    userSignout()
+      .then(async data => {
+        await refetch();
+      })
+      .catch(err => {
+        console.log('we got an error here', err);
+      });
+  };
 
   const sendPasswordResetEmail = email => {
     // return firebase
@@ -98,10 +105,8 @@ function useProvideAuth() {
     } else {
       setUser(false);
     }
-
-
   }, [userData]);
-  
+
   // Return the user object and auth methods
   return {
     user,
@@ -114,9 +119,6 @@ function useProvideAuth() {
   };
 }
 
-
-
-
 function App(props) {
   return (
     <ProvideAuth>
@@ -128,11 +130,9 @@ function App(props) {
   );
 }
 
-
 ////////////////////////////////////
 //////          USAGE         //////
 ////////////////////////////////////
-
 
 // Any component that wants auth state
 // import React from "react";

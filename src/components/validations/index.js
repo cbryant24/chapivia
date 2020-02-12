@@ -1,5 +1,7 @@
-import { signinValidation } from './authValidations';
+import signinValidation from './signinValidation';
+import signupValidation from './signupValidation';
 
 export {
-  signinValidation
+  signinValidation,
+  signupValidation
 };

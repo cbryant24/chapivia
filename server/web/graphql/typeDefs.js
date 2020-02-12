@@ -17,7 +17,12 @@ const typeDefs = gql`
     login(email: String!, password: String!): User!
     logout: User
     signup(email: String!, password: String!, name: String!): User
-    guess(userId: Int!, questionId: Int!, questionChoiceId: Int!, guess: String!): UserQuestionChoice
+    guess(
+      userId: Int!
+      questionId: Int!
+      questionChoiceId: Int!
+      guess: String!
+    ): UserQuestionChoice
   }
 
   # type DailyTrivia {
@@ -30,7 +35,7 @@ const typeDefs = gql`
     is_used: Boolean
     difficulty: String
     category: String!
-    triviaChoices: QuestionChoice,
+    triviaChoices: QuestionChoice
   }
 
   type QuestionChoice {

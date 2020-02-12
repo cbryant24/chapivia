@@ -1,4 +1,4 @@
-export const signinValidation = {
+export default {
   title: 'signup',
   description: 'User Signin',
   inputs: [
@@ -32,3 +32,6 @@ export const signinValidation = {
     password: 'There was an error in the password field'
   }
 }
+
+//////// SIGNUP VALIDATIONS ////////////
+

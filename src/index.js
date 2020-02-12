@@ -19,8 +19,7 @@ import App from './components/App';
 import { ModalBackground } from './components/style';
 import { LastLocationProvider } from 'react-router-last-location';
 import typeDefs from './localState/typeDefs';
-import { ProvideAuth } from "./hooks";
-
+import { ProvideAuth } from './hooks';
 
 const client = new ApolloClient({
   clientState: {
@@ -36,11 +35,11 @@ const client = new ApolloClient({
     resolvers: {},
     typeDefs
   },
-  uri: '/graphql',
+  uri: '/graphql'
 });
 
 ReactDOM.render(
-  <ApolloProvider client={ client } >
+  <ApolloProvider client={client}>
     <ProvideAuth>
       <Router>
         <LastLocationProvider>
@@ -48,10 +47,10 @@ ReactDOM.render(
             <GlobalStyle />
             <ModalProvider BackgroundComponent={ModalBackground}>
               <App>
-                <Route path='/game' exact component={Game}/>
+                {/* <Route path="/game" exact component={Game} /> */}
                 {/* <Route path='' component={GameController}/> */}
-                <Route path='/' exact component={Signin}/>
-                <Route path='/signup' component={Signup}/>
+                <Route path="/" exact component={Signin} />
+                <Route path="/signup" component={Signup} />
               </App>
             </ModalProvider>
           </ThemeProvider>

@@ -3,9 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Form from '@cbryant24/styled-react-form';
 import { signinValidation } from './validations';
 import { Div, H1, H3, P } from '@cbryant24/styled-react';
-import { theme}  from './style';
 import { flashingText } from './style';
-import { NavLink } from 'react-router-dom';
 
 import Modal from './Modal';
 
@@ -59,7 +57,7 @@ function Signin(props) {
   ];
 
   const buttons = [
-    { text: 'Submit', type: 'submit', cb: null, style: {...theme.squareButton, mr: [3] }},
+    { text: 'Submit', type: 'submit', cb: null, style: {themeStyle: 'squareButton', mr: [3] }},
     { text: 'Cancel', type: 'cancel', cb: null, style: {themeStyle: 'squareButton' } }
   ];
 
@@ -99,7 +97,8 @@ function Signin(props) {
             in: flashingText(),
             duration_in: 1,
             continuous: flashingText(),
-            duration_continuous: 1
+            duration_continuous: 1,
+            animation_direction: 'alternate-reverse'
           }}
         >Press Start To Play</H3>
         <Div
@@ -113,7 +112,6 @@ function Signin(props) {
             validate={signinValidation}
             buttons={buttons}
           />
-          <NavLink fontSize="100px" to="/signup">Click Here To Signup!</NavLink>
         </Div>
         <Div textTransform="uppercase">
           <P>&copy; 2019 Chapivia LTD.</P>
@@ -121,7 +119,6 @@ function Signin(props) {
         </Div>
       </Div>
     </Div>
-
   );
 }
 

@@ -35,7 +35,7 @@ export default createGlobalStyle`
   }
 
   a {
-    text-transform: uppercase;
+    cursor: pointer;
   }
 
   a:hover {
