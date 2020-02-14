@@ -1,107 +1,138 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import React, { useState } from 'react';
+import Form from '@cbryant24/styled-react-form';
+import { signupValidation } from './validations';
 
-import theme from './style/theme';
-
-import { FlexItem, BoxAll, BounceAnimations, Text } from './element';
-import mutation from '../mutations/Signup';
-import query from '../queries/CurrentUser';
-import FormApp from './Form/App';
-import { validate } from './helpers/validators';
+import { Div, H1, P, Button } from '@cbryant24/styled-react';
 import Modal from './Modal';
-import { usePrev, useAuth } from '../hooks';
+import { useAuth, useRouter } from '../hooks';
 
 //TODO: Errors message applicable to correct field only
 
 function Signup(props) {
-  const [isOpen, setIsOpen]             = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-  const { 
-    loading: userLoading, 
-    data: userData, refetch, client }   = useQuery(query);
-  const prevUser                        = usePrev(userData);
-  const { signup }                      = useAuth();
-  
+  const { signup } = useAuth();
+  const router = useRouter();
+
   async function userSignup(event, formVals) {
     try {
-      signup(formVals);
-      return props.history.push('/game');
-
-    } catch(res) {
-      debugger
+      await signup(formVals);
+    } catch (res) {
       toggleModal();
-      setModalMessage('Error Signing Up');
+      setModalMessage(res.graphQLErrors);
+      return;
     }
+    return router.push('/game');
   }
 
   const toggleModal = e => setIsOpen(!isOpen);
 
   const inputs = [
     {
-      data: { type: 'input', name: 'name', label: 'name', placeholder: 'enter name', required: true }, 
-      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
-      inputStyle: 'inputNormal',
+      data: {
+        type: 'input',
+        name: 'name',
+        label: 'name',
+        placeholder: 'enter name',
+        required: true
+      },
+      fieldStyle: { themeStyle: 'fieldMain' },
+      inputStyle: { themeStyle: 'inputMain' }
     },
     {
-      data: { type: 'email', name: 'email', label: 'email', placeholder: 'enter email', required: true },
-      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
-      inputStyle: 'inputNormal'
+      data: {
+        type: 'email',
+        name: 'email',
+        label: 'email',
+        placeholder: 'enter email',
+        required: true
+      },
+      fieldStyle: { themeStyle: 'fieldMain' },
+      inputStyle: { themeStyle: 'inputMain' }
     },
     {
-      data: { type: 'password', name: 'password', label: 'password', placeholder: 'enter password', required: true },
-      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
-      inputStyle: 'inputNormal'
+      data: {
+        type: 'password',
+        name: 'password',
+        label: 'password',
+        placeholder: 'enter password',
+        required: true
+      },
+      fieldStyle: { themeStyle: 'fieldMain' },
+      inputStyle: { themeStyle: 'inputMain' }
     },
     {
-      data: { type: 'password', name: 'confirm password', label: 'confirm password', placeholder: 'reenter password', required: true },
-      fieldStyle: { width: [1], height: ['15%'], justifyContent: 'space-between', flexDirection: 'column'},
-      inputStyle: 'inputNormal'
+      data: {
+        type: 'password',
+        name: 'confirm password',
+        label: 'confirm password',
+        placeholder: 'reenter password',
+        required: true
+      },
+      fieldStyle: { themeStyle: 'fieldMain' },
+      inputStyle: { themeStyle: 'inputMain' }
     }
-  ]
+  ];
 
   const buttons = [
-    { text: 'Submit', type: 'submit', cb: null, style: {...theme.squareButton, mr: [3]} },
-    { text: 'Cancel', type: 'cancel', cb: null, style: 'squareButton' }
-  ]
+    {
+      text: 'Submit',
+      type: 'submit',
+      cb: null,
+      style: { themeStyle: 'squareButton', mr: [3] },
+      disabledStyle: { themeStyle: 'disabledSquareButton', mr: [3] }
+    },
+    {
+      text: 'Cancel',
+      type: 'cancel',
+      cb: null,
+      style: { themeStyle: 'squareButton' }
+    }
+  ];
 
   const form = {
-    data: { name: 'signupForm', submit: 'signup', cb: userSignup },
+    data: { name: 'signupForm', submit: 'signup' },
     style: {
-      display: 'flex',
-      height: '100%',
-      justifyContent: 'space-evenly', 
-      flexDirection: 'column', 
-      backgroundColor: 'black',
-      border: '1px solid black',
-      width: [1],
-      px: [4],
-      zIndex: 20
-    },
-  }
+      themeStyle: [
+        'authForm',
+        'flexSpaceBetweenColumn',
+        'marginBottomMedium',
+        'paddingMedium'
+      ],
+      remove: 'height',
+      height: '50em'
+    }
+  };
 
-return (
-    <BoxAll
-      id="signup-box-module" 
-      fontSizeModule={[4]}
-      width={[2]}
-      height={['65vh']}
-      margin='auto'
-      mt={["auto", "20%", "15%", "10%"]}
-      maxWidth={["75vw", "50vw", "40vw"]}
-      zIndex={[1]}
-    >
-      <Modal
-        isOpen={isOpen}
-        modalMessage={modalMessage}
-        toggleModal={toggleModal}
-      />
-      <FormApp
-        form={form}
-        inputs={inputs}
-        validate={validate}
-        buttons={buttons}
-      />
-    </BoxAll>
+  return (
+    <Div fontSizeModule={[1, null, 2, null, 3]}>
+      <Div
+        id="signupboxmodule"
+        width={[1]}
+        themeStyle={['flexCenterSpaceEvenlyColumn', 'marginTopLarge']}
+      >
+        <Modal
+          isOpen={isOpen}
+          modalMessage={modalMessage}
+          toggleModal={toggleModal}
+        />
+        <H1 color="secondary">Chapivia</H1>
+        <Form
+          onSubmit={userSignup}
+          form={form}
+          inputs={inputs}
+          validate={signupValidation}
+          buttons={buttons}
+        />
+        <Div textTransform="uppercase">
+          <P>&copy; 2019 Chapivia LTD.</P>
+          <P>All Rights Reserver</P>
+        </Div>
+        <Button themeStyle="squareButton" onClick={toggleModal}>
+          Click ME
+        </Button>
+      </Div>
+    </Div>
   );
 }
 

@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { GlobalStyle } from './components/style';
-import { ThemeProvider } from './components/element';
+import { ThemeProvider } from '@cbryant24/styled-react';
 import theme from './components/style/theme';
 
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
-import { ModalProvider } from './components/element';
+import { ModalProvider } from '@cbryant24/styled-react';
 
 import Signin from './components/Signin';
 import Signup from './components/Signup';
@@ -16,11 +16,9 @@ import Game from './components/Game';
 import GameController from './components/GameController';
 import App from './components/App';
 
-import { ModalBackground } from './components/style';
 import { LastLocationProvider } from 'react-router-last-location';
 import typeDefs from './localState/typeDefs';
-import { ProvideAuth } from "./hooks";
-
+import { ProvideAuth } from './hooks';
 
 const client = new ApolloClient({
   clientState: {
@@ -36,23 +34,22 @@ const client = new ApolloClient({
     resolvers: {},
     typeDefs
   },
-  uri: '/graphql',
+  uri: '/graphql'
 });
 
-
 ReactDOM.render(
-  <ApolloProvider client={ client } >
+  <ApolloProvider client={client}>
     <ProvideAuth>
       <Router>
         <LastLocationProvider>
           <ThemeProvider theme={theme}>
             <GlobalStyle />
-            <ModalProvider BackgroundComponent={ModalBackground}>
+            <ModalProvider>
               <App>
-                <Route path='/game' exact component={Game}/>
+                {/* <Route path="/game" exact component={Game} /> */}
                 {/* <Route path='' component={GameController}/> */}
-                <Route path='/' exact component={Signin}/>
-                <Route path='/signup' component={Signup}/>
+                <Route path="/" exact component={Signin} />
+                {/* <Route path="/signup" component={Signup} /> */}
               </App>
             </ModalProvider>
           </ThemeProvider>

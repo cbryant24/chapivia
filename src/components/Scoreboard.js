@@ -1,42 +1,38 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-
+import PrevMonthWinners from './PrevMonthWinners';
 
 import query from '../queries/Scores';
 
-import { Box, BoxAll, Flex, Text } from './element';
+import { Box, BoxAll, Flex, Text, Div, FlexUl, FlexLi, Li, P } from '@cbryant24/styled-react';
 
 const Scoreboard = props => {
   const { loading, data } = useQuery(query);
 
   function displayPlayerScores() {
+    let place = 1;
 
     return (
-      data.scores ? data.scores.map( player => (
-        <BoxAll
-          display="flex"
-          fontSize="1.6rem"
-          textAlign="center"
-          justifyContent="space-between"
-          height="4rem"
-          key={player.id}
-        >
-          <Text
-            textTransform="uppercase"
-            fontSize="1.7rem"
-            fontWeight="500"
-            padding-left="2rem"
+      data.scores ? data.scores.map( (player, idx) => {
+        if (idx > 0) {
+          place = data.scores[idx].score === data.scores[idx - 1] ? place : idx;
+        }
+        return ( 
+          <FlexLi
+            isA="h3"
+            justifyContent="space-around"
+            textAlign="center"
+            width={[1]}
+            my={[2]}
           >
-            {player.name}
-          </Text>
-            <Text 
-              fontSize="1.7rem"
-              fontWeight="500"
-            >
-              {player.score}
-            </Text>
-        </BoxAll> 
-      )) : <Flex></Flex>
+            <P width={[5]}>{place}.</P>
+            <P width={[5]}>{player.score}0,000</P>
+            <P width={[5]}>T-B-D</P>
+            <P width={[5]}>{player.name}</P>
+          </ FlexLi>
+        );
+
+      }) : <Flex></Flex>
     );
   }
 
@@ -48,13 +44,25 @@ const Scoreboard = props => {
       flexDirection="column"
       fontSizeModule={[1]}
     >
-      <Text
-        isA="h2"
+    <FlexUl
+        justifyContent="space-around"
+        fontSize={[3]}
         textAlign="center"
-        h2FontSize={[1]}
       >
-        Player Scores
-      </Text>
+        <Li width={[5]}>
+          <P>Rank</P>
+        </Li>
+        <Li width={[5]}>
+          <P>Score</P>
+        </Li>
+        <Li width={[5]}>
+          <P>Stage</P>
+        </Li>
+        <Li width={[5]}>
+          <P>Name</P>
+        </Li>
+      </FlexUl>
+      <PrevMonthWinners/>
       {displayPlayerScores()}
     </ BoxAll>
   );

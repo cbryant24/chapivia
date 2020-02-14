@@ -6,7 +6,7 @@ import moment from 'moment';
 import Marquee from './Marquee';
 
 import prevMonthWinnersQuery from '../queries/PrevMonthWinners';
-import { BoxAll, TextAll } from './element';
+import { BoxAll, TextAll, Div, H4, FlexUl, FlexLi, Li, P } from '@cbryant24/styled-react';
 import { theme } from './style';
 
 function PrevMonthWinners(props) {
@@ -17,50 +17,52 @@ function PrevMonthWinners(props) {
   if (loading) return <div>Loading</div>;
   
   function createMarqueeItems() {
+    
+  }
+
+  function displayWinnersList() {
     let winnerPlace = 1;
     return prevMonthWinners.map( (winner, idx) => {
       if (idx > 0) {
         winnerPlace = prevMonthWinners[idx].score === prevMonthWinners[idx - 1] ? winnerPlace : winnerPlace + 1;
       }
       return (
-        <BoxAll
+        <FlexLi
           isA="h3"
-          fontSize="2rem"
+          justifyContent="space-around"
           textAlign="center"
-          width={[3]}
+          width={[1]}
+          my={[2]}
         >
-          <BoxAll>{`${converter.toOrdinal(winnerPlace)} Place: ${winner.name}`}</BoxAll> 
-          <BoxAll>{`Score: ${winner.score}`}</BoxAll>
-        </BoxAll>
+          <P width={[5]}>{winnerPlace}.</P> 
+          <P width={[5]}>{winner.score}0,000</P>
+          <P width={[5]}>T-B-D</P>
+          <P width={[5]}>{winner.name}</P>
+        </FlexLi>
       )
     })
   }
 
   return (
-    <BoxAll
+    <Div
       display="flex"
       flexDirection="column"
+      fontSizeModule={[1, null, 2]}
     >
-      <BoxAll
-        isA="h3"
+      <H4
         textAlign="center"
+        my={[4]}
       >
-        {`Congrats To ${moment().subtract(1, 'month').format('MMMM')} winners`}
-      </BoxAll>
-      <Marquee
-        theme={theme}
-        height="6rem"
-        width={[1]}
+        - {`${moment().subtract(1, 'month').format('MMMM')} winners`} -
+      </H4>
+      <FlexUl
+        flexDirection="column"
       >
-        { createMarqueeItems() }
-      </Marquee>
-    </BoxAll>
+        {displayWinnersList()}
+      </FlexUl>
+    </Div>
 
   )
-
-
-  // debugger
-  return <div>Im the previous winner</div>
 }
 
 export default PrevMonthWinners;

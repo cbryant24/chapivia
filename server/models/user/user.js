@@ -124,14 +124,12 @@ module.exports = (sequelize, DataTypes) => {
           userCorrectGuessesScore.splice(topThreeCutoff);
         }
 
-        debugger
         if (userCorrectGuessesScore.length > 3)
           determineTopThree();
       }
 
       return userCorrectGuessesScore;
     } catch (e) {
-      debugger
       //TODO: add error handling for player scores retrieval
       console.log(e);
     }

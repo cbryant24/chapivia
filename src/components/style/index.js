@@ -1,9 +1,5 @@
-import  { ModalBackground } from './Modal';
 import GlobalStyle from './globalStyle';
 import theme from './theme';
+import { infiniteBackground, flashingText } from './animations';
 
-export {
-  GlobalStyle,
-  ModalBackground,
-  theme
-}
+export { infiniteBackground, flashingText, GlobalStyle, theme };

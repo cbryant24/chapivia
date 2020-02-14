@@ -1,52 +1,51 @@
 import React from 'react';
-import { Modal, BoxAll, BounceAnimations, FlexItem, Text } from './element';
+import {
+  StyledModal,
+  BounceAnimations,
+  Div,
+  Ul,
+  Li,
+  Button,
+  P
+} from '@cbryant24/styled-react';
 
-export default ({isOpen, toggleModal, modalMessage}) => {
+export default ({ isOpen, toggleModal, modalMessage }) => {
   return (
-    <Modal
-        id="chapivia-modal"
-        isOpen={isOpen}
-        onBackgroundClick={toggleModal}
-        onEscapeKeydown={toggleModal}
+    <StyledModal
+      id="chapivia-modal"
+      isOpen={isOpen}
+      onBackgroundClick={toggleModal}
+      onEscapeKeydown={toggleModal}
+      modalBackgroundStyle={{ themeStyle: 'modalBackgroundStyle' }}
+      allowScroll={false}
     >
-      <BoxAll
-        pseudo
-        display="flex"
-        fontSizeModule={[3]}
-        flexDirection="column"
-        justifyContent="space-evenly"
-        backgroundColor="black"
-        color="white"
-        width={["60vw"]}
-        height={["50vh"]}
-        margin="auto"
-        transform="translateY(-500px)"
+      <Div
+        themeStyle={['modalContainer']}
         animation={{
           in: BounceAnimations.BounceInTop,
           duration_in: 1,
           animation_fill_mode: 'both'
         }}
       >
-        <Text
-          isA="h3"
-          fontSize={[3,4]}
-          textAlign="center"
-          my={[3]}
-        >
-          {modalMessage}
-        </Text>
-        <FlexItem
-          isA="button"
-          themeStyle="squareButton"
-          width="5em"
+        <Ul textAlign="center" my={[1]}>
+          {Array.isArray(modalMessage) ? (
+            modalMessage.map(message => (
+              <Li key={message}>{message.message}</Li>
+            ))
+          ) : (
+            <Li>
+              <P>{modalMessage}</P>
+            </Li>
+          )}
+        </Ul>
+        <Button
+          themeStyle={['squareButton', 'marginSmall']}
           alignSelf="flex-end"
-          mr={4}
-          mb={4}
           onClick={toggleModal}
         >
           Close
-        </FlexItem>
-      </BoxAll>
-    </Modal>
-  )
-}
+        </Button>
+      </Div>
+    </StyledModal>
+  );
+};

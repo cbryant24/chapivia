@@ -6,8 +6,8 @@ import { AllHtmlEntities as Entities } from 'html-entities';
 import CorrectGuessesQuery from '../queries/CorrectGuesses';
 import TriviaAnswer from '../queries/TriviaAnswer';
 
-import { Box, BoxAll, Text, Flex, FlexItem, BoxAnimated } from './element';
-import * as Elements from './element';
+import { Box, BoxAll, Text, Flex, FlexItem, BoxAnimated } from '@cbryant24/styled-react';
+import * as Elements from '@cbryant24/styled-react';
 
 
 const Winner = props => {

@@ -1,5 +1,5 @@
 // Top level App component
-import React, { useState, useEffect, useContext, createContext } from "react";
+import React, { useState, useEffect, useContext, createContext } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import graphqlUser from '../queries/CurrentUser';
@@ -7,6 +7,8 @@ import graphqlSignin from '../mutations/Login';
 import graphqlSignup from '../mutations/Signup';
 import graphqlSignout from '../mutations/Logout';
 
+// see usage below
+// hook from https://usehooks.com/useAuth/
 
 const authContext = createContext();
 
@@ -26,46 +28,52 @@ export const useAuth = () => {
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
   const [user, setUser] = useState(null);
-  const { loading: userLoading, error, data: userData, refetch } = useQuery(graphqlUser);
-  const [ userSignin ] = useMutation(graphqlSignin);
-  const [ userSignout ] = useMutation(graphqlSignout);
-  const [ userSignup ] = useMutation(graphqlSignup);
+  const { loading: userLoading, error, data: userData, refetch } = useQuery(
+    graphqlUser
+  );
+  const [userSignin] = useMutation(graphqlSignin);
+  const [userSignout] = useMutation(graphqlSignout);
+  const [userSignup] = useMutation(graphqlSignup);
 
-  
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
 
-  const signin = ({ email, password}) => {
-    userSignin({
+  const signin = ({ email, password }) => {
+    return userSignin({
       variables: { email, password }
-    }).then( async data => {
-      await refetch();
-    }).catch( err => {
-      console.log('we got an error here', err);
-    });
+    })
+      .then(async data => {
+        await refetch();
+      })
+      .catch(err => {
+        console.log('error in signin', err);
+        throw err;
+      });
   };
 
-
-  const signup = ({email, password, name}) => {
-    userSignup({
-      variables: { email, password, name}
-    }).then( async data => {
-      await refetch();
-      console.log('im creating a user')
-      console.log(data)
-    }).catch( err => {
-      console.log('we got an error here', err);
-    });
-  }
+  const signup = ({ email, password, name }) => {
+    return userSignup({
+      variables: { email, password, name }
+    })
+      .then(async data => {
+        await refetch();
+      })
+      .catch(err => {
+        console.log('error in signup', err);
+        throw err;
+      });
+  };
 
   const signout = () => {
-    userSignout().then( async data => {
-      await refetch();
-
-    }).catch( err => {
-      console.log('we got an error here', err);
-    });
-  }
+    userSignout()
+      .then(async data => {
+        await refetch();
+      })
+      .catch(err => {
+        console.log('we got an error here', err);
+        throw err;
+      });
+  };
 
   const sendPasswordResetEmail = email => {
     // return firebase
@@ -98,10 +106,8 @@ function useProvideAuth() {
     } else {
       setUser(false);
     }
-
-
   }, [userData]);
-  
+
   // Return the user object and auth methods
   return {
     user,
@@ -113,3 +119,45 @@ function useProvideAuth() {
     confirmPasswordReset
   };
 }
+
+function App(props) {
+  return (
+    <ProvideAuth>
+      {/* 
+        Route components here, depending on how your app is structured.
+        If using Next.js this would be /pages/_app.js
+      */}
+    </ProvideAuth>
+  );
+}
+
+////////////////////////////////////
+//////          USAGE         //////
+////////////////////////////////////
+
+// Any component that wants auth state
+// import React from "react";
+// import { useAuth } from "./use-auth.js";
+
+// function Navbar(props) {
+//   // Get auth state and re-render anytime it changes
+//   const auth = useAuth();
+
+//   return (
+//     <NavbarContainer>
+//       <Logo />
+//       <Menu>
+//         <Link to="/about">About</Link>
+//         <Link to="/contact">Contact</Link>
+//         {auth.user ? (
+//           <Fragment>
+//             <Link to="/account">Account ({auth.user.email})</Link>
+//             <Button onClick={() => auth.signout()}>Signout</Button>
+//           </Fragment>
+//         ) : (
+//           <Link to="/signin">Signin</Link>
+//         )}
+//       </Menu>
+//     </NavbarContainer>
+//   );
+// }

@@ -29,7 +29,7 @@
         "change": { "$ref": "patterns.json#/definitions/emptyOrSafeString" }
       }
     },
-    "submit": {
+    "submit": { 
       "properties": {
         "email": { "$ref": "patterns.json#/definitions/safeString" },
         "name":  { "$ref": "patterns.json#/definitions/safeStringSpaces" } ,

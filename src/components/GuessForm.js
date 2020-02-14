@@ -7,7 +7,7 @@ import UnguessedPlayers from '../queries/UnguessedPlayers';
 import { DAILY_TRIVIA } from '../localState/Queries';
 import ScoresQuery from '../queries/Scores';
 
-import FormApp from './Form/App';
+import FormApp from '@cbryant24/styled-react-form';
 import { validate } from './helpers/validators';
 
 import Modal from './Modal';
