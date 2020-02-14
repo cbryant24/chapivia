@@ -1,51 +1,51 @@
 import React from 'react';
-import { Modal, BounceAnimations, Div, Ul, Li } from '@cbryant24/styled-react';
+import {
+  StyledModal,
+  BounceAnimations,
+  Div,
+  Ul,
+  Li,
+  Button,
+  P
+} from '@cbryant24/styled-react';
 
 export default ({ isOpen, toggleModal, modalMessage }) => {
   return (
-    <Modal
+    <StyledModal
       id="chapivia-modal"
       isOpen={isOpen}
       onBackgroundClick={toggleModal}
       onEscapeKeydown={toggleModal}
+      modalBackgroundStyle={{ themeStyle: 'modalBackgroundStyle' }}
+      allowScroll={false}
     >
       <Div
-        pseudo
-        display="flex"
-        fontSizeModule={[3]}
-        flexDirection="column"
-        justifyContent="space-evenly"
-        backgroundColor="black"
-        color="white"
-        width={['60vw']}
-        height={['50vh']}
-        margin="auto"
-        transform="translateY(-500px)"
+        themeStyle={['modalContainer']}
         animation={{
           in: BounceAnimations.BounceInTop,
           duration_in: 1,
           animation_fill_mode: 'both'
         }}
       >
-        <Ul isA="h3" fontSize={[3, 4]} textAlign="center" my={[3]}>
+        <Ul textAlign="center" my={[1]}>
           {Array.isArray(modalMessage) ? (
-            modalMessage.map(message => <Li>{message}</Li>)
+            modalMessage.map(message => (
+              <Li key={message}>{message.message}</Li>
+            ))
           ) : (
-            <Li>{modalMessage}</Li>
+            <Li>
+              <P>{modalMessage}</P>
+            </Li>
           )}
         </Ul>
-        <Div
-          isA="button"
-          themeStyle="squareButton"
-          width="5em"
+        <Button
+          themeStyle={['squareButton', 'marginSmall']}
           alignSelf="flex-end"
-          mr={4}
-          mb={4}
           onClick={toggleModal}
         >
           Close
-        </Div>
+        </Button>
       </Div>
-    </Modal>
+    </StyledModal>
   );
 };

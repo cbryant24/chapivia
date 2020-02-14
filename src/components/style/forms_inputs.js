@@ -1,8 +1,7 @@
 export const authForm = {
   display: 'flex',
-  height: ['30em'],
-  border: '1px solid white',
-}
+  height: ['30em']
+};
 
 export const inputMain = {
   appearance: 'none',
@@ -26,6 +25,6 @@ export const inputMain = {
 
 export const fieldMain = {
   fontSize: [2],
-  justifyContent: 'space-between', 
+  justifyContent: 'space-between',
   flexDirection: 'column'
-}
+};

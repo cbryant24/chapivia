@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Form from '@cbryant24/styled-react-form';
 import { signupValidation } from './validations';
 
-import { Div, H1, P } from '@cbryant24/styled-react';
+import { Div, H1, P, Button } from '@cbryant24/styled-react';
 import Modal from './Modal';
 import { useAuth, useRouter } from '../hooks';
 
@@ -17,9 +17,9 @@ function Signup(props) {
   async function userSignup(event, formVals) {
     try {
       await signup(formVals);
-    } catch (err) {
+    } catch (res) {
       toggleModal();
-      setModalMessage(err.graphQLErrors);
+      setModalMessage(res.graphQLErrors);
       return;
     }
     return router.push('/game');
@@ -91,7 +91,7 @@ function Signup(props) {
   ];
 
   const form = {
-    data: { name: 'signupForm', submit: 'signup', cb: userSignup },
+    data: { name: 'signupForm', submit: 'signup' },
     style: {
       themeStyle: [
         'authForm',
@@ -123,13 +123,14 @@ function Signup(props) {
           inputs={inputs}
           validate={signupValidation}
           buttons={buttons}
-          remove="height"
-          height="60em"
         />
         <Div textTransform="uppercase">
           <P>&copy; 2019 Chapivia LTD.</P>
           <P>All Rights Reserver</P>
         </Div>
+        <Button themeStyle="squareButton" onClick={toggleModal}>
+          Click ME
+        </Button>
       </Div>
     </Div>
   );

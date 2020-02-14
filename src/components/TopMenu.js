@@ -9,39 +9,34 @@ import { DAILY_TRIVIA } from '../localState/Queries';
 import { useAuth } from '../hooks';
 
 function TopMenu(props) {
-  const { data }          = useQuery(DAILY_TRIVIA);
+  const { data } = useQuery(DAILY_TRIVIA);
   const { loading: scoresLoading, data: playerScores } = useQuery(query);
   const { user, signout } = useAuth(),
-  StyledLink              = createLink(Link);
-
+    StyledLink = createLink(Link);
 
   return (
     <Div width={[1]} fontSizeModule={[2, 3]}>
-      <FlexDiv
-        themeStyle='marginTopSmall'
-        justifyContent="space-between"
-      >
+      <FlexDiv themeStyle="marginTopSmall" justifyContent="space-between">
         <FlexDiv
-            flexDirection="column"
-            alignItems="center"
-            width={[3]}
-            textAlign="center"
-          >
-            <P color="red">Trivia Topic</P>
-            <P>{ data ? data.localTrivia.category : ''}</P>
+          flexDirection="column"
+          alignItems="center"
+          width={[3]}
+          textAlign="center"
+        >
+          <P color="red">Trivia Topic</P>
+          <P>{data ? data.localTrivia.category : ''}</P>
         </FlexDiv>
-        <FlexDiv
-            themeStyle={['flexColumnCenter']}
-            width={[3]}
-          >
-            <P color="red">HI-Score</P>
-            <P>{
-              scoresLoading || !playerScores ? '' : 
-              !scoresLoading && !playerScores.length ? 0 : playerScores[0].score
-              }
-            </P>
+        <FlexDiv themeStyle={['flexColumnCenter']} width={[3]}>
+          <P color="red">HI-Score</P>
+          <P>
+            {scoresLoading || !playerScores
+              ? ''
+              : !scoresLoading && !playerScores.length
+              ? 0
+              : playerScores[0].score}
+          </P>
         </FlexDiv>
-        <FlexDiv
+        {/* <FlexDiv
           flexDirection="column"
           alignItems="center"
           width={[3]}
@@ -62,10 +57,10 @@ function TopMenu(props) {
                 }} 
               themeStyle="linkNormal" to="/signup">Click Here To Signup!
             </StyledLink> }
-        </FlexDiv>
+        </FlexDiv> */}
       </FlexDiv>
     </Div>
-  )
+  );
 }
 
 export default TopMenu;

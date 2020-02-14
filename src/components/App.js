@@ -8,7 +8,7 @@ export default ({ children }) => {
   return (
     <FlexDiv minHeight="100vh" flexDirection="column" alignItems="center">
       <Background />
-      {/* <TopMenu /> */}
+      <TopMenu />
       {children}
     </FlexDiv>
   );

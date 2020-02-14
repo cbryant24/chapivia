@@ -17,11 +17,7 @@ export default () => {
       backgroundColor="black"
       height={[1]}
       width={[1]}
-      animation={{
-        continuous: infiniteBackground,
-        duration_continuous: 75,
-        animation_timing_function: 'linear'
-      }}
+      animation={infiniteBackground}
       zIndex={-1}
     ></Div>
   );

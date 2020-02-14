@@ -16,7 +16,6 @@ import Game from './components/Game';
 import GameController from './components/GameController';
 import App from './components/App';
 
-import { ModalBackground } from './components/style';
 import { LastLocationProvider } from 'react-router-last-location';
 import typeDefs from './localState/typeDefs';
 import { ProvideAuth } from './hooks';
@@ -45,12 +44,12 @@ ReactDOM.render(
         <LastLocationProvider>
           <ThemeProvider theme={theme}>
             <GlobalStyle />
-            <ModalProvider BackgroundComponent={ModalBackground}>
+            <ModalProvider>
               <App>
                 {/* <Route path="/game" exact component={Game} /> */}
                 {/* <Route path='' component={GameController}/> */}
                 <Route path="/" exact component={Signin} />
-                <Route path="/signup" component={Signup} />
+                {/* <Route path="/signup" component={Signup} /> */}
               </App>
             </ModalProvider>
           </ThemeProvider>

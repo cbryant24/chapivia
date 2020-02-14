@@ -39,7 +39,7 @@ function useProvideAuth() {
   // ... to save the user to state.
 
   const signin = ({ email, password }) => {
-    userSignin({
+    return userSignin({
       variables: { email, password }
     })
       .then(async data => {
@@ -47,7 +47,7 @@ function useProvideAuth() {
       })
       .catch(err => {
         console.log('error in signin', err);
-        return err;
+        throw err;
       });
   };
 
@@ -71,6 +71,7 @@ function useProvideAuth() {
       })
       .catch(err => {
         console.log('we got an error here', err);
+        throw err;
       });
   };
 

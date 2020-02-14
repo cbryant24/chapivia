@@ -4,18 +4,22 @@ import * as formInputs from './forms_inputs';
 import * as buttons from './buttons';
 import * as flex from './flex';
 import * as links from './links';
+import * as modal from './modal';
 
 const red = '#e42d42';
 const white = '#ffffff';
 const black = '#000000';
 const primary = red;
 const secondary = '#4F4FEB';
+const tertiary = '#ffffff';
+
 export const colors = {
   red,
   black,
   white,
   primary,
-  secondary
+  secondary,
+  tertiary
 };
 
 const createMediaQuery = n => `@media screen and (min-width:${n}px)`;
@@ -122,6 +126,7 @@ const theme = {
   ...buttons,
   ...flex,
   ...links,
+  ...modal,
   breakpoints,
   mediaQueries,
   font,
@@ -134,7 +139,8 @@ const theme = {
   zIndices,
   sizes,
   colors,
-  lineHeights
+  lineHeights,
+  space
 };
 
 export default theme;
