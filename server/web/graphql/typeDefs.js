@@ -54,6 +54,7 @@ const typeDefs = gql`
     email: String!
     role: String
     score: Int
+    userQuestionChoices: [UserQuestionChoice]
   }
 
   type UserQuestionChoice {

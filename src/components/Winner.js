@@ -1,35 +1,30 @@
-import React, { Component } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
 
 import { AllHtmlEntities as Entities } from 'html-entities';
-// import { compose, graphql } from 'react-apollo';
 import CorrectGuessesQuery from '../queries/CorrectGuesses';
 import TriviaAnswer from '../queries/TriviaAnswer';
 
-import { Box, BoxAll, Text, Flex, FlexItem, BoxAnimated } from '@cbryant24/styled-react';
-import * as Elements from '@cbryant24/styled-react';
-
+import { H4, Div, P, FlexDiv } from '@cbryant24/styled-react';
 
 const Winner = props => {
-  const { loading: triviaAnswerLoading, data: triviaAnswerData }      = useQuery(TriviaAnswer);
-  const { loading: correctGuessesLoading, data: correctGuessesData }  = useQuery(CorrectGuessesQuery);
-  
-  function displayWinners() {
+  const { loading: triviaAnswerLoading, data: triviaAnswerData } = useQuery(
+    TriviaAnswer
+  );
+  const { loading: correctGuessesLoading, data: correctGuessesData } = useQuery(
+    CorrectGuessesQuery
+  );
 
-    return correctGuessesData.correctGuesses.map( (guesser, idx) => (
-      <Text
-        isA="h3"
+  function displayWinners() {
+    return correctGuessesData.correctGuesses.map((guesser, idx) => (
+      <P
+        fontSize={[1]}
+        color="primary"
         textTransform="uppercase"
         key={guesser.id}
-        position="relative"
       >
-        <BoxAnimated
-          isA="span"
-          glitchAnimation={`${Math.floor((Math.random() * 10) + 1) % 2 === 1 ? guesser.name : ''}`}
-        >
-          {guesser.name}
-        </BoxAnimated>
-      </Text>
+        {guesser.name}
+      </P>
     ));
   }
 
@@ -38,51 +33,44 @@ const Winner = props => {
     return entities.decode(str);
   }
 
-  if (triviaAnswerLoading || correctGuessesLoading ) return <Box></Box>;
+  if (triviaAnswerLoading || correctGuessesLoading) return <div></div>;
 
-  if (!triviaAnswerData.triviaSolution) 
+  if (!triviaAnswerData.triviaSolution)
     return (
-      <Text isA="p" textTransform="uppercase">
+      <P textTransform="uppercase">
         Checkback after 5pm for the correct answer
-      </Text>
-    )
+      </P>
+    );
 
   return (
-    <BoxAll
+    <Div
       display="flex"
       flexDirection="column"
       width="100%"
       fontSizeModule={[2]}
     >
-      <Text
-        isA="h2"
-        textAlign="center"
-      >
+      <P fontSize={[3]} textAlign="center">
         Yesterdays Trivia Answer & Winners
-      </Text>
-        <Text
-          isA="p"
-          textTransform="uppercase"
-        >
-          {new Date().getHours() >= 17 ? "Trivia" : "Yesterdays Trivia"}:&nbsp;
+      </P>
+      <Div textTransform="uppercase">
+        <P width={[1]}>Yesterdays Trivia:</P>
+        <P>
           {convertHTMLChar(triviaAnswerData.triviaSolution.question.question)}!
-        </Text>
-        <Text
-          isA="p"
-          textTransform="uppercase"
-        >
-          {new Date().getHours() >= 17 ? "Answer" : "Yesterdays Answer"}:&nbsp;
-          {convertHTMLChar(triviaAnswerData.triviaSolution.correctChoice)}!
-        </Text>
-        <Text
-          isA="p"
-          textTransform="uppercase"
-        >
-          {new Date().getHours() >= 17 ? "Correct Guesses" : "Yesterdays Correct Guesses"}:&nbsp;
-        </Text>
-        {displayWinners()}
-      </BoxAll>
+        </P>
+      </Div>
+      <FlexDiv textTransform="uppercase" color="primary">
+        <P>Yesterdays Answer:</P>
+        <P>{convertHTMLChar(triviaAnswerData.triviaSolution.correctChoice)}!</P>
+      </FlexDiv>
+      <P textTransform="uppercase">
+        {new Date().getHours() >= 17
+          ? 'Correct Guesses'
+          : 'Yesterdays Correct Guesses'}
+        :&nbsp;
+      </P>
+      {displayWinners()}
+    </Div>
   );
-}
+};
 
 export default Winner;

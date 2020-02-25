@@ -41,6 +41,10 @@ export default createGlobalStyle`
   a:hover {
     border-bottom: 2px solid white;
   }
+
+  p {
+    margin: .5em
+  }
   body {
     box-sizing: border-box;
     padding: 0;

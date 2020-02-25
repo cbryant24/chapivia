@@ -4,6 +4,7 @@ import Form from '@cbryant24/styled-react-form';
 import { signinValidation } from './validations';
 import { Div, H1, H3, P } from '@cbryant24/styled-react';
 import { flashingText } from './style';
+import { signinFormData } from './formData';
 
 import Modal from './Modal';
 
@@ -12,20 +13,20 @@ import { useAuth, useEventListener } from '../hooks';
 //TODO: Errors message applicable to correct field only
 function Signin(props) {
   const [isOpen, setIsOpen] = useState(false),
+    { form, inputs, buttons } = signinFormData,
     [signinOpen, setSigninOpen] = useState(false),
     [modalMessage, setModalMessage] = useState(''),
     { signin, user, userLoading } = useAuth();
 
   async function userSignin(event, formVals) {
-    // try {
-    //   await signin(formVals);
-    // } catch (res) {
-    //   debugger;
-    //   console.log(`the error message usersignin ${res}`);
-    //   toggleModal();
-    //   setModalMessage(res.graphQLErrors);
-    //   return;
-    // }
+    try {
+      await signin(formVals);
+    } catch (res) {
+      console.log(`the error message usersignin ${res}`);
+      toggleModal();
+      setModalMessage(res.graphQLErrors);
+      return;
+    }
   }
 
   useEffect(() => {
@@ -38,68 +39,12 @@ function Signin(props) {
     ({ key }) => {
       if (key === 'Enter' || key === ' ') {
         setSigninOpen(true);
-        // toggleModal();
-        // setModalMessage(
-        //   'Chapivia Is Currently In Maintenance Check Back Monday February 17th at 9:00AM '
-        // );
       }
     },
     [setSigninOpen]
   );
 
   useEventListener('keydown', handler);
-
-  const inputs = [
-    {
-      data: {
-        type: 'email',
-        name: 'email',
-        label: 'email',
-        placeholder: 'enter email',
-        required: true
-      },
-      fieldStyle: { themeStyle: 'fieldMain' },
-      inputStyle: { themeStyle: 'inputMain' }
-    },
-    {
-      data: {
-        type: 'password',
-        name: 'password',
-        label: 'password',
-        placeholder: 'enter password',
-        required: true
-      },
-      fieldStyle: { themeStyle: 'fieldMain' },
-      inputStyle: { themeStyle: 'inputMain' }
-    }
-  ];
-
-  const buttons = [
-    {
-      text: 'Submit',
-      type: 'submit',
-      cb: null,
-      style: { themeStyle: 'squareButton', mr: [3] }
-    },
-    {
-      text: 'Cancel',
-      type: 'cancel',
-      cb: null,
-      style: { themeStyle: 'squareButton' }
-    }
-  ];
-
-  const form = {
-    data: { name: 'signinForm', submit: 'signup' },
-    style: {
-      themeStyle: [
-        'authForm',
-        'flexSpaceBetweenColumn',
-        'marginBottomMedium',
-        'paddingMedium'
-      ]
-    }
-  };
 
   // TODO: Add loading image here
   if (userLoading) return <div></div>;
@@ -132,19 +77,7 @@ function Signin(props) {
         >
           Press Start To Play
         </H3>
-        <H3
-          display={signinOpen ? 'block' : 'none'}
-          textTransform="uppercase"
-          themeStyle={['marginLargeY']}
-          onClick={() => setSigninOpen(false)}
-          color="primary"
-          textAlign="center "
-          animation={flashingText}
-        >
-          Chapivia Is Currently In Maintenance Check Back Monday February 17th
-          at 9:00AM
-        </H3>
-        {/* <Div display={signinOpen ? 'block' : 'none'} width={[1]}>
+        <Div display={signinOpen ? 'block' : 'none'} width={[1]}>
           <Form
             onSubmit={userSignin}
             form={form}
@@ -152,8 +85,7 @@ function Signin(props) {
             validate={signinValidation}
             buttons={buttons}
           />
-        </Div> */}
-
+        </Div>
         <Div textTransform="uppercase">
           <P>&copy; 2019 Chapivia LTD.</P>
           <P>All Rights Reserver</P>

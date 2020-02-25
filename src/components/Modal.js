@@ -9,7 +9,7 @@ import {
   P
 } from '@cbryant24/styled-react';
 
-export default ({ isOpen, toggleModal, modalMessage }) => {
+export default ({ isOpen, toggleModal, modalMessage, afterClose }) => {
   return (
     <StyledModal
       id="chapivia-modal"
@@ -18,6 +18,7 @@ export default ({ isOpen, toggleModal, modalMessage }) => {
       onEscapeKeydown={toggleModal}
       modalBackgroundStyle={{ themeStyle: 'modalBackgroundStyle' }}
       allowScroll={false}
+      afterClose={afterClose}
     >
       <Div
         themeStyle={['modalContainer']}

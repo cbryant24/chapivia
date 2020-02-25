@@ -46,10 +46,10 @@ ReactDOM.render(
             <GlobalStyle />
             <ModalProvider>
               <App>
-                {/* <Route path="/game" exact component={Game} /> */}
+                <Route path="/game" exact component={Game} />
                 {/* <Route path='' component={GameController}/> */}
                 <Route path="/" exact component={Signin} />
-                {/* <Route path="/signup" component={Signup} /> */}
+                <Route path="/signup" component={Signup} />
               </App>
             </ModalProvider>
           </ThemeProvider>

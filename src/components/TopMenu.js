@@ -6,27 +6,32 @@ import { Link } from 'react-router-dom';
 
 import { DAILY_TRIVIA } from '../localState/Queries';
 
-import { useAuth } from '../hooks';
+import { useAuth, useRouter } from '../hooks';
 
 function TopMenu(props) {
   const { data } = useQuery(DAILY_TRIVIA);
   const { loading: scoresLoading, data: playerScores } = useQuery(query);
-  const { user, signout } = useAuth(),
-    StyledLink = createLink(Link);
+  const { user, signout } = useAuth();
+  const StyledLink = createLink(Link);
+  const { pathname } = useRouter();
 
   return (
     <Div width={[1]} fontSizeModule={[2, 3]}>
-      <FlexDiv themeStyle="marginTopSmall" justifyContent="space-between">
+      <FlexDiv
+        themeStyle="marginTopSmall"
+        justifyContent="space-between"
+        flexWrap={['wrap-reverse', 'nowrap']}
+      >
         <FlexDiv
           flexDirection="column"
           alignItems="center"
-          width={[3]}
+          width={[1, 3]}
           textAlign="center"
         >
           <P color="red">Trivia Topic</P>
           <P>{data ? data.localTrivia.category : ''}</P>
         </FlexDiv>
-        <FlexDiv themeStyle={['flexColumnCenter']} width={[3]}>
+        <FlexDiv themeStyle={['flexColumnCenter']} width={[2, 3]}>
           <P color="red">HI-Score</P>
           <P>
             {scoresLoading || !playerScores
@@ -36,28 +41,31 @@ function TopMenu(props) {
               : playerScores[0].score}
           </P>
         </FlexDiv>
-        {/* <FlexDiv
-          flexDirection="column"
-          alignItems="center"
-          width={[3]}
-        >
-          {user ? 
+        <FlexDiv flexDirection="column" alignItems="center" width={[2, 3]}>
+          {user ? (
             <Fragment>
-              <P color="red" onClick={signout}>Logout</P> 
+              <P color="red" cursor="pointer" onClick={signout}>
+                Logout
+              </P>
               <P>{user.name}</P>
             </Fragment>
-            : <StyledLink 
-                animation={{
-                  continuous: {
-                    from: { color: 'white' },
-                    to: { color: 'red' }
-                  },
-                  duration_continuous: 1,
-                  animation_direction: 'alternate-reverse'
-                }} 
-              themeStyle="linkNormal" to="/signup">Click Here To Signup!
-            </StyledLink> }
-        </FlexDiv> */}
+          ) : (
+            <StyledLink
+              animation={{
+                continuous: {
+                  from: { color: 'white' },
+                  to: { color: 'red' }
+                },
+                duration_continuous: 1,
+                animation_direction: 'alternate-reverse'
+              }}
+              themeStyle="linkNormal"
+              to={pathname === '/signup' ? '/' : '/signup'}
+            >
+              {`Click Here To ${pathname === '/signup' ? 'Login!' : 'Signup!'}`}
+            </StyledLink>
+          )}
+        </FlexDiv>
       </FlexDiv>
     </Div>
   );

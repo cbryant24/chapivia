@@ -14,24 +14,24 @@ export default {
     }
   ],
   inputErrorMessages: {
-      email: 'Email should be in email format',
-      password: 'Password should only contain letters, numbers, and ! @ # $ % characters'
+    email: 'Email should be in email format',
+    password:
+      'Password should only contain letters, numbers, and ! @ # $ % characters'
   },
   submit: [
     {
-      name: 'email',
-      validate: 'safeString'
+      name: 'player',
+      validate: 'safeStringSpaces'
     },
     {
-      name: 'password',
-      validate: 'safeString',
-    },
+      name: 'guess',
+      validate: 'safeStringSingleCharABCD'
+    }
   ],
   submitErrorMessages: {
     email: 'There was an error in the email field',
     password: 'There was an error in the password field'
   }
-}
+};
 
 //////// SIGNUP VALIDATIONS ////////////
-

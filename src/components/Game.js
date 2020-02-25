@@ -1,31 +1,34 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { useLastLocation } from 'react-router-last-location';
-
+import { useRouter } from '../hooks';
 import triviaQuery from '../queries/Trivia';
 
 import Modal from './Modal';
-import { Div } from '@cbryant24/styled-react';
+import { Div, H3 } from '@cbryant24/styled-react';
 
 import Winner from './Winner';
 import GuessList from './GuessList';
 import Scoreboard from './Scoreboard';
 import TriviaQuestion from './TriviaQuestion';
 import PrevMonthWinners from './PrevMonthWinners';
-import Carousel from './Carousel';
+import Carousel from './carousel';
+
+import { BorderPrimary } from './styledComponents';
 
 import { useAuth, useWindowSize } from '../hooks';
 
-const Game = (props) => {
-  const { loading: triviaLoading, data: triviaData }  = useQuery(triviaQuery);
-  const [isOpen, setIsOpen]                           = useState(false);
-  const [modalMessage, setModalMessage]               = useState('');
-  const lastLocation                                  = useLastLocation() || {};
-  const client                                        = useApolloClient();
-  const { user, userLoading }                         = useAuth();
-  const { width: windowWidth }                        = useWindowSize();
+const Game = props => {
+  const { loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const lastLocation = useLastLocation() || {};
+  const client = useApolloClient();
+  const { user, userLoading } = useAuth();
+  const router = useRouter();
+  const { width: windowWidth } = useWindowSize();
 
-  useEffect( () => {
+  useEffect(() => {
     if (triviaLoading) return;
 
     try {
@@ -41,74 +44,75 @@ const Game = (props) => {
           }
         }
       });
-    } catch(err) {
+    } catch (err) {
       //TODO: add proper error handling
       console.log('error getting trivia data', err);
     }
   }, [triviaData]);
 
-  useEffect( () => {
-
+  useEffect(() => {
     if (userLoading) return;
 
-    if (!user) return props.history.push('/');
+    if (!user) return router.push('/');
 
     if (lastLocation.pathname !== '/signup') return;
 
     toggleModal();
-    setModalMessage(`Welcome To Chapivia ${ user.name }!`);
+    setModalMessage(`Welcome To Chapivia ${user.name}!`);
   }, [user]);
 
   const toggleModal = e => setIsOpen(!isOpen);
 
   function displayGame() {
-
-    // if (windowWidth < 768) {
-    //   return (
-    //   <Carousel
-    //     type={["single", "infinite"]}
-    //     width="90vw"
-    //     transition="all 1s"
-    //     initialCarouselItemPos="translateX(0em)"
-    //     initialCarouselItemPosOut="translateX(100em)"
-    //     afterCarouselItemPosOut="translateX(-100em)"
-    //   >
-    //     {/* <TriviaQuestion /> */}
-    //     {/* <GuessList /> */}
-    //     <Scoreboard />
-    //     {/* <Winner /> */}
-    //   </Carousel>
-    //   )
-    // }
-
     return (
-      <Div
+      <Carousel
+        type={['infinite']}
+        width="90vw"
+        transition="all 1s"
+        bp={400}
+        style={{ themeStyle: 'carouselNormal' }}
       >
-        {/* <Div>
-          <GuessList/>
-        </Div>
-        <Div>
-          <TriviaQuestion/>
-        </Div>
-        <Div>
+        <BorderPrimary>
+          <TriviaQuestion />
+        </BorderPrimary>
+        <BorderPrimary>
+          <GuessList />
+        </BorderPrimary>
+        <BorderPrimary>
           <Scoreboard />
-        </Div>
-        <Div>
-          <Winner/>
-        </Div> */}
-      </Div>
-    )
+        </BorderPrimary>
+        <BorderPrimary>
+          <Winner />
+        </BorderPrimary>
+      </Carousel>
+    );
+
+    // return (
+    //   <Div
+    //   >
+    //     {/* <Div>
+    //       <GuessList/>
+    //     </Div>
+    //     <Div>
+    //       <TriviaQuestion/>
+    //     </Div>
+    //     <Div>
+    //       <Scoreboard />
+    //     </Div>
+    //     <Div>
+    //       <Winner/>
+    //     </Div> */}
+    //   </Div>
+    // )
   }
 
   if (userLoading || triviaLoading) return <div></div>;
 
   return (
-    <Div
-      m={4}
-      zIndex={2}
-      width="100%"
-      mt={["20%", "15%"]}
-    >
+    <Div m={4} zIndex={2} width="100%">
+      <H3 color="primary" themeStyle={['marginSmallY']} textAlign="center">
+        Chapivia
+      </H3>
       <Modal
         isOpen={isOpen}
         modalMessage={modalMessage}
@@ -116,7 +120,7 @@ const Game = (props) => {
       />
       {displayGame()}
     </Div>
-  )
-}
+  );
+};
 
 export default Game;

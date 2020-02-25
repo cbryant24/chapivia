@@ -5,6 +5,10 @@ export default gql`
     guessedPlayers {
       id
       name
+
+      userQuestionChoices {
+        isCorrect
+      }
     }
   }
 `;

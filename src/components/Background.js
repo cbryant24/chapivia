@@ -1,6 +1,6 @@
 import React from 'react';
 import { Div } from '@cbryant24/styled-react';
-import { infiniteBackground } from './style';
+import { infiniteBackground, flashingText } from './style';
 import galagaGif from './galaga_bg.gif';
 
 export default () => {

@@ -1,17 +1,17 @@
-import { get, includes, omit, range } from 'lodash';
 import * as spaceSettings from './space';
 import * as formInputs from './forms_inputs';
 import * as buttons from './buttons';
 import * as flex from './flex';
 import * as links from './links';
 import * as modal from './modal';
+import * as carousel from './carousel';
 
 const red = '#e42d42';
 const white = '#ffffff';
 const black = '#000000';
 const primary = red;
 const secondary = '#4F4FEB';
-const tertiary = '#ffffff';
+const tertiary = '#30C8B9';
 
 export const colors = {
   red,
@@ -67,7 +67,7 @@ export const lineHeights = { condensedUltra: 1, condensed: 1.25, default: 1.5 };
 //of modular design with font-size rem for global design and font-size em for local design
 //see https://css-tricks.com/rem-global-em-local/ for explanation `fontSizesModule` is a
 //custom system-styled property that can be used with the scale for parent module font-size design
-export const fontSizesModule = [0, '.75rem', '1rem', '1.25rem', '1.5rem'];
+export const fontSizesModule = [0, '.5rem', '1rem', '1.5rem', '2rem'];
 
 export const light = 300;
 export const regular = 400;
@@ -127,6 +127,7 @@ const theme = {
   ...flex,
   ...links,
   ...modal,
+  ...carousel,
   breakpoints,
   mediaQueries,
   font,
