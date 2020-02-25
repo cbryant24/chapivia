@@ -20,7 +20,7 @@ const Carousel = ({ children, type, style, bp }) => {
   ] = useStateValue();
 
   const prevVisibleCarouselItemsRange = usePrev(visibleCarouselItemsRange);
-  const ref = useRef(null);
+  //const ref = useRef(null);
   const handlers = useSwipeable({
     onSwipedLeft: () => goToPrevSlide(),
     onSwipedRight: () => goToNextSlide(),
@@ -28,40 +28,21 @@ const Carousel = ({ children, type, style, bp }) => {
   });
 
   useEffect(() => {
-    // debugger;
-    // if (
-    //   prevVisibleCarouselItems !== 'undefined' &&
-    //   Math.floor(width / bp) !== prevVisibleCarouselItems
-    // ) {
-    //   // debugger;
-    //   dispatch({
-    //     type: 'SET_VISIBLE_CAROUSEL_ITEMS',
-    //     payload: Math.floor(width / bp)
-    //   });
-    // }
-
     setVisibleElementsRange();
     return;
   }, [width, activeSlideIndex]);
 
-  // useEffect(() => {
-  //   goToSlide(activeSlideIndex);
-  // }, [activeSlideIndex]);
-
   // debugger;
   function goToSlide() {
-    // setActiveIndex(index);
     dispatch({ type: 'SET_ACTIVE_SLIDE', payload: 3 });
   }
 
   function goToPrevSlide(e) {
-    // debugger;
-    // e.preventDefault();
 
     let slide = activeSlideIndex;
     let slidesLength = children.length;
 
-    ref.current = true;
+    //ref.current = true;
 
     if (slide < 1) {
       slide = slidesLength;
@@ -100,77 +81,15 @@ const Carousel = ({ children, type, style, bp }) => {
     );
   }
 
-  function getSlidePosition(index) {
-    // index++;
-    // if (ref.current) {
-    //   if (prevActiveSlide === index) {
-    //     return { transform: `translateX(-${bp * index})`,  display: index >= additionalVisibleCarouselItems ? 'none' : 'block'}
-    //   }
-    //   if (prevActiveIndex === index) {
-    //     if (prevActiveIndex === children.length - 1)
-    //       return { transform: initialCarouselItemPosOut };
-
-    //     if (prevActiveIndex > activeIndex)
-    //       return { transform: initialCarouselItemPosOut };
-
-    //     if (prevActiveIndex < activeIndex)
-    //       return { transform: afterCarouselItemPosOut };
-    //   }
-
-    //   if (index === activeIndex) {
-    //     if (activeIndex === children.length - 1)
-    //       return { transform: initialCarouselItemPos };
-
-    //     if (activeIndex > prevActiveIndex)
-    //       return { transform: initialCarouselItemPos };
-
-    //     if (activeIndex < prevActiveIndex)
-    //       return { transform: initialCarouselItemPos };
-    //   }
-
-    //   return {
-    //     transform:
-    //       index < activeIndex
-    //         ? afterCarouselItemPosOut
-    //         : initialCarouselItemPosOut
-    //   };
-    // }
-    // debugger;
-    // if (activeSlideIndex === additionalVisibleCarouselItems) {
-    // }
-    // if (activeSlideIndex === index) {
-    //   return {
-    //     transform: 'translateX(0)',
-    //     width:
-    //       additionalVisibleCarouselItems.length > 1
-    //         ? `${bp - bp * 0.05}px`
-    //         : '100%'
-    //   };
-    // }
-    // debugger;
-    return {
-      transform: getTranslatePosition(index),
-      visibility: visibleCarouselItemsRange.includes(parseInt(index))
-        ? 'visible'
-        : 'hidden',
-      height: visibleCarouselItemsRange.includes(parseInt(index))
-        ? 'auto'
-        : '0',
-      width: visibleCarouselItemsRange.includes(parseInt(index))
-        ? `${bp - bp * 0.05}px`
-        : '0'
-    };
-  }
-
   function setVisibleElementsRange(index) {
-    const additionalVisibleCarouselItems = Math.floor(width / bp);
+    const visibleCarouselItems = Math.floor(width / bp);
     let visibleRange = [];
     debugger;
-    if (additionalVisibleCarouselItems) {
+    if (visibleCarouselItems) {
       let carouselStart =
-        activeSlideIndex - Math.floor(additionalVisibleCarouselItems / 2);
+        activeSlideIndex - Math.floor(visibleCarouselItems / 2);
       let carouselEnd =
-        activeSlideIndex + Math.floor(additionalVisibleCarouselItems / 2);
+        activeSlideIndex + Math.floor(visibleCarouselItems / 2);
 
       if (carouselStart < 0) {
         carouselEnd = carouselEnd + Math.abs(carouselStart);
@@ -221,7 +140,7 @@ const Carousel = ({ children, type, style, bp }) => {
       return {
         transform: 'translateX(0)',
         height: '100%',
-        width
+        width: '100%'
       };
     }
 
@@ -237,8 +156,9 @@ const Carousel = ({ children, type, style, bp }) => {
 
     return {
       visibility: 'hidden',
-      height: 0,
-      width: 0
+      transform: `translateX(${(index - activeSlideIndex) * bp }px)`,
+      // height: 0,
+      // width: 0
     };
   }
 
@@ -257,7 +177,8 @@ const Carousel = ({ children, type, style, bp }) => {
         id={`carousel-item-${index}`}
         gridRow="1 / span 1"
         gridColumn="1 / span 1"
-        transition="all 1s"
+        transition="transform 1s"
+        //margin="auto"
         {...carouselItemPosition}
       >
         {children[index]}
@@ -282,7 +203,7 @@ const Carousel = ({ children, type, style, bp }) => {
           gridColumnRows="100%"
           position="relative"
           width="100%"
-          ref={ref}
+          //ref={ref}
         >
           {children.map((item, idx) => carouselSlide(idx))}
         </Ul>
