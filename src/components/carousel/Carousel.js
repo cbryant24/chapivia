@@ -38,7 +38,6 @@ const Carousel = ({ children, type, style, bp }) => {
   }
 
   function goToPrevSlide(e) {
-
     let slide = activeSlideIndex;
     let slidesLength = children.length;
 
@@ -79,32 +78,6 @@ const Carousel = ({ children, type, style, bp }) => {
         </Div>
       </Div>
     );
-  }
-
-  function setVisibleElementsRange(index) {
-    const visibleCarouselItems = Math.floor(width / bp);
-    let visibleRange = [];
-    debugger;
-    if (visibleCarouselItems) {
-      let carouselStart =
-        activeSlideIndex - Math.floor(visibleCarouselItems / 2);
-      let carouselEnd =
-        activeSlideIndex + Math.floor(visibleCarouselItems / 2);
-
-      if (carouselStart < 0) {
-        carouselEnd = carouselEnd + Math.abs(carouselStart);
-        carouselStart = 0;
-      }
-
-      visibleRange = range(carouselStart, carouselEnd);
-
-      dispatch({ type: 'SET_VISIBLE_CAROUSEL_ITEMS', payload: visibleRange });
-      return;
-    }
-
-    visibleRange = [activeSlideIndex];
-
-    dispatch({ type: 'SET_VISIBLE_CAROUSEL_ITEMS', payload: visibleRange });
   }
 
   function getTranslatePosition(index) {
@@ -156,9 +129,9 @@ const Carousel = ({ children, type, style, bp }) => {
 
     return {
       visibility: 'hidden',
-      transform: `translateX(${(index - activeSlideIndex) * bp }px)`,
-      // height: 0,
-      // width: 0
+      transform: `translateX(${(index - activeSlideIndex) * bp}px)`,
+      height: 0,
+      width: 0
     };
   }
 

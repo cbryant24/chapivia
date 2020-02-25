@@ -1,5 +1,6 @@
 import React from 'react';
 import { useStateValue, StateProvider } from './carouselState';
+import { useWindowSize } from '../../hooks';
 import Carousel from './Carousel';
 
 export { useStateValue };
