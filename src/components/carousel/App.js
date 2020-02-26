@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useStateValue, StateProvider } from './carouselState';
-import { useWindowSize } from '../../hooks';
+import setCarouselRange from './setCarouselRange';
 import Carousel from './Carousel';
 
 export { useStateValue };
@@ -8,16 +8,19 @@ export { useStateValue };
 export default ({ initialSlide = 0, type, style, bp, props, children }) => {
   const initialState = {
     activeSlideIndex: initialSlide,
-    // currentSlide: initialSlide,
-    //additionalVisibleCarouselItems: 0
-    visibleCarouselItemsRange: []
+    visibleCarouselRange: [],
+    visibleCarouselCount: null,
+    type,
+    bp,
+    carouselCount: children.length
   };
 
   const reducer = (state, action) => {
     switch (action.type) {
-      case 'SET_VISIBLE_CAROUSEL_ITEMS':
-        return { ...state, visibleCarouselItemsRange: action.payload };
-
+      case 'SET_VISIBLE_CAROUSEL_COUNT':
+        return { ...state, visibleCarouselCount: action.payload };
+      case 'SET_VISIBLE_CAROUSEL_RANGE':
+        return { ...state, visibleCarouselRange: action.payload };
       case 'SET_ACTIVE_SLIDE':
         return { ...state, activeSlideIndex: action.payload };
     }
@@ -25,7 +28,7 @@ export default ({ initialSlide = 0, type, style, bp, props, children }) => {
 
   return (
     <StateProvider initialState={initialState} reducer={reducer}>
-      <Carousel bp={bp} style={style} type={type} {...props}>
+      <Carousel style={style} type={type} {...props}>
         {children}
       </Carousel>
     </StateProvider>

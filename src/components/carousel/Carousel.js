@@ -6,20 +6,27 @@ import { Div, Li, Ul } from '@cbryant24/styled-react';
 
 import { usePrev, useWindowSize } from '../../hooks';
 import { useStateValue } from './App';
+import setCarouselRange from './setCarouselRange';
 
 //TODO: docuemnt props infinite (inifinite loop of carousel)
 //TODO: docuemnt props type (preview: thubmnail previes below)
 //TODO: document props initialItem (builds order based on initial order)
 //TODO: create readme of personalized components and create library as part of starter skeleton project
-const Carousel = ({ children, type, style, bp }) => {
+const Carousel = ({ children, style}) => {
   // const [activeIndex, setActiveIndex] = useState(0);
   const { width } = useWindowSize();
   const [
-    { activeSlideIndex, visibleCarouselItemsRange },
+    { activeSlideIndex, visibleCarouselRange, bp },
     dispatch
   ] = useStateValue();
 
-  const prevVisibleCarouselItemsRange = usePrev(visibleCarouselItemsRange);
+  //if (!visibleCarouselRange.length) return <div></div>;
+
+  useEffect(() => {
+    setCarouselRange();
+  },[children]);
+
+  const prevVisibleCarouselItemsRange = usePrev(visibleCarouselRange);
   //const ref = useRef(null);
   const handlers = useSwipeable({
     onSwipedLeft: () => goToPrevSlide(),
@@ -27,10 +34,10 @@ const Carousel = ({ children, type, style, bp }) => {
     preventDefaultTouchmoveEvent: true
   });
 
-  useEffect(() => {
-    setVisibleElementsRange();
-    return;
-  }, [width, activeSlideIndex]);
+  // useEffect(() => {
+  //   setVisibleElementsRange();
+  //   return;
+  // }, [width, activeSlideIndex]);
 
   // debugger;
   function goToSlide() {
@@ -81,15 +88,16 @@ const Carousel = ({ children, type, style, bp }) => {
   }
 
   function getTranslatePosition(index) {
+    debugger
     const middleCarouselPlace = Math.floor(
-      visibleCarouselItemsRange.length / 2
+      visibleCarouselRange.length / 2
     );
     const width = `${bp - bp * 0.05}px`;
-    debugger;
+    // debugger;
     if (activeSlideIndex === index) {
       if (
-        visibleCarouselItemsRange.length > 1 &&
-        visibleCarouselItemsRange.length % 2 === 1
+        visibleCarouselRange.length > 1 &&
+        visibleCarouselRange.length % 2 === 1
       ) {
         return {
           transform: `translateX(${bp * middleCarouselPlace}px)`,
@@ -100,8 +108,8 @@ const Carousel = ({ children, type, style, bp }) => {
       }
 
       if (
-        visibleCarouselItemsRange.length > 1 &&
-        visibleCarouselItemsRange.length % 2 === 0
+        visibleCarouselRange.length > 1 &&
+        visibleCarouselRange.length % 2 === 0
       ) {
         return {
           transform: `translateX(${bp * middleCarouselPlace}px)`,
@@ -117,9 +125,9 @@ const Carousel = ({ children, type, style, bp }) => {
       };
     }
 
-    if (visibleCarouselItemsRange.includes(parseInt(index))) {
+    if (visibleCarouselRange.includes(parseInt(index))) {
       const carouselItemPos =
-        visibleCarouselItemsRange.indexOf(parseInt(index)) -
+        visibleCarouselRange.indexOf(parseInt(index)) -
         middleCarouselPlace;
       return {
         transform: `translateX(${bp * carouselItemPos}px)`,

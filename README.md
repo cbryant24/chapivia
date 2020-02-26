@@ -6,5 +6,10 @@ Trivia game that allows players to signup and compete against each other. Scores
 
 ### Carousel
 
+reasoning behind why using a carousel. Mainly not good for visibility and clicking 
+https://www.justinmind.com/blog/building-better-ux-patterns-3-alternatives-to-rotating-carousels/
+
 `initialCarouselItemPos`:
 `transition`:
+
+
