@@ -73,7 +73,14 @@ function Signin(props) {
           themeStyle={['marginLargeY']}
           onClick={() => setSigninOpen(true)}
           color="primary"
-          animation={flashingText}
+          animation={{
+            continuous: {
+              from: { opacity: '0' },
+              to: { opacity: '1' }
+            },
+            duration_continuous: 1,
+            animation_direction: 'alternate-reverse'
+          }}
         >
           Press Start To Play
         </H3>

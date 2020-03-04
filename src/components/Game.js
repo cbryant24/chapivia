@@ -12,9 +12,8 @@ import GuessList from './GuessList';
 import Scoreboard from './Scoreboard';
 import TriviaQuestion from './TriviaQuestion';
 import PrevMonthWinners from './PrevMonthWinners';
-import Carousel from './carousel';
 
-import { BorderPrimary } from './styledComponents';
+import { BorderPrimary, InfiniteCarousel } from './styledComponents';
 
 import { useAuth, useWindowSize } from '../hooks';
 
@@ -64,27 +63,31 @@ const Game = props => {
   const toggleModal = e => setIsOpen(!isOpen);
 
   function displayGame() {
+    const arr = [];
+    for (let i = 0; i <= 11; i++) {
+      arr.push(
+        <Div
+          width="85%"
+          height="85%"
+          border="1px solid purple"
+          backgroundColor="red"
+          color="white"
+        >
+          {i}
+        </Div>
+      );
+    }
+
     return (
-      <Carousel
-        type={['infinite']}
+      <InfiniteCarousel
         width="90vw"
-        transition="all 1s"
-        bp={400}
-        style={{ themeStyle: 'carouselNormal' }}
+        bp={50}
+        carouselStyle={{ themeStyle: 'carouselNormal' }}
+
+        //initialSlide={10}
       >
-        <BorderPrimary>
-          <TriviaQuestion />
-        </BorderPrimary>
-        <BorderPrimary>
-          <GuessList />
-        </BorderPrimary>
-        <BorderPrimary>
-          <Scoreboard />
-        </BorderPrimary>
-        <BorderPrimary>
-          <Winner />
-        </BorderPrimary>
-      </Carousel>
+        {arr}
+      </InfiniteCarousel>
     );
 
     // return (

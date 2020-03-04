@@ -1,36 +1,32 @@
 import React, { useEffect } from 'react';
 import { useStateValue, StateProvider } from './carouselState';
-import setCarouselRange from './setCarouselRange';
-import Carousel from './Carousel';
+import InfiniteCarousel from '../styledComponents/InfiniteCarousel';
 
 export { useStateValue };
 
-export default ({ initialSlide = 0, type, style, bp, props, children }) => {
+// TODO: add way to pull initial slide off component prop
+// TODO: add ability to pass normal jsx not styled-react elements 🙄
+// TODO:
+export default ({ type, style, bp, props, maxCarouselCount, children }) => {
+  // const { count, range } = getRangeCount(bp, initialSlide);
   const initialState = {
-    activeSlideIndex: initialSlide,
-    visibleCarouselRange: [],
-    visibleCarouselCount: null,
     type,
     bp,
-    carouselCount: children.length
+    maxCarouselCount: children.length || maxCarouselCount
   };
 
   const reducer = (state, action) => {
     switch (action.type) {
-      case 'SET_VISIBLE_CAROUSEL_COUNT':
-        return { ...state, visibleCarouselCount: action.payload };
-      case 'SET_VISIBLE_CAROUSEL_RANGE':
+      case 'SET_CAROUSEL_RANGE':
         return { ...state, visibleCarouselRange: action.payload };
-      case 'SET_ACTIVE_SLIDE':
-        return { ...state, activeSlideIndex: action.payload };
     }
   };
 
   return (
     <StateProvider initialState={initialState} reducer={reducer}>
-      <Carousel style={style} type={type} {...props}>
+      <InfiniteCarousel style={style} type={type} {...props}>
         {children}
-      </Carousel>
+      </InfiniteCarousel>
     </StateProvider>
   );
 };
