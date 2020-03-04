@@ -62,6 +62,10 @@ const InfiniteCarousel = ({
         ? activeSlideIndex + upperLowerLimit
         : activeSlideIndex + upperLowerLimit + 1;
     const carouselPositions = {};
+    const fromBeginningCarouselToEnd =
+      prevActiveSlideIndex === carouselLengthEnd && activeSlideIndex === 0;
+    const fromEndCarouselToBeginning =
+      prevActiveSlideIndex === 0 && activeSlideIndex === carouselLengthEnd;
 
     // debugger;
     while (lowerLimit < upperLimit) {
@@ -90,10 +94,6 @@ const InfiniteCarousel = ({
             animation_fill_mode: 'forwards'
           }
         };
-        const fromBeginningCarouselToEnd =
-          prevActiveSlideIndex === carouselLengthEnd && activeSlideIndex === 0;
-        const fromEndCarouselToBeginning =
-          prevActiveSlideIndex === 0 && activeSlideIndex === carouselLengthEnd;
 
         if (fromBeginningCarouselToEnd) {
           debugger;
@@ -136,7 +136,6 @@ const InfiniteCarousel = ({
         }
 
         if (prevActiveSlideIndex > activeSlideIndex) {
-          debugger;
           if (i + 1 === visibleCarouselCount) {
             const outAnimationFromEnd = {
               animation: {
@@ -174,6 +173,57 @@ const InfiniteCarousel = ({
       })();
 
       //SETTING THE CAROUSEL INDEX WITH PREVIOUSLY CALCULATED TRANSLATE VALS
+      if (fromBeginningCarouselToEnd) {
+        debugger;
+        if (children[lowerLimit]) {
+          carouselPositions[lowerLimit] = carouselItemTransform;
+          lowerLimit++;
+          i++;
+          continue;
+        }
+
+        if (lowerLimit >= children.length) {
+          carouselPositions[
+            lowerLimit - children.length
+          ] = carouselItemTransform;
+          carouselLengthEnd--;
+          lowerLimit++;
+          i++;
+          continue;
+        }
+
+        carouselPositions[children.length + lowerLimit] = carouselItemTransform;
+        carouselLengthEnd--;
+        lowerLimit++;
+        i++;
+        continue;
+      }
+
+      if (fromEndCarouselToBeginning) {
+        debugger;
+        if (children[lowerLimit]) {
+          carouselPositions[lowerLimit] = carouselItemTransform;
+          lowerLimit++;
+          i++;
+          continue;
+        }
+
+        if (lowerLimit >= children.length) {
+          carouselPositions[
+            lowerLimit - children.length
+          ] = carouselItemTransform;
+          carouselLengthEnd--;
+          lowerLimit++;
+          i++;
+          continue;
+        }
+
+        carouselPositions[children.length + lowerLimit] = carouselItemTransform;
+        carouselLengthEnd--;
+        lowerLimit++;
+        i++;
+        continue;
+      }
 
       if (children[lowerLimit]) {
         carouselPositions[lowerLimit] = carouselItemTransform;
