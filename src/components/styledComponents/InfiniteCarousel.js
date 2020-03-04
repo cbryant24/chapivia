@@ -148,7 +148,7 @@ const InfiniteCarousel = ({
                 animation_fill_mode: 'forwards'
               }
             };
-            if (i + 1 === )
+            // if ()
             if (lowerLimit >= children.length) {
               carouselPositions[
                 lowerLimit - children.length + 1
