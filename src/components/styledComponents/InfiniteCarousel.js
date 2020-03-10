@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
-import { Div, Li, Ul, FlexUl } from '@cbryant24/styled-react';
+import { Div, Li, Ul, FlexUl, Span } from '@cbryant24/styled-react';
 
 import { usePrev, useWindowSize } from '../../hooks';
 
@@ -75,6 +75,7 @@ const InfiniteCarousel = ({
     while (lowerLimit < upperLimit) {
       const scale = lowerLimit === activeSlideIndex ? 1.2 : 1.0;
       const lastSlide = i + 1 === visibleCarouselCount;
+      const fistSlide = i === 0;
       //FUNCTION TO SET CAROUSEL TRANSLATE POSITIONS
       const carouselItemTransform = (() => {
         const fromUpperToLower = {
@@ -156,7 +157,7 @@ const InfiniteCarousel = ({
 
           /// HANDLE CAROUSEL TRAVERSING DOWN IF CAROUSEL IS GOING FROM LAST ITEM TO FIRST
           if (fromEndCarouselToBeginning) {
-            if (i === 0) {
+            if (fistSlide) {
               return fromEndToFront;
             }
             carouselItemTranslate.animation.in.from = fromLowerToUpper;
@@ -184,7 +185,7 @@ const InfiniteCarousel = ({
           }
 
           if (traverseCarouselDown) {
-            if (i === 0) {
+            if (fistSlide) {
               return fromEndToFront;
             }
 
@@ -192,10 +193,7 @@ const InfiniteCarousel = ({
           }
         }
         //THE CAROUSEL IS GOING FROM THE FIRST ITEM TO THE LAST ITEM REVERSE THE NORMAL TRANSITIONS
-        if (
-          prevActiveSlideIndex < activeSlideIndex &&
-          fromEndCarouselToBeginning
-        ) {
+        if (fromEndCarouselToBeginning) {
           //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM LEFT
           if (lastSlide) {
             const outAnimationFromEnd = {
@@ -225,7 +223,7 @@ const InfiniteCarousel = ({
           }
 
           //SETTING PREVIOUSLY UNSEEN CAROUSEL ITEM TO TRANSITION INTO CAROUSEL FROM RIGHT
-          if (i === 0) {
+          if (fistSlide) {
             carouselItemTranslate.animation.in.from = inFromLeft;
             return carouselItemTranslate;
           }
@@ -236,7 +234,7 @@ const InfiniteCarousel = ({
 
         if (prevActiveSlideIndex < activeSlideIndex) {
           //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM LEFT
-          if (i === 0) {
+          if (fistSlide) {
             const outAnimationFromStart = {
               animation: {
                 in: {
@@ -270,7 +268,7 @@ const InfiniteCarousel = ({
         //THE CAROUSEL IS GOING FROM THE LAST ITEM TO THE FIRST ITEM REVERSE THE NORMAL TRANSITIONS
         if (fromBeginningCarouselToEnd) {
           //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM LEFT
-          if (i === 0) {
+          if (fistSlide) {
             const outAnimationFromStart = {
               animation: {
                 in: {
@@ -281,7 +279,6 @@ const InfiniteCarousel = ({
                 animation_fill_mode: 'forwards'
               }
             };
-            // if ()
             if (children[lowerLimit - 1]) {
               carouselPositions[lowerLimit - 1] = outAnimationFromStart;
             } else {
@@ -323,7 +320,7 @@ const InfiniteCarousel = ({
             }
           }
 
-          if (i === 0) {
+          if (fistSlide) {
             carouselItemTranslate.animation.in.from = inFromLeft;
             return carouselItemTranslate;
           }
@@ -451,12 +448,13 @@ const InfiniteCarousel = ({
       </Li>
     );
   }
-  debugger
+  debugger;
   if (!carouselTranslateVals) return <Div></Div>;
-  debugger
+  debugger;
   return (
     <div {...handlers}>
       <Div {...carouselStyle}>
+        <Span onClick={goToPrevSlide}>Left</Span>
         <Ul
           id="styled-react-carousel-ul"
           display="grid"
@@ -466,6 +464,7 @@ const InfiniteCarousel = ({
         >
           {children.map((item, idx) => carouselSlide(idx))}
         </Ul>
+        <Span onClick={goToNextSlide}>Right</Span>
         {carouselIndicator ? (
           <FlexUl id="styled-react-carousel-indicator">
             {children.map((item, idx) => createCarouselIndicator(idx))}
