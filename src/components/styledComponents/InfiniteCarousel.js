@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
-import { Div, Li, Ul } from '@cbryant24/styled-react';
+import { Div, Li, Ul, FlexUl } from '@cbryant24/styled-react';
 
 import { usePrev, useWindowSize } from '../../hooks';
 
@@ -15,7 +15,9 @@ const InfiniteCarousel = ({
   carouselItemStyle,
   initialSlide = 0,
   bp,
-  maxItems
+  maxItems,
+  carouselIndicator,
+  carouselIndicatorStyle
 }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(initialSlide);
   const [carouselTranslateVals, setCarouselTranslateVals] = useState(null);
@@ -25,7 +27,7 @@ const InfiniteCarousel = ({
   );
   const { width } = useWindowSize();
   const prevActiveSlideIndex = usePrev(activeSlideIndex);
-  const carouselSpeed = 0.5;
+  const carouselSpeed = 1.5;
 
   useEffect(() => {
     setVisibleCarouselCount(carouselCountToDisplay());
@@ -81,18 +83,21 @@ const InfiniteCarousel = ({
         };
         const inFromLeft = {
           transform: `translateX(-${10 * bp}px) scale(1.0)`,
-          opacity: 0
+          opacity: 0,
+          visibility: 'hidden'
         };
         const inFromRight = {
           transform: `translateX(${10 * bp}px) scale(1.0)`,
-          opacity: 0
+          opacity: 0,
+          visibility: 'hidden'
         };
 
         const carouselItemTranslate = {
           animation: {
             in: {
-              from: fromLowerToUpper,
-              to: {
+              '0%': fromLowerToUpper,
+              '75%': { visibility: 'visible' },
+              '100%': {
                 transform: `translateX(${i * bp}px) scale(${scale})`,
                 opacity: 1
               }
@@ -146,13 +151,12 @@ const InfiniteCarousel = ({
               animation_fill_mode: 'forwards'
             }
           };
-          // debugger;
+
           /// HANDLE CAROUSEL TRAVERSING DOWN IF CAROUSEL IS GOING FROM LAST ITEM TO FIRST
           if (
             prevActiveSlideIndex < activeSlideIndex &&
             fromEndCarouselToBeginning
           ) {
-            // debugger;
             if (i === 0) {
               return fromEndToFront;
             }
@@ -160,6 +164,7 @@ const InfiniteCarousel = ({
 
             return carouselItemTranslate;
           }
+
           /// HANDLE CAROUSEL TRAVERSING UP
           if (prevActiveSlideIndex < activeSlideIndex) {
             if (i + 1 === visibleCarouselCount) {
@@ -174,9 +179,8 @@ const InfiniteCarousel = ({
             prevActiveSlideIndex > activeSlideIndex &&
             fromBeginningCarouselToEnd
           ) {
-            // debugger;
-            if (i + 1 === 0) {
-              return fromEndToFront;
+            if (i + 1 === visibleCarouselCount) {
+              return fromFrontToEnd;
             }
             carouselItemTranslate.animation.in.from = fromUpperToLower;
 
@@ -184,7 +188,6 @@ const InfiniteCarousel = ({
           }
 
           if (prevActiveSlideIndex > activeSlideIndex) {
-            // debugger;
             if (i === 0) {
               return fromEndToFront;
             }
@@ -197,15 +200,13 @@ const InfiniteCarousel = ({
           prevActiveSlideIndex < activeSlideIndex &&
           fromEndCarouselToBeginning
         ) {
-          // debugger;
-
           //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM LEFT
           if (i + 1 === visibleCarouselCount) {
             const outAnimationFromEnd = {
               animation: {
                 in: {
-                  from: { transform: `translateX(${bp * i}px)` },
-                  to: { transform: `translateX(${bp * 10}px)` }
+                  '0%': { transform: `translateX(${bp * i}px)` },
+                  '100%': { transform: `translateX(${bp * 10}px)` }
                 },
                 duration_in: carouselSpeed,
                 animation_fill_mode: 'forwards'
@@ -243,8 +244,8 @@ const InfiniteCarousel = ({
             const outAnimationFromStart = {
               animation: {
                 in: {
-                  from: { transform: `translateX(0px)` },
-                  to: { transform: `translateX(-${bp * 10}px)` }
+                  '0%': { transform: `translateX(0px)` },
+                  '100%': { transform: `translateX(-${bp * 10}px)` }
                 },
                 duration_in: carouselSpeed,
                 animation_fill_mode: 'forwards'
@@ -280,8 +281,8 @@ const InfiniteCarousel = ({
             const outAnimationFromStart = {
               animation: {
                 in: {
-                  from: { transform: `translateX(0px)` },
-                  to: { transform: `translateX(-${bp * 10}px)` }
+                  '0%': { transform: `translateX(0px)` },
+                  '100%': { transform: `translateX(-${bp * 10}px)` }
                 },
                 duration_in: carouselSpeed,
                 animation_fill_mode: 'forwards'
@@ -312,15 +313,14 @@ const InfiniteCarousel = ({
             const outAnimationFromEnd = {
               animation: {
                 in: {
-                  from: { transform: `translateX(${bp * i}px)` },
-                  to: { transform: `translateX(${bp * 10}px)` }
+                  '0%': { transform: `translateX(${bp * i}px)` },
+                  '100%': { transform: `translateX(${bp * 10}px)` }
                 },
                 duration_in: carouselSpeed,
                 animation_fill_mode: 'forwards'
               }
             };
-            // if ()
-            // debugger;
+
             if (lowerLimit >= children.length - 1) {
               carouselPositions[
                 lowerLimit - children.length + 1
@@ -336,14 +336,12 @@ const InfiniteCarousel = ({
           }
 
           if (i + 1 === visibleCarouselCount) {
-            // carouselItemTranslate.animation.in.from = outFromRight;
             return carouselItemTranslate;
           }
         }
         return carouselItemTranslate;
       })();
 
-      // debugger;
       if (children[lowerLimit]) {
         carouselPositions[lowerLimit] = carouselItemTransform;
         lowerLimit++;
@@ -369,8 +367,8 @@ const InfiniteCarousel = ({
     return carouselPositions;
   }
 
-  function goToSlide() {
-    setActiveSlideIndex(3);
+  function goToSlide(index) {
+    setActiveSlideIndex(index);
   }
 
   function goToPrevSlide(e) {
@@ -399,22 +397,13 @@ const InfiniteCarousel = ({
     setActiveSlideIndex(slide);
   }
 
-  function carouselIndicator(index) {
-    return (
-      <Div>
-        <Div display={index === activeSlideIndex ? 'active' : 'non-active'}>
-          {`carousel indicator ${index}`}
-        </Div>
-      </Div>
-    );
-  }
-
   function getTranslatePosition(index) {
-    // debugger;
     if (carouselTranslateVals[index]) return carouselTranslateVals[index];
-    debugger;
+    // debugger;
     return {
       visibility: 'hidden',
+      transform:
+        index < activeSlideIndex ? 'translateX(-1000px)' : 'translate(2000px)',
       height: 0,
       width: 0
     };
@@ -446,6 +435,30 @@ const InfiniteCarousel = ({
     );
   }
 
+  function createCarouselIndicator(index) {
+    return (
+      <Li {...carouselIndicatorStyle} onClick={() => goToSlide(index)}>
+        <Div
+          pseudo="true"
+          transform="translateY(5px)"
+          transition="1s all"
+          opacity="0"
+          py={[1]}
+          textAlign="center"
+          hover={{
+            transform: 'translateY(0px)',
+            height: '100%',
+            width: '100%',
+            visibility: 'visible',
+            opacity: '1'
+          }}
+        >
+          {index}
+        </Div>
+      </Li>
+    );
+  }
+
   if (!carouselTranslateVals) return <Div></Div>;
 
   return (
@@ -460,6 +473,13 @@ const InfiniteCarousel = ({
         >
           {children.map((item, idx) => carouselSlide(idx))}
         </Ul>
+        {carouselIndicator ? (
+          <FlexUl id="styled-react-carousel-indicator">
+            {children.map((item, idx) => createCarouselIndicator(idx))}
+          </FlexUl>
+        ) : (
+          ''
+        )}
       </Div>
     </div>
   );

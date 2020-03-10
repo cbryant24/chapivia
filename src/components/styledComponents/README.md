@@ -22,6 +22,7 @@ The inifinte carousel will infinitely scroll multiple React or Styled-React comp
 `maxItems`: Integer specifiying how many items to display at one time if not set is set to the number elements provided for the carousel
 `carouselStyle`: This provides styling to container for the carousel using the library [styled-react](https://github.com/cbryant24/styled-react) provide an object of camelCase css properties or if using a theme the corresponding theme named passed to the `ThemeProvider`
 `carouselItemStyle`: This provides styling to container for the carousel item using the library [styled-react](https://github.com/cbryant24/styled-react) provide an object of camelCase css properties or if using a theme the corresponding theme named passed to the `ThemeProvider`
+`carouselIndicator`: Boolen indicating whether a clickable caorusel indicator should be displayed [see here for more info](#carousel-indicator)
 
 ###### initial slide
 
@@ -42,3 +43,17 @@ or add `initialSlide` to the Carousel item to be displayed initially
   <p>World</p>
 </Carousel>
 ```
+
+#### Carousel Indicator
+
+To include a carousel indicator pass the `true` to the carouselIndicator prop in the `<InfiniteCarousel>` component.
+The text to be displayed when the indicator is hovered can be passed as the prop `indicatorDisplayName`
+
+```javascript
+<InfiniteCarousel>
+  <Div indicatorDisplayName="Item 1">Item One</Div>
+  <Div>Item Two</Div>
+</InfiniteCarousel>
+```
+
+To style the carousel indicator use the `carouselIndicatorStyle` property

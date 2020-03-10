@@ -82,9 +82,16 @@ const Game = props => {
       <InfiniteCarousel
         width="90vw"
         bp={50}
+        carouselIndicator={true}
         carouselStyle={{ themeStyle: 'carouselNormal' }}
-
-        //initialSlide={10}
+        carouselIndicatorStyle={{
+          width: '50px',
+          height: '25px',
+          backgroundColor: 'white',
+          color: 'black',
+          margin: [1]
+        }}
+        initialSlide={10}
       >
         {arr}
       </InfiniteCarousel>
