@@ -65,14 +65,16 @@ const InfiniteCarousel = ({
         ? activeSlideIndex + upperLowerLimit
         : activeSlideIndex + upperLowerLimit + 1;
     const carouselPositions = {};
+    const traverseCarouselUp = prevActiveSlideIndex < activeSlideIndex;
+    const traverseCarouselDown = prevActiveSlideIndex > activeSlideIndex;
     const fromBeginningCarouselToEnd =
       prevActiveSlideIndex === carouselLengthEnd && activeSlideIndex === 0;
     const fromEndCarouselToBeginning =
       prevActiveSlideIndex === 0 && activeSlideIndex === carouselLengthEnd;
 
-    // debugger;
     while (lowerLimit < upperLimit) {
       const scale = lowerLimit === activeSlideIndex ? 1.2 : 1.0;
+      const lastSlide = i + 1 === visibleCarouselCount;
       //FUNCTION TO SET CAROUSEL TRANSLATE POSITIONS
       const carouselItemTransform = (() => {
         const fromUpperToLower = {
@@ -153,10 +155,7 @@ const InfiniteCarousel = ({
           };
 
           /// HANDLE CAROUSEL TRAVERSING DOWN IF CAROUSEL IS GOING FROM LAST ITEM TO FIRST
-          if (
-            prevActiveSlideIndex < activeSlideIndex &&
-            fromEndCarouselToBeginning
-          ) {
+          if (fromEndCarouselToBeginning) {
             if (i === 0) {
               return fromEndToFront;
             }
@@ -166,8 +165,8 @@ const InfiniteCarousel = ({
           }
 
           /// HANDLE CAROUSEL TRAVERSING UP
-          if (prevActiveSlideIndex < activeSlideIndex) {
-            if (i + 1 === visibleCarouselCount) {
+          if (traverseCarouselUp) {
+            if (lastSlide) {
               return fromFrontToEnd;
             }
 
@@ -175,11 +174,8 @@ const InfiniteCarousel = ({
             return carouselItemTranslate;
           }
 
-          if (
-            prevActiveSlideIndex > activeSlideIndex &&
-            fromBeginningCarouselToEnd
-          ) {
-            if (i + 1 === visibleCarouselCount) {
+          if (fromBeginningCarouselToEnd) {
+            if (lastSlide) {
               return fromFrontToEnd;
             }
             carouselItemTranslate.animation.in.from = fromUpperToLower;
@@ -187,7 +183,7 @@ const InfiniteCarousel = ({
             return carouselItemTranslate;
           }
 
-          if (prevActiveSlideIndex > activeSlideIndex) {
+          if (traverseCarouselDown) {
             if (i === 0) {
               return fromEndToFront;
             }
@@ -201,7 +197,7 @@ const InfiniteCarousel = ({
           fromEndCarouselToBeginning
         ) {
           //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM LEFT
-          if (i + 1 === visibleCarouselCount) {
+          if (lastSlide) {
             const outAnimationFromEnd = {
               animation: {
                 in: {
@@ -262,7 +258,7 @@ const InfiniteCarousel = ({
           }
 
           //SETTING PREVIOUSLY UNSEEN CAROUSEL ITEM TO TRANSITION INTO CAROUSEL FROM RIGHT
-          if (i + 1 === visibleCarouselCount) {
+          if (lastSlide) {
             carouselItemTranslate.animation.in.from = inFromRight;
             return carouselItemTranslate;
           }
@@ -272,10 +268,7 @@ const InfiniteCarousel = ({
         }
 
         //THE CAROUSEL IS GOING FROM THE LAST ITEM TO THE FIRST ITEM REVERSE THE NORMAL TRANSITIONS
-        if (
-          prevActiveSlideIndex > activeSlideIndex &&
-          fromBeginningCarouselToEnd
-        ) {
+        if (fromBeginningCarouselToEnd) {
           //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM LEFT
           if (i === 0) {
             const outAnimationFromStart = {
@@ -299,7 +292,7 @@ const InfiniteCarousel = ({
           }
 
           //SETTING PREVIOUSLY UNSEEN CAROUSEL ITEM TO TRANSITION INTO CAROUSEL FROM RIGHT
-          if (i + 1 === visibleCarouselCount) {
+          if (lastSlide) {
             carouselItemTranslate.animation.in.from = inFromRight;
             return carouselItemTranslate;
           }
@@ -308,8 +301,8 @@ const InfiniteCarousel = ({
           return carouselItemTranslate;
         }
 
-        if (prevActiveSlideIndex > activeSlideIndex) {
-          if (i + 1 === visibleCarouselCount) {
+        if (traverseCarouselDown) {
+          if (lastSlide) {
             const outAnimationFromEnd = {
               animation: {
                 in: {
@@ -335,7 +328,7 @@ const InfiniteCarousel = ({
             return carouselItemTranslate;
           }
 
-          if (i + 1 === visibleCarouselCount) {
+          if (lastSlide) {
             return carouselItemTranslate;
           }
         }
@@ -399,7 +392,7 @@ const InfiniteCarousel = ({
 
   function getTranslatePosition(index) {
     if (carouselTranslateVals[index]) return carouselTranslateVals[index];
-    // debugger;
+
     return {
       visibility: 'hidden',
       transform:
@@ -458,9 +451,9 @@ const InfiniteCarousel = ({
       </Li>
     );
   }
-
+  debugger
   if (!carouselTranslateVals) return <Div></Div>;
-
+  debugger
   return (
     <div {...handlers}>
       <Div {...carouselStyle}>
