@@ -23,6 +23,7 @@ The inifinte carousel will infinitely scroll multiple React or Styled-React comp
 `carouselStyle`: This provides styling to container for the carousel using the library [styled-react](https://github.com/cbryant24/styled-react) provide an object of camelCase css properties or if using a theme the corresponding theme named passed to the `ThemeProvider`
 `carouselItemStyle`: This provides styling to container for the carousel item using the library [styled-react](https://github.com/cbryant24/styled-react) provide an object of camelCase css properties or if using a theme the corresponding theme named passed to the `ThemeProvider`
 `carouselIndicator`: Boolen indicating whether a clickable caorusel indicator should be displayed [see here for more info](#carousel-indicator)
+`arrowStyle`: Style to be applied to arrow pointer for the arrow color use the property `arrowColor`
 
 ###### initial slide
 

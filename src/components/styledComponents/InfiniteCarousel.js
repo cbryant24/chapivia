@@ -5,6 +5,8 @@ import { Div, Li, Ul, FlexUl, Span } from '@cbryant24/styled-react';
 
 import { usePrev, useWindowSize } from '../../hooks';
 
+import Icon from './icons';
+
 //TODO: docuemnt props infinite (inifinite loop of carousel)
 //TODO: docuemnt props type (preview: thubmnail previes below)
 //TODO: document props initialItem (builds order based on initial order)
@@ -17,7 +19,9 @@ const InfiniteCarousel = ({
   bp,
   maxItems,
   carouselIndicator,
-  carouselIndicatorStyle
+  carouselIndicatorStyle,
+  arrowStyle,
+  displayArrow=true
 }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(initialSlide);
   const [carouselTranslateVals, setCarouselTranslateVals] = useState(null);
@@ -28,6 +32,7 @@ const InfiniteCarousel = ({
   const { width } = useWindowSize();
   const prevActiveSlideIndex = usePrev(activeSlideIndex);
   const carouselSpeed = 1.5;
+  const { arrowColor, stroke, strokeWidth, ...arrowContainerStyle } = arrowStyle;
 
   useEffect(() => {
     setVisibleCarouselCount(carouselCountToDisplay());
@@ -48,7 +53,8 @@ const InfiniteCarousel = ({
     const carouselItemsOnScreen =
       maxCarouselCount < Math.floor(width / bp)
         ? maxCarouselCount
-        : Math.floor(width / bp) - 1;
+        : Math.floor(width / bp);
+        debugger
     return carouselItemsOnScreen;
   }
 
@@ -394,8 +400,8 @@ const InfiniteCarousel = ({
       visibility: 'hidden',
       transform:
         index < activeSlideIndex ? 'translateX(-1000px)' : 'translate(2000px)',
-      height: 0,
-      width: 0
+      height: '0px',
+      width: '0px'
     };
   }
 
@@ -416,7 +422,7 @@ const InfiniteCarousel = ({
         gridColumn="1 / span 1"
         transition={`transform ${carouselSpeed}s`}
         width={bp}
-        height={bp}
+        height='auto'
         {...carouselItemStyle}
         {...carouselItemPosition}
       >
@@ -448,13 +454,13 @@ const InfiniteCarousel = ({
       </Li>
     );
   }
-  debugger;
+
   if (!carouselTranslateVals) return <Div></Div>;
-  debugger;
+
   return (
     <div {...handlers}>
       <Div {...carouselStyle}>
-        <Span onClick={goToPrevSlide}>Left</Span>
+        {displayArrow ? <Span {...arrowContainerStyle} onClick={goToPrevSlide}><Icon stroke={stroke} strokeWidth={strokeWidth} fill={arrowColor} name="back"  /></Span> : ''}
         <Ul
           id="styled-react-carousel-ul"
           display="grid"
@@ -464,7 +470,7 @@ const InfiniteCarousel = ({
         >
           {children.map((item, idx) => carouselSlide(idx))}
         </Ul>
-        <Span onClick={goToNextSlide}>Right</Span>
+        {displayArrow ? <Span {...arrowContainerStyle}  onClick={goToNextSlide}><Icon stroke={stroke} strokeWidth={strokeWidth} fill={arrowColor} name="next" /></Span> : '' }
         {carouselIndicator ? (
           <FlexUl id="styled-react-carousel-indicator">
             {children.map((item, idx) => createCarouselIndicator(idx))}

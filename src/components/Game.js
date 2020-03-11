@@ -78,42 +78,74 @@ const Game = props => {
       );
     }
 
+    // return (
+    //   <InfiniteCarousel
+    //     width="90vw"
+    //     bp={50}
+    //     carouselIndicator={true}
+    //     carouselStyle={{ themeStyle: 'carouselNormal' }}
+    //     carouselIndicatorStyle={{
+    //       width: '50px',
+    //       height: '25px',
+    //       backgroundColor: 'white',
+    //       color: 'black',
+    //       margin: [1]
+    //     }}
+    //     arrowStyle={{
+    //       arrowColor: 'white',
+    //       stroke: "white",
+    //       strokeWidth: "50",
+    //       width: '30px',
+    //       height: '30px',
+    //       backgroundColor: 'primary',
+    //       borderRadius: '9999px',
+    //       padding: '5px 5px 6px 2px'
+    //     }}
+    //     initialSlide={10}
+    //   >
+    //     {arr}
+    //   </InfiniteCarousel>
+    // );
+
     return (
       <InfiniteCarousel
         width="90vw"
-        bp={50}
+        bp={500}
         carouselIndicator={true}
         carouselStyle={{ themeStyle: 'carouselNormal' }}
         carouselIndicatorStyle={{
-          width: '50px',
-          height: '25px',
-          backgroundColor: 'white',
-          color: 'black',
+          width: [4],
+          height: [1],
+          backgroundColor: 'black',
+          color: 'white',
           margin: [1]
         }}
-        initialSlide={10}
+        arrowStyle={{
+          arrowColor: 'white',
+          stroke: "white",
+          strokeWidth: "50",
+          width: '30px',
+          height: '30px',
+          backgroundColor: 'primary',
+          borderRadius: '9999px',
+          padding: '5px 5px 6px 2px'
+        }}
       >
-        {arr}
+        
+        <BorderPrimary mx='3em'>
+          <GuessList/>
+        </BorderPrimary>
+        <BorderPrimary mx='3em'>
+          <TriviaQuestion/>
+        </BorderPrimary>
+        <BorderPrimary mx='3em'>
+          <Scoreboard />
+        </BorderPrimary>
+        <BorderPrimary mx='3em'>
+          <Winner/>
+        </BorderPrimary>
       </InfiniteCarousel>
-    );
-
-    // return (
-    //   <Div
-    //   >
-    //     {/* <Div>
-    //       <GuessList/>
-    //     </Div>
-    //     <Div>
-    //       <TriviaQuestion/>
-    //     </Div>
-    //     <Div>
-    //       <Scoreboard />
-    //     </Div>
-    //     <Div>
-    //       <Winner/>
-    //     </Div> */}
-    //   </Div>
-    // )
+    )
   }
 
   if (userLoading || triviaLoading) return <div></div>;
