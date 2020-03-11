@@ -3,5 +3,6 @@ export const carouselNormal = {
   flexWrap: 'wrap',
   width: ['80%', null, '95%'],
   overflow: 'hidden',
-  m: 'auto'
+  m: 'auto',
+  minHeight: '100vh'
 };

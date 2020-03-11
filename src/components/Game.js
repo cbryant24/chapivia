@@ -122,8 +122,8 @@ const Game = props => {
         }}
         arrowStyle={{
           arrowColor: 'white',
-          stroke: "white",
-          strokeWidth: "50",
+          stroke: 'white',
+          strokeWidth: '50',
           width: '30px',
           height: '30px',
           backgroundColor: 'primary',
@@ -131,21 +131,20 @@ const Game = props => {
           padding: '5px 5px 6px 2px'
         }}
       >
-        
-        <BorderPrimary mx='3em'>
-          <GuessList/>
+        <BorderPrimary mx="3em" minHeight="100%">
+          <GuessList />
         </BorderPrimary>
-        <BorderPrimary mx='3em'>
-          <TriviaQuestion/>
+        <BorderPrimary mx="3em" minHeight="100%">
+          <TriviaQuestion />
         </BorderPrimary>
-        <BorderPrimary mx='3em'>
+        <BorderPrimary mx="3em" minHeight="100%">
           <Scoreboard />
         </BorderPrimary>
-        <BorderPrimary mx='3em'>
-          <Winner/>
+        <BorderPrimary mx="3em" minHeight="100%">
+          <Winner />
         </BorderPrimary>
       </InfiniteCarousel>
-    )
+    );
   }
 
   if (userLoading || triviaLoading) return <div></div>;
