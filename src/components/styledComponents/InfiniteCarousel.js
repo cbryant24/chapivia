@@ -58,7 +58,7 @@ const InfiniteCarousel = ({
     const carouselItemsOnScreen =
       maxCarouselCount < Math.floor(width / bp)
         ? maxCarouselCount
-        : Math.floor(width / bp);
+        : Math.floor(width / bp) || 1;
     return carouselItemsOnScreen;
   }
 
@@ -419,13 +419,14 @@ const InfiniteCarousel = ({
 
   function carouselSlide(index) {
     const carouselItemPosition = getTranslatePosition(index);
+    debugger
     return (
       <Li
         id={`carousel-item-${index}`}
         gridRow="1 / span 1"
         gridColumn="1 / span 1"
         transition={`transform ${carouselSpeed}s`}
-        width={bp}
+        width={bp < width ? bp : '100%'}
         height="auto"
         {...carouselItemStyle}
         {...carouselItemPosition}
