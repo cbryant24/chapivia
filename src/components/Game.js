@@ -72,6 +72,7 @@ const Game = props => {
           border="1px solid purple"
           backgroundColor="red"
           color="white"
+          carouselIndicatorName={i}
         >
           {i}
         </Div>
@@ -107,6 +108,65 @@ const Game = props => {
     //   </InfiniteCarousel>
     // );
 
+    const carouselActiveStyle = {
+      transform: 'translateX(5px)',
+      height: '7em',
+      width: '15em',
+      opacity: '1',
+      py: [1],
+      textAlign: 'center',
+      border: '3px solid red',
+      m: '1em',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      cursor: 'pointer'
+    };
+
+    const carouselInactiveStyle = {
+      ...carouselActiveStyle,
+      pseudo: 'true',
+      transform: 'translateX(0px)',
+      opacity: '.5',
+      transition: '1s all',
+      hover: {
+        transform: 'translateY(-5px)',
+        visibility: 'visible',
+        opacity: '1'
+      }
+    };
+
+    const sharedArrowContainerStyle = {
+      position: 'absolute',
+      opacity: '.25',
+      cursor: 'pointer',
+      width: '3em',
+      height: '100%',
+      backgroundColor: 'primary',
+      padding: '5px 5px 6px 2px'
+    };
+
+    const leftArrowContainerStyle = {
+      ...sharedArrowContainerStyle,
+      left: '0%'
+    };
+
+    const rightArrowContainerStyle = {
+      ...sharedArrowContainerStyle,
+      right: '0%'
+    };
+
+    const arrowStyle = {
+      arrowColor: 'white',
+      stroke: 'white',
+      strokeWidth: '50',
+      width: '3em',
+      height: '3em',
+      backgroundColor: 'primary',
+      borderRadius: '9999px',
+      padding: '5px 5px 6px 2px'
+    };
+
     return (
       <InfiniteCarousel
         width="90vw"
@@ -120,29 +180,38 @@ const Game = props => {
           color: 'white',
           margin: [1]
         }}
-        arrowStyle={{
-          arrowColor: 'white',
-          stroke: 'white',
-          strokeWidth: '50',
-          width: '30px',
-          height: '30px',
-          backgroundColor: 'primary',
-          borderRadius: '9999px',
-          padding: '5px 5px 6px 2px'
-        }}
+        carouselIndicatorActiveStyle={carouselActiveStyle}
+        carouselIndicatorInactiveStyle={carouselInactiveStyle}
+        leftArrowContainerStyle={leftArrowContainerStyle}
+        rightArrowContainerStyle={rightArrowContainerStyle}
+        arrowStyle={arrowStyle}
+        displayArrow={true}
       >
-        <BorderPrimary mx="3em" minHeight="100%">
+        <BorderPrimary
+          mx="3em"
+          height="100%"
+          carouselIndicatorName="Guess List"
+        >
           <GuessList />
         </BorderPrimary>
-        <BorderPrimary mx="3em" minHeight="100%">
+        <BorderPrimary
+          mx="3em"
+          height="100%"
+          carouselIndicatorName="Trivia Question"
+        >
           <TriviaQuestion />
         </BorderPrimary>
-        <BorderPrimary mx="3em" minHeight="100%">
+        <BorderPrimary
+          mx="3em"
+          height="100%"
+          carouselIndicatorName="Scoreboard"
+        >
           <Scoreboard />
         </BorderPrimary>
-        <BorderPrimary mx="3em" minHeight="100%">
+        <BorderPrimary mx="3em" height="100%" carouselIndicatorName="Winners">
           <Winner />
         </BorderPrimary>
+        {/* {arr} */}
       </InfiniteCarousel>
     );
   }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
 import { Div, Li, Ul, FlexUl, Span } from '@cbryant24/styled-react';
@@ -7,10 +7,8 @@ import { usePrev, useWindowSize } from '../../hooks';
 
 import Icon from './icons';
 
-//TODO: docuemnt props infinite (inifinite loop of carousel)
-//TODO: docuemnt props type (preview: thubmnail previes below)
-//TODO: document props initialItem (builds order based on initial order)
-//TODO: create readme of personalized components and create library as part of starter skeleton project
+//TODO: possible use npm library https://www.npmjs.com/package/html-to-image for image of component for carousel indicator
+
 const InfiniteCarousel = ({
   children,
   carouselStyle,
@@ -19,7 +17,10 @@ const InfiniteCarousel = ({
   bp,
   maxItems,
   carouselIndicator,
-  carouselIndicatorStyle,
+  carouselIndicatorActiveStyle,
+  carouselIndicatorInactiveStyle,
+  leftArrowContainerStyle,
+  rightArrowContainerStyle,
   arrowStyle,
   displayArrow = true,
   carouselSpeed = 1.5
@@ -58,7 +59,7 @@ const InfiniteCarousel = ({
     const carouselItemsOnScreen =
       maxCarouselCount < Math.floor(width / bp)
         ? maxCarouselCount
-        : Math.floor(width / bp);
+        : Math.floor(width / bp) || 1;
     return carouselItemsOnScreen;
   }
 
@@ -83,24 +84,27 @@ const InfiniteCarousel = ({
       prevActiveSlideIndex === 0 && activeSlideIndex === carouselLengthEnd;
 
     while (lowerLimit < upperLimit) {
-      const scale = lowerLimit === activeSlideIndex ? 1.2 : 1.0;
+      const toScale =
+        lowerLimit === activeSlideIndex ? 'scale(1)' : 'scale(.95)';
+      const fromScale =
+        lowerLimit === prevActiveSlideIndex ? 'scale(1)' : 'scale(.95)';
       const lastSlide = i + 1 === visibleCarouselCount;
       const fistSlide = i === 0;
       //FUNCTION TO SET CAROUSEL TRANSLATE POSITIONS
       const carouselItemTransform = (() => {
         const fromUpperToLower = {
-          transform: `translateX(${(i + 1) * bp}px) scale(1.0)`
+          transform: `translateX(${(i + 1) * bp}px) ${fromScale}`
         };
         const fromLowerToUpper = {
-          transform: `translateX(${(i - 1) * bp}px) scale(1.0)`
+          transform: `translateX(${(i - 1) * bp}px) ${fromScale}`
         };
         const inFromLeft = {
-          transform: `translateX(-${10 * bp}px) scale(1.0)`,
+          transform: `translateX(-${10 * bp}px) ${fromScale}`,
           opacity: 0,
           visibility: 'hidden'
         };
         const inFromRight = {
-          transform: `translateX(${10 * bp}px) scale(1.0)`,
+          transform: `translateX(${10 * bp}px) ${fromScale}`,
           opacity: 0,
           visibility: 'hidden'
         };
@@ -111,7 +115,7 @@ const InfiniteCarousel = ({
               '0%': fromLowerToUpper,
               '75%': { visibility: 'visible' },
               '100%': {
-                transform: `translateX(${i * bp}px) scale(${scale})`,
+                transform: `translateX(${i * bp}px) ${toScale}`,
                 opacity: 1
               }
             },
@@ -398,7 +402,6 @@ const InfiniteCarousel = ({
   }
 
   function getTranslatePosition(index) {
-    debugger;
     if (carouselTranslateVals[index]) return carouselTranslateVals[index];
     return {
       visibility: 'hidden',
@@ -409,7 +412,6 @@ const InfiniteCarousel = ({
     };
   }
 
-  // ;
   if (
     visibleCarouselCount !== null &&
     carouselCountToDisplay() !== visibleCarouselCount
@@ -425,7 +427,7 @@ const InfiniteCarousel = ({
         gridRow="1 / span 1"
         gridColumn="1 / span 1"
         transition={`transform ${carouselSpeed}s`}
-        width={bp}
+        width={`${Math.floor(100 / visibleCarouselCount)}%`}
         height="auto"
         {...carouselItemStyle}
         {...carouselItemPosition}
@@ -436,25 +438,15 @@ const InfiniteCarousel = ({
   }
 
   function createCarouselIndicator(index) {
+    const style =
+      index === activeSlideIndex
+        ? carouselIndicatorActiveStyle
+        : carouselIndicatorInactiveStyle;
+
+    debugger;
     return (
-      <Li {...carouselIndicatorStyle} onClick={() => goToSlide(index)}>
-        <Div
-          pseudo="true"
-          transform="translateY(5px)"
-          transition="1s all"
-          opacity="0"
-          py={[1]}
-          textAlign="center"
-          hover={{
-            transform: 'translateY(0px)',
-            height: '100%',
-            width: '100%',
-            visibility: 'visible',
-            opacity: '1'
-          }}
-        >
-          {index}
-        </Div>
+      <Li {...style} onClick={() => goToSlide(index)}>
+        {children[index].props.carouselIndicatorName}
       </Li>
     );
   }
@@ -462,50 +454,60 @@ const InfiniteCarousel = ({
   if (!carouselTranslateVals) return <Div></Div>;
 
   return (
-    <div {...handlers}>
-      <Div {...carouselStyle}>
-        {displayArrow ? (
-          <Span {...arrowContainerStyle} onClick={goToPrevSlide}>
-            <Icon
-              stroke={stroke}
-              strokeWidth={strokeWidth}
-              fill={arrowColor}
-              name="back"
-            />
-          </Span>
-        ) : (
-          ''
-        )}
-        <Ul
-          id="styled-react-carousel-ul"
-          display="grid"
-          gridTemplateRows="100%"
-          gridColumnRows="100%"
-          width="100%"
-        >
-          {children.map((item, idx) => carouselSlide(idx))}
-        </Ul>
-        {displayArrow ? (
-          <Span {...arrowContainerStyle} onClick={goToNextSlide}>
-            <Icon
-              stroke={stroke}
-              strokeWidth={strokeWidth}
-              fill={arrowColor}
-              name="next"
-            />
-          </Span>
-        ) : (
-          ''
-        )}
-        {carouselIndicator ? (
-          <FlexUl id="styled-react-carousel-indicator">
+    <Fragment>
+      {carouselIndicator ? (
+        <Div id="styled-react-carousel-indicator" my="2em">
+          <FlexUl
+            height="auto"
+            width="auto"
+            flexWrap="wrap"
+            justifyContent="center"
+          >
             {children.map((item, idx) => createCarouselIndicator(idx))}
           </FlexUl>
-        ) : (
-          ''
-        )}
-      </Div>
-    </div>
+        </Div>
+      ) : (
+        ''
+      )}
+      <div id="swippeable" {...handlers}>
+        <Div position="relative" {...carouselStyle}>
+          {displayArrow ? (
+            <Span {...leftArrowContainerStyle} onClick={goToPrevSlide}>
+              <Icon
+                stroke={stroke}
+                strokeWidth={strokeWidth}
+                fill={arrowColor}
+                name="back"
+              />
+            </Span>
+          ) : (
+            ''
+          )}
+          <Ul
+            id="styled-react-carousel-ul"
+            display="grid"
+            gridTemplateRows="100%"
+            gridColumnRows="100%"
+            width={`${visibleCarouselCount * bp}px`}
+            margin="0 auto"
+          >
+            {children.map((item, idx) => carouselSlide(idx))}
+          </Ul>
+          {displayArrow ? (
+            <Span {...rightArrowContainerStyle} onClick={goToNextSlide}>
+              <Icon
+                stroke={stroke}
+                strokeWidth={strokeWidth}
+                fill={arrowColor}
+                name="next"
+              />
+            </Span>
+          ) : (
+            ''
+          )}
+        </Div>
+      </div>
+    </Fragment>
   );
 };
 

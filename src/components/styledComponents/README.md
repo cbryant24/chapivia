@@ -57,4 +57,15 @@ The text to be displayed when the indicator is hovered can be passed as the prop
 </InfiniteCarousel>
 ```
 
-To style the carousel indicator use the `carouselIndicatorStyle` property
+Use the following properties to configure the display of the carousel indicators
+
+`carouselIndicatorName`: For each carousel item use to display a name on hover and when active
+`carouselIndicatorActiveStyle`: camelCase css properties for when the carousel indicator item is the active slide
+`carouselIndicatorInactiveStyle`: camelCase css properties for when the carousel indicator is not the active slide
+
+## SVG Icons
+
+### Name
+
+`back`: back arrow icon
+`next`: next arrow icon

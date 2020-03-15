@@ -1,8 +1,7 @@
 export const carouselNormal = {
   display: 'flex',
   flexWrap: 'wrap',
-  width: ['80%', null, '95%'],
-  overflow: 'hidden',
+  width: [1],
   m: 'auto',
   minHeight: '100vh'
 };
