@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   StyledModal,
   BounceAnimations,
@@ -7,8 +7,8 @@ import {
   Li,
   Button,
   P
-} from "@cbryant24/styled-react";
-import { dropInFromTop } from "./style";
+} from '@cbryant24/styled-react';
+import { dropInFromTop } from './style';
 
 export default ({ isOpen, toggleModal, modalMessage, afterClose }) => {
   return (
@@ -17,18 +17,11 @@ export default ({ isOpen, toggleModal, modalMessage, afterClose }) => {
       isOpen={isOpen}
       onBackgroundClick={toggleModal}
       onEscapeKeydown={toggleModal}
-      modalBackgroundStyle={{ themeStyle: "modalBackgroundStyle" }}
+      modalBackgroundStyle={{ themeStyle: 'modalBackgroundStyle' }}
       allowScroll={false}
       afterClose={afterClose}
     >
-      <Div
-        themeStyle={["modalContainer"]}
-        animation={{
-          in: dropInFromTop,
-          duration_in: 1,
-          animation_fill_mode: "both"
-        }}
-      >
+      <Div themeStyle={['modalContainer']} animation={dropInFromTop}>
         <Ul textAlign="center" my={[1]}>
           {Array.isArray(modalMessage) ? (
             modalMessage.map(message => (
@@ -41,7 +34,7 @@ export default ({ isOpen, toggleModal, modalMessage, afterClose }) => {
           )}
         </Ul>
         <Button
-          themeStyle={["squareButton", "marginSmall"]}
+          themeStyle={['squareButton', 'marginSmall']}
           alignSelf="flex-end"
           onClick={toggleModal}
         >

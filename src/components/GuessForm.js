@@ -65,7 +65,6 @@ function GuessForm({ inputs, buttons, form, cb, afterModalClose }) {
   }, [isOpen]);
 
   async function refetchData() {
-    console.log('WHAT ABOUT HERE FIRST');
     await unguessedPlayersRefetch();
     await scoresRefetch();
     await guessListRefetch();
