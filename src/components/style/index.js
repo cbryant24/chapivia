@@ -1,5 +1,5 @@
-import GlobalStyle from './globalStyle';
-import theme from './theme';
-import { infiniteBackground, flashingText } from './animations';
+import GlobalStyle from "./globalStyle";
+import theme from "./theme";
+import { infiniteBackground, flashingText, dropInFromTop } from "./animations";
 
-export { infiniteBackground, flashingText, GlobalStyle, theme };
+export { infiniteBackground, flashingText, dropInFromTop, GlobalStyle, theme };

@@ -421,6 +421,7 @@ const InfiniteCarousel = ({
 
   function carouselSlide(index) {
     const carouselItemPosition = getTranslatePosition(index);
+    debugger;
     return (
       <Li
         id={`carousel-item-${index}`}
