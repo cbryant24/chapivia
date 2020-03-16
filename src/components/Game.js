@@ -1,26 +1,26 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { useQuery, useApolloClient } from '@apollo/react-hooks';
-import { useLastLocation } from 'react-router-last-location';
-import { useRouter } from '../hooks';
-import triviaQuery from '../queries/Trivia';
+import React, { useState, useEffect, Fragment } from "react";
+import { useQuery, useApolloClient } from "@apollo/react-hooks";
+import { useLastLocation } from "react-router-last-location";
+import { useRouter } from "../hooks";
+import triviaQuery from "../queries/Trivia";
 
-import Modal from './Modal';
-import { Div, H3 } from '@cbryant24/styled-react';
+import Modal from "./Modal";
+import { Div, H3 } from "@cbryant24/styled-react";
 
-import Winner from './Winner';
-import GuessList from './GuessList';
-import Scoreboard from './Scoreboard';
-import TriviaQuestion from './TriviaQuestion';
-import PrevMonthWinners from './PrevMonthWinners';
+import Winner from "./Winner";
+import GuessList from "./GuessList";
+import Scoreboard from "./Scoreboard";
+import TriviaQuestion from "./TriviaQuestion";
+import PrevMonthWinners from "./PrevMonthWinners";
 
-import { BorderPrimary, InfiniteCarousel } from './styledComponents';
+import { BorderPrimary, InfiniteCarousel } from "./styledComponents";
 
-import { useAuth, useWindowSize } from '../hooks';
+import { useAuth, useWindowSize } from "../hooks";
 
 const Game = props => {
   const { loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
   const [isOpen, setIsOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
+  const [modalMessage, setModalMessage] = useState("");
   const lastLocation = useLastLocation() || {};
   const client = useApolloClient();
   const { user, userLoading } = useAuth();
@@ -39,22 +39,22 @@ const Game = props => {
             questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
             questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
             category: triviaData.dailyTrivia.category,
-            __typename: 'dailyTrivia'
+            __typename: "dailyTrivia"
           }
         }
       });
     } catch (err) {
       //TODO: add proper error handling
-      console.log('error getting trivia data', err);
+      console.log("error getting trivia data", err);
     }
   }, [triviaData]);
 
   useEffect(() => {
     if (userLoading) return;
 
-    if (!user) return router.push('/');
+    if (!user) return router.push("/");
 
-    if (lastLocation.pathname !== '/signup') return;
+    if (lastLocation.pathname !== "/signup") return;
 
     toggleModal();
     setModalMessage(`Welcome To Chapivia ${user.name}!`);
@@ -108,63 +108,65 @@ const Game = props => {
     //   </InfiniteCarousel>
     // );
 
+    if (userLoading || triviaLoading) return <div></div>;
+
     const carouselActiveStyle = {
-      transform: 'translateX(5px)',
-      height: '7em',
-      width: '15em',
-      opacity: '1',
+      transform: "translateX(5px)",
+      height: "7em",
+      width: "15em",
+      opacity: "1",
       py: [1],
-      textAlign: 'center',
-      border: '3px solid red',
-      m: '1em',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      cursor: 'pointer'
+      textAlign: "center",
+      border: "3px solid red",
+      m: "1em",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      cursor: "pointer"
     };
 
     const carouselInactiveStyle = {
       ...carouselActiveStyle,
-      pseudo: 'true',
-      transform: 'translateX(0px)',
-      opacity: '.5',
-      transition: '1s all',
+      pseudo: "true",
+      transform: "translateX(0px)",
+      opacity: ".5",
+      transition: "1s all",
       hover: {
-        transform: 'translateY(-5px)',
-        visibility: 'visible',
-        opacity: '1'
+        transform: "translateY(-5px)",
+        visibility: "visible",
+        opacity: "1"
       }
     };
 
     const sharedArrowContainerStyle = {
-      position: 'absolute',
-      opacity: '.25',
-      cursor: 'pointer',
-      width: '3em',
-      height: '100%',
-      backgroundColor: 'primary',
-      padding: '5px 5px 6px 2px'
+      position: "absolute",
+      opacity: ".25",
+      cursor: "pointer",
+      width: "3em",
+      height: "100%",
+      backgroundColor: "primary",
+      padding: "5px 5px 6px 2px"
     };
 
     const leftArrowContainerStyle = {
       ...sharedArrowContainerStyle,
-      left: '0%'
+      left: "0%"
     };
 
     const rightArrowContainerStyle = {
       ...sharedArrowContainerStyle,
-      right: '0%'
+      right: "0%"
     };
 
     const arrowStyle = {
-      arrowColor: 'white',
-      stroke: 'white',
-      strokeWidth: '50',
-      width: '3em',
-      height: '3em',
-      backgroundColor: 'primary',
-      borderRadius: '9999px',
-      padding: '5px 5px 6px 2px'
+      arrowColor: "white",
+      stroke: "white",
+      strokeWidth: "50",
+      width: "3em",
+      height: "3em",
+      backgroundColor: "primary",
+      borderRadius: "9999px",
+      padding: "5px 5px 6px 2px"
     };
 
     return (
@@ -172,12 +174,12 @@ const Game = props => {
         width="90vw"
         bp={500}
         carouselIndicator={true}
-        carouselStyle={{ themeStyle: 'carouselNormal' }}
+        carouselStyle={{ themeStyle: "carouselNormal" }}
         carouselIndicatorStyle={{
           width: [4],
           height: [1],
-          backgroundColor: 'black',
-          color: 'white',
+          backgroundColor: "black",
+          color: "white",
           margin: [1]
         }}
         carouselIndicatorActiveStyle={carouselActiveStyle}
@@ -216,11 +218,9 @@ const Game = props => {
     );
   }
 
-  if (userLoading || triviaLoading) return <div></div>;
-
   return (
     <Div m={4} zIndex={2} width="100%">
-      <H3 color="primary" themeStyle={['marginSmallY']} textAlign="center">
+      <H3 color="primary" themeStyle={["marginSmallY"]} textAlign="center">
         Chapivia
       </H3>
       <Modal

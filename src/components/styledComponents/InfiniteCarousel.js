@@ -1,11 +1,11 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { useSwipeable } from 'react-swipeable';
+import React, { useState, useEffect, Fragment } from "react";
+import { useSwipeable } from "react-swipeable";
 
-import { Div, Li, Ul, FlexUl, Span } from '@cbryant24/styled-react';
+import { Div, Li, Ul, FlexUl, Span } from "@cbryant24/styled-react";
 
-import { usePrev, useWindowSize } from '../../hooks';
+import { usePrev, useWindowSize } from "../../hooks";
 
-import Icon from './icons';
+import Icon from "./icons";
 
 //TODO: possible use npm library https://www.npmjs.com/package/html-to-image for image of component for carousel indicator
 
@@ -85,9 +85,9 @@ const InfiniteCarousel = ({
 
     while (lowerLimit < upperLimit) {
       const toScale =
-        lowerLimit === activeSlideIndex ? 'scale(1)' : 'scale(.95)';
+        lowerLimit === activeSlideIndex ? "scale(1)" : "scale(.95)";
       const fromScale =
-        lowerLimit === prevActiveSlideIndex ? 'scale(1)' : 'scale(.95)';
+        lowerLimit === prevActiveSlideIndex ? "scale(1)" : "scale(.95)";
       const lastSlide = i + 1 === visibleCarouselCount;
       const fistSlide = i === 0;
       //FUNCTION TO SET CAROUSEL TRANSLATE POSITIONS
@@ -101,26 +101,26 @@ const InfiniteCarousel = ({
         const inFromLeft = {
           transform: `translateX(-${10 * bp}px) ${fromScale}`,
           opacity: 0,
-          visibility: 'hidden'
+          visibility: "hidden"
         };
         const inFromRight = {
           transform: `translateX(${10 * bp}px) ${fromScale}`,
           opacity: 0,
-          visibility: 'hidden'
+          visibility: "hidden"
         };
 
         const carouselItemTranslate = {
           animation: {
             in: {
-              '0%': fromLowerToUpper,
-              '75%': { visibility: 'visible' },
-              '100%': {
+              "0%": fromLowerToUpper,
+              "75%": { visibility: "visible" },
+              "100%": {
                 transform: `translateX(${i * bp}px) ${toScale}`,
                 opacity: 1
               }
             },
             duration_in: carouselSpeed,
-            animation_fill_mode: 'forwards'
+            animation_fill_mode: "forwards"
           }
         };
 
@@ -130,19 +130,19 @@ const InfiniteCarousel = ({
           const fromEndToFront = {
             animation: {
               in: {
-                '0%': {
+                "0%": {
                   opacity: 0.5,
                   transform: `translateX(${(visibleCarouselCount - 1) * bp}px)`
                 },
-                '30%': {
+                "30%": {
                   transform: `translateX(${width + bp * 1.5}px)`,
                   opacity: 0
                 },
-                '55%': { transform: `translateX(-500px)`, opacity: 0 },
-                '100%': { transform: `translateX(${i * bp})`, opacity: 1 }
+                "55%": { transform: `translateX(-500px)`, opacity: 0 },
+                "100%": { transform: `translateX(${i * bp})`, opacity: 1 }
               },
               duration_in: carouselSpeed,
-              animation_fill_mode: 'forwards'
+              animation_fill_mode: "forwards"
             }
           };
 
@@ -150,22 +150,22 @@ const InfiniteCarousel = ({
           const fromFrontToEnd = {
             animation: {
               in: {
-                '0%': {
+                "0%": {
                   opacity: 0.5,
                   transform: `translateX(0px)`
                 },
-                '30%': {
+                "30%": {
                   transform: `translateX(-${bp * 1.5}px)`,
                   opacity: 0
                 },
-                '55%': {
+                "55%": {
                   transform: `translateX(${width + 2 * bp}px)`,
                   opacity: 0
                 },
-                '100%': { transform: `translateX(${i * bp}px)`, opacity: 1 }
+                "100%": { transform: `translateX(${i * bp}px)`, opacity: 1 }
               },
               duration_in: carouselSpeed,
-              animation_fill_mode: 'forwards'
+              animation_fill_mode: "forwards"
             }
           };
 
@@ -213,11 +213,11 @@ const InfiniteCarousel = ({
             const outAnimationFromEnd = {
               animation: {
                 in: {
-                  '0%': { transform: `translateX(${bp * i}px)` },
-                  '100%': { transform: `translateX(${bp * 10}px)` }
+                  "0%": { transform: `translateX(${bp * i}px)` },
+                  "100%": { transform: `translateX(${bp * 10}px)` }
                 },
                 duration_in: carouselSpeed,
-                animation_fill_mode: 'forwards'
+                animation_fill_mode: "forwards"
               }
             };
 
@@ -252,11 +252,11 @@ const InfiniteCarousel = ({
             const outAnimationFromStart = {
               animation: {
                 in: {
-                  '0%': { transform: `translateX(0px)` },
-                  '100%': { transform: `translateX(-${bp * 10}px)` }
+                  "0%": { transform: `translateX(0px)` },
+                  "100%": { transform: `translateX(-${bp * 10}px)` }
                 },
                 duration_in: carouselSpeed,
-                animation_fill_mode: 'forwards'
+                animation_fill_mode: "forwards"
               }
             };
 
@@ -286,11 +286,11 @@ const InfiniteCarousel = ({
             const outAnimationFromStart = {
               animation: {
                 in: {
-                  '0%': { transform: `translateX(0px)` },
-                  '100%': { transform: `translateX(-${bp * 10}px)` }
+                  "0%": { transform: `translateX(0px)` },
+                  "100%": { transform: `translateX(-${bp * 10}px)` }
                 },
                 duration_in: carouselSpeed,
-                animation_fill_mode: 'forwards'
+                animation_fill_mode: "forwards"
               }
             };
             if (children[lowerLimit - 1]) {
@@ -317,11 +317,11 @@ const InfiniteCarousel = ({
             const outAnimationFromEnd = {
               animation: {
                 in: {
-                  '0%': { transform: `translateX(${bp * i}px)` },
-                  '100%': { transform: `translateX(${bp * 10}px)` }
+                  "0%": { transform: `translateX(${bp * i}px)` },
+                  "100%": { transform: `translateX(${bp * 10}px)` }
                 },
                 duration_in: carouselSpeed,
-                animation_fill_mode: 'forwards'
+                animation_fill_mode: "forwards"
               }
             };
 
@@ -402,13 +402,16 @@ const InfiniteCarousel = ({
   }
 
   function getTranslatePosition(index) {
-    if (carouselTranslateVals[index]) return carouselTranslateVals[index];
+    if (carouselTranslateVals[index])
+      return {
+        ...carouselTranslateVals[index],
+        width: `${Math.floor(100 / visibleCarouselCount)}%`,
+        height: "auto"
+      };
     return {
-      visibility: 'hidden',
-      transform:
-        index < activeSlideIndex ? 'translateX(-1000px)' : 'translate(2000px)',
-      height: '0px',
-      width: '0px'
+      visibility: "hidden",
+      height: "0px",
+      width: "0px"
     };
   }
 
@@ -428,8 +431,6 @@ const InfiniteCarousel = ({
         gridRow="1 / span 1"
         gridColumn="1 / span 1"
         transition={`transform ${carouselSpeed}s`}
-        width={`${Math.floor(100 / visibleCarouselCount)}%`}
-        height="auto"
         {...carouselItemStyle}
         {...carouselItemPosition}
       >
@@ -468,7 +469,7 @@ const InfiniteCarousel = ({
           </FlexUl>
         </Div>
       ) : (
-        ''
+        ""
       )}
       <div id="swippeable" {...handlers}>
         <Div position="relative" {...carouselStyle}>
@@ -482,7 +483,7 @@ const InfiniteCarousel = ({
               />
             </Span>
           ) : (
-            ''
+            ""
           )}
           <Ul
             id="styled-react-carousel-ul"
@@ -504,7 +505,7 @@ const InfiniteCarousel = ({
               />
             </Span>
           ) : (
-            ''
+            ""
           )}
         </Div>
       </div>
