@@ -82,6 +82,7 @@ const InfiniteCarousel = ({
       prevActiveSlideIndex === carouselLengthEnd && activeSlideIndex === 0;
     const fromEndCarouselToBeginning =
       prevActiveSlideIndex === 0 && activeSlideIndex === carouselLengthEnd;
+    const allCarouselItemsVisible = visibleCarouselCount === children.length;
       
     while (lowerLimit < upperLimit) {
       const toScale =
@@ -101,24 +102,20 @@ const InfiniteCarousel = ({
         const inFromLeft = {
           transform: `translateX(-${10 * bp}px) ${fromScale}`,
           opacity: 0,
-          visibility: "hidden"
+          visibility: "hidden",
         };
-        // const inFromRight = {
-        //   transform: `translateX(${10 * bp}px) ${fromScale}`,
-        //   opacity: 0,
-        //   visibility: "hidden"
-        // };
         const inFromRight = {
-          transform: `translateX(${0 * bp}px) ${fromScale}`,
+          transform: `translateX(${10 * bp}px) ${fromScale}`,
           opacity: 0,
           visibility: "hidden"
         };
+
 
         const carouselItemTranslate = {
           animation: {
             in: {
               "0%": fromLowerToUpper,
-              "75%": { visibility: "visible" },
+              "75%": { visibility: "visible", display: 'block' },
               "100%": {
                 transform: `translateX(${i * bp}px) ${toScale}`,
                 opacity: 1
@@ -130,21 +127,21 @@ const InfiniteCarousel = ({
         };
         debugger
         /// HANLDE IF ALL CAROUSEL ITEMS ARE ON THE SCREEN
-        if (visibleCarouselCount === children.length) {
+        if (allCarouselItemsVisible) {
           /// HANDLE LAST CAROUSEL ITEM GOING TO FRONT IF TRAVERSING UP OR CAROUSEL BEING RESET  FROM LAST TO FIRST
           const fromEndToFront = {
             animation: {
               in: {
                 "0%": {
                   opacity: 0.5,
-                  transform: `translateX(${(visibleCarouselCount - 1) * bp}px)`
+                  transform: `translateX(${(visibleCarouselCount - 1) * bp}px) ${fromScale}`
                 },
                 "30%": {
                   transform: `translateX(${width + bp * 1.5}px)`,
                   opacity: 0
                 },
                 "55%": { transform: `translateX(-500px)`, opacity: 0 },
-                "100%": { transform: `translateX(${i * bp})`, opacity: 1 }
+                "100%": { transform: `translateX(${i * bp}) ${toScale}`, opacity: 1 }
               },
               duration_in: carouselSpeed,
               animation_fill_mode: "forwards"
@@ -157,7 +154,7 @@ const InfiniteCarousel = ({
               in: {
                 "0%": {
                   opacity: 0.5,
-                  transform: `translateX(0px)`
+                  transform: `translateX(0px) ${fromScale}`
                 },
                 "30%": {
                   transform: `translateX(-${bp * 1.5}px)`,
@@ -167,7 +164,7 @@ const InfiniteCarousel = ({
                   transform: `translateX(${width + 2 * bp}px)`,
                   opacity: 0
                 },
-                "100%": { transform: `translateX(${i * bp}px)`, opacity: 1 }
+                "100%": { transform: `translateX(${i * bp}px) ${toScale}`, opacity: 1 }
               },
               duration_in: carouselSpeed,
               animation_fill_mode: "forwards"

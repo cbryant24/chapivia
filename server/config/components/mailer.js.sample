@@ -1,0 +1,16 @@
+const config = {
+  development: {
+    email: "example@email.com",
+    password: 'password',
+  },
+  test: {
+    email: "example@email.com",
+    password: 'password',
+  },
+  production: {
+    email: "example@email.com",
+    password: 'password',
+  }
+}
+
+module.exports = config;

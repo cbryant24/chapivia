@@ -17,5 +17,4 @@
 // const config = {
 //   env: envVars.NODE_ENV,
 // }
-const config = 'hello'
 module.exports = config;

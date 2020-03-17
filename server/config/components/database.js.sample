@@ -1,0 +1,25 @@
+const config = {
+  development: {
+    username: "dabataseUser",
+    password: "dabatasePassword",
+    database: "dabataseName,
+    host: "127.0.0.1",
+    dialect: "databaseType i.e. postgresql, mysql"
+  },
+  test: {
+    username: "dabataseUser",
+    password: "dabatasePassword",
+    database: "dabataseUser",
+    host: "127.0.0.1",
+    dialect: "databaseType i.e. postgresql, mysql"
+  },
+  production: {
+    username: "dabataseUser",
+    password: "dabatasePassword",
+    database: "dabataseName",
+    host: "127.0.0.1",
+    dialect: "databaseType i.e. postgresql, mysql"
+  }
+}
+
+module.exports = config;

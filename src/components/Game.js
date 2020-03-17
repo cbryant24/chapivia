@@ -145,7 +145,8 @@ const Game = props => {
       width: "3em",
       height: "100%",
       backgroundColor: "primary",
-      padding: "5px 5px 6px 2px"
+      padding: "5px 5px 6px 2px",
+      zIndex: [2]
     };
 
     const leftArrowContainerStyle = {
@@ -165,7 +166,6 @@ const Game = props => {
       width: "3em",
       height: "3em",
       backgroundColor: "primary",
-      borderRadius: "9999px",
       padding: "5px 5px 6px 2px"
     };
 
