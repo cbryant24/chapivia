@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useQuery, useApolloClient } from "@apollo/react-hooks";
 import { useLastLocation } from "react-router-last-location";
-import { useRouter } from "../hooks";
-import triviaQuery from "../queries/Trivia";
+import { useRouter } from "hooks";
+import triviaQuery from "queries/Trivia";
 
 import Modal from "./Modal";
 import { Div, H3 } from "@cbryant24/styled-react";

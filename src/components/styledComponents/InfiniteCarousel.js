@@ -63,18 +63,23 @@ const InfiniteCarousel = ({
     return carouselItemsOnScreen;
   }
 
+  ////////////////////////////////////
+  // # ::: BUILD CAROUSEL CSS ::: # //
+  ////////////////////////////////////
   function createCarouselTranslatVals() {
     if (!visibleCarouselCount) return;
 
     let i = 0;
     let carouselLengthEnd = children.length - 1;
+    const evenVisibleCarouselCount = visibleCarouselCount % 2 === 0;
+    //DETERMINING HOW MANY SLIDE ITEMS TO THE LEFT AND RIGHT OF ACTIVE SLIDE
     const upperLowerLimit = Math.floor(visibleCarouselCount / 2);
 
+    //FINDING FIRST LOWER AND LAST UPPER SLIDE FOR LOOP DETERMINATION
     let lowerLimit = activeSlideIndex - upperLowerLimit;
-    const upperLimit =
-      visibleCarouselCount % 2 === 0
-        ? activeSlideIndex + upperLowerLimit
-        : activeSlideIndex + upperLowerLimit + 1;
+    const upperLimit = evenVisibleCarouselCount
+      ? activeSlideIndex + upperLowerLimit
+      : activeSlideIndex + upperLowerLimit + 1;
     const carouselPositions = {};
     const traverseCarouselUp = prevActiveSlideIndex < activeSlideIndex;
     const traverseCarouselDown = prevActiveSlideIndex > activeSlideIndex;
@@ -82,12 +87,23 @@ const InfiniteCarousel = ({
       prevActiveSlideIndex === carouselLengthEnd && activeSlideIndex === 0;
     const fromEndCarouselToBeginning =
       prevActiveSlideIndex === 0 && activeSlideIndex === carouselLengthEnd;
+    const secondActiveSlide =
+      activeSlideIndex - 1 >= 0 ? activeSlideIndex - 1 : upperLimit - 1;
 
+    //ONLY LOOPS FOR AS MANY VISIBLE CAROUSEL ITEMS ON SCREEN STARTING FROM FIRST ITEM ON LEFT
     while (lowerLimit < upperLimit) {
       const toScale =
-        lowerLimit === activeSlideIndex ? "scale(1)" : "scale(.95)";
+        lowerLimit === activeSlideIndex ||
+        (evenVisibleCarouselCount &&
+          visibleCarouselCount > 1 &&
+          lowerLimit === secondActiveSlide)
+          ? "scale(1)"
+          : "scale(.95)";
       const fromScale =
-        lowerLimit === prevActiveSlideIndex ? "scale(1)" : "scale(.95)";
+        lowerLimit === prevActiveSlideIndex ||
+        (evenVisibleCarouselCount && visibleCarouselCount > 1 && lowerLimit)
+          ? "scale(1)"
+          : "scale(.95)";
       const lastSlide = i + 1 === visibleCarouselCount;
       const fistSlide = i === 0;
       //FUNCTION TO SET CAROUSEL TRANSLATE POSITIONS
@@ -424,7 +440,6 @@ const InfiniteCarousel = ({
 
   function carouselSlide(index) {
     const carouselItemPosition = getTranslatePosition(index);
-    debugger;
     return (
       <Li
         id={`carousel-item-${index}`}
@@ -445,7 +460,6 @@ const InfiniteCarousel = ({
         ? carouselIndicatorActiveStyle
         : carouselIndicatorInactiveStyle;
 
-    debugger;
     return (
       <Li {...style} onClick={() => goToSlide(index)}>
         {children[index].props.carouselIndicatorName}

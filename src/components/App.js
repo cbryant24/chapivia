@@ -1,7 +1,7 @@
-import React from 'react';
-import { FlexDiv } from '@cbryant24/styled-react';
-import Background from './Background';
-import TopMenu from './TopMenu';
+import React from "react";
+import { FlexDiv } from "@cbryant24/styled-react";
+import Background from "components/Background";
+import TopMenu from "components/TopMenu";
 // import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks';
 
 export default ({ children }) => {

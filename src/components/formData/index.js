@@ -1,5 +1,5 @@
-import signinFormData from './signin';
-import signupFormData from './signup';
-import guessFormData from './guess';
+import signinFormData from "components/formData/signin";
+import signupFormData from "components/formData/signup";
+import guessFormData from "components/formData/guess";
 
 export { signinFormData, signupFormData, guessFormData };

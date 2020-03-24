@@ -1,6 +1,6 @@
-import React from 'react';
-import { Div } from '@cbryant24/styled-react';
-import galagaGif from './galaga_bg.gif';
+import React from "react";
+import { Div } from "@cbryant24/styled-react";
+import galagaGif from "components/galaga_bg.gif";
 
 export default () => {
   return (
@@ -18,11 +18,11 @@ export default () => {
       width={[1]}
       animation={{
         continuous: {
-          from: { 'background-position': '0 0' },
-          to: { 'background-position': '0 -10000px' }
+          from: { "background-position": "0 0" },
+          to: { "background-position": "0 -10000px" }
         },
         duration_continuous: 75,
-        animation_timing_function: 'linear'
+        animation_timing_function: "linear"
       }}
       zIndex={-1}
     ></Div>
