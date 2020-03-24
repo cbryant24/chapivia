@@ -129,7 +129,7 @@ const InfiniteCarousel = ({
           animation: {
             in: {
               "0%": fromLowerToUpper,
-              "75%": { visibility: "visible" },
+              "75%": { visibility: "visible", display: "block" },
               "100%": {
                 transform: `translateX(${i * bp}px) ${toScale}`,
                 opacity: 1
@@ -141,21 +141,25 @@ const InfiniteCarousel = ({
         };
 
         /// HANLDE IF ALL CAROUSEL ITEMS ARE ON THE SCREEN
-        if (visibleCarouselCount === children.length) {
+        if (allCarouselItemsVisible) {
           /// HANDLE LAST CAROUSEL ITEM GOING TO FRONT IF TRAVERSING UP OR CAROUSEL BEING RESET  FROM LAST TO FIRST
           const fromEndToFront = {
             animation: {
               in: {
                 "0%": {
                   opacity: 0.5,
-                  transform: `translateX(${(visibleCarouselCount - 1) * bp}px)`
+                  transform: `translateX(${(visibleCarouselCount - 1) *
+                    bp}px) ${fromScale}`
                 },
                 "30%": {
                   transform: `translateX(${width + bp * 1.5}px)`,
                   opacity: 0
                 },
                 "55%": { transform: `translateX(-500px)`, opacity: 0 },
-                "100%": { transform: `translateX(${i * bp})`, opacity: 1 }
+                "100%": {
+                  transform: `translateX(${i * bp}) ${toScale}`,
+                  opacity: 1
+                }
               },
               duration_in: carouselSpeed,
               animation_fill_mode: "forwards"
@@ -168,7 +172,7 @@ const InfiniteCarousel = ({
               in: {
                 "0%": {
                   opacity: 0.5,
-                  transform: `translateX(0px)`
+                  transform: `translateX(0px) ${fromScale}`
                 },
                 "30%": {
                   transform: `translateX(-${bp * 1.5}px)`,
@@ -178,7 +182,10 @@ const InfiniteCarousel = ({
                   transform: `translateX(${width + 2 * bp}px)`,
                   opacity: 0
                 },
-                "100%": { transform: `translateX(${i * bp}px)`, opacity: 1 }
+                "100%": {
+                  transform: `translateX(${i * bp}px) ${toScale}`,
+                  opacity: 1
+                }
               },
               duration_in: carouselSpeed,
               animation_fill_mode: "forwards"
@@ -190,7 +197,7 @@ const InfiniteCarousel = ({
             if (fistSlide) {
               return fromEndToFront;
             }
-            carouselItemTranslate.animation.in.from = fromLowerToUpper;
+            carouselItemTranslate.animation.in["0%"] = fromLowerToUpper;
 
             return carouselItemTranslate;
           }
@@ -201,7 +208,7 @@ const InfiniteCarousel = ({
               return fromFrontToEnd;
             }
 
-            carouselItemTranslate.animation.in.from = fromUpperToLower;
+            carouselItemTranslate.animation.in["0%"] = fromUpperToLower;
             return carouselItemTranslate;
           }
 
@@ -209,7 +216,7 @@ const InfiniteCarousel = ({
             if (lastSlide) {
               return fromFrontToEnd;
             }
-            carouselItemTranslate.animation.in.from = fromUpperToLower;
+            carouselItemTranslate.animation.in["0%"] = fromUpperToLower;
 
             return carouselItemTranslate;
           }
@@ -222,6 +229,7 @@ const InfiniteCarousel = ({
             return carouselItemTranslate;
           }
         }
+
         //THE CAROUSEL IS GOING FROM THE FIRST ITEM TO THE LAST ITEM REVERSE THE NORMAL TRANSITIONS
         if (fromEndCarouselToBeginning) {
           //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM LEFT
@@ -254,15 +262,15 @@ const InfiniteCarousel = ({
 
           //SETTING PREVIOUSLY UNSEEN CAROUSEL ITEM TO TRANSITION INTO CAROUSEL FROM RIGHT
           if (fistSlide) {
-            carouselItemTranslate.animation.in.from = inFromLeft;
+            carouselItemTranslate.animation.in["0%"] = inFromLeft;
             return carouselItemTranslate;
           }
 
-          carouselItemTranslate.animation.in.from = fromLowerToUpper;
+          carouselItemTranslate.animation.in["0%"] = fromLowerToUpper;
           return carouselItemTranslate;
         }
 
-        if (prevActiveSlideIndex < activeSlideIndex) {
+        if (traverseCarouselUp) {
           //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM LEFT
           if (fistSlide) {
             const outAnimationFromStart = {
@@ -287,11 +295,11 @@ const InfiniteCarousel = ({
 
           //SETTING PREVIOUSLY UNSEEN CAROUSEL ITEM TO TRANSITION INTO CAROUSEL FROM RIGHT
           if (lastSlide) {
-            carouselItemTranslate.animation.in.from = inFromRight;
+            carouselItemTranslate.animation.in["0%"] = inFromRight;
             return carouselItemTranslate;
           }
 
-          carouselItemTranslate.animation.in.from = fromUpperToLower;
+          carouselItemTranslate.animation.in["0%"] = fromUpperToLower;
           return carouselItemTranslate;
         }
 
@@ -320,11 +328,11 @@ const InfiniteCarousel = ({
 
           //SETTING PREVIOUSLY UNSEEN CAROUSEL ITEM TO TRANSITION INTO CAROUSEL FROM RIGHT
           if (lastSlide) {
-            carouselItemTranslate.animation.in.from = inFromRight;
+            carouselItemTranslate.animation.in["0%"] = inFromRight;
             return carouselItemTranslate;
           }
 
-          carouselItemTranslate.animation.in.from = fromUpperToLower;
+          carouselItemTranslate.animation.in["0%"] = fromUpperToLower;
           return carouselItemTranslate;
         }
 
@@ -351,7 +359,7 @@ const InfiniteCarousel = ({
           }
 
           if (fistSlide) {
-            carouselItemTranslate.animation.in.from = inFromLeft;
+            carouselItemTranslate.animation.in["0%"] = inFromLeft;
             return carouselItemTranslate;
           }
 
@@ -362,6 +370,7 @@ const InfiniteCarousel = ({
         return carouselItemTranslate;
       })();
 
+      debugger;
       if (children[lowerLimit]) {
         carouselPositions[lowerLimit] = carouselItemTransform;
         lowerLimit++;

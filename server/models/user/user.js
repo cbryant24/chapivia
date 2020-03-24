@@ -5,6 +5,7 @@ const AppError = require('../../error');
 const moment = require('moment');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+const mailer = require('../../web/mailer');
 
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define(
@@ -228,6 +229,10 @@ module.exports = (sequelize, DataTypes) => {
   User.prevMonthWinners = async function() {
     return this.scores('prevMonth');
   };
+
+  User.sendEmail = function() {
+
+  }
 
   return User;
 };
