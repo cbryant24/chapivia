@@ -72,40 +72,63 @@ const InfiniteCarousel = ({
     let i = 0;
     let carouselLengthEnd = children.length - 1;
     const evenVisibleCarouselCount = visibleCarouselCount % 2 === 0;
+    const allCarouselItemsVisible = visibleCarouselCount === children.length;
+
     //DETERMINING HOW MANY SLIDE ITEMS TO THE LEFT AND RIGHT OF ACTIVE SLIDE
     const upperLowerLimit = Math.floor(visibleCarouselCount / 2);
 
-    //FINDING FIRST LOWER AND LAST UPPER SLIDE FOR LOOP DETERMINATION
+    //FINDING FIRST LOWER AND LAST UPPER SLIDE FOR LOOP DETERMINATION END POINTS
     let lowerLimit = activeSlideIndex - upperLowerLimit;
     const upperLimit = evenVisibleCarouselCount
-      ? activeSlideIndex + upperLowerLimit
-      : activeSlideIndex + upperLowerLimit + 1;
-    const carouselPositions = {};
-    const traverseCarouselUp = prevActiveSlideIndex < activeSlideIndex;
-    const traverseCarouselDown = prevActiveSlideIndex > activeSlideIndex;
-    const fromBeginningCarouselToEnd =
-      prevActiveSlideIndex === carouselLengthEnd && activeSlideIndex === 0;
-    const fromEndCarouselToBeginning =
-      prevActiveSlideIndex === 0 && activeSlideIndex === carouselLengthEnd;
-    const secondActiveSlide =
-      activeSlideIndex - 1 >= 0 ? activeSlideIndex - 1 : upperLimit - 1;
+        ? activeSlideIndex + upperLowerLimit
+        : activeSlideIndex + upperLowerLimit + 1,
+      carouselPositions = {},
+      traverseCarouselUp = prevActiveSlideIndex < activeSlideIndex,
+      traverseCarouselDown = prevActiveSlideIndex > activeSlideIndex,
+      fromEndCarouselToBeginning =
+        prevActiveSlideIndex === carouselLengthEnd && activeSlideIndex === 0,
+      fromBeginningCarouselToEnd =
+        prevActiveSlideIndex === 0 && activeSlideIndex === carouselLengthEnd;
 
+    // debugger;
     //ONLY LOOPS FOR AS MANY VISIBLE CAROUSEL ITEMS ON SCREEN STARTING FROM FIRST ITEM ON LEFT
     while (lowerLimit < upperLimit) {
-      const toScale =
-        lowerLimit === activeSlideIndex ||
-        (evenVisibleCarouselCount &&
-          visibleCarouselCount > 1 &&
-          lowerLimit === secondActiveSlide)
-          ? "scale(1)"
-          : "scale(.95)";
-      const fromScale =
-        lowerLimit === prevActiveSlideIndex ||
-        (evenVisibleCarouselCount && visibleCarouselCount > 1 && lowerLimit)
-          ? "scale(1)"
-          : "scale(.95)";
       const lastSlide = i + 1 === visibleCarouselCount;
       const fistSlide = i === 0;
+      const { toScale, fromScale } = determineScale(
+        lowerLimit,
+        traverseCarouselUp,
+        traverseCarouselDown,
+        fromBeginningCarouselToEnd,
+        fromEndCarouselToBeginning
+      );
+      // const toScale =
+      //   lowerLimit === activeSlideIndex ||
+      //   (evenVisibleCarouselCount &&
+      //     visibleCarouselCount > 1 &&
+      //     activeSlideIndex !== 0 &&
+      //     lowerLimit === activeSlideIndex - 1)
+      //     ? "scale(1)"
+      //     : evenVisibleCarouselCount &&
+      //       visibleCarouselCount > 1 &&
+      //       activeSlideIndex === 0 &&
+      //       children.length + lowerLimit === children.length - 1
+      //     ? "scale(1)"
+      //     : "scale(.95)";
+      // const fromScale =
+      //   lowerLimit === prevActiveSlideIndex ||
+      //   (evenVisibleCarouselCount &&
+      //     visibleCarouselCount > 1 &&
+      //     prevActiveSlideIndex !== 0 &&
+      //     lowerLimit === activeSlideIndex)
+      //     ? "scale(1)"
+      //     : evenVisibleCarouselCount &&
+      //       visibleCarouselCount > 1 &&
+      //       prevActiveSlideIndex === 0 &&
+      //       lowerLimit === activeSlideIndex
+      //     ? "scale(1)"
+      //     : "scale(.95)";
+      debugger;
       //FUNCTION TO SET CAROUSEL TRANSLATE POSITIONS
       const carouselItemTransform = (() => {
         const fromUpperToLower = {
@@ -193,7 +216,7 @@ const InfiniteCarousel = ({
           };
 
           /// HANDLE CAROUSEL TRAVERSING DOWN IF CAROUSEL IS GOING FROM LAST ITEM TO FIRST
-          if (fromEndCarouselToBeginning) {
+          if (fromBeginningCarouselToEnd) {
             if (fistSlide) {
               return fromEndToFront;
             }
@@ -212,7 +235,7 @@ const InfiniteCarousel = ({
             return carouselItemTranslate;
           }
 
-          if (fromBeginningCarouselToEnd) {
+          if (fromEndCarouselToBeginning) {
             if (lastSlide) {
               return fromFrontToEnd;
             }
@@ -231,7 +254,7 @@ const InfiniteCarousel = ({
         }
 
         //THE CAROUSEL IS GOING FROM THE FIRST ITEM TO THE LAST ITEM REVERSE THE NORMAL TRANSITIONS
-        if (fromEndCarouselToBeginning) {
+        if (fromBeginningCarouselToEnd) {
           //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM LEFT
           if (lastSlide) {
             const outAnimationFromEnd = {
@@ -304,7 +327,7 @@ const InfiniteCarousel = ({
         }
 
         //THE CAROUSEL IS GOING FROM THE LAST ITEM TO THE FIRST ITEM REVERSE THE NORMAL TRANSITIONS
-        if (fromBeginningCarouselToEnd) {
+        if (fromEndCarouselToBeginning) {
           //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM LEFT
           if (fistSlide) {
             const outAnimationFromStart = {
@@ -367,10 +390,10 @@ const InfiniteCarousel = ({
             return carouselItemTranslate;
           }
         }
+
         return carouselItemTranslate;
       })();
 
-      debugger;
       if (children[lowerLimit]) {
         carouselPositions[lowerLimit] = carouselItemTransform;
         lowerLimit++;
@@ -394,6 +417,157 @@ const InfiniteCarousel = ({
     }
 
     return carouselPositions;
+  }
+
+  //////////////////////////////////////
+  // # ::: CREATE FROM/TO SCALE ::: # //
+  //////////////////////////////////////
+  function determineScale(
+    lowerLimit,
+    traverseCarouselUp,
+    traverseCarouselDown,
+    fromBeginningCarouselToEnd,
+    fromEndCarouselToBeginning
+  ) {
+    debugger;
+    const evenVisibleCarouselCount = visibleCarouselCount % 2 === 0;
+
+    const transformScale = {
+      fromScale: "scale(.95)",
+      toScale: "scale(.95)"
+    };
+    const additionalCarouselItemFocus =
+      evenVisibleCarouselCount && visibleCarouselCount > 1;
+
+    if (lowerLimit === activeSlideIndex) transformScale.toScale = "scale(1)";
+
+    if (
+      prevActiveSlideIndex + 1 !== activeSlideIndex &&
+      prevActiveSlideIndex - 1 !== activeSlideIndex &&
+      !fromBeginningCarouselToEnd &&
+      !fromEndCarouselToBeginning
+    ) {
+      if (activeSlideIndex === lowerLimit)
+        transformScale.fromScale = "scale(.95)";
+
+      if (activeSlideIndex !== 0 && lowerLimit === activeSlideIndex - 1) {
+        transformScale.fromScale = "scale(.95)";
+        transformScale.toScale = "scale(1)";
+      }
+
+      if (
+        activeSlideIndex === 0 &&
+        children.length + lowerLimit === children.length - 1
+      ) {
+        transformScale.fromScale = "scale(.95)";
+        transformScale.toScale = "scale(1)";
+      }
+
+      return transformScale;
+    }
+
+    if (fromBeginningCarouselToEnd) {
+      if (additionalCarouselItemFocus) {
+        if (lowerLimit === activeSlideIndex)
+          transformScale.fromScale = "scale(1)";
+
+        if (lowerLimit === activeSlideIndex - 1)
+          transformScale.toScale = "scale(1)";
+      }
+      // debugger;
+      if (prevActiveSlideIndex === lowerLimit - children.length) {
+        transformScale.fromScale = "scale(1)";
+        transformScale.toScale = "scale(.95)";
+      }
+      return transformScale;
+    }
+
+    if (fromEndCarouselToBeginning) {
+      if (additionalCarouselItemFocus) {
+        if (children.length + lowerLimit === children.length - 1) {
+          transformScale.fromScale = "scale(1)";
+          transformScale.toScale = "scale(1)";
+        }
+      }
+
+      if (prevActiveSlideIndex - 1 === children.length + lowerLimit)
+        transformScale.fromScale = "scale(1)";
+      // debugger;
+      return transformScale;
+    }
+
+    if (traverseCarouselUp) {
+      if (additionalCarouselItemFocus) {
+        if (prevActiveSlideIndex === lowerLimit) {
+          transformScale.toScale = "scale(1)";
+          transformScale.fromScale = "scale(1)";
+        }
+
+        if (prevActiveSlideIndex === 0) {
+          if (children.length + lowerLimit === children.length - 1)
+            transformScale.fromScale = "scale(1)";
+        }
+
+        if (prevActiveSlideIndex - 1 === lowerLimit)
+          transformScale.fromScale = "scale(1)";
+      }
+
+      return transformScale;
+    }
+
+    if (traverseCarouselDown) {
+      if (additionalCarouselItemFocus) {
+        if (lowerLimit === activeSlideIndex)
+          transformScale.fromScale = "scale(1)";
+        if (lowerLimit + 1 === activeSlideIndex)
+          transformScale.toScale = "scale(1)";
+      }
+
+      if (prevActiveSlideIndex === lowerLimit) {
+        transformScale.fromScale = "scale(1)";
+        transformScale.toScale = "scale(.95)";
+      }
+
+      return transformScale;
+    }
+
+    if (
+      additionalCarouselItemFocus &&
+      activeSlideIndex !== 0 &&
+      lowerLimit === activeSlideIndex - 1
+    )
+      transformScale.toScale = "scale(1)";
+
+    if (
+      additionalCarouselItemFocus &&
+      activeSlideIndex === 0 &&
+      children.length + lowerLimit === children.length - 1
+    )
+      transformScale.toScale = "scale(1)";
+
+    if (lowerLimit === prevActiveSlideIndex)
+      transformScale.fromScale = "scale(1)";
+
+    if (
+      additionalCarouselItemFocus &&
+      lowerLimit === activeSlideIndex &&
+      prevActiveSlideIndex === activeSlideIndex - 1
+    )
+      transformScale.fromScale = "scale(1)";
+
+    // if (
+    //   additionalCarouselItemFocus &&
+    //   lowerLimit === activeSlideIndex &&
+    //   prevActiveSlideIndex + 1 === activeSlideIndex
+    // )
+    // if (
+    //   additionalCarouselItemFocus &&
+    //   traverseCarouselUp &&
+    //   lowerLimit === activeSlideIndex
+    // )
+    //   transformScale.fromScale = "scale(1)";
+
+    return transformScale;
   }
 
   function goToSlide(index) {

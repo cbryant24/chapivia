@@ -1,40 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { GlobalStyle } from './components/style';
-import { ThemeProvider } from '@cbryant24/styled-react';
-import theme from './components/style/theme';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { GlobalStyle } from "./components/style";
+import { ThemeProvider } from "@cbryant24/styled-react";
+import theme from "./components/style/theme";
 
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
 
-import { ModalProvider } from '@cbryant24/styled-react';
+import { ModalProvider } from "@cbryant24/styled-react";
 
-import Signin from './components/Signin';
-import Signup from './components/Signup';
-import Game from './components/Game';
-import GameController from './components/GameController';
-import App from './components/App';
+import Signin from "./components/Signin";
+import Signup from "./components/Signup";
+import Game from "./components/Game";
+import GameController from "./components/GameController";
+import App from "./components/App";
 
-import { LastLocationProvider } from 'react-router-last-location';
-import typeDefs from './localState/typeDefs';
-import { ProvideAuth } from './hooks';
+import { LastLocationProvider } from "react-router-last-location";
+import typeDefs from "./localState/typeDefs";
+import { ProvideAuth } from "./hooks";
 
+//TODO: [LAST BEFORE LAUNCH] FORM FOR SUBMITTING OWN TRIVIA WITH ANSWER SOURCE AND REPORT IF WRONG
+//TODO: [LAST BEFORE LAUNCH] USER PROFILE AREA WITH CALENDAR VIEW OF CORRECT AND INCORRECT GUESSES
+//TODO: [LAST BEFORE LAUNCH] USER AREA GRAPH BY CATEGORY OF CORRECT AND INCORRECT ANSWERS
+//TODO: [LAST BEFORE LAUNCH] USER RANKINGS INCORRECT vs. CORRECT TITLE
+//TODO: [LAST BEFORE LAUNCH] CUSTOM GAME GROUPS WITH CHAT
+//TODO: [LAST BEFORE LAUNCH] EMAIL FOR CONFIRMING EMAIL, SIGNING UP, AND RESETTING PASSWORD
 const client = new ApolloClient({
   clientState: {
     defaults: {
       localTrivia: {
         questionId: null,
-        question: '',
+        question: "",
         questionChoices: [],
         questionChoicesId: null,
-        __typename: 'dailyTrivia'
+        __typename: "dailyTrivia"
       }
     },
     resolvers: {},
     typeDefs
   },
-  uri: '/graphql'
+  uri: "/graphql"
 });
 
 ReactDOM.render(
@@ -57,5 +63,5 @@ ReactDOM.render(
       </Router>
     </ProvideAuth>
   </ApolloProvider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
