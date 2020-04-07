@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
-import { Div, FlexDiv, P, createLink } from '@cbryant24/styled-react';
-import { useQuery } from '@apollo/react-hooks';
-import query from '../queries/Scores';
-import { Link } from 'react-router-dom';
+import React, { Fragment } from "react";
+import { Div, FlexDiv, P, createLink } from "@cbryant24/styled-react";
+import { useQuery } from "@apollo/react-hooks";
+import query from "../queries/Scores";
+import { Link } from "react-router-dom";
 
-import { DAILY_TRIVIA } from '../localState/Queries';
+import { DAILY_TRIVIA } from "../localState/Queries";
 
-import { useAuth, useRouter } from '../hooks';
+import { useAuth, useRouter } from "../hooks";
 
 function TopMenu(props) {
   const { data } = useQuery(DAILY_TRIVIA);
@@ -20,7 +20,7 @@ function TopMenu(props) {
       <FlexDiv
         themeStyle="marginTopSmall"
         justifyContent="space-between"
-        flexWrap={['wrap-reverse', 'nowrap']}
+        flexWrap={["wrap-reverse", "nowrap"]}
       >
         <FlexDiv
           flexDirection="column"
@@ -29,13 +29,13 @@ function TopMenu(props) {
           textAlign="center"
         >
           <P color="red">Trivia Topic</P>
-          <P>{data ? data.localTrivia.category : ''}</P>
+          <P>{data ? data.localTrivia.category : ""}</P>
         </FlexDiv>
-        <FlexDiv themeStyle={['flexColumnCenter']} width={[2, 3]}>
+        <FlexDiv themeStyle={["flexColumnCenter"]} width={[2, 3]}>
           <P color="red">HI-Score</P>
           <P>
             {scoresLoading || !playerScores
-              ? ''
+              ? ""
               : !scoresLoading && !playerScores.length
               ? 0
               : playerScores[0].score}
@@ -53,16 +53,16 @@ function TopMenu(props) {
             <StyledLink
               animation={{
                 continuous: {
-                  from: { color: 'white' },
-                  to: { color: 'red' }
+                  from: { color: "white" },
+                  to: { color: "red" }
                 },
                 duration_continuous: 1,
-                animation_direction: 'alternate-reverse'
+                animation_direction: "alternate-reverse"
               }}
               themeStyle="linkNormal"
-              to={pathname === '/signup' ? '/' : '/signup'}
+              to={pathname === "/signup" ? "/" : "/signup"}
             >
-              {`Click Here To ${pathname === '/signup' ? 'Login!' : 'Signup!'}`}
+              {`Click Here To ${pathname === "/signup" ? "Login!" : "Signup!"}`}
             </StyledLink>
           )}
         </FlexDiv>

@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
     pass: config.password
   }
 });
-debugger;
+
 const mailOptions = {
   from: "kanye@west.com",
   to: "cbryant23@gmail.com",

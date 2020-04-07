@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import converter from 'number-to-words';
-import moment from 'moment';
+import React, { useState } from "react";
+import { useQuery } from "@apollo/react-hooks";
+import converter from "number-to-words";
+import moment from "moment";
 
-import Marquee from './Marquee';
-
-import prevMonthWinnersQuery from '../queries/PrevMonthWinners';
-import { Div, H4, FlexUl, FlexLi, P } from '@cbryant24/styled-react';
+import prevMonthWinnersQuery from "../queries/PrevMonthWinners";
+import { Div, H4, FlexUl, FlexLi, P } from "@cbryant24/styled-react";
 
 import {
   FlexItem3x4,
   FlexItem3x4MbHide,
   LeftAlignText
-} from './styledComponents';
+} from "./styledComponents";
 
 function PrevMonthWinners(props) {
   const { loading, data: { prevMonthWinners } = {} } = useQuery(
@@ -38,7 +36,7 @@ function PrevMonthWinners(props) {
           my={[2]}
           key={winner.name}
         >
-          <Div display={['10%']}>
+          <Div display={["10%"]}>
             <LeftAlignText>{`${winnerPlace}.`}</LeftAlignText>
           </Div>
           <FlexItem3x4>
@@ -59,8 +57,8 @@ function PrevMonthWinners(props) {
     <Div display="flex" flexDirection="column" fontSizeModule={[1, null, 2]}>
       <H4 textAlign="center" my={[1]} color="primary">
         {`${moment()
-          .subtract(1, 'month')
-          .format('MMMM')} Winners!`}
+          .subtract(1, "month")
+          .format("MMMM")} Winners!`}
       </H4>
       <FlexUl flexDirection="column">{displayWinnersList()}</FlexUl>
     </Div>

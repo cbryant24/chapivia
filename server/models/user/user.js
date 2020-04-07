@@ -1,15 +1,15 @@
-'use strict';
-const bcrypt = require('bcrypt-nodejs');
-const { keyBy, map } = require('lodash');
-const AppError = require('../../error');
-const moment = require('moment');
-const Sequelize = require('sequelize');
+"use strict";
+const bcrypt = require("bcrypt-nodejs");
+const { keyBy, map } = require("lodash");
+const AppError = require("../../error");
+const moment = require("moment");
+const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
-const mailer = require('../../web/mailer');
+const mailer = require("../../web/mailer");
 
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define(
-    'user',
+    "user",
     {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
@@ -61,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
         name: user.name,
         id: user.id
       }));
-      players = keyBy(players, 'name');
+      players = keyBy(players, "name");
       return players;
     } catch (e) {
       //TODO: add descriptive error handling and winston logging or error
@@ -81,31 +81,30 @@ module.exports = (sequelize, DataTypes) => {
 
       return unguessedPlayers;
     } catch (e) {
-      debugger;
       //TODO: add error handling for getting unguessed players
       throw new AppError();
     }
   };
 
-  User.scores = async function(month = 'currentMonth') {
+  User.scores = async function(month = "currentMonth") {
     const startOfMonth =
-      month === 'prevMonth'
+      month === "prevMonth"
         ? moment()
-            .subtract(1, 'months')
-            .startOf('month')
+            .subtract(1, "months")
+            .startOf("month")
             .toDate()
         : moment()
-            .startOf('month')
+            .startOf("month")
             .toDate();
 
     const endOfMonth =
-      month === 'prevMonth'
+      month === "prevMonth"
         ? moment()
-            .subtract(1, 'months')
-            .endOf('month')
+            .subtract(1, "months")
+            .endOf("month")
             .toDate()
         : moment()
-            .endOf('month')
+            .endOf("month")
             .toDate();
     //TODO: Update to pull only through association with joined table and only pull 3 for winner?
     try {
@@ -127,7 +126,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       userCorrectGuessesScore.sort((a, b) => b.score - a.score);
 
-      if (month === 'prevMonth') {
+      if (month === "prevMonth") {
         const determineTopThree = () => {
           let topThreeCutoff = 3;
 
@@ -157,7 +156,7 @@ module.exports = (sequelize, DataTypes) => {
 
   User.todaysGuesses = async function() {
     const startOfToday = moment()
-      .startOf('day')
+      .startOf("day")
       .toDate();
 
     try {
@@ -176,29 +175,28 @@ module.exports = (sequelize, DataTypes) => {
 
       return todaysGuesses;
     } catch (e) {
-      debugger;
       //TODO: add error handling for player scores retrieval
       console.log(e);
     }
   };
 
   User.correctGuesses = async function() {
-    const currentHour = moment().format('HH');
+    const currentHour = moment().format("HH");
     const dayOfWeek = new Date().getDay();
 
     const startOfToday = moment()
-      .startOf('day')
+      .startOf("day")
       .toDate();
     const endOfToday = moment()
-      .endOf('day')
+      .endOf("day")
       .toDate();
     const startOfPreviousGameDate = moment()
-      .add(`${dayOfWeek === 1 ? -3 : -1}`, 'day')
-      .startOf('day')
+      .add(`${dayOfWeek === 1 ? -3 : -1}`, "day")
+      .startOf("day")
       .toDate();
     const endOfPreviousGameDate = moment()
-      .add(`${dayOfWeek === 1 ? -3 : -1}`, 'day')
-      .endOf('day')
+      .add(`${dayOfWeek === 1 ? -3 : -1}`, "day")
+      .endOf("day")
       .toDate();
 
     try {
@@ -220,19 +218,16 @@ module.exports = (sequelize, DataTypes) => {
       });
       return correctGuesses;
     } catch (e) {
-      debugger;
       //TODO: add error handling for player scores retrieval
       console.log(e);
     }
   };
 
   User.prevMonthWinners = async function() {
-    return this.scores('prevMonth');
+    return this.scores("prevMonth");
   };
 
-  User.sendEmail = function() {
-
-  }
+  User.sendEmail = function() {};
 
   return User;
 };

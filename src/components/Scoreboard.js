@@ -1,16 +1,16 @@
-import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import PrevMonthWinners from './PrevMonthWinners';
-import moment from 'moment';
+import React from "react";
+import { useQuery } from "@apollo/react-hooks";
+import PrevMonthWinners from "./PrevMonthWinners";
+import moment from "moment";
 
-import query from '../queries/Scores';
+import query from "../queries/Scores";
 
-import { Div, FlexUl, Li, P, FlexDiv, H4 } from '@cbryant24/styled-react';
+import { Div, FlexUl, Li, P, FlexDiv, H4 } from "@cbryant24/styled-react";
 import {
   FlexItem3x4,
   FlexItem3x4MbHide,
   LeftAlignText
-} from './styledComponents';
+} from "./styledComponents";
 
 const Scoreboard = props => {
   const { loading, data } = useQuery(query);
@@ -18,10 +18,14 @@ const Scoreboard = props => {
   function displayPlayerScores() {
     let place = 1;
 
+    if (!data) return;
+
     return data.scores ? (
       data.scores.map((player, idx) => {
+        debugger;
         if (idx > 0) {
-          place = data.scores[idx].score === data.scores[idx - 1] ? place : idx;
+          place =
+            data.scores[idx].score === data.scores[idx - 1].score ? place : idx;
         }
         return (
           <FlexUl
@@ -29,8 +33,9 @@ const Scoreboard = props => {
             textAlign="center"
             width={[1]}
             my={[2]}
+            key={idx}
           >
-            <Li width={['10%']}>
+            <Li width={["10%"]}>
               <LeftAlignText>{`${place}.`}</LeftAlignText>
             </Li>
             <FlexItem3x4 isA="li">
@@ -74,7 +79,7 @@ const Scoreboard = props => {
       </FlexUl>
       <PrevMonthWinners />
       <H4 textAlign="center" my={[1]} color="tertiary">
-        {`${moment().format('MMMM')} Scoreboard`}
+        {`${moment().format("MMMM")} Scoreboard`}
       </H4>
       {displayPlayerScores()}
     </Div>

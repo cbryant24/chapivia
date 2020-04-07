@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import Form from '@cbryant24/styled-react-form';
-import { signupValidation } from './validations';
-import { signupFormData } from './formData';
+import React, { useState } from "react";
+import Form from "@cbryant24/styled-react-form";
+import { signupValidation } from "./validations";
+import { signupFormData } from "./formData";
 
-import { Div, H1, P, Button } from '@cbryant24/styled-react';
-import Modal from './Modal';
-import { useAuth, useRouter } from '../hooks';
+import { Div, H1, P } from "@cbryant24/styled-react";
+import Modal from "./Modal";
+import { useAuth, useRouter } from "../hooks";
 
 //TODO: Errors message applicable to correct field only
 
 function Signup(props) {
   const [isOpen, setIsOpen] = useState(false),
     { form, inputs, buttons } = signupFormData,
-    [modalMessage, setModalMessage] = useState(''),
+    [modalMessage, setModalMessage] = useState(""),
     { signup } = useAuth(),
     router = useRouter();
 
@@ -24,7 +24,7 @@ function Signup(props) {
       setModalMessage(res.graphQLErrors);
       return;
     }
-    return router.push('/game');
+    return router.push("/game");
   }
 
   const toggleModal = e => setIsOpen(!isOpen);
@@ -34,7 +34,7 @@ function Signup(props) {
       <Div
         id="signupboxmodule"
         width={[1]}
-        themeStyle={['flexCenterSpaceEvenlyColumn', 'marginTopLarge']}
+        themeStyle={["flexCenterSpaceEvenlyColumn", "marginTopLarge"]}
       >
         <Modal
           isOpen={isOpen}

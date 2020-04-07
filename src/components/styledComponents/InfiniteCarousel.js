@@ -23,7 +23,9 @@ const InfiniteCarousel = ({
   rightArrowContainerStyle,
   arrowStyle,
   displayArrow = true,
-  carouselSpeed = 1.5
+  carouselSpeed = 1.5,
+  fromScale = "scale(1)",
+  toScale = "scale(1)"
 }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(initialSlide);
   const [carouselTranslateVals, setCarouselTranslateVals] = useState(null);
@@ -77,7 +79,7 @@ const InfiniteCarousel = ({
     //DETERMINING HOW MANY SLIDE ITEMS TO THE LEFT AND RIGHT OF ACTIVE SLIDE
     const upperLowerLimit = Math.floor(visibleCarouselCount / 2);
 
-    //FINDING FIRST LOWER AND LAST UPPER SLIDE FOR LOOP DETERMINATION END POINTS
+    //FINDING FIRST LOWER AND LAST UPPER SLIDE FOR LOOP DETERMINATION START AND END POINTS
     let lowerLimit = activeSlideIndex - upperLowerLimit;
     const upperLimit = evenVisibleCarouselCount
         ? activeSlideIndex + upperLowerLimit
@@ -90,8 +92,8 @@ const InfiniteCarousel = ({
       fromBeginningCarouselToEnd =
         prevActiveSlideIndex === 0 && activeSlideIndex === carouselLengthEnd;
 
-    // debugger;
-    //ONLY LOOPS FOR AS MANY VISIBLE CAROUSEL ITEMS ON SCREEN STARTING FROM FIRST ITEM ON LEFT
+    //ONLY LOOPS FOR AS MANY VISIBLE CAROUSEL ITEMS ON SCREEN
+    //STARTING FROM FIRST ITEM ON LEFT (lowerLimit) UPTO AND NOT INCLUDING LAST ITEM ON RIGHT (upperLimit)
     while (lowerLimit < upperLimit) {
       const lastSlide = i + 1 === visibleCarouselCount;
       const fistSlide = i === 0;
@@ -102,34 +104,8 @@ const InfiniteCarousel = ({
         fromBeginningCarouselToEnd,
         fromEndCarouselToBeginning
       );
-      // const toScale =
-      //   lowerLimit === activeSlideIndex ||
-      //   (evenVisibleCarouselCount &&
-      //     visibleCarouselCount > 1 &&
-      //     activeSlideIndex !== 0 &&
-      //     lowerLimit === activeSlideIndex - 1)
-      //     ? "scale(1)"
-      //     : evenVisibleCarouselCount &&
-      //       visibleCarouselCount > 1 &&
-      //       activeSlideIndex === 0 &&
-      //       children.length + lowerLimit === children.length - 1
-      //     ? "scale(1)"
-      //     : "scale(.95)";
-      // const fromScale =
-      //   lowerLimit === prevActiveSlideIndex ||
-      //   (evenVisibleCarouselCount &&
-      //     visibleCarouselCount > 1 &&
-      //     prevActiveSlideIndex !== 0 &&
-      //     lowerLimit === activeSlideIndex)
-      //     ? "scale(1)"
-      //     : evenVisibleCarouselCount &&
-      //       visibleCarouselCount > 1 &&
-      //       prevActiveSlideIndex === 0 &&
-      //       lowerLimit === activeSlideIndex
-      //     ? "scale(1)"
-      //     : "scale(.95)";
-      debugger;
-      //FUNCTION TO SET CAROUSEL TRANSLATE POSITIONS
+
+      //FUNCTION TO SET CAROUSEL CSS TRANSFORM TRANSLATE POSITIONS
       const carouselItemTransform = (() => {
         const fromUpperToLower = {
           transform: `translateX(${(i + 1) * bp}px) ${fromScale}`
@@ -165,7 +141,7 @@ const InfiniteCarousel = ({
 
         /// HANLDE IF ALL CAROUSEL ITEMS ARE ON THE SCREEN
         if (allCarouselItemsVisible) {
-          /// HANDLE LAST CAROUSEL ITEM GOING TO FRONT IF TRAVERSING UP OR CAROUSEL BEING RESET  FROM LAST TO FIRST
+          /// ANIMATION/CSS FOR LAST CAROUSEL ITEM GOING TO FRONT IF TRAVERSING UP OR CAROUSEL BEING RESET FROM LAST TO FIRST
           const fromEndToFront = {
             animation: {
               in: {
@@ -189,7 +165,7 @@ const InfiniteCarousel = ({
             }
           };
 
-          /// HANDLE FIRST CAROUSEL ITEM GOING TO END IF TRAVERSING DOWN OR CAROUSEL BEING RESET FROM FIRST TO LAST
+          /// ANIMATION/CSS FOR FIRST CAROUSEL ITEM GOING TO END IF TRAVERSING DOWN OR CAROUSEL BEING RESET FROM FIRST TO LAST
           const fromFrontToEnd = {
             animation: {
               in: {
@@ -215,7 +191,7 @@ const InfiniteCarousel = ({
             }
           };
 
-          /// HANDLE CAROUSEL TRAVERSING DOWN IF CAROUSEL IS GOING FROM LAST ITEM TO FIRST
+          /// HANDLE CAROUSEL TRAVERSING FROM FIRST ITEM TO LAST ITEM MOVING FIRST SLIDE FROM END TO FROM WHEN ALL CAROUSEL ITEMS ARE VISIBLE
           if (fromBeginningCarouselToEnd) {
             if (fistSlide) {
               return fromEndToFront;
@@ -225,7 +201,7 @@ const InfiniteCarousel = ({
             return carouselItemTranslate;
           }
 
-          /// HANDLE CAROUSEL TRAVERSING UP
+          /// HANDLE CAROUSEL TRAVERSING UP MOVING LAST SLIDE FROM THE FRONT TO END WHEN ALL CAROUSEL ITEMS ARE VISIBLE
           if (traverseCarouselUp) {
             if (lastSlide) {
               return fromFrontToEnd;
@@ -235,6 +211,7 @@ const InfiniteCarousel = ({
             return carouselItemTranslate;
           }
 
+          // HANDLE CAROUSEL MOVING FROM END CAROUSEL ITEM TO BEGINNING MOVING LAST SLIDE FROM FRONT TO END WHEN ALL CAROUSEL ITEMS ARE VISIBLE
           if (fromEndCarouselToBeginning) {
             if (lastSlide) {
               return fromFrontToEnd;
@@ -244,6 +221,7 @@ const InfiniteCarousel = ({
             return carouselItemTranslate;
           }
 
+          // HANDLE CAROUSEL TRAVERSING DOWN FOR FIRST SLIDE ITEM TO FRONT FROM END WHEN ALL CAROUSEL ITEMS ARE VISIBLE
           if (traverseCarouselDown) {
             if (fistSlide) {
               return fromEndToFront;
@@ -255,7 +233,7 @@ const InfiniteCarousel = ({
 
         //THE CAROUSEL IS GOING FROM THE FIRST ITEM TO THE LAST ITEM REVERSE THE NORMAL TRANSITIONS
         if (fromBeginningCarouselToEnd) {
-          //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM LEFT
+          //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM RIGHT
           if (lastSlide) {
             const outAnimationFromEnd = {
               animation: {
@@ -283,7 +261,7 @@ const InfiniteCarousel = ({
             }
           }
 
-          //SETTING PREVIOUSLY UNSEEN CAROUSEL ITEM TO TRANSITION INTO CAROUSEL FROM RIGHT
+          //SETTING PREVIOUSLY UNSEEN CAROUSEL ITEM TO TRANSITION INTO CAROUSEL FROM LEFT
           if (fistSlide) {
             carouselItemTranslate.animation.in["0%"] = inFromLeft;
             return carouselItemTranslate;
@@ -293,6 +271,7 @@ const InfiniteCarousel = ({
           return carouselItemTranslate;
         }
 
+        // HANDLES WHEN CAROUSEL TRAVERSES UP AND ALL CAROUSEL ITEMS ARE NOT VISIBLE
         if (traverseCarouselUp) {
           //SETTING PREVIOUSLY VISIBLE CAROUSEL ITEM TO TRANISITON OUT OF CAROUSEL FROM LEFT
           if (fistSlide) {
@@ -394,6 +373,7 @@ const InfiniteCarousel = ({
         return carouselItemTranslate;
       })();
 
+      // IF THERE IS A CHILDREN ITEM FOR THE LEFT ITEM OF THE ACTIVE MIDDLE SLIDE SET IT
       if (children[lowerLimit]) {
         carouselPositions[lowerLimit] = carouselItemTransform;
         lowerLimit++;
@@ -401,6 +381,7 @@ const InfiniteCarousel = ({
         continue;
       }
 
+      // IF THERE IS NO RIGHT ITEM IN THE CAROUSEL FOR THE ITEM ON THE RIGHT GET ITEM FROM LEFT SIDE OF ACTIVE MIDDLE SLIDE
       if (lowerLimit >= children.length) {
         carouselPositions[lowerLimit - children.length] = carouselItemTransform;
         carouselLengthEnd--;
@@ -409,6 +390,7 @@ const InfiniteCarousel = ({
         continue;
       }
 
+      // IF THERE IS NO LEFT ITEM IN THE CAROUSEL FOR THE ITEM ON THE LEFT GET ITEM FROM RIGHT SIDE OF ACTIVE MIDDLE SLIDE
       carouselPositions[children.length + lowerLimit] = carouselItemTransform;
       carouselLengthEnd--;
       lowerLimit++;
@@ -419,9 +401,9 @@ const InfiniteCarousel = ({
     return carouselPositions;
   }
 
-  //////////////////////////////////////
-  // # ::: CREATE FROM/TO SCALE ::: # //
-  //////////////////////////////////////
+  ////////////////////////////////////////////////////
+  // # ::: CREATE FROM/TO CSS TRANSFORM SCALE ::: # //
+  ////////////////////////////////////////////////////
   function determineScale(
     lowerLimit,
     traverseCarouselUp,
@@ -429,32 +411,41 @@ const InfiniteCarousel = ({
     fromBeginningCarouselToEnd,
     fromEndCarouselToBeginning
   ) {
-    debugger;
     const evenVisibleCarouselCount = visibleCarouselCount % 2 === 0;
 
+    // DEFAULT TRANSFORM SCALE
     const transformScale = {
       fromScale: "scale(.95)",
       toScale: "scale(.95)"
     };
+
+    // DETERMING IF EVEN AMOUNT OF CAROUSEL IF SO NEED TWO CAROUSEL ITEMS TO BE SCALED FOR FOCUS
     const additionalCarouselItemFocus =
       evenVisibleCarouselCount && visibleCarouselCount > 1;
 
+    // SET ACTIVE SLIDE TO SCALE TO FOCUS
     if (lowerLimit === activeSlideIndex) transformScale.toScale = "scale(1)";
 
+    // CHECKING IF CAROUSEL INDICATOR HAS BEEN CLICKED MOVING CAROUSEL MORE THAN ONE SPOT
     if (
       prevActiveSlideIndex + 1 !== activeSlideIndex &&
       prevActiveSlideIndex - 1 !== activeSlideIndex &&
       !fromBeginningCarouselToEnd &&
-      !fromEndCarouselToBeginning
+      !fromEndCarouselToBeginning &&
+      evenVisibleCarouselCount
     ) {
       if (activeSlideIndex === lowerLimit)
         transformScale.fromScale = "scale(.95)";
 
+      // SET CAROUSEL ITEM TO THE LEFT OF THE ACTIVE INDEX ITEM TO THE SAME SCALE AS ACTIVE INDEX IF
+      // ACTIVE ITEM IF IT ISNT THE FIRST CAROUSEL ITEM DUE TO NO ITEMS TO THE LEFT OF FIRST ITEM
       if (activeSlideIndex !== 0 && lowerLimit === activeSlideIndex - 1) {
         transformScale.fromScale = "scale(.95)";
         transformScale.toScale = "scale(1)";
       }
 
+      // SET CAROUSEL ITEM TO THE LEFT OF THE ACTIVE INDEX ITEM TO THE SAME SCALE AS
+      // ACTIVE INDEX WHEN FIRST ITEM IS ACTIVE SLIDE THEN SELECT LAST CAROUSEL ITEM
       if (
         activeSlideIndex === 0 &&
         children.length + lowerLimit === children.length - 1
@@ -466,15 +457,19 @@ const InfiniteCarousel = ({
       return transformScale;
     }
 
+    // IF TRAVERSING CAROUSEL FROM BEGINNING TO END, SCALE LAST CAROUSEL
+    // ITEM ALONG WITH CAROUSEL ITEM TO LEFT OF LAST CAROUSEL ITEM
     if (fromBeginningCarouselToEnd) {
       if (additionalCarouselItemFocus) {
+        // GOING FROM BEGINNING TO END LAST ITEM WAS ALREADY SCALED UP
         if (lowerLimit === activeSlideIndex)
           transformScale.fromScale = "scale(1)";
 
+        // SCALE UP ITEM TO THE LEFT OF LAST CAROUSEL ITEM
         if (lowerLimit === activeSlideIndex - 1)
           transformScale.toScale = "scale(1)";
       }
-      // debugger;
+      // SCALE DOWN FIRST CAROUSEL ITEM THAT WAS JUST PREVIOUSLY ACTIVE
       if (prevActiveSlideIndex === lowerLimit - children.length) {
         transformScale.fromScale = "scale(1)";
         transformScale.toScale = "scale(.95)";
@@ -482,47 +477,64 @@ const InfiniteCarousel = ({
       return transformScale;
     }
 
+    // IF TRAVERSING CAROUSEL FROM END TO BEGINNING, SCALE FIRST CAROUSEL ITEM ALONG WITH LAST CAROUSEL ITEM
     if (fromEndCarouselToBeginning) {
       if (additionalCarouselItemFocus) {
+        // DETERMINE IF LAST CAROUSEL ITEM THEN KEEP FOCUS SINCE IT WAS PREVIOUSLY SCALED UP
         if (children.length + lowerLimit === children.length - 1) {
           transformScale.fromScale = "scale(1)";
           transformScale.toScale = "scale(1)";
         }
       }
 
-      if (prevActiveSlideIndex - 1 === children.length + lowerLimit)
+      // FIND THE LAST CAROUSEL ITEM AND SET TO SCALE DOWN
+      if (prevActiveSlideIndex === children.length + lowerLimit)
         transformScale.fromScale = "scale(1)";
-      // debugger;
+
       return transformScale;
     }
 
     if (traverseCarouselUp) {
       if (additionalCarouselItemFocus) {
+        // SETTING SCALE TO SAME DUE TO ALREADY BEING PREVIOUSLY SCALED FOCUS
         if (prevActiveSlideIndex === lowerLimit) {
           transformScale.toScale = "scale(1)";
           transformScale.fromScale = "scale(1)";
         }
 
         if (prevActiveSlideIndex === 0) {
+          // SELECTING LAST CAROUSEL ITEM DUE TO IT BEING ITEM TO LEFT OF
+          // FIRST CAROUSEL  ITEM TO SCALE IT DOWN FROM BEING PREVIOUSLY IN FOCUS
           if (children.length + lowerLimit === children.length - 1)
             transformScale.fromScale = "scale(1)";
         }
 
+        // SELECTING ITEM TO LEFT OF PREVIOUSLY FOCUSED ACTIVE CAROUSEL ITEM FOR SCALING DOWN
         if (prevActiveSlideIndex - 1 === lowerLimit)
           transformScale.fromScale = "scale(1)";
       }
+
+      // TRAVERSING UP PREVIOUSLY ACTIVE ITEM IS NOW SCALED
+      // DOWN TO LEFT OF CURRENT ACTIVE CAROUSEL ITEM
+      if (lowerLimit === prevActiveSlideIndex)
+        transformScale.fromScale = "scale(1)";
 
       return transformScale;
     }
 
     if (traverseCarouselDown) {
       if (additionalCarouselItemFocus) {
+        // TRAVERSING CAROUSEL DOWN CURRENTLY ACTIVE ITEM WAS ALREADY SCALED UP
         if (lowerLimit === activeSlideIndex)
           transformScale.fromScale = "scale(1)";
+
+        // SCALE UP ITEM TO RIGHT OF ACTIVEL CAROUSEL ITEM
         if (lowerLimit + 1 === activeSlideIndex)
           transformScale.toScale = "scale(1)";
       }
 
+      // TRAVERSING DOWN PREVIOUSLY ACTIVE ITEM IS NOW SCALED
+      // DOWN TO RIGHT OF CURRENT ACTIVE CAROUSEL ITEM
       if (prevActiveSlideIndex === lowerLimit) {
         transformScale.fromScale = "scale(1)";
         transformScale.toScale = "scale(.95)";
@@ -531,6 +543,9 @@ const InfiniteCarousel = ({
       return transformScale;
     }
 
+    // SETTING CAROUSEL FOR INITIAL VIEW
+
+    // IF ACTIVE CAROUSEL ITEM ISNT 0 SET THE CAROUSEL ITEM TO LEFT TO SCALE UP
     if (
       additionalCarouselItemFocus &&
       activeSlideIndex !== 0 &&
@@ -538,6 +553,7 @@ const InfiniteCarousel = ({
     )
       transformScale.toScale = "scale(1)";
 
+    // IF ACTIVE CAROUSEL ITEM IS 0 SET THE LAST CAROUSEL ITEM TO SCALE UP
     if (
       additionalCarouselItemFocus &&
       activeSlideIndex === 0 &&
@@ -545,27 +561,17 @@ const InfiniteCarousel = ({
     )
       transformScale.toScale = "scale(1)";
 
+    // SET FROM SCALE OF PREVIOUSLY ACTIVE ITEM TO FOCUS WHETHER LEAVING OR STAYING IN FOCUS
     if (lowerLimit === prevActiveSlideIndex)
       transformScale.fromScale = "scale(1)";
 
+    // SET CURRENT ACTIVE ITEM FROM FOCUS TO FOCUSED SCALE IF IT WAS PREVIOUSLY ACTIVE ITEM
     if (
       additionalCarouselItemFocus &&
       lowerLimit === activeSlideIndex &&
       prevActiveSlideIndex === activeSlideIndex - 1
     )
       transformScale.fromScale = "scale(1)";
-
-    // if (
-    //   additionalCarouselItemFocus &&
-    //   lowerLimit === activeSlideIndex &&
-    //   prevActiveSlideIndex + 1 === activeSlideIndex
-    // )
-    // if (
-    //   additionalCarouselItemFocus &&
-    //   traverseCarouselUp &&
-    //   lowerLimit === activeSlideIndex
-    // )
-    //   transformScale.fromScale = "scale(1)";
 
     return transformScale;
   }
@@ -621,10 +627,11 @@ const InfiniteCarousel = ({
     setVisibleCarouselCount(carouselCountToDisplay());
   }
 
-  function carouselSlide(index) {
+  function createCarouselSlide(index) {
     const carouselItemPosition = getTranslatePosition(index);
     return (
       <Li
+        key={index}
         id={`carousel-item-${index}`}
         gridRow="1 / span 1"
         gridColumn="1 / span 1"
@@ -644,7 +651,7 @@ const InfiniteCarousel = ({
         : carouselIndicatorInactiveStyle;
 
     return (
-      <Li {...style} onClick={() => goToSlide(index)}>
+      <Li key={index} {...style} onClick={() => goToSlide(index)}>
         {children[index].props.carouselIndicatorName}
       </Li>
     );
@@ -690,7 +697,7 @@ const InfiniteCarousel = ({
             width={`${visibleCarouselCount * bp}px`}
             margin="0 auto"
           >
-            {children.map((item, idx) => carouselSlide(idx))}
+            {children.map((item, idx) => createCarouselSlide(idx))}
           </Ul>
           {displayArrow ? (
             <Span {...rightArrowContainerStyle} onClick={goToNextSlide}>

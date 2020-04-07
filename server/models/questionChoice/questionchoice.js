@@ -1,12 +1,12 @@
-'use strict';
-const dateFormat = require('dateformat');
-const Nedb = require('../nedb');
-const { concat, shuffle } = require('lodash');
-const moment = require('moment');
+"use strict";
+const dateFormat = require("dateformat");
+const Nedb = require("../nedb");
+const { concat, shuffle } = require("lodash");
+const moment = require("moment");
 
 module.exports = (sequelize, DataTypes) => {
   const QuestionChoice = sequelize.define(
-    'questionChoice',
+    "questionChoice",
     {
       correctChoice: DataTypes.STRING,
       incorrectChoiceOne: DataTypes.STRING,
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     QuestionChoice.belongsTo(models.Question);
     QuestionChoice.belongsToMany(models.Question, {
-      through: 'userQuestionChoice'
+      through: "userQuestionChoice"
     });
   };
 
@@ -44,11 +44,11 @@ module.exports = (sequelize, DataTypes) => {
     const previousGameDate =
       dayOfWeek === 1
         ? moment()
-            .add(-3, 'day')
-            .format('YYYY-MM-DD')
+            .add(-3, "day")
+            .format("YYYY-MM-DD")
         : moment()
-            .add(-1, 'day')
-            .format('YYYY-MM-DD');
+            .add(-1, "day")
+            .format("YYYY-MM-DD");
 
     try {
       const triviaAnswer = await this.findOne({
@@ -64,7 +64,6 @@ module.exports = (sequelize, DataTypes) => {
 
       return triviaAnswer;
     } catch (e) {
-      debugger;
       //TODO add error handling model QuestionChoice get trivia answer
     }
   };

@@ -4,14 +4,13 @@ import { useLastLocation } from "react-router-last-location";
 import { useRouter } from "hooks";
 import triviaQuery from "queries/Trivia";
 
-import Modal from "./Modal";
+import Modal from "components/Modal";
 import { Div, H3 } from "@cbryant24/styled-react";
 
-import Winner from "./Winner";
-import GuessList from "./GuessList";
-import Scoreboard from "./Scoreboard";
-import TriviaQuestion from "./TriviaQuestion";
-import PrevMonthWinners from "./PrevMonthWinners";
+import Winner from "components/Winner";
+import GuessList from "components/GuessList";
+import Scoreboard from "components/Scoreboard";
+import TriviaQuestion from "components/TriviaQuestion";
 
 import { BorderPrimary, InfiniteCarousel } from "./styledComponents";
 
@@ -78,35 +77,6 @@ const Game = props => {
         </Div>
       );
     }
-
-    // return (
-    //   <InfiniteCarousel
-    //     width="90vw"
-    //     bp={50}
-    //     carouselIndicator={true}
-    //     carouselStyle={{ themeStyle: 'carouselNormal' }}
-    //     carouselIndicatorStyle={{
-    //       width: '50px',
-    //       height: '25px',
-    //       backgroundColor: 'white',
-    //       color: 'black',
-    //       margin: [1]
-    //     }}
-    //     arrowStyle={{
-    //       arrowColor: 'white',
-    //       stroke: "white",
-    //       strokeWidth: "50",
-    //       width: '30px',
-    //       height: '30px',
-    //       backgroundColor: 'primary',
-    //       borderRadius: '9999px',
-    //       padding: '5px 5px 6px 2px'
-    //     }}
-    //     initialSlide={10}
-    //   >
-    //     {arr}
-    //   </InfiniteCarousel>
-    // );
 
     if (userLoading || triviaLoading) return <div></div>;
 
@@ -213,7 +183,6 @@ const Game = props => {
         <BorderPrimary mx="3em" height="100%" carouselIndicatorName="Winners">
           <Winner />
         </BorderPrimary>
-        {/* {arr} */}
       </InfiniteCarousel>
     );
   }

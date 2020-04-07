@@ -1,17 +1,17 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from "react";
 
-import { useQuery } from '@apollo/react-hooks';
-import GuessListQuery from '../queries/GuessList';
+import { useQuery } from "@apollo/react-hooks";
+import GuessListQuery from "queries/GuessList";
 
-import { useAuth } from '../hooks';
+import { useAuth } from "hooks";
 
-import GuessForm from './GuessForm';
+import GuessForm from "components/GuessForm";
 
-import { guessFormData } from './formData';
-import { guessValidation } from './validations';
+import { updateGuessFormData } from "components/formData";
+import { guessValidation } from "components/validations";
 
-import { Div, FlexDiv, P, Button, Ul, FlexLi } from '@cbryant24/styled-react';
-import { LeftAlignText, RightAlignText } from './styledComponents';
+import { Div, FlexDiv, P, Button, Ul, FlexLi } from "@cbryant24/styled-react";
+import { LeftAlignText, RightAlignText } from "components/styledComponents";
 
 function GuessList(props) {
   const [selectedPlayer, setSelectedPlayer] = useState(null);
@@ -20,7 +20,7 @@ function GuessList(props) {
     data: guessListData,
     refetch: refetchGuessList
   } = useQuery(GuessListQuery);
-  const { form, inputs, buttons } = guessFormData;
+  const { form, inputs, buttons } = updateGuessFormData;
   const { user } = useAuth();
 
   function handleChangeCancel() {
@@ -39,23 +39,20 @@ function GuessList(props) {
         <LeftAlignText width={[2]}>{guessedPlayer.name}</LeftAlignText>
         <RightAlignText width={[2]}>
           {guessedPlayer.userQuestionChoices[0].isCorrect
-            ? 'Answered Correct!'
-            : 'Answered Wrong!'}
+            ? "Answered Correct!"
+            : "Answered Wrong!"}
         </RightAlignText>
       </FlexLi>
     ));
   }
-  // debugger;
   buttons.forEach(button => {
-    button.type === 'cancel'
+    button.type === "cancel"
       ? (button.cb = handleChangeCancel)
       : (button.cb = button.cb);
   });
 
-  //options: [selectedPlayer]
-  // debugger;
   inputs.forEach(input =>
-    input.data.type === 'select' && selectedPlayer
+    input.data.type === "select" && selectedPlayer
       ? (input.data.inputData.options = [
           { id: selectedPlayer.id, name: selectedPlayer.name }
         ])
@@ -64,8 +61,8 @@ function GuessList(props) {
 
   function dispalayGuesses() {
     if (guessListLoading || !user) return <Div></Div>;
-    // debugger;
-    if (user.role !== 'admin') return <Div>{displayGuessesNonAdmin()}</Div>;
+
+    if (user.role !== "admin") return <Div>{displayGuessesNonAdmin()}</Div>;
 
     return guessListData.guessedPlayers.map(guessedPlayer => (
       <FlexDiv
@@ -82,6 +79,7 @@ function GuessList(props) {
             buttons={buttons}
             validate={guessValidation}
             afterModalClose={handleChangeCancel}
+            guessType="updateGuess"
           />
         ) : (
           <Fragment>
@@ -90,12 +88,12 @@ function GuessList(props) {
             </P>
             <P width={[3]} textAlign="left">
               {guessedPlayer.userQuestionChoices[0].isCorrect
-                ? 'Answered Correct!'
-                : 'Answered Wrong!'}
+                ? "Answered Correct!"
+                : "Answered Wrong!"}
             </P>
             <Button
               onClick={() => setSelectedPlayer(guessedPlayer)}
-              themeStyle={['squareButton']}
+              themeStyle={["squareButton"]}
             >
               change
             </Button>
@@ -112,7 +110,7 @@ function GuessList(props) {
       height="auto"
       fontSizeModule={[1]}
     >
-      <P fontSize={[3]} textAlign="center" themeStyle={['marginBottomMedium']}>
+      <P fontSize={[3]} textAlign="center" themeStyle={["marginBottomMedium"]}>
         Todays Guesses
       </P>
       <Ul>{dispalayGuesses()}</Ul>

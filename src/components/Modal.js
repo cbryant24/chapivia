@@ -14,12 +14,14 @@ export default ({ isOpen, toggleModal, modalMessage, afterClose }) => {
   const dropInFromTop = {
     in: {
       "0%": {
-        transform: "translateY(-500px)",
+        transform: "translateY(-1000px)",
+        visibility: "hidden",
         "animation-timing-function": "ease-in",
         opacity: 0
       },
       "38%": {
         transform: "translateY(0)",
+        visibility: "visible",
         "animation-timing-function": "ease-out",
         opacity: 1
       },
