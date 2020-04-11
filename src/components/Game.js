@@ -24,7 +24,6 @@ const Game = props => {
   const client = useApolloClient();
   const { user, userLoading } = useAuth();
   const router = useRouter();
-  const { width: windowWidth } = useWindowSize();
 
   useEffect(() => {
     if (triviaLoading) return;
@@ -49,6 +48,7 @@ const Game = props => {
   }, [triviaData]);
 
   useEffect(() => {
+
     if (userLoading) return;
 
     if (!user) return router.push("/");
@@ -78,7 +78,10 @@ const Game = props => {
       );
     }
 
+    // TODO: Add loading icon 
     if (userLoading || triviaLoading) return <div></div>;
+
+    if (!user) return router.push("/");
 
     const carouselActiveStyle = {
       transform: "translateX(5px)",

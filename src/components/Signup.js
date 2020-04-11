@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Form from "@cbryant24/styled-react-form";
-import { signupValidation } from "./validations";
-import { signupFormData } from "./formData";
+import { signupValidation } from "components/validations";
+import { signupFormData } from "components/formData";
 
 import { Div, H1, P } from "@cbryant24/styled-react";
 import Modal from "./Modal";
-import { useAuth, useRouter } from "../hooks";
+import { useAuth, useRouter } from "hooks";
 
 //TODO: Errors message applicable to correct field only
 
