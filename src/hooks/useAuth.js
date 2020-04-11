@@ -2,10 +2,10 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
-import graphqlUser from '../queries/CurrentUser';
-import graphqlSignin from '../mutations/Login';
-import graphqlSignup from '../mutations/Signup';
-import graphqlSignout from '../mutations/Logout';
+import graphqlUser from 'queries/CurrentUser';
+import graphqlLogin from 'mutations/Login';
+import graphqlSignup from 'mutations/Signup';
+import graphqlLogout from 'mutations/Logout';
 
 // see usage below
 // hook from https://usehooks.com/useAuth/
@@ -31,8 +31,8 @@ function useProvideAuth() {
   const { loading: userLoading, error, data: userData, refetch } = useQuery(
     graphqlUser
   );
-  const [userSignin] = useMutation(graphqlSignin);
-  const [userSignout] = useMutation(graphqlSignout);
+  const [userSignin] = useMutation(graphqlLogin);
+  const [userSignout] = useMutation(graphqlLogout);
   const [userSignup] = useMutation(graphqlSignup);
 
   // Wrap any Firebase methods we want to use making sure ...
@@ -46,7 +46,6 @@ function useProvideAuth() {
         await refetch();
       })
       .catch(err => {
-        console.log('error in signin', err);
         throw err;
       });
   };
@@ -59,7 +58,6 @@ function useProvideAuth() {
         await refetch();
       })
       .catch(err => {
-        console.log('error in signup', err);
         throw err;
       });
   };
@@ -70,7 +68,6 @@ function useProvideAuth() {
         await refetch();
       })
       .catch(err => {
-        console.log('we got an error here', err);
         throw err;
       });
   };
@@ -120,20 +117,20 @@ function useProvideAuth() {
   };
 }
 
-function App(props) {
-  return (
-    <ProvideAuth>
-      {/* 
-        Route components here, depending on how your app is structured.
-        If using Next.js this would be /pages/_app.js
-      */}
-    </ProvideAuth>
-  );
-}
-
 ////////////////////////////////////
 //////          USAGE         //////
 ////////////////////////////////////
+
+// function App(props) {
+//   return (
+//     <ProvideAuth>
+//       {/* 
+//         Route components here, depending on how your app is structured.
+//         If using Next.js this would be /pages/_app.js
+//       */}
+//     </ProvideAuth>
+//   );
+// }
 
 // Any component that wants auth state
 // import React from "react";

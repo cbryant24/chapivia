@@ -1,34 +1,22 @@
 //TODO: TEST TO MAK SURE USER NAME APPEARS IN GUESS FROM AFTER SIGNUP
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { MockedProvider } from '@apollo/react-testing';
-import SignupMutation from 'mutations/Signup';
 import { mount } from "enzyme";
+import wait from 'waait';
+
+import { SIGNUP_MOCK } from '__tests__/mocks';
+import { actWait } from '__tests__/utilities';
 
 import Root from 'Root';
 import Signup from 'components/Signup';
 
+
 ///////////////////////
 // /**/ GLOBALS \**\ ///
 ///////////////////////
-const user = { 
-  name: 'Kanye', 
-  email: 'kanye@west.com', 
-  password: 'abc12345', 
-  confirmPassword: 'abc12345'
-};
 
-const signupMock = [{
-  request: {
-    query: SignupMutation,
-    variables: { 
-      email: user.email, 
-      password: user.password, 
-      name: user.name
-    }
-  }
-}]
-
-describe('signup', () => {
+describe('signup', async () => {
   let component,
   nameInput,
   emailInput,
@@ -40,15 +28,16 @@ describe('signup', () => {
   setOrChangePasswordInput,
   setOrChangeConfirmPasswordInput;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     component = mount(
-      <Root>
-        <MockedProvider mocks={signupMock} addTypename={false}>
-          <Signup/>
-        </MockedProvider>
-      </Root>
+      <MockedProvider mocks={SIGNUP_MOCK} addTypename={false}>
+        <Root>
+            <Signup/>
+        </Root>
+      </MockedProvider>
     );
 
+    await actWait(0);
 
     // SELECTING FORM AND INPUT FIELDS
     nameInput             = component.find('input[name="name"]');
@@ -111,8 +100,13 @@ describe('signup', () => {
     });
 
     describe('after form submission', () => {
-      beforeEach(() => {
+      beforeEach( async () => {
         form.simulate('submit');
+
+        await actWait(0);
+
+        component.update();
+
       });
 
       it('empties the name input on submit', () => {  
@@ -130,6 +124,10 @@ describe('signup', () => {
 
       it('empties the confirm password input on submit', () => {  
           expect(confirmPasswordInput.instance().value).toEqual('');
+      });
+
+      it('has the signed up user signed in', () => {
+
       });
     });
 
