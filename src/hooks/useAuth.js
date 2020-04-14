@@ -28,7 +28,7 @@ export const useAuth = () => {
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
   const [user, setUser] = useState(null);
-  const { loading: userLoading, error, data: userData, refetch } = useQuery(
+  const { loading: userLoading, data: userData, refetch } = useQuery(
     graphqlUser
   );
   const [userSignin] = useMutation(graphqlLogin);

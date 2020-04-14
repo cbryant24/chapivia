@@ -1,20 +1,16 @@
 //TODO: TEST TO MAK SURE USER NAME APPEARS IN GUESS FROM AFTER SIGNUP
 import React from 'react';
-import { act } from 'react-dom/test-utils';
 import { MockedProvider } from '@apollo/react-testing';
-import { mount } from "enzyme";
-import wait from 'waait';
-
-import { SIGNUP_MOCK } from '__tests__/mocks';
-import { actWait } from '__tests__/utilities';
+import { mount, shallow } from "enzyme";
+import { MemoryRouter } from 'react-router';
 
 import Root from 'Root';
 import Signup from 'components/Signup';
+import TopMenu from 'components/TopMenu';
+import Game from 'components/Game';
 
-
-///////////////////////
-// /**/ GLOBALS \**\ ///
-///////////////////////
+import { SIGNUP_MOCK } from 'utilities/testMocks';
+import { actWait, user } from 'utilities/testUtils';
 
 describe('signup', async () => {
   let component,
@@ -31,13 +27,16 @@ describe('signup', async () => {
   beforeEach(async () => {
     component = mount(
       <MockedProvider mocks={SIGNUP_MOCK} addTypename={false}>
-        <Root>
-            <Signup/>
-        </Root>
+        <MemoryRouter initialEntries={[{ pathname: "/signup" }]}>
+          <Root>
+              <Signup/>
+          </Root>
+        </MemoryRouter>
       </MockedProvider>
     );
 
-    await actWait(0);
+    // SEE THIS GITHUB ISSUE FOR EXPLANATION https://github.com/enzymejs/enzyme/issues/2073#issuecomment-531488981
+    await actWait();
 
     // SELECTING FORM AND INPUT FIELDS
     nameInput             = component.find('input[name="name"]');
@@ -103,7 +102,7 @@ describe('signup', async () => {
       beforeEach( async () => {
         form.simulate('submit');
 
-        await actWait(0);
+        await actWait();
 
         component.update();
 
@@ -118,54 +117,46 @@ describe('signup', async () => {
       });
 
       it('empties the password input on submit', () => {  
-    
         expect(passwordInput.instance().value).toEqual('');
       });
 
       it('empties the confirm password input on submit', () => {  
-          expect(confirmPasswordInput.instance().value).toEqual('');
-      });
-
-      it('has the signed up user signed in', () => {
-
+        expect(confirmPasswordInput.instance().value).toEqual('');
       });
     });
-
-
-
   });
 
-  describe('user error signup', () => {
-    it('has a duplicate email error', () => {
+  // describe('user error signup', () => {
+  //   it('has a duplicate email error', () => {
 
-    });
+  //   });
 
-    it('has mismatching passwords error', () => {
+  //   it('has mismatching passwords error', () => {
 
-    });
+  //   });
 
-    it('requires a name to signup', () => {
+  //   it('requires a name to signup', () => {
 
-    });
+  //   });
 
-    it('requires an properly formatted email to signup', () => {
+  //   it('requires an properly formatted email to signup', () => {
 
-    });
+  //   });
 
-    it('requires a password to signup', () => {
+  //   it('requires a password to signup', () => {
 
-    });
+  //   });
 
-    it('requires a matching password and confirm password', () => {
+  //   it('requires a matching password and confirm password', () => {
 
-    });
-  });
+  //   });
+  // });
 
-  describe('network error signup', () => {
-    it('displays an error message on network failuer', () => {
+  // describe('network error signup', () => {
+  //   it('displays an error message on network failuer', () => {
 
-    });
-  });
+  //   });
+  // });
 });
 
 // it('displays an error when an invalid character or email is used', () => {

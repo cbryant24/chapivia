@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 
 import { useQuery } from "@apollo/react-hooks";
 import GuessListQuery from "queries/GuessList";
@@ -17,8 +17,7 @@ function GuessList(props) {
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const {
     loading: guessListLoading,
-    data: guessListData,
-    refetch: refetchGuessList
+    data: guessListData
   } = useQuery(GuessListQuery);
   const { form, inputs, buttons } = updateGuessFormData;
   const { user } = useAuth();
@@ -45,10 +44,10 @@ function GuessList(props) {
       </FlexLi>
     ));
   }
+
   buttons.forEach(button => {
-    button.type === "cancel"
-      ? (button.cb = handleChangeCancel)
-      : (button.cb = button.cb);
+    if (button.type === 'cancel')
+      button.cb = handleChangeCancel;
   });
 
   inputs.forEach(input =>

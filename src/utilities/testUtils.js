@@ -1,3 +1,6 @@
+import { act } from 'react-dom/test-utils';
+import wait from 'waait';
+
 export const user = { 
   id: 0,
   name: 'Kanye', 
@@ -14,9 +17,9 @@ export async function actWait(amount = 0) {
 }
 
 // Use this in your test after mounting if you want the query to finish and update the wrapper
-export async function updateWrapper(wrapper, amount = 0) {
+export async function updateComponent(component, amount = 0) {
   await act(async () => {
     await wait(amount);
-    wrapper.update();
+    component.update();
   });
 }

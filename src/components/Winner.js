@@ -5,7 +5,7 @@ import { AllHtmlEntities as Entities } from 'html-entities';
 import CorrectGuessesQuery from '../queries/CorrectGuesses';
 import TriviaAnswer from '../queries/TriviaAnswer';
 
-import { H4, Div, P, FlexDiv } from '@cbryant24/styled-react';
+import { Div, P, FlexDiv } from '@cbryant24/styled-react';
 
 const Winner = props => {
   const { loading: triviaAnswerLoading, data: triviaAnswerData } = useQuery(

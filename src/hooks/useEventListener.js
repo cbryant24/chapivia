@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect } from 'react';
 
 // see usage below
 // hook from https://usehooks.com/useEventListener/

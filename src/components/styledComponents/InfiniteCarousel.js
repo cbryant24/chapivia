@@ -24,22 +24,19 @@ const InfiniteCarousel = ({
   arrowStyle,
   displayArrow = true,
   carouselSpeed = 1.5,
-  fromScale = "scale(1)",
-  toScale = "scale(1)"
+  fromScale = `1`,
+  toScale = `1`
 }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(initialSlide);
   const [carouselTranslateVals, setCarouselTranslateVals] = useState(null);
   const [visibleCarouselCount, setVisibleCarouselCount] = useState(null);
-  const [maxCarouselCount, setMaxCarouselCount] = useState(
-    maxItems || children.length
-  );
+  const maxCarouselCount = maxItems || children.length;
   const { width } = useWindowSize();
   const prevActiveSlideIndex = usePrev(activeSlideIndex);
   const {
     arrowColor,
     stroke,
     strokeWidth,
-    ...arrowContainerStyle
   } = arrowStyle;
 
   useEffect(() => {
@@ -415,8 +412,8 @@ const InfiniteCarousel = ({
 
     // DEFAULT TRANSFORM SCALE
     const transformScale = {
-      fromScale: "scale(.95)",
-      toScale: "scale(.95)"
+      fromScale: `scale(${fromScale})`,
+      toScale: `scale(${fromScale})`
     };
 
     // DETERMING IF EVEN AMOUNT OF CAROUSEL IF SO NEED TWO CAROUSEL ITEMS TO BE SCALED FOR FOCUS
@@ -424,7 +421,7 @@ const InfiniteCarousel = ({
       evenVisibleCarouselCount && visibleCarouselCount > 1;
 
     // SET ACTIVE SLIDE TO SCALE TO FOCUS
-    if (lowerLimit === activeSlideIndex) transformScale.toScale = "scale(1)";
+    if (lowerLimit === activeSlideIndex) transformScale.toScale = `scale(${toScale})`;
 
     // CHECKING IF CAROUSEL INDICATOR HAS BEEN CLICKED MOVING CAROUSEL MORE THAN ONE SPOT
     if (
@@ -435,13 +432,13 @@ const InfiniteCarousel = ({
       evenVisibleCarouselCount
     ) {
       if (activeSlideIndex === lowerLimit)
-        transformScale.fromScale = "scale(.95)";
+        transformScale.fromScale = `scale(${fromScale})`;
 
       // SET CAROUSEL ITEM TO THE LEFT OF THE ACTIVE INDEX ITEM TO THE SAME SCALE AS ACTIVE INDEX IF
       // ACTIVE ITEM IF IT ISNT THE FIRST CAROUSEL ITEM DUE TO NO ITEMS TO THE LEFT OF FIRST ITEM
       if (activeSlideIndex !== 0 && lowerLimit === activeSlideIndex - 1) {
-        transformScale.fromScale = "scale(.95)";
-        transformScale.toScale = "scale(1)";
+        transformScale.fromScale = `scale(${fromScale})`;
+        transformScale.toScale = `scale(${toScale})`;
       }
 
       // SET CAROUSEL ITEM TO THE LEFT OF THE ACTIVE INDEX ITEM TO THE SAME SCALE AS
@@ -450,8 +447,8 @@ const InfiniteCarousel = ({
         activeSlideIndex === 0 &&
         children.length + lowerLimit === children.length - 1
       ) {
-        transformScale.fromScale = "scale(.95)";
-        transformScale.toScale = "scale(1)";
+        transformScale.fromScale = `scale(${fromScale})`;
+        transformScale.toScale = `scale(${toScale})`;
       }
 
       return transformScale;
@@ -463,16 +460,16 @@ const InfiniteCarousel = ({
       if (additionalCarouselItemFocus) {
         // GOING FROM BEGINNING TO END LAST ITEM WAS ALREADY SCALED UP
         if (lowerLimit === activeSlideIndex)
-          transformScale.fromScale = "scale(1)";
+          transformScale.fromScale = `scale(${toScale})`;
 
         // SCALE UP ITEM TO THE LEFT OF LAST CAROUSEL ITEM
         if (lowerLimit === activeSlideIndex - 1)
-          transformScale.toScale = "scale(1)";
+          transformScale.toScale = `scale(${toScale})`;
       }
       // SCALE DOWN FIRST CAROUSEL ITEM THAT WAS JUST PREVIOUSLY ACTIVE
       if (prevActiveSlideIndex === lowerLimit - children.length) {
-        transformScale.fromScale = "scale(1)";
-        transformScale.toScale = "scale(.95)";
+        transformScale.fromScale = `scale(${toScale})`;
+        transformScale.toScale = `scale(${fromScale})`;
       }
       return transformScale;
     }
@@ -482,14 +479,14 @@ const InfiniteCarousel = ({
       if (additionalCarouselItemFocus) {
         // DETERMINE IF LAST CAROUSEL ITEM THEN KEEP FOCUS SINCE IT WAS PREVIOUSLY SCALED UP
         if (children.length + lowerLimit === children.length - 1) {
-          transformScale.fromScale = "scale(1)";
-          transformScale.toScale = "scale(1)";
+          transformScale.fromScale = `scale(${toScale})`;
+          transformScale.toScale = `scale(${toScale})`;
         }
       }
 
       // FIND THE LAST CAROUSEL ITEM AND SET TO SCALE DOWN
       if (prevActiveSlideIndex === children.length + lowerLimit)
-        transformScale.fromScale = "scale(1)";
+        transformScale.fromScale = `scale(${toScale})`;
 
       return transformScale;
     }
@@ -498,26 +495,26 @@ const InfiniteCarousel = ({
       if (additionalCarouselItemFocus) {
         // SETTING SCALE TO SAME DUE TO ALREADY BEING PREVIOUSLY SCALED FOCUS
         if (prevActiveSlideIndex === lowerLimit) {
-          transformScale.toScale = "scale(1)";
-          transformScale.fromScale = "scale(1)";
+          transformScale.toScale = `scale(${toScale})`;
+          transformScale.fromScale = `scale(${toScale})`;
         }
 
         if (prevActiveSlideIndex === 0) {
           // SELECTING LAST CAROUSEL ITEM DUE TO IT BEING ITEM TO LEFT OF
           // FIRST CAROUSEL  ITEM TO SCALE IT DOWN FROM BEING PREVIOUSLY IN FOCUS
           if (children.length + lowerLimit === children.length - 1)
-            transformScale.fromScale = "scale(1)";
+            transformScale.fromScale = `scale(${toScale})`;
         }
 
         // SELECTING ITEM TO LEFT OF PREVIOUSLY FOCUSED ACTIVE CAROUSEL ITEM FOR SCALING DOWN
         if (prevActiveSlideIndex - 1 === lowerLimit)
-          transformScale.fromScale = "scale(1)";
+          transformScale.fromScale = `scale(${toScale})`;
       }
 
       // TRAVERSING UP PREVIOUSLY ACTIVE ITEM IS NOW SCALED
       // DOWN TO LEFT OF CURRENT ACTIVE CAROUSEL ITEM
       if (lowerLimit === prevActiveSlideIndex)
-        transformScale.fromScale = "scale(1)";
+        transformScale.fromScale = `scale(${toScale})`;
 
       return transformScale;
     }
@@ -526,18 +523,18 @@ const InfiniteCarousel = ({
       if (additionalCarouselItemFocus) {
         // TRAVERSING CAROUSEL DOWN CURRENTLY ACTIVE ITEM WAS ALREADY SCALED UP
         if (lowerLimit === activeSlideIndex)
-          transformScale.fromScale = "scale(1)";
+          transformScale.fromScale = `scale(${toScale})`;
 
         // SCALE UP ITEM TO RIGHT OF ACTIVEL CAROUSEL ITEM
         if (lowerLimit + 1 === activeSlideIndex)
-          transformScale.toScale = "scale(1)";
+          transformScale.toScale = `scale(${toScale})`;
       }
 
       // TRAVERSING DOWN PREVIOUSLY ACTIVE ITEM IS NOW SCALED
       // DOWN TO RIGHT OF CURRENT ACTIVE CAROUSEL ITEM
       if (prevActiveSlideIndex === lowerLimit) {
-        transformScale.fromScale = "scale(1)";
-        transformScale.toScale = "scale(.95)";
+        transformScale.fromScale = `scale(${toScale})`;
+        transformScale.toScale = `scale(${fromScale})`;
       }
 
       return transformScale;
@@ -551,7 +548,7 @@ const InfiniteCarousel = ({
       activeSlideIndex !== 0 &&
       lowerLimit === activeSlideIndex - 1
     )
-      transformScale.toScale = "scale(1)";
+      transformScale.toScale = `scale(${toScale})`;
 
     // IF ACTIVE CAROUSEL ITEM IS 0 SET THE LAST CAROUSEL ITEM TO SCALE UP
     if (
@@ -559,11 +556,11 @@ const InfiniteCarousel = ({
       activeSlideIndex === 0 &&
       children.length + lowerLimit === children.length - 1
     )
-      transformScale.toScale = "scale(1)";
+      transformScale.toScale = `scale(${toScale})`;
 
     // SET FROM SCALE OF PREVIOUSLY ACTIVE ITEM TO FOCUS WHETHER LEAVING OR STAYING IN FOCUS
     if (lowerLimit === prevActiveSlideIndex)
-      transformScale.fromScale = "scale(1)";
+      transformScale.fromScale = `scale(${toScale})`;
 
     // SET CURRENT ACTIVE ITEM FROM FOCUS TO FOCUSED SCALE IF IT WAS PREVIOUSLY ACTIVE ITEM
     if (
@@ -571,7 +568,7 @@ const InfiniteCarousel = ({
       lowerLimit === activeSlideIndex &&
       prevActiveSlideIndex === activeSlideIndex - 1
     )
-      transformScale.fromScale = "scale(1)";
+      transformScale.fromScale = `scale(${toScale})`;
 
     return transformScale;
   }

@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Form from '@cbryant24/styled-react-form';
 import { signinValidation } from './validations';
 import { Div, H1, H3, P } from '@cbryant24/styled-react';
-import { flashingText } from './style';
 import { signinFormData } from './formData';
 
 import Modal from './Modal';

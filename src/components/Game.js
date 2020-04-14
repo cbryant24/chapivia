@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery, useApolloClient } from "@apollo/react-hooks";
 import { useLastLocation } from "react-router-last-location";
 import { useRouter } from "hooks";
@@ -14,7 +14,7 @@ import TriviaQuestion from "components/TriviaQuestion";
 
 import { BorderPrimary, InfiniteCarousel } from "./styledComponents";
 
-import { useAuth, useWindowSize } from "../hooks";
+import { useAuth } from "../hooks";
 
 const Game = props => {
   const { loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
@@ -161,6 +161,8 @@ const Game = props => {
         rightArrowContainerStyle={rightArrowContainerStyle}
         arrowStyle={arrowStyle}
         displayArrow={true}
+        fromScale=".95"
+        toScale="1"
       >
         <BorderPrimary
           mx="3em"

@@ -5,7 +5,7 @@ import moment from "moment";
 
 import query from "../queries/Scores";
 
-import { Div, FlexUl, Li, P, FlexDiv, H4 } from "@cbryant24/styled-react";
+import { Div, FlexUl, Li, H4 } from "@cbryant24/styled-react";
 import {
   FlexItem3x4,
   FlexItem3x4MbHide,
@@ -22,7 +22,6 @@ const Scoreboard = props => {
 
     return data.scores ? (
       data.scores.map((player, idx) => {
-        debugger;
         if (idx > 0) {
           place =
             data.scores[idx].score === data.scores[idx - 1].score ? place : idx;

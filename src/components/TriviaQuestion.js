@@ -50,7 +50,6 @@ const TriviaQuestion = props => {
   }
 
   if (unguessedPlayersLoading) return <div></div>;
-  debugger;
   // IF CURRENT USER IS ADMIN ADD ALL PLAYERS TO GUESS FORM
   if (user.role === "admin") {
     inputs.forEach(input => {

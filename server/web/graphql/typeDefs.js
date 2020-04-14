@@ -25,10 +25,6 @@ const typeDefs = gql`
     ): UserQuestionChoice
   }
 
-  # type DailyTrivia {
-  #   question: Question
-  # }
-
   type Question {
     id: ID!
     question: String!

@@ -12,7 +12,7 @@ import Form from "@cbryant24/styled-react-form";
 import { guessValidation } from "components/validations";
 
 import Modal from "components/Modal";
-import { usePrev, useAuth } from "hooks";
+import { usePrev } from "hooks";
 
 function GuessForm({ inputs, buttons, form, cb, afterModalClose, guessType }) {
   const {
@@ -25,7 +25,6 @@ function GuessForm({ inputs, buttons, form, cb, afterModalClose, guessType }) {
   const { refetch: scoresRefetch } = useQuery(Scores);
   const { refetch: guessListRefetch } = useQuery(GuessList);
   const [guess] = useMutation(mutation);
-  const { user } = useAuth();
 
   async function recordGuess(event, vals) {
     if (!vals.player) {
@@ -69,7 +68,6 @@ function GuessForm({ inputs, buttons, form, cb, afterModalClose, guessType }) {
   }, [isOpen]);
 
   async function refetchData() {
-    debugger;
     switch (guessType) {
       case "adminGuess":
         await scoresRefetch();
@@ -82,6 +80,8 @@ function GuessForm({ inputs, buttons, form, cb, afterModalClose, guessType }) {
       case "newGuess":
         await scoresRefetch();
         await guessListRefetch();
+        break;
+      default:
         break;
     }
 

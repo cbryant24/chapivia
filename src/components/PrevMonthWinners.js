@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import converter from "number-to-words";
 import moment from "moment";
 
 import prevMonthWinnersQuery from "../queries/PrevMonthWinners";
-import { Div, H4, FlexUl, FlexLi, P } from "@cbryant24/styled-react";
+import { Div, H4, FlexUl, FlexLi } from "@cbryant24/styled-react";
 
 import {
   FlexItem3x4,

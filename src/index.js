@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+// import { Route } from "react-router-dom";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 
@@ -11,6 +11,10 @@ import App from "components/App";
 import Root from "Root";
 
 import typeDefs from "localState/typeDefs";
+
+import { LastLocationProvider } from "react-router-last-location";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 
 const client = new ApolloClient({
   clientState: {
@@ -31,13 +35,17 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-  <Root>
-    <App>
-      <Route path="/game" exact component={Game} />
-      <Route path="/" exact component={Signin} />
-      <Route path="/signup" component={Signup} />
-    </App>
-  </Root>
+            <Router>
+          <LastLocationProvider>
+    <Root>
+      <App>
+        <Route path="/game" exact component={Game} />
+        <Route path="/" exact component={Signin} />
+        <Route path="/signup" component={Signup} />
+      </App>
+    </Root>
+    </LastLocationProvider>
+        </Router>
   </ApolloProvider>,
   document.getElementById("root")
 );
