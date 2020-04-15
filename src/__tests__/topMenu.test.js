@@ -4,8 +4,8 @@ import { mount } from 'enzyme';
 import { MockedProvider } from '@apollo/react-testing';
 import { MemoryRouter } from 'react-router';
 
-import { TOP_MENU_MOCKS_LOGGED_OUT, TOP_MENU_MOCKS_LOGGED_IN } from 'utilities/testMocks';
-import { updateComponent } from 'utilities/testUtils';
+import { TOP_MENU_MOCKS_LOGGED_OUT, TOP_MENU_MOCKS_LOGGED_IN } from 'utils/test/mocks';
+import { updateComponent } from 'utils/test/functions';
 
 import Root from 'Root';
 

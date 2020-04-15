@@ -9,8 +9,9 @@ import Signup from 'components/Signup';
 import TopMenu from 'components/TopMenu';
 import Game from 'components/Game';
 
-import { SIGNUP_MOCK } from 'utilities/testMocks';
-import { actWait, user } from 'utilities/testUtils';
+import { actWait } from 'utils/test/functions';
+import { user } from 'utils/test/data';
+import { updateComponent } from 'utils/test/functions';
 
 describe('signup', async () => {
   let component,
@@ -26,7 +27,7 @@ describe('signup', async () => {
 
   beforeEach(async () => {
     component = mount(
-      <MockedProvider mocks={SIGNUP_MOCK} addTypename={false}>
+      <MockedProvider addTypename={false}>
         <MemoryRouter initialEntries={[{ pathname: "/signup" }]}>
           <Root>
               <Signup/>
@@ -43,7 +44,7 @@ describe('signup', async () => {
     emailInput            = component.find('input[name="email"]');
     passwordInput         = component.find('input[name="password"]');
     confirmPasswordInput  = component.find('input[name="confirm password"]');
-    form                  = component.find('form');
+    form                  = component.find('form#signup-form');
 
     //FUNCTIONS FOR CHANGING OR SETTING INPUT VALUES
     setOrChangeNameInput = name => nameInput.simulate('change',
@@ -102,9 +103,7 @@ describe('signup', async () => {
       beforeEach( async () => {
         form.simulate('submit');
 
-        await actWait();
-
-        component.update();
+        await updateComponent(component, 5);
 
       });
 

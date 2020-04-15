@@ -1,6 +1,6 @@
 export default {
   form: {
-    data: { name: 'signupForm', submit: 'signup' },
+    data: { name: 'signupForm', submit: 'signup', },
     style: {
       themeStyle: [
         'authForm',
@@ -9,7 +9,8 @@ export default {
         'paddingMedium'
       ],
       remove: 'height',
-      height: '50em'
+      height: '50em',
+      id:'signup-form', 
     }
   },
   inputs: [
