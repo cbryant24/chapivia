@@ -8,7 +8,7 @@
     "server": "nodemon index.js --ignore tests",
     "dev": "concurrently \"npm run server\" \"npm run start\" ",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
+    "test": "node scripts/test.js --env=jsdom --verbose false",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build-storybook": "build-storybook -s public"
   },

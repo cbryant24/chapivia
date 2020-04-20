@@ -32,13 +32,19 @@ export const SIGNUP_MOCK = [
     request: {
       query: graphqlSignup,
       variables: {
-        id: user.id,
+        // id: user.id,
         email: user.email, 
         password: user.password, 
         name: user.name
       }
     },
-    result: { data: { user: {id: user.id, name: user.name, email: user.email, role: user.role }}}
+    result: { data: { signup: { id: user.id, name: user.name, email: user.email }}}
+  },
+  {
+    request: {
+      query: graphqlUser,
+    },
+    result: { data: { user: { id: user.id, name: user.name, email: user.email, role: user.role }}}
   }
 ];
 
