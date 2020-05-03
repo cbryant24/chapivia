@@ -32,7 +32,7 @@ export default {
   submit: [
     {
       name: 'email',
-      validate: 'safeStringSpaces'
+      validate: 'safeStringEmail'
     },
     {
       name: 'name',

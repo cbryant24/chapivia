@@ -51,17 +51,13 @@ function useProvideAuth() {
   };
 
   const signup = ({ email, password, name }) => {
-    console.log("IM IN THE SIGNUP");
-    console.log("IM THE VALS", email);
     return userSignup({
       variables: { email, password, name }
     })
       .then(async data => {
-        console.log("IM IN USER REFETCH");
-        // await refetch();
+        await refetch();
       })
       .catch(err => {
-        console.log("IM IN THE USER ERROR", err);
         throw err;
       });
   };

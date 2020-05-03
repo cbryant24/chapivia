@@ -2,20 +2,18 @@
 import React from 'react';
 import { MockedProvider } from '@apollo/react-testing';
 import { mount, shallow } from "enzyme";
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter, Route } from 'react-router';
+import { GraphQLError } from 'graphql';
 
 import graphqlUser from 'queries/CurrentUser';
 import graphqlSignup from 'mutations/Signup';
 
 import Root from 'Root';
 import Signup from 'components/Signup';
-import TopMenu from 'components/TopMenu';
-import Game from 'components/Game';
 
 import { actWait, updateComponent } from 'utils/test/functions';
 // import { user } from 'utils/test/data';
 // import { SIGNUP_MOCK } from 'utils/test/mocks';
-import wait from 'waait';
 
 
 const user = {
@@ -45,231 +43,489 @@ const SIGNUP_MOCK = [
     request: {
       query: graphqlUser,
     },
-    result: { data: { user: { id: user.id, name: user.name, email: user.email, role: user.role }}}
+    result: { data: { user: null }}
+  },
+  {
+    request: {
+      query: graphqlUser,
+    },
+    result: { data: { user: { id: user.id, name: user.name, email: user.email, role: user.role } }}
+  }
+];
+
+const SIGNUP_ERROR_MOCK = [
+  {
+    request: {
+      query: graphqlSignup,
+      variables: {
+        email: user.email, 
+        password: user.password, 
+        name: user.name
+      }
+    },
+    result: { errors: [new GraphQLError('Error Signing Up')] }
+  },
+  {
+    request: {
+      query: graphqlUser,
+    },
+    result: { data: { user: null }}
   }
 ];
 
 describe('signup', async () => {
   let component,
-  nameInput,
-  emailInput,
-  passwordInput,
-  confirmPasswordInput,
-  form,
-  setOrChangeNameInput,
-  setOrChangeEmailInput,
-  setOrChangePasswordInput,
-  setOrChangeConfirmPasswordInput;
+  appHistory,
+  appLocation;
+  
+  // nameInput,
+  // emailInput,
+  // passwordInput,
+  // confirmPasswordInput,
+  // form,
+  // setOrChangeNameInput,
+  // setOrChangeEmailInput,
+  // setOrChangePasswordInput,
+  // setOrChangeConfirmPasswordInput;
 
   beforeEach(async () => {
     component = mount(
       <MockedProvider mocks={SIGNUP_MOCK} addTypename={false}>
         <MemoryRouter initialEntries={[{ pathname: "/signup" }]}>
+          <Route
+            path="*"
+            render={({ history, location }) => {
+              appHistory = history;
+              appLocation = location;
+              return null;
+            }}
+          />
           <Root>
               <Signup/>
           </Root>
         </MemoryRouter>
       </MockedProvider>
     );
-
-    // SEE THIS GITHUB ISSUE FOR EXPLANATION https://github.com/enzymejs/enzyme/issues/2073#issuecomment-531488981
-    await actWait();
-
-    // SELECTING FORM AND INPUT FIELDS
-    nameInput             = component.find('input[name="name"]');
-    emailInput            = component.find('input[name="email"]');
-    passwordInput         = component.find('input[name="password"]');
-    confirmPasswordInput  = component.find('input[name="confirm password"]');
-    form                  = component.find('form#signup-form');
-
-    //FUNCTIONS FOR CHANGING OR SETTING INPUT VALUES
-    setOrChangeNameInput = name => nameInput.simulate('change',
-    { 
-      target: { value: name || user.name, name: 'name' }
-    }),
-    setOrChangeEmailInput = email => emailInput.simulate('change', 
-    { 
-      target: { value: email || user.email, name: 'email'},
-    }),
-    setOrChangePasswordInput = password => passwordInput.simulate('change', 
-    { 
-      target: { value: password || user.password, name: 'password'},
-    }),
-    setOrChangeConfirmPasswordInput = confirmPassword => confirmPasswordInput.simulate('change', 
-    {
-      target: { value: confirmPassword || user.confirmPassword, name: 'confirm password'}, 
-    });
-
-    expect(form.length).toEqual(1);
-    expect(nameInput.length).toEqual(1);
-    expect(emailInput.length).toEqual(1);
-    expect(passwordInput.length).toEqual(1);
-    expect(confirmPasswordInput.length).toEqual(1);
-    expect(component.find('button[type="submit"]').length).toEqual(1);
-    expect(component.find('div[type="cancel"]').length).toEqual(1);
+    
+      // SEE THIS GITHUB ISSUE FOR EXPLANATION https://github.com/enzymejs/enzyme/issues/2073#issuecomment-531488981
+    await updateComponent(component);
   });
 
-  // describe('successful signup', () => {
-  //   beforeEach(() => {
-  //     setOrChangeNameInput();
-  //     setOrChangeEmailInput();
-  //     setOrChangePasswordInput();
-  //     setOrChangeConfirmPasswordInput();
-  //   });
-
-  //   afterEach(() => component.unmount());
-
-  //   describe('before form submission', () => {
-  //     it('can enter a name in the name input', () => {
-  //       expect(nameInput.instance().value).toEqual('Kanye');
-  //     });
-  
-  //     it('can enter an email in the email input', () => {
-  //       expect(emailInput.instance().value).toEqual('kanye@west.com');
-  //     });
-  
-  //     it('can enter a password in the password input', () => {
-  //       expect(passwordInput.instance().value).toEqual('abc12345');
-  //     });
-  
-  //     it('can enter a confirm password in the confirm password input', () => {
-  //       expect(confirmPasswordInput.instance().value).toEqual('abc12345');
-  //     });
-  //   });
-
-  //   describe('after form submission', () => {
-  //     beforeEach( async () => {
-  //       form.simulate('submit');
-
-  //       await updateComponent(component, 5);
-  //     });
-
-  //     it('empties the name input on submit', () => {  
-  //       expect(nameInput.instance().value).toEqual('');
-  //     });
-
-  //     it('empties the email input on submit', () => {  
-  //       expect(emailInput.instance().value).toEqual('');
-  //     });
-
-  //     it('empties the password input on submit', () => {  
-  //       expect(passwordInput.instance().value).toEqual('');
-  //     });
-
-  //     it('empties the confirm password input on submit', () => {  
-  //       expect(confirmPasswordInput.instance().value).toEqual('');
-  //     });
-  //   });
-  // });
-
-  describe('user error signup', () => {
-    beforeEach(async () => {
-      component = mount(
-        <MockedProvider mocks={SIGNUP_MOCK} addTypename={false}>
-          <MemoryRouter initialEntries={[{ pathname: "/signup" }]}>
-            <Root>
-                <Signup/>
-            </Root>
-          </MemoryRouter>
-        </MockedProvider>
-      );
-
-      // await actWait();
-      await updateComponent(component, 5);
-
-
-      //FUNCTIONS FOR CHANGING OR SETTING INPUT VALUES
-      setOrChangeNameInput();
-      setOrChangeEmailInput();
-      setOrChangePasswordInput();
-      setOrChangeConfirmPasswordInput();
-    });
-
+  describe('form fields', () => {
     afterEach(() => component.unmount());
 
-    // MOCK ERRORS LOOKUP
-    // it('has a duplicate email error', () => {
-
-    // });
-
-    it('has mismatching passwords error', async () => {
-      // expect(component.find('h1').text()).toEqual('CHAPIVIA')
-      // component.find('form').simulate('submit');
-      // form.simulate('submit');
-      // component.find('button[type="submit"]').simulate('click');
-      expect(component.find('button#test-button').length).toEqual(1);
-      component.find('button#test-button').simulate('click');
-      // component.setProps({});
-      // component.instance().forceUpdate();
-
-      await updateComponent(component, 5);
-      const hOne = component.find('h1');
-      console.log(component.context())
-
-      // component.find('h1');
-
-      // component.instance().forceUpdate();
-
-      // hOne.instance().forceUpdate();
-
-      // expect(component.find('ul').length).toEqual(1);
-      // console.warn(form.find('ul').debug())
-      // console.log('hello world')
-      // console.log(form.find('ul').debug())
-
-      // component.setProps({});
-      // component.setProps({});
-
-      // await wait(2000);
-
-      // expect(form.debug()).toEqual('NEW CHAPIVIA');
-      expect(component.debug()).toEqual('NEW CHAPIVIA');
-      // expect(component.find('h1').text()).toEqual('NEW CHAPIVIA');
-      // expect(component.find('h1').text()).toEqual('NEW CHAPIVIA');
-      // expect(hOne.instance()).toEqual('NEW CHAPIVIA')
-      // expect(component.context()).toEqual('NEW CHAPIVIA')
+    it('has a name input', () => {
+      expect(component.find('input[name="name"]').length).toEqual(1);
     });
 
-    // it('requires a name to signup', () => {
+    it('has an email input', () => {
+      expect(component.find('input[name="email"]').length).toEqual(1);
+    });
 
-    // });
+    it('has a password input', () => {
+      expect(component.find('input[name="password"]').length).toEqual(1);
+    });
 
-    // it('requires an properly formatted email to signup', () => {
-
-    // });
-
-    // it('requires a password to signup', () => {
-
-    // });
-
-    // it('requires a matching password and confirm password', () => {
-
-    // });
+    it('has a confirm password input', () => {
+      expect(component.find('input[name="confirm password"]').length).toEqual(1);
+    });
   });
 
-  // describe('network error signup', () => {
-  //   it('displays an error message on network failuer', () => {
+  describe('form inputs', () => {
+    afterEach(() => component.unmount());
 
-  //   });
-  // });
+    it('can enter a users name in the name input', () => {
+      component.find('input[name="name"]').simulate('change', 
+        {
+          target: { value: 'Kanye', name: 'name' }
+        }
+      );
+
+      expect(component.find('input[name="name"]').instance().value).toEqual('Kanye');
+    });
+
+    it('can enter a users email in the email input', () => {
+      component.find('input[name="email"]').simulate('change', 
+        {
+          target: { value: 'kanye@west.com', name: 'email' }
+        }
+      );
+
+      expect(component.find('input[name="email"]').instance().value).toEqual('kanye@west.com');
+    });
+
+    it('can enter a users password in the password input', () => {
+      component.find('input[name="password"]').simulate('change', 
+        {
+          target: { value: 'abc12345', name: 'password' }
+        }
+      );
+
+      expect(component.find('input[name="password"]').instance().value).toEqual('abc12345');
+    });
+
+    it('can enter a users confirm password in the confirm password input', () => {
+      component.find('input[name="confirm password"]').simulate('change', 
+        {
+          target: { value: 'abc12345', name: 'confirm password' }
+        }
+      );
+
+      expect(component.find('input[name="confirm password"]').instance().value).toEqual('abc12345');
+    });
+
+    it('clears the form inputs when the cancel button is clicked', async () => {
+      component.find('input[name="name"]').simulate('change', 
+        {
+          target: { value: 'Kanye', name: 'name' }
+        }
+      );
+
+      component.find('input[name="email"]').simulate('change', 
+        {
+          target: { value: 'kanye@west.com', name: 'email' }
+        }
+      );
+
+      component.find('input[name="password"]').simulate('change', 
+        {
+          target: { value: 'abc12345', name: 'password' }
+        }
+      );
+
+      component.find('input[name="confirm password"]').simulate('change', 
+        {
+          target: { value: 'abc12345', name: 'confirm password' }
+        }
+      );
+
+      component.find('div[type="cancel"]').simulate('mousedown');
+
+      await updateComponent(component);
+
+      expect(component.find('input[name="name"]').instance().value).toEqual('');
+      expect(component.find('input[name="email"]').instance().value).toEqual('');
+      expect(component.find('input[name="password"]').instance().value).toEqual('');
+      expect(component.find('input[name="confirm password"]').instance().value).toEqual('');
+
+    });
+  });
+
+  describe('signup form submission', () => {
+    beforeEach(() => {
+      component.find('input[name="name"]').simulate('change', 
+        {
+          target: { value: 'Kanye', name: 'name' }
+        }
+      );
+
+      component.find('input[name="email"]').simulate('change', 
+        {
+          target: { value: 'kanye@west.com', name: 'email' }
+        }
+      );
+
+      component.find('input[name="password"]').simulate('change', 
+        {
+          target: { value: 'abc12345', name: 'password' }
+        }
+      );
+
+      component.find('input[name="confirm password"]').simulate('change', 
+        {
+          target: { value: 'abc12345', name: 'confirm password' }
+        }
+      );
+    });
+
+    it('clears a the name input after submission', () => {
+      expect(component.find('input[name="name"]').instance().value).toEqual('Kanye');
+
+      component.find('form#signup-form').simulate('submit');
+
+      expect(component.find('input[name="name"]').instance().value).toEqual('');
+    });
+
+    it('clears a the email input after submission', () => {
+      expect(component.find('input[name="email"]').instance().value).toEqual('kanye@west.com');
+
+      component.find('form#signup-form').simulate('submit');
+
+      expect(component.find('input[name="email"]').instance().value).toEqual('');
+    });
+
+    it('clears a the password input after submission', () => {
+      expect(component.find('input[name="password"]').instance().value).toEqual('abc12345');
+
+      component.find('form#signup-form').simulate('submit');
+
+      expect(component.find('input[name="password"]').instance().value).toEqual('');
+    });
+
+    it('clears a the confirm password input after submission', () => {
+      expect(component.find('input[name="confirm password"]').instance().value).toEqual('abc12345');
+
+      component.find('form#signup-form').simulate('submit');
+
+      expect(component.find('input[name="confirm password"]').instance().value).toEqual('');
+    });
+
+    it('submits the form and forwards the user to /game', async () => {
+      component.find('form#signup-form').simulate('submit');
+
+      await updateComponent(component);
+      expect(appHistory.location.pathname).toBe('/game');
+    });
+  });
+
+  describe('inputs invalid errors', () => {
+    afterEach(() => component.unmount());
+
+    it('displays an error when invalid character is used in name input', async () => {
+      component.find('input[name="name"]').simulate('change', 
+        {
+          target: { value: ';', name: 'name' }
+        }
+      );
+
+      await updateComponent(component);
+
+      expect(component.find('ul.styled-react-errors__name li').length).toEqual(1);
+    });
+
+    it('displays an error when invalid email address is used in name input', async () => {
+      component.find('input[name="email"]').simulate('change', 
+        {
+          target: { value: 'kanye', name: 'email' }
+        }
+      );
+
+      component.find('input[name="email"]').simulate('blur');
+      
+      await updateComponent(component);
+
+      expect(component.find('ul.styled-react-errors__email li').length).toEqual(1);
+    });
+
+    it('displays an error when invalid character is used in password input', async () => {
+      component.find('input[name="password"]').simulate('change', 
+        {
+          target: { value: ';', name: 'password' }
+        }
+      );
+
+      await updateComponent(component);
+
+      expect(component.find('ul.styled-react-errors__password li').length).toEqual(1);
+    });
+
+    it('displays an error when invalid character is used in confirm password input', async () => {
+      component.find('input[name="confirm password"]').simulate('change', 
+      {
+        target: { value: ';', name: 'confirm password'}
+      });
+
+      await updateComponent(component);
+
+      expect(component.find('ul.styled-react-errors__confirm-password li').length).toEqual(1);
+    })
+  });
+
+  describe('invalid form submissions', () => {
+    it('displays form error when submitting with invalid name value', async () => {
+      component.find('input[name="name"]').simulate('change', 
+        {
+          target: { value: ';', name: 'name' }
+        }
+      );
+
+      component.find('input[name="email"]').simulate('change', 
+        {
+          target: { value: 'kanye@west.com', name: 'email' }
+        }
+      );
+
+      component.find('input[name="password"]').simulate('change', 
+        {
+          target: { value: 'abc12345', name: 'password' }
+        }
+      );
+
+      component.find('input[name="confirm password"]').simulate('change', 
+        {
+          target: { value: 'abc12345', name: 'confirm password' }
+        }
+      );
+
+      await updateComponent(component);
+
+      component.find('form#signup-form').simulate('submit');
+
+      await updateComponent(component);
+
+      // expect(component.debug()).toEqual(1);
+      expect(component.find('form ul.styled-react-form-errors__signupForm li').length).toEqual(1);
+    });
+
+    it('displays form error when submitting with invalid email value', async () => {
+      component.find('input[name="name"]').simulate('change', 
+        {
+          target: { value: 'kanye', name: 'name' }
+        }
+      );
+
+      component.find('input[name="email"]').simulate('change', 
+        {
+          target: { value: 'kanye', name: 'email' }
+        }
+      );
+
+      component.find('input[name="password"]').simulate('change', 
+        {
+          target: { value: 'abc12345', name: 'password' }
+        }
+      );
+
+      component.find('input[name="confirm password"]').simulate('change', 
+        {
+          target: { value: 'abc12345', name: 'confirm password' }
+        }
+      );
+
+      await updateComponent(component);
+
+      component.find('form#signup-form').simulate('submit');
+
+      await updateComponent(component);
+
+      expect(component.find('form ul.styled-react-form-errors__signupForm li').length).toEqual(1);
+    });
+
+    it('displays form error when submitting with invalid password and confirm password value', async () => {
+      component.find('input[name="name"]').simulate('change', 
+        {
+          target: { value: 'kanye', name: 'name' }
+        }
+      );
+
+      component.find('input[name="email"]').simulate('change', 
+        {
+          target: { value: 'kanye@west.com', name: 'email' }
+        }
+      );
+
+      component.find('input[name="password"]').simulate('change', 
+        {
+          target: { value: ';', name: 'password' }
+        }
+      );
+
+      component.find('input[name="confirm password"]').simulate('change', 
+        {
+          target: { value: ';', name: 'confirm password' }
+        }
+      );
+
+      await updateComponent(component);
+
+      component.find('form#signup-form').simulate('submit');
+
+      await updateComponent(component);
+
+      expect(component.find('form ul.styled-react-form-errors__signupForm li').length).toEqual(2);
+    });
+
+    it('displays form error when submitting with mismatching password and confirm password value', async () => {
+      component.find('input[name="name"]').simulate('change', 
+        {
+          target: { value: 'kanye', name: 'name' }
+        }
+      );
+
+      component.find('input[name="email"]').simulate('change', 
+        {
+          target: { value: 'kanye@west.com', name: 'email' }
+        }
+      );
+
+      component.find('input[name="password"]').simulate('change', 
+        {
+          target: { value: 'abc12345', name: 'password' }
+        }
+      );
+
+      component.find('input[name="confirm password"]').simulate('change', 
+        {
+          target: { value: 'def67890', name: 'confirm password' }
+        }
+      );
+
+      await updateComponent(component);
+
+      component.find('form#signup-form').simulate('submit');
+
+      await updateComponent(component);
+
+      expect(component.find('form ul.styled-react-form-errors__signupForm li').length).toEqual(1);
+    });
+
+    describe('network errors', () => {
+      beforeEach(async () => {
+        component = mount(
+          <MockedProvider mocks={SIGNUP_ERROR_MOCK} addTypename={false}>
+            <MemoryRouter initialEntries={[{ pathname: "/signup" }]}>
+              <Route
+                path="*"
+                render={({ history, location }) => {
+                  appHistory = history;
+                  appLocation = location;
+                  return null;
+                }}
+              />
+              <Root>
+                  <Signup/>
+              </Root>
+            </MemoryRouter>
+          </MockedProvider>
+        );
+
+        await updateComponent(component);
+      });
+
+      // afterEach(() => component.unmount());
+
+      it('displays the modal with server error', async () => {
+        component.find('input[name="name"]').simulate('change', 
+          {
+            target: { value: 'Kanye', name: 'name' }
+          }
+        );
+
+        component.find('input[name="email"]').simulate('change', 
+          {
+            target: { value: 'kanye@west.com', name: 'email' }
+          }
+        );
+
+        component.find('input[name="password"]').simulate('change', 
+          {
+            target: { value: 'abc12345', name: 'password' }
+          }
+        );
+
+        component.find('input[name="confirm password"]').simulate('change', 
+          {
+            target: { value: 'abc12345', name: 'confirm password' }
+          }
+        );
+        
+        component.find('form#signup-form').simulate('submit');
+
+        await updateComponent(component);
+
+        expect(component.find('#chapivia-modal ul li').text().length).toBeGreaterThanOrEqual(1);
+      });
+    });
+
+  });
 });
-
-// it('displays an error when an invalid character or email is used', () => {
-
-// });
-
-// it('clears a all form fields when canceled', () => {
-
-// });
-
-// it('cant sign a user up while due to invalid form data', () => {
-
-// });
-
-// it('can clear the form when the signup is canceled', () => {
-
-// })
-
-// it('cant sign a user up due to mismatching password', () => {
-
-// })

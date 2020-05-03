@@ -104,7 +104,7 @@ describe('topMenu', () => {
       component.find('p.logout-player').simulate('click');
 
       await updateComponent(component, 10);
-
+      // TODO: TEST RANDOMLY FAILS NEED TO ADDRESS 
       expect(component.find('p.player-name').length).toEqual(0);
       expect(component.find('p.logout-player').length).toEqual(0);
     });

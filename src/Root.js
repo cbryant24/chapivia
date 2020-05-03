@@ -1,7 +1,7 @@
 import React from "react";
-import { GlobalStyle } from "./components/style";
+import { GlobalStyle } from "style";
 import { ThemeProvider } from "@cbryant24/styled-react";
-import theme from "./components/style/theme";
+import theme from "style/theme";
 
 import { ModalProvider } from "@cbryant24/styled-react";
 

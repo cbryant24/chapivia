@@ -1,10 +1,10 @@
-import * as spaceSettings from "components/style/space";
-import * as formInputs from "components/style/forms_inputs";
-import * as buttons from "components/style/buttons";
-import * as flex from "components/style/flex";
-import * as links from "components/style/links";
-import * as modal from "components/style/modal";
-import * as carousel from "components/style/carousel";
+import * as spaceSettings from "style/space";
+import * as formInputs from "style/forms_inputs";
+import * as buttons from "style/buttons";
+import * as flex from "style/flex";
+import * as links from "style/links";
+import * as modal from "style/modal";
+import * as carousel from "style/carousel";
 
 const red = "#e42d42";
 const white = "#ffffff";

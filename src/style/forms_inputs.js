@@ -1,6 +1,7 @@
 export const authForm = {
   display: 'flex',
-  height: ['30em']
+  height: ['30em'],
+  width: [1]
 };
 
 export const inputMain = {
@@ -11,6 +12,7 @@ export const inputMain = {
   letterSpacing: 'inherit',
   fontFamily: 'inherit',
   backgroundColor: 'transparent',
+  fontSize: ['.75em'],
   borderRadius: '5px',
   borderWidth: '2px',
   borderStyle: 'solid',

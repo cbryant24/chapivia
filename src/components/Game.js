@@ -53,10 +53,6 @@ const Game = props => {
 
     if (!user) return router.push("/");
 
-    if (lastLocation.pathname !== "/signup") return;
-
-    toggleModal();
-    setModalMessage(`Welcome To Chapivia ${user.name}!`);
   }, [user]);
 
   const toggleModal = e => setIsOpen(!isOpen);

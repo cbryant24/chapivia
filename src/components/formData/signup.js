@@ -10,7 +10,7 @@ export default {
       ],
       remove: 'height',
       height: '50em',
-      id:'signup-form', 
+      id:'signup-form',
     }
   },
   inputs: [
