@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 // import { Route } from "react-router-dom";
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { Provider } from 'react-redux';
+
 
 import Login from 'components/Login';
 import Register from 'components/Register';
@@ -10,6 +12,7 @@ import Game from 'components/Game';
 import App from 'components/App';
 import Root from 'Root';
 
+import configureStore from 'configureStore';
 import typeDefs from 'localState/typeDefs';
 
 import { LastLocationProvider } from 'react-router-last-location';
@@ -32,19 +35,24 @@ const client = new ApolloClient({
 	uri: '/graphql',
 });
 
+// const client = new ApolloClient();
+// const store = configureStore();
+
 ReactDOM.render(
 	<ApolloProvider client={client}>
-		<Router>
-			<LastLocationProvider>
-				<Root>
-					<App>
-						<Route path="/game" exact component={Game} />
-						<Route path="/" exact component={Login} />
-						<Route path="/register" component={Register} />
-					</App>
-				</Root>
-			</LastLocationProvider>
-		</Router>
+		{/* <Provider store={store}> */}
+			<Router>
+				<LastLocationProvider>
+					<Root>
+						<App>
+							<Route path="/game" exact component={Game} />
+							<Route path="/" exact component={Login} />
+							<Route path="/register" component={Register} />
+						</App>
+					</Root>
+				</LastLocationProvider>
+			</Router>
+		{/* </Provider> */}
 	</ApolloProvider>,
 	document.getElementById('root')
 );

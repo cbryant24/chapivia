@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { useLastLocation } from 'react-router-last-location';
+
+/// TESTING REDUX \\\
+import { connect } from 'react-redux';
+import { set_trivia } from 'actions';
+/// TESTING REDUX \\\
+
 import { useRequireAuth } from 'hooks';
 import triviaQuery from 'queries/Trivia';
 
@@ -18,37 +24,38 @@ const Game = (props) => {
 	const { loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
 	const [isOpen, setIsOpen] = useState(false);
 	const [modalMessage, setModalMessage] = useState('');
-	const client = useApolloClient();
+	// const client = useApolloClient();
 	const { user } = useRequireAuth();
 	// const router = useRouter();
 
-	useEffect(() => {
-		if (triviaLoading) return;
+	// useEffect(() => {
+	// 	if (triviaLoading) return;
 
-		try {
-			client.writeData({
-				data: {
-					localTrivia: {
-						questionId: triviaData.dailyTrivia.id,
-						question: triviaData.dailyTrivia.question,
-						questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
-						questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
-						category: triviaData.dailyTrivia.category,
-						__typename: 'dailyTrivia',
-					},
-				},
-			});
-		} catch (res) {
-			//TODO: add proper error handling
-			const errors =
-				res.graphQLErrors && res.graphQLErrors.length
-					? res.graphQLErrors
-					: 'There was an error getting trivia data check back laater';
-			toggleModal();
-			setModalMessage(errors);
-			return;
-		}
-	}, [triviaData]);
+	// 	try {
+	// 		client.writeData({
+	// 			data: {
+	// 				localTrivia: {
+	// 					questionId: triviaData.dailyTrivia.id,
+	// 					question: triviaData.dailyTrivia.question,
+	// 					questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
+	// 					questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
+	// 					category: triviaData.dailyTrivia.category,
+	// 					__typename: 'dailyTrivia',
+	// 				},
+	// 			},
+	// 		});
+	// 	} catch (res) {
+	// 		//TODO: add proper error handling
+	// 		const errors =
+	// 			res.graphQLErrors && res.graphQLErrors.length
+	// 				? res.graphQLErrors
+	// 				: 'There was an error getting trivia data check back laater';
+	// 		toggleModal();
+	// 		setModalMessage(errors);
+	// 		return;
+	// 	}
+	// }, [triviaData]);
+	debugger;
 
 	if (triviaLoading || !user) return <div> </div>;
 
@@ -130,7 +137,11 @@ const Game = (props) => {
 			padding: '5px 5px 6px 2px',
 		};
 
-		console.log("AM I RENDERING THE GAME!!");
+		// console.log("AM I RENDERING THE GAME!!");
+		debugger;
+		props.set_trivia(triviaData);
+
+		// return <div></div>;
 		return (
 			<InfiniteCarousel
 				width="90vw"
@@ -198,4 +209,11 @@ const Game = (props) => {
 	);
 };
 
+function mapStateToProps(state) {
+	return {
+		trivia: state.trivia,
+	};
+}
+
+// export default connect(mapStateToProps, { set_trivia })(Game);
 export default Game;
