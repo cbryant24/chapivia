@@ -1,5 +1,5 @@
-import signinValidation from './signinValidation';
-import signupValidation from './signupValidation';
+import loginValidation from './loginValidation';
+import registerValidation from './registerValidation';
 import guessValidation from './guessValidation';
 
-export { signinValidation, signupValidation, guessValidation };
+export { loginValidation, registerValidation, guessValidation };

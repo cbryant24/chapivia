@@ -1,5 +1,3 @@
 import { determineBreakPoint } from './styles';
 
-export {
-  determineBreakPoint
-}
+export { determineBreakPoint };

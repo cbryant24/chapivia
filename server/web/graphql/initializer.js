@@ -1,15 +1,15 @@
 const { ApolloServer, gql } = require("apollo-server-express");
-// const { typeDefs, resolvers } = require('./schema');
 const typeDefs = require("./typeDefs");
 const resolvers = require("./resolvers");
-// const { sequelizeConnection: sequelize } = require('../../db');
+
 const {
   User,
   Question,
   QuestionChoice,
   UserQuestionChoice
 } = require("../../models");
-const { cookieSignup, cookieLogin } = require("../auth");
+
+const { cookieRegister, cookieLogin } = require("../auth");
 
 const db = {
   user: User,
@@ -26,7 +26,7 @@ const server = new ApolloServer({
   context: ({ req }) => {
     return {
       ...db,
-      cookieSignup,
+      cookieRegister,
       cookieLogin,
       req
     };

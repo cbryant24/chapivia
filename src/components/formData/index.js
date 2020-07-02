@@ -1,6 +1,6 @@
-import signinFormData from "components/formData/signin";
-import signupFormData from "components/formData/signup";
-import guessFormData from "components/formData/guess";
-import updateGuessFormData from "components/formData/updateGuess";
+import loginFormData from 'components/formData/login';
+import registerFormData from 'components/formData/register';
+import guessFormData from 'components/formData/guess';
+import updateGuessFormData from 'components/formData/updateGuess';
 
-export { signinFormData, signupFormData, guessFormData, updateGuessFormData };
+export { loginFormData, registerFormData, guessFormData, updateGuessFormData };

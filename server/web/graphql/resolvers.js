@@ -36,13 +36,13 @@ module.exports = {
     login: (parent, { email, password }, { cookieLogin, req }, info) => {
       return cookieLogin({ email, password, req });
     },
-    signup: (
+    register: (
       parent,
       { email, name, password },
-      { cookieSignup, req },
+      { cookieRegister, req },
       info
     ) => {
-      return cookieSignup({ email, name, password, req });
+      return cookieRegister({ email, name, password, req });
     },
     logout: (parent, args, { req }, info) => {
       req.logout();

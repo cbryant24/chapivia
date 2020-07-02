@@ -50,7 +50,7 @@ passport.use(
   )
 );
 
-async function signup({ name, email, password, req }) {
+async function register({ name, email, password, req }) {
   if (!email || !password || !name) {
     throw new Error('You must provide an email, password, and name.');
   }
@@ -103,4 +103,4 @@ function login({ email, password, req }) {
   });
 }
 
-module.exports = { signup, login };
+module.exports = { register, login };

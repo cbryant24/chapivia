@@ -1,206 +1,201 @@
-import React, { useState, useEffect } from "react";
-import { useQuery, useApolloClient } from "@apollo/react-hooks";
-import { useLastLocation } from "react-router-last-location";
-import { useRouter } from "hooks";
-import triviaQuery from "queries/Trivia";
+import React, { useState, useEffect } from 'react';
+import { useQuery, useApolloClient } from '@apollo/react-hooks';
+import { useLastLocation } from 'react-router-last-location';
+import { useRequireAuth } from 'hooks';
+import triviaQuery from 'queries/Trivia';
 
-import Modal from "components/Modal";
-import { Div, H3 } from "@cbryant24/styled-react";
+import Modal from 'components/Modal';
+import { Div, H3 } from '@cbryant24/styled-react';
 
-import Winner from "components/Winner";
-import GuessList from "components/GuessList";
-import Scoreboard from "components/Scoreboard";
-import TriviaQuestion from "components/TriviaQuestion";
+import Winner from 'components/Winner';
+import GuessList from 'components/GuessList';
+import Scoreboard from 'components/Scoreboard';
+import TriviaQuestion from 'components/TriviaQuestion';
 
-import { BorderPrimary, InfiniteCarousel } from "./styledComponents";
+import { BorderPrimary, InfiniteCarousel } from './styledComponents';
 
-import { useAuth } from "../hooks";
+const Game = (props) => {
+	const { loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
+	const [isOpen, setIsOpen] = useState(false);
+	const [modalMessage, setModalMessage] = useState('');
+	const client = useApolloClient();
+	const { user } = useRequireAuth();
+	// const router = useRouter();
 
-const Game = props => {
-  const { loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
-  const [isOpen, setIsOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
-  const lastLocation = useLastLocation() || {};
-  const client = useApolloClient();
-  const { user, userLoading } = useAuth();
-  const router = useRouter();
+	useEffect(() => {
+		if (triviaLoading) return;
 
-  useEffect(() => {
-    if (triviaLoading) return;
+		try {
+			client.writeData({
+				data: {
+					localTrivia: {
+						questionId: triviaData.dailyTrivia.id,
+						question: triviaData.dailyTrivia.question,
+						questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
+						questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
+						category: triviaData.dailyTrivia.category,
+						__typename: 'dailyTrivia',
+					},
+				},
+			});
+		} catch (res) {
+			//TODO: add proper error handling
+			const errors =
+				res.graphQLErrors && res.graphQLErrors.length
+					? res.graphQLErrors
+					: 'There was an error getting trivia data check back laater';
+			toggleModal();
+			setModalMessage(errors);
+			return;
+		}
+	}, [triviaData]);
 
-    try {
-      client.writeData({
-        data: {
-          localTrivia: {
-            questionId: triviaData.dailyTrivia.id,
-            question: triviaData.dailyTrivia.question,
-            questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
-            questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
-            category: triviaData.dailyTrivia.category,
-            __typename: "dailyTrivia"
-          }
-        }
-      });
-    } catch (err) {
-      //TODO: add proper error handling
-      console.log("error getting trivia data", err);
-    }
-  }, [triviaData]);
+	if (triviaLoading || !user) return <div> </div>;
 
-  useEffect(() => {
+	const toggleModal = (e) => setIsOpen(!isOpen);
 
-    if (userLoading) return;
+	function displayGame() {
+		const arr = [];
+		for (let i = 0; i <= 11; i++) {
+			arr.push(
+				<Div
+					width="85%"
+					height="85%"
+					border="1px solid purple"
+					backgroundColor="red"
+					color="white"
+					carouselIndicatorName={i}
+				>
+					{i}
+				</Div>
+			);
+		}
 
-    if (!user) return router.push("/");
+		const carouselActiveStyle = {
+			transform: 'translateX(5px)',
+			height: '7em',
+			width: '15em',
+			opacity: '1',
+			py: [1],
+			textAlign: 'center',
+			border: '3px solid red',
+			m: '1em',
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+			cursor: 'pointer',
+		};
 
-  }, [user]);
+		const carouselInactiveStyle = {
+			...carouselActiveStyle,
+			pseudo: 'true',
+			transform: 'translateX(0px)',
+			opacity: '.5',
+			transition: '1s all',
+			hover: {
+				transform: 'translateY(-5px)',
+				visibility: 'visible',
+				opacity: '1',
+			},
+		};
 
-  const toggleModal = e => setIsOpen(!isOpen);
+		const sharedArrowContainerStyle = {
+			position: 'absolute',
+			opacity: '.25',
+			cursor: 'pointer',
+			width: '3em',
+			height: '100%',
+			backgroundColor: 'primary',
+			padding: '5px 5px 6px 2px',
+			zIndex: [2],
+		};
 
-  function displayGame() {
-    const arr = [];
-    for (let i = 0; i <= 11; i++) {
-      arr.push(
-        <Div
-          width="85%"
-          height="85%"
-          border="1px solid purple"
-          backgroundColor="red"
-          color="white"
-          carouselIndicatorName={i}
-        >
-          {i}
-        </Div>
-      );
-    }
+		const leftArrowContainerStyle = {
+			...sharedArrowContainerStyle,
+			left: '0%',
+		};
 
-    // TODO: Add loading icon 
-    if (userLoading || triviaLoading) return <div></div>;
+		const rightArrowContainerStyle = {
+			...sharedArrowContainerStyle,
+			right: '0%',
+		};
 
-    if (!user) return router.push("/");
+		const arrowStyle = {
+			arrowColor: 'white',
+			stroke: 'white',
+			strokeWidth: '50',
+			width: '3em',
+			height: '3em',
+			backgroundColor: 'primary',
+			padding: '5px 5px 6px 2px',
+		};
 
-    const carouselActiveStyle = {
-      transform: "translateX(5px)",
-      height: "7em",
-      width: "15em",
-      opacity: "1",
-      py: [1],
-      textAlign: "center",
-      border: "3px solid red",
-      m: "1em",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      cursor: "pointer"
-    };
+		console.log("AM I RENDERING THE GAME!!");
+		return (
+			<InfiniteCarousel
+				width="90vw"
+				bp={500}
+				carouselIndicator={true}
+				carouselStyle={{
+					themeStyle: 'carouselNormal',
+				}}
+				carouselIndicatorStyle={{
+					width: [4],
+					height: [1],
+					backgroundColor: 'black',
+					color: 'white',
+					margin: [1],
+				}}
+				carouselIndicatorActiveStyle={carouselActiveStyle}
+				carouselIndicatorInactiveStyle={carouselInactiveStyle}
+				leftArrowContainerStyle={leftArrowContainerStyle}
+				rightArrowContainerStyle={rightArrowContainerStyle}
+				arrowStyle={arrowStyle}
+				displayArrow={true}
+				fromScale=".95"
+				toScale="1"
+			>
+				<BorderPrimary
+					mx="3em"
+					height="100%"
+					carouselIndicatorName="Guess List"
+				>
+					<GuessList />
+				</BorderPrimary>
+				<BorderPrimary
+					mx="3em"
+					height="100%"
+					carouselIndicatorName="Trivia Question"
+				>
+					<TriviaQuestion />
+				</BorderPrimary>
+				<BorderPrimary
+					mx="3em"
+					height="100%"
+					carouselIndicatorName="Scoreboard"
+				>
+					<Scoreboard />
+				</BorderPrimary>
+				<BorderPrimary mx="3em" height="100%" carouselIndicatorName="Winners">
+					<Winner />
+				</BorderPrimary>
+			</InfiniteCarousel>
+		);
+	}
 
-    const carouselInactiveStyle = {
-      ...carouselActiveStyle,
-      pseudo: "true",
-      transform: "translateX(0px)",
-      opacity: ".5",
-      transition: "1s all",
-      hover: {
-        transform: "translateY(-5px)",
-        visibility: "visible",
-        opacity: "1"
-      }
-    };
-
-    const sharedArrowContainerStyle = {
-      position: "absolute",
-      opacity: ".25",
-      cursor: "pointer",
-      width: "3em",
-      height: "100%",
-      backgroundColor: "primary",
-      padding: "5px 5px 6px 2px",
-      zIndex: [2]
-    };
-
-    const leftArrowContainerStyle = {
-      ...sharedArrowContainerStyle,
-      left: "0%"
-    };
-
-    const rightArrowContainerStyle = {
-      ...sharedArrowContainerStyle,
-      right: "0%"
-    };
-
-    const arrowStyle = {
-      arrowColor: "white",
-      stroke: "white",
-      strokeWidth: "50",
-      width: "3em",
-      height: "3em",
-      backgroundColor: "primary",
-      padding: "5px 5px 6px 2px"
-    };
-
-    return (
-      <InfiniteCarousel
-        width="90vw"
-        bp={500}
-        carouselIndicator={true}
-        carouselStyle={{ themeStyle: "carouselNormal" }}
-        carouselIndicatorStyle={{
-          width: [4],
-          height: [1],
-          backgroundColor: "black",
-          color: "white",
-          margin: [1]
-        }}
-        carouselIndicatorActiveStyle={carouselActiveStyle}
-        carouselIndicatorInactiveStyle={carouselInactiveStyle}
-        leftArrowContainerStyle={leftArrowContainerStyle}
-        rightArrowContainerStyle={rightArrowContainerStyle}
-        arrowStyle={arrowStyle}
-        displayArrow={true}
-        fromScale=".95"
-        toScale="1"
-      >
-        <BorderPrimary
-          mx="3em"
-          height="100%"
-          carouselIndicatorName="Guess List"
-        >
-          <GuessList />
-        </BorderPrimary>
-        <BorderPrimary
-          mx="3em"
-          height="100%"
-          carouselIndicatorName="Trivia Question"
-        >
-          <TriviaQuestion />
-        </BorderPrimary>
-        <BorderPrimary
-          mx="3em"
-          height="100%"
-          carouselIndicatorName="Scoreboard"
-        >
-          <Scoreboard />
-        </BorderPrimary>
-        <BorderPrimary mx="3em" height="100%" carouselIndicatorName="Winners">
-          <Winner />
-        </BorderPrimary>
-      </InfiniteCarousel>
-    );
-  }
-
-  return (
-    <Div m={4} zIndex={2} width="100%">
-      <H3 color="primary" themeStyle={["marginSmallY"]} textAlign="center">
-        Chapivia
-      </H3>
-      <Modal
-        isOpen={isOpen}
-        modalMessage={modalMessage}
-        toggleModal={toggleModal}
-      />
-      {displayGame()}
-    </Div>
-  );
+	return (
+		<Div m={4} zIndex={2} width="100%">
+			<H3 color="primary" themeStyle={['marginSmallY']} textAlign="center">
+				Chapivia
+			</H3>
+			<Modal
+				isOpen={isOpen}
+				modalMessage={modalMessage}
+				toggleModal={toggleModal}
+			/>
+			{displayGame()}
+		</Div>
+	);
 };
 
 export default Game;

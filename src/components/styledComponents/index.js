@@ -4,11 +4,11 @@ import { Footnote, LeftAlignText, RightAlignText } from './Text';
 import InfiniteCarousel from './InfiniteCarousel';
 
 export {
-  BorderPrimary,
-  Footnote,
-  FlexItem3x4,
-  FlexItem3x4MbHide,
-  LeftAlignText,
-  RightAlignText,
-  InfiniteCarousel
+	BorderPrimary,
+	Footnote,
+	FlexItem3x4,
+	FlexItem3x4MbHide,
+	LeftAlignText,
+	RightAlignText,
+	InfiniteCarousel,
 };

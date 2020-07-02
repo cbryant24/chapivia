@@ -5,9 +5,6 @@ export default createGlobalStyle`
     box-sizing: border-box;
     font-weight: inherit;
     text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -webkit-appearance: none;
-    -moz-appearance: none;
   }
 
   *,
@@ -26,8 +23,8 @@ export default createGlobalStyle`
     min-height: 100%;
     min-width: 100%;
 
-    // This defines what 1rem is
-    font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+    /* This defines what 1rem is */
+    font-size: 62.5%; /* 1 rem = 10px; 10px/16px = 62.5% */
   }
 
   ul {
@@ -36,6 +33,8 @@ export default createGlobalStyle`
 
   a {
     cursor: pointer;
+    color: currentColor;
+    text-decoration: none;
   }
 
   a:hover {
@@ -49,7 +48,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: 'Press Start 2P', cursive;;
+    font-family: 'Press Start 2P', cursive;
     font-weight: normal;
     font-style: normal;
     color: #ffffff;
@@ -63,10 +62,7 @@ export default createGlobalStyle`
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
   }
-  a {
-    color: currentColor;
-    text-decoration: none;
-  }
+
   textarea {
     resize: none;
   }
@@ -87,3 +83,5 @@ export default createGlobalStyle`
     font-size: 2em;
   }
 `;
+
+createGlobalStyle.displayName = 'createGlobalStyle';

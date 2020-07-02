@@ -1,53 +1,52 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 // import { Route } from "react-router-dom";
-import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "@apollo/react-hooks";
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 
-import Signin from "components/Signin";
-import Signup from "components/Signup";
-import Game from "components/Game";
-import App from "components/App";
-import Root from "Root";
+import Login from 'components/Login';
+import Register from 'components/Register';
+import Game from 'components/Game';
+import App from 'components/App';
+import Root from 'Root';
 
-import typeDefs from "localState/typeDefs";
+import typeDefs from 'localState/typeDefs';
 
-import { LastLocationProvider } from "react-router-last-location";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import { LastLocationProvider } from 'react-router-last-location';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const client = new ApolloClient({
-  clientState: {
-    defaults: {
-      localTrivia: {
-        questionId: null,
-        question: "",
-        questionChoices: [],
-        questionChoicesId: null,
-        __typename: "dailyTrivia"
-      }
-    },
-    resolvers: {},
-    typeDefs
-  },
-  uri: "/graphql"
+	clientState: {
+		defaults: {
+			localTrivia: {
+				questionId: null,
+				question: '',
+				questionChoices: [],
+				questionChoicesId: null,
+				__typename: 'dailyTrivia',
+			},
+		},
+		resolvers: {},
+		typeDefs,
+	},
+	uri: '/graphql',
 });
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-            <Router>
-          <LastLocationProvider>
-    <Root>
-      <App>
-        <Route path="/game" exact component={Game} />
-        <Route path="/" exact component={Signin} />
-        <Route path="/signup" component={Signup} />
-      </App>
-    </Root>
-    </LastLocationProvider>
-        </Router>
-  </ApolloProvider>,
-  document.getElementById("root")
+	<ApolloProvider client={client}>
+		<Router>
+			<LastLocationProvider>
+				<Root>
+					<App>
+						<Route path="/game" exact component={Game} />
+						<Route path="/" exact component={Login} />
+						<Route path="/register" component={Register} />
+					</App>
+				</Root>
+			</LastLocationProvider>
+		</Router>
+	</ApolloProvider>,
+	document.getElementById('root')
 );
 
 //TODO: [LAST BEFORE LAUNCH] FORM FOR SUBMITTING OWN TRIVIA WITH ANSWER SOURCE AND REPORT IF WRONG
