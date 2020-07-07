@@ -1,5 +1,6 @@
 const { promisify } = require('util');
 const fs = require('fs');
+const path = require('path');
 const { Question, QuestionChoice } = require('../../models');
 
 const readFileAsync = promisify(fs.readFile);
@@ -9,14 +10,14 @@ let triviaCategories;
 let triviaFiles = {};
 let triviaRoot = 'db/data/trivia_questions/';
 let triviaQuestions = [];
-
+debugger
 try {
   ( async function () {
     console.log('Starting db question add');
-    
+    debugger
     try {
-      triviaCategories = await readDirAsync(triviaRoot);
-  
+      triviaCategories = await fs.promises.readdir(triviaRoot);
+      debugger
       for (const category of triviaCategories) {
         triviaFiles[category] = await readDirAsync(`${triviaRoot}/${category}`)
       }
