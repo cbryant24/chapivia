@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Div, FlexDiv, P, Box } from '@cbryant24/styled-react';
 import { useQuery } from '@apollo/react-hooks';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { useAuth, useRouter } from 'hooks';
@@ -8,7 +9,7 @@ import { DAILY_TRIVIA } from 'localState/Queries';
 import query from 'queries/Scores';
 
 function TopMenu(props) {
-	const { data } = useQuery(DAILY_TRIVIA);
+	const data = useSelector((state) => state.trivia);
 	const { loading: scoresLoading, data: playerScores } = useQuery(query);
 	const { user, signout } = useAuth();
 	const { pathname } = useRouter();
@@ -67,7 +68,7 @@ function TopMenu(props) {
 				>
 					<P color="red">Trivia Topic</P>
 					<P className="trivia-topic">
-						{data ? data.localTrivia.category : ''}
+						{ data ? data.dailyTrivia.category : ''}
 					</P>
 				</FlexDiv>
 				<FlexDiv themeStyle={['flexColumnCenter']} width={[2, 3]}>

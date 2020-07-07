@@ -6,7 +6,6 @@ import TopMenu from 'components/TopMenu';
 
 // eslint-disable-next-line react/display-name
 export default ({ children }) => {
-	console.log('IM IN THE APP');
 
 	return (
 		<FlexDiv minHeight="100vh" flexDirection="column" alignItems="center">

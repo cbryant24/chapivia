@@ -6,7 +6,7 @@ import UnguessedPlayers from 'queries/UnguessedPlayers';
 import GuessList from 'queries/GuessList';
 import Scores from 'queries/Scores';
 
-import { DAILY_TRIVIA } from 'localState/Queries';
+import { useSelector } from 'react-redux';
 
 import Form from '@cbryant24/styled-react-form';
 import { guessValidation } from 'components/validations';
@@ -18,17 +18,15 @@ function GuessForm({ inputs, buttons, form, cb, afterModalClose, guessType }) {
 	// const {
 	// 	data: { localTrivia },
 	// } = useQuery(DAILY_TRIVIA);
-	const {
-		data
-	} = useQuery(DAILY_TRIVIA);
+	const { dailyTrivia } = useSelector((state) => state.trivia);
 	const [isOpen, setIsOpen] = useState(false);
 	const [modalMessage, setModalMessage] = useState('');
 	const prevModalOpen = usePrev(isOpen);
-	const { data: newData, loading, refetch: unguessedPlayersRefetch } = useQuery(UnguessedPlayers);
+	const { refetch: unguessedPlayersRefetch } = useQuery(UnguessedPlayers);
 	const { refetch: scoresRefetch } = useQuery(Scores);
 	const { refetch: guessListRefetch } = useQuery(GuessList);
 	const [guess] = useMutation(mutation);
-	console.log("IM THE DATA", data);
+
 	async function recordGuess(event, vals) {
 		if (isNaN(vals.player) || vals.player === '') {
 			toggleModal();
@@ -41,10 +39,10 @@ function GuessForm({ inputs, buttons, form, cb, afterModalClose, guessType }) {
 			} = await guess({
 				variables: {
 					userId: parseInt(vals.player),
-					questionId: parseInt(data.localTrivia.questionId),
-					questionChoiceId: parseInt(data.localTrivia.questionChoicesId),
+					questionId: parseInt(dailyTrivia.id),
+					questionChoiceId: parseInt(dailyTrivia.triviaChoices.id),
 					guess:
-						data.localTrivia.questionChoices[
+						dailyTrivia.triviaChoices.choices[
 							vals.guess.toUpperCase().charCodeAt(0) - 65
 						],
 				},
@@ -56,6 +54,7 @@ function GuessForm({ inputs, buttons, form, cb, afterModalClose, guessType }) {
 			);
 		} catch (err) {
 			//TODO add error handling to guess mutation
+			debugger;
 			toggleModal();
 			setModalMessage('There was an error! Try Again!');
 		}

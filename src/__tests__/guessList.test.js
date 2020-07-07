@@ -20,19 +20,6 @@ import ApolloClient from 'apollo-boost';
 
 
 const client = new ApolloClient({
-	clientState: {
-		defaults: {
-			localTrivia: {
-				questionId: null,
-				question: '',
-				questionChoices: [],
-				questionChoicesId: null,
-				__typename: 'dailyTrivia',
-			},
-		},
-		resolvers: {},
-		typeDefs,
-	},
 	uri: '/graphql',
 });
 

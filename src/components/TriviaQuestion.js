@@ -3,7 +3,8 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { AllHtmlEntities as Entities } from 'html-entities';
 
-import { DAILY_TRIVIA } from 'localState/Queries';
+// import { DAILY_TRIVIA } from 'localState/Queries';
+import { useSelector } from 'react-redux';
 import UnguessedPlayers from 'queries/UnguessedPlayers';
 import { useAuth } from 'hooks';
 import { guessFormData } from 'components/formData';
@@ -14,8 +15,8 @@ import { Div, Ul, P, Li } from '@cbryant24/styled-react';
 import { Footnote } from 'components/styledComponents';
 
 //TODO: Bug where passing user obj causing error when validating data as string or number?
-const TriviaQuestion = (props) => {
-	const { data } = useQuery(DAILY_TRIVIA);
+const TriviaQuestion = ({ trivia }) => {
+	const { dailyTrivia } = useSelector((state) => state.trivia);
 	const {
 		loading: unguessedPlayersLoading,
 		data: unguessedPlayersData,
@@ -24,11 +25,9 @@ const TriviaQuestion = (props) => {
 	const { user } = useAuth();
 	const { form, inputs, buttons } = guessFormData;
 
-	// useEffect(() => {
-	// 	console.log("CMON BRUH IN THE EFFECT");
-
-	// 	refetchUnguessedPlayersData();
-	// }, []);
+	useEffect(() => {
+		refetchUnguessedPlayersData();
+	}, []);
 
 	// if (!user) return <div></div>;
 
@@ -37,7 +36,7 @@ const TriviaQuestion = (props) => {
 	}
 
 	function displayTriviaChoices() {
-		return data.localTrivia.questionChoices.map((choice, idx) => {
+		return dailyTrivia.triviaChoices.choices.map((choice, idx) => {
 			return (
 				<Li pb="1rem" hover="cursor" key={choice}>
 					{String.fromCharCode(65 + idx)} : {convertHTMLChar(choice)}
@@ -52,7 +51,7 @@ const TriviaQuestion = (props) => {
 	}
 
 	if (unguessedPlayersLoading) return <div></div>;
-	// IF CURRENT USER IS ADMIN ADD ALL PLAYERS TO GUESS FORM	
+	// IF CURRENT USER IS ADMIN ADD ALL PLAYERS TO GUESS FORM
 	if (user.role === 'admin') {
 		inputs.forEach((input) => {
 			if (input.data.type === 'select') {
@@ -74,7 +73,7 @@ const TriviaQuestion = (props) => {
 		return (
 			<Div>
 				<P textAlign="center">Trivia Question</P>
-				<P p="0 0 2rem 0">{convertHTMLChar(data.localTrivia.question)}</P>
+				<P p="0 0 2rem 0">{convertHTMLChar(dailyTrivia.question)}</P>
 				<Ul>{displayTriviaChoices()}</Ul>
 				<Footnote>
 					you have already guessed! contact admin to ahange your answer.
@@ -84,17 +83,11 @@ const TriviaQuestion = (props) => {
 	}
 
 	return (
-		<Div
-			id="trivia-question"
-			gridRow={props.gridRow}
-			gridColumn={props.gridColumn}
-			flexDirection="column"
-			fontSizeModule={[2]}
-		>
+		<Div id="trivia-question" flexDirection="column" fontSizeModule={[2]}>
 			<P fontSize={[3]} textAlign="center" themeStyle={['marginBottomMedium']}>
 				Trivia Question
 			</P>
-			<P p="0 0 2rem 0">{convertHTMLChar(data.localTrivia.question)}</P>
+			<P p="0 0 2rem 0">{convertHTMLChar(dailyTrivia.question)}</P>
 			<Ul>{displayTriviaChoices()}</Ul>
 			<Div zIndex={[2]} fontSizeModule={[1]} width={[1]}>
 				<GuessForm
