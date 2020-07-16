@@ -5,7 +5,7 @@ export default {
 		},
 		style: {
 			display: 'flex',
-			height: ['25em'],
+			minHeight: ['25em'],
 			justifyContent: 'space-between',
 			flexDirection: 'column',
 			width: [1],
@@ -28,7 +28,7 @@ export default {
 			},
 			fieldStyle: {
 				width: [1, 2],
-				height: ['5em'],
+				height: [1],
 				justifyContent: 'space-between',
 				flexDirection: 'column',
 			},
@@ -50,7 +50,7 @@ export default {
 			},
 			fieldStyle: {
 				width: [1, 2],
-				height: ['5em'],
+				height: [1],
 				justifyContent: 'space-between',
 				flexDirection: 'column',
 			},
@@ -68,6 +68,7 @@ export default {
 			style: {
 				themeStyle: 'squareButton',
 				mr: [3],
+				my: [3]
 			},
 			disabledStyle: { themeStyle: 'disabledSquareButton', mr: [3] },
 		},
@@ -77,6 +78,7 @@ export default {
 			cb: null,
 			style: {
 				themeStyle: 'squareButton',
+				my: [3]
 			},
 		},
 	],

@@ -68,7 +68,14 @@ describe('trivia guesses', () => {
 		beforeEach(async () => {
 			component = mount(
 				<MockedProvider
-					mocks={[LOGGED_IN_ADMIN, GUESS_LIST, CORRECT_GUESS_MUTATION, SCORES_MOCK, SCORES_MOCK, GUESS_LIST]}
+					mocks={[
+						LOGGED_IN_ADMIN,
+						GUESS_LIST,
+						CORRECT_GUESS_MUTATION,
+						SCORES_MOCK,
+						SCORES_MOCK,
+						GUESS_LIST,
+					]}
 					addTypename={false}
 				>
 					<Provider store={mockStore}>
@@ -113,13 +120,10 @@ describe('trivia guesses', () => {
 				);
 
 				component.find('#chapivia-modal button').simulate('click');
-				// expect();
+
 				await updateComponent(component, 5);
 
 				expect(component.find('#chapivia-modal').length).toEqual(0);
-				// expect(component.debug()).toEqual(0);
-
-				// expect(component.find('form').length).toEqual(0);
 			});
 		});
 	});
