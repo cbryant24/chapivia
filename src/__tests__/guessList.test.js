@@ -1,5 +1,10 @@
 import React from 'react';
 import { MockedProvider } from '@apollo/react-testing';
+import { Provider } from 'react-redux';
+
+import { createStore } from 'redux';
+import reducer from 'reducers/trivia';
+
 import { mount } from 'enzyme';
 import { MemoryRouter, Route } from 'react-router';
 import 'jest-styled-components';
@@ -7,24 +12,19 @@ import 'jest-styled-components';
 import Root from 'Root';
 
 import { updateComponent } from 'utils/test/functions';
-import { GUESS_LIST, LOGGED_IN_USER, LOGGED_IN_ADMIN, LOCAL_TRIVIA } from 'utils/test/mocks';
-import Game from 'components/Game';
-import Login from 'components/Login';
+import {
+	GUESS_LIST,
+	LOGGED_IN_USER,
+	LOGGED_IN_ADMIN,
+	CORRECT_GUESS_MUTATION,
+	SCORES_MOCK,
+} from 'utils/test/mocks';
+import { state } from 'utils/test/data';
 import GuessList from 'components/GuessList';
-import { AllHtmlEntities as Entities } from 'html-entities';
-
-
-import typeDefs from 'localState/typeDefs';
-import ApolloClient from 'apollo-boost';
-
-
-
-const client = new ApolloClient({
-	uri: '/graphql',
-});
 
 let component, appHistory, appLocation;
 
+const mockStore = createStore(reducer, state);
 
 const VALID_INCORRECT_GUESS = {
 		target: { value: 'B', name: 'guess' },
@@ -40,77 +40,87 @@ const VALID_INCORRECT_GUESS = {
 	};
 
 describe('trivia guesses', () => {
-	// beforeEach(async () => {
-	// 	component = mount(
-	// 		<MockedProvider mocks={[LOGGED_IN_USER, GUESS_LIST]} addTypename={false}>
-	// 			<Root>
-	// 				<GuessList />
-	// 			</Root>
-	// 		</MockedProvider>
-	// 	);
+	beforeEach(async () => {
+		component = mount(
+			<MockedProvider mocks={[LOGGED_IN_USER, GUESS_LIST]} addTypename={false}>
+				<Root>
+					<GuessList />
+				</Root>
+			</MockedProvider>
+		);
 
-	// 	await updateComponent(component);
-	// });
+		await updateComponent(component);
+	});
 
-	// it('displays all player guesses', () => {
-	// 	expect(
-	// 		component.find('#chapivia-player-guesslist li').length
-	// 	).toBeGreaterThanOrEqual(3);
-	// });
+	it('displays all player guesses', () => {
+		expect(
+			component.find('#chapivia-player-guesslist li').length
+		).toBeGreaterThanOrEqual(3);
+	});
 
-	// it('does not allow a non admin to change guesses', () => {
-	// 	expect(
-	// 		component.find('#chapivia-player-guesslist li button').length
-	// 	).toEqual(0);
-	// });
+	it('does not allow a non admin to change guesses', () => {
+		expect(
+			component.find('#chapivia-player-guesslist li button').length
+		).toEqual(0);
+	});
 
 	describe('admin', () => {
 		beforeEach(async () => {
-			const cache = {
-				clientState: {
-					defaults: {
-						localTrivia: {
-							questionId: null,
-							question: '',
-							questionChoices: [],
-							questionChoicesId: null,
-							__typename: 'dailyTrivia',
-						},
-					},
-					resolvers: {},
-					typeDefs,
-				},
-			}
 			component = mount(
 				<MockedProvider
-					mocks={[LOGGED_IN_ADMIN, GUESS_LIST]}
+					mocks={[LOGGED_IN_ADMIN, GUESS_LIST, CORRECT_GUESS_MUTATION, SCORES_MOCK, SCORES_MOCK, GUESS_LIST]}
 					addTypename={false}
-					// cache={cache}
-					// client={client}
 				>
-					<Root>
-						<GuessList />
-					</Root>
+					<Provider store={mockStore}>
+						<Root>
+							<GuessList />
+						</Root>
+					</Provider>
 				</MockedProvider>
 			);
 
 			await updateComponent(component);
 		});
 
-		it('allows admins to change player guesses', async () => {
-			expect(
-				component.find('#chapivia-player-guesslist li button').length
-			).toBeGreaterThanOrEqual(3);
-			await updateComponent(component,30);
+		describe('form', () => {
+			it('allows admins to change player guesses', async () => {
+				expect(
+					component.find('#chapivia-player-guesslist li button').length
+				).toBeGreaterThanOrEqual(3);
+				await updateComponent(component, 30);
 
-			component
-				.find('#chapivia-player-guesslist li button')
-				.at(1)
-				.simulate('click');
+				component
+					.find('#chapivia-player-guesslist li button')
+					.at(0)
+					.simulate('click');
 
-			await updateComponent(component, 30);
+				await updateComponent(component, 30);
 
-			expect(component.debug()).toEqual(0);
+				expect(component.find('form').length).toEqual(1);
+
+				expect(component.find('select option').length).toEqual(1);
+
+				expect(component.find('select option').text()).toEqual('Kanye');
+
+				component.find('input').simulate('change', VALID_CORRECT_GUESS);
+
+				component.find('form').simulate('submit');
+
+				await updateComponent(component);
+
+				expect(component.find('#chapivia-modal p').text()).toEqual(
+					'You\'re Answer is...CORRECT!'
+				);
+
+				component.find('#chapivia-modal button').simulate('click');
+				// expect();
+				await updateComponent(component, 5);
+
+				expect(component.find('#chapivia-modal').length).toEqual(0);
+				// expect(component.debug()).toEqual(0);
+
+				// expect(component.find('form').length).toEqual(0);
+			});
 		});
 	});
 });

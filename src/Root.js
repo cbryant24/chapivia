@@ -1,23 +1,19 @@
 import React from 'react';
 import { GlobalStyle } from 'style';
-import { ThemeProvider, ModalProvider } from '@cbryant24/styled-react';
-import { Provider } from 'react-redux';
+import { ThemeProvider } from '@cbryant24/styled-react';
 import theme from 'style/theme';
 
-import configureStore from 'configureStore';
-import { ProvideAuth } from 'hooks';
+import { ModalProvider } from '@cbryant24/styled-react';
 
-const store = configureStore();
+import { ProvideAuth } from 'hooks';
 
 export default ({ children }) => {
 	return (
-		<Provider store={store}>
-			<ProvideAuth>
-				<ThemeProvider theme={theme}>
-					<GlobalStyle />
-					<ModalProvider>{children}</ModalProvider>
-				</ThemeProvider>
-			</ProvideAuth>
-		</Provider>
+		<ProvideAuth>
+			<ThemeProvider theme={theme}>
+				<GlobalStyle />
+				<ModalProvider>{children}</ModalProvider>
+			</ThemeProvider>
+		</ProvideAuth>
 	);
 };

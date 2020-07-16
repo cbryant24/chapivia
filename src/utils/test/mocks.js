@@ -9,7 +9,7 @@ import graphqlUnguessedPlayers from 'queries/UnguessedPlayers';
 import graphqlGuessListQuery from 'queries/GuessList';
 import graphqlGuess from 'mutations/Guess';
 import { DAILY_TRIVIA } from 'localState/Queries';
-import { user, trivia } from 'utils/test/data';
+import { user, triviaData } from 'utils/test/data';
 
 let refetched = false;
 
@@ -17,15 +17,18 @@ export const LOGGED_IN_USER = {
 	request: {
 		query: graphqlUser,
 	},
-	result: {
-		data: {
-			user: {
-				id: user.id,
-				name: user.name,
-				email: user.email,
-				role: user.role.nonAdmin,
+	result: () => {
+		// console.log('IM LOGGED_IN_USER');
+		return {
+			data: {
+				user: {
+					id: user.id,
+					name: user.name,
+					email: user.email,
+					role: user.role.nonAdmin,
+				},
 			},
-		},
+		};
 	},
 };
 
@@ -34,7 +37,7 @@ export const LOGGED_IN_ADMIN = {
 		query: graphqlUser,
 	},
 	result: () => {
-		console.log("DO AS I SAY");
+		// console.log('IM LOGGED_IN_ADMIN');
 		return {
 			data: {
 				user: {
@@ -56,8 +59,11 @@ export const LOGIN_MUTATION = {
 			password: user.password,
 		},
 	},
-	result: {
-		data: { login: { id: user.id, name: user.name, email: user.email } },
+	result: () => {
+		// console.log('IM LOGIN_MUTATION');
+		return {
+			data: { login: { id: user.id, name: user.name, email: user.email } },
+		};
 	},
 };
 
@@ -70,8 +76,11 @@ export const REGISTER_MUTATION = {
 			name: user.name,
 		},
 	},
-	result: {
-		data: { register: { id: user.id, name: user.name, email: user.email } },
+	result: () => {
+		// console.log('IM REGISTER_MUTATION');
+		return {
+			data: { register: { id: user.id, name: user.name, email: user.email } },
+		};
 	},
 };
 
@@ -79,7 +88,10 @@ export const LOGOUT_MUTATION = {
 	request: {
 		query: graphqlLogout,
 	},
-	result: { data: { logout: null } },
+	result: () => {
+		// console.log('IM LOGOUT_MUTATION');
+		return { data: { logout: null } };
+	},
 };
 
 export const INCORRECT_GUESS_MUTATION = {
@@ -92,7 +104,10 @@ export const INCORRECT_GUESS_MUTATION = {
 			guess: 'Washington',
 		},
 	},
-	result: { data: { guess: { isCorrect: false } } },
+	result: () => {
+		// console.log('IM INCORRECT_GUESS_MUTATION');
+		return { data: { guess: { isCorrect: false } } };
+	},
 };
 
 export const CORRECT_GUESS_MUTATION = {
@@ -105,14 +120,20 @@ export const CORRECT_GUESS_MUTATION = {
 			guess: 'San Francisco',
 		},
 	},
-	result: { data: { guess: { isCorrect: true } } },
+	result: () => {
+		// console.log('IM CORRECT_GUESS_MUTATION');
+		return { data: { guess: { isCorrect: true } } };
+	},
 };
 
 export const LOGGED_OUT_USER = {
 	request: {
 		query: graphqlUser,
 	},
-	result: { data: { user: null } },
+	result: () => {
+		// console.log('IM LOGGED_OUT_USER');
+		return { data: { user: null } };
+	},
 };
 
 export const LOGIN_ERROR = {
@@ -123,7 +144,10 @@ export const LOGIN_ERROR = {
 			password: user.password,
 		},
 	},
-	result: { errors: [new GraphQLError('There was an error logging in')] },
+	result: () => {
+		// console.log('IM LOGIN_ERROR');
+		return { errors: [new GraphQLError('There was an error logging in')] };
+	},
 };
 
 export const REGISTER_ERROR = {
@@ -135,22 +159,26 @@ export const REGISTER_ERROR = {
 			name: user.name,
 		},
 	},
-	result: { errors: [new GraphQLError('There was an error registering')] },
+	result: () => {
+		// console.log('IM REGISTER_ERROR');
+		return { errors: [new GraphQLError('There was an error registering')] };
+	},
 };
 
 export const SCORES_MOCK = {
 	request: {
 		query: graphqlScores,
 	},
-	result: { data: { scores: [{ id: 0, name: user.name, score: user.score }] } },
-};
-
-export const LOCAL_TRIVIA = {
-	request: { query: DAILY_TRIVIA },
 	result: () => {
-		console.log('AM I HERE');
+		// console.log('IM SCORES_MOCK');
 		return {
-			data: { localTrivia: { ...trivia } },
+			data: {
+				scores: [
+					{ id: 0, name: 'Kanye', score: 5 },
+					{ id: 1, name: 'Kid Cudi', score: 1 },
+					{ id: 2, name: 'a$ap rocky', score: 2 },
+				],
+			},
 		};
 	},
 };
@@ -158,6 +186,7 @@ export const LOCAL_TRIVIA = {
 export const UNGUESSED_PLAYER = {
 	request: { query: graphqlUnguessedPlayers },
 	result: () => {
+		// console.log('IM UNGUESSED_PLAYER QUERY');
 		return {
 			data: { nonGuessedPlayers: [{ id: 0, name: 'Kanye', role: 'player' }] },
 		};
@@ -167,6 +196,7 @@ export const UNGUESSED_PLAYER = {
 export const UNGUESSED_PLAYERS = {
 	request: { query: graphqlUnguessedPlayers },
 	result: () => {
+		// console.log('IM UNGUESSED_PLAYERS QUERY');
 		return {
 			data: {
 				nonGuessedPlayers: [
@@ -182,6 +212,7 @@ export const UNGUESSED_PLAYERS = {
 export const EMPTY_UNGUESSED_PLAYERS = {
 	request: { query: graphqlUnguessedPlayers },
 	result: () => {
+		// console.log('IM EMPTY_UNGUESSED_PLAYERS QUERY');
 		return {
 			data: { nonGuessedPlayers: [] },
 		};
@@ -191,6 +222,7 @@ export const EMPTY_UNGUESSED_PLAYERS = {
 export const GUESS_LIST = {
 	request: { query: graphqlGuessListQuery },
 	result: () => {
+		// console.log('IM GUESS LIST QUERY');
 		return {
 			data: {
 				guessedPlayers: [
@@ -201,7 +233,7 @@ export const GUESS_LIST = {
 						userQuestionChoices: [{ isCorrect: false }],
 					},
 					{
-						id: 3,
+						id: 2,
 						name: 'a$ap rocky',
 						userQuestionChoices: [{ isCorrect: true }],
 					},

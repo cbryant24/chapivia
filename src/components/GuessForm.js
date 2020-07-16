@@ -56,7 +56,7 @@ function GuessForm({ inputs, buttons, form, cb, afterModalClose, guessType }) {
 			//TODO add error handling to guess mutation
 			debugger;
 			toggleModal();
-			setModalMessage('There was an error! Try Again!');
+			setModalMessage(`There was an error! Try Again! ${err}`);
 		}
 	}
 

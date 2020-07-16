@@ -18,26 +18,28 @@ const sequelize = new Sequelize(
 );
 
 const User = sequelize.define(
-	"user", {
+	'user',
+	{
 		name: DataTypes.STRING,
 		email: DataTypes.STRING,
 		password: DataTypes.STRING,
 		role: DataTypes.STRING,
-		gameLobby: DataTypes.STRING
-	}, {
+		gameLobby: DataTypes.STRING,
+	},
+	{
 		freezeTableName: true,
 		hooks: {
-			beforeCreate: async user => {
+			beforeCreate: async (user) => {
 				const hashedPassword = await new Promise((resolve, reject) => {
-					bcrypt.hash(user.password, saltRounds, function(err, hash) {
+					bcrypt.hash(user.password, saltRounds, function (err, hash) {
 						if (err) reject(err);
 
 						resolve(hash);
 					});
 				});
 				return (user.password = hashedPassword);
-			}
-		}
+			},
+		},
 	}
 );
 
@@ -58,9 +60,9 @@ User.prototype.comparePassword = function (candidatePassword, callback) {
 User.getPlayers = async function () {
 	try {
 		const users = await User.findAll();
-		let players = users.map(user => ({
+		let players = users.map((user) => ({
 			name: user.name,
-			id: user.id
+			id: user.id,
 		}));
 		players = keyBy(players, 'name');
 		return players;
@@ -75,8 +77,8 @@ User.getUnguessedPlayers = async function () {
 		const players = await this.findAll();
 		const todaysGuesses = await this.todaysGuesses();
 		const unguessedPlayers = [];
-		players.map(player => {
-			if (!todaysGuesses.some(guesser => guesser.id === player.id))
+		players.map((player) => {
+			if (!todaysGuesses.some((guesser) => guesser.id === player.id))
 				unguessedPlayers.push(player);
 		});
 
@@ -90,37 +92,29 @@ User.getUnguessedPlayers = async function () {
 User.scores = async function (month = 'currentMonth') {
 	const startOfMonth =
 		month === 'prevMonth'
-    	moment()
-    		.subtract(1, 'months')
-    		.startOf('month')
-    		.toDate() :
-    	moment()
-    		.startOf('month')
-    		.toDate();
+			? moment().subtract(1, 'months').startOf('month').toDate()
+			: moment().startOf('month').toDate();
 
 	const endOfMonth =
 		month === 'prevMonth'
-    	moment()
-    		.subtract(1, 'months')
-    		.endOf('month')
-    		.toDate() :
-    	moment()
-    		.endOf('month')
-    		.toDate();
+			? moment().subtract(1, 'months').endOf('month').toDate()
+			: moment().endOf('month').toDate();
 	//TODO: Update to pull only through association with joined table and only pull 3 for winner?
 	try {
 		const userCorrectGuessesScore = await this.findAll({
-			include: [{
+			include: [
+				{
 					model: this.associations.userQuestionChoices.target,
 					where: {
 						isCorrect: true,
 						updatedAt: {
-						[Op.between]: [startOfMonth, endOfMonth]
-					}
-				}
-			}]
+							[Op.between]: [startOfMonth, endOfMonth],
+						},
+					},
+				},
+			],
 		});
-		userCorrectGuessesScore.forEach(userCorrectGuess => {
+		userCorrectGuessesScore.forEach((userCorrectGuess) => {
 			userCorrectGuess.score = userCorrectGuess.userQuestionChoices.length;
 		});
 		userCorrectGuessesScore.sort((a, b) => b.score - a.score);
@@ -154,20 +148,20 @@ User.scores = async function (month = 'currentMonth') {
 };
 
 User.todaysGuesses = async function () {
-	const startOfToday = moment()
-		.startOf('day')
-		.toDate();
+	const startOfToday = moment().startOf('day').toDate();
 
 	try {
 		const todaysGuesses = await this.findAll({
-			include: [{
+			include: [
+				{
 					model: this.associations.userQuestionChoices.target,
 					where: {
 						createdAt: {
-						[Op.gte]: startOfToday
-					}
-				}
-			}]
+							[Op.gte]: startOfToday,
+						},
+					},
+				},
+			],
 		});
 
 		return todaysGuesses;
@@ -181,12 +175,8 @@ User.correctGuesses = async function () {
 	const currentHour = moment().format('HH');
 	const dayOfWeek = new Date().getDay();
 
-	const startOfToday = moment()
-		.startOf('day')
-		.toDate();
-	const endOfToday = moment()
-		.endOf('day')
-		.toDate();
+	const startOfToday = moment().startOf('day').toDate();
+	const endOfToday = moment().endOf('day').toDate();
 	const startOfPreviousGameDate = moment()
 		.add(`${dayOfWeek === 1 ? -3 : -1}`, 'day')
 		.startOf('day')
@@ -198,15 +188,20 @@ User.correctGuesses = async function () {
 
 	try {
 		const correctGuesses = await this.findAll({
-			include: [{
+			include: [
+				{
 					model: this.associations.userQuestionChoices.target,
 					where: {
 						isCorrect: true,
 						updatedAt: {
-						[Op.between]: currentHour >= 18 ? [startOfToday, endOfToday] : [startOfPreviousGameDate, endOfPreviousGameDate]
-					}
-				}
-			}]
+							[Op.between]:
+								currentHour >= 18
+									? [startOfToday, endOfToday]
+									: [startOfPreviousGameDate, endOfPreviousGameDate],
+						},
+					},
+				},
+			],
 		});
 		return correctGuesses;
 	} catch (e) {
