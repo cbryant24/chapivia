@@ -16,10 +16,10 @@ exports.signin = (user, res) => {
   res.send({ token: tokenForUser(user) });
 }
 
-exports.signup = async (req, res, next) => {
+exports.register = async (req, res, next) => {
   const { email, password, name, } = req.body;
   let user = null;
-  console.log('this is the auth route am i getting here', email, password, name);
+
   if(!email || !password || !name ) {
     return res.status(422).send({ error: 'Please provide email, name, and password'});
   }

@@ -1,13 +1,8 @@
 import { combineReducers } from 'redux';
 
-import auth from './auth';
-import players from './players';
-import trivia from './trivia';
-import game from './game';
+import trivia from 'reducers/trivia';
 
 export default combineReducers({
-  auth,
-  players,
-  trivia,
-  game,
+	trivia,
+	// apollo: client.reducer(),
 });

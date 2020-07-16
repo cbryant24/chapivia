@@ -1,66 +1,90 @@
 import React, { Fragment } from 'react';
-import { Div, FlexDiv, P, createLink } from '@cbryant24/styled-react';
+import { Div, FlexDiv, P, Box } from '@cbryant24/styled-react';
 import { useQuery } from '@apollo/react-hooks';
-import query from '../queries/Scores';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { DAILY_TRIVIA } from '../localState/Queries';
-
-import { useAuth } from '../hooks';
+import { useAuth, useRouter } from 'hooks';
+import { DAILY_TRIVIA } from 'localState/Queries';
+import query from 'queries/Scores';
 
 function TopMenu(props) {
-  const { data } = useQuery(DAILY_TRIVIA);
-  const { loading: scoresLoading, data: playerScores } = useQuery(query);
-  const { user, signout } = useAuth(),
-    StyledLink = createLink(Link);
+	const data = useSelector((state) => state.trivia);
+	const { loading: scoresLoading, data: playerScores } = useQuery(query);
+	const { user, signout } = useAuth();
+	const { pathname } = useRouter();
 
-  return (
-    <Div width={[1]} fontSizeModule={[2, 3]}>
-      <FlexDiv themeStyle="marginTopSmall" justifyContent="space-between">
-        <FlexDiv
-          flexDirection="column"
-          alignItems="center"
-          width={[3]}
-          textAlign="center"
-        >
-          <P color="red">Trivia Topic</P>
-          <P>{data ? data.localTrivia.category : ''}</P>
-        </FlexDiv>
-        <FlexDiv themeStyle={['flexColumnCenter']} width={[3]}>
-          <P color="red">HI-Score</P>
-          <P>
-            {scoresLoading || !playerScores
-              ? ''
-              : !scoresLoading && !playerScores.length
-              ? 0
-              : playerScores[0].score}
-          </P>
-        </FlexDiv>
-        {/* <FlexDiv
-          flexDirection="column"
-          alignItems="center"
-          width={[3]}
-        >
-          {user ? 
-            <Fragment>
-              <P color="red" onClick={signout}>Logout</P> 
-              <P>{user.name}</P>
-            </Fragment>
-            : <StyledLink 
-                animation={{
-                  continuous: {
-                    from: { color: 'white' },
-                    to: { color: 'red' }
-                  },
-                  duration_continuous: 1,
-                  animation_direction: 'alternate-reverse'
-                }} 
-              themeStyle="linkNormal" to="/signup">Click Here To Signup!
-            </StyledLink> }
-        </FlexDiv> */}
-      </FlexDiv>
-    </Div>
-  );
+	if (scoresLoading) return <div></div>;
+
+	function displayUserOptions() {
+		if (user) {
+			return (
+				<Fragment>
+					<P
+						className="logout-player"
+						color="red"
+						cursor="pointer"
+						onClick={signout}
+					>
+						Logout
+					</P>
+					<P className="player-name">{user.name}</P>
+				</Fragment>
+			);
+		}
+
+		return (
+			<Box
+				id="login-logout"
+				isA={Link}
+				animation={{
+					continuous: {
+						from: { color: 'white' },
+						to: { color: 'red' },
+					},
+					duration_continuous: 1,
+					animation_direction: 'alternate-reverse',
+				}}
+				themeStyle="linkNormal"
+				to={pathname === '/register' ? '/' : '/register'}
+			>
+				{`Click Here To ${pathname === '/register' ? 'Login!' : 'Register!'}`}
+			</Box>
+		);
+	}
+
+	return (
+		<Div width={[1]} fontSizeModule={[2, 3]}>
+			<FlexDiv
+				themeStyle="marginTopSmall"
+				justifyContent="space-between"
+				flexWrap={['wrap-reverse', 'nowrap']}
+			>
+				<FlexDiv
+					flexDirection="column"
+					alignItems="center"
+					width={[1, 3]}
+					textAlign="center"
+				>
+					<P color="red">Trivia Topic</P>
+					<P className="trivia-topic">
+						{ data ? data.dailyTrivia.category : ''}
+					</P>
+				</FlexDiv>
+				<FlexDiv themeStyle={['flexColumnCenter']} width={[2, 3]}>
+					<P color="red">HI-Score</P>
+					<P className="hi-score">
+						{!playerScores || !playerScores.scores.length
+							? 0
+							: `${playerScores.scores[0].score}0,000`}
+					</P>
+				</FlexDiv>
+				<FlexDiv flexDirection="column" alignItems="center" width={[2, 3]}>
+					{displayUserOptions()}
+				</FlexDiv>
+			</FlexDiv>
+		</Div>
+	);
 }
 
 export default TopMenu;

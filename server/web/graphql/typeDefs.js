@@ -16,7 +16,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): User!
     logout: User
-    signup(email: String!, password: String!, name: String!): User
+    register(email: String!, password: String!, name: String!): User
     guess(
       userId: Int!
       questionId: Int!
@@ -24,10 +24,6 @@ const typeDefs = gql`
       guess: String!
     ): UserQuestionChoice
   }
-
-  # type DailyTrivia {
-  #   question: Question
-  # }
 
   type Question {
     id: ID!
@@ -54,6 +50,7 @@ const typeDefs = gql`
     email: String!
     role: String
     score: Int
+    userQuestionChoices: [UserQuestionChoice]
   }
 
   type UserQuestionChoice {

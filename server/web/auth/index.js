@@ -1,8 +1,7 @@
-const { cookieSignup, cookieLogin, app } = require('./cookie_auth');
+const { cookieRegister, cookieLogin, app } = require("./cookie_auth");
 
-// debugger
 module.exports = {
   app,
-  cookieSignup,
+  cookieRegister,
   cookieLogin
 };

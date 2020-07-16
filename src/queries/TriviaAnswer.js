@@ -1,12 +1,12 @@
 import gql from 'graphql-tag';
 
 export default gql`
-{
-  triviaSolution {
-    correctChoice
-    question {
-      question
-    }
-  }
-}
+	{
+		triviaSolution {
+			correctChoice
+			question {
+				question
+			}
+		}
+	}
 `;

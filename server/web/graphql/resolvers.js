@@ -1,12 +1,11 @@
 module.exports = {
   Question: {
     triviaChoices: (parent, args, { questionChoice }, info) => {
-      return questionChoice.findOne({ where: { questionId: parent.id } })
+      return questionChoice.findOne({ where: { questionId: parent.id } });
     }
   },
   Query: {
-    dailyTrivia: async (parent, { id }, { question } , info) => {
-      // debugger
+    dailyTrivia: async (parent, { id }, { question }, info) => {
       const val = await question.dailyQuestion();
 
       return val;
@@ -37,16 +36,31 @@ module.exports = {
     login: (parent, { email, password }, { cookieLogin, req }, info) => {
       return cookieLogin({ email, password, req });
     },
-    signup: (parent, { email, name, password}, { cookieSignup, req }, info ) => {
-      return cookieSignup({ email, name, password, req });
+    register: (
+      parent,
+      { email, name, password },
+      { cookieRegister, req },
+      info
+    ) => {
+      return cookieRegister({ email, name, password, req });
     },
     logout: (parent, args, { req }, info) => {
       req.logout();
       const { user } = req;
       return user;
     },
-    guess: (parent, { userId, questionId, questionChoiceId, guess}, { req, userQuestionChoice }, info) => {
-      return userQuestionChoice.recordGuess({ userId, questionId, questionChoiceId, guess });
+    guess: (
+      parent,
+      { userId, questionId, questionChoiceId, guess },
+      { req, userQuestionChoice },
+      info
+    ) => {
+      return userQuestionChoice.recordGuess({
+        userId,
+        questionId,
+        questionChoiceId,
+        guess
+      });
     }
   }
-}
+};

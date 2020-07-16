@@ -1,10 +1,8 @@
-const { app } = require('../../initializer');
-const passport = require('passport');
-// debugger
+const { app } = require("../../initializer");
+const passport = require("passport");
 app.use(passport.initialize());
 app.use(passport.session());
-// debugger
 
 module.exports = {
   initializer: () => app
-}
+};

@@ -1,9 +1,9 @@
-const { signup, login } = require('./passport');
+const { register, login } = require('./passport');
 const { initializer } = require('./initializer');
 const app = initializer();
 
 module.exports = {
-  cookieSignup: signup,
+  cookieRegister: register,
   cookieLogin: login,
   app
 }

@@ -50,7 +50,8 @@ passport.use(
   )
 );
 
-async function signup({ name, email, password, req }) {
+async function register({ name, email, password, req }) {
+  debugger
   if (!email || !password || !name) {
     throw new Error('You must provide an email, password, and name.');
   }
@@ -62,12 +63,11 @@ async function signup({ name, email, password, req }) {
   }
 
   return User.findOne({ where: { email } })
-    .then(existingUser => {
+    .then(async existingUser => {
       if (existingUser) {
         throw new Error(`Email ${email} is already in use`);
       }
-
-      return User.create({ name, email, password });
+      return await User.create({ name, email, password });
     })
     .then(user => {
       return new Promise((resolve, reject) => {
@@ -103,4 +103,4 @@ function login({ email, password, req }) {
   });
 }
 
-module.exports = { signup, login };
+module.exports = { register, login };

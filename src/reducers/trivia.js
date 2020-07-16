@@ -1,18 +1,15 @@
-import { DISPLAY_TRIVIA } from '../actions/types';
+import types from 'actions/types';
 
-const INITIAL_STATE = {
-  triviaData: {
-    triviaQuestion: null,
-    triviaChoices: null,
-    correctAnswer: ''
-  },
+const DEFAULT_STATE = null;
+
+export default (state = DEFAULT_STATE, action) => {
+	switch (action.type) {
+	case types.SET_TRIVIA:
+		return {
+			...state,
+			...action.payload,
+			};
+	default:
+			return state;
+	}
 };
-
-export default (state=INITIAL_STATE, action) => {
-  switch(action.type) {
-    case DISPLAY_TRIVIA:
-      return { ...state, triviaData: action.payload};
-    default:
-      return state;
-  }
-}

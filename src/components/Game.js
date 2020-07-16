@@ -1,122 +1,202 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { useLastLocation } from 'react-router-last-location';
 
-import triviaQuery from '../queries/Trivia';
+/// TESTING REDUX \\\
+import { useDispatch } from 'react-redux';
+/// TESTING REDUX \\\
 
-import Modal from './Modal';
-import { Div } from '@cbryant24/styled-react';
+import { useRequireAuth } from 'hooks';
+import triviaQuery from 'queries/Trivia';
 
-import Winner from './Winner';
-import GuessList from './GuessList';
-import Scoreboard from './Scoreboard';
-import TriviaQuestion from './TriviaQuestion';
-import PrevMonthWinners from './PrevMonthWinners';
-import Carousel from './Carousel';
+import Modal from 'components/Modal';
+import { Div, H3 } from '@cbryant24/styled-react';
 
-import { useAuth, useWindowSize } from '../hooks';
+import Winner from 'components/Winner';
+import GuessList from 'components/GuessList';
+import Scoreboard from 'components/Scoreboard';
+import TriviaQuestion from 'components/TriviaQuestion';
+
+import { BorderPrimary, InfiniteCarousel } from './styledComponents';
 
 const Game = (props) => {
-  const { loading: triviaLoading, data: triviaData }  = useQuery(triviaQuery);
-  const [isOpen, setIsOpen]                           = useState(false);
-  const [modalMessage, setModalMessage]               = useState('');
-  const lastLocation                                  = useLastLocation() || {};
-  const client                                        = useApolloClient();
-  const { user, userLoading }                         = useAuth();
-  const { width: windowWidth }                        = useWindowSize();
+	const { loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
+	const [isOpen, setIsOpen] = useState(false);
+	const [modalMessage, setModalMessage] = useState('');
+	// const client = useApolloClient();
+	const { user } = useRequireAuth();
+	// const router = useRouter();
+	const dispatch = useDispatch();
+	// useEffect(() => {
+	// 	if (triviaLoading) return;
 
-  useEffect( () => {
-    if (triviaLoading) return;
+	// 	try {
+	// 		client.writeData({
+	// 			data: {
+	// 				localTrivia: {
+	// 					questionId: triviaData.dailyTrivia.id,
+	// 					question: triviaData.dailyTrivia.question,
+	// 					questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
+	// 					questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
+	// 					category: triviaData.dailyTrivia.category,
+	// 					__typename: 'dailyTrivia',
+	// 				},
+	// 			},
+	// 		});
+	// 	} catch (res) {
+	// 		//TODO: add proper error handling
+	// 		const errors =
+	// 			res.graphQLErrors && res.graphQLErrors.length
+	// 				? res.graphQLErrors
+	// 				: 'There was an error getting trivia data check back laater';
+	// 		toggleModal();
+	// 		setModalMessage(errors);
+	// 		return;
+	// 	}
+	// }, [triviaData]);
 
-    try {
-      client.writeData({
-        data: {
-          localTrivia: {
-            questionId: triviaData.dailyTrivia.id,
-            question: triviaData.dailyTrivia.question,
-            questionChoices: triviaData.dailyTrivia.triviaChoices.choices,
-            questionChoicesId: triviaData.dailyTrivia.triviaChoices.id,
-            category: triviaData.dailyTrivia.category,
-            __typename: 'dailyTrivia'
-          }
-        }
-      });
-    } catch(err) {
-      //TODO: add proper error handling
-      console.log('error getting trivia data', err);
-    }
-  }, [triviaData]);
+	if (triviaLoading || !user) return <div> </div>;
 
-  useEffect( () => {
+	dispatch({ type: 'SET_TRIVIA', payload: triviaData });
 
-    if (userLoading) return;
+	const toggleModal = (e) => setIsOpen(!isOpen);
 
-    if (!user) return props.history.push('/');
+	function displayGame() {
 
-    if (lastLocation.pathname !== '/signup') return;
+		// const carouselActiveStyle = {
+		// 	transform: 'translateX(5px)',
+		// 	height: '7em',
+		// 	width: '15em',
+		// 	opacity: '1',
+		// 	py: [1],
+		// 	textAlign: 'center',
+		// 	border: '3px solid red',
+		// 	m: '1em',
+		// 	display: 'flex',
+		// 	justifyContent: 'center',
+		// 	alignItems: 'center',
+		// 	cursor: 'pointer',
+		// };
 
-    toggleModal();
-    setModalMessage(`Welcome To Chapivia ${ user.name }!`);
-  }, [user]);
+		// const carouselInactiveStyle = {
+		// 	...carouselActiveStyle,
+		// 	pseudo: 'true',
+		// 	transform: 'translateX(0px)',
+		// 	opacity: '.5',
+		// 	transition: '1s all',
+		// 	hover: {
+		// 		transform: 'translateY(-5px)',
+		// 		visibility: 'visible',
+		// 		opacity: '1',
+		// 	},
+		// };
 
-  const toggleModal = e => setIsOpen(!isOpen);
+		// const sharedArrowContainerStyle = {
+		// 	position: 'absolute',
+		// 	opacity: '.25',
+		// 	cursor: 'pointer',
+		// 	width: '3em',
+		// 	height: '100%',
+		// 	backgroundColor: 'primary',
+		// 	padding: '5px 5px 6px 2px',
+		// 	zIndex: [2],
+		// };
 
-  function displayGame() {
+		// const leftArrowContainerStyle = {
+		// 	...sharedArrowContainerStyle,
+		// 	left: '0%',
+		// };
 
-    // if (windowWidth < 768) {
-    //   return (
-    //   <Carousel
-    //     type={["single", "infinite"]}
-    //     width="90vw"
-    //     transition="all 1s"
-    //     initialCarouselItemPos="translateX(0em)"
-    //     initialCarouselItemPosOut="translateX(100em)"
-    //     afterCarouselItemPosOut="translateX(-100em)"
-    //   >
-    //     {/* <TriviaQuestion /> */}
-    //     {/* <GuessList /> */}
-    //     <Scoreboard />
-    //     {/* <Winner /> */}
-    //   </Carousel>
-    //   )
-    // }
+		// const rightArrowContainerStyle = {
+		// 	...sharedArrowContainerStyle,
+		// 	right: '0%',
+		// };
 
-    return (
-      <Div
-      >
-        {/* <Div>
-          <GuessList/>
-        </Div>
-        <Div>
-          <TriviaQuestion/>
-        </Div>
-        <Div>
-          <Scoreboard />
-        </Div>
-        <Div>
-          <Winner/>
-        </Div> */}
-      </Div>
-    )
-  }
+		// const arrowStyle = {
+		// 	arrowColor: 'white',
+		// 	stroke: 'white',
+		// 	strokeWidth: '50',
+		// 	width: '3em',
+		// 	height: '3em',
+		// 	backgroundColor: 'primary',
+		// 	padding: '5px 5px 6px 2px',
+		// };
 
-  if (userLoading || triviaLoading) return <div></div>;
+		// console.log("AM I RENDERING THE GAME!!");
 
-  return (
-    <Div
-      m={4}
-      zIndex={2}
-      width="100%"
-      mt={["20%", "15%"]}
-    >
-      <Modal
-        isOpen={isOpen}
-        modalMessage={modalMessage}
-        toggleModal={toggleModal}
-      />
-      {displayGame()}
-    </Div>
-  )
+		// return <div></div>;
+		return (
+			<InfiniteCarousel
+				width="90vw"
+				bp={500}
+				carouselIndicator={true}
+				carouselStyle={{
+					themeStyle: 'carouselNormal',
+				}}
+				carouselIndicatorStyle={{
+					width: [4],
+					height: [1],
+					backgroundColor: 'black',
+					color: 'white',
+					margin: [1],
+				}}
+				carouselIndicatorActiveStyle={{ themeStyle: 'carouselActiveStyle' }}
+				carouselIndicatorInactiveStyle={{ themeStyle: 'carouselInactiveStyle' }}
+				leftArrowContainerStyle={{ themeStyle: 'leftArrowContainerStyle' }}
+				rightArrowContainerStyle={{ themeStyle: 'rightArrowContainerStyle' }}
+				arrowStyle={{ themeStyle: 'arrowStyle' }}
+				displayArrow={true}
+				fromScale=".95"
+				toScale="1"
+			>
+				<BorderPrimary
+					mx="3em"
+					height="100%"
+					carouselIndicatorName="Guess List"
+				>
+					<GuessList />
+				</BorderPrimary>
+				<BorderPrimary
+					mx="3em"
+					height="100%"
+					carouselIndicatorName="Trivia Question"
+				>
+					<TriviaQuestion />
+				</BorderPrimary>
+				<BorderPrimary
+					mx="3em"
+					height="100%"
+					carouselIndicatorName="Scoreboard"
+				>
+					<Scoreboard />
+				</BorderPrimary>
+				<BorderPrimary mx="3em" height="100%" carouselIndicatorName="Winners">
+					<Winner />
+				</BorderPrimary>
+			</InfiniteCarousel>
+		);
+	}
+
+	return (
+		<Div m={4} zIndex={2} width="100%">
+			<H3 color="primary" themeStyle={['marginSmallY']} textAlign="center">
+				Chapivia
+			</H3>
+			<Modal
+				isOpen={isOpen}
+				modalMessage={modalMessage}
+				toggleModal={toggleModal}
+			/>
+			{displayGame()}
+		</Div>
+	);
+};
+
+function mapStateToProps(state) {
+	return {
+		trivia: state.trivia,
+	};
 }
 
+// export default connect(mapStateToProps, { set_trivia })(Game);
 export default Game;

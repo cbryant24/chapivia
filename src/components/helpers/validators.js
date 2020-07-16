@@ -11,7 +11,6 @@
 //       signinForm  = ajv.compile(signinFormSchema),
 //       guessForm   = ajv.compile(guessFormSchema);
 
-
 // export const validate = {
 //   signupForm,
 //   signinForm,

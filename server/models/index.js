@@ -1,25 +1,23 @@
-const User = require('./user');
-const QuestionChoice = require('./questionChoice');
-const Question = require('./question');
-const UserQuestionChoice = require('./userQuestionChoice');
-const Nedb = require('./nedb');
+const sequelizeUser = require('./user');
+const sequelizeQuestionChoice = require('./questionChoice');
+const sequelizeQuestion = require('./question');
+const sequelizeUserQuestionChoice = require('./userQuestionChoice');
 
 const models = {
-  User,
-  QuestionChoice,
-  Question,
-  UserQuestionChoice
+  User: sequelizeUser,
+  QuestionChoice: sequelizeQuestionChoice,
+  Question: sequelizeQuestion,
+  UserQuestionChoice: sequelizeUserQuestionChoice
 }
 
-User.associate(models);
-UserQuestionChoice.associate(models);
-Question.associate(models);
-QuestionChoice.associate(models);
+sequelizeUser.associate(models);
+sequelizeQuestionChoice.associate(models);
+sequelizeQuestion.associate(models);
+sequelizeUserQuestionChoice.associate(models);
 
 module.exports = {
-  User,
-  QuestionChoice,
-  Question,
-  UserQuestionChoice,
-  Nedb
+  User: sequelizeUser,
+  QuestionChoice: sequelizeQuestionChoice,
+  Question: sequelizeQuestion,
+  UserQuestionChoice: sequelizeUserQuestionChoice,
 };
