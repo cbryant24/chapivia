@@ -1,3 +1,5 @@
 export default { 
 	SET_TRIVIA: 'SET_TRIVIA',
+	OPEN_MODAL: 'OPEN_MODAL',
+	CLOSE_MODAL: 'CLOSE_MODAL',
 };

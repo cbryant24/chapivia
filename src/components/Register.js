@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Form from '@cbryant24/styled-react-form';
 import { registerValidation } from 'components/validations';
 import { registerFormData } from 'components/formData';
-
+import { useSelector, useDispatch } from 'react-redux';
 import { Div, H1, P } from '@cbryant24/styled-react';
 import Modal from 'components/Modal';
 import { useAuth, useRouter } from 'hooks';
@@ -12,7 +12,7 @@ import { useAuth, useRouter } from 'hooks';
 function Register(props) {
 	const [isOpen, setIsOpen] = useState(false),
 		{ form, inputs, buttons } = registerFormData,
-		[modalMessage, setModalMessage] = useState(''),
+		dispatch = useDispatch(),
 		{ register, user, userLoading } = useAuth(),
 		router = useRouter();
 
@@ -23,12 +23,19 @@ function Register(props) {
 
 			redirectUser();
 		} catch (res) {
-			const errors =
-				res.graphQLErrors && res.graphQLErrors.length
-					? res.graphQLErrors
-					: 'There was an error registering please try again';
-			toggleModal();
-			setModalMessage(errors);
+			// const errors =
+			// 	res.graphQLErrors && res.graphQLErrors.length
+			// 		? res.graphQLErrors
+			// 		: 'There was an error registering please try again';
+			// toggleModal();
+			// setModalMessage(errors);
+
+			dispatch({
+				type: 'OPEN_MODAL',
+				payload: {
+					message: 'There was an error registering if error continues please try again later',
+				}
+			});
 
 			return;
 		}
@@ -36,26 +43,20 @@ function Register(props) {
 
 	useEffect(() => {
 		if (user) {
-			toggleModal();
-			setModalMessage(
-				`${user.name} is already logged in you'll be redirected to Chapivia`
-			);
+			dispatch({
+				type: 'OPEN_MODAL',
+				payload: {
+					afterClose: redirectUser,
+					message: `${user.name} is already logged in you'll be redirected to main game`
+				}
+			});
 		}
 	}, [user]);
-
-	const toggleModal = (e) => setIsOpen(!isOpen);
 
 	const redirectUser = () => router.push('/game');
 
 	if (userLoading || user)
-		return (
-			<Modal
-				isOpen={isOpen}
-				modalMessage={modalMessage}
-				toggleModal={toggleModal}
-				afterClose={redirectUser}
-			/>
-		);
+		return <div></div>;
 
 	return (
 		<Div fontSizeModule={[1, null, 2, null, 3]} margin="auto">
@@ -63,11 +64,6 @@ function Register(props) {
 				width={['50em']}
 				themeStyle={['flexCenterSpaceEvenlyColumn', 'marginTopLarge']}
 			>
-				<Modal
-					isOpen={isOpen}
-					modalMessage={modalMessage}
-					toggleModal={toggleModal}
-				/>
 				<H1 color="secondary">CHAPIVIA</H1>
 				<Form
 					onSubmit={registration}

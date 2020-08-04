@@ -4,6 +4,8 @@ import Form from '@cbryant24/styled-react-form';
 import { loginValidation } from 'components/validations';
 import { Div, H1, H3, P } from '@cbryant24/styled-react';
 import { loginFormData } from 'components/formData';
+import { useSelector, useDispatch } from 'react-redux';
+import types from 'actions/types';
 
 import Modal from './Modal';
 
@@ -14,9 +16,11 @@ function Login(props) {
 	const [isOpen, setIsOpen] = useState(false),
 		{ form, inputs, buttons } = loginFormData,
 		[signinOpen, setSigninOpen] = useState(false),
-		[modalMessage, setModalMessage] = useState(''),
 		{ login, user, userLoading } = useAuth(),
-		router = useRouter();
+		router = useRouter(),
+		dispatch = useDispatch();
+
+	const { modal } = useSelector((state) => state);
 
 	async function userLogin(event, formVals) {
 		event.preventDefault();
@@ -29,8 +33,15 @@ function Login(props) {
 				res.graphQLErrors && res.graphQLErrors.length
 					? res.graphQLErrors
 					: 'There was an error registering please try again';
-			toggleModal();
-			setModalMessage(errors);
+			// toggleModal();
+			// setModalMessage(errors);
+			dispatch({
+				type: 'OPEN_MODAL',
+				payload: {
+					message:
+						'There was an error logging in if error continues please try again later',
+				},
+			});
 			return;
 		}
 	}
@@ -69,9 +80,9 @@ function Login(props) {
 				themeStyle={['flexCenterSpaceEvenlyColumn', 'marginTopLarge']}
 			>
 				<Modal
-					isOpen={isOpen}
-					modalMessage={modalMessage}
-					toggleModal={toggleModal}
+					isOpen={modal.isOpen}
+					modalMessage={modal.message}
+					closeModal={() => dispatch({ type: 'CLOSE_MODAL' })}
 				/>
 				<H1
 					themeStyle={signinOpen ? ['marginBottomSmall'] : ['marginTopSmall']}

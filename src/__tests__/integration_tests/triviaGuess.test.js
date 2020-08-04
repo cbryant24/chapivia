@@ -3,25 +3,11 @@ import { MockedProvider } from '@apollo/react-testing';
 import { mount } from 'enzyme';
 import { MemoryRouter, Route } from 'react-router';
 import 'jest-styled-components';
-// REDUX
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from 'reducers/trivia';
-import { state } from 'utils/test/data';
 
-import { updateComponent } from 'utils/test/functions';
-import Root from 'Root';
+import Root from '__tests__/utils/Root';
 
-import {
-	LOGGED_OUT_USER,
-	LOGGED_IN_USER,
-	UNGUESSED_PLAYER,
-	UNGUESSED_PLAYERS,
-	LOGGED_IN_ADMIN,
-	EMPTY_UNGUESSED_PLAYERS,
-	INCORRECT_GUESS_MUTATION,
-	CORRECT_GUESS_MUTATION,
-} from 'utils/test/mocks';
+import { updateComponent, mocks, mockDispatchFn } from '__tests__/utils';
+
 import Game from 'components/Game';
 import Login from 'components/Login';
 import TriviaQuestion from 'components/TriviaQuestion';
@@ -42,30 +28,26 @@ const VALID_INCORRECT_GUESS = {
 		target: { value: '0', name: 'player' },
 	};
 
-const mockStore = createStore(reducer, state);
-
 describe('trivia guess', () => {
 	beforeEach(async () => {
 		component = mount(
 			<MockedProvider
-				mocks={[LOGGED_IN_USER, UNGUESSED_PLAYER]}
+				mocks={[mocks.LOGGED_IN_USER, mocks.UNGUESSED_PLAYER]}
 				addTypename={false}
 			>
-				<Provider store={mockStore}>
-					<MemoryRouter initialEntries={[{ pathname: '/game' }]}>
-						<Route
-							path="*"
-							render={({ history, location }) => {
-								appHistory = history;
-								appLocation = location;
-								return null;
-							}}
-						/>
-						<Root>
-							<TriviaQuestion />
-						</Root>
-					</MemoryRouter>
-				</Provider>
+				<MemoryRouter initialEntries={[{ pathname: '/game' }]}>
+					<Route
+						path="*"
+						render={({ history, location }) => {
+							appHistory = history;
+							appLocation = location;
+							return null;
+						}}
+					/>
+					<Root>
+						<TriviaQuestion />
+					</Root>
+				</MemoryRouter>
 			</MockedProvider>
 		);
 
@@ -127,14 +109,16 @@ describe('trivia guess', () => {
 			beforeEach(async () => {
 				component = mount(
 					<MockedProvider
-						mocks={[LOGGED_IN_USER, UNGUESSED_PLAYER, INCORRECT_GUESS_MUTATION]}
+						mocks={[
+							mocks.LOGGED_IN_USER,
+							mocks.UNGUESSED_PLAYER,
+							mocks.INCORRECT_GUESS_MUTATION,
+						]}
 						addTypename={false}
 					>
-						<Provider store={mockStore}>
-							<Root>
-								<TriviaQuestion />
-							</Root>
-						</Provider>
+						<Root>
+							<TriviaQuestion />
+						</Root>
 					</MockedProvider>
 				);
 
@@ -150,9 +134,13 @@ describe('trivia guess', () => {
 
 				await updateComponent(component);
 
-				expect(component.find('#chapivia-modal p').text()).toEqual(
-					'You\'re Answer is...WRONG! HAHA'
-				);
+				expect(mockDispatchFn).toHaveBeenCalledWith({
+					payload: {
+						afterClose: expect.any(Function),
+						message: 'You\'re Answer is...WRONG! HAHA',
+					},
+					type: 'OPEN_MODAL',
+				});
 			});
 		});
 
@@ -160,14 +148,16 @@ describe('trivia guess', () => {
 			beforeEach(async () => {
 				component = mount(
 					<MockedProvider
-						mocks={[LOGGED_IN_USER, UNGUESSED_PLAYER, CORRECT_GUESS_MUTATION]}
+						mocks={[
+							mocks.LOGGED_IN_USER,
+							mocks.UNGUESSED_PLAYER,
+							mocks.CORRECT_GUESS_MUTATION,
+						]}
 						addTypename={false}
 					>
-						<Provider store={mockStore}>
-							<Root>
-								<TriviaQuestion />
-							</Root>
-						</Provider>
+						<Root>
+							<TriviaQuestion />
+						</Root>
 					</MockedProvider>
 				);
 
@@ -183,9 +173,13 @@ describe('trivia guess', () => {
 
 				await updateComponent(component);
 
-				expect(component.find('#chapivia-modal p').text()).toEqual(
-					'You\'re Answer is...CORRECT!'
-				);
+				expect(mockDispatchFn).toHaveBeenCalledWith({
+					payload: {
+						afterClose: expect.any(Function),
+						message: "You're Answer is...CORRECT!",
+					},
+					type: 'OPEN_MODAL',
+				});
 			});
 		});
 
@@ -194,17 +188,15 @@ describe('trivia guess', () => {
 				component = mount(
 					<MockedProvider
 						mocks={[
-							LOGGED_IN_USER,
-							EMPTY_UNGUESSED_PLAYERS,
-							CORRECT_GUESS_MUTATION,
+							mocks.LOGGED_IN_USER,
+							mocks.EMPTY_UNGUESSED_PLAYERS,
+							mocks.CORRECT_GUESS_MUTATION,
 						]}
 						addTypename={false}
 					>
-						<Provider store={mockStore}>
-							<Root>
-								<TriviaQuestion />
-							</Root>
-						</Provider>
+						<Root>
+							<TriviaQuestion />
+						</Root>
 					</MockedProvider>
 				);
 
@@ -225,24 +217,22 @@ describe('trivia guess', () => {
 		beforeEach(async () => {
 			component = mount(
 				<MockedProvider
-					mocks={[LOGGED_IN_ADMIN, UNGUESSED_PLAYERS]}
+					mocks={[mocks.LOGGED_IN_ADMIN, mocks.UNGUESSED_PLAYERS]}
 					addTypename={false}
 				>
-					<Provider store={mockStore}>
-						<MemoryRouter initialEntries={[{ pathname: '/game' }]}>
-							<Route
-								path="*"
-								render={({ history, location }) => {
-									appHistory = history;
-									appLocation = location;
-									return null;
-								}}
-							/>
-							<Root>
-								<TriviaQuestion />
-							</Root>
-						</MemoryRouter>
-					</Provider>
+					<MemoryRouter initialEntries={[{ pathname: '/game' }]}>
+						<Route
+							path="*"
+							render={({ history, location }) => {
+								appHistory = history;
+								appLocation = location;
+								return null;
+							}}
+						/>
+						<Root>
+							<TriviaQuestion />
+						</Root>
+					</MemoryRouter>
 				</MockedProvider>
 			);
 			await updateComponent(component);
@@ -285,9 +275,12 @@ describe('trivia guess', () => {
 
 				await updateComponent(component);
 
-				expect(component.find('#chapivia-modal p').text()).toEqual(
-					'You must select a player!'
-				);
+				expect(mockDispatchFn).toHaveBeenCalledWith({
+					payload: {
+						message: 'You must select a player!',
+					},
+					type: 'OPEN_MODAL',
+				});
 			});
 		});
 
@@ -296,17 +289,15 @@ describe('trivia guess', () => {
 				component = mount(
 					<MockedProvider
 						mocks={[
-							LOGGED_IN_ADMIN,
-							UNGUESSED_PLAYERS,
-							INCORRECT_GUESS_MUTATION,
+							mocks.LOGGED_IN_ADMIN,
+							mocks.UNGUESSED_PLAYERS,
+							mocks.INCORRECT_GUESS_MUTATION,
 						]}
 						addTypename={false}
 					>
-						<Provider store={mockStore}>
-							<Root>
-								<TriviaQuestion />
-							</Root>
-						</Provider>
+						<Root>
+							<TriviaQuestion />
+						</Root>
 					</MockedProvider>
 				);
 
@@ -322,11 +313,15 @@ describe('trivia guess', () => {
 
 				component.find('form').simulate('submit');
 
-				await updateComponent(component, 20);
+				await updateComponent(component);
 
-				expect(component.find('#chapivia-modal p').text()).toEqual(
-					'You\'re Answer is...WRONG! HAHA'
-				);
+				expect(mockDispatchFn).toHaveBeenCalledWith({
+					payload: {
+						afterClose: expect.any(Function),
+						message: 'You\'re Answer is...WRONG! HAHA',
+					},
+					type: 'OPEN_MODAL',
+				});
 			});
 		});
 
@@ -334,14 +329,16 @@ describe('trivia guess', () => {
 			beforeEach(async () => {
 				component = mount(
 					<MockedProvider
-						mocks={[LOGGED_IN_ADMIN, UNGUESSED_PLAYERS, CORRECT_GUESS_MUTATION]}
+						mocks={[
+							mocks.LOGGED_IN_ADMIN,
+							mocks.UNGUESSED_PLAYERS,
+							mocks.CORRECT_GUESS_MUTATION,
+						]}
 						addTypename={false}
 					>
-						<Provider store={mockStore}>
-							<Root>
-								<TriviaQuestion />
-							</Root>
-						</Provider>
+						<Root>
+							<TriviaQuestion />
+						</Root>
 					</MockedProvider>
 				);
 
@@ -359,9 +356,13 @@ describe('trivia guess', () => {
 
 				await updateComponent(component);
 
-				expect(component.find('#chapivia-modal p').text()).toEqual(
-					'You\'re Answer is...CORRECT!'
-				);
+				expect(mockDispatchFn).toHaveBeenCalledWith({
+					payload: {
+						afterClose: expect.any(Function),
+						message: 'You\'re Answer is...CORRECT!',
+					},
+					type: 'OPEN_MODAL',
+				});
 			});
 		});
 	});
@@ -370,32 +371,30 @@ describe('trivia guess', () => {
 		beforeEach(async () => {
 			component = mount(
 				<MockedProvider
-					mocks={[LOGGED_OUT_USER, EMPTY_UNGUESSED_PLAYERS]}
+					mocks={[mocks.LOGGED_OUT_USER, mocks.EMPTY_UNGUESSED_PLAYERS]}
 					addTypename={false}
 				>
-					<Provider store={mockStore}>
-						<MemoryRouter initialEntries={['/game']}>
-							<Root>
-								<Route
-									path="/"
-									render={({ history, location }) => {
-										appHistory = history;
-										appLocation = location;
+					<MemoryRouter initialEntries={['/game']}>
+						<Root>
+							<Route
+								path="/"
+								render={({ history, location }) => {
+									appHistory = history;
+									appLocation = location;
 
-										return <Login />;
-									}}
-								/>
-								<Route
-									path="/game"
-									render={({ history, location }) => {
-										appHistory = history;
-										appLocation = location;
-										return <Game />;
-									}}
-								/>
-							</Root>
-						</MemoryRouter>
-					</Provider>
+									return <Login />;
+								}}
+							/>
+							<Route
+								path="/game"
+								render={({ history, location }) => {
+									appHistory = history;
+									appLocation = location;
+									return <Game />;
+								}}
+							/>
+						</Root>
+					</MemoryRouter>
 				</MockedProvider>
 			);
 

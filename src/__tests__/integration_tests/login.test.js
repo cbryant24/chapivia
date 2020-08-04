@@ -4,17 +4,9 @@ import { mount } from 'enzyme';
 import { MemoryRouter, Route } from 'react-router';
 import 'jest-styled-components';
 
-import Root from 'Root';
+import Root from '__tests__/utils/Root';
 import Login from 'components/Login';
-import Game from 'components/Game';
-
-import { updateComponent } from 'utils/test/functions';
-import {
-	LOGGED_OUT_USER,
-	LOGIN_MUTATION,
-	LOGGED_IN_USER,
-	LOGIN_ERROR,
-} from 'utils/test/mocks';
+import { updateComponent, mocks, mockDispatchFn } from '__tests__/utils';
 
 let component, appHistory, appLocation;
 
@@ -32,7 +24,11 @@ describe('login', () => {
 	beforeEach(async () => {
 		component = mount(
 			<MockedProvider
-				mocks={[LOGGED_OUT_USER, LOGIN_MUTATION, LOGGED_IN_USER]}
+				mocks={[
+					mocks.LOGGED_OUT_USER,
+					mocks.LOGIN_MUTATION,
+					mocks.LOGGED_IN_USER,
+				]}
 				addTypename={false}
 			>
 				<MemoryRouter initialEntries={[{ pathname: '/' }]}>
@@ -113,7 +109,11 @@ describe('login', () => {
 		beforeEach(async () => {
 			component = mount(
 				<MockedProvider
-					mocks={[LOGGED_OUT_USER, LOGIN_MUTATION, LOGGED_IN_USER]}
+					mocks={[
+						mocks.LOGGED_OUT_USER,
+						mocks.LOGIN_MUTATION,
+						mocks.LOGGED_IN_USER,
+					]}
 					addTypename={false}
 				>
 					<MemoryRouter initialEntries={['/']}>
@@ -239,7 +239,7 @@ describe('login', () => {
 			beforeEach(async () => {
 				component = mount(
 					<MockedProvider
-						mocks={[LOGGED_OUT_USER, LOGIN_ERROR]}
+						mocks={[mocks.LOGGED_OUT_USER, mocks.LOGIN_ERROR]}
 						addTypename={false}
 					>
 						<Root>
@@ -262,9 +262,12 @@ describe('login', () => {
 
 				await updateComponent(component);
 
-				expect(component.find('#chapivia-modal ul li').text()).toEqual(
-					'There was an error logging in'
-				);
+				expect(mockDispatchFn).toHaveBeenCalledWith({
+					payload: {
+						message: 'There was an error logging in if error continues please try again later',
+					},
+					type: 'OPEN_MODAL',
+				});
 			});
 		});
 	});

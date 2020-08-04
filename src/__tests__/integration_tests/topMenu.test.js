@@ -11,10 +11,10 @@ import reducer from 'reducers/trivia';
 import { state } from 'utils/test/data';
 
 import {
-	LOGGED_OUT_USER,
-	SCORES_MOCK,
-	LOGGED_IN_USER,
-	LOGOUT_MUTATION,
+	mocks.LOGGED_OUT_USER,
+	mocks.SCORES_MOCK,
+	mocks.LOGGED_IN_USER,
+	mocks.LOGOUT_MUTATION,
 } from 'utils/test/mocks';
 import { updateComponent } from 'utils/test/functions';
 
@@ -31,7 +31,7 @@ describe('top menu', () => {
 			beforeEach(async () => {
 				component = mount(
 					<MockedProvider
-						mocks={[LOGGED_OUT_USER, SCORES_MOCK]}
+						mocks={[mocks.LOGGED_OUT_USER, mocks.SCORES_MOCK]}
 						addTypename={false}
 					>
 						<Provider store={emptyMockStore}>
@@ -64,7 +64,7 @@ describe('top menu', () => {
 			beforeEach(async () => {
 				component = mount(
 					<MockedProvider
-						mocks={[LOGGED_OUT_USER, SCORES_MOCK]}
+						mocks={[mocks.LOGGED_OUT_USER, mocks.SCORES_MOCK]}
 						addTypename={false}
 					>
 						<Provider store={emptyMockStore}>
@@ -100,10 +100,10 @@ describe('top menu', () => {
 			component = mount(
 				<MockedProvider
 					mocks={[
-						LOGGED_IN_USER,
-						SCORES_MOCK,
-						LOGOUT_MUTATION,
-						LOGGED_OUT_USER,
+						mocks.LOGGED_IN_USER,
+						mocks.SCORES_MOCK,
+						mocks.LOGOUT_MUTATION,
+						mocks.LOGGED_OUT_USER,
 					]}
 					addTypename={false}
 				>

@@ -1,19 +1,12 @@
 //TODO: TEST TO MAK SURE USER NAME APPEARS IN GUESS FROM AFTER SIGNUP
 import React from 'react';
 import { MockedProvider } from '@apollo/react-testing';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { MemoryRouter, Route } from 'react-router';
 
-import Root from 'Root';
+import Root from '__tests__/utils/Root';
 import Register from 'components/Register';
-
-import { updateComponent } from 'utils/test/functions';
-import {
-	LOGGED_OUT_USER,
-	LOGGED_IN_USER,
-	REGISTER_MUTATION,
-	REGISTER_ERROR,
-} from 'utils/test/mocks';
+import { updateComponent, mocks, mockDispatchFn } from '__tests__/utils';
 
 let component, appHistory, appLocation;
 
@@ -39,7 +32,11 @@ describe('register', async () => {
 	beforeEach(async () => {
 		component = mount(
 			<MockedProvider
-				mocks={[LOGGED_OUT_USER, LOGGED_IN_USER, REGISTER_MUTATION]}
+				mocks={[
+					mocks.LOGGED_OUT_USER,
+					mocks.LOGGED_IN_USER,
+					mocks.REGISTER_MUTATION,
+				]}
 				addTypename={false}
 			>
 				<MemoryRouter initialEntries={[{ pathname: '/register' }]}>
@@ -60,6 +57,42 @@ describe('register', async () => {
 
 		// SEE THIS GITHUB ISSUE FOR EXPLANATION https://github.com/enzymejs/enzyme/issues/2073#issuecomment-531488981
 		await updateComponent(component);
+	});
+
+	describe('logged in', async () => {
+		beforeEach(async () => {
+			component = mount(
+				<MockedProvider mocks={[mocks.LOGGED_IN_USER]} addTypename={false}>
+					<MemoryRouter initialEntries={[{ pathname: '/register' }]}>
+						<Route
+							path="*"
+							render={({ history, location }) => {
+								appHistory = history;
+								appLocation = location;
+								return null;
+							}}
+						/>
+						<Root>
+							<Register />
+						</Root>
+					</MemoryRouter>
+				</MockedProvider>
+			);
+			await updateComponent(component);
+		});
+
+		it('redirects the user to game from registration', () => {
+			// expect(component.debug()).toEqual(true);
+
+			expect(mockDispatchFn).toHaveBeenCalledWith({
+				payload: {
+					afterClose: expect.any(Function),
+					message:
+						'Kanye is already logged in you\'ll be redirected to main game',
+				},
+				type: 'OPEN_MODAL',
+			});
+		});
 	});
 
 	describe('form fields', () => {
@@ -342,7 +375,7 @@ describe('register', async () => {
 			beforeEach(async () => {
 				component = mount(
 					<MockedProvider
-						mocks={[LOGGED_OUT_USER, REGISTER_ERROR]}
+						mocks={[mocks.LOGGED_OUT_USER, mocks.REGISTER_ERROR]}
 						addTypename={false}
 					>
 						<MemoryRouter initialEntries={[{ pathname: '/register' }]}>
@@ -381,9 +414,17 @@ describe('register', async () => {
 
 				await updateComponent(component);
 
-				expect(component.find('#chapivia-modal ul li').text()).toEqual(
-					'There was an error registering'
-				);
+				// expect(component.find('#chapivia-modal ul li').text()).toEqual(
+				// 	'There was an error registering'
+				// );
+
+				expect(mockDispatchFn).toHaveBeenCalledWith({
+					payload: {
+						message:
+							'There was an error registering if error continues please try again later',
+					},
+					type: 'OPEN_MODAL',
+				});
 			});
 		});
 	});

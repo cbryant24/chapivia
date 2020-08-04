@@ -9,7 +9,7 @@ import graphqlUnguessedPlayers from 'queries/UnguessedPlayers';
 import graphqlGuessListQuery from 'queries/GuessList';
 import graphqlGuess from 'mutations/Guess';
 import { DAILY_TRIVIA } from 'localState/Queries';
-import { user, triviaData } from 'utils/test/data';
+import { user } from '__tests__/utils/data';
 
 let refetched = false;
 

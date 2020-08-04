@@ -1,38 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useSelector, useDispatch } from 'react-redux';
 
 import mutation from 'mutations/Guess';
 import UnguessedPlayers from 'queries/UnguessedPlayers';
 import GuessList from 'queries/GuessList';
 import Scores from 'queries/Scores';
 
-import { useSelector } from 'react-redux';
-
 import Form from '@cbryant24/styled-react-form';
 import { guessValidation } from 'components/validations';
 
-import Modal from 'components/Modal';
+// import Modal from 'components/Modal';
 import { usePrev } from 'hooks';
+// import { openModalAction } from 'actions';
+import types from 'actions/types';
 
 function GuessForm({ inputs, buttons, form, cb, afterModalClose, guessType }) {
 	// const {
 	// 	data: { localTrivia },
 	// } = useQuery(DAILY_TRIVIA);
-	const { dailyTrivia } = useSelector((state) => state.trivia);
-	const [isOpen, setIsOpen] = useState(false);
-	const [modalMessage, setModalMessage] = useState('');
-	const prevModalOpen = usePrev(isOpen);
+	const {
+		trivia: { dailyTrivia },
+		modal,
+	} = useSelector((state) => state);
+	// const [isOpen, setIsOpen] = useState(false);
+	// const [modalMessage, setModalMessage] = useState('');
+	const prevModalOpen = usePrev(modal.isOpen);
 	const { refetch: unguessedPlayersRefetch } = useQuery(UnguessedPlayers);
 	const { refetch: scoresRefetch } = useQuery(Scores);
 	const { refetch: guessListRefetch } = useQuery(GuessList);
 	const [guess] = useMutation(mutation);
+	const dispatch = useDispatch();
 
 	async function recordGuess(event, vals) {
 		if (isNaN(vals.player) || vals.player === '') {
-			toggleModal();
-			setModalMessage('You must select a player!');
+			dispatch({
+				type: types.OPEN_MODAL,
+				payload: {
+					message: 'You must select a player!',
+				}
+			});
 			return;
 		}
+
 		try {
 			const {
 				data: { guess: userGuess },
@@ -48,25 +58,33 @@ function GuessForm({ inputs, buttons, form, cb, afterModalClose, guessType }) {
 				},
 			});
 
-			toggleModal();
-			setModalMessage(
-				`You're Answer is...${userGuess.isCorrect ? 'CORRECT!' : 'WRONG! HAHA'}`
-			);
+			dispatch({
+				type: types.OPEN_MODAL,
+				payload: {
+					message: `You're Answer is...${
+						userGuess.isCorrect ? 'CORRECT!' : 'WRONG! HAHA'
+					}`,
+					afterClose: refetchData,
+				},
+			});
 		} catch (err) {
 			//TODO add error handling to guess mutation
-			debugger;
-			toggleModal();
-			setModalMessage(`There was an error! Try Again! ${err}`);
+			dispatch({
+				type: types.OPEN_MODAL,
+				payload: {
+					message: `There was an error! If Error continues please contact admin`,
+				},
+			});
 		}
 	}
 
 	useEffect(() => {
-		if (prevModalOpen === true && isOpen === false) {
+		if (prevModalOpen === true && modal.isOpen === false) {
 			(() => {
 				cb && cb();
 			})();
 		}
-	}, [isOpen]);
+	}, [modal.isOpen]);
 
 	async function refetchData() {
 		switch (guessType) {
@@ -89,16 +107,8 @@ function GuessForm({ inputs, buttons, form, cb, afterModalClose, guessType }) {
 		afterModalClose && afterModalClose();
 	}
 
-	const toggleModal = (e) => setIsOpen(!isOpen);
-
 	return (
 		<React.Fragment>
-			<Modal
-				isOpen={isOpen}
-				modalMessage={modalMessage}
-				toggleModal={toggleModal}
-				afterClose={refetchData}
-			/>
 			<Form
 				form={form}
 				onSubmit={recordGuess}
