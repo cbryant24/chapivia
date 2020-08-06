@@ -4,24 +4,8 @@ import { mount } from 'enzyme';
 import { MockedProvider } from '@apollo/react-testing';
 import { MemoryRouter } from 'react-router';
 
-// REDUX
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from 'reducers/trivia';
-import { state } from 'utils/test/data';
-
-import {
-	mocks.LOGGED_OUT_USER,
-	mocks.SCORES_MOCK,
-	mocks.LOGGED_IN_USER,
-	mocks.LOGOUT_MUTATION,
-} from 'utils/test/mocks';
-import { updateComponent } from 'utils/test/functions';
-
-import Root from 'Root';
-
-const emptyMockStore = createStore(reducer, {});
-const mockStore = createStore(reducer, state);
+import { updateComponent, mocks } from '__tests__/utils';
+import Root from '__tests__/utils/Root';
 
 describe('top menu', () => {
 	let component;
@@ -34,13 +18,11 @@ describe('top menu', () => {
 						mocks={[mocks.LOGGED_OUT_USER, mocks.SCORES_MOCK]}
 						addTypename={false}
 					>
-						<Provider store={emptyMockStore}>
-							<MemoryRouter initialEntries={['/']}>
-								<Root>
-									<TopMenu />
-								</Root>
-							</MemoryRouter>
-						</Provider>
+						<MemoryRouter initialEntries={['/']}>
+							<Root>
+								<TopMenu />
+							</Root>
+						</MemoryRouter>
 					</MockedProvider>
 				);
 
@@ -49,10 +31,6 @@ describe('top menu', () => {
 
 			it('displays a link to signup', () => {
 				expect(component.find('a[href="/register"]').length).toEqual(1);
-			});
-
-			it('displays a blank trivia category', () => {
-				expect(component.find('p.trivia-topic').text()).toEqual('');
 			});
 
 			it('displays a high score', () => {
@@ -67,13 +45,11 @@ describe('top menu', () => {
 						mocks={[mocks.LOGGED_OUT_USER, mocks.SCORES_MOCK]}
 						addTypename={false}
 					>
-						<Provider store={emptyMockStore}>
-							<MemoryRouter initialEntries={[{ pathname: '/register' }]}>
-								<Root>
-									<TopMenu />
-								</Root>
-							</MemoryRouter>
-						</Provider>
+						<MemoryRouter initialEntries={[{ pathname: '/register' }]}>
+							<Root>
+								<TopMenu />
+							</Root>
+						</MemoryRouter>
 					</MockedProvider>
 				);
 
@@ -82,10 +58,6 @@ describe('top menu', () => {
 
 			it('displays link to login', () => {
 				expect(component.find('a[href="/"]').length).toEqual(1);
-			});
-
-			it('displays a blank trivia category', () => {
-				expect(component.find('p.trivia-topic').text()).toEqual('');
 			});
 
 			it('displays a high score', () => {
@@ -107,13 +79,11 @@ describe('top menu', () => {
 					]}
 					addTypename={false}
 				>
-					<Provider store={mockStore}>
-						<MemoryRouter initialEntries={['/game']}>
-							<Root>
-								<TopMenu />
-							</Root>
-						</MemoryRouter>
-					</Provider>
+					<MemoryRouter initialEntries={['/game']}>
+						<Root>
+							<TopMenu />
+						</Root>
+					</MemoryRouter>
 				</MockedProvider>
 			);
 

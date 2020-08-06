@@ -27,13 +27,13 @@ export const triviaState = {
 			questionId: 0,
 			question:
 				'Which city did Anger berate for ruining pizza in &quot;Inside Out&quot;?',
+			category: 'Entertainment: Cartoon & Animations',
 			triviaChoices: {
 				id: 0,
 				choices: ['Minnesota', 'Washington', 'California', 'San Francisco'],
-				category: 'Entertainment: Cartoon & Animations',
 			},
 		},
-	}
+	},
 };
 
 export const modalState = {

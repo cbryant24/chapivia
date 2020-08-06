@@ -82,8 +82,6 @@ describe('register', async () => {
 		});
 
 		it('redirects the user to game from registration', () => {
-			// expect(component.debug()).toEqual(true);
-
 			expect(mockDispatchFn).toHaveBeenCalledWith({
 				payload: {
 					afterClose: expect.any(Function),
