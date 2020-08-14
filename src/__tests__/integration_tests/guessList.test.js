@@ -7,8 +7,8 @@ import 'jest-styled-components';
 
 import { updateComponent, mocks, mockDispatchFn } from '__tests__/utils';
 import GuessList from 'components/GuessList';
-import Modal from 'components/Modal';
 import Root from '__tests__/utils/Root';
+import Modal from 'components/Modal';
 
 let component, appHistory, appLocation;
 
@@ -20,12 +20,16 @@ const VALID_INCORRECT_GUESS = {
 	},
 	INVALID_GUESS = {
 		target: { value: 'K', name: 'guess' },
-	},
-	SELECT_VALID_PLAYER = {
-		target: { value: '0', name: 'player' },
 	};
 
 describe('trivia guesses', () => {
+	function init(options) {
+		const { mocks: initMocks } = options,
+			testMocks = [];
+
+		if (initMocks) testMocks.map((mock) => mocks[mock]);
+	};
+	
 	describe('trivia guesses', () => {
 		beforeEach(async () => {
 			component = mount(
@@ -42,16 +46,18 @@ describe('trivia guesses', () => {
 			await updateComponent(component);
 		});
 
-		it('displays all player guesses', () => {
-			expect(
-				component.find('#chapivia-player-guesslist li').length
-			).toBeGreaterThanOrEqual(3);
-		});
+		describe('non-admin', () => {
+			it('displays all player guesses', () => {
+				expect(
+					component.find('#chapivia-player-guesslist li').length
+				).toBeGreaterThanOrEqual(3);
+			});
 
-		it('does not allow a non admin to change guesses', () => {
-			expect(
-				component.find('#chapivia-player-guesslist li button').length
-			).toEqual(0);
+			it('does not allow a non admin to change guesses', () => {
+				expect(
+					component.find('#chapivia-player-guesslist li button').length
+				).toEqual(0);
+			});
 		});
 
 		describe('admin', () => {
@@ -81,22 +87,46 @@ describe('trivia guesses', () => {
 			afterEach(() => component.unmount());
 
 			describe('form', () => {
-				it('allows admins to change player guesses', async () => {
+				// expect(component.debug()).toEqual(true);
+				it('displays the admin view of guesses', () => {
 					expect(
 						component.find('#chapivia-player-guesslist li button').length
 					).toBeGreaterThanOrEqual(3);
+				});
+			});
 
+			describe('change users guess', () => {
+				beforeEach(async () => {
 					component
 						.find('#chapivia-player-guesslist li button')
 						.at(0)
 						.simulate('click');
 
+					await updateComponent(component);
+				});
+
+				it('displays a form to change a users guess', async () => {
 					expect(component.find('form').length).toEqual(1);
 
 					expect(component.find('select option').length).toEqual(1);
 
 					expect(component.find('select option').text()).toEqual('Kanye');
+				});
 
+				it('displays an error when using an invalid character', () => {
+
+					component.find('input').simulate('change', INVALID_GUESS);
+
+					expect(
+						component.find('.styled-react-errors__guess li').length
+					).toEqual(1);
+
+					expect(
+						component.find('.styled-react-errors__guess li p').text()
+					).toEqual('Guess should only be A, B, C, D');
+				});
+
+				it('allows admins to change player guess to correct guess', async () => {
 					component.find('input').simulate('change', VALID_CORRECT_GUESS);
 
 					component.find('form').simulate('submit');
@@ -107,6 +137,22 @@ describe('trivia guesses', () => {
 						payload: {
 							afterClose: expect.any(Function),
 							message: "You're Answer is...CORRECT!",
+						},
+						type: 'OPEN_MODAL',
+					});
+				});
+
+				it('allows admins to change player guess to incorrect guess', async () => {
+					component.find('input').simulate('change', VALID_INCORRECT_GUESS);
+
+					component.find('form').simulate('submit');
+
+					await updateComponent(component);
+
+					expect(mockDispatchFn).toHaveBeenCalledWith({
+						payload: {
+							afterClose: expect.any(Function),
+							message: "You're Answer is...WRONG! HAHA!",
 						},
 						type: 'OPEN_MODAL',
 					});

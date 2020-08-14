@@ -29,6 +29,13 @@ const VALID_INCORRECT_GUESS = {
 	};
 
 describe('trivia guess', () => {
+	function init(options) {
+		const { mocks: initMocks } = options,
+			testMocks = [];
+
+		if (initMocks) testMocks.map((mock) => mocks[mock]);
+	};
+	
 	beforeEach(async () => {
 		component = mount(
 			<MockedProvider
