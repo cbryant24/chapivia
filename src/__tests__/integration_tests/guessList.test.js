@@ -8,7 +8,6 @@ import 'jest-styled-components';
 import { updateComponent, mocks, mockDispatchFn } from '__tests__/utils';
 import GuessList from 'components/GuessList';
 import Root from '__tests__/utils/Root';
-import Modal from 'components/Modal';
 
 let component, appHistory, appLocation;
 
@@ -22,41 +21,42 @@ const VALID_INCORRECT_GUESS = {
 		target: { value: 'K', name: 'guess' },
 	};
 
-describe('trivia guesses', () => {
-	async function init(options) {
-		const { mocks: componentMocks, state: componentState } = options,
-			testMocks = [];
-		let state = null;
-		if (componentMocks) {
-			componentMocks.map((mock) => testMocks.push(mocks[mock]));
-		}
-
-		if (componentState) {
-			for (const stateProp in componentState) {
-				if (componentState.hasOwnProperty(stateProp)) {
-					// const element = componentState[state];
-					state = {
-						...state,
-						stateProp,
-					};
-				}
-			}
-		}
-
-		component = mount(
-			<MockedProvider mocks={testMocks} addTypename={false}>
-				<Root state={state}>
-					<GuessList />
-				</Root>
-			</MockedProvider>
-		);
+async function initComponent(options) {
+	const { mocks: componentMocks, state: componentState } = options,
+		testMocks = [];
+	let state = null;
+	if (componentMocks) {
+		componentMocks.map((mock) => testMocks.push(mocks[mock]));
 	}
 
+	if (componentState) {
+		for (const stateProp in componentState) {
+			if (componentState.hasOwnProperty(stateProp)) {
+				state = {
+					...state,
+					stateProp,
+				};
+			}
+		}
+	}
+
+	component = mount(
+		<MockedProvider mocks={testMocks} addTypename={false}>
+			<Root state={state}>
+				<GuessList />
+			</Root>
+		</MockedProvider>
+	);
+}
+
+describe('trivia guesses', () => {
 	describe('trivia guesses', () => {
 		beforeEach(async () => {
-			init({ mocks: ['LOGGED_IN_USER', 'GUESS_LIST'] });
+			initComponent({ mocks: ['LOGGED_IN_USER', 'GUESS_LIST'] });
 			await updateComponent(component);
 		});
+
+		afterEach(() => component.unmount);
 
 		describe('non-admin', () => {
 			it('displays all player guesses', () => {
@@ -74,25 +74,15 @@ describe('trivia guesses', () => {
 
 		describe('admin', () => {
 			beforeEach(async () => {
-				init({ mocks: ['LOGGED_IN_ADMIN', 'GUESS_LIST', 'CORRECT_GUESS_MUTATION', 'SCORES_MOCK', 'GUESS_LIST']})
-				// component = mount(
-				// 	<MockedProvider
-				// 		mocks={[
-				// 			mocks.LOGGED_IN_ADMIN,
-				// 			mocks.GUESS_LIST,
-				// 			mocks.CORRECT_GUESS_MUTATION,
-				// 			mocks.SCORES_MOCK,
-				// 			mocks.SCORES_MOCK,
-				// 			mocks.GUESS_LIST,
-				// 		]}
-				// 		addTypename={false}
-				// 	>
-				// 		<Root>
-				// 			<GuessList />
-				// 			<Modal />
-				// 		</Root>
-				// 	</MockedProvider>
-				// );
+				initComponent({
+					mocks: [
+						'LOGGED_IN_ADMIN',
+						'GUESS_LIST',
+						'CORRECT_GUESS_MUTATION',
+						'SCORES_MOCK',
+						'GUESS_LIST',
+					],
+				});
 
 				await updateComponent(component);
 			});
@@ -100,7 +90,6 @@ describe('trivia guesses', () => {
 			afterEach(() => component.unmount());
 
 			describe('form', () => {
-				// expect(component.debug()).toEqual(true);
 				it('displays the admin view of guesses', () => {
 					expect(
 						component.find('#chapivia-player-guesslist li button').length
@@ -117,6 +106,8 @@ describe('trivia guesses', () => {
 
 					await updateComponent(component);
 				});
+
+				afterEach(() => component.unmount);
 
 				it('displays a form to change a users guess', async () => {
 					expect(component.find('form').length).toEqual(1);
@@ -154,21 +145,42 @@ describe('trivia guesses', () => {
 					});
 				});
 
-		// 		it('allows admins to change player guess to incorrect guess', async () => {
-		// 			component.find('input').simulate('change', VALID_INCORRECT_GUESS);
+				describe('errors', () => {
+					beforeEach(async () => {
+						initComponent({
+							mocks: [
+								'LOGGED_IN_ADMIN',
+								'GUESS_LIST',
+								'INCORRECT_GUESS_MUTATION',
+								'SCORES_MOCK',
+								'GUESS_LIST',
+							],
+						});
+						await updateComponent(component);
+					});
 
-		// 			component.find('form').simulate('submit');
+					it('allows admins to change player guess to incorrect guess', async () => {
+						component
+							.find('#chapivia-player-guesslist li button')
+							.at(0)
+							.simulate('click');
 
-		// 			await updateComponent(component);
+						await updateComponent(component);
+						component.find('input').simulate('change', VALID_INCORRECT_GUESS);
 
-		// 			expect(mockDispatchFn).toHaveBeenCalledWith({
-		// 				payload: {
-		// 					afterClose: expect.any(Function),
-		// 					message: "You're Answer is...WRONG! HAHA!",
-		// 				},
-		// 				type: 'OPEN_MODAL',
-		// 			});
-		// 		});
+						component.find('form').simulate('submit');
+
+						await updateComponent(component);
+
+						expect(mockDispatchFn).toHaveBeenCalledWith({
+							payload: {
+								afterClose: expect.any(Function),
+								message: "You're Answer is...WRONG! HAHA",
+							},
+							type: 'OPEN_MODAL',
+						});
+					});
+				});
 			});
 		});
 	});
