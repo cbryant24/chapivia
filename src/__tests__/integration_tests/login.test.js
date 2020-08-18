@@ -20,24 +20,49 @@ const EMAIL_INPUT = 'input[name="email"]',
 		target: { value: 'abc12345', name: 'password' },
 	};
 
+function initComponent(options) {
+	const { mocks: componentMocks, state: componentState } = options,
+		testMocks = [];
+	let state = null;
+	if (componentMocks) {
+		componentMocks.map((mock) => testMocks.push(mocks[mock]));
+	}
+
+	if (componentState) {
+		for (const stateProp in componentState) {
+			if (componentState.hasOwnProperty(stateProp)) {
+				state = {
+					...state,
+					stateProp,
+				};
+			}
+		}
+	}
+
+	component = mount(
+		<MockedProvider mocks={testMocks} addTypename={false}>
+			<MemoryRouter initialEntries={[{ pathname: ['/'] }]}>
+				<Route
+					path="*"
+					render={({ history, location }) => {
+						appHistory = history;
+						appLocation = location;
+						return null;
+					}}
+				/>
+				<Root state={state}>
+					<Login />
+				</Root>
+			</MemoryRouter>
+		</MockedProvider>
+	);
+}
+
 describe('login', () => {
 	beforeEach(async () => {
-		component = mount(
-			<MockedProvider
-				mocks={[
-					mocks.LOGGED_OUT_USER,
-					mocks.LOGIN_MUTATION,
-					mocks.LOGGED_IN_USER,
-				]}
-				addTypename={false}
-			>
-				<MemoryRouter initialEntries={[{ pathname: '/' }]}>
-					<Root>
-						<Login />
-					</Root>
-				</MemoryRouter>
-			</MockedProvider>
-		);
+		initComponent({
+			mocks: ['LOGGED_OUT_USER', 'LOGIN_MUTATION', 'LOGGED_IN_USER'],
+		});
 
 		await updateComponent(component);
 	});
@@ -61,8 +86,6 @@ describe('login', () => {
 	});
 
 	describe('form inputs', () => {
-		// afterEach(() => component.unmount());
-
 		it('has an email input', () => {
 			expect(component.find(EMAIL_INPUT).length).toEqual(1);
 		});
@@ -107,37 +130,9 @@ describe('login', () => {
 
 	describe('login form submission', () => {
 		beforeEach(async () => {
-			component = mount(
-				<MockedProvider
-					mocks={[
-						mocks.LOGGED_OUT_USER,
-						mocks.LOGIN_MUTATION,
-						mocks.LOGGED_IN_USER,
-					]}
-					addTypename={false}
-				>
-					<MemoryRouter initialEntries={['/']}>
-						<Root>
-							<Route
-								path="/"
-								render={({ history, location }) => {
-									appHistory = history;
-									appLocation = location;
-									return <Login />;
-								}}
-							/>
-							<Route
-								path="/game"
-								render={({ history, location }) => {
-									appHistory = history;
-									appLocation = location;
-									return null;
-								}}
-							/>
-						</Root>
-					</MemoryRouter>
-				</MockedProvider>
-			);
+			initComponent({
+				mocks: ['LOGGED_OUT_USER', 'LOGIN_MUTATION', 'LOGGED_IN_USER'],
+			});
 
 			await updateComponent(component);
 
@@ -173,7 +168,7 @@ describe('login', () => {
 			component.find(LOGIN_FORM).simulate('submit');
 
 			await updateComponent(component, 30);
-			//TODO: TEST RANDOMLY FAILS HERE
+
 			expect(appHistory.location.pathname).toBe('/game');
 		});
 	});
@@ -237,18 +232,7 @@ describe('login', () => {
 
 		describe('network errors', () => {
 			beforeEach(async () => {
-				component = mount(
-					<MockedProvider
-						mocks={[mocks.LOGGED_OUT_USER, mocks.LOGIN_ERROR]}
-						addTypename={false}
-					>
-						<Root>
-							<MemoryRouter initialEntries={['/']}>
-								<Login />
-							</MemoryRouter>
-						</Root>
-					</MockedProvider>
-				);
+				initComponent(['LOGGED_OUT_USER', 'LOGIN_ERROR']);
 
 				await updateComponent(component);
 			});
@@ -264,7 +248,8 @@ describe('login', () => {
 
 				expect(mockDispatchFn).toHaveBeenCalledWith({
 					payload: {
-						message: 'There was an error logging in if error continues please try again later',
+						message:
+							'There was an error logging in if error continues please try again later',
 					},
 					type: 'OPEN_MODAL',
 				});

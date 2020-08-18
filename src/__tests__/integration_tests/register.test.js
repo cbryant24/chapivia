@@ -28,32 +28,49 @@ const NAME_INPUT = 'input[name="name"]',
 		target: { value: 'abc12345', name: 'confirm password' },
 	};
 
+function initComponent(options) {
+	const { mocks: componentMocks, state: componentState } = options,
+		testMocks = [];
+	let state = null;
+	if (componentMocks) {
+		componentMocks.map((mock) => testMocks.push(mocks[mock]));
+	}
+
+	if (componentState) {
+		for (const stateProp in componentState) {
+			if (componentState.hasOwnProperty(stateProp)) {
+				state = {
+					...state,
+					stateProp,
+				};
+			}
+		}
+	}
+
+	component = mount(
+		<MockedProvider mocks={testMocks} addTypename={false}>
+			<MemoryRouter initialEntries={[{ pathname: ['/register'] }]}>
+				<Route
+					path="*"
+					render={({ history, location }) => {
+						appHistory = history;
+						appLocation = location;
+						return null;
+					}}
+				/>
+				<Root state={state}>
+					<Register />
+				</Root>
+			</MemoryRouter>
+		</MockedProvider>
+	);
+}
+
 describe('register', async () => {
 	beforeEach(async () => {
-		component = mount(
-			<MockedProvider
-				mocks={[
-					mocks.LOGGED_OUT_USER,
-					mocks.LOGGED_IN_USER,
-					mocks.REGISTER_MUTATION,
-				]}
-				addTypename={false}
-			>
-				<MemoryRouter initialEntries={[{ pathname: '/register' }]}>
-					<Route
-						path="*"
-						render={({ history, location }) => {
-							appHistory = history;
-							appLocation = location;
-							return null;
-						}}
-					/>
-					<Root>
-						<Register />
-					</Root>
-				</MemoryRouter>
-			</MockedProvider>
-		);
+		initComponent({
+			mocks: ['LOGGED_OUT_USER', 'LOGGED_IN_USER', 'REGISTER_MUTATION'],
+		});
 
 		// SEE THIS GITHUB ISSUE FOR EXPLANATION https://github.com/enzymejs/enzyme/issues/2073#issuecomment-531488981
 		await updateComponent(component);
@@ -61,23 +78,8 @@ describe('register', async () => {
 
 	describe('logged in', async () => {
 		beforeEach(async () => {
-			component = mount(
-				<MockedProvider mocks={[mocks.LOGGED_IN_USER]} addTypename={false}>
-					<MemoryRouter initialEntries={[{ pathname: '/register' }]}>
-						<Route
-							path="*"
-							render={({ history, location }) => {
-								appHistory = history;
-								appLocation = location;
-								return null;
-							}}
-						/>
-						<Root>
-							<Register />
-						</Root>
-					</MemoryRouter>
-				</MockedProvider>
-			);
+			initComponent({ mocks: ['LOGGED_IN_USER'] });
+
 			await updateComponent(component);
 		});
 
@@ -86,7 +88,7 @@ describe('register', async () => {
 				payload: {
 					afterClose: expect.any(Function),
 					message:
-						'Kanye is already logged in you\'ll be redirected to main game',
+						"Kanye is already logged in you'll be redirected to main game",
 				},
 				type: 'OPEN_MODAL',
 			});
@@ -209,7 +211,7 @@ describe('register', async () => {
 			expect(component.find(EMAIL_INPUT).instance().value).toEqual('');
 		});
 
-		it('clears a the password input after submission', () => {
+		it('clears the password input after submission', () => {
 			expect(component.find(PASSWORD_INPUT).instance().value).toEqual(
 				'abc12345'
 			);
@@ -235,7 +237,7 @@ describe('register', async () => {
 			component.find(REGISTER_FORM).simulate('submit');
 
 			await updateComponent(component, 5);
-			//TODO: TEST RANDOMLY FAILS HERE
+
 			expect(appHistory.location.pathname).toBe('/game');
 		});
 	});
@@ -371,26 +373,7 @@ describe('register', async () => {
 
 		describe('network errors', () => {
 			beforeEach(async () => {
-				component = mount(
-					<MockedProvider
-						mocks={[mocks.LOGGED_OUT_USER, mocks.REGISTER_ERROR]}
-						addTypename={false}
-					>
-						<MemoryRouter initialEntries={[{ pathname: '/register' }]}>
-							<Route
-								path="*"
-								render={({ history, location }) => {
-									appHistory = history;
-									appLocation = location;
-									return null;
-								}}
-							/>
-							<Root>
-								<Register />
-							</Root>
-						</MemoryRouter>
-					</MockedProvider>
-				);
+				initComponent({ mocks: ['LOGGED_OUT_USER', 'REGISTER_ERROR'] });
 
 				await updateComponent(component);
 			});
@@ -411,10 +394,6 @@ describe('register', async () => {
 				component.find(REGISTER_FORM).simulate('submit');
 
 				await updateComponent(component);
-
-				// expect(component.find('#chapivia-modal ul li').text()).toEqual(
-				// 	'There was an error registering'
-				// );
 
 				expect(mockDispatchFn).toHaveBeenCalledWith({
 					payload: {

@@ -98,26 +98,6 @@ async function initComponent(options) {
 describe('trivia guess', () => {
 	beforeEach(async () => {
 		initComponent({ mocks: ['LOGGED_IN_USER', 'UNGUESSED_PLAYER'] });
-		// component = mount(
-		// 	<MockedProvider
-		// 		mocks={[mocks.LOGGED_IN_USER, mocks.UNGUESSED_PLAYER]}
-		// 		addTypename={false}
-		// 	>
-		// 		<MemoryRouter initialEntries={[{ pathname: '/game' }]}>
-		// 			<Route
-		// 				path="*"
-		// 				render={({ history, location }) => {
-		// 					appHistory = history;
-		// 					appLocation = location;
-		// 					return null;
-		// 				}}
-		// 			/>
-		// 			<Root>
-		// 				<TriviaQuestion />
-		// 			</Root>
-		// 		</MemoryRouter>
-		// 	</MockedProvider>
-		// );
 
 		await updateComponent(component);
 	});
@@ -264,7 +244,7 @@ describe('trivia guess', () => {
 
 			await updateComponent(component);
 		});
-		
+
 		describe('trivia guess form', () => {
 			it('displays all unguessed players name for guess in select', () => {
 				expect(component.find('select').length).toEqual(1);

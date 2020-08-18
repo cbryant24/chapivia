@@ -37,7 +37,7 @@ describe('modal', () => {
 
 		afterEach(() => component.unmount());
 
-		it('displays a modal', () => {
+		it('displays a modal with a message', () => {
 			expect(component.find('div#chapivia-modal').length).toEqual(1);
 			expect(component.find('div#chapivia-modal p').text()).toEqual(
 				'The Modal is Open!'

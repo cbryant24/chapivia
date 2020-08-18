@@ -7,24 +7,47 @@ import { MemoryRouter } from 'react-router';
 import { updateComponent, mocks } from '__tests__/utils';
 import Root from '__tests__/utils/Root';
 
-describe('top menu', () => {
-	let component;
+let component;
 
+function initComponent(options) {
+	const {
+			mocks: componentMocks,
+			state: componentState,
+			pathname = ['/'],
+		} = options,
+		testMocks = [];
+	let state = null;
+	if (componentMocks) {
+		componentMocks.map((mock) => testMocks.push(mocks[mock]));
+	}
+
+	if (componentState) {
+		for (const stateProp in componentState) {
+			if (componentState.hasOwnProperty(stateProp)) {
+				state = {
+					...state,
+					stateProp,
+				};
+			}
+		}
+	}
+
+	component = mount(
+		<MockedProvider mocks={testMocks} addTypename={false}>
+			<MemoryRouter initialEntries={[{ pathname }]}>
+				<Root state={state}>
+					<TopMenu />
+				</Root>
+			</MemoryRouter>
+		</MockedProvider>
+	);
+}
+
+describe('top menu', () => {
 	describe('logged out', () => {
 		describe('login page', () => {
 			beforeEach(async () => {
-				component = mount(
-					<MockedProvider
-						mocks={[mocks.LOGGED_OUT_USER, mocks.SCORES_MOCK]}
-						addTypename={false}
-					>
-						<MemoryRouter initialEntries={['/']}>
-							<Root>
-								<TopMenu />
-							</Root>
-						</MemoryRouter>
-					</MockedProvider>
-				);
+				initComponent({ mocks: ['LOGGED_OUT_USER', 'SCORES_MOCK'] });
 
 				await updateComponent(component);
 			});
@@ -40,18 +63,10 @@ describe('top menu', () => {
 
 		describe('signup page', () => {
 			beforeEach(async () => {
-				component = mount(
-					<MockedProvider
-						mocks={[mocks.LOGGED_OUT_USER, mocks.SCORES_MOCK]}
-						addTypename={false}
-					>
-						<MemoryRouter initialEntries={[{ pathname: '/register' }]}>
-							<Root>
-								<TopMenu />
-							</Root>
-						</MemoryRouter>
-					</MockedProvider>
-				);
+				initComponent({
+					mocks: ['LOGGED_OUT_USER', 'SCORES_MOCK'],
+					pathname: ['/register'],
+				});
 
 				await updateComponent(component);
 			});
@@ -67,27 +82,17 @@ describe('top menu', () => {
 	});
 
 	describe('logged in', () => {
-		let component;
 		beforeEach(async () => {
-			component = mount(
-				<MockedProvider
-					mocks={[
-						mocks.LOGGED_IN_USER,
-						mocks.SCORES_MOCK,
-						mocks.LOGOUT_MUTATION,
-						mocks.LOGGED_OUT_USER,
-					]}
-					addTypename={false}
-				>
-					<MemoryRouter initialEntries={['/game']}>
-						<Root>
-							<TopMenu />
-						</Root>
-					</MemoryRouter>
-				</MockedProvider>
-			);
+			initComponent({
+				mocks: [
+					'LOGGED_IN_USER',
+					'SCORES_MOCK',
+					'LOGOUT_MUTATION',
+					'LOGGED_OUT_USER',
+				],
+			});
 
-			await updateComponent(component);
+			await updateComponent(component, 100);
 		});
 
 		it('displays the logged in users name', () => {
@@ -108,7 +113,7 @@ describe('top menu', () => {
 			component.find('p.logout-player').simulate('click');
 
 			await updateComponent(component, 20);
-			// TODO: TEST RANDOMLY FAILS NEED TO ADDRESS
+
 			expect(component.find('p.player-name').length).toEqual(0);
 			expect(component.find('p.logout-player').length).toEqual(0);
 		});
