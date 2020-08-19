@@ -21,8 +21,6 @@ import { BorderPrimary, InfiniteCarousel } from './styledComponents';
 
 const Game = (props) => {
 	const { loading: triviaLoading, data: triviaData } = useQuery(triviaQuery);
-	const [isOpen, setIsOpen] = useState(false);
-	const [modalMessage, setModalMessage] = useState('');
 	// const client = useApolloClient();
 	const { user } = useRequireAuth();
 	// const router = useRouter();
@@ -58,8 +56,6 @@ const Game = (props) => {
 	if (triviaLoading || !user) return <div> </div>;
 
 	dispatch({ type: 'SET_TRIVIA', payload: triviaData });
-
-	const toggleModal = (e) => setIsOpen(!isOpen);
 
 	function displayGame() {
 
@@ -182,21 +178,16 @@ const Game = (props) => {
 			<H3 color="primary" themeStyle={['marginSmallY']} textAlign="center">
 				Chapivia
 			</H3>
-			<Modal
-				isOpen={isOpen}
-				modalMessage={modalMessage}
-				toggleModal={toggleModal}
-			/>
 			{displayGame()}
 		</Div>
 	);
 };
 
-function mapStateToProps(state) {
-	return {
-		trivia: state.trivia,
-	};
-}
+// function mapStateToProps(state) {
+// 	return {
+// 		trivia: state.trivia,
+// 	};
+// }
 
 // export default connect(mapStateToProps, { set_trivia })(Game);
 export default Game;

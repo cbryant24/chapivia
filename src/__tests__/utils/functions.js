@@ -1,5 +1,6 @@
 import { act } from 'react-dom/test-utils';
 import wait from 'waait';
+import * as ReactRedux from 'react-redux';
 
 // Use this in your test after mounting if you need just need to let the query finish without updating the wrapper
 export async function actWait(amount = 0) {
@@ -15,3 +16,7 @@ export async function updateComponent(component, amount = 0) {
 		component.update();
 	});
 }
+
+const useDispatchSpy = jest.spyOn(ReactRedux, 'useDispatch');
+export const mockDispatchFn = jest.fn();
+useDispatchSpy.mockReturnValue(mockDispatchFn);

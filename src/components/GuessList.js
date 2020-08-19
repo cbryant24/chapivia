@@ -61,7 +61,7 @@ function GuessList(props) {
 			  ])
 			: null
 	);
-
+	
 	function dispalayGuesses() {
 		if (guessListLoading || !user) return <Div></Div>;
 

@@ -1,8 +1,12 @@
 import React from 'react';
 import { StyledModal, Div, Ul, Li, Button, P } from '@cbryant24/styled-react';
+import { useSelector, useDispatch } from 'react-redux';
+import types from 'actions/types';
 // import { dropInFromTop } from './style';
 
-export default ({ isOpen, toggleModal, modalMessage, afterClose }) => {
+const Modal = ({ isOpen, modalMessage, afterClose, beforeClose, afterOpen, beforeOpen }) => {
+	const { modal } = useSelector((state) => state);
+	const dispatch = useDispatch();
 	const dropInFromTop = {
 		in: {
 			'0%': {
@@ -46,32 +50,37 @@ export default ({ isOpen, toggleModal, modalMessage, afterClose }) => {
 		animation_fill_mode: 'both',
 	};
 
+	const closeModal = () => dispatch({ type: types.CLOSE_MODAL });
+
 	return (
 		<StyledModal
 			id="chapivia-modal"
-			isOpen={isOpen}
-			onBackgroundClick={toggleModal}
-			onEscapeKeydown={toggleModal}
+			isOpen={modal.isOpen}
+			onBackgroundClick={closeModal}
+			onEscapeKeydown={closeModal}
 			modalBackgroundStyle={{ themeStyle: 'modalBackgroundStyle' }}
 			allowScroll={false}
-			afterClose={afterClose}
+			afterClose={modal.afterClose}
+			beforeClose={modal.beforeClose}
+			afterOpen={modal.afterOpen}
+			beforeOpen={modal.beforeOpen}
 		>
 			<Div themeStyle={['modalContainer']} animation={dropInFromTop}>
 				<Ul textAlign="center" my={[1]}>
-					{Array.isArray(modalMessage) ? (
-						modalMessage.map((message) => (
+					{Array.isArray(modal.message) ? (
+						modal.message.map((message) => (
 							<Li key={message}>{message.message}</Li>
 						))
 					) : (
 						<Li>
-							<P>{modalMessage}</P>
+							<P>{modal.message}</P>
 						</Li>
 					)}
 				</Ul>
 				<Button
 					themeStyle={['squareButton', 'marginSmall']}
 					alignSelf="flex-end"
-					onClick={toggleModal}
+					onClick={closeModal}
 				>
 					Close
 				</Button>
@@ -79,3 +88,5 @@ export default ({ isOpen, toggleModal, modalMessage, afterClose }) => {
 		</StyledModal>
 	);
 };
+
+export default Modal;

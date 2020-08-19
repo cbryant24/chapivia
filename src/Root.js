@@ -7,7 +7,7 @@ import { ModalProvider } from '@cbryant24/styled-react';
 
 import { ProvideAuth } from 'hooks';
 
-export default ({ children }) => {
+function Root({ children }) {
 	return (
 		<ProvideAuth>
 			<ThemeProvider theme={theme}>
@@ -17,3 +17,5 @@ export default ({ children }) => {
 		</ProvideAuth>
 	);
 };
+
+export default Root;

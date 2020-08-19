@@ -20,17 +20,29 @@ export const trivia = {
 	category: 'Entertainment: Cartoon & Animations',
 };
 
-export const state = {
+export const triviaState = {
 	trivia: {
 		dailyTrivia: {
-			category: 'Entertainment: Cartoon & Animations',
 			id: 0,
+			questionId: 0,
 			question:
 				'Which city did Anger berate for ruining pizza in &quot;Inside Out&quot;?',
+			category: 'Entertainment: Cartoon & Animations',
 			triviaChoices: {
 				id: 0,
 				choices: ['Minnesota', 'Washington', 'California', 'San Francisco'],
 			},
 		},
+	},
+};
+
+export const modalState = {
+	modal: {
+		isOpen: false,
+		message: '',
+		afterClose: null,
+		beforeClose: null,
+		afterOpen: null,
+		beforeOpen: null,
 	},
 };
