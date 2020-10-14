@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useAuth, useRouter } from 'hooks';
 import { DAILY_TRIVIA } from 'localState/Queries';
 import query from 'queries/Scores';
+import { flashingText } from 'style';
 
 function TopMenu(props) {
 	const data = useSelector((state) => state.trivia);
@@ -37,14 +38,15 @@ function TopMenu(props) {
 			<Box
 				id="login-logout"
 				isA={Link}
-				animation={{
-					continuous: {
-						from: { color: 'white' },
-						to: { color: 'red' },
-					},
-					duration_continuous: 1,
-					animation_direction: 'alternate-reverse',
-				}}
+				// animation={{
+				// 	continuous: {
+				// 		from: { color: 'white' },
+				// 		to: { color: 'red' },
+				// 	},
+				// 	duration_continuous: 1,
+				// 	animation_direction: 'alternate-reverse',
+				// }}
+				animation={flashingText}
 				themeStyle="linkNormal"
 				to={pathname === '/register' ? '/' : '/register'}
 			>

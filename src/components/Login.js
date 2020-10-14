@@ -6,6 +6,7 @@ import { Div, H1, H3, P } from '@cbryant24/styled-react';
 import { loginFormData } from 'components/formData';
 import { useSelector, useDispatch } from 'react-redux';
 import types from 'actions/types';
+import { flashingText } from 'style';
 
 import Modal from './Modal';
 
@@ -71,7 +72,8 @@ function Login(props) {
 
 	// TODO: Add loading image here
 	if (userLoading) return <div></div>;
-
+	console.log(flashingText);
+	debugger;
 	return (
 		<Div fontSizeModule={[1, null, 2, null, 3]}>
 			<Div
@@ -96,14 +98,15 @@ function Login(props) {
 					themeStyle={['marginLargeY']}
 					onClick={() => showLogin()}
 					color="primary"
-					animation={{
-						continuous: {
-							from: { opacity: '0' },
-							to: { opacity: '1' },
-						},
-						duration_continuous: 1,
-						animation_direction: 'alternate-reverse',
-					}}
+					// animation={{
+					// 	continuous: {
+					// 		from: { opacity: '0' },
+					// 		to: { opacity: '1' },
+					// 	},
+					// 	duration_continuous: 1,
+					// 	animation_direction: 'alternate-reverse',
+					// }}
+					animation={flashingText}
 				>
 					Press Start To Play
 				</H3>

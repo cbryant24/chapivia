@@ -20,7 +20,7 @@ describe('modal', () => {
 							modal: {
 								isOpen: true,
 								message: 'The Modal is Open!',
-								afterClose: function help() {},
+								afterClose: function myFunc() {},
 								beforeClose: null,
 								afterOpen: null,
 								beforeOpen: null,

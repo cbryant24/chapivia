@@ -3,7 +3,6 @@ import { MockedProvider } from '@apollo/react-testing';
 
 import { mount } from 'enzyme';
 import { MemoryRouter, Route } from 'react-router';
-import 'jest-styled-components';
 
 import { updateComponent, mocks, mockDispatchFn } from '__tests__/utils';
 import GuessList from 'components/GuessList';

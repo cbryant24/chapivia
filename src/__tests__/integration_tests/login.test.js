@@ -2,7 +2,6 @@ import React from 'react';
 import { MockedProvider } from '@apollo/react-testing';
 import { mount } from 'enzyme';
 import { MemoryRouter, Route } from 'react-router';
-import 'jest-styled-components';
 
 import Root from '__tests__/utils/Root';
 import Login from 'components/Login';
