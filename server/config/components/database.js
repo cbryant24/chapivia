@@ -25,7 +25,4 @@ const config = {
   }
 };
 
-console.log("IM THE CONFING");
-console.log(process.env.POSTGRES_USER);
-console.log(process.env.POSTGRES_PASSWORD);
 module.exports = config;

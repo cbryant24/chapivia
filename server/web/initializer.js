@@ -22,8 +22,8 @@ app.use(
 );
 
 //TODO: Add check for first time initialization
-// sequelize.sync();
-// myStore.sync();
+sequelize.sync();
+myStore.sync();
 
 module.exports = {
   app
