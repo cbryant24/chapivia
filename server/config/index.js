@@ -4,7 +4,6 @@ const auth = require('./components/auth');
 const triviaConfig = require('./components/triviaConfig');
 // const mailer = require('./components/mailer');
 
-
 module.exports = {
   database,
   triviaConfig,

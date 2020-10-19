@@ -8,16 +8,11 @@ const models = {
   QuestionChoice: sequelizeQuestionChoice,
   Question: sequelizeQuestion,
   UserQuestionChoice: sequelizeUserQuestionChoice
-}
+};
 
 sequelizeUser.associate(models);
 sequelizeQuestionChoice.associate(models);
 sequelizeQuestion.associate(models);
 sequelizeUserQuestionChoice.associate(models);
 
-module.exports = {
-  User: sequelizeUser,
-  QuestionChoice: sequelizeQuestionChoice,
-  Question: sequelizeQuestion,
-  UserQuestionChoice: sequelizeUserQuestionChoice,
-};
+module.exports = models;

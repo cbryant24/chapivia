@@ -72,8 +72,6 @@ function Login(props) {
 
 	// TODO: Add loading image here
 	if (userLoading) return <div></div>;
-	console.log(flashingText);
-	debugger;
 	return (
 		<Div fontSizeModule={[1, null, 2, null, 3]}>
 			<Div

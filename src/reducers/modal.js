@@ -10,13 +10,9 @@ const DEFAULT_STATE = {
 };
 
 export default (state = DEFAULT_STATE, action) => {
-  // console.log("IM THE OPEN REDUCER");
-  console.log("IM THE ACTION TYPE", action.type);
 
 	switch (action.type) {
 	case types.OPEN_MODAL:
-    // debugger;
-    console.log("IM THE OPEN REDUCER");
 		return {
       isOpen: true,
 			...action.payload,

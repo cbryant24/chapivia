@@ -1,0 +1,367 @@
+# Logfile created on 2020-10-14 00:53:12 -0700 by logger.rb/47272
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-14 00:53:12 -0700 cap staging deploy
+  INFO ---------------------------------------------------------------------------
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-15 00:34:15 -0700 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [b26bc712] Running /usr/bin/env mkdir -p /tmp/chapivia/ as ec2-user@3.15.187.69
+ DEBUG [b26bc712] Command: /usr/bin/env mkdir -p /tmp/chapivia/
+  INFO [b26bc712] Finished in 1.538 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/chapivia/nvm-exec.sh 0.0%
+  INFO Uploading /tmp/chapivia/nvm-exec.sh 100.0%
+  INFO [f302dc7e] Running /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh as ec2-user@3.15.187.69
+ DEBUG [f302dc7e] Command: /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh
+  INFO [f302dc7e] Finished in 0.570 seconds with exit status 0 (successful).
+ ERROR nvm: nvm_node is not set
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-15 00:37:35 -0700 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [93167e8e] Running /usr/bin/env mkdir -p /tmp/chapivia/ as ec2-user@3.15.187.69
+ DEBUG [93167e8e] Command: /usr/bin/env mkdir -p /tmp/chapivia/
+  INFO [93167e8e] Finished in 2.305 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/chapivia/nvm-exec.sh 0.0%
+  INFO Uploading /tmp/chapivia/nvm-exec.sh 100.0%
+  INFO [a783f05f] Running /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh as ec2-user@3.15.187.69
+ DEBUG [a783f05f] Command: /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh
+  INFO [a783f05f] Finished in 0.394 seconds with exit status 0 (successful).
+ DEBUG [5fd18c8f] Running [ -d $HOME/.nvm/14.4.0 ] || [ -d $HOME/.nvm/versions/node/14.4.0 ] as ec2-user@3.15.187.69
+ DEBUG [5fd18c8f] Command: [ -d $HOME/.nvm/14.4.0 ] || [ -d $HOME/.nvm/versions/node/14.4.0 ]
+ DEBUG [5fd18c8f] Finished in 0.470 seconds with exit status 1 (failed).
+ ERROR nvm: 14.4.0 is not installed or not found in any of $HOME/.nvm/14.4.0 $HOME/.nvm/versions/node/14.4.0
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-15 00:42:41 -0700 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [8968f20a] Running /usr/bin/env mkdir -p /tmp/chapivia/ as ec2-user@3.15.187.69
+ DEBUG [8968f20a] Command: /usr/bin/env mkdir -p /tmp/chapivia/
+  INFO [8968f20a] Finished in 1.856 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/chapivia/nvm-exec.sh 0.0%
+  INFO Uploading /tmp/chapivia/nvm-exec.sh 100.0%
+  INFO [6a213452] Running /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh as ec2-user@3.15.187.69
+ DEBUG [6a213452] Command: /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh
+  INFO [6a213452] Finished in 0.803 seconds with exit status 0 (successful).
+ DEBUG [34ad4e12] Running [ -d $HOME/.nvm/14.4.0 ] || [ -d $HOME/.nvm/versions/node/14.4.0 ] as ec2-user@3.15.187.69
+ DEBUG [34ad4e12] Command: [ -d $HOME/.nvm/14.4.0 ] || [ -d $HOME/.nvm/versions/node/14.4.0 ]
+ DEBUG [34ad4e12] Finished in 0.928 seconds with exit status 1 (failed).
+ ERROR nvm: 14.4.0 is not installed or not found in any of $HOME/.nvm/14.4.0 $HOME/.nvm/versions/node/14.4.0
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-15 00:48:57 -0700 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [f5f207e1] Running /usr/bin/env mkdir -p /tmp/chapivia/ as ec2-user@3.15.187.69
+ DEBUG [f5f207e1] Command: /usr/bin/env mkdir -p /tmp/chapivia/
+  INFO [f5f207e1] Finished in 1.794 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/chapivia/nvm-exec.sh 0.0%
+  INFO Uploading /tmp/chapivia/nvm-exec.sh 100.0%
+  INFO [bb76034c] Running /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh as ec2-user@3.15.187.69
+ DEBUG [bb76034c] Command: /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh
+  INFO [bb76034c] Finished in 0.785 seconds with exit status 0 (successful).
+ DEBUG [5977a773] Running [ -d $HOME/.nvm/14.4.0 ] || [ -d $HOME/.nvm/versions/node/14.4.0 ] as ec2-user@3.15.187.69
+ DEBUG [5977a773] Command: [ -d $HOME/.nvm/14.4.0 ] || [ -d $HOME/.nvm/versions/node/14.4.0 ]
+ DEBUG [5977a773] Finished in 0.813 seconds with exit status 1 (failed).
+ ERROR nvm: 14.4.0 is not installed or not found in any of $HOME/.nvm/14.4.0 $HOME/.nvm/versions/node/14.4.0
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-15 01:22:07 -0700 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [d7996280] Running /usr/bin/env mkdir -p /tmp/chapivia/ as ec2-user@3.15.187.69
+ DEBUG [d7996280] Command: /usr/bin/env mkdir -p /tmp/chapivia/
+  INFO [d7996280] Finished in 2.111 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/chapivia/nvm-exec.sh 0.0%
+  INFO Uploading /tmp/chapivia/nvm-exec.sh 100.0%
+  INFO [f415ec45] Running /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh as ec2-user@3.15.187.69
+ DEBUG [f415ec45] Command: /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh
+  INFO [f415ec45] Finished in 0.736 seconds with exit status 0 (successful).
+ DEBUG [ff07253d] Running [ -d $HOME/.nvm/14.4.0 ] || [ -d $HOME/.nvm/versions/node/14.4.0 ] as ec2-user@3.15.187.69
+ DEBUG [ff07253d] Command: [ -d $HOME/.nvm/14.4.0 ] || [ -d $HOME/.nvm/versions/node/14.4.0 ]
+ DEBUG [ff07253d] Finished in 0.805 seconds with exit status 1 (failed).
+ ERROR nvm: 14.4.0 is not installed or not found in any of $HOME/.nvm/14.4.0 $HOME/.nvm/versions/node/14.4.0
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-15 01:26:42 -0700 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [7825aea2] Running /usr/bin/env mkdir -p /tmp/chapivia/ as ec2-user@3.15.187.69
+ DEBUG [7825aea2] Command: /usr/bin/env mkdir -p /tmp/chapivia/
+  INFO [7825aea2] Finished in 1.689 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/chapivia/nvm-exec.sh 0.0%
+  INFO Uploading /tmp/chapivia/nvm-exec.sh 100.0%
+  INFO [5d768886] Running /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh as ec2-user@3.15.187.69
+ DEBUG [5d768886] Command: /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh
+  INFO [5d768886] Finished in 0.872 seconds with exit status 0 (successful).
+ DEBUG [0022bf6f] Running [ -d $HOME/.nvm/v14.4.0 ] || [ -d $HOME/.nvm/versions/node/v14.4.0 ] as ec2-user@3.15.187.69
+ DEBUG [0022bf6f] Command: [ -d $HOME/.nvm/v14.4.0 ] || [ -d $HOME/.nvm/versions/node/v14.4.0 ]
+ DEBUG [0022bf6f] Finished in 0.911 seconds with exit status 0 (successful).
+  INFO [c3e7bc4a] Running /usr/bin/env mkdir -p /tmp as ec2-user@3.15.187.69
+ DEBUG [c3e7bc4a] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env mkdir -p /tmp )
+  INFO [c3e7bc4a] Finished in 0.821 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-chapivia-production-cbryant.sh 0.0%
+  INFO Uploading /tmp/git-ssh-chapivia-production-cbryant.sh 100.0%
+  INFO [0077f010] Running /usr/bin/env chmod 700 /tmp/git-ssh-chapivia-production-cbryant.sh as ec2-user@3.15.187.69
+ DEBUG [0077f010] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env chmod 700 /tmp/git-ssh-chapivia-production-cbryant.sh )
+  INFO [0077f010] Finished in 0.939 seconds with exit status 0 (successful).
+  INFO [3357235b] Running /usr/bin/env git ls-remote git@github.com:cbryant24/chapivia.git HEAD as ec2-user@3.15.187.69
+ DEBUG [3357235b] Command: ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git ls-remote git@github.com:cbryant24/chapivia.git HEAD )
+ DEBUG [3357235b] 	/usr/bin/env: ‘git’: No such file or directory
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-15 01:44:03 -0700 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [b7a56ee5] Running /usr/bin/env mkdir -p /tmp/chapivia/ as deploy@3.15.187.69
+ DEBUG [b7a56ee5] Command: /usr/bin/env mkdir -p /tmp/chapivia/
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-15 01:44:32 -0700 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [268c3f2b] Running /usr/bin/env mkdir -p /tmp/chapivia/ as deploy@3.15.187.69
+ DEBUG [268c3f2b] Command: /usr/bin/env mkdir -p /tmp/chapivia/
+  INFO [268c3f2b] Finished in 7.373 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/chapivia/nvm-exec.sh 0.0%
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-15 01:52:48 -0700 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [ecc1b456] Running /usr/bin/env mkdir -p /tmp/chapivia/ as deploy@3.15.187.69
+ DEBUG [ecc1b456] Command: /usr/bin/env mkdir -p /tmp/chapivia/
+  INFO [ecc1b456] Finished in 5.702 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/chapivia/nvm-exec.sh 0.0%
+  INFO Uploading /tmp/chapivia/nvm-exec.sh 100.0%
+  INFO [b12df520] Running /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh as deploy@3.15.187.69
+ DEBUG [b12df520] Command: /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh
+  INFO [b12df520] Finished in 0.803 seconds with exit status 0 (successful).
+ DEBUG [9a0cfce4] Running [ -d $HOME/.nvm/v14.4.0 ] || [ -d $HOME/.nvm/versions/node/v14.4.0 ] as deploy@3.15.187.69
+ DEBUG [9a0cfce4] Command: [ -d $HOME/.nvm/v14.4.0 ] || [ -d $HOME/.nvm/versions/node/v14.4.0 ]
+ DEBUG [9a0cfce4] Finished in 0.819 seconds with exit status 0 (successful).
+  INFO [fd8551db] Running /usr/bin/env mkdir -p /tmp as deploy@3.15.187.69
+ DEBUG [fd8551db] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env mkdir -p /tmp )
+  INFO [fd8551db] Finished in 0.739 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-chapivia-production-cbryant.sh 0.0%
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-15 01:55:49 -0700 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [644414fb] Running /usr/bin/env mkdir -p /tmp/chapivia/ as deploy@3.15.187.69
+ DEBUG [644414fb] Command: /usr/bin/env mkdir -p /tmp/chapivia/
+  INFO [644414fb] Finished in 6.273 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/chapivia/nvm-exec.sh 0.0%
+  INFO Uploading /tmp/chapivia/nvm-exec.sh 100.0%
+  INFO [2f9fa919] Running /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh as deploy@3.15.187.69
+ DEBUG [2f9fa919] Command: /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh
+  INFO [2f9fa919] Finished in 0.788 seconds with exit status 0 (successful).
+ DEBUG [acef4daa] Running [ -d $HOME/.nvm/v14.4.0 ] || [ -d $HOME/.nvm/versions/node/v14.4.0 ] as deploy@3.15.187.69
+ DEBUG [acef4daa] Command: [ -d $HOME/.nvm/v14.4.0 ] || [ -d $HOME/.nvm/versions/node/v14.4.0 ]
+ DEBUG [acef4daa] Finished in 0.716 seconds with exit status 0 (successful).
+  INFO [a2defd54] Running /usr/bin/env mkdir -p /tmp as deploy@3.15.187.69
+ DEBUG [a2defd54] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env mkdir -p /tmp )
+  INFO [a2defd54] Finished in 0.816 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-chapivia-production-cbryant.sh 0.0%
+  INFO Uploading /tmp/git-ssh-chapivia-production-cbryant.sh 100.0%
+  INFO [74d73c43] Running /usr/bin/env chmod 700 /tmp/git-ssh-chapivia-production-cbryant.sh as deploy@3.15.187.69
+ DEBUG [74d73c43] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env chmod 700 /tmp/git-ssh-chapivia-production-cbryant.sh )
+  INFO [74d73c43] Finished in 0.736 seconds with exit status 0 (successful).
+  INFO [38e19297] Running /usr/bin/env git ls-remote git@github.com:cbryant24/chapivia.git HEAD as deploy@3.15.187.69
+ DEBUG [38e19297] Command: ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git ls-remote git@github.com:cbryant24/chapivia.git HEAD )
+ DEBUG [38e19297] 	/usr/bin/env: ‘git’: No such file or directory
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-15 01:57:56 -0700 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [a56bc76a] Running /usr/bin/env mkdir -p /tmp/chapivia/ as deploy@3.15.187.69
+ DEBUG [a56bc76a] Command: /usr/bin/env mkdir -p /tmp/chapivia/
+  INFO [a56bc76a] Finished in 6.264 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/chapivia/nvm-exec.sh 0.0%
+  INFO Uploading /tmp/chapivia/nvm-exec.sh 100.0%
+  INFO [e9290c7c] Running /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh as deploy@3.15.187.69
+ DEBUG [e9290c7c] Command: /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh
+  INFO [e9290c7c] Finished in 0.718 seconds with exit status 0 (successful).
+ DEBUG [3d76586e] Running [ -d $HOME/.nvm/v14.4.0 ] || [ -d $HOME/.nvm/versions/node/v14.4.0 ] as deploy@3.15.187.69
+ DEBUG [3d76586e] Command: [ -d $HOME/.nvm/v14.4.0 ] || [ -d $HOME/.nvm/versions/node/v14.4.0 ]
+ DEBUG [3d76586e] Finished in 0.732 seconds with exit status 0 (successful).
+  INFO [997369c4] Running /usr/bin/env mkdir -p /tmp as deploy@3.15.187.69
+ DEBUG [997369c4] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env mkdir -p /tmp )
+  INFO [997369c4] Finished in 0.741 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-chapivia-production-cbryant.sh 0.0%
+  INFO Uploading /tmp/git-ssh-chapivia-production-cbryant.sh 100.0%
+  INFO [4170a983] Running /usr/bin/env chmod 700 /tmp/git-ssh-chapivia-production-cbryant.sh as deploy@3.15.187.69
+ DEBUG [4170a983] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env chmod 700 /tmp/git-ssh-chapivia-production-cbryant.sh )
+  INFO [4170a983] Finished in 0.821 seconds with exit status 0 (successful).
+  INFO [b6f95c44] Running /usr/bin/env git ls-remote git@github.com:cbryant24/chapivia.git HEAD as deploy@3.15.187.69
+ DEBUG [b6f95c44] Command: ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git ls-remote git@github.com:cbryant24/chapivia.git HEAD )
+ DEBUG [b6f95c44] 	Warning: Permanently added 'github.com,140.82.114.3' (RSA) to the list of known hosts.
+ DEBUG [b6f95c44] 	6a5da94ef3ad2ef4e31828e480e33ce1e3addcac	HEAD
+  INFO [b6f95c44] Finished in 1.477 seconds with exit status 0 (successful).
+  INFO [a15f70c3] Running /usr/bin/env mkdir -p /var/www/chapivia/shared /var/www/chapivia/releases as deploy@3.15.187.69
+ DEBUG [a15f70c3] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env mkdir -p /var/www/chapivia/shared /var/www/chapivia/releases )
+  INFO [a15f70c3] Finished in 0.819 seconds with exit status 0 (successful).
+ DEBUG [75179613] Running [ -f /var/www/chapivia/current/REVISION ] as deploy@3.15.187.69
+ DEBUG [75179613] Command: [ -f /var/www/chapivia/current/REVISION ]
+ DEBUG [75179613] Finished in 0.796 seconds with exit status 1 (failed).
+ DEBUG [688e50e5] Running [ -f /var/www/chapivia/repo/HEAD ] as deploy@3.15.187.69
+ DEBUG [688e50e5] Command: [ -f /var/www/chapivia/repo/HEAD ]
+ DEBUG [688e50e5] Finished in 0.741 seconds with exit status 1 (failed).
+ DEBUG [3f3a0a5e] Running if test ! -d /var/www/chapivia; then echo "Directory does not exist '/var/www/chapivia'" 1>&2; false; fi as deploy@3.15.187.69
+ DEBUG [3f3a0a5e] Command: if test ! -d /var/www/chapivia; then echo "Directory does not exist '/var/www/chapivia'" 1>&2; false; fi
+ DEBUG [3f3a0a5e] Finished in 0.817 seconds with exit status 0 (successful).
+  INFO [c29c2382] Running /usr/bin/env git clone --mirror git@github.com:cbryant24/chapivia.git /var/www/chapivia/repo as deploy@3.15.187.69
+ DEBUG [c29c2382] Command: cd /var/www/chapivia && ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git clone --mirror git@github.com:cbryant24/chapivia.git /var/www/chapivia/repo )
+ DEBUG [c29c2382] 	Cloning into bare repository '/var/www/chapivia/repo'...
+  INFO [c29c2382] Finished in 3.314 seconds with exit status 0 (successful).
+ DEBUG [6f7103c9] Running if test ! -d /var/www/chapivia/repo; then echo "Directory does not exist '/var/www/chapivia/repo'" 1>&2; false; fi as deploy@3.15.187.69
+ DEBUG [6f7103c9] Command: if test ! -d /var/www/chapivia/repo; then echo "Directory does not exist '/var/www/chapivia/repo'" 1>&2; false; fi
+ DEBUG [6f7103c9] Finished in 0.777 seconds with exit status 0 (successful).
+  INFO [b36dc25c] Running /usr/bin/env git remote set-url origin git@github.com:cbryant24/chapivia.git as deploy@3.15.187.69
+ DEBUG [b36dc25c] Command: cd /var/www/chapivia/repo && ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git remote set-url origin git@github.com:cbryant24/chapivia.git )
+  INFO [b36dc25c] Finished in 0.728 seconds with exit status 0 (successful).
+  INFO [39029a31] Running /usr/bin/env git remote update --prune as deploy@3.15.187.69
+ DEBUG [39029a31] Command: cd /var/www/chapivia/repo && ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [39029a31] 	Fetching origin
+  INFO [39029a31] Finished in 1.498 seconds with exit status 0 (successful).
+ DEBUG [36ce7b0e] Running if test ! -d /var/www/chapivia/repo; then echo "Directory does not exist '/var/www/chapivia/repo'" 1>&2; false; fi as deploy@3.15.187.69
+ DEBUG [36ce7b0e] Command: if test ! -d /var/www/chapivia/repo; then echo "Directory does not exist '/var/www/chapivia/repo'" 1>&2; false; fi
+ DEBUG [36ce7b0e] Finished in 0.728 seconds with exit status 0 (successful).
+  INFO [830e70aa] Running /usr/bin/env mkdir -p /var/www/chapivia/releases/20201015085815 as deploy@3.15.187.69
+ DEBUG [830e70aa] Command: cd /var/www/chapivia/repo && ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env mkdir -p /var/www/chapivia/releases/20201015085815 )
+  INFO [830e70aa] Finished in 0.768 seconds with exit status 0 (successful).
+  INFO [5c486981] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /var/www/chapivia/releases/20201015085815 as deploy@3.15.187.69
+ DEBUG [5c486981] Command: cd /var/www/chapivia/repo && ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /var/www/chapivia/releases/20201015085815 )
+  INFO [5c486981] Finished in 0.885 seconds with exit status 0 (successful).
+ DEBUG [4b651b05] Running if test ! -d /var/www/chapivia/repo; then echo "Directory does not exist '/var/www/chapivia/repo'" 1>&2; false; fi as deploy@3.15.187.69
+ DEBUG [4b651b05] Command: if test ! -d /var/www/chapivia/repo; then echo "Directory does not exist '/var/www/chapivia/repo'" 1>&2; false; fi
+ DEBUG [4b651b05] Finished in 0.820 seconds with exit status 0 (successful).
+ DEBUG [3b65a158] Running /usr/bin/env git rev-list --max-count=1 master as deploy@3.15.187.69
+ DEBUG [3b65a158] Command: cd /var/www/chapivia/repo && ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [3b65a158] 	6a5da94ef3ad2ef4e31828e480e33ce1e3addcac
+ DEBUG [3b65a158] Finished in 0.726 seconds with exit status 0 (successful).
+ DEBUG [807955eb] Running if test ! -d /var/www/chapivia/releases/20201015085815; then echo "Directory does not exist '/var/www/chapivia/releases/20201015085815'" 1>&2; false; fi as deploy@3.15.187.69
+ DEBUG [807955eb] Command: if test ! -d /var/www/chapivia/releases/20201015085815; then echo "Directory does not exist '/var/www/chapivia/releases/20201015085815'" 1>&2; false; fi
+ DEBUG [807955eb] Finished in 0.809 seconds with exit status 0 (successful).
+  INFO [d64b833d] Running /usr/bin/env echo "6a5da94ef3ad2ef4e31828e480e33ce1e3addcac" > REVISION as deploy@3.15.187.69
+ DEBUG [d64b833d] Command: cd /var/www/chapivia/releases/20201015085815 && ( export NODE_VERSION="v14.4.0" ; /usr/bin/env echo "6a5da94ef3ad2ef4e31828e480e33ce1e3addcac" > REVISION )
+  INFO [d64b833d] Finished in 0.732 seconds with exit status 0 (successful).
+ DEBUG [ab0e9812] Running if test ! -d /var/www/chapivia/releases/20201015085815; then echo "Directory does not exist '/var/www/chapivia/releases/20201015085815'" 1>&2; false; fi as deploy@3.15.187.69
+ DEBUG [ab0e9812] Command: if test ! -d /var/www/chapivia/releases/20201015085815; then echo "Directory does not exist '/var/www/chapivia/releases/20201015085815'" 1>&2; false; fi
+ DEBUG [ab0e9812] Finished in 0.769 seconds with exit status 0 (successful).
+  INFO [ab6f467d] Running /tmp/chapivia/nvm-exec.sh yarn install --production as deploy@3.15.187.69
+ DEBUG [ab6f467d] Command: cd /var/www/chapivia/releases/20201015085815 && ( export NODE_VERSION="v14.4.0" ; /tmp/chapivia/nvm-exec.sh yarn install --production )
+ DEBUG [ab6f467d] 	Now using node v14.4.0 (npm v6.14.5)
+ DEBUG [ab6f467d] 	/tmp/chapivia/nvm-exec.sh: line 4: exec: yarn: not found
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-10-15 02:00:30 -0700 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [c4298eb8] Running /usr/bin/env mkdir -p /tmp/chapivia/ as deploy@3.15.187.69
+ DEBUG [c4298eb8] Command: /usr/bin/env mkdir -p /tmp/chapivia/
+  INFO [c4298eb8] Finished in 6.412 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/chapivia/nvm-exec.sh 0.0%
+  INFO Uploading /tmp/chapivia/nvm-exec.sh 100.0%
+  INFO [b1730072] Running /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh as deploy@3.15.187.69
+ DEBUG [b1730072] Command: /usr/bin/env chmod +x /tmp/chapivia/nvm-exec.sh
+  INFO [b1730072] Finished in 0.797 seconds with exit status 0 (successful).
+ DEBUG [c56a395d] Running [ -d $HOME/.nvm/v14.4.0 ] || [ -d $HOME/.nvm/versions/node/v14.4.0 ] as deploy@3.15.187.69
+ DEBUG [c56a395d] Command: [ -d $HOME/.nvm/v14.4.0 ] || [ -d $HOME/.nvm/versions/node/v14.4.0 ]
+ DEBUG [c56a395d] Finished in 0.726 seconds with exit status 0 (successful).
+  INFO [50c89329] Running /usr/bin/env mkdir -p /tmp as deploy@3.15.187.69
+ DEBUG [50c89329] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env mkdir -p /tmp )
+  INFO [50c89329] Finished in 0.722 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-chapivia-production-cbryant.sh 0.0%
+  INFO Uploading /tmp/git-ssh-chapivia-production-cbryant.sh 100.0%
+  INFO [2bdd3601] Running /usr/bin/env chmod 700 /tmp/git-ssh-chapivia-production-cbryant.sh as deploy@3.15.187.69
+ DEBUG [2bdd3601] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env chmod 700 /tmp/git-ssh-chapivia-production-cbryant.sh )
+  INFO [2bdd3601] Finished in 0.712 seconds with exit status 0 (successful).
+  INFO [89c43c05] Running /usr/bin/env git ls-remote git@github.com:cbryant24/chapivia.git HEAD as deploy@3.15.187.69
+ DEBUG [89c43c05] Command: ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git ls-remote git@github.com:cbryant24/chapivia.git HEAD )
+ DEBUG [89c43c05] 	6a5da94ef3ad2ef4e31828e480e33ce1e3addcac	HEAD
+  INFO [89c43c05] Finished in 1.154 seconds with exit status 0 (successful).
+  INFO [9993b438] Running /usr/bin/env mkdir -p /var/www/chapivia/shared /var/www/chapivia/releases as deploy@3.15.187.69
+ DEBUG [9993b438] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env mkdir -p /var/www/chapivia/shared /var/www/chapivia/releases )
+  INFO [9993b438] Finished in 0.723 seconds with exit status 0 (successful).
+ DEBUG [f8475a81] Running [ -f /var/www/chapivia/current/REVISION ] as deploy@3.15.187.69
+ DEBUG [f8475a81] Command: [ -f /var/www/chapivia/current/REVISION ]
+ DEBUG [f8475a81] Finished in 0.781 seconds with exit status 1 (failed).
+ DEBUG [63785a55] Running [ -f /var/www/chapivia/repo/HEAD ] as deploy@3.15.187.69
+ DEBUG [63785a55] Command: [ -f /var/www/chapivia/repo/HEAD ]
+ DEBUG [63785a55] Finished in 0.815 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /var/www/chapivia/repo
+ DEBUG [6a78bd34] Running if test ! -d /var/www/chapivia/repo; then echo "Directory does not exist '/var/www/chapivia/repo'" 1>&2; false; fi as deploy@3.15.187.69
+ DEBUG [6a78bd34] Command: if test ! -d /var/www/chapivia/repo; then echo "Directory does not exist '/var/www/chapivia/repo'" 1>&2; false; fi
+ DEBUG [6a78bd34] Finished in 0.713 seconds with exit status 0 (successful).
+  INFO [17897e1f] Running /usr/bin/env git remote set-url origin git@github.com:cbryant24/chapivia.git as deploy@3.15.187.69
+ DEBUG [17897e1f] Command: cd /var/www/chapivia/repo && ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git remote set-url origin git@github.com:cbryant24/chapivia.git )
+  INFO [17897e1f] Finished in 0.821 seconds with exit status 0 (successful).
+  INFO [5f5a7845] Running /usr/bin/env git remote update --prune as deploy@3.15.187.69
+ DEBUG [5f5a7845] Command: cd /var/www/chapivia/repo && ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [5f5a7845] 	Fetching origin
+  INFO [5f5a7845] Finished in 1.235 seconds with exit status 0 (successful).
+ DEBUG [5f1adee2] Running if test ! -d /var/www/chapivia/repo; then echo "Directory does not exist '/var/www/chapivia/repo'" 1>&2; false; fi as deploy@3.15.187.69
+ DEBUG [5f1adee2] Command: if test ! -d /var/www/chapivia/repo; then echo "Directory does not exist '/var/www/chapivia/repo'" 1>&2; false; fi
+ DEBUG [5f1adee2] Finished in 0.712 seconds with exit status 0 (successful).
+  INFO [9ca48adf] Running /usr/bin/env mkdir -p /var/www/chapivia/releases/20201015090045 as deploy@3.15.187.69
+ DEBUG [9ca48adf] Command: cd /var/www/chapivia/repo && ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env mkdir -p /var/www/chapivia/releases/20201015090045 )
+  INFO [9ca48adf] Finished in 0.813 seconds with exit status 0 (successful).
+  INFO [d1e85399] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /var/www/chapivia/releases/20201015090045 as deploy@3.15.187.69
+ DEBUG [d1e85399] Command: cd /var/www/chapivia/repo && ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /var/www/chapivia/releases/20201015090045 )
+  INFO [d1e85399] Finished in 0.817 seconds with exit status 0 (successful).
+ DEBUG [fb01bb47] Running if test ! -d /var/www/chapivia/repo; then echo "Directory does not exist '/var/www/chapivia/repo'" 1>&2; false; fi as deploy@3.15.187.69
+ DEBUG [fb01bb47] Command: if test ! -d /var/www/chapivia/repo; then echo "Directory does not exist '/var/www/chapivia/repo'" 1>&2; false; fi
+ DEBUG [fb01bb47] Finished in 0.704 seconds with exit status 0 (successful).
+ DEBUG [eb88b5b5] Running /usr/bin/env git rev-list --max-count=1 master as deploy@3.15.187.69
+ DEBUG [eb88b5b5] Command: cd /var/www/chapivia/repo && ( export NODE_VERSION="v14.4.0" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-chapivia-production-cbryant.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [eb88b5b5] 	6a5da94ef3ad2ef4e31828e480e33ce1e3addcac
+ DEBUG [eb88b5b5] Finished in 0.735 seconds with exit status 0 (successful).
+ DEBUG [404031ec] Running if test ! -d /var/www/chapivia/releases/20201015090045; then echo "Directory does not exist '/var/www/chapivia/releases/20201015090045'" 1>&2; false; fi as deploy@3.15.187.69
+ DEBUG [404031ec] Command: if test ! -d /var/www/chapivia/releases/20201015090045; then echo "Directory does not exist '/var/www/chapivia/releases/20201015090045'" 1>&2; false; fi
+ DEBUG [404031ec] Finished in 0.825 seconds with exit status 0 (successful).
+  INFO [aee261c0] Running /usr/bin/env echo "6a5da94ef3ad2ef4e31828e480e33ce1e3addcac" > REVISION as deploy@3.15.187.69
+ DEBUG [aee261c0] Command: cd /var/www/chapivia/releases/20201015090045 && ( export NODE_VERSION="v14.4.0" ; /usr/bin/env echo "6a5da94ef3ad2ef4e31828e480e33ce1e3addcac" > REVISION )
+  INFO [aee261c0] Finished in 0.920 seconds with exit status 0 (successful).
+ DEBUG [a9084bd0] Running if test ! -d /var/www/chapivia/releases/20201015090045; then echo "Directory does not exist '/var/www/chapivia/releases/20201015090045'" 1>&2; false; fi as deploy@3.15.187.69
+ DEBUG [a9084bd0] Command: if test ! -d /var/www/chapivia/releases/20201015090045; then echo "Directory does not exist '/var/www/chapivia/releases/20201015090045'" 1>&2; false; fi
+ DEBUG [a9084bd0] Finished in 0.811 seconds with exit status 0 (successful).
+  INFO [54fa3394] Running /tmp/chapivia/nvm-exec.sh yarn install --production as deploy@3.15.187.69
+ DEBUG [54fa3394] Command: cd /var/www/chapivia/releases/20201015090045 && ( export NODE_VERSION="v14.4.0" ; /tmp/chapivia/nvm-exec.sh yarn install --production )
+ DEBUG [54fa3394] 	Now using node v14.4.0 (npm v6.14.5)
+ DEBUG [54fa3394] 	yarn install v1.22.5
+ DEBUG [54fa3394] 	warning package.json: "dependencies" has dependency "babel-core" with range "7.0.0-bridge.0" that collides with a dependency in "devDependencies" of the same name with version "^6.26.3"
+ DEBUG [54fa3394] 	warning chapivia@0.1.0: "dependencies" has dependency "babel-core" with range "7.0.0-bridge.0" that collides with a dependency in "devDependencies" of the same name with version "^6.26.3"
+ DEBUG [54fa3394] 	[1/4] Resolving packages...
+ DEBUG [54fa3394] 	warning Resolution field "apollo-client@2.6.3" is incompatible with requested version "apollo-client@^2.6.10"
+ DEBUG [54fa3394] 	[2/4] Fetching packages...
+ DEBUG [54fa3394] 	warning file-loader@2.0.0: Invalid bin field for "file-loader".
+ DEBUG [54fa3394] 	warning mini-css-extract-plugin@0.5.0: Invalid bin field for "mini-css-extract-plugin".
+ DEBUG [54fa3394] 	warning url-loader@1.1.2: Invalid bin field for "url-loader".
+ DEBUG [54fa3394] 	info fsevents@1.2.13: The platform "linux" is incompatible with this module.
+info "fsevents@1.2.13" is an optional dependency and failed compatibility check. Excluding it from installation.
+ DEBUG [54fa3394] 	info fsevents@2.1.3: The platform "linux" is incompatible with this module.
+info "fsevents@2.1.3" is an optional dependency and failed compatibility check. Excluding it from installation.
+ DEBUG [54fa3394] 	[3/4] Linking dependencies...
+ DEBUG [54fa3394] 	warning " > @apollo/react-hoc@3.1.5" has unmet peer dependency "@types/react@^16.8.0".
+warning " > @apollo/react-hoc@3.1.5" has incorrect peer dependency "apollo-client@^2.6.4".
+warning "@apollo/react-hoc > @apollo/react-common@3.1.4" has unmet peer dependency "@types/react@^16.8.0".
+warning "@apollo/react-hoc > @apollo/react-common@3.1.4" has incorrect peer dependency "apollo-client@^2.6.4".
+warning "@apollo/react-hoc > @apollo/react-common@3.1.4" has unmet peer dependency "apollo-utilities@^1.3.2".
+warning "@apollo/react-hoc > @apollo/react-components@3.1.5" has unmet peer dependency "@types/react@^16.8.0".
+warning "@apollo/react-hoc > @apollo/react-components@3.1.5" has unmet peer dependency "apollo-cache@^1.3.2".
+warning "@apollo/react-hoc > @apollo/react-components@3.1.5" has incorrect peer dependency "apollo-client@^2.6.4".
+warning "@apollo/react-hoc > @apollo/react-components@3.1.5" has unmet peer dependency "apollo-link@^1.2.12".
+warning "@apollo/react-hoc > @apollo/react-components@3.1.5" has unmet peer dependency "apollo-utilities@^1.3.2".
+warning " > @apollo/react-hooks@3.1.5" has unmet peer dependency "@types/react@^16.8.0".
+warning " > @apollo/react-hooks@3.1.5" has incorrect peer dependency "apollo-client@^2.6.4".
+warning " > @apollo/react-testing@3.1.4" has unmet peer dependency "apollo-cache-inmemory@^1.6.2".
+warning " > @apollo/react-testing@3.1.4" has incorrect peer dependency "apollo-client@^2.6.4".
+warning " > @apollo/react-testing@3.1.4" has unmet peer dependency "apollo-link@^1.2.12".
+warning " > @apollo/react-testing@3.1.4" has unmet peer dependency "apollo-utilities@^1.3.2".
+warning "@cbryant24/styled-react > styled-components@5.1.1" has unmet peer dependency "react-is@>= 16.8.0".
+warning " > @cbryant24/styled-react-form@0.0.38" has incorrect peer dependency "@cbryant24/styled-react@latest".
+ DEBUG [54fa3394] 	warning " > jest-styled-components@7.0.2" has unmet peer dependency "styled-components@>= 5".
+warning "@storybook/react > babel-loader@7.1.5" has incorrect peer dependency "babel-core@6".
+ DEBUG [54fa3394] 	warning "eslint-plugin-jest > @typescript-eslint/experimental-utils > @typescript-eslint/typescript-estree > tsutils@3.17.1" has unmet peer dependency "typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta".
+warning " > redux-devtools@3.5.0" has incorrect peer dependency "react-redux@^4.0.0 || ^5.0.0 || ^6.0.0".
+ DEBUG [54fa3394] 	[4/4] Building fresh packages...
+ DEBUG [54fa3394] 	Done in 62.95s.
+  INFO [54fa3394] Finished in 64.970 seconds with exit status 0 (successful).
+  INFO [cec97f3e] Running /usr/bin/env ln -s /var/www/chapivia/releases/20201015090045 /var/www/chapivia/releases/current as deploy@3.15.187.69
+ DEBUG [cec97f3e] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env ln -s /var/www/chapivia/releases/20201015090045 /var/www/chapivia/releases/current )
+  INFO [cec97f3e] Finished in 1.187 seconds with exit status 0 (successful).
+  INFO [40dcb9d9] Running /usr/bin/env mv /var/www/chapivia/releases/current /var/www/chapivia as deploy@3.15.187.69
+ DEBUG [40dcb9d9] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env mv /var/www/chapivia/releases/current /var/www/chapivia )
+  INFO [40dcb9d9] Finished in 0.730 seconds with exit status 0 (successful).
+ DEBUG [d8d94fe5] Running /usr/bin/env ls -x /var/www/chapivia/releases as deploy@3.15.187.69
+ DEBUG [d8d94fe5] Command: ( export NODE_VERSION="v14.4.0" ; /usr/bin/env ls -x /var/www/chapivia/releases )
+ DEBUG [d8d94fe5] 	20201015085815	20201015090045
+ DEBUG [d8d94fe5] Finished in 0.800 seconds with exit status 0 (successful).
+ DEBUG [08cbe872] Running if test ! -d /var/www/chapivia/releases; then echo "Directory does not exist '/var/www/chapivia/releases'" 1>&2; false; fi as deploy@3.15.187.69
+ DEBUG [08cbe872] Command: if test ! -d /var/www/chapivia/releases; then echo "Directory does not exist '/var/www/chapivia/releases'" 1>&2; false; fi
+ DEBUG [08cbe872] Finished in 0.817 seconds with exit status 0 (successful).
+  INFO [b559dba2] Running /usr/bin/env echo "Branch master (at 6a5da94ef3ad2ef4e31828e480e33ce1e3addcac) deployed as release 20201015090045 by cbryant" >> /var/www/chapivia/revisions.log as deploy@3.15.187.69
+ DEBUG [b559dba2] Command: cd /var/www/chapivia/releases && ( export NODE_VERSION="v14.4.0" ; /usr/bin/env echo "Branch master (at 6a5da94ef3ad2ef4e31828e480e33ce1e3addcac) deployed as release 20201015090045 by cbryant" >> /var/www/chapivia/revisions.log )
+  INFO [b559dba2] Finished in 0.920 seconds with exit status 0 (successful).

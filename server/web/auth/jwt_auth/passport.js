@@ -19,14 +19,12 @@ const localLogin = new LocalStrategy( localOptions, async (email, password, done
     if(!user) return done(null, false);
 
   } catch(e) {
-    console.log('this be forced error', e);
     return done(e);
   }
   
   user.comparePassword(password, (err, isMatch) => {
     if (err) { return done(err, {message: 'there was an error'}); }
     if (!isMatch) { return done(null, false, {error: 'incorrect login info'}); }
-    console.log('is this the user', user);
     return done(null, user);
   })
 })
@@ -42,7 +40,6 @@ const jwtLogin = new JwtStrategy(jwtOptions, async (payload, done) => {
   // See if the user ID in the payload exists in the database
   // If it does, call 'done' with that user
   // otherwise, call done without a user object
-  console.log('am i hitting this strategy')
   try {
     const user = await User.findByPk(payload.sub);
 

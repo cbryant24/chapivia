@@ -51,7 +51,6 @@ passport.use(
 );
 
 async function register({ name, email, password, req }) {
-  debugger
   if (!email || !password || !name) {
     throw new Error('You must provide an email, password, and name.');
   }
