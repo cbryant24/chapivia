@@ -1,12 +1,12 @@
 {
-  "main.js": "/static/js/main.2faaf58e.chunk.js",
-  "main.js.map": "/static/js/main.2faaf58e.chunk.js.map",
+  "main.js": "/static/js/main.124debc7.chunk.js",
+  "main.js.map": "/static/js/main.124debc7.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
   "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-  "static/js/2.ce8bca0c.chunk.js": "/static/js/2.ce8bca0c.chunk.js",
-  "static/js/2.ce8bca0c.chunk.js.map": "/static/js/2.ce8bca0c.chunk.js.map",
+  "static/js/2.4dbf4e01.chunk.js": "/static/js/2.4dbf4e01.chunk.js",
+  "static/js/2.4dbf4e01.chunk.js.map": "/static/js/2.4dbf4e01.chunk.js.map",
   "index.html": "/index.html",
-  "precache-manifest.30ec558fbde671d62811b77199359b83.js": "/precache-manifest.30ec558fbde671d62811b77199359b83.js",
+  "precache-manifest.dac25726ce8f41398a9420a8dc0cfd77.js": "/precache-manifest.dac25726ce8f41398a9420a8dc0cfd77.js",
   "service-worker.js": "/service-worker.js",
   "static/media/galaga_bg.gif": "/static/media/galaga_bg.51d10d84.gif"
 }
