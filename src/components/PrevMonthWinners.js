@@ -20,6 +20,7 @@ function PrevMonthWinners(props) {
 
 	function displayWinnersList() {
 		let winnerPlace = 1;
+		if (!prevMonthWinners) return;
 		return prevMonthWinners.map((winner, idx) => {
 			if (idx > 0) {
 				winnerPlace =

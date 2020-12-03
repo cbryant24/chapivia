@@ -11,8 +11,6 @@ import graphqlGuess from 'mutations/Guess';
 import { DAILY_TRIVIA } from 'localState/Queries';
 import { user } from '__tests__/utils/data';
 
-let refetched = false;
-
 export const LOGGED_IN_USER = {
 	request: {
 		query: graphqlUser,
